@@ -217,7 +217,9 @@ const webpackPlugins = () => {
   plugins.push(
     new CircularDependencyPlugin(),
     new DuplicatesPlugin(),
-    new UnusedFilesWebpackPlugin(),
+    new UnusedFilesWebpackPlugin({
+      globOptions: { ignore: ["node_modules/**/*", "figma/**/*", "**/*.md"] },
+    }),
     new HashedModuleIdsPlugin({
       hashFunction: "md4",
       hashDigest: "base64",
@@ -440,7 +442,7 @@ const optimization = () => {
   return config;
 };
 
-const smp = new SpeedMeasurePlugin();// measures speed of each plugin in bundling
+const smp = new SpeedMeasurePlugin(); // measures speed of each plugin in bundling
 module.exports = smp.wrap({
   // The base directory, an absolute path, for resolving entry points and loaders
   context: PATHS.src_absolute,
