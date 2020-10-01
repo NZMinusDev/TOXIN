@@ -1,4 +1,4 @@
-# ![TOXIN](app\src\assets\pictures\images\ico\favicon.ico)
+# ![TOXIN](./app/src/assets/pictures/images/ico/favicon.ico)
 
 ## Описание
 
