@@ -1,0 +1,35 @@
+@use "./colors.scss";
+@use "./fonts.scss";
+
+html {
+  font-size: 24px;
+}
+
+h1 {
+  font-family: "Quicksand";
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.25rem;
+  color: colors.$color__dark-shade_100;
+}
+h2 {
+  font-family: "Quicksand";
+  font-size: 0.7916666666666667rem;
+  font-weight: 700;
+  line-height: 0.9895833333333333rem;
+  color: colors.$color__dark-shade_100;
+}
+h3 {
+  font-family: "Montserrat";
+  font-size: 0.5rem;
+  font-weight: 700;
+  line-height: 0.6095833333333333rem;
+  color: colors.$color__dark-shade_100;
+}
+body {
+  font-family: "Montserrat";
+  font-size: 0.5833333333333333rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  color: colors.$color__dark-shade_75;
+}
