@@ -7,6 +7,8 @@ const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const PugPluginAlias = require("pug-alias");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const DartSASS = require("sass");
+const fibers = require("fibers");
 const WrapperPlugin = require("wrapper-webpack-plugin");
 const DoIUse = require("doiuse");
 const PostcssFlexbugsFixes = require("postcss-flexbugs-fixes");
@@ -95,6 +97,7 @@ class ResultOfTemplatesProcessing {
         "@babel/polyfill",
         `./pages/${shortNameOfTemplate}/${shortNameOfTemplate}.ts`,
         "./utils/normalizeCSS/normalize.css",
+        "./components/thematic/main-theme.blocks/main-theme.scss",
       ];
 
       this.HTMLWebpackPlugins.push(
@@ -172,7 +175,7 @@ const webpackPlugins = () => {
       // images are converted to WEBP
       new ImageMinimizerPlugin({
         cache: "./app/cache/webpack__ImageMinimizerPlugin", // Enable file caching and set path to cache directory
-        filename: hashedFileName("[path]/[name]/[name]", "webp"),
+        filename: "[path]/[name].webp", // Tip: hashed by assetsLoader (file-loader)
         keepOriginal: true, // keep compressed image
         minimizerOptions: {
           // Lossless optimization with custom option
@@ -191,7 +194,7 @@ const webpackPlugins = () => {
       // original images will compressed lossless
       new ImageMinimizerPlugin({
         cache: "./app/cache/webpack__ImageMinimizerPlugin", // Enable file caching and set path to cache directory
-        filename: "[path]/[name]/[name].[ext]", // Tip: hashed by assetsLoader (file-loader)
+        filename: "[path]/[name].[ext]", // Tip: hashed by assetsLoader (file-loader)
         minimizerOptions: {
           // Lossless optimization with custom option
           plugins: [
@@ -217,9 +220,7 @@ const webpackPlugins = () => {
   plugins.push(
     new CircularDependencyPlugin(),
     new DuplicatesPlugin(),
-    new UnusedFilesWebpackPlugin({
-      globOptions: { ignore: ["node_modules/**/*", "figma/**/*", "**/*.md"] },
-    }),
+    new UnusedFilesWebpackPlugin({ patterns: ["**/*.scss", "**/*.ts"] }),
     new HashedModuleIdsPlugin({
       hashFunction: "md4",
       hashDigest: "base64",
@@ -349,7 +350,7 @@ const assetsLoaders = (extraLoader) => {
     {
       loader: "file-loader",
       options: {
-        name: hashedFileName("[path]/[name]/[name]", "[ext]"),
+        name: hashedFileName("[path]/[name]", "[ext]"),
       },
     },
   ];
@@ -373,6 +374,12 @@ const optimization = () => {
       chunks: "all", // == 'initial' && 'async'
       minChunks: 1,
       cacheGroups: {
+        normalize: {
+          test: /.*\\normalizeCSS\\.*\.css$/,
+          minChunks: 1,
+          priority: 11,
+          enforce: true,
+        },
         vendors: {
           test: /[\\/]node_modules[\\/]/,
           priority: 10, // The optimization will prefer the cache group with a higher priority
@@ -453,6 +460,7 @@ module.exports = smp.wrap({
   output: {
     filename: hashedFileName("bundles/[id]/[name]", "js"),
     path: PATHS.dist_absolute,
+    publicPath: `${PATHS.dist_absolute}/`,
   },
   resolve: {
     // You can use it while using import in css and js
@@ -472,14 +480,24 @@ module.exports = smp.wrap({
       },
       {
         test: /\.s[ac]ss$/,
-        use: cssLoaders({ loader: "sass-loader" }),
+        use: cssLoaders({
+          loader: "sass-loader",
+          options: {
+            // Prefer `dart-sass` instead `node-sass`
+            implementation: DartSASS,
+            /* compilation faster with fiber on */
+            sassOptions: {
+              fiber: fibers,
+            },
+          },
+        }),
       },
       {
-        test: /\.(jpe?g|png|gif|svg)$/i,
+        test: /\.(jpe?g|png|gif|svg)$/,
         use: assetsLoaders(),
       },
       {
-        test: /\.(ttf|woff|woff2|eot)$/,
+        test: /\.(ttf|otf|woff|woff2|eot)$/,
         use: assetsLoaders(),
       },
       {
