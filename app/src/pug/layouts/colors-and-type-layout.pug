@@ -1,4 +1,4 @@
-extends ~@pug/layouts/main.pug
+extends ~@pug/layouts/ui-kit-layout.pug
 
 block variables
   - var keywords = 'UI-kit, цвета, шрифт';
@@ -7,7 +7,6 @@ block variables
   - var colorValues = { Red: '#FF0000', Green: '#00FF00', Blue: '#0000FF' };
   - var typeValues = { H1: { title: 'This one is the sub-section or widget title' }, H2: { title: 'Next one is the item title inside widgets' }, H3: { title: 'This is a label or CTA text' }, Body: { tag: 'p', title: 'This is the body text which is used for most of the design, like paragraphs, lists, etc' } };
 
-block header
 block content
   main.ui-kit-container.colors-and-type-layout
     .colors-and-type-layout__colors
@@ -23,4 +22,3 @@ block content
             - tag = tagItem.toLowerCase();
           #{tag}.type-sample__tag= tagItem
           #{tag}.type-sample__sample= content.title
-block footer
