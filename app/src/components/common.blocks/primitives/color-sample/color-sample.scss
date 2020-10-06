@@ -1,0 +1,9 @@
+.color-sample {
+  display: grid;
+  grid: "sample name" / 0fr 1fr;
+  grid-column-gap: 2.78vmax;
+  place-items: center left;
+}
+.color-sample:not(:nth-child(1)) {
+  margin-top: 1.389vmax;
+}
