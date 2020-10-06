@@ -43,7 +43,7 @@ const redefinitionLevels = [
   "thematic/main-theme.blocks",
   "experimental/experiment-1.blocks",
 ];
-const componentGroups = ["basic", "containers", "primitives", "specific"];
+const componentGroups = ["basic", "containers", "primitives", "specific", "layouts"];
 
 const sharedAliases = {
   "@pug": path.resolve(PATHS.src_absolute, "./pug/"),
@@ -140,7 +140,7 @@ const webpackPlugins = () => {
     }),
     new WrapperPlugin({
       test: /.*small-mobile.*\.css$/,
-      header: "@media (max-width: 599.98px) {",
+      header: "@media (min-width: 0px) {",
       footer: "}",
     }),
     new WrapperPlugin({
