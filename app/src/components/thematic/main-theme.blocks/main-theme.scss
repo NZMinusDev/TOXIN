@@ -2,34 +2,41 @@
 @use "./fonts.scss";
 
 html {
-  font-size: 24px;
+  font-size: 1.67vmax;
 }
 
-h1 {
-  font-family: "Quicksand";
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: 1.25rem;
-  color: colors.$color__dark-shade_100;
-}
+h1,
 h2 {
   font-family: "Quicksand";
-  font-size: 0.7916666666666667rem;
   font-weight: 700;
-  line-height: 0.9895833333333333rem;
-  color: colors.$color__dark-shade_100;
+  color: map-get(colors.$theme-colors, color__dark-shade_100);
 }
-h3 {
-  font-family: "Montserrat";
-  font-size: 0.5rem;
-  font-weight: 700;
-  line-height: 0.6095833333333333rem;
-  color: colors.$color__dark-shade_100;
+h1 {
+  font-size: 1rem;
+  line-height: 1.25rem;
+  word-spacing: 0.125rem;
 }
+h2 {
+  font-size: 0.792rem;
+  line-height: 1rem;
+  word-spacing: 0.083rem;
+}
+
+h3,
 body {
   font-family: "Montserrat";
-  font-size: 0.5833333333333333rem;
+}
+h3 {
+  font-size: 0.5rem;
+  font-weight: 700;
+  word-spacing: 0.0417rem;
+  line-height: 0.625rem;
+  text-transform: uppercase;
+  color: map-get(colors.$theme-colors, color__dark-shade_100);
+}
+body {
+  font-size: 0.583rem;
   font-weight: 400;
-  line-height: 1.25rem;
-  color: colors.$color__dark-shade_75;
+  line-height: 1rem;
+  color: map-get(colors.$theme-colors, color__dark-shade_75);
 }
