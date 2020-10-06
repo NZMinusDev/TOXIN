@@ -1,0 +1,45 @@
+
+$new-size: 3.33vmax; // change this for logo scaling
+
+$basic-size: 3.33vmax;
+$border-width: 0.20833vmax;
+$scale: $new-size / $basic-size;
+$circle-size: $new-size - 2 * $border-width;
+.logo {
+  display: inline-block;
+  position: relative;
+  width: $circle-size;
+  height: $circle-size;
+  border-radius: 50%;
+  background: white;
+  border: $border-width solid black;
+}
+
+$left-curve-size: (0.98056vmax * $scale - $border-width) / $circle-size * 100%;
+$curve-y: (1.2743056vmax * $scale - $border-width) / $circle-size * 100%;
+$curve-x: (0.7840278vmax * $scale - $border-width) / $circle-size * 100%;
+.logo:before {
+  content: "";
+  position: absolute;
+  top: $curve-y;
+  left: $curve-x;
+  width: $left-curve-size;
+  height: $left-curve-size;
+  border-top: $border-width solid black;
+  border-right: $border-width solid black;
+  border-top-right-radius: 100%;
+}
+
+$right-curve-width: (0.759722vmax * $scale - $border-width) / $circle-size * 100%;
+$right-curve-height: (0.4923611vmax * $scale - $border-width) / $circle-size * 100%;
+.logo:after {
+  content: "";
+  position: absolute;
+  top: $curve-y;
+  right: $curve-x;
+  width: $right-curve-width;
+  height: $right-curve-height;
+  border-top: $border-width solid black;
+  border-left: $border-width solid black;
+  border-top-left-radius: 100%;
+}

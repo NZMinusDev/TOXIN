@@ -1,0 +1,6 @@
+@use "./../../../colors.scss";
+.logo_isGray,
+.logo_isGray:before,
+.logo_isGray:after {
+  border-color: map-get(colors.$theme-colors, color__dark-shade_25);
+}
