@@ -1,10 +1,14 @@
-extends ~@pug/layouts/main.pug
+extends ~@pug/layouts/colors-and-type-layout.pug
+
+//- components
+include ~@common.blocks/primitives/form-text-field/form-text-field.pug
 
 block variables
   - var keywords = 'FSD, Frontend, TOXIN, образование, верстка';
   - var description = 'Формы, используемые в базовом макете сайта TOXIN';
   - var title = 'Формы';
 
-block header
 block content
-block footer
+  main.ui-kit-container
+    +form-text-field()(id="form-text-field1", type="email", name="email-field", value="", label="text field", placeholder="Email")
+    +form-text-field()(id="form-text-field2", type="text", name="focused-form-text-field", value="This is pretty awesome", label="text field", placeholder="Text" autofocus="autofocus")
