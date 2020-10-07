@@ -96,7 +96,7 @@ class ResultOfTemplatesProcessing {
       this.entries[shortNameOfTemplate] = [
         "@babel/polyfill",
         `./pages/${shortNameOfTemplate}/${shortNameOfTemplate}.ts`,
-        "./utils/normalizeCSS/normalize.css",
+        "./utils/normalizeCSS/normalize.decl.ts",
         "./components/thematic/main-theme.blocks/main-theme.scss",
       ];
 
