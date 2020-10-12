@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const { HashedModuleIdsPlugin } = require("webpack");
+const { HashedModuleIdsPlugin, ProvidePlugin } = require("webpack");
 const path = require("path");
 const fs = require("fs");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
@@ -168,6 +168,10 @@ const webpackPlugins = () => {
       header: "@media (color) {",
       footer: "}",
     }),
+    new ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+    }),
   ];
 
   if (isProd) {
@@ -236,7 +240,7 @@ const webpackPlugins = () => {
  * Loaders contraction for templates.
  * @param {Array<String>} includedFilesExtensions - extensions for including into bundles from components' resources; example: ["scss", "ts"].
  */
-const templatesLoaders = (includedFilesExtensions = ["scss", "ts"]) => {
+const templatesLoaders = (includedFilesExtensions = ["css", "js", "scss", "ts"]) => {
   const bemDeclLevels = [];
   redefinitionLevels.forEach((level) => {
     componentGroups.forEach((group) => {
@@ -378,16 +382,21 @@ const optimization = () => {
         normalize: {
           test: /.*\\normalizeCSS\\.*\.css$/,
           minChunks: 1,
-          priority: 11,
+          priority: 12,
           enforce: true,
         },
         vendors: {
           test: /[\\/]node_modules[\\/]/,
-          priority: 10, // The optimization will prefer the cache group with a higher priority
+          priority: 11, // The optimization will prefer the cache group with a higher priority
           enforce: true, // always create chunks (ignore: minSize, maxAsyncRequests, ... )
         },
+        lib: {
+          test: /.*\\(library.blocks)\\.*/,
+          priority: 10,
+          enforce: true,
+        },
         common: {
-          test: /.*\\(common.blocks)|(library.blocks)\\.*/,
+          test: /.*\\(common.blocks)\\.*/,
           priority: 9,
           enforce: true,
         },
