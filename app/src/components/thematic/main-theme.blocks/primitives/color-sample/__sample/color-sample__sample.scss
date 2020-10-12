@@ -1,9 +1,9 @@
 @use "./../../../colors.scss";
 
 $counter: 1;
-@each $color-name, $color-value in colors.$theme-colors {
+@each $color-name, $color-value in colors.$THEME_COLORS {
   [class="color-sample"]:nth-child(#{$counter}) > .color-sample__sample {
-    background-color: map-get(colors.$theme-colors, $color-name);
+    background-color: map-get(colors.$THEME_COLORS, $color-name);
   }
   $counter: $counter + 1;
 }
