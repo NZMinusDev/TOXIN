@@ -1,9 +1,9 @@
-$theme-colors: (
-  "color__dark-shade_100": rgba(31, 32, 65, 1),
-  "color__dark-shade_75": rgba(31, 32, 65, 0.75),
-  "color__dark-shade_50": rgba(31, 32, 65, 0.5),
-  "color__dark-shade_25": rgba(31, 32, 65, 0.25),
-  "color__dark-shade_5": rgba(31, 32, 65, 0.05),
-  "color__purple": #bc9cff,
-  "color__green": #6fcf97,
+$THEME_COLORS: (
+  "color__dark-shade_100": var(--color__dark-shade_100),
+  "color__dark-shade_75": var(--color__dark-shade_75),
+  "color__dark-shade_50": var(--color__dark-shade_50),
+  "color__dark-shade_25": var(--color__dark-shade_25),
+  "color__dark-shade_5": var(--color__dark-shade_5),
+  "color__purple": var(--color__purple),
+  "color__green": var(--color__green),
 );
