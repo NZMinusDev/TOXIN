@@ -3,9 +3,9 @@
 .form-text-field__field {
   color: map-get(colors.$THEME_COLORS, color__dark-shade_25);
   border-color: map-get(colors.$THEME_COLORS, color__dark-shade_25);
-}
-.form-text-field__field:hover,
-.form-text-field__field:focus {
-  color: map-get(colors.$THEME_COLORS, color__dark-shade_75);
+
+  &:hover, &:focus{
+    color: map-get(colors.$THEME_COLORS, color__dark-shade_75);
   border-color: map-get(colors.$THEME_COLORS, color__dark-shade_50);
+  }
 }
