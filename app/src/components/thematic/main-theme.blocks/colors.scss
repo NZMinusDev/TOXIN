@@ -4,6 +4,11 @@ $THEME_COLORS: (
   "color__dark-shade_50": var(--color__dark-shade_50),
   "color__dark-shade_25": var(--color__dark-shade_25),
   "color__dark-shade_5": var(--color__dark-shade_5),
-  "color__purple": var(--color__purple),
-  "color__green": var(--color__green),
+  "color__primary": var(--color__primary),
+  "color__secondary": var(--color__secondary),
+);
+
+$THEME_GRADIENTS: (
+  "gradient__primary": linear-gradient(180deg, var(--color__primary) 0%, #8ba4f9 100%),
+  "gradient__secondary": linear-gradient(180deg, var(--color__secondary) 0% #66d2ea 100%),
 );
