@@ -1,0 +1,17 @@
+.form-elements-layout {
+  grid:
+    "text-field-default . checkbox-buttons . range-slider" (84px / 14.4px + 0vmax)
+    "text-field-hover . checkbox-buttons . button-fill" (84px / 14.4px + 0vmax)
+    "dropdown . radio-buttons . button-empty" (84px / 14.4px + 0vmax)
+    "masked-text-field . toggle . button-long" (106px / 14.4px + 0vmax)
+    "date-dropdown . like-button . pagination" (84px / 14.4px + 0vmax)
+    "filter-date-dropdown . rate-button . pagination" (110px / 14.4px + 0vmax)
+    "subscription-text-field . . . ." (84px / 14.4px + 0vmax)
+    ". . . . ." (96px / 14.4px + 0vmax)
+    "dropdown-default-plural . dropdown-expanded-apply . dropdown-expanded-clear-apply" (64px / 14.4px + 0vmax)
+    "dropdown-expanded-plural . dropdown-expanded-apply . dropdown-expanded-clear-apply" (181.56px / 14.4px + 0vmax)
+    ". . . . ." (50px / 14.4px + 0vmax)
+    "expandable-checkbox-list . rich-checkbox-buttons . bullet-list" (272px / 14.4px + 0vmax)
+    ". . . . ." (100px / 14.4px + 0vmax)
+    "logo-comfort . comment comment comment" 10.56vmax / 22.22vmax 8.75vmax 22.22vmax 5vmax 22.22vmax;
+}
