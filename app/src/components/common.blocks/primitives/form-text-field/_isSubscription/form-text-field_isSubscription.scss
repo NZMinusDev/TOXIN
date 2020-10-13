@@ -1,0 +1,12 @@
+.form-text-field_isSubscription {
+  position: relative;
+}
+.form-text-field_isSubscription:after {
+  font-family: "Material Icons";
+  content: "\e5c8";
+  font-size: 1rem;
+  position: absolute;
+  right: 3.74532%;
+  top: 25%;
+  cursor: pointer;
+}

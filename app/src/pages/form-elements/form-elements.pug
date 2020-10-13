@@ -9,6 +9,31 @@ block variables
   - var title = 'Формы';
 
 block content
-  main.ui-kit-container
-    +form-text-field()(id="form-text-field1", type="email", name="email-field", value="", label="text field", placeholder="Email")
-    +form-text-field()(id="form-text-field2", type="text", name="focused-form-text-field", value="This is pretty awesome", label="text field", placeholder="Text" autofocus="autofocus")
+  main.form-elements-layout.ui-kit-container
+    +form-text-field#text-field-default.form-elements-layout__text-field-default(
+      label="text field",
+      type="email",
+      name="email",
+      placeholder="Email"
+    )
+    +form-text-field#text-field-hover.form-elements-layout__text-field-hover(
+      label="text field",
+      type="text",
+      name="text",
+      value="This is pretty awesome",
+      placeholder="Text",
+      autofocus="autofocus"
+    )
+    +form-text-field#masked-text-field.form-elements-layout__masked-text-field(
+      label="masked text field",
+      type="date",
+      name="masked-form-date",
+      placeholder="ДД.ММ.ГГГГ"
+    )
+    +form-text-field#subscription-text-field.form-elements-layout__subscription-text-field(
+      label="subscription text field",
+      type="email",
+      name="subscription-form-text-field",
+      modClass="form-text-field_isSubscription",
+      placeholder="Email"
+    )

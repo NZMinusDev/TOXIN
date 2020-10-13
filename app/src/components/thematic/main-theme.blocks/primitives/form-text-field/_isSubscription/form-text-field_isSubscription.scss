@@ -1,0 +1,6 @@
+@use "./../../../colors.scss";
+.form-text-field_isSubscription:after {
+  color:transparent;
+  background: map-get(colors.$THEME_GRADIENTS, gradient__primary);
+  background-clip: text;
+}
