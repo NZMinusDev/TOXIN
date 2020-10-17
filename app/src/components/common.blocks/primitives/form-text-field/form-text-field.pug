@@ -4,7 +4,7 @@
 //- attributes.type - type of field for validation such as 'email' or 'date'
 //- attributes.name - name of input field
 //- attributes.value - init value of field
-//- attributes.modClass - additional class-modificator such as 'subscription'
+//- attributes.mod - additional modificator such as 'subscription'
 //- attributes.placeholder - placeholder text
 //- autofocus="autofocus" is true value for autofocus field
 mixin form-text-field
@@ -13,10 +13,10 @@ mixin form-text-field
       h3.form-label
         label(for=attributes.id)= attributes.label
     div(
-      class='form-text-field_is' + attributes.type[0].toUpperCase() + attributes.type.slice(1),
-      class=attributes.modClass
+      class=attributes.type ? 'form-text-field_is' + attributes.type[0].toUpperCase() + attributes.type.slice(1) : '',
+      class=attributes.mod ? 'form-text-field_mod-' + attributes.mod : ''
     )
-      input.form-text-field__field(
+      input.form-field(
         id=attributes.id,
         type="text",
         name=attributes.name,
