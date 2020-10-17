@@ -1,0 +1,54 @@
+@use "./../__link-btns/form-dropdown__link-btns.scss";
+/* lib redefinition */
+.datepicker-inline {
+  position: absolute;
+  top: (44px+5.56px) / 14.4px +0vmax;
+  cursor: initial;
+}
+
+.datepicker--nav,
+.datepicker--content {
+  padding: 0;
+  text-indent: initial;
+}
+
+.datepicker--nav {
+  border-bottom: 0;
+  min-height: initial;
+}
+.datepicker--nav-title i {
+  color: inherit;
+}
+.datepicker--nav-action {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+.datepicker--content {
+  padding-top: 30px/14.4px+0vmax;
+}
+.datepicker--days-names {
+  margin: 0;
+}
+.datepicker--cell,
+.datepicker--day-name {
+  height: 40px/14.4px+0vmax;
+}
+
+/* project's */
+.form-dropdown__datepicker {
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-align: inherit;
+  text-indent: inherit;
+}
+.form-dropdown__calendar {
+  width: initial;
+  padding: 20px/14.4px+0vmax 20px/14.4px+0vmax 9px/14.4px+0vmax 20px/14.4px+0vmax;
+}
+.form-dropdown__calendar_isHidden {
+  display: none;
+}

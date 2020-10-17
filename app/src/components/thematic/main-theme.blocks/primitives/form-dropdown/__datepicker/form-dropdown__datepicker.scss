@@ -1,0 +1,99 @@
+@use "./../../../colors.scss";
+@use "./../__link-btns/form-dropdown__link-btns.scss";
+
+/* lib redefinition */
+.datepicker--nav-title {
+  font: var(--font__h2);
+  color: var(--color__dark-shade_100);
+}
+.datepicker--nav-action {
+  color: var(--color__primary);
+}
+
+.datepicker--day-name,
+.datepicker--cell {
+  text-transform: none;
+  font: var(--font__h3);
+}
+.datepicker--day-name {
+  color: var(--color__primary);
+}
+.datepicker--cell {
+  color: var(--color__dark-shade_50);
+
+  &.-other-month-,
+  &.-other-decade-,
+  &.-disabled- {
+    color: var(--color__dark-shade_25);
+  }
+
+  &.-current-,
+  &.-selected-,
+  &.-selected-.-focus-,
+  &.-selected-.-current- {
+    border-radius: 100%;
+    color: white;
+  }
+  &.-current- {
+    background: linear-gradient(180deg, var(--color__secondary) 0%, #66d2ea 100%);
+  }
+  &.-selected-,
+  &.-selected-.-focus-,
+  &.-selected-.-current- {
+    background: linear-gradient(180deg, var(--color__primary) 0%, #8ba4f9 100%);
+  }
+  &.-in-range-,
+  &.-current-.-in-range- {
+    color: var(--color__dark-shade_50);
+    background: linear-gradient(
+      180deg,
+      var(--color__primary_25) 0%,
+      rgba(139, 164, 249, 0.25) 100%
+    );
+  }
+  &.-current-.-in-range- {
+    border-radius: 0;
+  }
+  &.-range-from-,
+  &.-range-to- {
+    border-radius: 100%;
+    border: 0;
+    background: linear-gradient(180deg, var(--color__primary) 0%, #8ba4f9 100%);
+  }
+  &.-range-from-:before,
+  &.-range-to-:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    background: linear-gradient(
+      180deg,
+      var(--color__primary_25) 0%,
+      rgba(139, 164, 249, 0.25) 100%
+    );
+  }
+  &.-range-from-:before {
+    right: 0;
+  }
+  &.-range-to-:before {
+    left: 0;
+  }
+}
+
+/* project's */
+.form-dropdown__datepicker {
+  color: map-get(colors.$THEME_COLORS, color__dark-shade_75);
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    color: inherit;
+  }
+}
+
+.form-dropdown__calendar {
+  border: var(--border);
+  border-radius: var(--border-radius-size);
+}

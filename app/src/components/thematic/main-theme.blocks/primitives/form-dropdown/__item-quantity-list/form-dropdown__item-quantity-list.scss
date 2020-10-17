@@ -1,0 +1,25 @@
+@use "./../../../colors.scss";
+
+.form-dropdown__item-quantity-list.menu-open {
+  .iqdropdown-menu {
+    border: var(--border-hover);
+    border-radius: 0 0 var(--border-radius-size) var(--border-radius-size);
+
+    button.button-decrement,
+    button.button-increment {
+      border: var(--border-hover);
+
+      &.iqdropdown__counter_isDisabled {
+        border: var(--border);
+      }
+
+      &:before {
+        color: map-get(colors.$THEME_COLORS, color__dark-shade_50);
+      }
+    }
+    .counter {
+      font-weight: 700;
+      color: map-get(colors.$THEME_COLORS, color__dark-shade_100);
+    }
+  }
+}

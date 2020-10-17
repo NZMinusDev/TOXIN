@@ -1,0 +1,10 @@
+mixin form-dropdown__datepicker
+  button.datepicker-here.form-dropdown__datepicker(
+    id=attributes.id,
+    name=attributes.name,
+    type="button",
+    data-range=attributes.dataRange,
+    data-multiple-dates-separator=" - ",
+    placeholder=attributes.placeholder
+  )
+    p.form-dropdown__selection-text

@@ -1,0 +1,66 @@
+$CONTROLS_SIZE: 30px / 14.4px + 0vmax;
+
+.form-dropdown__item-quantity-list {
+  height: 100%;
+  padding: 0 0;
+  text-align: inherit;
+  text-indent: inherit;
+  border: 0;
+  border-radius: 0;
+
+  .iqdropdown-selection {
+    width: 67.8%;
+    color: inherit;
+    font: inherit;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    // remove lib selection-icon
+    &::after {
+      display: none;
+    }
+  }
+
+  .iqdropdown-menu {
+    top: 44px / 14.4px + 0vmax;
+    padding: 6px/14.4px+0vmax 0.48611vmax 0px 1.04167vmax;
+    box-shadow: initial;
+    border: 1px solid black;
+  }
+
+  .iqdropdown-menu-option {
+    height: initial;
+    padding: 0;
+    text-indent: 0;
+
+    &:not(:nth-child(1)) {
+      margin-top: 7px / 14.4px + 0vmax;
+    }
+  }
+
+  //replace lib buttons' icons
+  .icon-decrement,
+  .icon-increment {
+    display: none;
+  }
+  .form-dropdown__counter-control button.button-decrement,
+  .form-dropdown__counter-control button.button-increment {
+    height: $CONTROLS_SIZE;
+    width: $CONTROLS_SIZE;
+    border-radius: 100%;
+    border: 1px solid black;
+  }
+  .form-dropdown__counter-control button.button-decrement:before {
+    content: "-";
+  }
+  .form-dropdown__counter-control button.button-increment:before {
+    content: "+";
+  }
+
+  .form-dropdown__counter-control .counter {
+    display: inline-block;
+    width: $CONTROLS_SIZE;
+    text-align: center;
+  }
+}

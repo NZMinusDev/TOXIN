@@ -1,0 +1,15 @@
+.form-dropdown__link-btns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 21px / 14.4px + 0vmax;
+  margin-bottom: 11px / 14.4px + 0vmax;
+
+  .form-dropdown__apply-btn-js,
+  .form-dropdown__clear-btn-js {
+    cursor: pointer;
+  }
+
+  .form-dropdown__clear-btn-js_isHidden {
+    visibility: hidden;
+  }
+}

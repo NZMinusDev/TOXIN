@@ -1,0 +1,19 @@
+mixin form-dropdown__item-quantity-list
+  button.iqdropdown.form-dropdown__item-quantity-list(id=attributes.id, type="button", name=attributes.name)
+    p.iqdropdown-selection(
+      data-selection-text=attributes.selectionText,
+      data-text-plural=attributes.textPlural,
+      data-placeholder=attributes.placeholder
+    )
+    .iqdropdown-menu
+      each limits, item in attributes.list
+        .iqdropdown-menu-option(
+          data-id=item,
+          data-defaultcount=limits.default,
+          data-mincount=limits.min,
+          data-maxcount=limits.max
+        )
+          div
+            h3.iqdropdown-itemItem= item
+      if block
+        block

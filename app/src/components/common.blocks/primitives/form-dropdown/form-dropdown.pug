@@ -1,0 +1,60 @@
+include ./__item-quantity-list/form-dropdown__item-quantity-list.pug
+include ./__datepicker/form-dropdown__datepicker.pug
+include ./__link-btns/form-dropdown__link-btns.pug
+//- id: id of dropdown button
+//- class: class for component bem mix: such as positioning functionality
+//- label: text of label
+//- type: plural filte-date | date | plural | single | single-apply
+//- name: name of dropdown button
+//- placeholder: text of placeholder
+//- Additional for types: plural | single | single-apply
+//-   list: object like this: { itemName1: { default: 2, min: 0, max: 1 / 0 }, itemName2: { default: 1, min: 0, max: 1 / 0 }, itemName3: { default: 0, min: 0, max: 1 / 0 } }
+//- Additional for types: single | single-apply
+//-   selectionText: text of 1 item
+//-   textPlural: text of >1 items
+//- Tip: default type is "plural"
+mixin form-dropdown
+  - var type = attributes.type ? attributes.type : 'plural';
+  .form-dropdown(class='form-dropdown_type-' + type, class=attributes.class)
+    if attributes.label
+      h3.form-label
+        label(for=attributes.id)= attributes.label
+    .form-field
+      label.form-dropdown__expand-icon(for=attributes.id) expand_more
+      case type
+        when "filter-date"
+        when "date"
+          +form-dropdown__datepicker(
+            id=attributes.id,
+            name=attributes.name,
+            dataRange=type === 'filter-date' ? 'true' : 'false',
+            placeholder=attributes.placeholder
+          )
+        when "plural"
+          +form-dropdown__item-quantity-list(
+            id=attributes.id,
+            name=attributes.name,
+            placeholder=attributes.placeholder,
+            selectionText=attributes.selectionText,
+            textPlural=attributes.textPlural,
+            list=attributes.list
+          )
+        when "single"
+          +form-dropdown__item-quantity-list(
+            id=attributes.id,
+            name=attributes.name,
+            placeholder=attributes.placeholder,
+            selectionText=attributes.selectionText,
+            textPlural=attributes.textPlural,
+            list=attributes.list
+          )
+        when "single-apply"
+          +form-dropdown__item-quantity-list(
+            id=attributes.id,
+            name=attributes.name,
+            placeholder=attributes.placeholder,
+            selectionText=attributes.selectionText,
+            textPlural=attributes.textPlural,
+            list=attributes.list
+          )
+            +form-dropdown__link-btns
