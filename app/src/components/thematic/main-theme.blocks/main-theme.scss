@@ -2,13 +2,24 @@
 @use "./fonts.scss";
 
 :root {
+  --font__h1: 700 1rem /1.25rem "Quicksand";
+  --font__h2: 700 0.792rem /1rem "Quicksand";
+  --font__h3: 700 0.5rem /0.625rem "Montserrat";
+  --font__body: 400 0.583rem /1rem "Montserrat";
+
   --color__dark-shade_100: rgba(31, 32, 65, 1);
   --color__dark-shade_75: rgba(31, 32, 65, 0.75);
   --color__dark-shade_50: rgba(31, 32, 65, 0.5);
   --color__dark-shade_25: rgba(31, 32, 65, 0.25);
   --color__dark-shade_5: rgba(31, 32, 65, 0.05);
   --color__primary: #bc9cff;
+  --color__primary_25: rgba(188, 156, 255, 0.25);
   --color__secondary: #6fcf97;
+  --color__secondary_25: rgba(111, 207, 151, 0.25);
+
+  --border: 1px solid rgba(31, 32, 65, 0.25);
+  --border-hover: 1px solid rgba(31, 32, 65, 0.5);
+  --border-radius-size: 0.278vmax;
 }
 
 html {
