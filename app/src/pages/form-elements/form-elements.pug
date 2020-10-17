@@ -2,6 +2,7 @@ extends ~@pug/layouts/colors-and-type-layout.pug
 
 //- components
 include ~@common.blocks/primitives/form-text-field/form-text-field.pug
+include ~@common.blocks/primitives/form-dropdown/form-dropdown.pug
 
 block variables
   - var keywords = 'FSD, Frontend, TOXIN, образование, верстка';
@@ -24,11 +25,39 @@ block content
       placeholder="Text",
       autofocus="autofocus"
     )
+    +form-dropdown#dropdown.form-elements-layout__dropdown(
+      label="dropdown",
+      name="guests",
+      type="single-apply",
+      placeholder="Сколько гостей"
+      list={ взрослые: { default: 0, min: 0, max: 1 / 0 }, дети: { default: 0, min: 0, max: 1 / 0 }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
+      selectionText="гость",
+      textPlural="гостя",
+    )
     +form-text-field#masked-text-field.form-elements-layout__masked-text-field(
       label="masked text field",
       type="date",
       name="masked-form-date",
       placeholder="ДД.ММ.ГГГГ"
+    )
+    .form-elements-layout__date-dropdown
+      +form-dropdown#date-dropdown-default(
+        label="date dropdown",
+        type="date",
+        name="date1",
+        placeholder="ДД.ММ.ГГГГ"
+      )
+      +form-dropdown#date-dropdown-filled(
+        label="date dropdown",
+        type="date",
+        name="date2",
+        placeholder="ДД.ММ.ГГГГ"
+      )
+    +form-dropdown#filter-date-dropdown.form-elements-layout__filter-date-dropdown(
+      label="filter date dropdown",
+      type="filter-date",
+      name="filter-date",
+      placeholder="День месяц - день месяц"
     )
     +form-text-field#subscription-text-field.form-elements-layout__subscription-text-field(
       label="subscription text field",
@@ -37,3 +66,48 @@ block content
       mod="subscription",
       placeholder="Email"
     )
+    .form-elements-layout__checkbox-buttons
+    .form-elements-layout__radio-buttons
+    .form-elements-layout__toggle
+    .form-elements-layout__like-button
+    .form-elements-layout__rate-button
+    .form-elements-layout__range-slider
+    .form-elements-layout__button-fill
+    .form-elements-layout__button-empty
+    .form-elements-layout__button-long
+    .form-elements-layout__pagination
+    +form-dropdown#dropdown-default-plural.form-elements-layout__dropdown-default-plural(
+      label="dropdown",
+      type="plural",
+      name="facilities",
+      list={ спальни: { default: 2, min: 1, max: 3 }, кровати: { default: 2, min: 1, max: 3 }, 'ванные комнаты': { default: 0, min: 0, max: 2 } }
+    )
+    +form-dropdown#dropdown-expanded-plural.form-elements-layout__dropdown-expanded-plural(
+      label="dropdown",
+      type="plural",
+      name="facilities",
+      list={ спальни: { default: 2, min: 1, max: 3 }, кровати: { default: 2, min: 1, max: 3 }, 'ванные комнаты': { default: 0, min: 0, max: 2 } }
+    )
+    +form-dropdown#dropdown-expanded-apply.form-elements-layout__dropdown-expanded-apply(
+      label="dropdown",
+      type="single-apply",
+      name="guests",
+      placeholder="Сколько гостей"
+      list={ взрослые: { default: 0, min: 0, max: 1 / 0 }, дети: { default: 0, min: 0, max: 1 / 0 }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
+      selectionText="гость",
+      textPlural="гостя",
+    )
+    +form-dropdown#dropdown-expanded-clear-apply.form-elements-layout__dropdown-expanded-clear-apply(
+      label="dropdown",
+      type="single-apply",
+      name="guests",
+      placeholder="Сколько гостей"
+      list={ взрослые: { default: 2, min: 0, max: 1 / 0 }, дети: { default: 1, min: 0, max: 1 / 0 }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
+      selectionText="гость",
+      textPlural="гостя",
+    )
+    .form-elements-layout__expandable-checkbox-list
+    .form-elements-layout__rich-checkbox-buttons
+    .form-elements-layout__bullet-list
+    .form-elements-layout__logo-comfort
+    .form-elements-layout__comment
