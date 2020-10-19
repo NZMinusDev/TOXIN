@@ -35,12 +35,12 @@
     color: white;
   }
   &.-current- {
-    background: linear-gradient(180deg, var(--color__secondary) 0%, #66d2ea 100%);
+    background: map-get(colors.$THEME_GRADIENTS, gradient__secondary);
   }
   &.-selected-,
   &.-selected-.-focus-,
   &.-selected-.-current- {
-    background: linear-gradient(180deg, var(--color__primary) 0%, #8ba4f9 100%);
+    background: map-get(colors.$THEME_GRADIENTS, gradient__primary);
   }
   &.-in-range-,
   &.-current-.-in-range- {
@@ -58,7 +58,7 @@
   &.-range-to- {
     border-radius: 100%;
     border: 0;
-    background: linear-gradient(180deg, var(--color__primary) 0%, #8ba4f9 100%);
+    background: map-get(colors.$THEME_GRADIENTS, gradient__primary);
   }
   &.-range-from-:before,
   &.-range-to-:before {
