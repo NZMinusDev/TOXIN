@@ -1,28 +1,35 @@
 $(function () {
   const datepicker = $(".datepicker-here");
 
-  datepicker.datepicker({
-    prevHtml: `arrow_back`,
-    nextHtml: `arrow_forward`,
-    classes: "form-dropdown__calendar form-dropdown__calendar_isHidden",
-    toggleSelected: false,
-    minDate: new Date(),
-    onSelect: (formattedDate, date, inst) => {
-      $(inst.el)
-        .find(".form-dropdown__clear-btn-js")
-        .removeClass("form-dropdown__clear-btn-js_isHidden");
+  datepicker.each(function () {
+    $(this).datepicker({
+      prevHtml: `arrow_back`,
+      nextHtml: `arrow_forward`,
+      classes: "form-dropdown__calendar form-dropdown__calendar_isHidden",
+      toggleSelected: false,
+      dateFormat: $(this).data("range") ? "dd M" : "dd.mm.yyyy",
+      minDate: new Date(),
+      onSelect: (formattedDate, date, inst) => {
+        $(inst.el)
+          .find(".form-dropdown__clear-btn-js")
+          .removeClass("form-dropdown__clear-btn-js_isHidden");
 
-      $(".form-field").has(inst.el).find(".form-dropdown__selection-text").text(formattedDate);
-    },
+        $(".form-field").has(inst.el).find(".form-dropdown__selection-text").text(formattedDate);
+      },
+    });
   });
 
   const clearDatepickerDisplay = (datepicker: HTMLElement) => {
-    $(".form-field")
-      .has(datepicker)
-      .find(".form-dropdown__selection-text")
-      .text(datepicker.getAttribute("placeholder"));
+    const selection = $(".form-field").has(datepicker).find(".form-dropdown__selection-text");
+    const initValue = datepicker.dataset.value;
 
-    $(datepicker).val(datepicker.dataset.placeholder);
+    if (initValue) {
+      selection.text(initValue);
+      $(datepicker).val(initValue);
+    } else {
+      selection.text(datepicker.getAttribute("placeholder"));
+      $(datepicker).val(datepicker.dataset.placeholder);
+    }
   };
   datepicker.each(function () {
     clearDatepickerDisplay(this);
