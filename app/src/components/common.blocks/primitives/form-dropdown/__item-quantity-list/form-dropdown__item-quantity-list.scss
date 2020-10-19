@@ -23,10 +23,12 @@ $CONTROLS_SIZE: 30px / 14.4px + 0vmax;
   }
 
   .iqdropdown-menu {
-    top: 44px / 14.4px + 0vmax;
+    margin:0 -1px;
+    top: 42px / 14.4px + 0vmax;
     padding: 6px/14.4px+0vmax 0.48611vmax 0px 1.04167vmax;
     box-shadow: initial;
     border: 1px solid black;
+    padding-bottom: 7px/14.4px+0vmax;
   }
 
   .iqdropdown-menu-option {
