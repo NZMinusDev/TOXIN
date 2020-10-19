@@ -14,7 +14,8 @@ $(function () {
           .find(".form-dropdown__clear-btn-js")
           .removeClass("form-dropdown__clear-btn-js_isHidden");
 
-        $(".form-field").has(inst.el).find(".form-dropdown__selection-text").text(formattedDate);
+        $(inst.el).find(".form-dropdown__selection-text").text(formattedDate);
+        $(inst.el).prev(".form-dropdown__input").val($(inst.el).val());
       },
     });
   });
@@ -26,9 +27,11 @@ $(function () {
     if (initValue) {
       selection.text(initValue);
       $(datepicker).val(initValue);
+      $(datepicker).prev(".form-dropdown__input").val(initValue);
     } else {
       selection.text(datepicker.getAttribute("placeholder"));
-      $(datepicker).val(datepicker.dataset.placeholder);
+      $(datepicker).val(datepicker.getAttribute("placeholder"));
+      $(datepicker).prev(".form-dropdown__input").val("");
     }
   };
   datepicker.each(function () {

@@ -23,20 +23,19 @@ mixin form-dropdown
         label(for=attributes.id)= attributes.label
     .form-field
       label.form-dropdown__expand-icon(for=attributes.id) expand_more
+      input.form-dropdown__input(name=attributes.name, type="hidden", value="")
       case type
         when "filter-date"
         when "date"
           +form-dropdown__datepicker(
             id=attributes.id,
-            name=attributes.name,
             dataRange=type === 'filter-date' ? 'true' : 'false',
             placeholder=attributes.placeholder,
-            data-value=attributes["data-value"]
+            data-value=attributes['data-value']
           )
         when "plural"
           +form-dropdown__item-quantity-list(
             id=attributes.id,
-            name=attributes.name,
             placeholder=attributes.placeholder,
             selectionText=attributes.selectionText,
             textPlural=attributes.textPlural,
@@ -45,7 +44,6 @@ mixin form-dropdown
         when "single"
           +form-dropdown__item-quantity-list(
             id=attributes.id,
-            name=attributes.name,
             placeholder=attributes.placeholder,
             selectionText=attributes.selectionText,
             textPlural=attributes.textPlural,
@@ -54,7 +52,6 @@ mixin form-dropdown
         when "single-apply"
           +form-dropdown__item-quantity-list(
             id=attributes.id,
-            name=attributes.name,
             placeholder=attributes.placeholder,
             selectionText=attributes.selectionText,
             textPlural=attributes.textPlural,
