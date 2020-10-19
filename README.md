@@ -173,20 +173,26 @@ Script-names:
    2. PowerShell.
    3. Ayu.
    4. Material Icon Theme.
-   5. Path Autocomplete.
-   6. Auto Complete Tag.
-   7. Bracket Pair Colorizer.
-   8. Code Spell Checker.
-   9. TODO Highlight.
-   10. ESLint.
-   11. Prettier - Code formatter.
-   12. VSCode Map Preview.
-   13. SVG.
-   14. markdownlint.
-   15. Sort Lines by Selection.
-   16. Live Server.
-   17. JavaScript (ES6) code snippets.
-   18. Webpack Snippets.
+   5. CSS Peek.
+   6. HTML CSS Support.
+   7. Path Autocomplete.
+   8. Auto Complete Tag.
+   9. Change-Case.
+   10. Bracket Pair Colorizer.
+   11. Code Spell Checker.
+   12. TODO Highlight.
+   13. Quokka.js.
+   14. ESLint.
+   15. Prettier - Code formatter.
+   16. Image preview.
+   17. VSCode Map Preview.
+   18. SVG.
+   19. markdownlint.
+   20. Sort Lines by Selection.
+   21. Live Server.
+   22. Import Cost.
+   23. JavaScript (ES6) code snippets.
+   24. Webpack Snippets.
 3. Препроцессоры, повышающие скорость и качество работы:
    1. Pug.
    2. SCSS.
