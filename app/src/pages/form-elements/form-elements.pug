@@ -1,8 +1,9 @@
-extends ~@pug/layouts/colors-and-type-layout.pug
+extends ~@pug/layouts/ui-kit-layout.pug
 
 //- components
 include ~@common.blocks/primitives/form-text-field/form-text-field.pug
 include ~@common.blocks/primitives/form-dropdown/form-dropdown.pug
+include ~@common.blocks/primitives/form-range-slider/form-range-slider.pug
 
 block variables
   - var keywords = 'FSD, Frontend, TOXIN, образование, верстка';
@@ -74,7 +75,13 @@ block content
     .form-elements-layout__toggle
     .form-elements-layout__like-button
     .form-elements-layout__rate-button
-    .form-elements-layout__range-slider
+    +form-range-slider#range-slider.form-elements-layout__range-slider(
+      label="range slider",
+      name="price",
+      data-range={ min: 341, max: 15454 },
+      data-start=[5000, 10000],
+      data-suffix="₽"
+    )
     .form-elements-layout__button-fill
     .form-elements-layout__button-empty
     .form-elements-layout__button-long

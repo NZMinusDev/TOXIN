@@ -1,0 +1,7 @@
+@use "./../../../colors.scss";
+.noUi-target {
+    border: var(--border);
+}
+.noUi-connect,.noUi-horizontal .noUi-handle  {
+    background: map-get(colors.$THEME_GRADIENTS, gradient__secondary);
+}

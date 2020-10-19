@@ -1,0 +1,31 @@
+.form-range-slider__slider{
+    grid-area: slider;
+    align-self: end;
+}
+/* lib redefinition */
+.noUi-horizontal {
+  height: 6px/14.4px+0vmax;
+}
+.noUi-target,.noUi-connect {
+  border-radius: 3px/14.4px+0vmax;
+}
+.noUi-horizontal .noUi-handle {
+  width: 16px/14.4px+0vmax;
+  height: 16px/14.4px+0vmax;
+  right: -8px/14.4px+0vmax;
+  top: -6px/14.4px+0vmax;
+  border: 2px/14.4px+0vmax solid #ffffff;
+  border-radius: 100%;
+  &:focus {
+    outline: initial;
+  }
+}
+.noUi-handle {
+  border-radius: 100%;
+  box-shadow: initial;
+  cursor: pointer;
+  &:after,
+  &:before {
+    display: none;
+  }
+}

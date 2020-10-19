@@ -1,0 +1,33 @@
+//- id: id of dropdown button
+//- class: class for component bem mix: such as positioning functionality
+//- label: text of label
+//- name: name of dropdown button
+//- data-range: object of ranges such as { min: 341, max: 15454 }
+//- data-start: array of init values such as [5000, 10000]
+//- data-suffix: string for append after amounts
+mixin form-range-slider
+  .form-range-slider(class=attributes.class)
+    if attributes.label
+      h3.form-label.form-range-slider__label
+        label(for=attributes.id)= attributes.label
+    input.form-range-slider__input(
+      id=attributes.id + '-from',
+      name=attributes.name + '-from',
+      type="range"
+    )
+    input.form-range-slider__input(
+      id=attributes.id + '-to',
+      name=attributes.name + '-to',
+      type="range"
+    )
+    output.form-range-slider__result(
+      id=attributes.id + '-result',
+      name=attributes.name,
+      for=attributes.name + '-from' + ' ' + attributes.name + '-to',
+      data-suffix=attributes['data-suffix']
+    )
+    .form-range-slider__slider(
+      id=attributes.id,
+      data-range=attributes['data-range'],
+      data-start=attributes['data-start']
+    )
