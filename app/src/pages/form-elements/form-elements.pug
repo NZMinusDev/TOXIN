@@ -29,10 +29,10 @@ block content
       label="dropdown",
       name="guests",
       type="single-apply",
-      placeholder="Сколько гостей"
+      placeholder="Сколько гостей",
       list={ взрослые: { default: 0, min: 0, max: 1 / 0 }, дети: { default: 0, min: 0, max: 1 / 0 }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
       selectionText="гость",
-      textPlural="гостя",
+      textPlural="гостя"
     )
     +form-text-field#masked-text-field.form-elements-layout__masked-text-field(
       label="masked text field",
@@ -65,8 +65,9 @@ block content
       label="subscription text field",
       type="email",
       name="subscription-form-text-field",
-      mod="subscription",
-      placeholder="Email"
+      placeholder="Email",
+      href="#",
+      link-icon="arrow_forward"
     )
     .form-elements-layout__checkbox-buttons
     .form-elements-layout__radio-buttons
@@ -94,19 +95,19 @@ block content
       label="dropdown",
       type="single-apply",
       name="guests",
-      placeholder="Сколько гостей"
+      placeholder="Сколько гостей",
       list={ взрослые: { default: 0, min: 0, max: 1 / 0 }, дети: { default: 0, min: 0, max: 1 / 0 }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
       selectionText="гость",
-      textPlural="гостя",
+      textPlural="гостя"
     )
     +form-dropdown#dropdown-expanded-clear-apply.form-elements-layout__dropdown-expanded-clear-apply(
       label="dropdown",
       type="single-apply",
       name="guests",
-      placeholder="Сколько гостей"
+      placeholder="Сколько гостей",
       list={ взрослые: { default: 2, min: 0, max: 1 / 0 }, дети: { default: 1, min: 0, max: 1 / 0 }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
       selectionText="гость",
-      textPlural="гостя",
+      textPlural="гостя"
     )
     .form-elements-layout__expandable-checkbox-list
     .form-elements-layout__rich-checkbox-buttons

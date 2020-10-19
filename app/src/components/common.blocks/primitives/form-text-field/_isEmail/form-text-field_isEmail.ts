@@ -1,7 +1,7 @@
 import Inputmask from "inputmask";
 
 const emailFormTextFields = document.querySelectorAll(
-  ".form-text-field_isEmail .form-field"
+  ".form-text-field_isEmail .form-text-field__input"
 );
 
 emailFormTextFields.forEach((emailFormTextField) => {

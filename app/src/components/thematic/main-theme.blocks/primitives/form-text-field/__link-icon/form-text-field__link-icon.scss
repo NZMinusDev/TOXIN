@@ -1,5 +1,5 @@
 @use "./../../../colors.scss";
-.form-text-field_mod-subscription:after {
+.form-text-field__link-icon {
   color:transparent;
   background: map-get(colors.$THEME_GRADIENTS, gradient__primary);
   background-clip: text;

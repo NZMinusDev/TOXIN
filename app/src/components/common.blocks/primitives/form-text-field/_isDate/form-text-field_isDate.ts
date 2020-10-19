@@ -1,7 +1,7 @@
 import Inputmask from "inputmask";
 
 const dateFormTextFields = document.querySelectorAll(
-  ".form-text-field_isDate .form-field"
+  ".form-text-field_isDate .form-text-field__input"
 );
 dateFormTextFields.forEach((dateFormTextField) => {
   Inputmask("datetime", {
