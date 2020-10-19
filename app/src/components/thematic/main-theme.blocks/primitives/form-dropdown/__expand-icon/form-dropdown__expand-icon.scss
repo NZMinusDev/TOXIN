@@ -1,6 +1,7 @@
 @use "./../../../colors.scss";
 
 .form-dropdown__expand-icon {
+  font-size: 1rem;
   color: map-get(colors.$THEME_COLORS, color__dark-shade_50);
 }
 

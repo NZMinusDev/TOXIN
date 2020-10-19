@@ -1,5 +1,6 @@
 @use "./../../../colors.scss";
 .form-text-field__link-icon {
+  font-size: 1rem;
   color:transparent;
   background: map-get(colors.$THEME_GRADIENTS, gradient__primary);
   background-clip: text;
