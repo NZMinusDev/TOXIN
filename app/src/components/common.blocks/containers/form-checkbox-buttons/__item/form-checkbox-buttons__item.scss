@@ -1,6 +1,6 @@
 .form-checkbox-buttons__item {
   display: grid;
-  grid-template-columns: 0fr 1fr;
+  grid-template-columns: auto 1fr;
   grid-column-gap: 10px/14.4px+0vmax;
   margin-top: 10px/14.4px+0vmax;
 }
