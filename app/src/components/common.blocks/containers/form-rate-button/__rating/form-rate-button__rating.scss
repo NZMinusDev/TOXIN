@@ -1,0 +1,16 @@
+.form-rate-button__rating {
+  //after selected by hover: filled
+  & > label:hover:before,
+  & > label:hover ~ label:before {
+    content: "\f0ec";
+  }
+
+  //before selected by hover: filled
+  & > .form-rate-button__button-item:checked + label:hover:before,
+  & > .form-rate-button__button-item:checked + label:hover ~ label:before,
+  & > .form-rate-button__button-item:checked ~ label:hover:before,
+  & > .form-rate-button__button-item:checked ~ label:hover ~ label:before,
+  & > label:hover ~ .form-rate-button__button-item:checked ~ label:before {
+    content: "\f0ec";
+  }
+}

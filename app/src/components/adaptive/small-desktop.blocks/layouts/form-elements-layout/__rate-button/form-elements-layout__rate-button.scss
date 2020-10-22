@@ -1,3 +1,8 @@
-.form-elements-layout__rate-button{
-    grid-area: rate-button;
+.form-elements-layout__rate-button {
+  grid-area: rate-button;
+  display: grid;
+  grid-template-columns: 140px/14.4px+0vmax 1fr;
+  place-content: end start;
+  place-items: end start;
+  padding-bottom: 16px/14.4px+0vmax;
 }
