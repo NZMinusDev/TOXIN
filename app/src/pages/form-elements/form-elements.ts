@@ -1,4 +1,5 @@
 import "./form-elements.pug";
+import "./form-elements.scss";
 
 // focus multiple components
 document.querySelector("#text-field-hover").focus();

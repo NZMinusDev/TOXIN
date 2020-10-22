@@ -1,0 +1,8 @@
+.form-elements-layout__button-icon-link {
+  grid-area: button-icon-link;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-column-gap: 22px/14.4px+0vmax;
+  place-items: start;
+  padding-top: 15px/14.4px+0vmax;
+}

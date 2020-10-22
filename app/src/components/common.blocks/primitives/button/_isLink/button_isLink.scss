@@ -1,0 +1,25 @@
+.button_isLink {
+  width: 320px/14.4px+0vmax;
+  position: relative;
+  background: rgba(169, 169, 169, 1);
+
+  &:hover {
+    background: rgba(169, 169, 169, 0.5);
+  }
+
+  &:before {
+    content: "\e5c8";
+    font-family: "Material Icons";
+    font-size: 1rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 44px/14.4px+0vmax;
+    width: 44px/14.4px+0vmax;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-indent: initial;
+    cursor: pointer;
+  }
+}
