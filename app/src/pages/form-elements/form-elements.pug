@@ -5,6 +5,7 @@ include ~@common.blocks/primitives/form-text-field/form-text-field.pug
 include ~@common.blocks/primitives/form-dropdown/form-dropdown.pug
 include ~@common.blocks/primitives/form-range-slider/form-range-slider.pug
 include ~@common.blocks/containers/form-checkbox-buttons/form-checkbox-buttons.pug
+include ~@common.blocks/containers/form-radio-buttons/form-radio-buttons.pug
 
 block variables
   - var keywords = 'FSD, Frontend, TOXIN, образование, верстка';
@@ -74,6 +75,11 @@ block content
     +form-checkbox-buttons#checkbox-buttons.form-elements-layout__checkbox-buttons(
       label="checkbox buttons",
       buttons={ isSmoking: { id: 'isSmokingCheckbox', description: 'Можно курить' }, isWithPets: { id: 'isWithPetsCheckbox', description: 'Можно с питомцами', checked: 'checked' }, isGuests: { id: 'isGuestsCheckbox', description: 'Можно пригласить гостей (до 10 человек)', checked: 'checked' } },
+    )
+    +form-radio-buttons#radio-buttons.form-elements-layout__radio-buttons(
+      label="radio buttons",
+      name="gender",
+      buttons={ isMale: { id: 'isMaleRadio', description: 'Мужчина', checked: 'checked' }, isFemale: { id: 'isFemaleRadio', description: 'Женщина' } }
     )
     +form-range-slider#range-slider.form-elements-layout__range-slider(
       label="range slider",

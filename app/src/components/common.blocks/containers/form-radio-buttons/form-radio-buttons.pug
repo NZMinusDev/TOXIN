@@ -1,0 +1,33 @@
+//- id: id of radio buttons' container
+//- class: class for component bem mix: such as positioning functionality
+//- label: text of label
+//- name: name of group
+//- buttons: {
+  name1:{
+    id:string,
+    description:string,
+    checked: 'checked'
+  },
+  name2:{
+    id:string,
+    description:string,
+    checked: ''
+  },...}
+//- disabled: same as fieldset disabled (disable all buttons)
+mixin form-radio-buttons
+  .form-radio-buttons(id=attributes.id, class=attributes.class)
+    if attributes.label
+      h3.form-label
+        label(for=attributes.id)= attributes.label
+    fieldset(disabled=attributes.disabled)
+      each btn, key in attributes.buttons
+        .form-radio-buttons__item
+          input.form-radio-buttons__button-item(
+            id=btn.id,
+            type="radio",
+            name=attributes.name,
+            value=key,
+            checked=btn.checked
+          )
+          if btn.description
+            label.form-radio-buttons__description-item(for=btn.id)= btn.description

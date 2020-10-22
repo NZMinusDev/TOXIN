@@ -1,0 +1,6 @@
+.form-radio-buttons__description-item {
+  color: var(--color__dark-shade_50);
+}
+.form-radio-buttons__button-item:checked + .form-radio-buttons__description-item{
+  color: inherit;
+}

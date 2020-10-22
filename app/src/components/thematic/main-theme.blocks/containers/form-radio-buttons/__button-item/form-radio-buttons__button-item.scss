@@ -1,0 +1,13 @@
+@use "./../../../colors.scss";
+
+.form-radio-buttons__button-item {
+  border: var(--border);
+
+  &:checked {
+    border-color: var(--color__primary);
+  }
+
+  &:before {
+    background-image: map-get(colors.$THEME_GRADIENTS, gradient__primary);
+  }
+}
