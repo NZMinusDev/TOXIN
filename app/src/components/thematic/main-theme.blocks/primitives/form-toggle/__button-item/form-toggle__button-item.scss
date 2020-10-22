@@ -1,0 +1,15 @@
+.form-toggle__button-item {
+  border: var(--border);
+
+  &:checked {
+    border-color: var(--color__primary);
+  }
+
+  &:before {
+    background-color: var(--color__dark-shade_25);
+  }
+
+  &:checked:before {
+    background-color: var(--color__primary);
+  }
+}

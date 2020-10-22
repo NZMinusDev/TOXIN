@@ -1,0 +1,6 @@
+.form-toggle__item {
+  display: grid;
+  grid-template-columns: 0fr 1fr;
+  grid-column-gap: 10px/14.4px+0vmax;
+  place-items: end start;
+}

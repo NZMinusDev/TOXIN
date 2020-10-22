@@ -6,6 +6,7 @@ include ~@common.blocks/primitives/form-dropdown/form-dropdown.pug
 include ~@common.blocks/primitives/form-range-slider/form-range-slider.pug
 include ~@common.blocks/containers/form-checkbox-buttons/form-checkbox-buttons.pug
 include ~@common.blocks/containers/form-radio-buttons/form-radio-buttons.pug
+include ~@common.blocks/primitives/form-toggle/form-toggle.pug
 
 block variables
   - var keywords = 'FSD, Frontend, TOXIN, образование, верстка';
@@ -81,6 +82,17 @@ block content
       name="gender",
       buttons={ isMale: { id: 'isMaleRadio', description: 'Мужчина', checked: 'checked' }, isFemale: { id: 'isFemaleRadio', description: 'Женщина' } }
     )
+    .form-elements-layout__toggle
+      +form-toggle#toggle-checked(
+        label="toggle",
+        name="specialOffer1",
+        description="Получать спецпредложения",
+        checked
+      )
+      +form-toggle#toggle-default(
+        name="specialOffer2",
+        description="Получать спецпредложения"
+      )
     +form-range-slider#range-slider.form-elements-layout__range-slider(
       label="range slider",
       name="price",
