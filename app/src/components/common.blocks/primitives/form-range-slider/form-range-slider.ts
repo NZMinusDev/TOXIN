@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
     slider.noUiSlider.on("update", (values: Array<string>) => {
       inputFrom.value = values[0];
       inputTo.value = values[values.length - 1];
-      console.log(values[0]);
       result.value =
         parseInt(values[0]).toLocaleString() +
         result.dataset.suffix +

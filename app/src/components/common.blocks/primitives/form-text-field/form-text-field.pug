@@ -5,9 +5,9 @@
 //- attributes.name - name of input field
 //- attributes.value - init value of field
 //- attributes.placeholder - placeholder text
-//- autofocus="autofocus" is true value for autofocus field
-//- Optional:
-//-   href - link for btn && link-icon - name of Material icon
+//- autofocus - just add it for it works
+//- href - link for btn
+//- link-icon - name of Material icon
 mixin form-text-field
   .form-text-field(
     class=attributes.type ? 'form-text-field_is' + attributes.type[0].toUpperCase() + attributes.type.slice(1) : '',
