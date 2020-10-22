@@ -1,0 +1,38 @@
+$area-size: 20px/14.4px+0vmax;
+.form-like-button__button-item {
+  appearance: none;
+  position: relative;
+  display: inline-block;
+  width: 2 * $area-size;
+  height: $area-size;
+  border: 1px/14.4px+0vmax solid black;
+  border-radius: 10px/14.4px+0vmax;
+  cursor: pointer;
+
+  &:before,
+  &:after {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+
+  &:before {
+    content: "\e87e";
+    font-family: "Material Icons";
+    color: black;
+    left: 4px/14.4px+0vmax;
+  }
+  &:checked:before {
+    content: "\e87d";
+  }
+
+  &:after {
+    content: attr(data-counter);
+    font-family: inherit;
+    right: 10px/14.4px+0vmax;
+  }
+}

@@ -7,6 +7,7 @@ include ~@common.blocks/primitives/form-range-slider/form-range-slider.pug
 include ~@common.blocks/containers/form-checkbox-buttons/form-checkbox-buttons.pug
 include ~@common.blocks/containers/form-radio-buttons/form-radio-buttons.pug
 include ~@common.blocks/primitives/form-toggle/form-toggle.pug
+include ~@common.blocks/primitives/form-like-button/form-like-button.pug
 
 block variables
   - var keywords = 'FSD, Frontend, TOXIN, образование, верстка';
@@ -93,6 +94,9 @@ block content
         name="specialOffer2",
         description="Получать спецпредложения"
       )
+    .form-elements-layout__like-button
+      +form-like-button#like-button-default(label="like button", name="likes1", counter="2")
+      +form-like-button#like-button-checked(name="likes2", counter="12", checked)
     +form-range-slider#range-slider.form-elements-layout__range-slider(
       label="range slider",
       name="price",

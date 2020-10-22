@@ -1,0 +1,25 @@
+.form-like-button__button-item {
+  border: var(--border);
+
+  &:checked {
+    background: linear-gradient(180deg, white, white) padding-box,
+      linear-gradient(180deg, var(--color__primary) 0%, #8ba4f9 100%) border-box;
+  }
+
+  &:before,
+  &:after {
+    font-size: 0.4167rem;
+    color: var(--color__dark-shade_25);
+  }
+  &:before {
+    line-height: 0.354167rem;
+  }
+  &:after {
+    line-height: 0.5rem;
+  }
+
+  &:checked:before,
+  &:checked:after {
+    color: var(--color__primary);
+  }
+}
