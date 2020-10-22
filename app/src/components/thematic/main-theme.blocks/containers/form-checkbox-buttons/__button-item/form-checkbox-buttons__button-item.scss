@@ -1,0 +1,14 @@
+@use "./../../../colors.scss";
+
+.form-checkbox-buttons__button-item {
+  border: var(--border);
+  border-radius: var(--border-radius-size);
+
+  &:checked {
+    border-color: var(--color__primary);
+  }
+
+  &:before {
+    border-image: map-get(colors.$THEME_GRADIENTS, gradient__primary) 2;
+  }
+}

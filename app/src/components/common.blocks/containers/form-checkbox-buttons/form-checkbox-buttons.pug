@@ -1,0 +1,32 @@
+//- id: id of checkbox buttons' container
+//- class: class for component bem mix: such as positioning functionality
+//- label: text of label
+//- buttons: {
+  name1:{
+    id:string,
+    description:string,
+    checked: 'checked'
+  },
+  name2:{
+    id:string,
+    description:string,
+    checked: ''
+  },...}
+//- disabled: same as fieldset disabled (disable all buttons)
+
+mixin form-checkbox-buttons
+  .form-checkbox-buttons(id=attributes.id, class=attributes.class)
+    if attributes.label
+      h3.form-label
+        label(for=attributes.id)= attributes.label
+    fieldset(disabled=attributes.disabled)
+      each btn, key in attributes.buttons
+        .form-checkbox-buttons__item
+          input.form-checkbox-buttons__button-item(
+            id=btn.id,
+            type="checkbox",
+            name=key,
+            checked=btn.checked
+          )
+          if btn.description
+            label.form-checkbox-buttons__description-item(for=btn.id)= btn.description

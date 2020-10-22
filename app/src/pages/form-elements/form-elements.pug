@@ -4,6 +4,7 @@ extends ~@pug/layouts/ui-kit-layout.pug
 include ~@common.blocks/primitives/form-text-field/form-text-field.pug
 include ~@common.blocks/primitives/form-dropdown/form-dropdown.pug
 include ~@common.blocks/primitives/form-range-slider/form-range-slider.pug
+include ~@common.blocks/containers/form-checkbox-buttons/form-checkbox-buttons.pug
 
 block variables
   - var keywords = 'FSD, Frontend, TOXIN, образование, верстка';
@@ -24,7 +25,7 @@ block content
       name="text",
       value="This is pretty awesome",
       placeholder="Text",
-      autofocus="autofocus"
+      autofocus
     )
     +form-dropdown#dropdown.form-elements-layout__dropdown(
       label="dropdown",
@@ -70,11 +71,10 @@ block content
       href="#",
       link-icon="arrow_forward"
     )
-    .form-elements-layout__checkbox-buttons
-    .form-elements-layout__radio-buttons
-    .form-elements-layout__toggle
-    .form-elements-layout__like-button
-    .form-elements-layout__rate-button
+    +form-checkbox-buttons#checkbox-buttons.form-elements-layout__checkbox-buttons(
+      label="checkbox buttons",
+      buttons={ isSmoking: { id: 'isSmokingCheckbox', description: 'Можно курить' }, isWithPets: { id: 'isWithPetsCheckbox', description: 'Можно с питомцами', checked: 'checked' }, isGuests: { id: 'isGuestsCheckbox', description: 'Можно пригласить гостей (до 10 человек)', checked: 'checked' } },
+    )
     +form-range-slider#range-slider.form-elements-layout__range-slider(
       label="range slider",
       name="price",
