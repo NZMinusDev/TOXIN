@@ -4,11 +4,11 @@
 /* lib redefinition */
 .datepicker--nav-title {
   font: var(--font__h2);
-  color: var(--color__dark-shade_100);
+  color: map-get(colors.$THEME_COLORS, color__dark-shade_100);
 }
 .datepicker--nav-action {
   font-size: 1rem;
-  color: var(--color__primary);
+  color: map-get(colors.$THEME_COLORS, color__primary_100);
 }
 
 .datepicker--day-name,
@@ -17,15 +17,15 @@
   font: var(--font__h3);
 }
 .datepicker--day-name {
-  color: var(--color__primary);
+  color: map-get(colors.$THEME_COLORS, color__primary_100);
 }
 .datepicker--cell {
-  color: var(--color__dark-shade_50);
+  color: map-get(colors.$THEME_COLORS, color__dark-shade_50);
 
   &.-other-month-,
   &.-other-decade-,
   &.-disabled- {
-    color: var(--color__dark-shade_25);
+    color: map-get(colors.$THEME_COLORS, color__dark-shade_25);
   }
 
   &.-current-,
@@ -36,21 +36,17 @@
     color: white;
   }
   &.-current- {
-    background: map-get(colors.$THEME_GRADIENTS, gradient__secondary);
+    background: map-get(colors.$THEME_GRADIENTS, gradient__secondary_100);
   }
   &.-selected-,
   &.-selected-.-focus-,
   &.-selected-.-current- {
-    background: map-get(colors.$THEME_GRADIENTS, gradient__primary);
+    background: map-get(colors.$THEME_GRADIENTS, gradient__primary_100);
   }
   &.-in-range-,
   &.-current-.-in-range- {
-    color: var(--color__dark-shade_50);
-    background: linear-gradient(
-      180deg,
-      var(--color__primary_25) 0%,
-      rgba(139, 164, 249, 0.25) 100%
-    );
+    color: map-get(colors.$THEME_COLORS, color__dark-shade_50);
+    background: map-get(colors.$THEME_GRADIENTS, gradient__primary_25);
   }
   &.-current-.-in-range- {
     border-radius: 0;
@@ -59,7 +55,7 @@
   &.-range-to- {
     border-radius: 100%;
     border: 0;
-    background: map-get(colors.$THEME_GRADIENTS, gradient__primary);
+    background: map-get(colors.$THEME_GRADIENTS, gradient__primary_100);
   }
   &.-range-from-:before,
   &.-range-to-:before {
@@ -69,11 +65,7 @@
     top: 0;
     bottom: 0;
     width: 50%;
-    background: linear-gradient(
-      180deg,
-      var(--color__primary_25) 0%,
-      rgba(139, 164, 249, 0.25) 100%
-    );
+    background: map-get(colors.$THEME_GRADIENTS, gradient__primary_25);
   }
   &.-range-from-:before {
     right: 0;

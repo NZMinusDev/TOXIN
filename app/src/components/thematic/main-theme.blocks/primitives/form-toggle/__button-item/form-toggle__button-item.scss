@@ -1,15 +1,17 @@
+@use "./../../../colors.scss";
+
 .form-toggle__button-item {
   border: var(--border);
 
   &:checked {
-    border-color: var(--color__primary);
+    border-color: map-get(colors.$THEME_COLORS, color__primary_100);
   }
 
   &:before {
-    background-color: var(--color__dark-shade_25);
+    background-color: map-get(colors.$THEME_COLORS, color__dark-shade_25);
   }
 
   &:checked:before {
-    background-color: var(--color__primary);
+    background-color: map-get(colors.$THEME_COLORS, color__primary_100);
   }
 }

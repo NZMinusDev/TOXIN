@@ -5,10 +5,10 @@
   border-radius: var(--border-radius-size);
 
   &:checked {
-    border-color: var(--color__primary);
+    border-color: map-get(colors.$THEME_COLORS, gradient__primary_100);
   }
 
   &:before {
-    border-image: map-get(colors.$THEME_GRADIENTS, gradient__primary) 2;
+    border-image: map-get(colors.$THEME_GRADIENTS, gradient__primary_100) 2;
   }
 }

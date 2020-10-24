@@ -4,11 +4,19 @@ $THEME_COLORS: (
   "color__dark-shade_50": var(--color__dark-shade_50),
   "color__dark-shade_25": var(--color__dark-shade_25),
   "color__dark-shade_5": var(--color__dark-shade_5),
-  "color__primary": var(--color__primary),
-  "color__secondary": var(--color__secondary),
+  "color__primary_100": var(--color__primary_100),
+  "color__secondary_100": var(--color__secondary_100),
+  "color__primary_50": var(--color__primary_50),
+  "color__primary_25": var(--color__primary_25),
+  "color__secondary_50": var(--color__secondary_50),
+  "color__secondary_25": var(--color__secondary_25),
 );
 
 $THEME_GRADIENTS: (
-  "gradient__primary": linear-gradient(180deg, var(--color__primary) 0%, #8ba4f9 100%),
-  "gradient__secondary": linear-gradient(180deg, var(--color__secondary) 0%, #66d2ea 100%),
+  "gradient__primary_100": linear-gradient(var(--gradient__primary_100)),
+  "gradient__primary_50": linear-gradient(var(--gradient__primary_50)),
+  "gradient__primary_25": linear-gradient(var(--gradient__primary_25)),
+  "gradient__secondary_100": linear-gradient(var(--gradient__secondary_100)),
+  "gradient__secondary_50": linear-gradient(var(--gradient__secondary_50)),
+  "gradient__secondary_25": linear-gradient(var(--gradient__secondary_25)),
 );

@@ -12,14 +12,23 @@
   --color__dark-shade_50: rgba(31, 32, 65, 0.5);
   --color__dark-shade_25: rgba(31, 32, 65, 0.25);
   --color__dark-shade_5: rgba(31, 32, 65, 0.05);
-  --color__primary: #bc9cff;
+  --color__primary_100: #bc9cff;
+  --color__primary_50: rgba(188, 156, 255, 0.5);
   --color__primary_25: rgba(188, 156, 255, 0.25);
-  --color__secondary: #6fcf97;
+  --color__secondary_100: #6fcf97;
+  --color__secondary_50: rgba(111, 207, 151, 0.5);
   --color__secondary_25: rgba(111, 207, 151, 0.25);
 
   --border: 1px solid rgba(31, 32, 65, 0.25);
   --border-hover: 1px solid rgba(31, 32, 65, 0.5);
   --border-radius-size: 0.278vmax;
+
+  --gradient__primary_100: 180deg, var(--color__primary_100) 0%, rgba(139, 164, 249, 1) 100%;
+  --gradient__primary_50: 180deg, var(--color__primary_50) 0%, rgba(139, 164, 249, 0.5) 100%;
+  --gradient__primary_25: 180deg, var(--color__primary_25) 0%, rgba(139, 164, 249, 0.25) 100%;
+  --gradient__secondary_100: 180deg, var(--color__secondary_100) 0%, rgba(102, 210, 234, 1) 100%;
+  --gradient__secondary_50: 180deg, var(--color__secondary_50) 0%, rgba(102, 210, 234, 0.5) 100%;
+  --gradient__secondary_25: 180deg, var(--color__secondary_25) 0%, rgba(102, 210, 234, 0.25) 100%;
 }
 
 html {

@@ -1,36 +1,37 @@
-/* Styles just for demonstration in ui-kit, not fof production use*/
+@use "@themes/main-theme.blocks/colors.scss";
 
+/* Styles just for demonstration in ui-kit, not fof production use*/
 .form-elements-layout__dropdown-expanded-plural > .form-field {
   border: var(--border-hover);
-  color: var(--color__dark-shade_75);
+  color: map-get(colors.$THEME_COLORS, color__dark-shade_75);
 
   & > .form-dropdown__expand-icon {
-    color: var(--color__dark-shade_75);
+    color: map-get(colors.$THEME_COLORS, color__dark-shade_75);
   }
 }
 .form-elements-layout__dropdown-expanded-apply > .form-field {
   border: var(--border-hover);
-  color: var(--color__dark-shade_75);
+  color: map-get(colors.$THEME_COLORS, color__dark-shade_75);
 
   & > .form-dropdown__expand-icon {
-    color: var(--color__dark-shade_75);
+    color: map-get(colors.$THEME_COLORS, color__dark-shade_75);
   }
 }
 .form-elements-layout__dropdown-expanded-clear-apply > .form-field {
   border: var(--border-hover);
-  color: var(--color__dark-shade_75);
+  color: map-get(colors.$THEME_COLORS, color__dark-shade_75);
 
   & > .form-dropdown__expand-icon {
-    color: var(--color__dark-shade_75);
+    color: map-get(colors.$THEME_COLORS, color__dark-shade_75);
   }
 }
 
 #button-fill-hovered {
-  background: linear-gradient(180deg, rgba(188, 156, 255, 0.5) 0%, rgba(111, 207, 151, 0.5) 100%);
+  background: map-get(colors.$THEME_GRADIENTS, gradient__primary_50);
 }
 #button-empty-hovered {
   background: linear-gradient(180deg, white, white) padding-box,
-    linear-gradient(180deg, rgba(188, 156, 255, 0.5) 0%, rgba(111, 207, 151, 0.5) 100%) border-box;
+    map-get(colors.$THEME_GRADIENTS, gradient__primary_50) border-box;
 }
 #button-icon-link-hovered {
   color: var(--color__dark-shade_50);

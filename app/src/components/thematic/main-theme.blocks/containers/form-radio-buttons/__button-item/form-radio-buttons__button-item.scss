@@ -4,10 +4,10 @@
   border: var(--border);
 
   &:checked {
-    border-color: var(--color__primary);
+    border-color: map-get(colors.$THEME_COLORS, color__primary_100);
   }
 
   &:before {
-    background-image: map-get(colors.$THEME_GRADIENTS, gradient__primary);
+    background-image: map-get(colors.$THEME_GRADIENTS, gradient__primary_100);
   }
 }

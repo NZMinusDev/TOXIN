@@ -1,10 +1,12 @@
+@use "./../../../colors.scss";
+
 .button_isBordered {
-  color: var(--color__primary);
+  color: map-get(colors.$THEME_COLORS, color__primary_100);
   background: linear-gradient(180deg, white, white) padding-box,
-    linear-gradient(180deg, rgba(188, 156, 255, 1) 0%, rgba(111, 207, 151, 1) 100%) border-box;
+    map-get(colors.$THEME_GRADIENTS, gradient__primary_100) border-box;
 
   &:hover {
     background: linear-gradient(180deg, white, white) padding-box,
-      linear-gradient(180deg, rgba(188, 156, 255, 0.5) 0%, rgba(111, 207, 151, 0.5) 100%);
+      map-get(colors.$THEME_GRADIENTS, gradient__primary_50) border-box;
   }
 }
