@@ -1,12 +1,6 @@
 .form-dropdown__expand-icon {
-  font-family: "Material Icons";
-  position: absolute;
-  top:0;
-  right: 0;
-  height: 44px/14.4px+0vmax;
-  width: 44px/14.4px+0vmax;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-indent: initial;
+  &:after {
+    top: 0;
+    right: 0;
+  }
 }
