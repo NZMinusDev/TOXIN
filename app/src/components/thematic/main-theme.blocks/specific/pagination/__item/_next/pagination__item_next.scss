@@ -1,0 +1,6 @@
+@use "./../../../../colors.scss";
+
+.pagination__item_next {
+  background: map-get(colors.$THEME_GRADIENTS, gradient__secondary_100);
+  color: white;
+}

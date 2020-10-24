@@ -10,6 +10,7 @@ include ~@common.blocks/primitives/form-toggle/form-toggle.pug
 include ~@common.blocks/primitives/form-like-button/form-like-button.pug
 include ~@common.blocks/containers/form-rate-button/form-rate-button.pug
 include ~@common.blocks/primitives/button/button.pug
+include ~@common.blocks/specific/pagination/pagination.pug
 
 block variables
   - var keywords = 'FSD, Frontend, TOXIN, образование, верстка';
@@ -138,6 +139,14 @@ block content
       modClass="link"
     )
     .form-elements-layout__pagination
+      h3.form-label pagination
+      +pagination#pagination(
+        pages=15,
+        page=1,
+        amount-to-display=12,
+        total-amount=100,
+        text="вариантов аренды"
+      )
     +form-dropdown#dropdown-default-plural.form-elements-layout__dropdown-default-plural(
       label="dropdown",
       type="plural",
