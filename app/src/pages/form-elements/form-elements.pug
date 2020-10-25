@@ -185,7 +185,11 @@ block content
         buttons={ breakfast: { id: 'breakfastCheckbox', itemLabel: 'Завтрак' }, desk: { id: 'deskCheckbox', itemLabel: 'Письменный стол', checked: 'checked' }, feedingChair: { id: 'feedingChairCheckbox', itemLabel: 'Стол для кормления', checked: 'checked' }, cot: { id: 'cotCheckbox', itemLabel: 'Кроватка', checked: 'checked' }, tv1: { id: 'tv1Checkbox', itemLabel: 'Телевизор' }, shampoo1: { id: 'shampoo1Checkbox', itemLabel: 'Шампунь' }, tv2: { id: 'tv2Checkbox', itemLabel: 'Телевизор' }, shampoo2: { id: 'shampoo2Checkbox', itemLabel: 'Шампунь' } },
         checked
       )
-    .form-elements-layout__rich-checkbox-buttons
+    +form-checkbox-buttons#rich-checkbox-buttons.form-elements-layout__rich-checkbox-buttons(
+      label="rich checkbox buttons",
+      mod="rich",
+      buttons={ wideCorridor: { id: 'wideCorridorCheckbox', itemLabel: 'Широкий коридор', description: 'Ширина коридоров в номере не менее 91 см.' }, assistantForTheDisabled: { id: 'assistantForTheDisabledCheckbox', itemLabel: 'Помощник для инвалидов', description: 'На 1 этаже вас встретит специалист  и проводит до номера.' } }
+    )
     .form-elements-layout__bullet-list
     .form-elements-layout__logo-comfort
     .form-elements-layout__comment

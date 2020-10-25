@@ -1,0 +1,9 @@
+.form-checkbox-buttons_rich {
+  .form-checkbox-buttons__label-item {
+    &:after {
+      content: attr(data-description);
+      display: block;
+      margin-top: 7px/14.4px+0vmax;
+    }
+  }
+}

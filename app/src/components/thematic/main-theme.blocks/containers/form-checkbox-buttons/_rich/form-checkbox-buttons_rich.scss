@@ -1,0 +1,13 @@
+@use "./../../../colors.scss";
+
+.form-checkbox-buttons_rich{
+  .form-checkbox-buttons__label-item {
+    font: 700 0.5833rem / 0.75rem "Montserrat";
+    color: map-get(colors.$THEME_COLORS, color__dark-shade_75);
+
+    &:after {
+      font: 400 0.5rem / 0.5833rem "Montserrat";
+      color:  map-get(colors.$THEME_COLORS, color__dark-shade_50);
+    }
+  }
+}
