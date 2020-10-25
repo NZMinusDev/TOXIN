@@ -5,12 +5,12 @@
 //- buttons: {
   name1:{
     id:string,
-    description:string,
+    itemLabel:string,
     checked: 'checked'
   },
   name2:{
     id:string,
-    description:string,
+    itemLabel:string,
     checked: ''
   },...}
 //- disabled: same as fieldset disabled (disable all buttons)
@@ -29,5 +29,5 @@ mixin form-radio-buttons
             value=key,
             checked=btn.checked
           )
-          if btn.description
-            label.form-radio-buttons__description-item(for=btn.id)= btn.description
+          if btn.itemLabel
+            label.form-radio-buttons__label-item(for=btn.id)= btn.itemLabel

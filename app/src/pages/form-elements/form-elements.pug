@@ -80,24 +80,21 @@ block content
     )
     +form-checkbox-buttons#checkbox-buttons.form-elements-layout__checkbox-buttons(
       label="checkbox buttons",
-      buttons={ isSmoking: { id: 'isSmokingCheckbox', description: 'Можно курить' }, isWithPets: { id: 'isWithPetsCheckbox', description: 'Можно с питомцами', checked: 'checked' }, isGuests: { id: 'isGuestsCheckbox', description: 'Можно пригласить гостей (до 10 человек)', checked: 'checked' } }
+      buttons={ isSmoking: { id: 'isSmokingCheckbox', itemLabel: 'Можно курить' }, isWithPets: { id: 'isWithPetsCheckbox', itemLabel: 'Можно с питомцами', checked: 'checked' }, isGuests: { id: 'isGuestsCheckbox', itemLabel: 'Можно пригласить гостей (до 10 человек)', checked: 'checked' } }
     )
     +form-radio-buttons#radio-buttons.form-elements-layout__radio-buttons(
       label="radio buttons",
       name="gender",
-      buttons={ isMale: { id: 'isMaleRadio', description: 'Мужчина', checked: 'checked' }, isFemale: { id: 'isFemaleRadio', description: 'Женщина' } }
+      buttons={ isMale: { id: 'isMaleRadio', itemLabel: 'Мужчина', checked: 'checked' }, isFemale: { id: 'isFemaleRadio', itemLabel: 'Женщина' } }
     )
     .form-elements-layout__toggle
       +form-toggle#toggle-checked(
         label="toggle",
         name="specialOffer1",
-        description="Получать спецпредложения",
+        itemLabel="Получать спецпредложения",
         checked
       )
-      +form-toggle#toggle-default(
-        name="specialOffer2",
-        description="Получать спецпредложения"
-      )
+      +form-toggle#toggle-default(name="specialOffer2", itemLabel="Получать спецпредложения")
     .form-elements-layout__like-button
       +form-like-button#like-button-default(label="like button", name="likes1", counter="2")
       +form-like-button#like-button-checked(name="likes2", counter="12", checked)
@@ -185,7 +182,7 @@ block content
       )
       +form-expandable-checkbox-list#expandable-checkbox-list-expanded(
         label="expandable checkbox list",
-        buttons={ breakfast: { id: 'breakfastCheckboxCheckbox', description: 'Завтрак' }, desk: { id: 'deskCheckbox', description: 'Письменный стол', checked: 'checked' }, feedingChair: { id: 'feedingChairCheckbox', description: 'Стол для кормления', checked: 'checked' }, cot: { id: 'cotCheckbox', description: 'Кроватка', checked: 'checked' }, tv1: { id: 'tv1Checkbox', description: 'Телевизор' }, shampoo1: { id: 'shampoo1Checkbox', description: 'Шампунь' }, tv2: { id: 'tv2Checkbox', description: 'Телевизор' }, shampoo2: { id: 'shampoo2Checkbox', description: 'Шампунь' } },
+        buttons={ breakfast: { id: 'breakfastCheckbox', itemLabel: 'Завтрак' }, desk: { id: 'deskCheckbox', itemLabel: 'Письменный стол', checked: 'checked' }, feedingChair: { id: 'feedingChairCheckbox', itemLabel: 'Стол для кормления', checked: 'checked' }, cot: { id: 'cotCheckbox', itemLabel: 'Кроватка', checked: 'checked' }, tv1: { id: 'tv1Checkbox', itemLabel: 'Телевизор' }, shampoo1: { id: 'shampoo1Checkbox', itemLabel: 'Шампунь' }, tv2: { id: 'tv2Checkbox', itemLabel: 'Телевизор' }, shampoo2: { id: 'shampoo2Checkbox', itemLabel: 'Шампунь' } },
         checked
       )
     .form-elements-layout__rich-checkbox-buttons

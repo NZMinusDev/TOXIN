@@ -2,7 +2,7 @@
 //- class: class for component bem mix: such as positioning functionality
 //- label: text of label
 //- name: name of toggle button
-//- description: text of description
+//- itemLabel: text of itemLabel
 //- checked: same as input checked
 mixin form-toggle
   .form-toggle(class=attributes.class)
@@ -16,5 +16,5 @@ mixin form-toggle
         name=attributes.name,
         checked=attributes.checked
       )
-      if attributes.description
-        label.form-toggle__description-item(for=attributes.id)= attributes.description
+      if attributes.itemLabel
+        label.form-toggle__label-item(for=attributes.id)= attributes.itemLabel

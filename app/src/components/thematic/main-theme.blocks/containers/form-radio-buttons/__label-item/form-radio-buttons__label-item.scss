@@ -1,0 +1,8 @@
+@use "./../../../colors.scss";
+
+.form-radio-buttons__label-item {
+  color: map-get(colors.$THEME_COLORS, color__dark-shade_50);
+}
+.form-radio-buttons__button-item:checked + .form-radio-buttons__label-item {
+  color: inherit;
+}
