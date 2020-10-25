@@ -11,6 +11,7 @@ include ~@common.blocks/primitives/form-like-button/form-like-button.pug
 include ~@common.blocks/containers/form-rate-button/form-rate-button.pug
 include ~@common.blocks/primitives/button/button.pug
 include ~@common.blocks/specific/pagination/pagination.pug
+include ~@common.blocks/containers/form-expandable-checkbox-list/form-expandable-checkbox-list.pug
 
 block variables
   - var keywords = 'FSD, Frontend, TOXIN, образование, верстка';
@@ -178,6 +179,15 @@ block content
       textPlural="гостя"
     )
     .form-elements-layout__expandable-checkbox-list
+      +form-expandable-checkbox-list#expandable-checkbox-list-default(
+        label="expandable checkbox list",
+        buttons={}
+      )
+      +form-expandable-checkbox-list#expandable-checkbox-list-expanded(
+        label="expandable checkbox list",
+        buttons={ breakfast: { id: 'breakfastCheckboxCheckbox', description: 'Завтрак' }, desk: { id: 'deskCheckbox', description: 'Письменный стол', checked: 'checked' }, feedingChair: { id: 'feedingChairCheckbox', description: 'Стол для кормления', checked: 'checked' }, cot: { id: 'cotCheckbox', description: 'Кроватка', checked: 'checked' }, tv1: { id: 'tv1Checkbox', description: 'Телевизор' }, shampoo1: { id: 'shampoo1Checkbox', description: 'Шампунь' }, tv2: { id: 'tv2Checkbox', description: 'Телевизор' }, shampoo2: { id: 'shampoo2Checkbox', description: 'Шампунь' } },
+        checked
+      )
     .form-elements-layout__rich-checkbox-buttons
     .form-elements-layout__bullet-list
     .form-elements-layout__logo-comfort

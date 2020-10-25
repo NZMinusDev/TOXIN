@@ -1,0 +1,27 @@
+include ~@common.blocks/containers/form-checkbox-buttons/form-checkbox-buttons.pug
+//- id: id of expander
+//- class: class for component bem mix: such as positioning functionality
+//- label: text of label
+//- buttons: {
+  name1:{
+    id:string,
+    description:string,
+    checked: 'checked'
+  },
+  name2:{
+    id:string,
+    description:string,
+    checked: ''
+  },...}
+//- checked: open the list
+//- disabled: same as fieldset disabled (disable all buttons)
+//- Tip: be careful if use large amount of items: max-height limited by 16rem for transition animation
+mixin form-expandable-checkbox-list
+  .form-expandable-checkbox-list(class=attributes.class)
+    h3.form-expandable-checkbox-list__expander
+      input(id=attributes.id, type="checkbox", checked=attributes.checked)
+      label.expand-icon.form-expandable-checkbox-list__expand-icon(for=attributes.id)= attributes.label
+      +form-checkbox-buttons.form-expandable-checkbox-list__list(
+        buttons=attributes.buttons,
+        disabled=attributes.disabled
+      )
