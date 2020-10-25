@@ -12,6 +12,7 @@ include ~@common.blocks/containers/form-rate-button/form-rate-button.pug
 include ~@common.blocks/primitives/button/button.pug
 include ~@common.blocks/specific/pagination/pagination.pug
 include ~@common.blocks/containers/form-expandable-checkbox-list/form-expandable-checkbox-list.pug
+include ~@common.blocks/containers/form-bullet-list/form-bullet-list.pug
 
 block variables
   - var keywords = 'FSD, Frontend, TOXIN, образование, верстка';
@@ -190,6 +191,9 @@ block content
       mod="rich",
       buttons={ wideCorridor: { id: 'wideCorridorCheckbox', itemLabel: 'Широкий коридор', description: 'Ширина коридоров в номере не менее 91 см.' }, assistantForTheDisabled: { id: 'assistantForTheDisabledCheckbox', itemLabel: 'Помощник для инвалидов', description: 'На 1 этаже вас встретит специалист  и проводит до номера.' } }
     )
-    .form-elements-layout__bullet-list
+    +form-bullet-list#bullet-list.form-elements-layout__bullet-list(
+      label="bullet list",
+      items=['Нельзя с питомцами', 'Без вечеринок и мероприятий', 'Время прибытия — после 13:00,а выезд до 12:00']
+    )
     .form-elements-layout__logo-comfort
     .form-elements-layout__comment

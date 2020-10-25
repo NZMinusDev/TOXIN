@@ -1,0 +1,7 @@
+@use "./../../../colors.scss";
+
+.form-bullet-list__item {
+  &:before {
+    background: map-get(colors.$THEME_COLORS, color__dark-shade_25);
+  }
+}

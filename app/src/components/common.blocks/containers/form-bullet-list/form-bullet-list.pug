@@ -1,0 +1,13 @@
+//- id: id of checkbox buttons' container
+//- class: class for component bem mix: such as positioning functionality
+//- label: text of label
+//- mod: "" | "rich" - mod of component
+//- items: Array<string> 
+mixin form-bullet-list
+  .form-bullet-list(id=attributes.id, class=attributes.class)
+    if attributes.label
+      h3.form-label.form-bullet-list__label
+        label(for=attributes.id)= attributes.label
+    ul.form-bullet-list__list
+      each item, key in attributes.items
+        li.form-bullet-list__item= item

@@ -1,0 +1,7 @@
+.form-bullet-list {
+  display: grid;
+  grid:
+    "label" auto
+    "list" 1fr /1fr;
+  grid-row-gap: 10px/14.4px+0vmax;
+}
