@@ -3,7 +3,7 @@
 .form-dropdown__link-btns {
   .form-dropdown__clear-btn-js,
   .form-dropdown__apply-btn-js {
-    color: map-get(colors.$THEME_COLORS, color__primary_100);
+    color: colors.getColor(color__primary, 1);
     font: var(--font__h3);
     text-transform: uppercase;
   }

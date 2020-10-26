@@ -1,4 +1,5 @@
 @use "./../../../colors.scss";
+
 .type-sample__tag {
-  color: map-get(colors.$THEME_COLORS, color__dark-shade_25);
+  color: colors.getColor(color__dark-shade, 0.25);
 }

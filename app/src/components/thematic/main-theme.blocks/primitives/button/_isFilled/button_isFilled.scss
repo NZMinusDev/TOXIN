@@ -1,9 +1,9 @@
-@use "./../../../colors.scss";
+@use "./../../../gradients.scss";
 
 .button_isFilled {
-  background: map-get(colors.$THEME_GRADIENTS, gradient__primary_100);
+  background: gradients.getBinaryLinearGradient(color__primary, 1);
 
   &:hover {
-    background: map-get(colors.$THEME_GRADIENTS, gradient__primary_50);
+    background: gradients.getBinaryLinearGradient(color__primary, 0.5);
   }
 }

@@ -2,6 +2,6 @@
 
 .form-bullet-list__item {
   &:before {
-    background: map-get(colors.$THEME_COLORS, color__dark-shade_25);
+    background: colors.getColor(color__dark-shade, 0.25);
   }
 }

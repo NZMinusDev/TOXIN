@@ -1,6 +1,6 @@
-@use "./../../../../colors.scss";
+@use "./../../../../gradients.scss";
 
 .pagination__item_previous {
-  background: map-get(colors.$THEME_GRADIENTS, gradient__secondary_100);
+  background: gradients.getBinaryLinearGradient(color__secondary, 1);
   color: white;
 }

@@ -1,5 +1,5 @@
-@use "./colors.scss";
 @use "./fonts.scss";
+@use "./colors.scss";
 
 :root {
   --font__h1: 700 1rem /1.25rem "Quicksand";
@@ -7,28 +7,15 @@
   --font__h3: 700 0.5rem /0.625rem "Montserrat";
   --font__body: 400 0.583rem /1rem "Montserrat";
 
-  --color__dark-shade_100: rgba(31, 32, 65, 1);
-  --color__dark-shade_75: rgba(31, 32, 65, 0.75);
-  --color__dark-shade_50: rgba(31, 32, 65, 0.5);
-  --color__dark-shade_25: rgba(31, 32, 65, 0.25);
-  --color__dark-shade_5: rgba(31, 32, 65, 0.05);
-  --color__primary_100: #bc9cff;
-  --color__primary_50: rgba(188, 156, 255, 0.5);
-  --color__primary_25: rgba(188, 156, 255, 0.25);
-  --color__secondary_100: #6fcf97;
-  --color__secondary_50: rgba(111, 207, 151, 0.5);
-  --color__secondary_25: rgba(111, 207, 151, 0.25);
+  --color__dark-shade: 31, 32, 65;
+  --color__primary: 188, 156, 255;
+  --color__primary_additional: 139, 164, 249;
+  --color__secondary: 111, 207, 151;
+  --color__secondary_additional: 102, 210, 234;
 
-  --border: 1px solid rgba(31, 32, 65, 0.25);
-  --border-hover: 1px solid rgba(31, 32, 65, 0.5);
+  --border: 1px solid rgba(var(--color__dark-shade), 0.25);
+  --border-hover: 1px solid rgba(var(--color__dark-shade), 0.5);
   --border-radius-size: 0.278vmax;
-
-  --gradient__primary_100: 180deg, var(--color__primary_100) 0%, rgba(139, 164, 249, 1) 100%;
-  --gradient__primary_50: 180deg, var(--color__primary_50) 0%, rgba(139, 164, 249, 0.5) 100%;
-  --gradient__primary_25: 180deg, var(--color__primary_25) 0%, rgba(139, 164, 249, 0.25) 100%;
-  --gradient__secondary_100: 180deg, var(--color__secondary_100) 0%, rgba(102, 210, 234, 1) 100%;
-  --gradient__secondary_50: 180deg, var(--color__secondary_50) 0%, rgba(102, 210, 234, 0.5) 100%;
-  --gradient__secondary_25: 180deg, var(--color__secondary_25) 0%, rgba(102, 210, 234, 0.25) 100%;
 }
 
 html {
@@ -39,7 +26,7 @@ h1,
 h2 {
   font-family: "Quicksand";
   font-weight: 700;
-  color: map-get(colors.$THEME_COLORS, color__dark-shade_100);
+  color: colors.getColor(color__dark-shade, 1);
 }
 h1 {
   font-size: 1rem;
@@ -62,11 +49,11 @@ h3 {
   word-spacing: 0.0417rem;
   line-height: 0.625rem;
   text-transform: uppercase;
-  color: map-get(colors.$THEME_COLORS, color__dark-shade_100);
+  color: colors.getColor(color__dark-shade, 1);
 }
 body {
   font-size: 0.583rem;
   font-weight: 400;
   line-height: 1rem;
-  color: map-get(colors.$THEME_COLORS, color__dark-shade_75);
+  color: colors.getColor(color__dark-shade, 0.75);
 }

@@ -1,14 +1,14 @@
 @use "./../../colors.scss";
 
 .form-field {
-  color: map-get(colors.$THEME_COLORS, color__dark-shade_25);
+  color: colors.getColor(color__dark-shade, 0.25);
   border: var(--border);
   border-radius: var(--border-radius-size);
 
   &:hover,
   &:focus,
   &:focus-within {
-    color: map-get(colors.$THEME_COLORS, color__dark-shade_75);
+    color: colors.getColor(color__dark-shade, 0.75);
     border: var(--border-hover);
   }
 }

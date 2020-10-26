@@ -1,0 +1,10 @@
+@use "./colors.scss";
+
+// Tip: color-names defined in main-theme.scss
+@function getBinaryLinearGradient($color-name, $opacity) {
+  @return linear-gradient(
+    180deg,
+    colors.getColor($color-name, $opacity) 0%,
+    colors.getColor(#{$color-name}_additional, $opacity) 100%
+  );
+}

@@ -1,7 +1,7 @@
-@use "./../../../colors.scss";
+@use "./../../../gradients.scss";
 
 .form-rate-button__button-item + label:before {
-  background-image: map-get(colors.$THEME_GRADIENTS, gradient__primary_100);
+  background-image: gradients.getBinaryLinearGradient(color__primary, 1);
   color: transparent;
   background-clip: text;
 }

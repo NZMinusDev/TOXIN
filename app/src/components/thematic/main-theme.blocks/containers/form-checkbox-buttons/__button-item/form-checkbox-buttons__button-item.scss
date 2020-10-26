@@ -1,4 +1,4 @@
-@use "./../../../colors.scss";
+@use "./../../../gradients.scss";
 
 .form-checkbox-buttons__button-item {
   border: var(--border);
@@ -6,10 +6,10 @@
 
   &:checked {
     background: linear-gradient(180deg, white, white) padding-box,
-      map-get(colors.$THEME_GRADIENTS, gradient__primary_100) border-box;
+      gradients.getBinaryLinearGradient(color__primary, 1) border-box;
   }
 
   &:before {
-    border-image: map-get(colors.$THEME_GRADIENTS, gradient__primary_100) 2;
+    border-image: gradients.getBinaryLinearGradient(color__primary, 1) 2;
   }
 }

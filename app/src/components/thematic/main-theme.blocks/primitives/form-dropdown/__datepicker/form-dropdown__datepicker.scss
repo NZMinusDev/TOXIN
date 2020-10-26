@@ -1,14 +1,17 @@
 @use "./../../../colors.scss";
+@use "./../../../gradients.scss";
+
+// appended in js
 @use "./../__link-btns/form-dropdown__link-btns.scss";
 
 /* lib redefinition */
 .datepicker--nav-title {
   font: var(--font__h2);
-  color: map-get(colors.$THEME_COLORS, color__dark-shade_100);
+  color: colors.getColor(color__dark-shade, 1);
 }
 .datepicker--nav-action {
   font-size: 1rem;
-  color: map-get(colors.$THEME_COLORS, color__primary_100);
+  color: colors.getColor(color__primary, 1);
 }
 
 .datepicker--day-name,
@@ -17,15 +20,15 @@
   font: var(--font__h3);
 }
 .datepicker--day-name {
-  color: map-get(colors.$THEME_COLORS, color__primary_100);
+  color: colors.getColor(color__primary, 1);
 }
 .datepicker--cell {
-  color: map-get(colors.$THEME_COLORS, color__dark-shade_50);
+  color: colors.getColor(color__dark-shade, 0.5);
 
   &.-other-month-,
   &.-other-decade-,
   &.-disabled- {
-    color: map-get(colors.$THEME_COLORS, color__dark-shade_25);
+    color: colors.getColor(color__dark-shade, 0.25);
   }
 
   &.-current-,
@@ -36,17 +39,17 @@
     color: white;
   }
   &.-current- {
-    background: map-get(colors.$THEME_GRADIENTS, gradient__secondary_100);
+    background: gradients.getBinaryLinearGradient(color__secondary, 1);
   }
   &.-selected-,
   &.-selected-.-focus-,
   &.-selected-.-current- {
-    background: map-get(colors.$THEME_GRADIENTS, gradient__primary_100);
+    background: gradients.getBinaryLinearGradient(color__primary, 1);
   }
   &.-in-range-,
   &.-current-.-in-range- {
-    color: map-get(colors.$THEME_COLORS, color__dark-shade_50);
-    background: map-get(colors.$THEME_GRADIENTS, gradient__primary_25);
+    color: colors.getColor(color__dark-shade, 0.5);
+    background: gradients.getBinaryLinearGradient(color__primary, 0.25);
   }
   &.-current-.-in-range- {
     border-radius: 0;
@@ -55,7 +58,7 @@
   &.-range-to- {
     border-radius: 100%;
     border: 0;
-    background: map-get(colors.$THEME_GRADIENTS, gradient__primary_100);
+    background: gradients.getBinaryLinearGradient(color__primary, 1);
   }
   &.-range-from-:before,
   &.-range-to-:before {
@@ -65,7 +68,7 @@
     top: 0;
     bottom: 0;
     width: 50%;
-    background: map-get(colors.$THEME_GRADIENTS, gradient__primary_25);
+    background: gradients.getBinaryLinearGradient(color__primary, 0.25);
   }
   &.-range-from-:before {
     right: 0;
@@ -77,7 +80,7 @@
 
 /* project's */
 .form-dropdown__datepicker {
-  color: map-get(colors.$THEME_COLORS, color__dark-shade_75);
+  color: colors.getColor(color__dark-shade, 0.75);
 
   &:hover,
   &:focus,

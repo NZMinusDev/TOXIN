@@ -1,17 +1,18 @@
 @use "./../../../colors.scss";
+@use "./../../../gradients.scss";
 
 .form-like-button__button-item {
   border: var(--border);
 
   &:checked {
     background: linear-gradient(180deg, white, white) padding-box,
-      map-get(colors.$THEME_GRADIENTS, gradient__primary_100) border-box;
+      gradients.getBinaryLinearGradient(color__primary, 1) border-box;
   }
 
   &:before,
   &:after {
     font-size: 0.4167rem;
-    color: map-get(colors.$THEME_COLORS, color__dark-shade_25);
+    color: colors.getColor(color__dark-shade, 0.25);
   }
   &:before {
     line-height: 0.354167rem;
@@ -22,6 +23,6 @@
 
   &:checked:before,
   &:checked:after {
-    color: map-get(colors.$THEME_COLORS, color__primary_100);
+    color: colors.getColor(color__primary, 1);
   }
 }

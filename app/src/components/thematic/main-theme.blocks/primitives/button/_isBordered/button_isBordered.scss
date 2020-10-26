@@ -1,12 +1,13 @@
 @use "./../../../colors.scss";
+@use "./../../../gradients.scss";
 
 .button_isBordered {
-  color: map-get(colors.$THEME_COLORS, color__primary_100);
+  color: colors.getColor(color__primary, 1);
   background: linear-gradient(180deg, white, white) padding-box,
-    map-get(colors.$THEME_GRADIENTS, gradient__primary_100) border-box;
+    gradients.getBinaryLinearGradient(color__primary, 1) border-box;
 
   &:hover {
     background: linear-gradient(180deg, white, white) padding-box,
-      map-get(colors.$THEME_GRADIENTS, gradient__primary_50) border-box;
+      gradients.getBinaryLinearGradient(color__primary, 0.5) border-box;
   }
 }
