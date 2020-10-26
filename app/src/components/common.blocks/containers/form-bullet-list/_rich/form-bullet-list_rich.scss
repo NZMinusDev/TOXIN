@@ -1,0 +1,33 @@
+.form-bullet-list_rich {
+  .form-bullet-list__item {
+    display: grid;
+    grid:
+      "icon label" auto
+      "icon description" auto / auto 1fr;
+    font-weight: 700;
+    margin-top: 20px/14.4px+0vmax;
+
+    &:not(:last-child) {
+      padding-bottom: 20px/14.4px+0vmax;
+      border-bottom: 1px solid black;
+    }
+
+    &:before {
+      grid-area: icon;
+      background: transparent;
+      content: attr(data-icon);
+      font-family: "Material Icons";
+      width: 48px/14.4px + 0vmax;
+      height: 48px/14.4px + 0vmax;
+      font-size: 48px/14.4px + 0vmax;
+      line-height: 48px/14.4px + 0vmax;
+    }
+
+    &:after {
+      grid-area: description;
+      content: attr(data-description);
+      font: inherit;
+      font-weight: 400;
+    }
+  }
+}

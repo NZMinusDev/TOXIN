@@ -193,7 +193,10 @@ block content
     )
     +form-bullet-list#bullet-list.form-elements-layout__bullet-list(
       label="bullet list",
-      items=['Нельзя с питомцами', 'Без вечеринок и мероприятий', 'Время прибытия — после 13:00,а выезд до 12:00']
+      items=['Нельзя с питомцами', 'Без вечеринок и мероприятий', 'Время прибытия — после 13:00, а выезд до 12:00']
     )
-    .form-elements-layout__logo-comfort
+    +form-bullet-list#rich-bullet-list.form-elements-layout__logo-comfort(
+      mod="rich",
+      items={ Комфорт: { icon: 'insert_emoticon', description: 'Шумопоглощающие стены' }, Удобство: { icon: 'location_city', description: 'Окно в каждой из спален' } }
+    )
     .form-elements-layout__comment

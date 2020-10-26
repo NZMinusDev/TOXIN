@@ -1,0 +1,17 @@
+@use "./../../../colors.scss";
+@use "./../../../gradients.scss";
+
+.form-bullet-list_rich {
+  .form-bullet-list__item {
+    &:not(:last-child) {
+      padding-bottom: 20px/14.4px+0vmax;
+      border-bottom: 1px solid colors.getColor(color__dark-shade, 0.1);
+    }
+
+    &:before {
+      color: transparent;
+      background: gradients.getBinaryLinearGradient(color__primary, 1);
+      background-clip: text;
+    }
+  }
+}

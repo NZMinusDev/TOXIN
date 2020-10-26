@@ -1,13 +1,26 @@
-//- id: id of checkbox buttons' container
+//- id: id of list's container
 //- class: class for component bem mix: such as positioning functionality
 //- label: text of label
-//- mod: "" | "rich" - mod of component
-//- items: Array<string> 
+//- items: Array<string> // if just use list
+//- EXPANDED:
+//- mod: "rich" | null
+//- items: {// if mod=="rich"
+//-   label1:{icon:"material icon name", description:string},
+//-   label2:{icon:"material icon name", description:string}
+//- }
 mixin form-bullet-list
-  .form-bullet-list(id=attributes.id, class=attributes.class)
+  - const modClass = attributes.mod ? 'form-bullet-list_' + attributes.mod : null;
+  .form-bullet-list(id=attributes.id, class=modClass, class=attributes.class)
     if attributes.label
       h3.form-label.form-bullet-list__label
         label(for=attributes.id)= attributes.label
     ul.form-bullet-list__list
       each item, key in attributes.items
-        li.form-bullet-list__item= item
+        case attributes.mod
+          when "rich"
+            li.form-bullet-list__item(
+              data-icon=item.icon,
+              data-description=item.description
+            )= key
+          default
+            li.form-bullet-list__item= item
