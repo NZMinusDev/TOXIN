@@ -18,6 +18,9 @@ button {
 figure {
   margin: 0;
 }
+img {
+  display: block;
+}
 input {
   border: 0;
   padding: 0;
