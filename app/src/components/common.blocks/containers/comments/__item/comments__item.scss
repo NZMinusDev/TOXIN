@@ -1,0 +1,8 @@
+.comments__item {
+  display: grid;
+  grid:
+    "icon source" min-content
+    "like content" auto / auto 1fr;
+  grid-row-gap: 10px/14.4px+0vmax;
+  grid-column-gap: 10px/14.4px+0vmax;
+}

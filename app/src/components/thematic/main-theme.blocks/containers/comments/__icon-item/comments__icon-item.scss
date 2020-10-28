@@ -1,0 +1,5 @@
+@use "./../../../colors.scss";
+
+.comments__icon-item{
+  box-shadow: 0px 10px/14.4px+0vmax 20px/14.4px+0vmax 0px  colors.getColor(color__dark-shade, 0.1);
+}

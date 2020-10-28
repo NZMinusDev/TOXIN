@@ -1,7 +1,11 @@
+// page's resources
 import "./form-elements.pug";
 import "./form-elements.scss";
 
-// focus multiple components
+// assets
+import "@contents/personas/persona1.png";
+
+// focus components
 document.querySelector("#text-field-hover").focus();
 
 document.querySelector("#dropdown-expanded-plural").classList.add("menu-open");
