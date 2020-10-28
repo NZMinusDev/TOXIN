@@ -17,10 +17,9 @@
       background: transparent;
       content: attr(data-icon);
       font-family: "Material Icons";
-      width: 48px/14.4px + 0vmax;
-      height: 48px/14.4px + 0vmax;
-      font-size: 48px/14.4px + 0vmax;
-      line-height: 48px/14.4px + 0vmax;
+      width: 100%;
+      height: 100%;
+      border-radius: initial;
     }
 
     &:after {

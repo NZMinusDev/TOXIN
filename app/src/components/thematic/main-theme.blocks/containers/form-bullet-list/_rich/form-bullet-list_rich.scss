@@ -9,6 +9,8 @@
     }
 
     &:before {
+      font-size: 2rem;
+      line-height: 2rem;
       color: transparent;
       background: gradients.getBinaryLinearGradient(color__primary, 1);
       background-clip: text;

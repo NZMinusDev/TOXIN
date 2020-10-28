@@ -1,9 +1,9 @@
 .color-sample__name {
   grid-area: name;
-  line-height: 1.25rem;
-}
-.color-sample__name:after {
-  display: block;
-  font-weight: 400;
-  content: attr(data-color);
+
+  &:after {
+    content: attr(data-color);
+    font-weight: 400;
+    display: block;
+  }
 }

@@ -1,6 +1,8 @@
 @use "./../../../../gradients.scss";
 
 .pagination__item_previous {
+  font-size: 1rem;
+  line-height: 1rem;
   background: gradients.getBinaryLinearGradient(color__secondary, 1);
   color: white;
 }

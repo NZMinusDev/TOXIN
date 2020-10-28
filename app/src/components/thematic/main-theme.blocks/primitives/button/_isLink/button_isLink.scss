@@ -6,4 +6,8 @@
   &:hover {
     background: gradients.getBinaryLinearGradient(color__primary, 0.5);
   }
+
+  &:before{
+    font-size: 1rem;
+  }
 }
