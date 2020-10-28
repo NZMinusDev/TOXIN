@@ -3,7 +3,6 @@ $bulletSize: 10px;
 .form-bullet-list__item {
   list-style: inside none;
   position: relative;
-  
 
   &:not(:nth-child(1)) {
     margin-top: 10px/14.4px+0vmax;
@@ -16,6 +15,7 @@ $bulletSize: 10px;
     margin-right: 10px/14.4px+0vmax;
     width: $bulletSize/14.4px + 0vmax;
     height: $bulletSize/14.4px + 0vmax;
+    background: rgba(0, 0, 0, 1);
     border-radius: 100%;
   }
 }
