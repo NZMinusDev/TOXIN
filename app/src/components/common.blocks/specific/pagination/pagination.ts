@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "beforeend",
         createPaginationItem(
           "arrow_forward",
-          () => () => createPagination(target, pages, page + 1),
+          () => createPagination(target, pages, page + 1),
           ["pagination__item", "pagination__item_next"]
         )
       );
