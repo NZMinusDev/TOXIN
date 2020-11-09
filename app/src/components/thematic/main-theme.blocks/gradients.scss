@@ -1,10 +1,16 @@
-@use "./colors.scss";
+@use "@utils/devTools/devTools.scss";
 
-// Tip: color-names defined in main-theme.scss
-@function getBinaryLinearGradient($color-name, $opacity) {
+@function primary($opacity) {
   @return linear-gradient(
     180deg,
-    colors.getColor($color-name, $opacity) 0%,
-    colors.getColor(#{$color-name}_additional, $opacity) 100%
+    devTools.getColor(color__primary, $opacity) 0%,
+    devTools.getColor(color__primary_additional, $opacity) 100%
+  );
+}
+@function secondary($opacity) {
+  @return linear-gradient(
+    180deg,
+    devTools.getColor(color__secondary, $opacity) 0%,
+    devTools.getColor(color__secondary_additional, $opacity) 100%
   );
 }

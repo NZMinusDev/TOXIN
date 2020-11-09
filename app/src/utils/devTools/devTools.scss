@@ -1,0 +1,32 @@
+/*
+ * get color by css var color name with defining opacity
+ * color-name {string} - css var name of color without '--'
+ * opacity {number} - css opacity
+ */
+// Tip: color-names define in your theme :root using css var for dynamic changing of colors purpose
+@function getColor($color-name, $opacity: 1) {
+  @return rgba(var(--#{$color-name}), #{$opacity});
+}
+
+/*
+ * Adjustable size depending on the user's device
+ * pcSize {number} - size in larger(your template width) state
+ * mobSize {number} - size in smaller(page width 320px) state
+ * templateWidth {number} - width of larger template in figma or smth else
+ */
+@function getLiquidSize($pcSize: 10, $mobSize: 5, $templateWidth: 1440) {
+  $addSize: $pcSize - $mobSize;
+  $maxWidth: $templateWidth - 320;
+  @return calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth}));
+}
+
+@mixin ellipsisText() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@mixin gradientFont($background) {
+  color: transparent;
+  background: $background;
+  background-clip: text;
+}
