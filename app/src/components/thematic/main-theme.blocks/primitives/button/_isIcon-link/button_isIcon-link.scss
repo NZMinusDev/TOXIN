@@ -1,9 +1,9 @@
-@use "./../../../colors.scss";
+@use "@utils/devTools/devTools.scss";
 
 .button_isIcon-link {
-  color: colors.getColor(color__dark-shade, 1);
+  color: devTools.getColor(color__primary, 1);
 
   &:hover {
-    color: colors.getColor(color__dark-shade, 0.5);
+    color: devTools.getColor(color__dark-shade, 0.5);
   }
 }

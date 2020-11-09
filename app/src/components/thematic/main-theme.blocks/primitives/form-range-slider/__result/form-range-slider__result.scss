@@ -1,7 +1,7 @@
-@use "./../../../colors.scss";
+@use "@utils/devTools/devTools.scss";
 
-.form-range-slider__result{
+.form-range-slider__result {
   font-size: 0.5rem;
   line-height: 0.625rem;
-  color: colors.getColor(color__dark-shade, 0.5)
+  color: devTools.getColor(color__dark-shade, 0.5);
 }

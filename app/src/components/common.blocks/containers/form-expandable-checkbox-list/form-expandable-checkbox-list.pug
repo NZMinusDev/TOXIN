@@ -15,12 +15,13 @@ include ~@common.blocks/containers/form-checkbox-buttons/form-checkbox-buttons.p
   },...}
 //- checked: open the list
 //- disabled: same as fieldset disabled (disable all buttons)
-//- Tip: be careful if use large amount of items: max-height limited by 16rem for transition animation
+//- Tip: be careful if use large amount of items: max-height limited by 32em for transition animation
 mixin form-expandable-checkbox-list
   .form-expandable-checkbox-list(class=attributes.class)
     h3.form-expandable-checkbox-list__expander
+      label(for=attributes.id)= attributes.label
       input(id=attributes.id, type="checkbox", checked=attributes.checked)
-      label.expand-icon.form-expandable-checkbox-list__expand-icon(for=attributes.id)= attributes.label
+      label(for=attributes.id).material-icon.form-expandable-checkbox-list__expand-icon
       +form-checkbox-buttons.form-expandable-checkbox-list__list(
         buttons=attributes.buttons,
         disabled=attributes.disabled

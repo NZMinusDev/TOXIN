@@ -1,39 +1,39 @@
-@use "@themes/main-theme.blocks/colors.scss";
-@use "@themes/main-theme.blocks/gradients.scss";
+@use "@utils/devTools/devTools.scss";
+
+@use "@thematic/main-theme.blocks/gradients.scss";
 
 /* Styles just for demonstration in ui-kit, not fof production use*/
 .form-elements-layout__dropdown-expanded-plural > .form-field {
   border: var(--border-hover);
-  color: colors.getColor(color__dark-shade, 0.75);
+  color: devTools.getColor(color__dark-shade, 0.75);
 
   & > .form-dropdown__expand-icon {
-    color: colors.getColor(color__dark-shade, 0.75);
+    color: devTools.getColor(color__dark-shade, 0.75);
   }
 }
 .form-elements-layout__dropdown-expanded-apply > .form-field {
   border: var(--border-hover);
-  color: colors.getColor(color__dark-shade, 0.75);
+  color: devTools.getColor(color__dark-shade, 0.75);
 
   & > .form-dropdown__expand-icon {
-    color: colors.getColor(color__dark-shade, 0.75);
+    color: devTools.getColor(color__dark-shade, 0.75);
   }
 }
 .form-elements-layout__dropdown-expanded-clear-apply > .form-field {
   border: var(--border-hover);
-  color: colors.getColor(color__dark-shade, 0.75);
+  color: devTools.getColor(color__dark-shade, 0.75);
 
   & > .form-dropdown__expand-icon {
-    color: colors.getColor(color__dark-shade, 0.75);
+    color: devTools.getColor(color__dark-shade, 0.75);
   }
 }
 
 #button-fill-hovered {
-  background: gradients.getBinaryLinearGradient(color__primary, 0.5);
+  background: gradients.primary(0.5);
 }
 #button-empty-hovered {
-  background: linear-gradient(180deg, white, white) padding-box,
-    gradients.getBinaryLinearGradient(color__primary, 0.5) border-box;
+  background: linear-gradient(180deg, white, white) padding-box, gradients.primary(0.5) border-box;
 }
 #button-icon-link-hovered {
-  color: colors.getColor(color__dark-shade, 0.5);
+  color: devTools.getColor(color__dark-shade, 0.5);
 }

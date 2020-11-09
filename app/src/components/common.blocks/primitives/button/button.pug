@@ -10,7 +10,8 @@
 //- formtarget - same as button's formtarget (<имя окна> | _blank | _self | _parent | _top)
 //- disabled - same as button's disabled
 mixin button
-  - var modClass = attributes.modClass ? 'button_is' + attributes.modClass[0].toUpperCase() + attributes.modClass.slice(1) : 'button_isFilled';
+  -
+    var modClass = attributes.modClass ? 'button_is' + attributes.modClass[0].toUpperCase() + attributes.modClass.slice(1) : 'button_isFilled';
   button.button(
     id=attributes.id,
     class=attributes.class,
@@ -24,3 +25,5 @@ mixin button
     formtarget=attributes.formtarget,
     disabled=attributes.disabled
   )= attributes.value
+    if attributes.modClass == "link"
+      .material-icon

@@ -1,19 +1,23 @@
-@use "./../../../colors.scss";
-@use "./../../../gradients.scss";
+@use "@utils/devTools/devTools.scss";
+
+@use "@thematic/main-theme.blocks/gradients.scss";
 
 .form-bullet-list_rich {
   .form-bullet-list__item {
+    font-weight: 700;
+
     &:not(:last-child) {
-      padding-bottom: 20px/14.4px+0vmax;
-      border-bottom: 1px solid colors.getColor(color__dark-shade, 0.1);
+      border-bottom: 1px solid devTools.getColor(color__dark-shade, 0.1);
     }
 
     &:before {
       font-size: 2rem;
       line-height: 2rem;
-      color: transparent;
-      background: gradients.getBinaryLinearGradient(color__primary, 1);
-      background-clip: text;
+      @include devTools.gradientFont(gradients.primary(1));
+    }
+
+    .form-bullet-list__description {
+      font-weight: 400;
     }
   }
 }

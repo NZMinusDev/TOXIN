@@ -24,5 +24,5 @@ mixin form-rate-button
           checked=checked,
           value=counter
         )
-        label(for=currentID, title=attributes.titles[counter - 1])= counter + ' starts'
+        label.material-icon(for=currentID, title=attributes.titles[counter - 1])= counter + ' starts'
         - counter--;

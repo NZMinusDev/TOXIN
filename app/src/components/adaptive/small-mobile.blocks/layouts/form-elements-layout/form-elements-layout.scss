@@ -1,8 +1,7 @@
 .form-elements-layout {
   display: grid;
-  grid-row-gap: 20px/14.4px+0vmax;
-  padding-left: 20px/14.4px+0vmax;
-  padding-right: 20px/14.4px+0vmax;
+  grid-row-gap: 3em;
   width: 75%;
   margin: auto;
+  justify-content: center;
 }

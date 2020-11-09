@@ -1,13 +1,10 @@
 .form-expandable-checkbox-list__expand-icon {
-  height: 44px/14.4px+0vmax;
-  position: relative;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  user-select: none;
+  top: 0;
+  right: 0;
+  width: 3.666666666666667em;
 
   &:after {
-    top: 0;
-    right: 0;
+    content: "\e5cf";
+    align-items: start;
   }
 }

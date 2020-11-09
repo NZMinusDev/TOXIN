@@ -18,9 +18,7 @@ mixin form-bullet-list
       each item, key in attributes.items
         case attributes.mod
           when "rich"
-            li.form-bullet-list__item(
-              data-icon=item.icon,
-              data-description=item.description
-            )= key
+            li.form-bullet-list__item(data-icon=item.icon)= key
+              p.form-bullet-list__description= item.description
           default
             li.form-bullet-list__item= item

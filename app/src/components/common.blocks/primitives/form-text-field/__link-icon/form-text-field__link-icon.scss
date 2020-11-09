@@ -1,13 +1,9 @@
 .form-text-field__link-icon {
-  font-family: "Material Icons";
-  position: absolute;
+  top: 0;
   right: 0;
-  top:0;
-  height: 44px/14.4px+0vmax;
-  width: 44px/14.4px+0vmax;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-indent: initial;
-  cursor: pointer;
+  width: 3.142857142857143em;
+  
+  &:after {
+    content: attr(data-icon);
+  }
 }

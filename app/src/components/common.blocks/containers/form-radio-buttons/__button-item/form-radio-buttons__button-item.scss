@@ -2,22 +2,22 @@
   appearance: none;
   position: relative;
   display: inline-block;
-  width: 20px/14.4px+0vmax;
-  height: 20px/14.4px+0vmax;
-  margin-right: 10px/14.4px+0vmax;
+  width: 1.428571428571429em;
+  height: 1.428571428571429em;
+  margin-right: 0.7142857142857143em;
   border: 1px solid black;
   border-radius: 100%;
   cursor: pointer;
 
   &:before {
     content: "";
+    width: 60%;
+    height: 60%;
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    width: 12px/14.4px+0vmax;
-    height: 12px/14.4px+0vmax;
     margin: auto;
     background: black;
     border-radius: 100%;

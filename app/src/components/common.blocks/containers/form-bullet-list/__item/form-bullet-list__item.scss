@@ -1,20 +1,19 @@
-$lineHeight: 24px;
-$bulletSize: 10px;
 .form-bullet-list__item {
-  list-style: inside none;
-  position: relative;
-
-  &:not(:nth-child(1)) {
-    margin-top: 10px/14.4px+0vmax;
+  display: grid;
+  grid: "icon content";
+  justify-content: start;
+  
+  &:not(:first-child) {
+    margin-top: 0.7142857142857143em;
   }
 
   &:before {
     content: "";
-    position: relative;
     display: inline-block;
-    margin-right: 10px/14.4px+0vmax;
-    width: $bulletSize/14.4px + 0vmax;
-    height: $bulletSize/14.4px + 0vmax;
+    margin-top: 0.5em;
+    margin-right: 0.7142857142857143em;
+    width: 0.7142857142857143em;
+    height: 0.7142857142857143em;
     background: rgba(0, 0, 0, 1);
     border-radius: 100%;
   }

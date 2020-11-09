@@ -1,34 +1,35 @@
-@use "./../../../colors.scss";
-@use "./../../../gradients.scss";
+@use "@utils/devTools/devTools.scss";
 
-// appended in js
-@use "./../__link-btns/form-dropdown__link-btns.scss";
+@use "@thematic/main-theme.blocks/gradients.scss";
 
 /* lib redefinition */
 .datepicker--nav-title {
   font: var(--font__h2);
-  color: colors.getColor(color__dark-shade, 1);
+  color: devTools.getColor(color__dark-shade, 1);
 }
 .datepicker--nav-action {
   font-size: 1rem;
-  color: colors.getColor(color__primary, 1);
+  color: devTools.getColor(color__primary, 1);
 }
 
+.datepicker--content {
+  font: var(--font__h3);
+}
 .datepicker--day-name,
 .datepicker--cell {
   text-transform: none;
-  font: var(--font__h3);
+  font: inherit;
 }
 .datepicker--day-name {
-  color: colors.getColor(color__primary, 1);
+  color: devTools.getColor(color__primary, 1);
 }
 .datepicker--cell {
-  color: colors.getColor(color__dark-shade, 0.5);
+  color: devTools.getColor(color__dark-shade, 0.5);
 
   &.-other-month-,
   &.-other-decade-,
   &.-disabled- {
-    color: colors.getColor(color__dark-shade, 0.25);
+    color: devTools.getColor(color__dark-shade, 0.25);
   }
 
   &.-current-,
@@ -39,17 +40,17 @@
     color: white;
   }
   &.-current- {
-    background: gradients.getBinaryLinearGradient(color__secondary, 1);
+    background: gradients.secondary(1);
   }
   &.-selected-,
   &.-selected-.-focus-,
   &.-selected-.-current- {
-    background: gradients.getBinaryLinearGradient(color__primary, 1);
+    background: gradients.primary(1);
   }
   &.-in-range-,
   &.-current-.-in-range- {
-    color: colors.getColor(color__dark-shade, 0.5);
-    background: gradients.getBinaryLinearGradient(color__primary, 0.25);
+    color: devTools.getColor(color__dark-shade, 0.5);
+    background: gradients.primary(0.25);
   }
   &.-current-.-in-range- {
     border-radius: 0;
@@ -58,7 +59,7 @@
   &.-range-to- {
     border-radius: 100%;
     border: 0;
-    background: gradients.getBinaryLinearGradient(color__primary, 1);
+    background: gradients.primary(1);
   }
   &.-range-from-:before,
   &.-range-to-:before {
@@ -68,7 +69,7 @@
     top: 0;
     bottom: 0;
     width: 50%;
-    background: gradients.getBinaryLinearGradient(color__primary, 0.25);
+    background: gradients.primary(0.25);
   }
   &.-range-from-:before {
     right: 0;
@@ -80,7 +81,7 @@
 
 /* project's */
 .form-dropdown__datepicker {
-  color: colors.getColor(color__dark-shade, 0.75);
+  color: devTools.getColor(color__dark-shade, 0.75);
 
   &:hover,
   &:focus,

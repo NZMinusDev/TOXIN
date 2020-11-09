@@ -1,8 +1,10 @@
-@use "./../../../gradients.scss";
+@use "@utils/devTools/devTools.scss";
+
+@use "@thematic/main-theme.blocks/gradients.scss";
 
 .form-text-field__link-icon {
-  font-size: 1rem;
-  color: transparent;
-  background: gradients.getBinaryLinearGradient(color__primary, 1);
-  background-clip: text;
+  &:after {
+    font-size: 1rem;
+    @include devTools.gradientFont(gradients.primary(1));
+  }
 }

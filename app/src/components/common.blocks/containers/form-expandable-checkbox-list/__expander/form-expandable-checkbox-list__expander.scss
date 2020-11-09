@@ -1,19 +1,22 @@
 .form-expandable-checkbox-list__expander {
+  position: relative;
+  
+  & > label {
+    cursor: pointer;
+    user-select: none;
+  }
+
   & > input {
     display: none;
 
     &:checked {
-      & + label:after {
+      & + .form-expandable-checkbox-list__expand-icon:after {
         content: "\e5ce";
       }
+
       & ~ .form-expandable-checkbox-list__list {
-        max-height: 16rem;
+        max-height: 32em;
       }
     }
-  }
-
-  //nullify checkbox-buttons' default margin-top
-  .form-checkbox-buttons__list {
-    margin-top: 2px;
   }
 }

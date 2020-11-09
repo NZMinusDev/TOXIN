@@ -21,185 +21,186 @@ block variables
   - var title = 'Формы';
 
 block content
-  main.form-elements-layout.ui-kit-container
-    +form-text-field#text-field-default.form-elements-layout__text-field-default(
-      label="text field",
-      type="email",
-      name="email",
-      placeholder="Email"
-    )
-    +form-text-field#text-field-hover.form-elements-layout__text-field-hover(
-      label="text field",
-      type="text",
-      name="text",
-      value="This is pretty awesome",
-      placeholder="Text",
-      autofocus
-    )
-    +form-dropdown#dropdown.form-elements-layout__dropdown(
-      label="dropdown",
-      name="guests",
-      type="single-apply",
-      placeholder="Сколько гостей",
-      list={ взрослые: { default: 0, min: 0, max: 1 / 0 }, дети: { default: 0, min: 0, max: 1 / 0 }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
-      selectionText="гость",
-      textPlural="гостя"
-    )
-    +form-text-field#masked-text-field.form-elements-layout__masked-text-field(
-      label="masked text field",
-      type="date",
-      name="masked-form-date",
-      placeholder="ДД.ММ.ГГГГ"
-    )
-    .form-elements-layout__date-dropdown
-      +form-dropdown#date-dropdown-default(
-        label="date dropdown",
+  form(method="get")
+    main.form-elements-layout.ui-kit-container
+      +form-text-field#text-field-default.form-elements-layout__text-field-default(
+        label="text field",
+        type="email",
+        name="email",
+        placeholder="Email"
+      )
+      +form-text-field#text-field-hover.form-elements-layout__text-field-hover(
+        label="text field",
+        type="text",
+        name="text",
+        value="This is pretty awesome",
+        placeholder="Text",
+        autofocus
+      )
+      +form-dropdown#dropdown.form-elements-layout__dropdown(
+        label="dropdown",
+        name="guests",
+        type="single-apply",
+        placeholder="Сколько гостей",
+        list={ взрослые: { default: 0, min: 0, max: 1 / 0 }, дети: { default: 0, min: 0, max: 1 / 0 }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
+        selectionText="гость",
+        textPlural="гостя"
+      )
+      +form-text-field#masked-text-field.form-elements-layout__masked-text-field(
+        label="masked text field",
         type="date",
-        name="date1",
+        name="masked-form-date",
         placeholder="ДД.ММ.ГГГГ"
       )
-      +form-dropdown#date-dropdown-filled(
-        label="date dropdown",
-        type="date",
-        name="date2",
-        placeholder="ДД.ММ.ГГГГ",
-        data-value="19.08.2019"
+      .form-elements-layout__date-dropdown
+        +form-dropdown#date-dropdown-default(
+          label="date dropdown",
+          type="date",
+          name="date1",
+          placeholder="ДД.ММ.ГГГГ"
+        )
+        +form-dropdown#date-dropdown-filled(
+          label="date dropdown",
+          type="date",
+          name="date2",
+          placeholder="ДД.ММ.ГГГГ",
+          data-value="19.08.2019"
+        )
+      +form-dropdown#filter-date-dropdown.form-elements-layout__filter-date-dropdown(
+        label="filter date dropdown",
+        type="filter-date",
+        name="filter-date",
+        placeholder="День месяц - день месяц",
+        data-value="19 авг - 23 авг"
       )
-    +form-dropdown#filter-date-dropdown.form-elements-layout__filter-date-dropdown(
-      label="filter date dropdown",
-      type="filter-date",
-      name="filter-date",
-      placeholder="День месяц - день месяц",
-      data-value="19 авг - 23 авг"
-    )
-    +form-text-field#subscription-text-field.form-elements-layout__subscription-text-field(
-      label="subscription text field",
-      type="email",
-      name="subscription-form-text-field",
-      placeholder="Email",
-      href="#",
-      link-icon="arrow_forward"
-    )
-    +form-checkbox-buttons#checkbox-buttons.form-elements-layout__checkbox-buttons(
-      label="checkbox buttons",
-      buttons={ isSmoking: { id: 'isSmokingCheckbox', itemLabel: 'Можно курить' }, isWithPets: { id: 'isWithPetsCheckbox', itemLabel: 'Можно с питомцами', checked: 'checked' }, isGuests: { id: 'isGuestsCheckbox', itemLabel: 'Можно пригласить гостей (до 10 человек)', checked: 'checked' } }
-    )
-    +form-radio-buttons#radio-buttons.form-elements-layout__radio-buttons(
-      label="radio buttons",
-      name="gender",
-      buttons={ isMale: { id: 'isMaleRadio', itemLabel: 'Мужчина', checked: 'checked' }, isFemale: { id: 'isFemaleRadio', itemLabel: 'Женщина' } }
-    )
-    .form-elements-layout__toggle
-      +form-toggle#toggle-checked(
-        label="toggle",
-        name="specialOffer1",
-        itemLabel="Получать спецпредложения",
-        checked
+      +form-text-field#subscription-text-field.form-elements-layout__subscription-text-field(
+        label="subscription text field",
+        type="email",
+        name="subscription-form-text-field",
+        placeholder="Email",
+        materialIcon="arrow_forward"
       )
-      +form-toggle#toggle-default(name="specialOffer2", itemLabel="Получать спецпредложения")
-    .form-elements-layout__like-button
-      +form-like-button#like-button-default(label="like button", name="likes1", counter="2")
-      +form-like-button#like-button-checked(name="likes2", counter="12", checked)
-    .form-elements-layout__rate-button
-      +form-rate-button#rate-button-parted(
-        label="rate button",
-        name="rate1",
-        length=5,
-        rate=4,
-        titles=['very bad', 'bad', 'normal', 'good', 'very good']
+      +form-checkbox-buttons#checkbox-buttons.form-elements-layout__checkbox-buttons(
+        label="checkbox buttons",
+        buttons={ isSmoking: { id: 'isSmokingCheckbox', itemLabel: 'Можно курить' }, isWithPets: { id: 'isWithPetsCheckbox', itemLabel: 'Можно с питомцами', checked: 'checked' }, isGuests: { id: 'isGuestsCheckbox', itemLabel: 'Можно пригласить гостей (до 10 человек)', checked: 'checked' } }
       )
-      +form-rate-button#rate-button-full(
-        name="rate2",
-        length=5,
-        rate=5,
-        titles=['very bad', 'bad', 'normal', 'good', 'very good']
+      +form-radio-buttons#radio-buttons.form-elements-layout__radio-buttons(
+        label="radio buttons",
+        name="gender",
+        buttons={ isMale: { id: 'isMaleRadio', itemLabel: 'Мужчина', checked: 'checked' }, isFemale: { id: 'isFemaleRadio', itemLabel: 'Женщина' } }
       )
-    +form-range-slider#range-slider.form-elements-layout__range-slider(
-      label="range slider",
-      name="price",
-      data-range={ min: 341, max: 15454 },
-      data-start=[5000, 10000],
-      data-suffix="₽"
-    )
-    .form-elements-layout__button-fill
-      h3 buttons
-      div
-      +button#button-fill-default(type="button", value="click me", modClass="filled")
-      +button#button-fill-hovered(type="button", value="click me", modClass="filled")
-    .form-elements-layout__button-empty
-      +button#button-empty-default(type="button", value="click me", modClass="bordered")
-      +button#button-empty-hovered(type="button", value="click me", modClass="bordered")
-    .form-elements-layout__button-icon-link
-      +button#button-icon-link-default(type="button", value="click me", modClass="icon-link")
-      +button#button-icon-link-hovered(type="button", value="click me", modClass="icon-link")
-    +button#button-long.form-elements-layout__button-long(
-      type="submit",
-      name="pay",
-      value="перейти к оплате",
-      modClass="link"
-    )
-    .form-elements-layout__pagination
-      h3.form-label pagination
-      +pagination#pagination(
-        pages=15,
-        page=1,
-        amount-to-display=12,
-        total-amount=100,
-        text="вариантов аренды"
+      .form-elements-layout__toggle
+        +form-toggle#toggle-checked(
+          label="toggle",
+          name="specialOffer1",
+          itemLabel="Получать спецпредложения",
+          checked
+        )
+        +form-toggle#toggle-default(name="specialOffer2", itemLabel="Получать спецпредложения")
+      .form-elements-layout__like-button
+        h3.form-label.form-elements-layout__like-button-label like button
+        +form-like-button#like-button-default(name="likes1", counter="2")
+        +form-like-button#like-button-checked(name="likes2", counter="12", checked)
+      .form-elements-layout__rate-button
+        +form-rate-button#rate-button-parted(
+          label="rate button",
+          name="rate1",
+          length=5,
+          rate=4,
+          titles=['very bad', 'bad', 'normal', 'good', 'very good']
+        )
+        +form-rate-button#rate-button-full(
+          name="rate2",
+          length=5,
+          rate=5,
+          titles=['very bad', 'bad', 'normal', 'good', 'very good']
+        )
+      +form-range-slider#range-slider.form-elements-layout__range-slider(
+        label="range slider",
+        name="price",
+        data-range={ min: 341, max: 15454 },
+        data-start=[5000, 10000],
+        data-suffix="₽"
       )
-    +form-dropdown#dropdown-default-plural.form-elements-layout__dropdown-default-plural(
-      label="dropdown",
-      type="plural",
-      name="facilities",
-      list={ спальни: { default: 2, min: 1, max: 3 }, кровати: { default: 2, min: 1, max: 3 }, 'ванные комнаты': { default: 0, min: 0, max: 2 } }
-    )
-    +form-dropdown#dropdown-expanded-plural.form-elements-layout__dropdown-expanded-plural(
-      label="dropdown",
-      type="plural",
-      name="facilities",
-      list={ спальни: { default: 2, min: 1, max: 3 }, кровати: { default: 2, min: 1, max: 3 }, 'ванные комнаты': { default: 0, min: 0, max: 2 } }
-    )
-    +form-dropdown#dropdown-expanded-apply.form-elements-layout__dropdown-expanded-apply(
-      label="dropdown",
-      type="single-apply",
-      name="guests",
-      placeholder="Сколько гостей",
-      list={ взрослые: { default: 0, min: 0, max: 1 / 0 }, дети: { default: 0, min: 0, max: 1 / 0 }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
-      selectionText="гость",
-      textPlural="гостя"
-    )
-    +form-dropdown#dropdown-expanded-clear-apply.form-elements-layout__dropdown-expanded-clear-apply(
-      label="dropdown",
-      type="single-apply",
-      name="guests",
-      placeholder="Сколько гостей",
-      list={ взрослые: { default: 2, min: 0, max: 1 / 0 }, дети: { default: 1, min: 0, max: 1 / 0 }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
-      selectionText="гость",
-      textPlural="гостя"
-    )
-    .form-elements-layout__expandable-checkbox-list
-      +form-expandable-checkbox-list#expandable-checkbox-list-default(
-        label="expandable checkbox list",
-        buttons={}
+      .form-elements-layout__button-fill
+        h3 buttons
+        div
+        +button#button-fill-default(type="button", value="click me", modClass="filled")
+        +button#button-fill-hovered(type="button", value="click me", modClass="filled")
+      .form-elements-layout__button-empty
+        +button#button-empty-default(type="button", value="click me", modClass="bordered")
+        +button#button-empty-hovered(type="button", value="click me", modClass="bordered")
+      .form-elements-layout__button-icon-link
+        +button#button-icon-link-default(type="button", value="click me", modClass="icon-link")
+        +button#button-icon-link-hovered(type="button", value="click me", modClass="icon-link")
+      +button#button-long.form-elements-layout__button-long(
+        type="submit",
+        name="pay",
+        value="перейти к оплате",
+        modClass="link"
       )
-      +form-expandable-checkbox-list#expandable-checkbox-list-expanded(
-        label="expandable checkbox list",
-        buttons={ breakfast: { id: 'breakfastCheckbox', itemLabel: 'Завтрак' }, desk: { id: 'deskCheckbox', itemLabel: 'Письменный стол', checked: 'checked' }, feedingChair: { id: 'feedingChairCheckbox', itemLabel: 'Стол для кормления', checked: 'checked' }, cot: { id: 'cotCheckbox', itemLabel: 'Кроватка', checked: 'checked' }, tv1: { id: 'tv1Checkbox', itemLabel: 'Телевизор' }, shampoo1: { id: 'shampoo1Checkbox', itemLabel: 'Шампунь' }, tv2: { id: 'tv2Checkbox', itemLabel: 'Телевизор' }, shampoo2: { id: 'shampoo2Checkbox', itemLabel: 'Шампунь' } },
-        checked
+      .form-elements-layout__pagination
+        h3.form-label pagination
+        +pagination#pagination(
+          pages=15,
+          page=1,
+          amount-to-display=12,
+          total-amount=100,
+          text="вариантов аренды"
+        )
+      +form-dropdown#dropdown-default-plural.form-elements-layout__dropdown-default-plural(
+        label="dropdown",
+        type="plural",
+        name="facilities",
+        list={ спальни: { default: 2, min: 1, max: 3 }, кровати: { default: 2, min: 1, max: 3 }, 'ванные комнаты': { default: 0, min: 0, max: 2 } }
       )
-    +form-checkbox-buttons#rich-checkbox-buttons.form-elements-layout__rich-checkbox-buttons(
-      label="rich checkbox buttons",
-      mod="rich",
-      buttons={ wideCorridor: { id: 'wideCorridorCheckbox', itemLabel: 'Широкий коридор', description: 'Ширина коридоров в номере не менее 91 см.' }, assistantForTheDisabled: { id: 'assistantForTheDisabledCheckbox', itemLabel: 'Помощник для инвалидов', description: 'На 1 этаже вас встретит специалист  и проводит до номера.' } }
-    )
-    +form-bullet-list#bullet-list.form-elements-layout__bullet-list(
-      label="bullet list",
-      items=['Нельзя с питомцами', 'Без вечеринок и мероприятий', 'Время прибытия — после 13:00, а выезд до 12:00']
-    )
-    +form-bullet-list#rich-bullet-list.form-elements-layout__logo-comfort(
-      mod="rich",
-      items={ Комфорт: { icon: 'insert_emoticon', description: 'Шумопоглощающие стены' }, Удобство: { icon: 'location_city', description: 'Окно в каждой из спален' } }
-    )
-    +comments#comment.form-elements-layout__comment(
-      items={ comment1: { personName: 'Мурад Сарафанов', iconPath: 'assets/pictures/contents/personas/persona1.png', date: '2020-10-21T17:00:00', content: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.', likeButtonCounter: 12, isLikeButtonChecked: 'checked' } }
-    )
+      +form-dropdown#dropdown-expanded-plural.form-elements-layout__dropdown-expanded-plural(
+        label="dropdown",
+        type="plural",
+        name="facilities",
+        list={ спальни: { default: 2, min: 1, max: 3 }, кровати: { default: 2, min: 1, max: 3 }, 'ванные комнаты': { default: 0, min: 0, max: 2 } }
+      )
+      +form-dropdown#dropdown-expanded-apply.form-elements-layout__dropdown-expanded-apply(
+        label="dropdown",
+        type="single-apply",
+        name="guests",
+        placeholder="Сколько гостей",
+        list={ взрослые: { default: 0, min: 0, max: 1 / 0 }, дети: { default: 0, min: 0, max: 1 / 0 }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
+        selectionText="гость",
+        textPlural="гостя"
+      )
+      +form-dropdown#dropdown-expanded-clear-apply.form-elements-layout__dropdown-expanded-clear-apply(
+        label="dropdown",
+        type="single-apply",
+        name="guests",
+        placeholder="Сколько гостей",
+        list={ взрослые: { default: 2, min: 0, max: 1 / 0 }, дети: { default: 1, min: 0, max: 1 / 0 }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
+        selectionText="гость",
+        textPlural="гостя"
+      )
+      .form-elements-layout__expandable-checkbox-list
+        +form-expandable-checkbox-list#expandable-checkbox-list-default(
+          label="expandable checkbox list",
+          buttons={}
+        )
+        +form-expandable-checkbox-list#expandable-checkbox-list-expanded(
+          label="expandable checkbox list",
+          buttons={ breakfast: { id: 'breakfastCheckbox', itemLabel: 'Завтрак' }, desk: { id: 'deskCheckbox', itemLabel: 'Письменный стол', checked: 'checked' }, feedingChair: { id: 'feedingChairCheckbox', itemLabel: 'Стол для кормления', checked: 'checked' }, cot: { id: 'cotCheckbox', itemLabel: 'Кроватка', checked: 'checked' }, tv1: { id: 'tv1Checkbox', itemLabel: 'Телевизор' }, shampoo1: { id: 'shampoo1Checkbox', itemLabel: 'Шампунь' }, tv2: { id: 'tv2Checkbox', itemLabel: 'Телевизор' }, shampoo2: { id: 'shampoo2Checkbox', itemLabel: 'Шампунь' } },
+          checked
+        )
+      +form-checkbox-buttons#rich-checkbox-buttons.form-elements-layout__rich-checkbox-buttons(
+        label="rich checkbox buttons",
+        mod="rich",
+        buttons={ wideCorridor: { id: 'wideCorridorCheckbox', itemLabel: 'Широкий коридор', description: 'Ширина коридоров в номере не менее 91 см.' }, assistantForTheDisabled: { id: 'assistantForTheDisabledCheckbox', itemLabel: 'Помощник для инвалидов', description: 'На 1 этаже вас встретит специалист  и проводит до номера.' } }
+      )
+      +form-bullet-list#bullet-list.form-elements-layout__bullet-list(
+        label="bullet list",
+        items=['Нельзя с питомцами', 'Без вечеринок и мероприятий', 'Время прибытия — после 13:00, а выезд до 12:00']
+      )
+      +form-bullet-list#rich-bullet-list.form-elements-layout__logo-comfort(
+        mod="rich",
+        items={ Комфорт: { icon: 'insert_emoticon', description: 'Шумопоглощающие стены' }, Удобство: { icon: 'location_city', description: 'Окно в каждой из спален' } }
+      )
+      +comments#comment.form-elements-layout__comment(
+        items={ comment1: { personName: 'Мурад Сарафанов', iconPath: 'assets/pictures/contents/personas/persona1.png', date: '2020-10-21T17:00:00', content: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.', likeButtonCounter: 12, isLikeButtonChecked: 'checked' } }
+      )

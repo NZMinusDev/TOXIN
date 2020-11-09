@@ -14,9 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const listItem = document.createElement("li");
     const link = document.createElement("a");
     link.innerText = linkText;
-    link.addEventListener("click", linkClickListener);
     listItem.classList.add(...listItemClasses);
     listItem.insertAdjacentElement("afterbegin", link);
+    listItem.addEventListener("click", linkClickListener);
     return listItem;
   };
 

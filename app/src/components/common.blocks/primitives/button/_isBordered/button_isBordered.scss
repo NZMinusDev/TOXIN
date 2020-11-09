@@ -1,5 +1,10 @@
+@use "./../button.scss";
+
 .button_isBordered {
-  border: 2px/14.4px+0vmax solid transparent;
+  $BORDER_WIDTH: 2px;
+  border: #{$BORDER_WIDTH} solid transparent;
+  padding-left: calc(#{button.$X_PADDING} - #{$BORDER_WIDTH});
+  padding-right: calc(#{button.$X_PADDING} - #{$BORDER_WIDTH});
   background: linear-gradient(180deg, rgba(169, 169, 169, 1), rgba(169, 169, 169, 1)) padding-box,
     linear-gradient(180deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1)) border-box;
 

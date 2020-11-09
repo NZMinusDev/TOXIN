@@ -1,27 +1,22 @@
-$area-size: 20px/14.4px+0vmax;
-$mark-size: 12px/14.4px+0vmax;
-$mark-margin: 0.278vmax;
-$border-size: 0.06944vmax;
-$mark-translate: 2 * $area-size - $mark-size - $mark-margin - 2 * $border-size;
 .form-toggle__button-item {
   appearance: none;
   position: relative;
   display: inline-block;
-  width: 2 * $area-size;
-  height: $area-size;
-  border: $border-size solid black;
-  border-radius: 10px/14.4px+0vmax;
+  width: 2.857142857142857em;
+  height: 1.428571428571429em;
+  border: 1px solid black;
+  border-radius: 25% / 50%;
   cursor: pointer;
 
   &:before {
     content: "";
+    width: 30%;
+    height: 60%;
     position: absolute;
+    left: 10%;
     top: 0;
     bottom: 0;
     margin: auto;
-    left: $mark-margin;
-    width: $mark-size;
-    height: $mark-size;
     background-color: black;
     border-radius: 100%;
     transition: all 0.3s cubic-bezier(0.2, 0.85, 0.32, 1.2);
@@ -29,6 +24,6 @@ $mark-translate: 2 * $area-size - $mark-size - $mark-margin - 2 * $border-size;
 
   &:checked:before {
     left: initial;
-    transform: translateX(calc(#{$mark-translate}));
+    transform: translateX(200%);
   }
 }

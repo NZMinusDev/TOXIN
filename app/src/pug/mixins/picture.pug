@@ -5,7 +5,7 @@ mixin picture
   -
     const filePath = attributes.path.split(".")[0];
     const fileExt = attributes.path.split(".")[1];
-  picture
+  picture(class=attributes.class)
     //- FIXME: suffixed webp images doesn't work with devServer, don't know why; building is ok and the another img formats the same ok;
     source(type="image/webp", srcset=filePath + '.webp 1x')
     //- source(media="(min-width:1200px)", type="image/webp", srcset=filePath + '-1920.webp 1x')
@@ -16,4 +16,4 @@ mixin picture
     source(media="(min-width:960px)", srcset=filePath + '-960.' + fileExt + ' 1x')
     source(media="(min-width:600px)", srcset=filePath + '-640.' + fileExt + ' 1x')
     source(media="(min-width:0px)", srcset=filePath + '-320.' + fileExt + ' 1x')
-    img(src=attributes.path, alt=attributes.alt, class=attributes.class)
+    img(src=attributes.path, alt=attributes.alt)

@@ -22,7 +22,7 @@ mixin form-dropdown
       h3.form-label
         label(for=attributes.id)= attributes.label
     .form-field
-      label.expand-icon.form-dropdown__expand-icon(for=attributes.id)
+      label.material-icon.form-dropdown__expand-icon(for=attributes.id)
       input.form-dropdown__input(name=attributes.name, type="hidden", value="")
       case type
         when "filter-date"

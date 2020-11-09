@@ -1,8 +1,8 @@
-.form-elements-layout__expandable-checkbox-list{
-    grid-area: expandable-checkbox-list;
-    display: grid;
-    grid-template-rows: auto 1fr;
-    grid-row-gap: 20px/14.4px+0vmax;
-    padding-top: 12px/14.4px+0vmax;
-    padding-right: 54px/14.4px+0vmax;
+.form-elements-layout__expandable-checkbox-list {
+  grid-area: expandable-checkbox-list;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-row-gap: 2.857142857142857em;
+  padding-top: 26px/320px * 100%;
+  padding-right: 54px/320px * 100%;
 }

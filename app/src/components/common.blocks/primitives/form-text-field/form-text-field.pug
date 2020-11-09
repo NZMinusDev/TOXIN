@@ -6,8 +6,7 @@
 //- attributes.value - init value of field
 //- attributes.placeholder - placeholder text
 //- autofocus - just add it for it works
-//- href - link for btn
-//- link-icon - name of Material icon
+//- materialIcon - material icon name for submit btn in field
 mixin form-text-field
   .form-text-field(
     class=attributes.type ? 'form-text-field_is' + attributes.type[0].toUpperCase() + attributes.type.slice(1) : '',
@@ -25,5 +24,8 @@ mixin form-text-field
         value=attributes.value,
         autofocus=attributes.autofocus
       )
-      if attributes.href
-        a.form-text-field__link-icon(href=attributes.href)= attributes['link-icon']
+      if attributes.materialIcon
+        button.material-icon.form-text-field__link-icon(
+          type="submit",
+          data-icon=attributes.materialIcon
+        )

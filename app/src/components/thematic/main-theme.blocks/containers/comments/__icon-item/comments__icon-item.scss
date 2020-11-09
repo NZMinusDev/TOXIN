@@ -1,5 +1,8 @@
-@use "./../../../colors.scss";
+@use "@utils/devTools/devTools.scss";
 
-.comments__icon-item{
-  box-shadow: 0px 10px/14.4px+0vmax 20px/14.4px+0vmax 0px  colors.getColor(color__dark-shade, 0.1);
+.comments__icon-item {
+  & > img {
+    box-shadow: 0px 0.7142857142857143em 1.428571428571429em 0px
+      devTools.getColor(color__dark-shade, 0.1);
+  }
 }

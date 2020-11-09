@@ -2,7 +2,7 @@
 /* lib redefinition */
 .datepicker-inline {
   position: absolute;
-  top: (44px+5.56px) / 14.4px +0vmax;
+  top: 3.54em;
   cursor: initial;
 }
 
@@ -24,27 +24,28 @@
 }
 
 .datepicker--content {
-  padding-top: 30px/14.4px+0vmax;
+  padding-top: 2.142857142857143em;
 }
 .datepicker--days-names {
   margin: 0;
 }
 .datepicker--cell,
-.datepicker--day-name {
-  height: 40px/14.4px+0vmax;
+.datepicker--day-name { 
+  height: 3.333333333333333em;
 }
 
 /* project's */
 .form-dropdown__datepicker {
-  display: block;
-  height: 100%;
   width: 100%;
+  z-index:1;
   text-align: inherit;
   text-indent: inherit;
 }
 .form-dropdown__calendar {
   width: initial;
-  padding: 20px/14.4px+0vmax 20px/14.4px+0vmax 14px/14.4px+0vmax 20px/14.4px+0vmax;
+  font-size: inherit;
+  padding: 1.428571428571429em;
+  padding-bottom: 1em;
   margin: 0px -1px;
 }
 .form-dropdown__calendar_isHidden {

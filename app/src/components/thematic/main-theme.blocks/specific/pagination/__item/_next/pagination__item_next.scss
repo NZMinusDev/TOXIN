@@ -1,7 +1,9 @@
-@use "./../../../../gradients.scss";
+@use "@thematic/main-theme.blocks/gradients.scss";
 
 .pagination__item_next {
-  font-size: 1rem;
-  line-height: 1rem;
-  background: gradients.getBinaryLinearGradient(color__secondary, 1);
+  background: gradients.secondary(1);
+
+  a {
+    font-size: 2em;
+  }
 }

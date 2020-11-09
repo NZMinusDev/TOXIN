@@ -1,5 +1,5 @@
-@use "./../../../colors.scss";
+@use "@utils/devTools/devTools.scss";
 
 .type-sample__tag {
-  color: colors.getColor(color__dark-shade, 0.25);
+  color: devTools.getColor(color__dark-shade, 0.25);
 }

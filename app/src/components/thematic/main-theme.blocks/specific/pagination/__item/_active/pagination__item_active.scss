@@ -1,5 +1,5 @@
-@use "./../../../../gradients.scss";
+@use "@thematic/main-theme.blocks/gradients.scss";
 
 .pagination__item_active {
-  background: gradients.getBinaryLinearGradient(color__primary, 1);
+  background: gradients.primary(1);
 }

@@ -1,13 +1,14 @@
-@use "./../../../colors.scss";
+@use "@utils/devTools/devTools.scss";
 
 .form-checkbox-buttons_rich {
   .form-checkbox-buttons__label-item {
-    font: 700 0.5833rem / 0.75rem "Montserrat";
-    color: colors.getColor(color__dark-shade, 0.75);
+    font-weight: 700;
+    line-height: 0.75rem;
+    color: devTools.getColor(color__dark-shade, 0.75);
 
     &:after {
-      font: 400 0.5rem / 0.5833rem "Montserrat";
-      color: colors.getColor(color__dark-shade, 0.5);
+      line-height: 0.5833333333333333rem;
+      color: devTools.getColor(color__dark-shade, 0.5);
     }
   }
 }

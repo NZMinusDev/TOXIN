@@ -1,7 +1,11 @@
-@use "./../../../gradients.scss";
+@use "@utils/devTools/devTools.scss";
 
-.form-rate-button__button-item + label:before {
-  background-image: gradients.getBinaryLinearGradient(color__primary, 1);
-  color: transparent;
-  background-clip: text;
+@use "@thematic/main-theme.blocks/gradients.scss";
+
+.form-rate-button__button-item {
+  & + .material-icon {
+    &:after {
+      @include devTools.gradientFont(gradients.primary(1));
+    }
+  }
 }
