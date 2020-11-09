@@ -56,7 +56,7 @@ const sharedAliases = {
   "@tablet.blocks": path.resolve(PATHS.src_absolute, "./components/tablet.blocks/"),
   "@small-desktop.blocks": path.resolve(PATHS.src_absolute, "./components/small-desktop.blocks/"),
   "@large-desktop.blocks": path.resolve(PATHS.src_absolute, "./components/large-desktop.blocks/"),
-  "@themes": path.resolve(PATHS.src_absolute, "./components/thematic/"),
+  "@thematic": path.resolve(PATHS.src_absolute, "./components/thematic/"),
   "@experiments": path.resolve(PATHS.src_absolute, "./components/experimental/"),
   "@images": path.resolve(PATHS.src_absolute, "./assets/pictures/images/"),
   "@contents": path.resolve(PATHS.src_absolute, "./assets/pictures/contents/"),
@@ -99,7 +99,6 @@ class ResultOfTemplatesProcessing {
         "@babel/polyfill",
         `./pages/${shortNameOfTemplate}/${shortNameOfTemplate}.ts`,
         "./utils/global/global.decl.ts",
-        "./utils/normalizeCSS/normalize.decl.ts",
         "./components/thematic/main-theme.blocks/main-theme.scss",
       ];
 
@@ -217,7 +216,7 @@ const webpackPlugins = () => {
       footer: "}",
     }),
     new WrapperPlugin({
-      test: /.*themes.*\.css$/,
+      test: /.*thematic.*\.css$/,
       header: "@media (color) {",
       footer: "}",
     }),
@@ -450,9 +449,8 @@ const optimization = () => {
       chunks: "all", // == 'initial' && 'async'
       minChunks: 1,
       cacheGroups: {
-        normalize: {
-          test: /.*\\normalizeCSS\\.*\.css$/,
-          minChunks: 1,
+        global: {
+          test: /.*\\utils\\global\\.*/,
           priority: 12,
           enforce: true,
         },
@@ -462,12 +460,12 @@ const optimization = () => {
           enforce: true, // always create chunks (ignore: minSize, maxAsyncRequests, ... )
         },
         lib: {
-          test: /.*\\(library.blocks)\\.*/,
+          test: /.*\\library.blocks\\.*/,
           priority: 10,
           enforce: true,
         },
         common: {
-          test: /.*\\(common.blocks)\\.*/,
+          test: /.*\\common.blocks\\.*/,
           priority: 9,
           enforce: true,
         },
@@ -496,7 +494,7 @@ const optimization = () => {
           priority: 4,
           enforce: true,
         },
-        themes: {
+        thematic: {
           test: /.*\\thematic\\.*\.blocks.*/,
           priority: 3,
           enforce: true,
