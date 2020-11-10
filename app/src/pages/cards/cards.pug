@@ -1,5 +1,8 @@
 extends ~@pug/layouts/ui-kit-layout.pug
 
+//- components
+include ~@common.blocks/containers/card-pick-room/card-pick-room.pug
+
 block variables
   - var keywords = 'FSD, Frontend, TOXIN, образование, верстка';
   - var description = 'Карточки, используемые в базовом макете сайта TOXIN';
@@ -7,3 +10,7 @@ block variables
 
 block content
   main.cards-layout.ui-kit-container
+    +card-pick-room#card-pick-room.cards-layout__pick-room(
+      action="",
+      method="get",
+    )
