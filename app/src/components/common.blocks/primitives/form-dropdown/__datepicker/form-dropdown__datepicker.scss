@@ -1,4 +1,4 @@
-@use "./../__link-btns/form-dropdown__link-btns.scss";
+
 /* lib redefinition */
 .datepicker-inline {
   position: absolute;
@@ -30,14 +30,14 @@
   margin: 0;
 }
 .datepicker--cell,
-.datepicker--day-name { 
+.datepicker--day-name {
   height: 3.333333333333333em;
 }
 
 /* project's */
 .form-dropdown__datepicker {
   width: 100%;
-  z-index:1;
+  z-index: 1;
   text-align: inherit;
   text-indent: inherit;
 }
