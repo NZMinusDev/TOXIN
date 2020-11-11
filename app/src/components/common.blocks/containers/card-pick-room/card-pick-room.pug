@@ -10,7 +10,7 @@ mixin card-pick-room
     id=attributes.id,
     class=attributes.class,
     action=attributes.action,
-    method=attributes.method
+    method=attributes.method || "get"
   )
     h1.card-pick-room__title Найдём номера под ваши пожелания
     +form-dropdown.card-pick-room__arrival-date-dropdown(

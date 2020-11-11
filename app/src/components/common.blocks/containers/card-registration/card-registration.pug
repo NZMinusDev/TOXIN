@@ -12,7 +12,7 @@ mixin card-registration
     id=attributes.id,
     class=attributes.class,
     action=attributes.action,
-    method=attributes.method
+    method=attributes.method || "post"
   )
     h1.card-registration__title Регистрация аккаунта
     +form-text-field.card-registration__name-field(name="name", placeholder="Имя")
