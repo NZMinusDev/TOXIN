@@ -16,7 +16,7 @@ mixin button
     id=attributes.id,
     class=attributes.class,
     type=attributes.type,
-    name=attributes.name,
+    name=attributes.type == 'submit' ? attributes.name || 'submit' : '',
     value=attributes.value,
     class=modClass,
     form=attributes.form,
