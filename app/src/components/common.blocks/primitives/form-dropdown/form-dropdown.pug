@@ -4,7 +4,7 @@ include ./__link-btns/form-dropdown__link-btns.pug
 //- id: id of dropdown button
 //- class: class for component bem mix: such as positioning functionality
 //- label: text of label
-//- type: plural filte-date | date | plural | single | single-apply
+//- type: filter-date | date | plural | single | single-apply
 //- name: name of dropdown button
 //- placeholder: text of placeholder
 //- Additional for type "date":
@@ -30,7 +30,7 @@ mixin form-dropdown
           +form-dropdown__datepicker(
             id=attributes.id,
             dataRange=type === 'filter-date' ? 'true' : 'false',
-            placeholder=attributes.placeholder,
+            placeholder=attributes.placeholder || 'ДД.ММ.ГГГГ',
             data-value=attributes['data-value']
           )
         when "plural"
