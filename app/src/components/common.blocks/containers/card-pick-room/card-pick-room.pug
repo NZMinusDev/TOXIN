@@ -7,7 +7,7 @@ include ~@common.blocks/primitives/button/button.pug
 //- method - form method
 mixin card-pick-room
   form(action=attributes.action, method=attributes.method)
-    .card-pick-room(id=attributes.id, class=attributes.class)
+    .card-base.card-pick-room(id=attributes.id, class=attributes.class)
       h1.card-pick-room__title Найдём номера под ваши пожелания
       +form-dropdown.card-pick-room__arrival-date-dropdown(
         label="Прибытие",
