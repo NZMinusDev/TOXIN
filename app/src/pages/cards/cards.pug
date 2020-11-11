@@ -2,6 +2,7 @@ extends ~@pug/layouts/ui-kit-layout.pug
 
 //- components
 include ~@common.blocks/containers/card-pick-room/card-pick-room.pug
+include ~@common.blocks/containers/card-registration/card-registration.pug
 
 block variables
   - var keywords = 'FSD, Frontend, TOXIN, образование, верстка';
@@ -10,7 +11,5 @@ block variables
 
 block content
   main.cards-layout.ui-kit-container
-    +card-pick-room#card-pick-room.cards-layout__pick-room(
-      action="",
-      method="get",
-    )
+    +card-pick-room#card-pick-room.cards-layout__pick-room(action="", method="get")
+    +card-registration#card-registration.cards-layout__registration(action="", method="get")
