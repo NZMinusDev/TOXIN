@@ -4,6 +4,7 @@ extends ~@pug/layouts/ui-kit-layout.pug
 include ~@common.blocks/containers/card-pick-room/card-pick-room.pug
 include ~@common.blocks/containers/card-registration/card-registration.pug
 include ~@common.blocks/containers/card-entering/card-entering.pug
+include ~@common.blocks/containers/card-room-definition/card-room-definition.pug
 
 block variables
   - var keywords = 'FSD, Frontend, TOXIN, образование, верстка';
@@ -15,3 +16,15 @@ block content
     +card-pick-room#card-pick-room.cards-layout__pick-room(action="")
     +card-registration#card-registration.cards-layout__registration(action="")
     +card-entering#card-entering.cards-layout__entering(action="")
+    +card-room-definition#card-room-definition.cards-layout__room-definition(
+      action="",
+      room-number=888,
+      room-grade="Люкс",
+      payment-amount=9990,
+      arrival-value="2019-08-19",
+      departure-value="2019-08-23",
+      guests-list={ взрослые: { default: 2, min: 0, max: 1 / 0 }, дети: { default: 1, min: 0, max: 1 / 0 }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
+      services-payment=2179,
+      services-sale=2179,
+      additional-services-payment=300
+    )
