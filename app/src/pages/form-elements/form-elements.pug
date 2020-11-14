@@ -50,11 +50,7 @@ block content
         name="masked-form-date"
       )
       .form-elements-layout__date-dropdown
-        +form-dropdown#date-dropdown-default(
-          label="date dropdown",
-          type="date",
-          name="date1",
-        )
+        +form-dropdown#date-dropdown-default(label="date dropdown", type="date", name="date1")
         +form-dropdown#date-dropdown-filled(
           label="date dropdown",
           type="date",
@@ -90,25 +86,17 @@ block content
           itemLabel="Получать спецпредложения",
           checked
         )
-        +form-toggle#toggle-default(name="specialOffer2", itemLabel="Получать спецпредложения")
+        +form-toggle#toggle-default(
+          name="specialOffer2",
+          itemLabel="Получать спецпредложения"
+        )
       .form-elements-layout__like-button
         h3.form-label.form-elements-layout__like-button-label like button
         +form-like-button#like-button-default(name="likes1", counter="2")
         +form-like-button#like-button-checked(name="likes2", counter="12", checked)
       .form-elements-layout__rate-button
-        +form-rate-button#rate-button-parted(
-          label="rate button",
-          name="rate1",
-          length=5,
-          rate=4,
-          titles=['very bad', 'bad', 'normal', 'good', 'very good']
-        )
-        +form-rate-button#rate-button-full(
-          name="rate2",
-          length=5,
-          rate=5,
-          titles=['very bad', 'bad', 'normal', 'good', 'very good']
-        )
+        +form-rate-button#rate-button-parted(label="rate button", name="rate1", length=5, rate=4)
+        +form-rate-button#rate-button-full(name="rate2", length=5, rate=5)
       +form-range-slider#range-slider.form-elements-layout__range-slider(
         label="range slider",
         name="price",
@@ -126,7 +114,11 @@ block content
         +button#button-empty-hovered(type="button", value="click me", modClass="bordered")
       .form-elements-layout__button-icon-link
         +button#button-icon-link-default(type="button", value="click me", modClass="icon-link")
-        +button#button-icon-link-hovered(type="button", value="click me", modClass="icon-link")
+        +button#button-icon-link-hovered(
+          type="button",
+          value="click me",
+          modClass="icon-link"
+        )
       +button#button-long.form-elements-layout__button-long(
         type="submit",
         value="перейти к оплате",

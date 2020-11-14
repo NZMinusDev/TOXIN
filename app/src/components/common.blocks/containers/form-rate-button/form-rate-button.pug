@@ -11,12 +11,14 @@ mixin form-rate-button
     if attributes.label
       h3.form-label
         label(for=attributes.id)= attributes.label
-    - var rateLength = attributes.length;
-    - var counter = rateLength;
+    -
+      var rateLength = attributes.length;
+      var counter = rateLength;
+      const titles = attributes.titles || ['очень плохо', 'плохо', 'нормально', 'хорошо', 'очень хорошо'];
     fieldset.form-rate-button__rating(disabled=attributes.disabled)
       while counter > 0
         - var checked = counter == attributes.rate ? 'checked' : null;
-        - var currentID = attributes.id + '_' + counter;
+        - var currentID = attributes.name + '_' + counter;
         input.form-rate-button__button-item(
           id=currentID,
           type="radio",
@@ -24,5 +26,5 @@ mixin form-rate-button
           checked=checked,
           value=counter
         )
-        label.material-icon(for=currentID, title=attributes.titles[counter - 1])= counter + ' starts'
+        label.material-icon(for=currentID, title=titles[counter - 1])= counter + ' starts'
         - counter--;
