@@ -1,14 +1,15 @@
 include ./__item-quantity-list/form-dropdown__item-quantity-list.pug
 include ./__datepicker/form-dropdown__datepicker.pug
-include ./__link-btns/form-dropdown__link-btns.pug
+include ~@common.blocks/primitives/apply-control/apply-control.pug
 //- id: id of dropdown button
 //- class: class for component bem mix: such as positioning functionality
+//- isFilter: {boolean} - if true, apply button will reload page with chosen value(get method)
 //- label: text of label
 //- type: filter-date | date | plural | single | single-apply
-//- name: name of dropdown button
-//- placeholder: text of placeholder
+//- name: name of hidden input
+//- placeholder?: text of placeholder
 //- Additional for type "date":
-//-   data-value: initial value of field, works fine with default and filter dropdown
+//-   selected-dates: {ISODateString | ISODateString,ISODateString,...} - initial dates(date), for several values use ','; example: "2020-11-18T21:00:00.000Z" or 2020-11-18T21:00:00.000Z,2020-11-20T21:00:00.000Z; tip: if type is 'filter-date' -> you should write 2 dates
 //- Additional for types: plural | single | single-apply
 //-   list: object like this: { itemName1: { default: 2, min: 0, max: 1 / 0 }, itemName2: { default: 1, min: 0, max: 1 / 0 }, itemName3: { default: 0, min: 0, max: 1 / 0 } }
 //- Additional for types: single | single-apply
@@ -23,19 +24,21 @@ mixin form-dropdown
         label(for=attributes.id)= attributes.label
     .form-field
       label.material-icon.form-dropdown__expand-icon(for=attributes.id)
-      input.form-dropdown__input(name=attributes.name, type="hidden", value="")
       case type
         when "filter-date"
         when "date"
           +form-dropdown__datepicker(
             id=attributes.id,
-            dataRange=type === 'filter-date' ? 'true' : 'false',
-            placeholder=attributes.placeholder || 'ДД.ММ.ГГГГ',
-            data-value=attributes['data-value']
+            isFilter=attributes.isFilter,
+            name=attributes.name,
+            selected-dates=attributes['selected-dates'],
+            data-range=type === 'filter-date' ? true : false,
+            placeholder=attributes.placeholder
           )
         when "plural"
           +form-dropdown__item-quantity-list(
             id=attributes.id,
+            name=attributes.name,
             placeholder=attributes.placeholder,
             selectionText=attributes.selectionText,
             textPlural=attributes.textPlural,
@@ -44,6 +47,7 @@ mixin form-dropdown
         when "single"
           +form-dropdown__item-quantity-list(
             id=attributes.id,
+            name=attributes.name,
             placeholder=attributes.placeholder,
             selectionText=attributes.selectionText,
             textPlural=attributes.textPlural,
@@ -52,9 +56,10 @@ mixin form-dropdown
         when "single-apply"
           +form-dropdown__item-quantity-list(
             id=attributes.id,
+            name=attributes.name,
             placeholder=attributes.placeholder,
             selectionText=attributes.selectionText,
             textPlural=attributes.textPlural,
             list=attributes.list
           )
-            +form-dropdown__link-btns
+            +apply-control.form-dropdown__link-btns

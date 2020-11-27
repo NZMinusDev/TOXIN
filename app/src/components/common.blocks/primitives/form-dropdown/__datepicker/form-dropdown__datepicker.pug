@@ -1,10 +1,13 @@
+include ~@common.blocks/primitives/card-datepicker/card-datepicker.pug
+
 mixin form-dropdown__datepicker
-  button.datepicker-here.form-dropdown__datepicker(
-    id=attributes.id,
-    type="button",
-    data-range=attributes.dataRange,
-    data-multiple-dates-separator=" - ",
-    placeholder=attributes.placeholder,
-    data-value=attributes['data-value']
-  )
-    p.form-dropdown__selection-text
+  button.form-dropdown__datepicker-btn(id=attributes.id, class=attributes.class, type="button")
+    +card-datepicker.form-dropdown__datepicker(
+      isFilter=attributes.isFilter,
+      name=attributes.name,
+      selected-dates=attributes['selected-dates'],
+      data-range=attributes['data-range']
+    )
+    p.form-dropdown__selection-text(
+      placeholder=attributes.placeholder || attributes['data-range'] ? 'День месяц - день месяц' : 'ДД.ММ.ГГГГ'
+    )

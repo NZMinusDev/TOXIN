@@ -3,13 +3,15 @@ include ~@common.blocks/primitives/button/button.pug
 
 //- id: id of card
 //- class: class for component bem mix: such as positioning functionality
+//- name: {string} - name of <form>, also it is used such prefix for names of inner forms
 //- action: form action
 //- method: form method - default is 'get'
+//- target: {("_self"|null)|"_blank"|"_parent"|"_top"} - form target
 //- room-number: {number} - number of room
 //- room-grade: {string} - grade of room
 //- payment-amount: {number} - daily cost
-//- arrival-value: {YYYY-MM-DDTHH:mm:ss.sssZ}
-//- departure-value: {YYYY-MM-DDTHH:mm:ss.sssZ}
+//- arrival-value: {ISODateString}
+//- departure-value: {ISODateString}
 //- guests-list: {object} - { itemName1: { default: 2, min: 0, max: 1 / 0 }, itemName2: { default: 1, min: 0, max: 1 / 0 }, itemName3: { default: 0, min: 0, max: 1 / 0 } }
 //- services-payment: {number} - amount of services payment
 //- services-sale: {number} - amount of services sale
@@ -21,9 +23,6 @@ mixin card-room-definition
     const roomNumberSentence = `№ ${attributes["room-number"].toLocaleString()}`;
     const paymentAmountSentence = `${attributes['payment-amount'].toLocaleString()}${CURRENCY}<span class="normal-weight-text"> в сутки</span>`;
 
-    const days = Math.floor(Math.abs(Date.parse(attributes['departure-value'])-Date.parse(attributes['arrival-value']))/(1000*60*60*24));
-    const totalDayPayment={sentence:`${attributes['payment-amount'].toLocaleString()}${CURRENCY} x ${days.toLocaleString()} суток`,amount:attributes['payment-amount'] * days};
-
     const servicesSaleAmount = attributes['services-sale'];
     const servicesPaymentAmount = attributes['services-payment'] - attributes['services-sale'];
     const servicesSaleSentence = servicesSaleAmount ? `скидка ${servicesSaleAmount.toLocaleString()}${CURRENCY}`: "";
@@ -34,34 +33,34 @@ mixin card-room-definition
     const additionalServicesPayment = {
       sentence:"Сбор за дополнительные услуги", amount:attributes['additional-services-payment'] 
     };
-
-    const totalPaymentAmount = totalDayPayment.amount + servicesPayment.amount + additionalServicesPayment.amount;
   form.card-base.card-room-definition(
     id=attributes.id,
     class=attributes.class,
+    name=attributes.name,
     action=attributes.action,
-    method=attributes.method || 'get'
+    method=attributes.method || 'get',
+    target=attributes.target
   )
     .card-room-definition__room-title
       h1.card-room-definition__room-number= roomNumberSentence
       h3.card-room-definition__room-grade= attributes['room-grade']
-    h3.card-room-definition__day-payment!= paymentAmountSentence
+    h3.card-room-definition__day-payment(data-amount-js=attributes['payment-amount'])!= paymentAmountSentence
     +form-dropdown.card-room-definition__arrival-date-dropdown(
       label="Прибытие",
       type="date",
-      name="arrival",
-      data-value=attributes['arrival-value']
+      name=`${attributes.name}-arrival`,
+      selected-dates=attributes['arrival-value']
     )
     +form-dropdown.card-room-definition__departure-date-dropdown(
       label="Выезд",
       type="date",
-      name="departure",
-      data-value=attributes['departure-value']
+      name=`${attributes.name}-departure`,
+      selected-dates=attributes['departure-value']
     )
     +form-dropdown.card-room-definition__guests-single-apply(
       label="Гости",
       type="single-apply",
-      name="guests",
+      name=`${attributes.name}-guests`,
       placeholder="Сколько гостей",
       list=attributes['guests-list'],
       selectionText="гость",
@@ -69,24 +68,24 @@ mixin card-room-definition
     )
     .card-room-definition__payment-rates
       p.card-room-definition__payment-item.card-room-definition__total-day-payment
-        span.card-room-definition__payment-sentence= totalDayPayment.sentence
-        span.card-room-definition__payment-amount= `${totalDayPayment.amount.toLocaleString()}${CURRENCY}`
+        span.card-room-definition__payment-sentence
+        span.card-room-definition__payment-amount
       p.card-room-definition__payment-item.card-room-definition__services-payment
         span.card-room-definition__payment-sentence= servicesPayment.sentence
           span.tooltip.card-room-definition__payment-tooltip(
             data-content="Подсказка к сборам за услуги"
           ) i
-        span.card-room-definition__payment-amount= `${servicesPayment.amount.toLocaleString()}${CURRENCY}`
+        span.card-room-definition__payment-amount(data-amount-js=servicesPayment.amount)= `${servicesPayment.amount.toLocaleString()}${CURRENCY}`
       p.card-room-definition__payment-item.card-room-definition__additional-services-payment
         span.card-room-definition__payment-sentence= additionalServicesPayment.sentence
           span.tooltip.card-room-definition__payment-tooltip(
             data-content="Подсказка к сборам за дополнительные услуги"
           ) i
-        span.card-room-definition__payment-amount= `${additionalServicesPayment.amount.toLocaleString()}${CURRENCY}`
+        span.card-room-definition__payment-amount(data-amount-js=additionalServicesPayment.amount)= `${additionalServicesPayment.amount.toLocaleString()}${CURRENCY}`
     h2.card-room-definition__payment-item.card-room-definition__total-payment
       span Итого
       .text-separator
-      span= `${totalPaymentAmount.toLocaleString()}${CURRENCY}`
+      span.card-room-definition__total-payment-amount
     +button.card-room-definition__submit-btn(
       type="submit",
       value="Забронировать",

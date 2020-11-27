@@ -94,11 +94,11 @@ export function initDropdowns(targetSelector: string, options: IQDropdownOptions
 }
 
 const closeListHandler = (event) => {
-  const allDropdowns = $(".iqdropdown");
-  const currentDropdown = allDropdowns.has(event.target);
+  const dropdowns = $(".form-dropdown_type-single .iqdropdown").add($(".form-dropdown_type-plural .iqdropdown"));
+  const currentDropdown = dropdowns.has(event.target);
 
   if (currentDropdown.length >= 0) {
-    allDropdowns.each((index, dropdown) => {
+    dropdowns.each((index, dropdown) => {
       if (currentDropdown.get(0) !== dropdown) dropdown.classList.remove("menu-open");
     });
   }

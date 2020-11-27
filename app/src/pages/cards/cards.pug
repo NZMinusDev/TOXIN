@@ -6,6 +6,7 @@ include ~@common.blocks/containers/card-registration/card-registration.pug
 include ~@common.blocks/containers/card-entering/card-entering.pug
 include ~@common.blocks/containers/card-room-definition/card-room-definition.pug
 include ~@common.blocks/containers/card-room/card-room.pug
+include ~@common.blocks/primitives/card-datepicker/card-datepicker.pug
 
 block variables
   - var keywords = 'FSD, Frontend, TOXIN, образование, верстка';
@@ -13,6 +14,7 @@ block variables
   - var title = 'Карточки';
 
 block content
+  - const MS_IN_DAY = 1000 * 60 * 60 * 24;
   main.cards-layout.ui-kit-container
     +card-pick-room#card-pick-room.cards-layout__pick-room(action="")
     +card-registration#card-registration.cards-layout__registration(action="")
@@ -47,4 +49,11 @@ block content
       payment-amount=9900,
       rate=4,
       comments-amount=65
+    )
+    - const CARD_DATEPICKER_SELECTED_DATES = new Date(Date.now() + MS_IN_DAY).toISOString() + ',' + new Date(Date.now() + MS_IN_DAY * 4).toISOString();
+    +card-datepicker#card-datepicker.cards-layout__datepicker(
+      isFilter,
+      name="card-datepicker",
+      selected-dates=CARD_DATEPICKER_SELECTED_DATES,
+      data-range
     )

@@ -1,4 +1,5 @@
 mixin form-dropdown__item-quantity-list
+  input(name=attributes.name, type="hidden")
   button.iqdropdown.form-dropdown__item-quantity-list(id=attributes.id, type="button")
     p.iqdropdown-selection(
       data-selection-text=attributes.selectionText,
