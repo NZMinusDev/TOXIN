@@ -1,7 +1,3 @@
-//- id: id of checkbox buttons' container
-//- class: class for component bem mix: such as positioning functionality
-//- label: text of label
-//- mod: "" | "rich" - mod of component
 //- buttons: {
   name1:{
     id:string,
@@ -15,8 +11,12 @@
     description:string, // additional for "rich" mod
     checked: ''
   },...}
-//- disabled: same as fieldset disabled (disable all buttons)
-
+//- id?: id of checkbox buttons' container
+//- class?: class for component bem mix: such as positioning functionality
+//- isFilter?: {boolean} - if true, change event will reload page with chosen value(get method)
+//- label?: text of label
+//- mod?: "rich" - mod of component
+//- disabled?: same as fieldset disabled (disable all buttons)
 mixin form-checkbox-buttons
   - const modClass = attributes.mod ? 'form-checkbox-buttons_' + attributes.mod : null;
   .form-checkbox-buttons(id=attributes.id, class=modClass, class=attributes.class)
@@ -31,10 +31,8 @@ mixin form-checkbox-buttons
               id=btn.id,
               type="checkbox",
               name=key,
+              isFilter=attributes.isFilter ? attributes.isFilter + '' : null,
               checked=btn.checked
             )
             if btn.itemLabel
-              label.form-checkbox-buttons__label-item(
-                for=btn.id,
-                data-description=btn.description
-              )= btn.itemLabel
+              label.form-checkbox-buttons__label-item(for=btn.id, data-description=btn.description)= btn.itemLabel

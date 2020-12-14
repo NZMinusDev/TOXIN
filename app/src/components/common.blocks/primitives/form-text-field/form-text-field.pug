@@ -1,5 +1,6 @@
 //- attributes.id - id for input field inside component
 //- attributes.class - class for component bem mix: such as positioning functionality
+//- isFilter: {boolean} - if true, input change event will reload page with chosen value(get method)
 //- attributes.label - text for label
 //- attributes.type - type of field for validation: 'email' | 'password' | 'date' 
 //- attributes.name - name of input field
@@ -26,6 +27,7 @@ mixin form-text-field
     .form-field
       input.form-text-field__input(
         id=attributes.id,
+        isFilter=attributes.isFilter ? attributes.isFilter + '' : null,
         type=inputMaskType,
         inputmode=inputModeAttr,
         name=attributes.name,
