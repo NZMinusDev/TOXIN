@@ -1,16 +1,14 @@
 import Inputmask from "inputmask";
 
-document.addEventListener("DOMContentLoaded", () => {
-  const dateFormTextFields = document.querySelectorAll(
-    ".form-text-field_isDate .form-text-field__input"
-  );
-  dateFormTextFields.forEach((dateFormTextField) => {
-    dateFormTextField.setAttribute("inputmode", "numeric");
-    Inputmask("datetime", {
-      inputFormat: "dd.mm.yyyy",
-      placeholder: dateFormTextField.getAttribute("placeholder"),
-      autoUnmask: true,
-      showMaskOnHover: false,
-    }).mask(dateFormTextField);
-  });
+const dateFormTextFields = document.querySelectorAll(
+  ".form-text-field_isDate .form-text-field__input"
+);
+dateFormTextFields.forEach((dateFormTextField) => {
+  dateFormTextField.setAttribute("inputmode", "numeric");
+  Inputmask("datetime", {
+    inputFormat: "dd.mm.yyyy",
+    placeholder: dateFormTextField.getAttribute("placeholder"),
+    autoUnmask: true,
+    showMaskOnHover: false,
+  }).mask(dateFormTextField);
 });

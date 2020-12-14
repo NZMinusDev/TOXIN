@@ -1,11 +1,9 @@
 import Inputmask from "inputmask";
 
-document.addEventListener("DOMContentLoaded", () => {
-  const emailFormTextFields = document.querySelectorAll(
-    ".form-text-field_isEmail .form-text-field__input"
-  );
+const emailFormTextFields = document.querySelectorAll(
+  ".form-text-field_isEmail .form-text-field__input"
+);
 
-  emailFormTextFields.forEach((emailFormTextField) => {
-    Inputmask("email", { autoUnmask: true, showMaskOnHover: false }).mask(emailFormTextField);
-  });
+emailFormTextFields.forEach((emailFormTextField) => {
+  Inputmask("email", { autoUnmask: true, showMaskOnHover: false }).mask(emailFormTextField);
 });
