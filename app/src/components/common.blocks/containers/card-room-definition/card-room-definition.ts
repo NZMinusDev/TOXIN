@@ -1,7 +1,7 @@
-$(function () {
-  const MS_IN_DAY = 1000 * 60 * 60 * 24;
-  const CURRENCY = "₽";
+const MS_IN_DAY = 1000 * 60 * 60 * 24;
+const CURRENCY = "₽";
 
+$(function () {
   const cards = $(".card-room-definition");
   cards.each(function (index) {
     const dayPaymentValue = parseFloat(
@@ -31,23 +31,21 @@ $(function () {
       .find(".form-dropdown__datepicker")
       .prev("input[type='hidden']");
 
-    let arrivalDateString = arrivalInputJQElement.val() as string,
-      departureDateString = departureInputJQElement.val() as string,
-      days =
-        Math.floor(
-          Math.abs(Date.parse(departureDateString) - Date.parse(arrivalDateString)) / MS_IN_DAY
-        ) + 1;
-
     const updatePaymentDisplay = () => {
-      days =
+      const days =
         Math.floor(
-          Math.abs(Date.parse(departureDateString) - Date.parse(arrivalDateString)) / MS_IN_DAY
+          Math.abs(
+            Date.parse(departureInputJQElement.val() as string) -
+              Date.parse(arrivalInputJQElement.val() as string)
+          ) / MS_IN_DAY
         ) + 1;
 
       totalDayPaymentSentenceJQElement.text(
         `${dayPaymentValue.toLocaleString()}${CURRENCY} x ${days.toLocaleString()} суток`
       );
-      totalDayPaymentAmountJQElement.text(`${(dayPaymentValue * days).toLocaleString()}${CURRENCY}`);
+      totalDayPaymentAmountJQElement.text(
+        `${(dayPaymentValue * days).toLocaleString()}${CURRENCY}`
+      );
       totalDayPaymentAmountJQElement.attr("data-amount-js", dayPaymentValue * days);
 
       let accumulator = 0;
@@ -59,14 +57,10 @@ $(function () {
     };
     updatePaymentDisplay();
 
-    arrivalDropdownJQElement.on("valueIsChanged", (jqEvent, inputValue: string) => {
-      arrivalDateString = inputValue;
-
+    arrivalDropdownJQElement.on("change", ($event) => {
       updatePaymentDisplay();
     });
-    departureDropdownJQElement.on("valueIsChanged", (jqEvent, inputValue: string) => {
-      departureDateString = inputValue;
-
+    departureDropdownJQElement.on("change", ($event) => {
       updatePaymentDisplay();
     });
   });

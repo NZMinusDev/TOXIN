@@ -46,22 +46,23 @@ mixin card-room-definition
       h3.card-room-definition__room-grade= attributes['room-grade']
     h3.card-room-definition__day-payment(data-amount-js=attributes['payment-amount'])!= paymentAmountSentence
     +form-dropdown.card-room-definition__arrival-date-dropdown(
-      label="Прибытие",
-      type="date",
       name=`${attributes.name}-arrival`,
+      type="date",
+      label="Прибытие",
       selected-dates=attributes['arrival-value']
     )
     +form-dropdown.card-room-definition__departure-date-dropdown(
-      label="Выезд",
-      type="date",
       name=`${attributes.name}-departure`,
+      type="date",
+      label="Выезд",
       selected-dates=attributes['departure-value']
     )
     +form-dropdown.card-room-definition__guests-single-apply(
-      label="Гости",
-      type="single-apply",
       name=`${attributes.name}-guests`,
+      type="item-quantity",
+      label="Гости",
       placeholder="Сколько гостей",
+      openMod="apply",
       list=attributes['guests-list'],
       selectionText="гость",
       textPlural="гостя"

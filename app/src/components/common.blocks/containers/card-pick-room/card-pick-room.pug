@@ -18,20 +18,21 @@ mixin card-pick-room
   )
     h1.card-pick-room__title Найдём номера под ваши пожелания
     +form-dropdown.card-pick-room__arrival-date-dropdown(
-      label="Прибытие",
+      name=`${attributes.name}-arrival`,
       type="date",
-      name=`${attributes.name}-arrival`
+      label="Прибытие"
     )
     +form-dropdown.card-pick-room__departure-date-dropdown(
-      label="Выезд",
+      name=`${attributes.name}-departure`,
       type="date",
-      name=`${attributes.name}-departure`
+      label="Выезд"
     )
     +form-dropdown.card-pick-room__guests-single-apply(
-      label="Гости",
-      type="single-apply",
       name=`${attributes.name}-guests`,
+      type="item-quantity",
+      label="Гости",
       placeholder="Сколько гостей",
+      openMod="apply",
       list={ взрослые: { default: 0, min: 0, max: 1 / 0 }, дети: { default: 0, min: 0, max: 1 / 0 }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
       selectionText="гость",
       textPlural="гостя"

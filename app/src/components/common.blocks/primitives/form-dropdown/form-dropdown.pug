@@ -1,65 +1,53 @@
 include ./__item-quantity-list/form-dropdown__item-quantity-list.pug
 include ./__datepicker/form-dropdown__datepicker.pug
 include ~@common.blocks/primitives/apply-control/apply-control.pug
-//- id: id of dropdown button
-//- class: class for component bem mix: such as positioning functionality
-//- isFilter: {boolean} - if true, apply button will reload page with chosen value(get method)
-//- label: text of label
-//- type: filter-date | date | plural | single | single-apply
-//- name: name of hidden input
+//- name: name of component hidden input
+//- type: "date" | "item-quantity"
+//- id?: id of dropdown button
+//- class?: class for component bem mix: such as positioning functionality
+//- isFilter?: {boolean} - if true, input change event will reload page with chosen value(get method), default is false
+//- label?: text of label
+//- output?: "single" | "plural", default is "single"
 //- placeholder?: text of placeholder
 //- Additional for type "date":
-//-   selected-dates: {ISODateString | ISODateString,ISODateString,...} - initial dates(date), for several values use ','; example: "2020-11-18T21:00:00.000Z" or 2020-11-18T21:00:00.000Z,2020-11-20T21:00:00.000Z; tip: if type is 'filter-date' -> you should write 2 dates
-//- Additional for types: plural | single | single-apply
-//-   list: object like this: { itemName1: { default: 2, min: 0, max: 1 / 0 }, itemName2: { default: 1, min: 0, max: 1 / 0 }, itemName3: { default: 0, min: 0, max: 1 / 0 } }
-//- Additional for types: single | single-apply
-//-   selectionText: text of 1 item
-//-   textPlural: text of >1 items
-//- Tip: default type is "plural"
+//-   selected-dates?: {ISODateString | ISODateString,ISODateString,...} - initial dates(date), for several values use ','; example: "2020-11-18T21:00:00.000Z" or 2020-11-18T21:00:00.000Z,2020-11-20T21:00:00.000Z; tip: if output is 'plural' -> you should write 2 dates
+//- Additional for type: item-quantity
+  //- openMod?: "toggle" | "fold" | "apply", default is "toggle"
+  //- list: object like this: { itemName1: { default: 2, min: 0, max: 1 / 0 }, itemName2: { default: 1, min: 0, max: 1 / 0 }, itemName3: { default: 0, min: 0, max: 1 / 0 } }
+  //- Additional for openMod == "single"
+    //- selectionText?: text of 1 item
+    //- textPlural?: text of >1 items
 mixin form-dropdown
-  - var type = attributes.type ? attributes.type : 'plural';
-  .form-dropdown(class='form-dropdown_type-' + type, class=attributes.class)
+  -
+    const output = attributes.output ? attributes.output : "single";
+    const isFilter = attributes.isFilter ? attributes.isFilter + '' : null;
+    const openMod = attributes.openMod ? attributes.openMod : "toggle";
+  .form-dropdown(class=attributes.class)
     if attributes.label
       h3.form-label
         label(for=attributes.id)= attributes.label
     .form-field
       label.material-icon.form-dropdown__expand-icon(for=attributes.id)
-      case type
-        when "filter-date"
+      case attributes.type
         when "date"
           +form-dropdown__datepicker(
-            id=attributes.id,
-            isFilter=attributes.isFilter,
             name=attributes.name,
-            selected-dates=attributes['selected-dates'],
-            data-range=type === 'filter-date' ? true : false,
-            placeholder=attributes.placeholder
-          )
-        when "plural"
-          +form-dropdown__item-quantity-list(
             id=attributes.id,
-            name=attributes.name,
+            isFilter=isFilter,
+            data-range=output === 'plural' ? true : false,
             placeholder=attributes.placeholder,
-            selectionText=attributes.selectionText,
-            textPlural=attributes.textPlural,
-            list=attributes.list
+            selected-dates=attributes['selected-dates']
           )
-        when "single"
+        when "item-quantity"
           +form-dropdown__item-quantity-list(
-            id=attributes.id,
             name=attributes.name,
-            placeholder=attributes.placeholder,
-            selectionText=attributes.selectionText,
-            textPlural=attributes.textPlural,
-            list=attributes.list
-          )
-        when "single-apply"
-          +form-dropdown__item-quantity-list(
             id=attributes.id,
-            name=attributes.name,
+            class=`form-dropdown__item-quantity-list_output-${output} form-dropdown__item-quantity-list_openMod-${openMod}`,
+            isFilter=isFilter,
             placeholder=attributes.placeholder,
+            list=attributes.list,
             selectionText=attributes.selectionText,
-            textPlural=attributes.textPlural,
-            list=attributes.list
+            textPlural=attributes.textPlural
           )
-            +apply-control.form-dropdown__link-btns
+            if openMod === "apply"
+              +apply-control.form-dropdown__link-btns

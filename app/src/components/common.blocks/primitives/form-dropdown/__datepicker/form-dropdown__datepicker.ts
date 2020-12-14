@@ -1,47 +1,92 @@
-$(function () {
-  const dropdowns = $(".form-dropdown").has(".form-dropdown__datepicker-btn");
-  const openingDropdownButtons = dropdowns.find(".form-dropdown__datepicker-btn");
-  const datePickers = openingDropdownButtons.find(".form-dropdown__datepicker");
+import { PluginCreation } from "@utils/devTools/devTools";
 
-  datePickers.each(function () {
-    const dropdown = dropdowns.has(this);
-    const openingButton = openingDropdownButtons.has(this);
-    const datePicker = $(this);
-    const input = datePicker.prev("input[type='hidden']");
-    const selection = datePicker.next(".form-dropdown__selection-text");
-    const clearBtn = datePicker.find(".apply-control__clear-btn-js");
-    const applyBtn = datePicker.find(".apply-control__apply-btn-js");
+import { dropdowns } from "./../form-dropdown";
+import {
+  CardDatepickerElement,
+  CardDatepickerDOM,
+} from "@common.blocks/primitives/card-datepicker/card-datepicker";
 
-    datePicker.datepicker({
-      classes: "form-dropdown__calendar-js form-dropdown__calendar_isHidden-js",
+export interface DatepickerDropdownElement extends HTMLDivElement {
+  datepickerDropdown: DatepickerDropdown;
+}
+
+export type DatepickerDropdownDOM = {
+  self: DatepickerDropdownElement;
+  openingButton: HTMLButtonElement;
+  selection: HTMLParagraphElement;
+  cardDatepickerDOM: CardDatepickerDOM;
+};
+export interface DatepickerDropdownAPI extends PluginCreation.Plugin {
+  readonly dom: DatepickerDropdownDOM;
+}
+export class DatepickerDropdown implements DatepickerDropdownAPI {
+  readonly dom: DatepickerDropdownDOM = {
+    self: null,
+    openingButton: null,
+    selection: null,
+    cardDatepickerDOM: null,
+  };
+
+  constructor(datepickerDropdown: DatepickerDropdownElement) {
+    this._initStaticDOM(datepickerDropdown);
+
+    this._init();
+
+    this._initOpenMod();
+    this._initDisplayUpdate();
+
+    datepickerDropdown.datepickerDropdown = this;
+  }
+
+  protected _initStaticDOM(datepickerDropdown: DatepickerDropdownElement) {
+    this.dom.cardDatepickerDOM = (datepickerDropdown.querySelector(
+      ".card-datepicker"
+    ) as CardDatepickerElement).cardDatepicker.dom;
+
+    this.dom.self = datepickerDropdown;
+    this.dom.openingButton = this.dom.self.querySelector(".form-dropdown__datepicker-btn");
+    this.dom.selection = this.dom.openingButton.querySelector(".form-dropdown__selection-text");
+  }
+  protected _initOpenMod() {
+    this.dom.cardDatepickerDOM.calendar.addEventListener("click", (event) => {
+      event.stopPropagation();
     });
-
-    selection.text(input.attr("data-formatted-date") || selection.attr("placeholder"));
-
-    let lastFormattedDate = input.attr("data-formatted-date");
-    input.on("select", (jqEvent, formattedDate: string, date: Date | Array<Date>) => {
-      lastFormattedDate = formattedDate;
+    this.dom.openingButton.addEventListener("click", (event) => {
+      this.dom.cardDatepickerDOM.calendar.classList.remove("form-dropdown__calendar_isHidden-js");
     });
-
-    openingButton.on("click", (jqEvent: JQuery.ClickEvent) => {
-      datePicker
-        .find(".form-dropdown__calendar-js")
-        .removeClass("form-dropdown__calendar_isHidden-js");
+    this.dom.cardDatepickerDOM.applyBtn.addEventListener("click", (event) => {
+      this.dom.cardDatepickerDOM.calendar.classList.add("form-dropdown__calendar_isHidden-js");
     });
+  }
+  protected _initDisplayUpdate() {
+    this.dom.cardDatepickerDOM.self.addEventListener("change", (event) => {
+      this.dom.selection.textContent =
+        this.dom.cardDatepickerDOM.self.cardDatepicker.lastFormattedDate ||
+        this.dom.selection.getAttribute("placeholder");
 
-    clearBtn.on("click", function (jqEvent: JQuery.ClickEvent) {
-      selection.text(selection.attr("placeholder"));
-
-      dropdown.trigger("valueIsChanged", [input.val()]);
+      this.dom.self.dispatchEvent(new CustomEvent("change"));
     });
-    applyBtn.on("click", function (jqEvent: JQuery.ClickEvent) {
-      datePicker
-        .find(".form-dropdown__calendar-js")
-        .addClass("form-dropdown__calendar_isHidden-js");
+  }
 
-      selection.text(lastFormattedDate || selection.attr("placeholder"));
+  private _init() {
+    this.dom.selection.textContent =
+      this.dom.cardDatepickerDOM.self.cardDatepicker.lastFormattedDate ||
+      this.dom.selection.getAttribute("placeholder");
 
-      dropdown.trigger("valueIsChanged", [input.val()]);
+    this.dom.cardDatepickerDOM.calendar.classList.add(
+      "form-dropdown__calendar-js",
+      "form-dropdown__calendar_isHidden-js"
+    );
+  }
+}
+
+// init and export our dropdowns
+export const dropdownsWithDatepicker = Array.from(dropdowns).filter((dropdown) => {
+  if (dropdown.querySelector(".form-dropdown__datepicker")) {
+    $(function () {
+      new DatepickerDropdown(dropdown as DatepickerDropdownElement);
     });
-  });
+    return true;
+  }
+  return false;
 });
