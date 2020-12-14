@@ -16,10 +16,20 @@ block variables
 block content
   - const MS_IN_DAY = 1000 * 60 * 60 * 24;
   main.cards-layout.ui-kit-container
-    +card-pick-room#card-pick-room.cards-layout__pick-room(action="")
-    +card-registration#card-registration.cards-layout__registration(action="")
-    +card-entering#card-entering.cards-layout__entering(action="")
+    +card-pick-room#card-pick-room.cards-layout__pick-room(
+      name="pick-room",
+      action="",
+      method=""
+    )
+    +card-registration#card-registration.cards-layout__registration(
+      name="registration",
+      action="",
+      method="",
+      href=""
+    )
+    +card-entering#card-entering.cards-layout__entering(name="entering", action="", method="")
     +card-room-definition#card-room-definition.cards-layout__room-definition(
+      name="room-definition",
       action="",
       room-number=888,
       room-grade="Люкс",

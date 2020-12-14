@@ -1,39 +1,39 @@
 include ~@common.blocks/primitives/form-dropdown/form-dropdown.pug
 include ~@common.blocks/primitives/button/button.pug
 
-//- id: id of card
-//- class: class for component bem mix: such as positioning functionality
-//- action - form action
-//- method - form method
+//- id: {string} - id of card
+//- class: {string} - class for component bem mix: such as positioning functionality
+//- name: {string} - name of <form>, also it is used such prefix for names of inner forms
+//- action: {string} - form action
+//- method: {"get" | "post"} - form method
+//- target: {("_self"|null)|"_blank"|"_parent"|"_top"} - form target
 mixin card-pick-room
   form.card-base.card-pick-room(
     id=attributes.id,
     class=attributes.class,
+    name=attributes.name,
     action=attributes.action,
-    method=attributes.method || "get"
+    method=attributes.method || 'get',
+    target=attributes.target
   )
     h1.card-pick-room__title Найдём номера под ваши пожелания
     +form-dropdown.card-pick-room__arrival-date-dropdown(
       label="Прибытие",
       type="date",
-      name="arrival",
+      name=`${attributes.name}-arrival`
     )
     +form-dropdown.card-pick-room__departure-date-dropdown(
       label="Выезд",
       type="date",
-      name="departure",
+      name=`${attributes.name}-departure`
     )
     +form-dropdown.card-pick-room__guests-single-apply(
       label="Гости",
       type="single-apply",
-      name="guests",
+      name=`${attributes.name}-guests`,
       placeholder="Сколько гостей",
       list={ взрослые: { default: 0, min: 0, max: 1 / 0 }, дети: { default: 0, min: 0, max: 1 / 0 }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
       selectionText="гость",
       textPlural="гостя"
     )
-    +button.card-pick-room__submit-btn(
-      type="submit",
-      value="Подобрать номер",
-      modClass="link"
-    )
+    +button.card-pick-room__submit-btn(type="submit", value="Подобрать номер", modClass="link")
