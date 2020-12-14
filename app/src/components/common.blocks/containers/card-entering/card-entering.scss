@@ -1,0 +1,10 @@
+.card-entering {
+  grid:
+    "title title"
+    "email-field email-field"
+    "password-field password-field"
+    "entering-btn entering-btn"
+    ". ." 0.7142857142857143em
+    "caption-of-redirect-to-registration registration-btn";
+  gap: 0.7142857143em;
+}

@@ -1,11 +1,10 @@
-import moment from 'moment';
+// FIXME: предпочтительнее вынести на сервер, чтобы не передавать лишнюю библиотеку
+import moment from "moment";
 
-document.addEventListener("DOMContentLoaded", () => {
-  moment.locale("ru");
+moment.locale("ru");
 
-  document
-    .querySelectorAll(".comments__date-item time")
-    .forEach((dateHTMLItem: HTMLParagraphElement) => {
-      dateHTMLItem.innerText = moment(dateHTMLItem.getAttribute("datetime")).fromNow();
-    });
-});
+document
+  .querySelectorAll(".comments__date-item time")
+  .forEach((dateHTMLItem: HTMLParagraphElement) => {
+    dateHTMLItem.textContent = moment(dateHTMLItem.getAttribute("datetime")).fromNow();
+  });

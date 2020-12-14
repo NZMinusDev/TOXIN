@@ -2,85 +2,7 @@
 
 @use "@thematic/main-theme.blocks/gradients.scss";
 
-/* lib redefinition */
-.datepicker--nav-title {
-  font: var(--font__h2);
-  color: devTools.getColor(color__dark-shade, 1);
-}
-.datepicker--nav-action {
-  font-size: 1rem;
-  color: devTools.getColor(color__primary, 1);
-}
-
-.datepicker--content {
-  font: var(--font__h3);
-}
-.datepicker--day-name,
-.datepicker--cell {
-  text-transform: none;
-  font: inherit;
-}
-.datepicker--day-name {
-  color: devTools.getColor(color__primary, 1);
-}
-.datepicker--cell {
-  color: devTools.getColor(color__dark-shade, 0.5);
-
-  &.-other-month-,
-  &.-other-decade-,
-  &.-disabled- {
-    color: devTools.getColor(color__dark-shade, 0.25);
-  }
-
-  &.-current-,
-  &.-selected-,
-  &.-selected-.-focus-,
-  &.-selected-.-current- {
-    border-radius: 100%;
-    color: white;
-  }
-  &.-current- {
-    background: gradients.secondary(1);
-  }
-  &.-selected-,
-  &.-selected-.-focus-,
-  &.-selected-.-current- {
-    background: gradients.primary(1);
-  }
-  &.-in-range-,
-  &.-current-.-in-range- {
-    color: devTools.getColor(color__dark-shade, 0.5);
-    background: gradients.primary(0.25);
-  }
-  &.-current-.-in-range- {
-    border-radius: 0;
-  }
-  &.-range-from-,
-  &.-range-to- {
-    border-radius: 100%;
-    border: 0;
-    background: gradients.primary(1);
-  }
-  &.-range-from-:before,
-  &.-range-to-:before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    bottom: 0;
-    width: 50%;
-    background: gradients.primary(0.25);
-  }
-  &.-range-from-:before {
-    right: 0;
-  }
-  &.-range-to-:before {
-    left: 0;
-  }
-}
-
-/* project's */
-.form-dropdown__datepicker {
+.form-dropdown__datepicker-btn {
   color: devTools.getColor(color__dark-shade, 0.75);
 
   &:hover,
@@ -88,9 +10,4 @@
   &:focus-within {
     color: inherit;
   }
-}
-
-.form-dropdown__calendar {
-  border: var(--border);
-  border-radius: var(--border-radius-size);
 }

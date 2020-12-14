@@ -1,9 +1,11 @@
 @use "@thematic/main-theme.blocks/gradients.scss";
 
-.noUi-target {
-  border: var(--border);
-}
-.noUi-connect,
-.noUi-horizontal .noUi-handle {
-  background: gradients.secondary(1);
+.form-range-slider {
+  .noUi-target {
+    border: var(--border);
+  }
+  .noUi-connect,
+  .noUi-horizontal .noUi-handle {
+    background: gradients.secondary(1);
+  }
 }

@@ -5,9 +5,24 @@ import "./form-elements.scss";
 // assets
 import "@contents/personas/persona1.png";
 
-// focus components
-document.querySelector("#text-field-hover").focus();
+//libs
+import { DOMHelper } from "@utils/devTools/devTools";
 
-document.querySelector("#dropdown-expanded-plural").classList.add("menu-open");
-document.querySelector("#dropdown-expanded-apply").classList.add("menu-open");
-document.querySelector("#dropdown-expanded-clear-apply").classList.add("menu-open");
+//components
+import {
+  dropdownsWithIQList,
+  ToxinIQDropdownElement,
+} from "@common.blocks/primitives/form-dropdown/__item-quantity-list/form-dropdown__item-quantity-list.ts";
+
+// focus components
+(document.querySelector("#text-field-hover") as HTMLElement).focus();
+
+(DOMHelper.has(dropdownsWithIQList, "#dropdown-expanded-plural").closest(
+  ".form-dropdown"
+) as ToxinIQDropdownElement).toxinIQDropdown.open();
+(DOMHelper.has(dropdownsWithIQList, "#dropdown-expanded-apply").closest(
+  ".form-dropdown"
+) as ToxinIQDropdownElement).toxinIQDropdown.open();
+(DOMHelper.has(dropdownsWithIQList, "#dropdown-expanded-clear-apply").closest(
+  ".form-dropdown"
+) as ToxinIQDropdownElement).toxinIQDropdown.open();

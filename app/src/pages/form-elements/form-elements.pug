@@ -23,25 +23,26 @@ block variables
 block content
   form(method="get")
     main.form-elements-layout.ui-kit-container
+      - const MS_IN_DAY = 1000 * 60 * 60 * 24;
       +form-text-field#text-field-default.form-elements-layout__text-field-default(
         label="text field",
         type="email",
-        name="email",
-        placeholder="Email"
+        name="email"
       )
       +form-text-field#text-field-hover.form-elements-layout__text-field-hover(
         label="text field",
-        type="text",
         name="text",
         value="This is pretty awesome",
         placeholder="Text",
         autofocus
       )
       +form-dropdown#dropdown.form-elements-layout__dropdown(
-        label="dropdown",
         name="guests",
-        type="single-apply",
+        type="item-quantity",
+        label="dropdown",
+        isFilter,
         placeholder="Сколько гостей",
+        openMod="apply",
         list={ взрослые: { default: 0, min: 0, max: 1 / 0 }, дети: { default: 0, min: 0, max: 1 / 0 }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
         selectionText="гость",
         textPlural="гостя"
@@ -49,45 +50,49 @@ block content
       +form-text-field#masked-text-field.form-elements-layout__masked-text-field(
         label="masked text field",
         type="date",
-        name="masked-form-date",
-        placeholder="ДД.ММ.ГГГГ"
+        name="masked-form-date"
       )
       .form-elements-layout__date-dropdown
         +form-dropdown#date-dropdown-default(
-          label="date dropdown",
-          type="date",
           name="date1",
-          placeholder="ДД.ММ.ГГГГ"
+          type="date",
+          isFilter,
+          label="date dropdown"
         )
         +form-dropdown#date-dropdown-filled(
-          label="date dropdown",
-          type="date",
           name="date2",
-          placeholder="ДД.ММ.ГГГГ",
-          data-value="19.08.2019"
+          type="date",
+          isFilter,
+          label="date dropdown",
+          selected-dates="2019-08-19"
         )
+      -
+        const tomorrow = new Date(Date.now() + MS_IN_DAY).toISOString();
+        const dayAfterTomorrow = new Date(Date.now() + MS_IN_DAY * 4).toISOString();
       +form-dropdown#filter-date-dropdown.form-elements-layout__filter-date-dropdown(
-        label="filter date dropdown",
-        type="filter-date",
         name="filter-date",
-        placeholder="День месяц - день месяц",
-        data-value="19 авг - 23 авг"
+        type="date",
+        isFilter,
+        label="filter date dropdown",
+        output="plural",
+        selected-dates=`${tomorrow},${dayAfterTomorrow}`
       )
       +form-text-field#subscription-text-field.form-elements-layout__subscription-text-field(
         label="subscription text field",
         type="email",
         name="subscription-form-text-field",
-        placeholder="Email",
         materialIcon="arrow_forward"
       )
       +form-checkbox-buttons#checkbox-buttons.form-elements-layout__checkbox-buttons(
+        isFilter,
         label="checkbox buttons",
         buttons={ isSmoking: { id: 'isSmokingCheckbox', itemLabel: 'Можно курить' }, isWithPets: { id: 'isWithPetsCheckbox', itemLabel: 'Можно с питомцами', checked: 'checked' }, isGuests: { id: 'isGuestsCheckbox', itemLabel: 'Можно пригласить гостей (до 10 человек)', checked: 'checked' } }
       )
       +form-radio-buttons#radio-buttons.form-elements-layout__radio-buttons(
-        label="radio buttons",
         name="gender",
         buttons={ isMale: { id: 'isMaleRadio', itemLabel: 'Мужчина', checked: 'checked' }, isFemale: { id: 'isFemaleRadio', itemLabel: 'Женщина' } }
+        isFilter,
+        label="radio buttons",
       )
       .form-elements-layout__toggle
         +form-toggle#toggle-checked(
@@ -96,30 +101,23 @@ block content
           itemLabel="Получать спецпредложения",
           checked
         )
-        +form-toggle#toggle-default(name="specialOffer2", itemLabel="Получать спецпредложения")
+        +form-toggle#toggle-default(
+          name="specialOffer2",
+          itemLabel="Получать спецпредложения"
+        )
       .form-elements-layout__like-button
         h3.form-label.form-elements-layout__like-button-label like button
         +form-like-button#like-button-default(name="likes1", counter="2")
         +form-like-button#like-button-checked(name="likes2", counter="12", checked)
       .form-elements-layout__rate-button
-        +form-rate-button#rate-button-parted(
-          label="rate button",
-          name="rate1",
-          length=5,
-          rate=4,
-          titles=['very bad', 'bad', 'normal', 'good', 'very good']
-        )
-        +form-rate-button#rate-button-full(
-          name="rate2",
-          length=5,
-          rate=5,
-          titles=['very bad', 'bad', 'normal', 'good', 'very good']
-        )
+        +form-rate-button#rate-button-parted(label="rate button", name="rate1", length=5, rate=4)
+        +form-rate-button#rate-button-full(name="rate2", length=5, rate=5)
       +form-range-slider#range-slider.form-elements-layout__range-slider(
-        label="range slider",
         name="price",
-        data-range={ min: 341, max: 15454 },
-        data-start=[5000, 10000],
+        range={ min: 341, max: 15454 },
+        start=[5000, 10000],
+        isFilter,
+        label="range slider",
         data-suffix="₽"
       )
       .form-elements-layout__button-fill
@@ -132,7 +130,11 @@ block content
         +button#button-empty-hovered(type="button", value="click me", modClass="bordered")
       .form-elements-layout__button-icon-link
         +button#button-icon-link-default(type="button", value="click me", modClass="icon-link")
-        +button#button-icon-link-hovered(type="button", value="click me", modClass="icon-link")
+        +button#button-icon-link-hovered(
+          type="button",
+          value="click me",
+          modClass="icon-link"
+        )
       +button#button-long.form-elements-layout__button-long(
         type="submit",
         value="перейти к оплате",
@@ -141,38 +143,47 @@ block content
       .form-elements-layout__pagination
         h3.form-label pagination
         +pagination#pagination(
-          pages=15,
-          page=1,
-          amount-to-display=12,
-          total-amount=100,
-          text="вариантов аренды"
+          page=9,
+          displayed=12,
+          total=179,
+          text="вариантов аренды",
+          hrefPrefix="?page="
         )
       +form-dropdown#dropdown-default-plural.form-elements-layout__dropdown-default-plural(
+        name="facilities1",
+        type="item-quantity",
+        isFilter,
         label="dropdown",
-        type="plural",
-        name="facilities",
+        output="plural",
+        openMod="fold",
         list={ спальни: { default: 2, min: 1, max: 3 }, кровати: { default: 2, min: 1, max: 3 }, 'ванные комнаты': { default: 0, min: 0, max: 2 } }
       )
       +form-dropdown#dropdown-expanded-plural.form-elements-layout__dropdown-expanded-plural(
+        name="facilities2",
+        type="item-quantity",
         label="dropdown",
-        type="plural",
-        name="facilities",
+        output="plural",
+        openMod="fold",
         list={ спальни: { default: 2, min: 1, max: 3 }, кровати: { default: 2, min: 1, max: 3 }, 'ванные комнаты': { default: 0, min: 0, max: 2 } }
       )
       +form-dropdown#dropdown-expanded-apply.form-elements-layout__dropdown-expanded-apply(
+        name="guests1",
+        type="item-quantity",
+        isFilter,
         label="dropdown",
-        type="single-apply",
-        name="guests",
         placeholder="Сколько гостей",
+        openMod="apply",
         list={ взрослые: { default: 0, min: 0, max: 1 / 0 }, дети: { default: 0, min: 0, max: 1 / 0 }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
         selectionText="гость",
         textPlural="гостя"
       )
       +form-dropdown#dropdown-expanded-clear-apply.form-elements-layout__dropdown-expanded-clear-apply(
+        name="guests2",
+        type="item-quantity",
+        isFilter,
         label="dropdown",
-        type="single-apply",
-        name="guests",
         placeholder="Сколько гостей",
+        openMod="apply",
         list={ взрослые: { default: 2, min: 0, max: 1 / 0 }, дети: { default: 1, min: 0, max: 1 / 0 }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
         selectionText="гость",
         textPlural="гостя"
@@ -183,11 +194,13 @@ block content
           buttons={}
         )
         +form-expandable-checkbox-list#expandable-checkbox-list-expanded(
+          isFilter,
           label="expandable checkbox list",
           buttons={ breakfast: { id: 'breakfastCheckbox', itemLabel: 'Завтрак' }, desk: { id: 'deskCheckbox', itemLabel: 'Письменный стол', checked: 'checked' }, feedingChair: { id: 'feedingChairCheckbox', itemLabel: 'Стол для кормления', checked: 'checked' }, cot: { id: 'cotCheckbox', itemLabel: 'Кроватка', checked: 'checked' }, tv1: { id: 'tv1Checkbox', itemLabel: 'Телевизор' }, shampoo1: { id: 'shampoo1Checkbox', itemLabel: 'Шампунь' }, tv2: { id: 'tv2Checkbox', itemLabel: 'Телевизор' }, shampoo2: { id: 'shampoo2Checkbox', itemLabel: 'Шампунь' } },
           checked
         )
       +form-checkbox-buttons#rich-checkbox-buttons.form-elements-layout__rich-checkbox-buttons(
+        isFilter,
         label="rich checkbox buttons",
         mod="rich",
         buttons={ wideCorridor: { id: 'wideCorridorCheckbox', itemLabel: 'Широкий коридор', description: 'Ширина коридоров в номере не менее 91 см.' }, assistantForTheDisabled: { id: 'assistantForTheDisabledCheckbox', itemLabel: 'Помощник для инвалидов', description: 'На 1 этаже вас встретит специалист  и проводит до номера.' } }
