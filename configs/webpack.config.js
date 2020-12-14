@@ -97,8 +97,8 @@ class ResultOfTemplatesProcessing {
 
       this.entries[shortNameOfTemplate] = [
         "@babel/polyfill",
-        `./pages/${shortNameOfTemplate}/${shortNameOfTemplate}.ts`,
         "./utils/global/global.decl.ts",
+        `./pages/${shortNameOfTemplate}/${shortNameOfTemplate}.ts`,
         "./components/thematic/main-theme.blocks/main-theme.scss",
       ];
 
@@ -170,6 +170,7 @@ const designWidth = 1440;
  * ScriptExtHtmlWebpackPlugin - adds to <script> tag attributes depending on RegExp.
  * MiniCssExtractPlugin - extract css into separate files.
  * WrapperPlugin - wrap output css depending on RegExp.
+ * ProvidePlugin - Automatically load modules instead of having to import or require them everywhere.
  * ImageMinimizerPlugin - Plugin and Loader for webpack to optimize (compress) all images. Make sure ImageMinimizerPlugin place after any plugins that add images or other assets which you want to optimized.
  * WebpackImagesResizer - resizes images.
  * CircularDependencyPlugin - scan bundles to alert about circular dependencies.
