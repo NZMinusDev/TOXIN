@@ -1,10 +1,82 @@
-extends ~@pug/layouts/main.pug
+extends ~@pug/layouts/ui-kit-layout.pug
+
+//- components
+include ~@common.blocks/basic/nav-bar/nav-bar.pug
 
 block variables
   - var keywords = 'FSD, Frontend, TOXIN, образование, верстка';
   - var description = 'Футеры и хедеры, используемые в базовом макете сайта TOXIN';
   - var title = 'Футеры и хедеры';
 
-block header
 block content
-block footer
+  main.headers-footers-layout
+    +nav-bar(
+      items={
+  'О нас': { href: null, active: 'active' },
+  Услуги: {
+    href: null,
+    items: {
+      'Услуга 1': { href: null },
+      'Услуга 2': { href: null },
+      'Услуга 3': { href: null },
+      'Услуга 4': { href: null },
+      'Услуга 5': { href: null },
+    },
+  },
+  Вакансии: { href: null },
+  Новости: { href: null },
+  Соглашения: {
+    href: null,
+    items: {
+      'Соглашение 1': { href: null },
+      'Соглашение 2': { href: null },
+      'Соглашение 3': {
+        href: null,
+        items: {
+          'Соглашение 3-1': {
+            href: null,
+            items: { 'Соглашение 3-1-1': { href: null } },
+          },
+          'Соглашение 3-2': { href: null },
+        },
+      },
+    },
+  },
+}
+    )
+    +nav-bar(
+      items={
+  'О нас': { href: null },
+  Услуги: {
+    href: null,
+    items: {
+      'Услуга 1': { href: null },
+      'Услуга 2': { href: null },
+      'Услуга 3': { href: null },
+      'Услуга 4': { href: null },
+      'Услуга 5': { href: null },
+    },
+  },
+  Вакансии: { href: null },
+  Новости: { href: null },
+  Соглашения: {
+    href: null,
+    items: {
+      'Соглашение 1': { href: null },
+      'Соглашение 2': { href: null },
+      'Соглашение 3': {
+        href: null,
+        items: {
+          'Соглашение 3-1': {
+            href: null,
+            items: { 'Соглашение 3-1-1': { href: null, active: 'active' } },
+          },
+          'Соглашение 3-2': { href: null },
+        },
+      },
+    },
+  },
+},
+      status="confirmed",
+      personName="Юлий Цезарь"
+    )

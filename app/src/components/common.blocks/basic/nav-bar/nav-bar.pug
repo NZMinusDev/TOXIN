@@ -1,0 +1,33 @@
+include ~@common.blocks/basic/nav-bar/__navigation-list/nav-bar__navigation-list.pug
+include ~@common.blocks/primitives/button/button.pug
+
+//- items:{itemName1:{href?:string, active?: 'active'},itemName2:{href?:string, items?:{itemName2_1:{href?:string},itemName2_2:{href?:string}}}} - tip: maximum nesting is conditionally inf and you can set active?: 'active' only for children(parents would be automatically settled)
+//- status: "unconfirmed" | "confirmed" - add entering and registration btn or person link, default is "unconfirmed"
+  //- Additional for "unconfirmed" status
+    //- enteringHref: {string} - href for entering button
+    //- registrationHref: {string} - href for registration button
+  //- Additional for "confirmed" status
+    //- personHref: {string} - href for person account
+    //- personName: {string} - person name
+//- id?: id of component
+//- class?: class for component bem mix: such as positioning functionality
+
+mixin nav-bar
+  - const status = attributes.status ? attributes.status : 'unconfirmed';
+  header.nav-bar.content-container(id=attributes.id, class=attributes.class)
+    section.nav-bar__logo
+      .logo.logo_color-gradient-primary
+      span.logo__title TOXIN
+    nav.nav-bar__navigation
+      +nav-bar__navigation-list(items=attributes.items)
+    section.nav-bar__login(
+      class=status === 'unconfirmed' ? 'nav-bar__login_isUnConfirmed' : 'nav-bar__login_isConfirmed'
+    )
+      case status
+        when "unconfirmed"
+          a(href=attributes.enteringHref)
+            +button.nav-bar__button(type="button", value="Войти", modClass="bordered")
+          a(href=attributes.registrationHref)
+            +button.nav-bar__button(type="button", value="Зарегистрироваться", modClass="filled")
+        when "confirmed"
+          a.nav-bar__person(href=attributes.personHref)= attributes.personName
