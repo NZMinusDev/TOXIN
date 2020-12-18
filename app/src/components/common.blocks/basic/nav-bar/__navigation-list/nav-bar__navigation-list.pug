@@ -21,7 +21,7 @@ mixin nav-bar__navigation-list
           class=itemSettings.items ? 'nav-bar__navigation-item_isDropdown' : '',
           class=itemSettings.active ? 'nav-bar__navigation-item_isActive' : ''
         )= itemName
-          .material-icon.nav-bar__expand-icon
+          .icon.nav-bar__expand-icon
           +nav-bar__navigation-list(items=itemSettings.items)
       else
         a.nav-bar__navigation-item(

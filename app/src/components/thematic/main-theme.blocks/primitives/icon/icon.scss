@@ -1,6 +1,6 @@
 @use "@utils/devTools/devTools.scss";
 
-.material-icon {
+.icon {
   &:after {
     font-size: 1rem;
     color: devTools.getColor(color__dark-shade, 0.5);

@@ -1,7 +1,7 @@
 .form-rate-button__button-item {
   display: none;
 
-  & + .material-icon {
+  & + .icon {
     position: relative;
     float: right;
     width: 1em;
@@ -17,7 +17,7 @@
   }
 
   // selected: filled
-  &:checked ~ .material-icon:after {
+  &:checked ~ .icon:after {
     content: "\f0ec";
   }
 }

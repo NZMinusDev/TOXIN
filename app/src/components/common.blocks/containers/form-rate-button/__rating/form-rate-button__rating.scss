@@ -2,17 +2,17 @@
   display: inline;
   
   //after selected by hover: filled
-  & > .material-icon:hover:after,
-  & > .material-icon:hover ~ .material-icon:after {
+  & > .icon:hover:after,
+  & > .icon:hover ~ .icon:after {
     content: "\f0ec";
   }
 
   //before selected by hover: filled
-  & > .form-rate-button__button-item:checked + .material-icon:hover:after,
-  & > .form-rate-button__button-item:checked + .material-icon:hover ~ .material-icon:after,
-  & > .form-rate-button__button-item:checked ~ .material-icon:hover:after,
-  & > .form-rate-button__button-item:checked ~ .material-icon:hover ~ .material-icon:after,
-  & > .material-icon:hover ~ .form-rate-button__button-item:checked ~ .material-icon:after {
+  & > .form-rate-button__button-item:checked + .icon:hover:after,
+  & > .form-rate-button__button-item:checked + .icon:hover ~ .icon:after,
+  & > .form-rate-button__button-item:checked ~ .icon:hover:after,
+  & > .form-rate-button__button-item:checked ~ .icon:hover ~ .icon:after,
+  & > .icon:hover ~ .form-rate-button__button-item:checked ~ .icon:after {
     content: "\f0ec";
   }
 }

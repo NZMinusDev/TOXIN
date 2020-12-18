@@ -3,7 +3,7 @@
 @use "@thematic/main-theme.blocks/gradients.scss";
 
 .form-rate-button__button-item {
-  & + .material-icon {
+  & + .icon {
     &:after {
       @include devTools.gradientFont(gradients.primary(1));
     }

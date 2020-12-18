@@ -27,8 +27,8 @@ mixin slideshow
         checked=index == 0 ? 'checked' : null,
         style=`right: ${rightRadioOffset}px`
       )
-      label.material-icon.slideshow__switcher(for=labelID)= `View ${labelID}`
+      label.icon.slideshow__switcher(for=labelID)= `View ${labelID}`
       +picture.slideshow__picture(path=path, alt=pictureID)
       - labelID = pictureID;
-    label.material-icon.slideshow__switcher(for=pictureID)= `View ${pictureID}`
-    label.material-icon.slideshow__switcher(for=attributes.name + 0)= `View ${attributes.name + 0}`
+    label.icon.slideshow__switcher(for=pictureID)= `View ${pictureID}`
+    label.icon.slideshow__switcher(for=attributes.name + 0)= `View ${attributes.name + 0}`
