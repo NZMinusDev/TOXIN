@@ -1,19 +1,22 @@
 mixin nav-bar__navigation-list
   -
-    function bubbleActiveStatus(items) {
+    function bubbleActiveStatus(items, activeKey) {
       for (let key in items) {
         if (Object.hasOwnProperty.call(items, key)) {
           if (items[key].items) {
-            if(bubbleActiveStatus(items[key].items)){
+            if(bubbleActiveStatus(items[key].items, activeKey)){
               items[key].active = "active";
             }
           }
-          if (items[key].active) return true;
+          if (key === activeKey || items[key].active) {
+            items[key].active = "active";
+            return true;
+          }
         }
       }
       return false;
     }
-    bubbleActiveStatus(attributes.items);
+    bubbleActiveStatus(attributes.items, attributes.active);
   ul.nav-bar__navigation-list
     each itemSettings, itemName in attributes.items
       if itemSettings.items
