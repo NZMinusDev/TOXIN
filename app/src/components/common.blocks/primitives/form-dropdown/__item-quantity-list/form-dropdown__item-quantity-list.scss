@@ -35,7 +35,7 @@
     padding: 0;
     text-indent: 0;
 
-    &:not(:nth-child(1)) {
+    &:not(:first-of-type) {
       margin-top: 0.5em;
     }
   }
