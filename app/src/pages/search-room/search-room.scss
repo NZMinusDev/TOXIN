@@ -1,0 +1,72 @@
+.search-room-layout {
+  display: grid;
+  $filterWidth: 266px / (1440px - 140px * 2) * 100%;
+  grid:
+    "filter title"
+    "filter rooms"
+    ". pagination" / #{$filterWidth} auto;
+  grid-column-gap: 50px / (1440px - 140px * 2) * 100%;
+  align-items: flex-start;
+  margin-top: 30px/14px+0em;
+  margin-bottom: 70px/14px+0em;
+
+  @media (min-width: 0px) {
+    grid:
+      "filter"
+      "title"
+      "rooms"
+      "pagination";
+  }
+  @media (min-width: 992px) {
+    grid:
+      "filter title"
+      "filter rooms"
+      ". pagination" / #{$filterWidth} auto;
+  }
+}
+
+.search-room-layout__filter {
+  grid-area: filter;
+  display: grid;
+  grid-row-gap: 2.142857142857143em;
+}
+.search-room-layout__title {
+  grid-area: title;
+  margin-bottom: 0.8541666666666667em;
+}
+.search-room-layout__rooms {
+  grid-area: rooms;
+  display: grid;
+  grid: auto-flow auto / 33.33% 33.33% 33.33%;
+  grid-gap: #{20.5px/14px+0em} #{12px/14px+0em};
+  justify-items: center;
+
+  @media (min-width: 0px) {
+    grid-template-columns: 100%;
+  }
+  @media (min-width: 768px) {
+    grid-template-columns: 50% 50%;
+  }
+  @media (min-width: 992px) {
+    grid-template-columns: 33.33% 33.33% 33.33%;
+  }
+}
+.search-room-layout__pagination {
+  grid-area: pagination;
+  margin-top: 2.928571428571429em;
+}
+
+.search-room-layout__dates-of-stay-dropdown {
+}
+.search-room-layout__guests-dropdown {
+}
+.search-room-layout__price-range-slider {
+}
+.search-room-layout__checkbox-buttons {
+}
+.search-room-layout__affordable-rich-checkbox-buttons {
+}
+.search-room-layout__facilities-dropdown {
+}
+.search-room-layout__additional-comfort-expandable-checkbox-list {
+}
