@@ -1,3 +1,5 @@
+@use "sass:list";
+
 /*
  * get color by css var color name with defining opacity
  * color-name {string} - css var name of color without '--'
@@ -29,4 +31,35 @@
   color: transparent;
   background: $background;
   background-clip: text;
+}
+
+@mixin backgroundAutoCarousel($imagesPaths) {
+  $backgroundImages: "";
+  $index: 0;
+  @each $path in $imagesPaths {
+    @if $index != 0 {
+      $backgroundImages: $backgroundImages + ",";
+    }
+    $index: $index + 1;
+    $backgroundImages: $backgroundImages + url($path);
+  }
+
+  background: white no-repeat fixed;
+  background-image: #{$backgroundImages};
+  background-size: cover;
+  animation: change-image #{list.length($imagesPaths) * 6s} linear infinite;
+
+  @keyframes change-image {
+    $index: 0;
+    @each $path in $imagesPaths {
+      $keyframe: #{100 / list.length($imagesPaths) * $index * 1%};
+      #{$keyframe} {
+        background-image: url($path);
+      }
+      $index: $index + 1;
+    }
+    100% {
+      background-image: url(list.nth($imagesPaths, 1));
+    }
+  }
 }

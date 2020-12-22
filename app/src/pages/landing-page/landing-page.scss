@@ -1,24 +1,12 @@
+@use "@utils/devTools/devTools.scss";
+
 .landing-page-layout {
   height: 59.28571428571429em;
   position: relative;
 
-  background: url(@images/backgrounds/room1.png) no-repeat fixed;
-  background-size: cover;
-  animation: landing-page-background__change-image 12s linear infinite;
-}
-@keyframes landing-page-background__change-image {
-  0% {
-    background-image: url(@images/backgrounds/room1.png);
-  }
-  33% {
-    background-image: url(@images/backgrounds/room2.png);
-  }
-  66% {
-    background-image: url(@images/backgrounds/room3.png);
-  }
-  100% {
-    background-image: url(@images/backgrounds/room1.png);
-  }
+  @include devTools.backgroundAutoCarousel(
+    "@images/backgrounds/room1.png" "@images/backgrounds/room2.png" "@images/backgrounds/room3.png"
+  );
 }
 
 .landing-page-layout__pick-room,
