@@ -33,6 +33,9 @@
   background-clip: text;
 }
 
+/*
+* $imagesPaths: {string string ...} - scss list using space between img paths
+*/
 @mixin backgroundAutoCarousel($imagesPaths) {
   $backgroundImages: "";
   $index: 0;
