@@ -1,8 +1,6 @@
-extends ~@pug/layouts/main.pug
+extends ~@pug/layouts/toxin-main.pug
 
 //- components
-include ~@common.blocks/basic/nav-bar/nav-bar.pug
-include ~@common.blocks/basic/footer/footer.pug
 include ~@common.blocks/primitives/form-dropdown/form-dropdown.pug
 include ~@common.blocks/primitives/form-range-slider/form-range-slider.pug
 include ~@common.blocks/containers/form-checkbox-buttons/form-checkbox-buttons.pug
@@ -11,12 +9,10 @@ include ~@common.blocks/containers/form-expandable-checkbox-list/form-expandable
 include ~@common.blocks/containers/card-room/card-room.pug
 
 block variables
-  - var keywords = 'FSD, Frontend, TOXIN, образование, верстка';
-  - var description = 'Страница поиска по номерам в макете сайта TOXIN';
-  - var title = 'Поиск по номерам';
+  -
+    let description = 'Страница поиска по номерам в макете сайта TOXIN';
+    let title = 'Поиск по номерам';
 
-block header
-  +nav-bar
 block content
   .search-room-layout.content-container
     aside.search-room-layout__filter
@@ -191,5 +187,3 @@ block content
       text="вариантов аренды",
       hrefPrefix="?page="
     )
-block footer
-  +footer

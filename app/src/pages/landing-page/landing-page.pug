@@ -1,17 +1,13 @@
-extends ~@pug/layouts/main.pug
+extends ~@pug/layouts/toxin-main.pug
 
 //- components
-include ~@common.blocks/basic/nav-bar/nav-bar.pug
-include ~@common.blocks/basic/footer/footer.pug
 include ~@common.blocks/containers/card-pick-room/card-pick-room.pug
 
 block variables
-  - var keywords = 'FSD, Frontend, TOXIN, образование, верстка';
-  - var description = 'Стартовая страница в макете сайта TOXIN';
-  - var title = 'Стартовая страница';
+  -
+    let description = 'Стартовая страница в макете сайта TOXIN';
+    let title = 'Стартовая страница';
 
-block header
-  +nav-bar
 block content
   main.landing-page-layout
     +card-pick-room#card-pick-room.landing-page-layout__pick-room(
@@ -20,5 +16,3 @@ block content
       method=""
     )
     p.landing-page-layout__welcome-text Лучшие номера для вашей работы, отдыха и просто вдохновения
-block footer
-  +footer
