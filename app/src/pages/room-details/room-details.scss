@@ -1,0 +1,140 @@
+.room-details-layout {
+  display: grid;
+  grid-row-gap: 70px / 14px * 1em;
+  grid-column-gap: 70px / 14px * 1em;
+  padding-bottom: 70px / 14px * 1em;
+
+  @media (min-width: 0px) {
+    grid:
+      "demo"
+      "info"
+      "reservation";
+  }
+  @media (min-width: 1440px) {
+    grid:
+      "demo demo"
+      "info reservation";
+  }
+}
+
+.room-details-layout__demo {
+  grid-area: demo;
+  display: grid;
+
+  $cellHeight: 485px/14px * 1em / 2;
+  @media (min-width: 0px) {
+    grid:
+      "big-img" #{$cellHeight * 2}
+      "small-img-1" #{$cellHeight * 2}
+      "small-img-2" #{$cellHeight * 2};
+  }
+  @media (min-width: 992px) {
+    $bigImgWidth: 981px/1440px * 100%;
+    grid:
+      "big-img small-img-1" #{$cellHeight}
+      "big-img small-img-2" #{$cellHeight} / #{$bigImgWidth} 1fr;
+  }
+}
+.room-details-layout__info {
+  grid-area: info;
+  display: grid;
+  grid-row-gap: 30px/14px * 1em;
+  grid-column-gap: inherit;
+
+  @media (min-width: 0px) {
+    grid:
+      "data "
+      "impression"
+      "comments"
+      "rules"
+      "alert";
+  }
+  @media (min-width: 768px) {
+    $theFirstCellWidth: 291px;
+    grid:
+      "data impression"
+      "data ."
+      "comments comments"
+      "rules alert" / #{$theFirstCellWidth} auto;
+  }
+}
+.room-details-layout__reservation {
+  grid-area: reservation;
+  justify-self: center;
+}
+
+.room-details-layout__big-img,
+.room-details-layout__small-img-1,
+.room-details-layout__small-img-2 {
+  padding-top: initial;
+}
+.room-details-layout__big-img {
+  grid-area: big-img;
+}
+.room-details-layout__small-img-1 {
+  grid-area: small-img-1;
+}
+.room-details-layout__small-img-2 {
+  grid-area: small-img-2;
+}
+
+.room-details-layout__data {
+  grid-area: data;
+
+  .form-bullet-list__label {
+    margin-bottom: 20px/19px * 1em;
+  }
+
+  @media (min-width: 0px) {
+    justify-self: center;
+  }
+  @media (min-width: 768px) {
+    justify-self: left;
+  }
+}
+.room-details-layout__impression {
+  grid-area: impression;
+
+  .donut-chart__label {
+    margin-bottom: 20px/19px * 1em;
+  }
+  .donut-chart__bullet-list {
+    align-items: flex-end;
+  }
+  .form-bullet-list__item {
+    &:not(:first-child) {
+      margin-top: 0;
+    }
+    &:before {
+      margin-right: 5px/14px * 1em;
+    }
+  }
+
+  @media (min-width: 0px) {
+    justify-self: center;
+  }
+  @media (min-width: 1440px) {
+    justify-self: left;
+  }
+}
+.room-details-layout__comments {
+  grid-area: comments;
+
+  .form-label {
+    margin-bottom: 20px/19px * 1em;
+  }
+}
+.room-details-layout__rules {
+  grid-area: rules;
+
+  .form-bullet-list__label {
+    margin-left: 20.43px/19px * 1em;
+  }
+}
+.room-details-layout__alert {
+  grid-area: alert;
+
+  h2 {
+    margin-bottom: 20px/19px * 1em;
+  }
+}

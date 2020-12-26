@@ -1,8 +1,69 @@
 extends ~@pug/layouts/toxin-main.pug
 
+//- components
+include ~@common.blocks/containers/card-room-definition/card-room-definition.pug
+include ~@common.blocks/containers/form-bullet-list/form-bullet-list.pug
+include ~@common.blocks/containers/comments/comments.pug
+include ~@common.blocks/primitives/donut-chart/donut-chart.pug
+include ~@pug/mixins/picture.pug
+
 block variables
   -
     let description = 'Страница деталей номера в макете сайта TOXIN';
     let title = 'Детали номера';
 
 block content
+  main.room-details-layout.content-container
+    section.room-details-layout__demo.content-container__negative
+      +picture.room-details-layout__big-img(
+        path="assets/pictures/contents/rooms/luxury/888/888.png",
+        alt="1 фотография номера"
+      )
+      +picture.room-details-layout__small-img-1(
+        path="assets/pictures/contents/rooms/luxury/888/888_2.png",
+        alt="2 фотография номера"
+      )
+      +picture.room-details-layout__small-img-2(
+        path="assets/pictures/contents/rooms/luxury/888/888_3.png",
+        alt="3 фотография номера"
+      )
+    section.room-details-layout__info
+      +form-bullet-list.room-details-layout__data(
+        label={ h2: 'Сведения о номере' },
+        mod="rich",
+        items={ Комфорт: { icon: 'insert_emoticon', description: 'Шумопоглощающие стены' }, Удобство: { icon: 'location_city', description: 'Окно в каждой из спален' }, Уют: { icon: 'whatshot', description: 'Номер оснащен камином' } }
+      )
+      +donut-chart.room-details-layout__impression(
+        label={ h2: 'Впечатления от номера' },
+        items={ Великолепно: 130, Хорошо: 65, Удовлетворительно: 65, Разочарован: 0 },
+        dataName="голосов",
+        list
+      )
+      -
+        const MS_IN_DAY = 1000 * 60 * 60 * 24;
+        const daysAgo_5 = new Date(Date.now() - MS_IN_DAY * 5).toISOString();
+        const daysAgo_7 = new Date(Date.now() - MS_IN_DAY * 7).toISOString();
+      +comments.room-details-layout__comments(
+        label={ h2: 'Отзывы посетителей номера' },
+        items={ comment1: { personName: 'Мурад Сарафанов', iconPath: 'assets/pictures/contents/personas/1/1.png', date: daysAgo_5, content: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.', likeButtonCounter: 12, isLikeButtonChecked: 'checked' }, comment2: { personName: 'Патрисия Стёклышкова', iconPath: 'assets/pictures/contents/personas/2/2.png', date: daysAgo_7, content: 'Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент', likeButtonCounter: 2 } }
+      )
+      +form-bullet-list.room-details-layout__rules(
+        label={ h2: 'Правила' },
+        items=['Нельзя с питомцами', 'Без вечеринок и мероприятий', 'Время прибытия — после 13:00, а выезд до 12:00']
+      )
+      .room-details-layout__alert
+        h2 Отмена
+        p Бесплатная отмена в течение 48 ч. После этого при отмене не позднее чем за 5 дн. до прибытия вы получите полный возврат за вычетом сбора за услуги.
+    +card-room-definition.room-details-layout__reservation(
+      name="room-definition",
+      action="",
+      room-number=888,
+      room-grade="Люкс",
+      payment-amount=9990,
+      arrival-value="2019-08-19",
+      departure-value="2019-08-23",
+      guests-list={ взрослые: { default: 2, min: 0, max: 1 / 0 }, дети: { default: 1, min: 0, max: 1 / 0 }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
+      services-payment=2179,
+      services-sale=2179,
+      additional-services-payment=300
+    )
