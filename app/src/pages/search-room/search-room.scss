@@ -1,10 +1,6 @@
 .search-room-layout {
   display: grid;
   $filterWidth: 266px / (1440px - 140px * 2) * 100%;
-  grid:
-    "filter title"
-    "filter rooms"
-    ". pagination" / #{$filterWidth} auto;
   grid-column-gap: 50px / (1440px - 140px * 2) * 100%;
   align-items: flex-start;
   margin-top: 30px/14px+0em;
