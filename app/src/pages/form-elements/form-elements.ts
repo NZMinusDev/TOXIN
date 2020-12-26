@@ -3,7 +3,7 @@ import "./form-elements.pug";
 import "./form-elements.scss";
 
 // assets
-import "@contents/personas/persona1.png";
+import "@contents/personas/1/1.png";
 
 //libs
 import { DOMHelper } from "@utils/devTools/devTools";
