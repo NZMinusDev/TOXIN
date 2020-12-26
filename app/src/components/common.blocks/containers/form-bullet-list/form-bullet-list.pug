@@ -1,19 +1,21 @@
-//- id: id of list's container
-//- class: class for component bem mix: such as positioning functionality
-//- label: text of label
 //- items: Array<string> // if just use list
-//- EXPANDED:
-//- mod: "rich" | null
 //- items: {// if mod=="rich"
 //-   label1:{icon:"material icon name", description:string},
 //-   label2:{icon:"material icon name", description:string}
 //- }
+//- mod?: "rich" | null
+//- label?: {tag: text}, example: {h2: "my label"}
+//- id?: id of list's container
+//- class?: class for component bem mix: such as positioning functionality
+
 mixin form-bullet-list
-  - const modClass = attributes.mod ? 'form-bullet-list_' + attributes.mod : null;
+  -
+    const modClass = attributes.mod ? 'form-bullet-list_' + attributes.mod : null;
+    const labelKey = attributes.label ? Object.keys(attributes.label)[0] : null;
   .form-bullet-list(id=attributes.id, class=modClass, class=attributes.class)
-    if attributes.label
-      h3.form-label.form-bullet-list__label
-        label(for=attributes.id)= attributes.label
+    if labelKey
+      #{labelKey}.form-label.form-bullet-list__label
+        label(for=attributes.id)= attributes.label[labelKey]
     ul.form-bullet-list__list
       each item, key in attributes.items
         case attributes.mod
