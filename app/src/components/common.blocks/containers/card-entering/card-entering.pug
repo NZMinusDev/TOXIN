@@ -23,7 +23,7 @@ mixin card-entering
       type="password",
       name=`${attributes.name}-password`
     )
-    +button.card-entering__entering-btn(type="submit", value="Войти", modClass="link")
+    +button.card-entering__link-btn(type="submit", value="Войти", modClass="link")
     p.card-entering__caption-of-redirect-to-registration Нет аккаунта на Toxin?
-    a.card-entering__registration-btn(href=attributes.href)
+    a.card-entering__switch-btn(href=attributes.href)
       +button(type="button", value="Создать", modClass="bordered")

@@ -50,11 +50,11 @@ mixin card-registration
       name=`${attributes.name}-specialOffers`,
       itemLabel="Получать спецпредложения"
     )
-    +button.card-registration__pay-btn(
+    +button.card-registration__link-btn(
       type="submit",
       value="Перейти к оплате",
       modClass="link"
     )
     p.card-registration__caption-of-redirect-to-entering Уже есть аккаунт на Toxin
-    a.card-registration__entering-btn(href=attributes.href)
+    a.card-registration__switch-btn(href=attributes.href)
       +button(type="button", value="Войти", modClass="bordered")
