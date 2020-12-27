@@ -10,8 +10,7 @@ include ~@common.blocks/primitives/button/button.pug
 //- room-number: {number} - number of room
 //- room-grade: {string} - grade of room
 //- payment-amount: {number} - daily cost
-//- arrival-value: {ISODateString}
-//- departure-value: {ISODateString}
+//- selected-dates?: {ISODateString,ISODateString} - initial dates; example: "2020-11-18T21:00:00.000Z,2020-11-20T21:00:00.000Z";
 //- guests-list: {object} - { itemName1: { default: 2, min: 0, max: 1 / 0 }, itemName2: { default: 1, min: 0, max: 1 / 0 }, itemName3: { default: 0, min: 0, max: 1 / 0 } }
 //- services-payment: {number} - amount of services payment
 //- services-sale: {number} - amount of services sale
@@ -46,16 +45,18 @@ mixin card-room-definition
       h3.card-room-definition__room-grade= attributes['room-grade']
     h3.card-room-definition__day-payment(data-amount-js=attributes['payment-amount'])!= paymentAmountSentence
     +form-dropdown.card-room-definition__arrival-date-dropdown(
+      label="Прибытие",
       name=`${attributes.name}-arrival`,
       type="date",
-      label="Прибытие",
-      selected-dates=attributes['arrival-value']
+      output="plural",
+      selected-dates=attributes['selected-dates'],
+      altFields=`.card-room-definition__departure-date-dropdown [name=${attributes.name}-departure]`
     )
     +form-dropdown.card-room-definition__departure-date-dropdown(
+      label="Выезд",
       name=`${attributes.name}-departure`,
       type="date",
-      label="Выезд",
-      selected-dates=attributes['departure-value']
+      isAltField
     )
     +form-dropdown.card-room-definition__guests-single-apply(
       name=`${attributes.name}-guests`,

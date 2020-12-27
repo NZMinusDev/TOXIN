@@ -20,10 +20,12 @@ export type CardDatepickerDOM = {
   calendar: HTMLDivElement;
   clearBtn: HTMLButtonElement;
   applyBtn: HTMLButtonElement;
+  $altFields: JQuery<HTMLElement>;
 };
 export interface CardDatepickerAPI extends PluginCreation.Plugin {
   readonly dom: CardDatepickerDOM;
   readonly lastFormattedDate: string;
+  readonly lastDates: Array<Date>;
 }
 export class CardDatepicker implements CardDatepickerAPI {
   readonly dom: CardDatepickerDOM = {
@@ -33,11 +35,16 @@ export class CardDatepicker implements CardDatepickerAPI {
     calendar: null,
     clearBtn: null,
     applyBtn: null,
+    $altFields: null,
   };
 
-  private _lastFormattedDate: string;
+  private _lastFormattedDate = "";
   public get lastFormattedDate(): string {
     return this._lastFormattedDate;
+  }
+  private _lastDates = [];
+  public get lastDates(): Array<Date> {
+    return this._lastDates;
   }
 
   private APPLY_CONTROL = `<div class="apply-control"><input class="apply-control__clear-btn-js apply-control__clear-btn-js_isHidden" type="button" value="очистить"><input class="apply-control__apply-btn-js" type="button" value="применить"></div>`;
@@ -58,6 +65,7 @@ export class CardDatepicker implements CardDatepickerAPI {
     this.dom.self = cardDatepicker;
     this.dom.$self = $(cardDatepicker);
     this.dom.input = cardDatepicker.previousElementSibling as HTMLInputElement;
+    this.dom.$altFields = $(this.dom.self.dataset.altFields);
   }
   protected _initGeneratedDOM() {
     this.dom.calendar = this.dom.self.querySelector(".datepicker");
@@ -90,15 +98,20 @@ export class CardDatepicker implements CardDatepickerAPI {
     $(this.dom.self).datepicker({
       prevHtml: `arrow_back`,
       nextHtml: `arrow_forward`,
-      dateFormat: this.dom.self.dataset.range ? "dd M" : "dd.mm.yyyy",
+      dateFormat: this.dom.self.dataset.range && !this.dom.$altFields ? "dd M" : "dd.mm.yyyy",
+      altField: this.dom.$altFields,
+      altFieldDateFormat: "dd.mm.yyyy",
       minDate: new Date(),
       toggleSelected: false,
       onSelect: (formattedDate, date, inst) => {
         this._lastFormattedDate = formattedDate;
+        this._lastDates = date;
 
         if (this.dom.clearBtn) {
           this.dom.clearBtn.classList.remove("apply-control__clear-btn-js_isHidden");
         }
+
+        this.dom.self.dispatchEvent(new CustomEvent("select"));
       },
     });
 

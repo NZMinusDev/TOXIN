@@ -18,14 +18,17 @@ mixin card-pick-room
   )
     h1.card-pick-room__title Найдём номера под ваши пожелания
     +form-dropdown.card-pick-room__arrival-date-dropdown(
+      label="Прибытие",
       name=`${attributes.name}-arrival`,
       type="date",
-      label="Прибытие"
+      output="plural",
+      altFields=`.card-pick-room__departure-date-dropdown [name=${attributes.name}-departure]`
     )
     +form-dropdown.card-pick-room__departure-date-dropdown(
+      label="Выезд",
       name=`${attributes.name}-departure`,
       type="date",
-      label="Выезд"
+      isAltField
     )
     +form-dropdown.card-pick-room__guests-single-apply(
       name=`${attributes.name}-guests`,
