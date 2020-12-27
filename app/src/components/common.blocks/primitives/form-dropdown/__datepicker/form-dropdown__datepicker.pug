@@ -8,6 +8,5 @@ mixin form-dropdown__datepicker
       selected-dates=attributes['selected-dates'],
       data-range=attributes['data-range']
     )
-    p.form-dropdown__selection-text(
-      placeholder=attributes.placeholder || attributes['data-range'] ? 'День месяц - день месяц' : 'ДД.ММ.ГГГГ'
-    )
+    p.form-dropdown__selection-text
+      time(datetime=attributes['selected-dates'],  placeholder=attributes.placeholder || attributes['data-range'] ? 'День месяц - день месяц' : 'ДД.ММ.ГГГГ')

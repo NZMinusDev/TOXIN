@@ -45,7 +45,9 @@ export class DatepickerDropdown implements DatepickerDropdownAPI {
 
     this.dom.self = datepickerDropdown;
     this.dom.openingButton = this.dom.self.querySelector(".form-dropdown__datepicker-btn");
-    this.dom.selection = this.dom.openingButton.querySelector(".form-dropdown__selection-text");
+    this.dom.selection = this.dom.openingButton.querySelector(
+      ".form-dropdown__selection-text time"
+    );
   }
   protected _initOpenMod() {
     this.dom.cardDatepickerDOM.calendar.addEventListener("click", (event) => {
@@ -63,6 +65,10 @@ export class DatepickerDropdown implements DatepickerDropdownAPI {
       this.dom.selection.textContent =
         this.dom.cardDatepickerDOM.self.cardDatepicker.lastFormattedDate ||
         this.dom.selection.getAttribute("placeholder");
+      this.dom.selection.setAttribute(
+        "datetime",
+        this.dom.cardDatepickerDOM.input.value
+      );
 
       this.dom.self.dispatchEvent(new CustomEvent("change"));
     });
@@ -72,6 +78,10 @@ export class DatepickerDropdown implements DatepickerDropdownAPI {
     this.dom.selection.textContent =
       this.dom.cardDatepickerDOM.self.cardDatepicker.lastFormattedDate ||
       this.dom.selection.getAttribute("placeholder");
+    this.dom.selection.setAttribute(
+      "datetime",
+      this.dom.cardDatepickerDOM.input.value
+    );
 
     this.dom.cardDatepickerDOM.calendar.classList.add(
       "form-dropdown__calendar-js",
