@@ -6,14 +6,11 @@ import { dropdowns } from "./../form-dropdown";
 export interface ToxinIQDropdownElement extends HTMLDivElement {
   toxinIQDropdown: ToxinIQDropdownAPI;
 }
-export interface ToxinIQDropdownOpeningButton extends HTMLButtonElement {
-  setSelectionText(itemCount: { itemID: number }, totalItems: number): string;
-}
 
 export type ToxinIQDropdownDOM = {
   self: ToxinIQDropdownElement;
   mainInput: HTMLInputElement;
-  openingButton: ToxinIQDropdownOpeningButton;
+  openingButton: HTMLButtonElement;
   selection: HTMLParagraphElement;
   menu: HTMLDivElement;
   optionInputs: NodeListOf<HTMLInputElement>;
@@ -27,8 +24,7 @@ export type ToxinIQDropdownDOM = {
 export interface ToxinIQDropdownAPI extends PluginCreation.Plugin {
   readonly dom: ToxinIQDropdownDOM;
 
-  readonly lastChangedItem: { itemID: number };
-  readonly totalItems: number;
+  readonly groupCounterList: Map<string, number>;
 
   open(): boolean;
   close(): boolean;
@@ -52,22 +48,42 @@ export class ToxinIQDropdown implements ToxinIQDropdownAPI {
     counters: null,
   };
 
-  private _lastChangedItem: { itemID: number };
-  public get lastChangedItem(): { itemID: number } {
-    return this._lastChangedItem;
+  private _groupCounterList = new Map<string, number>();
+  public get groupCounterList(): Map<string, number> {
+    return this._groupCounterList;
   }
-  private _totalItems: number;
-  public get totalItems(): number {
-    return this._totalItems;
-  }
+
   private _libOptions: LibIQDropdownOptions = {
     setSelectionText: (itemCount, totalItems) => {
-      this._lastChangedItem = itemCount;
-      this._totalItems = totalItems;
+      let result = "";
+      const groups = JSON.parse(this.dom.menu.dataset.groups);
+      this._groupCounterList.clear();
 
-      return this.dom.openingButton.setSelectionText
-        ? this.dom.openingButton.setSelectionText(itemCount, totalItems)
-        : "";
+      this.dom.menuOptions.forEach((menuOption) => {
+        const groupKey = menuOption.dataset.group || menuOption.dataset.id;
+        const groupAmount = this._groupCounterList.get(groupKey)
+          ? this._groupCounterList.get(groupKey) + itemCount[menuOption.dataset.id]
+          : itemCount[menuOption.dataset.id];
+
+        this._groupCounterList.set(groupKey, groupAmount);
+      });
+
+      if (totalItems > 0) {
+        let appendedText = "";
+
+        this._groupCounterList.forEach((amount, group) => {
+          if (amount > 0) {
+            if (result !== "") result += ", ";
+
+            appendedText = amount === 1 ? groups[group].selectionText : groups[group].textPlural;
+            result += amount + " " + appendedText;
+          }
+        });
+      } else {
+        result = this.dom.selection.dataset.placeholder;
+      }
+
+      return result;
     },
     controls: {
       position: "right",

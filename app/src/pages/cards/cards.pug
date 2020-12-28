@@ -35,7 +35,8 @@ block content
       room-grade="Люкс",
       payment-amount=9990,
       selected-dates="2019-08-19,2019-08-23",
-      guests-list={ взрослые: { default: 2, min: 0, max: 1 / 0 }, дети: { default: 1, min: 0, max: 1 / 0 }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
+      guests-groups={ гости: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } },
+      guests-list={ взрослые: { default: 2, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 1, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
       services-payment=2179,
       services-sale=2179,
       additional-services-payment=300

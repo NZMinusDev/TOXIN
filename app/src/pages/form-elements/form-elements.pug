@@ -43,9 +43,8 @@ block content
         isFilter,
         placeholder="Сколько гостей",
         openMod="apply",
-        list={ взрослые: { default: 0, min: 0, max: 1 / 0 }, дети: { default: 0, min: 0, max: 1 / 0 }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
-        selectionText="гость",
-        textPlural="гостя"
+        groups={ гости: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } },
+        list={ взрослые: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0 } }
       )
       +form-text-field#masked-text-field.form-elements-layout__masked-text-field(
         label="masked text field",
@@ -156,6 +155,7 @@ block content
         label="dropdown",
         output="plural",
         openMod="fold",
+        groups={ спальни: { selectionText: 'спальня', textPlural: 'спальни' }, кровати: { selectionText: 'кровать', textPlural: 'кровати' }, 'ванные комнаты': { selectionText: 'ванная комната', textPlural: 'ванные комнаты' } },
         list={ спальни: { default: 2, min: 1, max: 3 }, кровати: { default: 2, min: 1, max: 3 }, 'ванные комнаты': { default: 0, min: 0, max: 2 } }
       )
       +form-dropdown#dropdown-expanded-plural.form-elements-layout__dropdown-expanded-plural(
@@ -164,6 +164,7 @@ block content
         label="dropdown",
         output="plural",
         openMod="fold",
+        groups={ спальни: { selectionText: 'спальня', textPlural: 'спальни' }, кровати: { selectionText: 'кровать', textPlural: 'кровати' }, 'ванные комнаты': { selectionText: 'ванная комната', textPlural: 'ванные комнаты' } },
         list={ спальни: { default: 2, min: 1, max: 3 }, кровати: { default: 2, min: 1, max: 3 }, 'ванные комнаты': { default: 0, min: 0, max: 2 } }
       )
       +form-dropdown#dropdown-expanded-apply.form-elements-layout__dropdown-expanded-apply(
@@ -173,9 +174,8 @@ block content
         label="dropdown",
         placeholder="Сколько гостей",
         openMod="apply",
-        list={ взрослые: { default: 0, min: 0, max: 1 / 0 }, дети: { default: 0, min: 0, max: 1 / 0 }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
-        selectionText="гость",
-        textPlural="гостя"
+        groups={ гости: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } },
+        list={ взрослые: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0 } }
       )
       +form-dropdown#dropdown-expanded-clear-apply.form-elements-layout__dropdown-expanded-clear-apply(
         name="guests2",
@@ -184,9 +184,8 @@ block content
         label="dropdown",
         placeholder="Сколько гостей",
         openMod="apply",
-        list={ взрослые: { default: 2, min: 0, max: 1 / 0 }, дети: { default: 1, min: 0, max: 1 / 0 }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
-        selectionText="гость",
-        textPlural="гостя"
+        groups={ гости: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } },
+        list={ взрослые: { default: 2, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 1, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0 } }
       )
       .form-elements-layout__expandable-checkbox-list
         +form-expandable-checkbox-list#expandable-checkbox-list-default(

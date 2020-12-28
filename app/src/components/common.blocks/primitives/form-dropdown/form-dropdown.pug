@@ -15,10 +15,8 @@ include ~@common.blocks/primitives/apply-control/apply-control.pug
 //-   altFields?: {string} - selector of bonded alt fields
 //- Additional for type: item-quantity
   //- openMod?: "toggle" | "fold" | "apply", default is "toggle"
-  //- list: object like this: { itemName1: { default: 2, min: 0, max: 1 / 0 }, itemName2: { default: 1, min: 0, max: 1 / 0 }, itemName3: { default: 0, min: 0, max: 1 / 0 } }
-  //- Additional for openMod == "single"
-    //- selectionText?: text of 1 item
-    //- textPlural?: text of >1 items
+  //- groups: {groupName1:{selectionText: string, textPlural: string},groupName2:selectionText: string, textPlural: string,...}, example: { guests: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } }
+  //- list: {itemName1: {default: number, min: number, max: number, group?: groupName2},itemName1: {default: number, min: number, max: number, group?: groupName1},...}, example:{ взрослые: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0} }; - if group is unset the itemName will be used instead
 mixin form-dropdown
   -
     const output = attributes.output ? attributes.output : "single";
@@ -46,12 +44,11 @@ mixin form-dropdown
           +form-dropdown__item-quantity-list(
             name=attributes.name,
             id=attributes.id,
-            class=`form-dropdown__item-quantity-list_output-${output} form-dropdown__item-quantity-list_openMod-${openMod}`,
+            class=`form-dropdown__item-quantity-list_openMod-${openMod}`,
             isFilter=isFilter,
             placeholder=attributes.placeholder,
-            list=attributes.list,
-            selectionText=attributes.selectionText,
-            textPlural=attributes.textPlural
+            groups=attributes.groups,
+            list=attributes.list
           )
             if openMod === "apply"
               +apply-control.form-dropdown__link-btns

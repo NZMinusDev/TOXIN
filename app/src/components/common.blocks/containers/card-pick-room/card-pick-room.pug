@@ -36,8 +36,7 @@ mixin card-pick-room
       label="Гости",
       placeholder="Сколько гостей",
       openMod="apply",
-      list={ взрослые: { default: 0, min: 0, max: 1 / 0 }, дети: { default: 0, min: 0, max: 1 / 0 }, младенцы: { default: 0, min: 0, max: 1 / 0 } },
-      selectionText="гость",
-      textPlural="гостя"
+      groups={ гости: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } },
+      list={ взрослые: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0 } }
     )
     +button.card-pick-room__submit-btn(type="submit", value="Подобрать номер", modClass="link")

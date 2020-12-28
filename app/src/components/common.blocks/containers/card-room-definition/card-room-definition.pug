@@ -11,7 +11,8 @@ include ~@common.blocks/primitives/button/button.pug
 //- room-grade: {string} - grade of room
 //- payment-amount: {number} - daily cost
 //- selected-dates?: {ISODateString,ISODateString} - initial dates; example: "2020-11-18T21:00:00.000Z,2020-11-20T21:00:00.000Z";
-//- guests-list: {object} - { itemName1: { default: 2, min: 0, max: 1 / 0 }, itemName2: { default: 1, min: 0, max: 1 / 0 }, itemName3: { default: 0, min: 0, max: 1 / 0 } }
+//- guests-groups: {groupName1:{selectionText: string, textPlural: string},groupName2:selectionText: string, textPlural: string,...}, example: { guests: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } }
+//- guests-list: {itemName1: {default: number, min: number, max: number, group?: groupName2},itemName1: {default: number, min: number, max: number, group?: groupName1},...}, example:{ взрослые: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0} }; - if group is unset the itemName will be used instead 
 //- services-payment: {number} - amount of services payment
 //- services-sale: {number} - amount of services sale
 //- additional-services-payment: {number} - amount of additional services payment
@@ -64,9 +65,8 @@ mixin card-room-definition
       label="Гости",
       placeholder="Сколько гостей",
       openMod="apply",
-      list=attributes['guests-list'],
-      selectionText="гость",
-      textPlural="гостя"
+      groups=attributes['guests-groups'],
+      list=attributes['guests-list']
     )
     .card-room-definition__payment-rates
       p.card-room-definition__payment-item.card-room-definition__total-day-payment

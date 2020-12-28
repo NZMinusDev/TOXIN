@@ -14,12 +14,8 @@ mixin form-dropdown__item-quantity-list
     isFilter=attributes.isFilter
   )
   button.iqdropdown.form-dropdown__item-quantity-list(id=attributes.id, class=attributes.class, type="button")
-    p.iqdropdown-selection(
-      data-selection-text=attributes.selectionText,
-      data-text-plural=attributes.textPlural,
-      data-placeholder=attributes.placeholder || ''
-    )
-    .iqdropdown-menu
+    p.iqdropdown-selection(data-placeholder=attributes.placeholder || '')
+    .iqdropdown-menu(data-groups=attributes.groups)
       each limits, item in attributes.list
         input.form-dropdown__option-input(
           type="hidden",
@@ -30,7 +26,8 @@ mixin form-dropdown__item-quantity-list
           data-id=item,
           data-defaultcount=limits.default,
           data-mincount=limits.min,
-          data-maxcount=limits.max
+          data-maxcount=limits.max,
+          data-group=limits.group
         ) 
           div
             h3.iqdropdown-itemItem= item
