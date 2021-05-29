@@ -6,7 +6,6 @@
   "editor.rulers": [100],
   "editor.wordWrap": "wordWrapColumn",
   "editor.wordWrapColumn": 100,
-  "prettier.printWidth": 100,
   "files.autoSave": "afterDelay",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
@@ -53,7 +52,10 @@
   "cSpell.words": [
     "Espree",
     "Flexbugs",
+    "Incrementation",
     "Postcss",
+    "Preprocessors",
+    "Supremum",
     "Zaitsev",
     "autoprefixed",
     "bemdecl",
@@ -62,6 +64,7 @@
     "devtool",
     "doiuse",
     "gifsicle",
+    "infimum",
     "inspectpack",
     "jpegtran",
     "mixins",
@@ -69,9 +72,15 @@
     "modificators",
     "narmalize",
     "nohashed",
+    "nooped",
     "optipng",
     "prefetch",
     "spritesheet",
+    "tabindex",
+    "valuemax",
+    "valuemin",
+    "valuenow",
+    "valuetext",
     "webp"
   ],
   "cSpell.ignoreWords": ["import", "import normalize", "normalize"],
@@ -84,13 +93,9 @@
   },
   "path-autocomplete.pathMappings": {
     "@pug": "${folder}/app/src/pug",
+    "@layouts": "${folder}/app/src/layouts",
     "@library.blocks": "${folder}/app/src/components/library.blocks/",
     "@common.blocks": "${folder}/app/src//components/common.blocks/",
-    "@small-mobile.blocks": "${folder}/app/src/components/small-mobile.blocks/",
-    "@large-mobile.blocks": "${folder}/app/src/components/large-mobile.blocks/",
-    "@tablet.blocks": "${folder}/app/src/components/tablet.blocks/",
-    "@small-desktop.blocks": "${folder}/app/src/components/small-desktop.blocks/",
-    "@large-desktop.blocks": "${folder}/app/src/components/large-desktop.blocks/",
     "@thematic": "${folder}/app/src/components/thematic/",
     "@experiments": "${folder}/app/src/components/experimental/",
     "@images": "${folder}/app/src/assets/pictures/images/",
@@ -100,5 +105,6 @@
   },
   "path-autocomplete.triggerOutsideStrings": true,
   "path-autocomplete.enableFolderTrailingSlash": true,
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "plantuml.exportOutDir": "./"
 }
