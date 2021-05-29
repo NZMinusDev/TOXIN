@@ -5,8 +5,8 @@
 //- class?: class for component bem mix: such as positioning functionality
 //- isFilter?: {boolean} - if true, input change event will reload page with chosen value(get method), default is false
 //- label?: text of label
+//- description: {string} - appended text after slider
 //- step?: {number}
-//- data-suffix?: string for append after amounts
 mixin form-range-slider
   .form-range-slider(
     class=attributes.class,
@@ -36,7 +36,8 @@ mixin form-range-slider
     output.form-range-slider__result(
       name=attributes.name,
       id=attributes.id ? attributes.id + '-result' : null,
-      for=attributes.id ? attributes.id + '-from' + ' ' + attributes.id + '-to' : null,
-      data-suffix=attributes['data-suffix']
+      for=attributes.id ? attributes.id + '-from' + ' ' + attributes.id + '-to' : null
     )
     .form-range-slider__slider(id=attributes.id)
+    if attributes.description
+      p.form-range-slider__description= attributes.description

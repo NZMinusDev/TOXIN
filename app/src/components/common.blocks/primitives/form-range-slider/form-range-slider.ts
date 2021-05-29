@@ -22,10 +22,10 @@ sliderContainers.forEach((sliderContainer: HTMLDivElement) => {
     inputTo.value = values[values.length - 1];
     result.value =
       parseInt(values[0]).toLocaleString() +
-      (result.dataset.suffix ? result.dataset.suffix : "") +
+      "₽" +
       " - " +
       parseInt(values[values.length - 1]).toLocaleString() +
-      (result.dataset.suffix ? result.dataset.suffix : "");
+      "₽";
   });
 
   if (sliderContainer.getAttribute("isFilter")) {

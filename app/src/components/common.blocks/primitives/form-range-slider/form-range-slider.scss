@@ -1,7 +1,9 @@
 .form-range-slider {
   display: grid;
-  height: 3.142857142857143em;
   grid:
-    "label result" 1fr
-    "slider slider" 2fr / 1fr 1fr;
+    "label result"
+    ". ." 23px/14px * 1em
+    "slider slider"
+    ". ." 13px/14px * 1em
+    "description description";
 }
