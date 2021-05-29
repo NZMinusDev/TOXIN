@@ -1,28 +1,27 @@
 // page's resources
-import "./form-elements.pug";
-import "./form-elements.scss";
+import './form-elements.pug';
+import './form-elements.scss';
 
-// assets
-import "@contents/personas/1/1.png";
+// libs
+import { has } from '@utils/devTools/tools/DOMHelper';
 
-//libs
-import { DOMHelper } from "@utils/devTools/devTools";
-
-//components
+// components
 import {
   dropdownsWithIQList,
   ToxinIQDropdownElement,
-} from "@common.blocks/primitives/form-dropdown/__item-quantity-list/form-dropdown__item-quantity-list.ts";
+} from '@common.blocks/primitives/form-dropdown/__item-quantity-list/form-dropdown__item-quantity-list';
 
 // focus components
-(document.querySelector("#text-field-hover") as HTMLElement).focus();
+(document.querySelector('#text-field-hover') as HTMLElement).focus();
 
-(DOMHelper.has(dropdownsWithIQList, "#dropdown-expanded-plural").closest(
-  ".form-dropdown"
+const DROPDOWN_SELECTOR = '.form-dropdown';
+
+(has(dropdownsWithIQList, '#dropdown-expanded-plural').closest(
+  DROPDOWN_SELECTOR
 ) as ToxinIQDropdownElement).toxinIQDropdown.open();
-(DOMHelper.has(dropdownsWithIQList, "#dropdown-expanded-apply").closest(
-  ".form-dropdown"
+(has(dropdownsWithIQList, '#dropdown-expanded-apply').closest(
+  DROPDOWN_SELECTOR
 ) as ToxinIQDropdownElement).toxinIQDropdown.open();
-(DOMHelper.has(dropdownsWithIQList, "#dropdown-expanded-clear-apply").closest(
-  ".form-dropdown"
+(has(dropdownsWithIQList, '#dropdown-expanded-clear-apply').closest(
+  DROPDOWN_SELECTOR
 ) as ToxinIQDropdownElement).toxinIQDropdown.open();

@@ -1,11 +1,12 @@
-@use "./variables.scss";
-
 .tooltip {
+  $TOOLTIP_ICON_SIZE: 1.428571428571429em;
+  $TOOLTIP_ARROW_SIZE: 0.3571428571428571em;
+
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: variables.$TOOLTIP_ICON_SIZE;
-  height: variables.$TOOLTIP_ICON_SIZE;
+  width: $TOOLTIP_ICON_SIZE;
+  height: $TOOLTIP_ICON_SIZE;
   position: relative;
   border: 1px solid black;
   border-radius: 100%;
@@ -15,7 +16,7 @@
   //Tooltip text container
   &:before {
     content: attr(data-content);
-    top: variables.$TOOLTIP_ARROW_SIZE + variables.$TOOLTIP_ICON_SIZE;
+    top: $TOOLTIP_ARROW_SIZE + $TOOLTIP_ICON_SIZE;
     padding: 0.5em 1em;
     color: white;
     background-color: black;
@@ -25,10 +26,10 @@
   //Tooltip arrow
   &:after {
     content: "";
-    top: variables.$TOOLTIP_ICON_SIZE;
-    border-bottom: variables.$TOOLTIP_ARROW_SIZE solid black;
-    border-right: variables.$TOOLTIP_ARROW_SIZE solid transparent;
-    border-left: variables.$TOOLTIP_ARROW_SIZE solid transparent;
+    top: $TOOLTIP_ICON_SIZE;
+    border-bottom: $TOOLTIP_ARROW_SIZE solid black;
+    border-right: $TOOLTIP_ARROW_SIZE solid transparent;
+    border-left: $TOOLTIP_ARROW_SIZE solid transparent;
   }
 
   //Setting up the transition
