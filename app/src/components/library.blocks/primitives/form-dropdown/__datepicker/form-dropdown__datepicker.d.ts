@@ -1,14 +1,16 @@
-interface JQuery {
-  datepicker(options?: LibAirDatepicker);
-}
 type LibAirDatepicker = {
   classes?: string;
   prevHtml?: string;
   nextHtml?: string;
   dateFormat?: string;
+  // eslint-disable-next-line no-use-before-define
   altField?: string | JQuery<HTMLElement>;
   altFieldDateFormat?: string;
   minDate?: Date;
   toggleSelected?: boolean;
-  onSelect?: (formattedDate: string, date: Array<Date>, inst: object) => void;
+  onSelect?: (formattedDate: string, date: Array<Date>, inst: Record<string, unknown>) => void;
 };
+
+interface JQuery {
+  datepicker(options?: LibAirDatepicker);
+}
