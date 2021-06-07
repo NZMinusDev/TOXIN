@@ -1,7 +1,7 @@
-@use "@utils/devTools/devTools.scss";
+@use "@utils/devTools/styles/functions.scss";
 
 .nav-bar__login_isConfirmed {
   &:before {
-    border-left-color: devTools.getColor(color__dark-shade, 0.1);
+    border-left-color: functions.getColor(color__dark-shade, 0.1);
   }
 }

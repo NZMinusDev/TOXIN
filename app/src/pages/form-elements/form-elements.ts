@@ -3,7 +3,7 @@ import './form-elements.pug';
 import './form-elements.scss';
 
 // libs
-import { has } from '@utils/devTools/tools/DOMHelper';
+import { has } from '@utils/devTools/scripts/DOMHelper';
 
 // components
 import {

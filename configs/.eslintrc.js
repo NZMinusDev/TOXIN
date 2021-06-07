@@ -123,7 +123,6 @@ module.exports = {
     'import/resolver': {
       alias: {
         map: [
-          ['@pug', './app/src/pug'],
           ['@layouts', './app/src/layouts'],
           ['@library.blocks', './app/src/components/library.blocks'],
           ['@common.blocks', './app/src/components/common.blocks/'],

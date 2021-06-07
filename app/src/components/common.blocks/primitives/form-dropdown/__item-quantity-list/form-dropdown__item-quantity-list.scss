@@ -1,4 +1,4 @@
-@use "@utils/devTools/devTools.scss";
+@use "@utils/devTools/styles/mixins.scss";
 
 .form-dropdown__item-quantity-list {
   display: block;
@@ -13,7 +13,7 @@
     width: (15px+160px)/266px * 100%;
     color: inherit;
     font: inherit;
-    @include devTools.ellipsisText;
+    @include mixins.ellipsisText;
 
     // remove lib selection-icon
     &::after {

@@ -1,5 +1,5 @@
-@use "@utils/devTools/devTools.scss";
+@use "@utils/devTools/styles/functions.scss";
 
 .logo__title {
-  color: devTools.getColor(color__dark-shade, 1);
+  color: functions.getColor(color__dark-shade, 1);
 }

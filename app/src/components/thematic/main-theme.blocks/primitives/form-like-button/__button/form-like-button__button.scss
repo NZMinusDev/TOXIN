@@ -1,4 +1,4 @@
-@use "@utils/devTools/devTools.scss";
+@use "@utils/devTools/styles/functions.scss";
 
 @use "@thematic/main-theme.blocks/gradients.scss";
 
@@ -12,7 +12,7 @@
   &:before,
   &:after {
     font-size: 0.4167rem;
-    color: devTools.getColor(color__dark-shade, 0.25);
+    color: functions.getColor(color__dark-shade, 0.25);
   }
   &:before {
     line-height: 0.354167rem;
@@ -23,6 +23,6 @@
 
   &:checked:before,
   &:checked:after {
-    color: devTools.getColor(color__primary, 1);
+    color: functions.getColor(color__primary, 1);
   }
 }

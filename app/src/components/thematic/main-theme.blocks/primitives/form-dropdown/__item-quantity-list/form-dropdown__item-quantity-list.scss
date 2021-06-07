@@ -1,4 +1,4 @@
-@use "@utils/devTools/devTools.scss";
+@use "@utils/devTools/styles/functions.scss";
 
 .form-dropdown__item-quantity-list.menu-open {
   .iqdropdown-menu {
@@ -14,12 +14,12 @@
       }
 
       &:before {
-        color: devTools.getColor(color__dark-shade, 0.5);
+        color: functions.getColor(color__dark-shade, 0.5);
       }
     }
     .counter {
       font-weight: 700;
-      color: devTools.getColor(color__dark-shade, 1);
+      color: functions.getColor(color__dark-shade, 1);
     }
   }
 }

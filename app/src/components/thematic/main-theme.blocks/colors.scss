@@ -1,4 +1,4 @@
-@use "@utils/devTools/devTools.scss";
+@use "@utils/devTools/styles/functions.scss";
 
 :root {
   --color__dark-shade: 31, 32, 65;
@@ -11,9 +11,9 @@
 h1,
 h2,
 h3 {
-  color: devTools.getColor(color__dark-shade, 1);
+  color: functions.getColor(color__dark-shade, 1);
 }
 
 body {
-  color: devTools.getColor(color__dark-shade, 0.75);
+  color: functions.getColor(color__dark-shade, 0.75);
 }

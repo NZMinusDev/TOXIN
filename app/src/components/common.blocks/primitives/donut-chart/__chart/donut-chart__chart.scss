@@ -1,4 +1,4 @@
-@use "@utils/devTools/devTools.scss";
+@use "@utils/devTools/styles/mixins.scss";
 
 .donut-chart__chart {
   grid-area: chart;
@@ -72,5 +72,5 @@
 
 .donut-chart__counter {
   width: 80%;
-  @include devTools.centerAbsPosition;
+  @include mixins.centerAbsPosition;
 }

@@ -1,4 +1,4 @@
-@use "@utils/devTools/devTools.scss";
+@use "@utils/devTools/styles/functions.scss";
 
 @use "@thematic/main-theme.blocks/gradients.scss";
 
@@ -6,7 +6,7 @@
   border: var(--border);
 
   &:checked {
-    border-color: devTools.getColor(color__primary, 1);
+    border-color: functions.getColor(color__primary, 1);
   }
 
   &:before {

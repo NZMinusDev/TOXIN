@@ -92,7 +92,6 @@
     "**/{.git,node_modules}": { "when": "**" }
   },
   "path-autocomplete.pathMappings": {
-    "@pug": "${folder}/app/src/pug",
     "@layouts": "${folder}/app/src/layouts",
     "@library.blocks": "${folder}/app/src/components/library.blocks/",
     "@common.blocks": "${folder}/app/src//components/common.blocks/",
@@ -101,7 +100,7 @@
     "@images": "${folder}/app/src/assets/pictures/images/",
     "@contents": "${folder}/app/src/assets/pictures/contents/",
     "@fonts": "${folder}/app/src/assets/fonts/",
-    "@utils": "${folder}/app/src/utils/"
+    "@utils": "${folder}/app/src/utils/",
   },
   "path-autocomplete.triggerOutsideStrings": true,
   "path-autocomplete.enableFolderTrailingSlash": true,

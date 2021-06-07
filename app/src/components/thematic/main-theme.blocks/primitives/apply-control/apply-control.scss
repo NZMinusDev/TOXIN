@@ -1,4 +1,4 @@
-@use "@utils/devTools/devTools.scss";
+@use "@utils/devTools/styles/functions.scss";
 
 .apply-control {
   .apply-control__clear-btn-js,
@@ -8,9 +8,9 @@
   }
 
   .apply-control__clear-btn-js {
-    color: devTools.getColor(color__dark-shade, 0.5);
+    color: functions.getColor(color__dark-shade, 0.5);
   }
   .apply-control__apply-btn-js {
-    color: devTools.getColor(color__primary, 1);
+    color: functions.getColor(color__primary, 1);
   }
 }

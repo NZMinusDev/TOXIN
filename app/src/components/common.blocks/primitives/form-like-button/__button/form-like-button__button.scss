@@ -1,4 +1,4 @@
-@use "@utils/devTools/devTools.scss";
+@use "@utils/devTools/styles/mixins.scss";
 
 .form-like-button__button {
   appearance: none;
@@ -30,6 +30,6 @@
 
   &:after {
     content: attr(data-counter);
-    @include devTools.ellipsisText;
+    @include mixins.ellipsisText;
   }
 }

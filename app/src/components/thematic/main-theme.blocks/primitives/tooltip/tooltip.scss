@@ -1,6 +1,6 @@
-@use "@utils/devTools/devTools.scss";
+@use "@utils/devTools/styles/functions.scss";
 
 .tooltip {
-  color: devTools.getColor(color__dark-shade, 0.25);
+  color: functions.getColor(color__dark-shade, 0.25);
   border: var(--border);
 }

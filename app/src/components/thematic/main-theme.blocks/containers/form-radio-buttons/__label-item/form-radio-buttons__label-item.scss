@@ -1,7 +1,7 @@
-@use "@utils/devTools/devTools.scss";
+@use "@utils/devTools/styles/functions.scss";
 
 .form-radio-buttons__label-item {
-  color: devTools.getColor(color__dark-shade, 0.5);
+  color: functions.getColor(color__dark-shade, 0.5);
 }
 .form-radio-buttons__button-item:checked + .form-radio-buttons__label-item {
   color: inherit;

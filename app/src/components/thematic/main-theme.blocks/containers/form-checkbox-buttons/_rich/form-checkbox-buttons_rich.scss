@@ -1,14 +1,14 @@
-@use "@utils/devTools/devTools.scss";
+@use "@utils/devTools/styles/functions.scss";
 
 .form-checkbox-buttons_rich {
   .form-checkbox-buttons__label-item {
     font-weight: 700;
     line-height: 0.75rem;
-    color: devTools.getColor(color__dark-shade, 0.75);
+    color: functions.getColor(color__dark-shade, 0.75);
 
     &:after {
       line-height: 0.5833333333333333rem;
-      color: devTools.getColor(color__dark-shade, 0.5);
+      color: functions.getColor(color__dark-shade, 0.5);
     }
   }
 }

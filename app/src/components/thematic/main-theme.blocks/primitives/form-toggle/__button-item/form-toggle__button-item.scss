@@ -1,17 +1,17 @@
-@use "@utils/devTools/devTools.scss";
+@use "@utils/devTools/styles/functions.scss";
 
 .form-toggle__button-item {
   border: var(--border);
 
   &:checked {
-    border-color: devTools.getColor(color__primary, 1);
+    border-color: functions.getColor(color__primary, 1);
   }
 
   &:before {
-    background-color: devTools.getColor(color__dark-shade, 0.25);
+    background-color: functions.getColor(color__dark-shade, 0.25);
   }
 
   &:checked:before {
-    background-color: devTools.getColor(color__primary, 1);
+    background-color: functions.getColor(color__primary, 1);
   }
 }

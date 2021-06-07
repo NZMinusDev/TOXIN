@@ -1,4 +1,4 @@
-import { getURLValue, addURLValues } from '@utils/devTools/tools/URLHelper';
+import { getURLValue, addURLValues } from '@utils/devTools/scripts/URLHelper';
 
 document.querySelectorAll('input').forEach((element) => {
   const inputElement = element as HTMLInputElement;

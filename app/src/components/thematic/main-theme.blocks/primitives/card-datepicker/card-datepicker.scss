@@ -1,4 +1,4 @@
-@use "@utils/devTools/devTools.scss";
+@use "@utils/devTools/styles/functions.scss";
 
 @use "@thematic/main-theme.blocks/gradients.scss";
 
@@ -8,16 +8,16 @@
     border: var(--border);
     border-radius: var(--border-radius-size);
     box-shadow: 0px 0.7142857142857143em 1.428571428571429em
-      devTools.getColor(color__dark-shade, 0.05);
+      functions.getColor(color__dark-shade, 0.05);
   }
 
   .datepicker--nav-title {
     font: var(--font__h2);
-    color: devTools.getColor(color__dark-shade, 1);
+    color: functions.getColor(color__dark-shade, 1);
   }
   .datepicker--nav-action {
     font-size: 1rem;
-    color: devTools.getColor(color__primary, 1);
+    color: functions.getColor(color__primary, 1);
   }
 
   .datepicker--content {
@@ -29,15 +29,15 @@
     font: inherit;
   }
   .datepicker--day-name {
-    color: devTools.getColor(color__primary, 1);
+    color: functions.getColor(color__primary, 1);
   }
   .datepicker--cell {
-    color: devTools.getColor(color__dark-shade, 0.5);
+    color: functions.getColor(color__dark-shade, 0.5);
 
     &.-other-month-,
     &.-other-decade-,
     &.-disabled- {
-      color: devTools.getColor(color__dark-shade, 0.25);
+      color: functions.getColor(color__dark-shade, 0.25);
     }
 
     &.-current-,
@@ -57,7 +57,7 @@
     }
     &.-in-range-,
     &.-current-.-in-range- {
-      color: devTools.getColor(color__dark-shade, 0.5);
+      color: functions.getColor(color__dark-shade, 0.5);
       background: gradients.primary(0.25);
     }
     &.-current-.-in-range- {

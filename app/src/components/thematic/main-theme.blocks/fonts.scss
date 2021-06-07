@@ -1,4 +1,4 @@
-@use "@utils/devTools/devTools.scss";
+@use "@utils/devTools/styles/functions.scss";
 
 @font-face {
   font-family: "Quicksand";
@@ -29,7 +29,7 @@
 }
 
 html {
-  font-size: devTools.getLiquidSize(24, 18);
+  font-size: functions.getLiquidSize(24, 18);
 }
 
 h1,

@@ -93,13 +93,9 @@ Script-names:
 │       │
 │       ├───figma // design source
 │       │
-│       ├───pages // templates (webpack entry points)
+│       ├───layouts // reused layouts
 │       │
-│       ├───pug
-│       │   ├───layouts // typical layers
-│       │   │       main.pug
-│       │   │
-│       │   └───mixins // useful pieces
+│       ├───pages // templates (webpack entry points)
 │       │
 │       └───utils // a place where useful pieces lie
 │           ├───devTools // custom helpers
@@ -131,7 +127,7 @@ For each page only the necessary styles and scripts are loaded from all levels o
 
 You can see additional explanation [here](https://en.bem.info/methodology/redefinition-levels/).
 
-The order of redefinition levels is as follows: library -> common -> thematic* -> experimental*.
+The order of redefinition levels is as follows: layouts -> library -> common -> thematic* -> experimental*.
 
 _\* - inside the directories, there are additional folders for each individual redefinition sublevel. To connect them, you need to modify webpack.config_.
 
@@ -189,9 +185,9 @@ _\* - inside the directories, there are additional folders for each individual r
    3. [lodash-es](https://lodash.com/) to supplement the js standard. Tip: you should use only import of lodash-es(moreover, when importing, only care about the readability and strictness of the code, and not the optimization of the weight) instead of common lodash because ES6+ module syntax is supported by terser for optimization.
    4. [inputmask](https://github.com/RobinHerbots/Inputmask) for form validation.
 7. Custom Tools:
-   1. Basic [pug layers](./app/src/layouts/) and [mixins](./app/src/pug/mixins/);
-   2. scss and ts [shortcuts](./app/src/utils/devTools/);
-   3. [pug]((./.vscode/template-snippetts.code-snippets)) and [scss]((./.vscode/@media-snippets.code-snippets)) snippets;
+   1. [Basic layouts](./app/src/layouts/);
+   2. pug, scss, ts [shortcuts](./app/src/utils/devTools/);
+   3. [pug](<(./.vscode/template-snippetts.code-snippets)>) and [scss](<(./.vscode/@media-snippets.code-snippets)>) snippets;
    4. [placeholder](./app/src/assets/pictures/images/placeholders/lazy-loading-placeholder.svg) for unloaded img (img [would be loaded](./app/src/utils/global/modules/scripts/assets-lazy-loading.ts) by user's scroll);
    5. [arrow-to-top](./app/src/components/common.blocks/specific/arrow-to-top/) component;
    6. [click-jacking-protector](./app/src/components/common.blocks/specific/click-jacking-protector/) for each page(you can configure it in [template](./app/src/layouts/basic/main-layout/main-layout.pug));

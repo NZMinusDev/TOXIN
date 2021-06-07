@@ -43,7 +43,6 @@ const redefinitionLevels = [
 const componentGroups = ['basic', 'containers', 'primitives', 'specific'];
 
 const sharedAliases = {
-  '@pug': path.resolve(PATHS.src_absolute, './pug/'),
   '@layouts': path.resolve(PATHS.src_absolute, './layouts/'),
   '@library.blocks': path.resolve(PATHS.src_absolute, './components/library.blocks/'),
   '@common.blocks': path.resolve(PATHS.src_absolute, './components/common.blocks/'),

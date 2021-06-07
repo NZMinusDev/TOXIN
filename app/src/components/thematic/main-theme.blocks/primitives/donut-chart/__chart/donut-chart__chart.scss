@@ -1,12 +1,12 @@
-@use "@utils/devTools/devTools.scss";
+@use "@utils/devTools/styles/functions.scss";
 
 .donut-chart__slice {
   &:nth-of-type(2) {
     background: linear-gradient(180deg, white, white) padding-box,
       conic-gradient(
           transparent 0deg var(--start),
-          devTools.getColor(color__secondary, 1) var(--start),
-          devTools.getColor(color__secondary_additional, 1) var(--end),
+          functions.getColor(color__secondary, 1) var(--start),
+          functions.getColor(color__secondary_additional, 1) var(--end),
           transparent var(--end)
         )
         border-box;
@@ -15,8 +15,8 @@
     background: linear-gradient(180deg, white, white) padding-box,
       conic-gradient(
           transparent 0deg var(--start),
-          devTools.getColor(color__primary, 1) var(--start),
-          devTools.getColor(color__primary_additional, 1) var(--end),
+          functions.getColor(color__primary, 1) var(--start),
+          functions.getColor(color__primary_additional, 1) var(--end),
           transparent var(--end)
         )
         border-box;
@@ -24,7 +24,7 @@
 }
 
 .donut-chart__counter {
-  color: devTools.getColor(color__primary, 1);
+  color: functions.getColor(color__primary, 1);
 
   .donut-chart__data-amount {
     color: inherit;

@@ -1,4 +1,5 @@
-@use "@utils/devTools/devTools.scss";
+@use "@utils/devTools/styles/functions.scss";
+@use "@utils/devTools/styles/mixins.scss";
 
 @use "@thematic/main-theme.blocks/gradients.scss";
 
@@ -7,13 +8,13 @@
     font-weight: 700;
 
     &:not(:last-child) {
-      border-bottom: 1px solid devTools.getColor(color__dark-shade, 0.1);
+      border-bottom: 1px solid functions.getColor(color__dark-shade, 0.1);
     }
 
     &:before {
       font-size: 2rem;
       line-height: 2rem;
-      @include devTools.gradientFont(gradients.primary(1));
+      @include mixins.gradientFont(gradients.primary(1));
     }
 
     .form-bullet-list__description {

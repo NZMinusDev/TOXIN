@@ -1,5 +1,5 @@
-@use "@utils/devTools/devTools.scss";
+@use "@utils/devTools/styles/functions.scss";
 
 .type-sample__tag {
-  color: devTools.getColor(color__dark-shade, 0.25);
+  color: functions.getColor(color__dark-shade, 0.25);
 }
