@@ -59,9 +59,9 @@ Script-names:
 |   tsconfig.json
 │
 ├───.vscode
-|       @media-snippets.code-snippets
-│       settings.json // settings for vscode to ensure compatibility on different machines
-        template-snippetts.code-snippets
+|   ├───@media-snippets.code-snippets
+│   ├───settings.json // settings for vscode to ensure compatibility on different machines
+|   └───template-snippetts.code-snippets
 │
 ├───app
 │   ├───cache // folder for cache folders
@@ -101,18 +101,6 @@ Script-names:
 │           ├───devTools // custom helpers
 │           │
 │           ├───global // resources for all pages
-│           |   ├───modules
-│           |   |    ├───css
-│           |   |    |   ├───fonts.ts // preinstalled fonts
-│           |   |    |   ├───normalize.css // [normalization](https://necolas.github.io/normalize.css/) of browsers' styles in depends of browserslist in package.json
-│           |   |    |   ├───reset.local.css // resetting of the most infuriating styles
-│           |   |    |   └───tricks.scss // non-obvious but useful style resets
-│           |   |    └───scripts
-│           |   |    |   ├───assets-lazy-loading.ts // adds placeholder for images/sources outside of view
-│           |   |    |   ├───input.ts // bonds inputs with URL
-│           |   |    |   ├───keyboardAccessibility.ts // adds keyboard accessibility for all elements that do not support basic keyboard presses
-│           |   |    |   └───unhandledrejection.ts // top level catcher of errors
-│           |   └───global.decl.ts // used in webpack for adding modules
 │           |
 │           └───webpack // local webpack instruments, should be extracted to npm modules in the future
 |
