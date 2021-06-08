@@ -1,9 +1,14 @@
-document.querySelectorAll(".form-like-button__button").forEach((btn) => {
-  btn.addEventListener("change", (event) => {
-    const target = event.target as HTMLInputElement;
+const btnContainers = document.querySelectorAll('.form-like-button');
 
-    target.dataset.counter = target.checked
-      ? parseInt(target.dataset.counter) + 1 + ""
-      : parseInt(target.dataset.counter) - 1 + "";
-  });
+btnContainers.forEach((btnContainer) => {
+  const btn = btnContainer.querySelector('.form-like-button__button') as HTMLInputElement;
+  const counter = btnContainer.querySelector('.form-like-button__counter') as HTMLSpanElement;
+
+  const handleButtonChange = (e: Event) => {
+    counter.textContent = (e.currentTarget as HTMLInputElement).checked
+      ? `${Number(counter.textContent) + 1}`
+      : `${Number(counter.textContent) - 1}`;
+  };
+
+  btn.addEventListener('change', handleButtonChange);
 });

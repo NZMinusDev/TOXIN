@@ -14,7 +14,8 @@ block content
       each color, colorDescription in colorValues
         article.color-sample(title="образец цвета")
           .color-sample__sample
-          h2.color-sample__name(data-color=color)= colorDescription
+          h2.color-sample__name= colorDescription
+            span.color-sample__value=color
     section.colors-and-type-layout__type
       each content, tagItem in typeValues
         - var tag = content.tag;
