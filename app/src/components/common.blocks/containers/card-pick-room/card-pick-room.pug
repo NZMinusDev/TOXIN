@@ -7,6 +7,7 @@ include ~@common.blocks/primitives/button/button.pug
 //- action: {string} - form action
 //- method: {"get" | "post"} - form method
 //- target: {("_self"|null)|"_blank"|"_parent"|"_top"} - form target
+//- disabled?: same as fieldset disabled (disable all buttons)
 mixin card-pick-room
   form.card-base.card-pick-room(
     id=attributes.id,
@@ -17,19 +18,21 @@ mixin card-pick-room
     target=attributes.target
   )
     h1.card-pick-room__title Найдём номера под ваши пожелания
-    +form-dropdown.card-pick-room__arrival-date-dropdown(
-      label="Прибытие",
-      name=`${attributes.name}-arrival`,
-      type="date",
-      output="plural",
-      altFields=`.card-pick-room__departure-date-dropdown [name=${attributes.name}-departure]`
-    )
-    +form-dropdown.card-pick-room__departure-date-dropdown(
-      label="Выезд",
-      name=`${attributes.name}-departure`,
-      type="date",
-      isAltField
-    )
+    fieldset(disabled=attributes.disabled).card-pick-room__datepicker-fieldset
+      .card-pick-room__datepicker
+        +form-dropdown.card-pick-room__arrival-date-dropdown(
+          label="Прибытие",
+          name=`${attributes.name}-arrival`,
+          type="date",
+          output="plural",
+          altFields=`.card-pick-room__departure-date-dropdown [name=${attributes.name}-departure]`
+        )
+        +form-dropdown.card-pick-room__departure-date-dropdown(
+          label="Выезд",
+          name=`${attributes.name}-departure`,
+          type="date",
+          isAltField
+        )
     +form-dropdown.card-pick-room__guests-single-apply(
       name=`${attributes.name}-guests`,
       type="item-quantity",

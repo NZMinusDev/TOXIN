@@ -12,7 +12,7 @@
       &:checked + .footer__list {
         max-height: 32em;
 
-        & > *:first-child {
+        .footer__list-label {
           &:after {
             content: '\e5ce';
           }
@@ -29,7 +29,7 @@
     &:checked + .footer__list {
       max-height: initial;
 
-      & > *:first-child {
+      .footer__list-label {
         &:after {
           content: '';
         }
@@ -46,9 +46,10 @@
       justify-items: center;
       margin-top: 4px;
 
-      & > *:first-child {
+      .footer__list-label {
         display: flex;
         align-items: center;
+        cursor: pointer;
 
         &:after {
           content: '\e5cf';
@@ -67,7 +68,9 @@
     align-content: flex-start;
     justify-items: start;
 
-    & > *:first-child {
+    .footer__list-label {
+      cursor: initial;
+
       &:after {
         content: '';
       }

@@ -10,15 +10,15 @@ block append variables
 
 block content
   main.ui-kit-container.colors-and-type-layout
-    .colors-and-type-layout__colors
+    section.colors-and-type-layout__colors
       each color, colorDescription in colorValues
-        article.color-sample
+        article.color-sample(title="образец цвета")
           .color-sample__sample
           h2.color-sample__name(data-color=color)= colorDescription
-    .colors-and-type-layout__type
+    section.colors-and-type-layout__type
       each content, tagItem in typeValues
         - var tag = content.tag;
-        article.type-sample
+        article(title="образец текста").type-sample
           if !content.tag
             - tag = tagItem.toLowerCase();
           #{tag}.type-sample__tag= tagItem

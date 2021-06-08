@@ -28,7 +28,7 @@ mixin slideshow
         style=`right: ${rightRadioOffset}px`
       )
       label.icon.slideshow__switcher(for=labelID)= `View ${labelID}`
-      +picture.slideshow__picture(path=path, alt=pictureID)
+      +picture.slideshow__picture(path=path, alt=`Изображение № ${index + 1}`)
       - labelID = pictureID;
     label.icon.slideshow__switcher(for=pictureID)= `View ${pictureID}`
     label.icon.slideshow__switcher(for=attributes.name + 0)= `View ${attributes.name + 0}`

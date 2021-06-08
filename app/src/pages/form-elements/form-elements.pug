@@ -189,7 +189,7 @@ block content
       .form-elements-layout__expandable-checkbox-list
         +form-expandable-checkbox-list#expandable-checkbox-list-default(
           label="expandable checkbox list",
-          buttons={}
+          buttons={ breakfast: { id: 'breakfastCheckbox', itemLabel: 'Завтрак' }, desk: { id: 'deskCheckbox', itemLabel: 'Письменный стол', checked: 'checked' }, feedingChair: { id: 'feedingChairCheckbox', itemLabel: 'Стол для кормления', checked: 'checked' }, cot: { id: 'cotCheckbox', itemLabel: 'Кроватка', checked: 'checked' }, tv1: { id: 'tv1Checkbox', itemLabel: 'Телевизор' }, shampoo1: { id: 'shampoo1Checkbox', itemLabel: 'Шампунь' }, tv2: { id: 'tv2Checkbox', itemLabel: 'Телевизор' }, shampoo2: { id: 'shampoo2Checkbox', itemLabel: 'Шампунь' } }
         )
         +form-expandable-checkbox-list#expandable-checkbox-list-expanded(
           isFilter,

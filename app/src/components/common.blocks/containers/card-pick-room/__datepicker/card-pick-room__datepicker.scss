@@ -1,0 +1,13 @@
+.card-pick-room__datepicker-fieldset,
+.card-pick-room__datepicker {
+  gap: inherit;
+}
+
+.card-pick-room__datepicker-fieldset {
+  grid-area: datepicker;
+}
+
+.card-pick-room__datepicker {
+  display: grid;
+  grid: 'arrival-date-dropdown departure-date-dropdown';
+}

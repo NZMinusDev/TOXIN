@@ -35,4 +35,6 @@ mixin form-checkbox-buttons
               checked=btn.checked
             )
             if btn.itemLabel
-              label.form-checkbox-buttons__label-item(for=btn.id, data-description=btn.description)= btn.itemLabel
+              label.form-checkbox-buttons__label-item(for=btn.id)= btn.itemLabel
+              if btn.description
+                p.form-checkbox-buttons__description= btn.description

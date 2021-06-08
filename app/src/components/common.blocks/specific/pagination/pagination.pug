@@ -54,12 +54,12 @@ mixin pagination
     ul.pagination__list
       //- Show the Previous button only if you are on a page other than the first
       if activePage > 1
-        li.pagination__item.pagination__item_previous
+        li.pagination__item.pagination__item_previous(title='на предыдущую страницу')
           a(href=type === 'href' ? paginationHrefs[activePage - 2] : null)= 'arrow_back'
       //- Show all the pagination elements if there are less than 6 pages total
       if pages < 6
         - for (let p = 1; p <= pages; p++)
-        li.pagination__item(class=activePage === p ? 'pagination__item_active' : null)
+        li.pagination__item(class=activePage === p ? 'pagination__item_active' : null, title='текущая страница')
           a(href=type === 'href' ? paginationHrefs[p - 1] : null)= p
       //- Use "..." to collapse pages outside of a certain range
       else
@@ -72,7 +72,7 @@ mixin pagination
               a(href=type === 'href' ? paginationHrefs[1] : null)= '...'
         //- Output the indexes for pages that fall inside the range of pageCutLow and pageCutHigh
         - for (let p = pageCutLow; p <= pageCutHigh; p++)
-          li.pagination__item(class=activePage === p ? 'pagination__item_active' : null)
+          li.pagination__item(class=activePage === p ? 'pagination__item_active' : null, title='текущая страница')
             a(href=type === 'href' ? paginationHrefs[p - 1] : null)= p
         //- Show the very last page preceded by a "..." at the end of the pagination section (before the Next button)
         if activePage < pages - 1
@@ -83,7 +83,7 @@ mixin pagination
             a(href=type === 'href' ? paginationHrefs[pages - 1] : null)= pages
       //- Show the Next button only if you are on a page other than the last
       if activePage < pages
-        li.pagination__item.pagination__item_next
+        li.pagination__item.pagination__item_next(title='на следующую страницу')
           a(href=type === 'href' ? paginationHrefs[activePage] : null)= 'arrow_forward'
     //- counter
     p.pagination__counter= counterText
