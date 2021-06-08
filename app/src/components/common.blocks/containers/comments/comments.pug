@@ -41,8 +41,8 @@ mixin comments
         p.comments__content-item= item.content
         .comments__like-button-item
           +form-like-button(
-            id=key + '__like-button',
-            name=key + '__like-button',
+            id=`${key}__like-button`,
+            name=`${key}__like-button`,
             counter=item.likeButtonCounter,
             checked=item.isLikeButtonChecked
           )

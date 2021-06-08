@@ -18,19 +18,24 @@ mixin card-room
     const roomNumberSentence = `№ ${attributes["room-number"].toLocaleString()}`;
     const paymentAmountSentence = `${attributes['payment-amount'].toLocaleString()}${CURRENCY}<span class="normal-weight-text"> в сутки</span>`;
     const commentsAmountSentence = `${attributes['comments-amount'].toLocaleString()}<span class="normal-weight-text"> Отзывов</span>`;
-  a.card-base.card-room(id=attributes.id, class=attributes.class, href=attributes.href)
-    +slideshow.card-room__slideshow(name=attributes.name + '__slideshow', paths=attributes.paths)
+  a.card-base.card-room(
+    id=attributes.id,
+    class=attributes.class,
+    href=attributes.href,
+    title='Подробнее о номере'
+  )
+    +slideshow.card-room__slideshow(name=attributes.name + "__slideshow", paths=attributes.paths)
     .card-room__room-data
       .card-room__data-row
         .card-room__room-title
           h2.card-room__room-number= roomNumberSentence
-          h3.card-room__room-grade= attributes['room-grade']
+          h3.card-room__room-grade= attributes["room-grade"]
         h3.card-room__day-payment!= paymentAmountSentence
       .card-room__data-row
         +form-rate-button.card-room__room-rating(
           length=5,
           rate=attributes.rate,
-          name=attributes.name + '__rating',
+          name=attributes.name + "__rating",
           disabled
         )
         h3.card-room__room-comments!= commentsAmountSentence

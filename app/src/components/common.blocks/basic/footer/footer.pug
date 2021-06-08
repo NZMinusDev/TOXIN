@@ -1,15 +1,19 @@
 include ~@common.blocks/primitives/form-text-field/form-text-field.pug
 
-//- type?: "creative"
+//- type?: 'creative'
 //- id?: id of component
 //- class?: class for component bem mix: such as positioning functionality
 
 mixin footer
   -
-    const icons = ["","",""];
-    const copyright = "Copyright © 2018 Toxin отель. Все права зачищены.";
+    const icons = [
+      { img: "", title: "twitter" },
+      { img: "", title: "facebook" },
+      { img: "", title: "instagram" },
+    ];
+    const copyright = 'Copyright © 2018 Toxin отель. Все права зачищены.';
   case attributes.type
-    when "creative"
+    when 'creative'
       footer.footer.footer_creative.content-container(id=attributes.id, class=attributes.class)
         section.footer__logo
           .logo.logo_color-gradient-primary
@@ -19,7 +23,11 @@ mixin footer
           ul
             each icon in icons
               li 
-                a.icon.icon_color-gradient-primary.footer__brand-icon(href='', data-icon=icon)
+                a.icon.icon_color-gradient-primary.footer__brand-icon(
+                  href='',
+                  data-icon=icon.img,
+                  title=icon.title
+                )
     default
       footer.footer.content-container(id=attributes.id, class=attributes.class)
         section.footer__widgets
@@ -82,4 +90,8 @@ mixin footer
           p.footer__copyright= copyright
           .footer__icons
             each icon in icons
-              a.icon.icon_color-gradient-primary.footer__brand-icon(href='', data-icon=icon)
+              a.icon.icon_color-gradient-primary.footer__brand-icon(
+                href='',
+                data-icon=icon.img,
+                title=icon.title
+              )
