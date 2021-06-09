@@ -18,7 +18,7 @@ mixin card-pick-room
     target=attributes.target
   )
     h1.card-pick-room__title Найдём номера под ваши пожелания
-    fieldset(disabled=attributes.disabled).card-pick-room__datepicker-fieldset
+    fieldset.card-pick-room__datepicker-fieldset(disabled=attributes.disabled)
       .card-pick-room__datepicker
         +form-dropdown.card-pick-room__arrival-date-dropdown(
           label="Прибытие",

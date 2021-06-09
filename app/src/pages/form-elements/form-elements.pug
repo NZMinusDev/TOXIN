@@ -23,7 +23,6 @@ block append variables
 block content
   form(method="get")
     main.form-elements-layout.ui-kit-container
-      - const MS_IN_DAY = 1000 * 60 * 60 * 24;
       +form-text-field#text-field-default.form-elements-layout__text-field-default(
         label="text field",
         type="email",
@@ -65,16 +64,13 @@ block content
           label="date dropdown",
           selected-dates="2019-08-19"
         )
-      -
-        const tomorrow = new Date(Date.now() + MS_IN_DAY).toISOString();
-        const dayAfterTomorrow = new Date(Date.now() + MS_IN_DAY * 4).toISOString();
       +form-dropdown#filter-date-dropdown.form-elements-layout__filter-date-dropdown(
         name="filter-date",
         type="date",
         isFilter,
         label="filter date dropdown",
         output="plural",
-        selected-dates=`${tomorrow},${dayAfterTomorrow}`
+        selected-dates="2019-08-19,2019-08-23"
       )
       +form-text-field#subscription-text-field.form-elements-layout__subscription-text-field(
         label="subscription text field",

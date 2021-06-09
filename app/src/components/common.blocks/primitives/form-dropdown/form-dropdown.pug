@@ -19,9 +19,9 @@ include ~@common.blocks/primitives/apply-control/apply-control.pug
   //- list: {itemName1: {default: number, min: number, max: number, group?: groupName2},itemName1: {default: number, min: number, max: number, group?: groupName1},...}, example:{ взрослые: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0} }; - if group is unset the itemName will be used instead
 mixin form-dropdown
   -
-    const output = attributes.output ? attributes.output : "single";
-    const isFilter = attributes.isFilter ? attributes.isFilter + '' : null;
-    const openMod = attributes.openMod ? attributes.openMod : "toggle";
+    const output = attributes.output ? attributes.output : 'single';
+    const isFilter = attributes.isFilter ? `${attributes.isFilter}` : null;
+    const openMod = attributes.openMod ? attributes.openMod : 'toggle';
   .form-dropdown(class=attributes.class)
     if attributes.label
       h3.form-label
@@ -29,7 +29,7 @@ mixin form-dropdown
     .form-field
       label.icon.form-dropdown__expand-icon(for=attributes.id)
       case attributes.type
-        when "date"
+        when 'date'
           +form-dropdown__datepicker(
             name=attributes.name,
             id=attributes.id,
@@ -40,7 +40,7 @@ mixin form-dropdown
             placeholder=attributes.placeholder,
             selected-dates=attributes['selected-dates']
           )
-        when "item-quantity"
+        when 'item-quantity'
           +form-dropdown__item-quantity-list(
             name=attributes.name,
             id=attributes.id,
@@ -50,5 +50,5 @@ mixin form-dropdown
             groups=attributes.groups,
             list=attributes.list
           )
-            if openMod === "apply"
+            if openMod === 'apply'
               +apply-control.form-dropdown__link-btns

@@ -25,9 +25,10 @@ html(lang="ru")
       //- extracted by MediaQueryPlugin
       if htmlWebpackPlugin.files.extracted !== undefined && htmlWebpackPlugin.files.extracted.css !== undefined
         -
-          const extractedCSS = Array.from(htmlWebpackPlugin.files.extracted.css).sort((a,b)=>{
-            return parseInt(a.query.slice(a.query.indexOf(": ") + 2, a.query.indexOf("px"))) - parseInt(b.query.slice(b.query.indexOf(": ") + 2, b.query.indexOf("px")))
-          });
+          const extractedCSS = Array.from(htmlWebpackPlugin.files.extracted.css).sort(
+            (a, b) =>
+              parseInt(a.query.slice(a.query.indexOf(': ') + 2, a.query.indexOf('px')), 10) -
+              parseInt(b.query.slice(b.query.indexOf(': ') + 2, b.query.indexOf('px')), 10));
         each css in extractedCSS
           link(rel="stylesheet", href=css.file, media=css.query)
   body

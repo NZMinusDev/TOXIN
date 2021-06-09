@@ -63,4 +63,4 @@ mixin nav-bar
           a(href=attributes.registrationHref)
             +button.nav-bar__button(type="button", value="Зарегистрироваться", modClass="filled")
         when "confirmed"
-          a.nav-bar__person(href=attributes.personHref, title='в личный кабинет')= attributes.personName
+          a.nav-bar__person(href=attributes.personHref, title="в личный кабинет")= attributes.personName

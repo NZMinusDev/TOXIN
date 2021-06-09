@@ -18,20 +18,26 @@ include ~@common.blocks/primitives/button/button.pug
 //- additional-services-payment: {number} - amount of additional services payment
 mixin card-room-definition
   -
-    const CURRENCY = "₽";
+    const currency = '₽';
 
-    const roomNumberSentence = `№ ${attributes["room-number"].toLocaleString()}`;
-    const paymentAmountSentence = `${attributes['payment-amount'].toLocaleString()}${CURRENCY}<span class="normal-weight-text"> в сутки</span>`;
+    const roomNumberSentence = `№ ${attributes['room-number'].toLocaleString()}`;
+    const paymentAmountSentence = `${attributes[
+      'payment-amount'
+    ].toLocaleString()}${currency}<span class="normal-weight-text"> в сутки</span>`;
 
     const servicesSaleAmount = attributes['services-sale'];
     const servicesPaymentAmount = attributes['services-payment'] - attributes['services-sale'];
-    const servicesSaleSentence = servicesSaleAmount ? `скидка ${servicesSaleAmount.toLocaleString()}${CURRENCY}`: "";
+    const servicesSaleSentence = servicesSaleAmount
+      ? `скидка ${servicesSaleAmount.toLocaleString()}${currency}`
+      : '';
     const servicesPayment = {
-      sentence:`Сбор за услуги: ${servicesSaleSentence}`, amount:servicesPaymentAmount 
+      sentence: `Сбор за услуги: ${servicesSaleSentence}`,
+      amount: servicesPaymentAmount,
     };
 
     const additionalServicesPayment = {
-      sentence:"Сбор за дополнительные услуги", amount:attributes['additional-services-payment'] 
+      sentence: 'Сбор за дополнительные услуги',
+      amount: attributes['additional-services-payment'],
     };
   form.card-base.card-room-definition(
     id=attributes.id,
@@ -77,13 +83,13 @@ mixin card-room-definition
           span.tooltip.card-room-definition__payment-tooltip(
             data-content="Подсказка к сборам за услуги"
           ) i
-        span.card-room-definition__payment-amount(data-amount-js=servicesPayment.amount)= `${servicesPayment.amount.toLocaleString()}${CURRENCY}`
+        span.card-room-definition__payment-amount(data-amount-js=servicesPayment.amount)= `${servicesPayment.amount.toLocaleString()}${currency}`
       p.card-room-definition__payment-item.card-room-definition__additional-services-payment
         span.card-room-definition__payment-sentence= additionalServicesPayment.sentence
           span.tooltip.card-room-definition__payment-tooltip(
             data-content="Подсказка к сборам за дополнительные услуги"
           ) i
-        span.card-room-definition__payment-amount(data-amount-js=additionalServicesPayment.amount)= `${additionalServicesPayment.amount.toLocaleString()}${CURRENCY}`
+        span.card-room-definition__payment-amount(data-amount-js=additionalServicesPayment.amount)= `${additionalServicesPayment.amount.toLocaleString()}${currency}`
     h2.card-room-definition__payment-item.card-room-definition__total-payment
       span Итого
       .text-separator

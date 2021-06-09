@@ -7,24 +7,23 @@ include ~@utils/devTools/pug/mixins/picture.pug
 mixin slideshow
   .slideshow(id=attributes.id, class=attributes.class)
     -
-      let pictureID;
       let labelID = attributes.name + (attributes.paths.length - 1);
 
-      const RADIO_CONTAINER_RIGHT_OFFSET = 15;
-      const RADIO_SIZE = 7.5;
-      const RADIO_GAP = 7.5 / 2;
-      let reverseOrderIndex;
+      const radioContainerRightOffset = 15;
+      const radioSize = 7.5;
+      const radioGap = 7.5 / 2;
     each path, index in attributes.paths
       -
-        pictureID = attributes.name + index;
+        const pictureID = attributes.name + index;
 
-        reverseOrderIndex = attributes.paths.length - index - 1;
-        const rightRadioOffset = RADIO_CONTAINER_RIGHT_OFFSET + RADIO_SIZE * reverseOrderIndex + RADIO_GAP * reverseOrderIndex;
+        const reverseOrderIndex = attributes.paths.length - index - 1;
+        const rightRadioOffset =
+          radioContainerRightOffset + radioSize * reverseOrderIndex + radioGap * reverseOrderIndex;
       input.slideshow__radio(
         id=pictureID,
         type="radio",
         name=attributes.name,
-        checked=index == 0 ? 'checked' : null,
+        checked=index === 0 ? 'checked' : null,
         style=`right: ${rightRadioOffset}px`
       )
       label.icon.slideshow__switcher(for=labelID)= `View ${labelID}`

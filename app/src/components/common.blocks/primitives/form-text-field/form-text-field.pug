@@ -10,16 +10,25 @@
 //- materialIcon - material icon name for submit btn in field
 mixin form-text-field
   -
-    const ALLOWED_INPUTMASK_TYPES = ['text', 'search', 'tel', 'url', 'password'];
-    const ALLOWED_INPUTMODE_ATTRIBUTE = ['none', 'text', 'decimal', 'numeric', 'tel', 'search', 'email', 'url'];
-    const RESERVED_PLACEHOLDERS = {email:"Email", password:"Пароль", date:"ДД.ММ.ГГГГ"};
+    const allowedInputmaskTypes = ['text', 'search', 'tel', 'url', 'password'];
+    const allowedInputmodeAttribute = [
+      'none',
+      'text',
+      'decimal',
+      'numeric',
+      'tel',
+      'search',
+      'email',
+      'url',
+    ];
+    const reservedPlaceholders = { email: 'Email', password: 'Пароль', date: 'ДД.ММ.ГГГГ' };
 
-    const componentClassModificator = attributes.type ? 'form-text-field_is' + attributes.type[0].toUpperCase() + attributes.type.slice(1) : '';
-    let inputMaskType = ALLOWED_INPUTMASK_TYPES.find(type => type==attributes.type);
-    let inputModeAttr = ALLOWED_INPUTMODE_ATTRIBUTE.find(type => type==attributes.type);
-    inputMaskType == inputMaskType || "text";
-    inputModeAttr == inputModeAttr || "text";
-
+    const componentClassModificator = attributes.type
+      ? `form-text-field_is${attributes.type[0].toUpperCase()}${attributes.type.slice(1)}`
+      : '';
+    const inputMaskType = allowedInputmaskTypes.find((type) => type === attributes.type) || 'text';
+    const inputModeAttr =
+      allowedInputmodeAttribute.find((type) => type === attributes.type) || 'text';
   .form-text-field(class=componentClassModificator, class=attributes.class)
     if attributes.label
       h3.form-label
@@ -31,12 +40,9 @@ mixin form-text-field
         type=inputMaskType,
         inputmode=inputModeAttr,
         name=attributes.name,
-        placeholder=RESERVED_PLACEHOLDERS[attributes.type] || attributes.placeholder,
+        placeholder=reservedPlaceholders[attributes.type] || attributes.placeholder,
         value=attributes.value,
         autofocus=attributes.autofocus
       )
       if attributes.materialIcon
-        button.icon.form-text-field__link-icon(
-          type="submit",
-          data-icon=attributes.materialIcon
-        )
+        button.icon.form-text-field__link-icon(type="submit", data-icon=attributes.materialIcon)

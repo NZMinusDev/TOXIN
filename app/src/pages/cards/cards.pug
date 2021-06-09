@@ -14,7 +14,7 @@ block append variables
     description = 'Карточки, используемые в базовом макете сайта TOXIN';
 
 block content
-  - const MS_IN_DAY = 1000 * 60 * 60 * 24;
+  - const msPerDay = 1000 * 60 * 60 * 24;
   main.cards-layout.ui-kit-container
     +card-pick-room#card-pick-room.cards-layout__pick-room(
       name="pick-room",
@@ -60,10 +60,13 @@ block content
       rate=4,
       comments-amount=65
     )
-    - const CARD_DATEPICKER_SELECTED_DATES = new Date(Date.now() + MS_IN_DAY).toISOString() + ',' + new Date(Date.now() + MS_IN_DAY * 4).toISOString();
+    -
+      const cardDatepickerSelectedDates = `${new Date(
+        Date.now() + msPerDay
+      ).toISOString()},${new Date(Date.now() + msPerDay * 4).toISOString()}`;
     +card-datepicker#card-datepicker.cards-layout__datepicker(
       isFilter,
       name="card-datepicker",
-      selected-dates=CARD_DATEPICKER_SELECTED_DATES,
+      selected-dates=cardDatepickerSelectedDates,
       data-range
     )

@@ -11,12 +11,14 @@
 //- disabled - same as button's disabled
 mixin button
   -
-    var modClass = attributes.modClass ? 'button_is' + attributes.modClass[0].toUpperCase() + attributes.modClass.slice(1) : 'button_isFilled';
+    const modClass = attributes.modClass
+      ? `button_is${attributes.modClass[0].toUpperCase()}${attributes.modClass.slice(1)}`
+      : 'button_isFilled';
   button.button(
     id=attributes.id,
     class=attributes.class,
     type=attributes.type,
-    name=attributes.type == 'submit' ? attributes.name || 'submit' : '',
+    name=attributes.type === 'submit' ? attributes.name || 'submit' : '',
     value=attributes.value,
     class=modClass,
     form=attributes.form,
@@ -25,5 +27,5 @@ mixin button
     formtarget=attributes.formtarget,
     disabled=attributes.disabled
   )= attributes.value
-    if attributes.modClass == "link"
+    if attributes.modClass === "link"
       .icon

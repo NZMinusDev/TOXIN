@@ -18,7 +18,7 @@
 //- mod?: "rich" - mod of component
 //- disabled?: same as fieldset disabled (disable all buttons)
 mixin form-checkbox-buttons
-  - const modClass = attributes.mod ? 'form-checkbox-buttons_' + attributes.mod : null;
+  - const modClass = attributes.mod ? `form-checkbox-buttons_${attributes.mod}` : null;
   .form-checkbox-buttons(id=attributes.id, class=modClass, class=attributes.class)
     if attributes.label
       h3.form-label

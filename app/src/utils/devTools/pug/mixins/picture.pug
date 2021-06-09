@@ -12,7 +12,7 @@ mixin picture
     //- FIXME: suffixed webp images doesn't work with devServer, don't know why; building is ok and the another img formats the same ok;
     source(
       type="image/webp",
-      srcset=htmlWebpackPlugin ? htmlWebpackPlugin ? require('@images/placeholders/lazy-loading-placeholder.svg').default : ''.default : '',
+      srcset=htmlWebpackPlugin ? (htmlWebpackPlugin ? require('@images/placeholders/lazy-loading-placeholder.svg').default : ''.default) : '',
       data-srcset=filePath + '.webp 1x'
     )
     //- source(

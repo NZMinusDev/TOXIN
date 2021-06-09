@@ -1,5 +1,5 @@
 //- items: Array<string> // if just use list
-//- items: {// if mod=="rich"
+//- items: {// if mod==="rich"
 //-   label1:{icon:"material icon name", description:string},
 //-   label2:{icon:"material icon name", description:string}
 //- }
@@ -10,7 +10,7 @@
 
 mixin form-bullet-list
   -
-    const modClass = attributes.mod ? 'form-bullet-list_' + attributes.mod : null;
+    const modClass = attributes.mod ? `form-bullet-list_${attributes.mod}` : null;
     const labelKey = attributes.label ? Object.keys(attributes.label)[0] : null;
   .form-bullet-list(id=attributes.id, class=modClass, class=attributes.class)
     if labelKey
