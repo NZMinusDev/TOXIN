@@ -16,15 +16,15 @@ block content
   main.room-details-layout.content-container
     section.room-details-layout__demo.content-container__negative
       +picture.room-details-layout__big-img(
-        path="assets/pictures/contents/rooms/luxury/888/888.png",
+        path=htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : '',
         alt="Фотография номера № 1"
       )
       +picture.room-details-layout__small-img-1(
-        path="assets/pictures/contents/rooms/luxury/888/888_2.png",
+        path=htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888_2.png').default : '',
         alt="Фотография номера № 2"
       )
       +picture.room-details-layout__small-img-2(
-        path="assets/pictures/contents/rooms/luxury/888/888_3.png",
+        path=htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888_3.png').default : '',
         alt="Фотография номера № 3"
       )
     section.room-details-layout__info
@@ -45,7 +45,7 @@ block content
         const sevenDaysAgo = new Date(Date.now() - msPerDay * 7).toISOString();
       +comments.room-details-layout__comments(
         label={ h2: 'Отзывы посетителей номера' },
-        items={ comment1: { personName: 'Мурад Сарафанов', iconPath: 'assets/pictures/contents/personas/1/1.png', date: fiveDaysAgo, content: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.', likeButtonCounter: 12, isLikeButtonChecked: 'checked' }, comment2: { personName: 'Патрисия Стёклышкова', iconPath: 'assets/pictures/contents/personas/2/2.png', date: sevenDaysAgo, content: 'Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент', likeButtonCounter: 2 } }
+        items={ comment1: { personName: 'Мурад Сарафанов', iconPath: htmlWebpackPlugin ? require('@contents/personas/1/1.png').default : '', date: fiveDaysAgo, content: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.', likeButtonCounter: 12, isLikeButtonChecked: 'checked' }, comment2: { personName: 'Патрисия Стёклышкова', iconPath: htmlWebpackPlugin ? require('@contents/personas/2/2.png').default : '', date: sevenDaysAgo, content: 'Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент', likeButtonCounter: 2 } }
       )
       +form-bullet-list.room-details-layout__rules(
         label={ h2: 'Правила' },
