@@ -1,7 +1,6 @@
 include ~@common.blocks/primitives/form-text-field/form-text-field.pug
 include ~@common.blocks/primitives/button/button.pug
 
-//- id: id of card
 //- class: class for component bem mix: such as positioning functionality
 //- name: {string} - name of <form>, also it is used such prefix for names of inner forms
 //- action - form action
@@ -10,7 +9,6 @@ include ~@common.blocks/primitives/button/button.pug
 //- href: {string} - redirect href for page of registration
 mixin card-entering
   form.card-base.card-entering(
-    id=attributes.id,
     class=attributes.class,
     name=attributes.name,
     action=attributes.action,

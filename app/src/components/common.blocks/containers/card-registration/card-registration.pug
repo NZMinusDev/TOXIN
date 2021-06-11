@@ -3,7 +3,6 @@ include ~@common.blocks/primitives/form-toggle/form-toggle.pug
 include ~@common.blocks/containers/form-radio-buttons/form-radio-buttons.pug
 include ~@common.blocks/primitives/button/button.pug
 
-//- id: {string} - id of card
 //- class: {string} - class for component bem mix: such as positioning functionality
 //- name: {string} - name of <form>, also it is used such prefix for names of inner forms
 //- action: {string} - form action
@@ -12,7 +11,6 @@ include ~@common.blocks/primitives/button/button.pug
 //- href: {string} - redirect href for page of entrance
 mixin card-registration
   form.card-base.card-registration(
-    id=attributes.id,
     class=attributes.class,
     name=attributes.name,
     action=attributes.action,
@@ -30,15 +28,15 @@ mixin card-registration
     )
     +form-radio-buttons.card-registration__gender-radio-btn(
       name=`${attributes.name}-gender`,
-      buttons={ male: { id: 'male-radio', itemLabel: 'Мужчина', checked: 'checked' }, female: { id: 'female-radio', itemLabel: 'Женщина' } }
+      buttons={ male: { label: 'Мужчина', checked: 'checked' }, female: { label: 'Женщина' } }
     )
     +form-text-field.card-registration__birthday-field(
-      label="Дата рождения",
+      heading={ h3: 'Дата рождения' },
       type="date",
       name=`${attributes.name}-birthday`
     )
     +form-text-field.card-registration__email-field(
-      label="Данные для входа в сервис",
+      heading={ h3: 'Данные для входа в сервис' },
       type="email",
       name=`${attributes.name}-email`
     )
@@ -46,9 +44,9 @@ mixin card-registration
       type="password",
       name=`${attributes.name}-password`
     )
-    +form-toggle#special-offer-toggle.card-registration__special-offer-toggle(
-      name=`${attributes.name}-special-offers`,
-      itemLabel="Получать спецпредложения"
+    +form-toggle.card-registration__special-offer-toggle(
+      label="Получать спецпредложения",
+      name=`${attributes.name}-special-offers`
     )
     +button.card-registration__link-btn(
       type="submit",

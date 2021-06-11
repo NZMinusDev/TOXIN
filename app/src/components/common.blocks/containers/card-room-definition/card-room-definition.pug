@@ -1,7 +1,6 @@
 include ~@common.blocks/primitives/form-dropdown/form-dropdown.pug
 include ~@common.blocks/primitives/button/button.pug
 
-//- id: id of card
 //- class: class for component bem mix: such as positioning functionality
 //- name: {string} - name of <form>, also it is used such prefix for names of inner forms
 //- action: form action
@@ -40,7 +39,6 @@ mixin card-room-definition
       amount: attributes['additional-services-payment'],
     };
   form.card-base.card-room-definition(
-    id=attributes.id,
     class=attributes.class,
     name=attributes.name,
     action=attributes.action,
@@ -52,7 +50,7 @@ mixin card-room-definition
       h3.card-room-definition__room-grade= attributes['room-grade']
     h3.card-room-definition__day-payment(data-amount=attributes['payment-amount'])!= paymentAmountSentence
     +form-dropdown.card-room-definition__arrival-date-dropdown(
-      label="Прибытие",
+      heading={ h3: 'Прибытие' },
       name=`${attributes.name}-arrival`,
       type="date",
       output="plural",
@@ -60,7 +58,7 @@ mixin card-room-definition
       altFields=`.card-room-definition__departure-date-dropdown [name=${attributes.name}-departure]`
     )
     +form-dropdown.card-room-definition__departure-date-dropdown(
-      label="Выезд",
+      heading={ h3: 'Выезд' },
       name=`${attributes.name}-departure`,
       type="date",
       isAltField
@@ -68,7 +66,7 @@ mixin card-room-definition
     +form-dropdown.card-room-definition__guests-single-apply(
       name=`${attributes.name}-guests`,
       type="item-quantity",
-      label="Гости",
+      heading={ h3: 'Гости' },
       data-placeholder="Сколько гостей",
       openMod="apply",
       groups=attributes['guests-groups'],

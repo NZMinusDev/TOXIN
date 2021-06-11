@@ -7,13 +7,13 @@ mixin form-dropdown__item-quantity-list
       total += value.default;
       counter++;
     });
-  input.form-dropdown__list-input(
-    name=attributes.name,
-    type="hidden",
-    value=total,
-    data-is-filter=attributes['data-is-filter']
-  )
   button.iqdropdown.form-dropdown__item-quantity-list(id=attributes.id, class=attributes.class, type="button")
+    input.form-dropdown__list-input(
+      name=attributes.name,
+      type="hidden",
+      value=total,
+      data-is-filter=attributes['data-is-filter']
+    )
     p.iqdropdown-selection(data-placeholder=attributes['data-placeholder'] || '')
     .iqdropdown-menu(data-groups=attributes.groups)
       each limits, item in attributes.list

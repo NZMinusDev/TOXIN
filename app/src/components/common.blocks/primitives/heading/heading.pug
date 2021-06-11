@@ -1,0 +1,11 @@
+//- heading: { tag: text }, example: { h3: 'awesome heading' }
+//- isLabel?: { boolean } - if true, add nested label tag and take a block of pug
+
+mixin heading(heading, { isLabel = false } = {})
+  - const headingTag = Object.keys(heading)[0];
+  if isLabel
+    #{headingTag}.heading
+      label&attributes(attributes)= heading[headingTag]
+        block
+  else
+    #{headingTag}.heading= heading[headingTag]

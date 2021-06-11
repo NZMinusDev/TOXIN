@@ -29,12 +29,12 @@ block content
       )
     section.room-details-layout__info
       +form-bullet-list.room-details-layout__data(
-        label={ h2: 'Сведения о номере' },
+        heading={ h2: 'Сведения о номере' },
         mod="rich",
         items={ Комфорт: { icon: 'insert_emoticon', description: 'Шумопоглощающие стены' }, Удобство: { icon: 'location_city', description: 'Окно в каждой из спален' }, Уют: { icon: 'whatshot', description: 'Номер оснащен камином' } }
       )
       +donut-chart.room-details-layout__impression(
-        label={ h2: 'Впечатления от номера' },
+        heading={ h2: 'Впечатления от номера' },
         items={ Великолепно: 130, Хорошо: 65, Удовлетворительно: 65, Разочарован: 0 },
         dataName="голосов",
         list
@@ -44,11 +44,11 @@ block content
         const fiveDaysAgo = new Date(Date.now() - msPerDay * 5).toISOString();
         const sevenDaysAgo = new Date(Date.now() - msPerDay * 7).toISOString();
       +comments.room-details-layout__comments(
-        label={ h2: 'Отзывы посетителей номера' },
+        heading={ h2: 'Отзывы посетителей номера' },
         items={ 'comment-1': { personName: 'Мурад Сарафанов', iconPath: htmlWebpackPlugin ? require('@contents/personas/1/1.png').default : '', date: fiveDaysAgo, content: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.', likeButtonCounter: 12, isLikeButtonChecked: 'checked' }, 'comment-2': { personName: 'Патрисия Стёклышкова', iconPath: htmlWebpackPlugin ? require('@contents/personas/2/2.png').default : '', date: sevenDaysAgo, content: 'Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент', likeButtonCounter: 2 } }
       )
       +form-bullet-list.room-details-layout__rules(
-        label={ h2: 'Правила' },
+        heading={ h2: 'Правила' },
         items=['Нельзя с питомцами', 'Без вечеринок и мероприятий', 'Время прибытия — после 13:00, а выезд до 12:00']
       )
       .room-details-layout__alert

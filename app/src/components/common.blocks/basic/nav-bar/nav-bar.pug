@@ -9,7 +9,6 @@ include ~@common.blocks/primitives/button/button.pug
   //- Additional for "confirmed" status
     //- personHref: {string} - href for person account
     //- personName: {string} - person name
-//- id?: id of component
 //- class?: class for component bem mix: such as positioning functionality
 
 mixin nav-bar
@@ -47,7 +46,7 @@ mixin nav-bar
         },
       },
     }
-  header.nav-bar.content-container(id=attributes.id, class=attributes.class)
+  header.nav-bar.content-container(class=attributes.class)
     section.nav-bar__logo
       .logo.logo_color-gradient-primary
       span.logo__title TOXIN

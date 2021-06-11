@@ -1,17 +1,15 @@
+include ~@common.blocks/primitives/heading/heading.pug
 include ~@common.blocks/containers/form-bullet-list/form-bullet-list.pug
 
 //- items: {'title text 1': number, 'title text 2': number, ...} - data partitions, numbers is [0;1], the first number isn't 0, up to 5 items
 //- dataName: {string} - name of data
 //- list?: {boolean} - append list with designations
-//- label?: {tag: text}, example: {h2: "my label"}
+//- heading?: { tag: text }, example: { h3: 'awesome heading' }
 //- type?: "bordered"
-//- id?: {string} - id of component
 //- class?: {string} - class for component bem mix: such as positioning functionality
 
 mixin donut-chart
   -
-    const labelKey = attributes.label ? Object.keys(attributes.label)[0] : null;
-
     let total = 0;
     Object.values(attributes.items).forEach((value) => {
       total += value;
@@ -23,10 +21,10 @@ mixin donut-chart
       bulletItems.push(key);
       chartsRatio.push(value / total);
     });
-  .donut-chart(id=attributes.id, class=attributes.class)
-    if labelKey
-      #{labelKey}.form-label.donut-chart__label
-        label(for=attributes.id)= attributes.label[labelKey]
+  .donut-chart(class=attributes.class)
+    .donut-chart__heading
+      if attributes.heading
+        +heading(attributes.heading)
     .donut-chart__chart
       -
         const round = 360;

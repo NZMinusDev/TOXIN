@@ -1,6 +1,5 @@
 //- displayed: {number} - amount of items to display 
 //- total: {number} - amount of searched items
-//- id?: id of component
 //- class?: class for component bem mix: such as positioning functionality or size
 //- mod?: "href" | "async", default is href
   //- Additional for type="href":
@@ -54,7 +53,6 @@ mixin pagination
         .map((value, index) => `${attributes.hrefPrefix}${index}`);
     }
   nav.pagination(
-    id=attributes.id,
     class=attributes.class,
     class=type === 'async' ? 'pagination_mod-async' : null,
     data-page=type === 'async' ? activePage : null,

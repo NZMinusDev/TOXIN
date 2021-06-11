@@ -3,8 +3,4 @@
 .form-checkbox-buttons__label-item {
   line-height: 0.75rem;
   color: functions.getColor(color__dark-shade, 0.5);
-
-  &:after {
-    line-height: 0.5833333333333333rem;
-  }
 }

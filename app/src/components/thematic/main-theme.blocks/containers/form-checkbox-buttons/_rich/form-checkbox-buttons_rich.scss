@@ -3,12 +3,10 @@
 .form-checkbox-buttons_rich {
   .form-checkbox-buttons__label-item {
     font-weight: 700;
-    line-height: 0.75rem;
     color: functions.getColor(color__dark-shade, 0.75);
-
-    &:after {
-      line-height: 0.5833333333333333rem;
-      color: functions.getColor(color__dark-shade, 0.5);
-    }
+  }
+  .form-checkbox-buttons__description {
+    line-height: 0.5833333333333333rem;
+    color: functions.getColor(color__dark-shade, 0.5);
   }
 }

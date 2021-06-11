@@ -1,7 +1,8 @@
-//- id - id for input field inside component
+include ~@common.blocks/primitives/heading/heading.pug
+
 //- class - class for component bem mix: such as positioning functionality
 //- data-is-filter: {boolean} - if true, input change event will reload page with chosen value(get method)
-//- label - text for label
+//- heading?: { tag: text }, example: { h3: 'awesome heading' }
 //- type - type of field for validation: 'email' | 'password' | 'date' 
 //- name - name of input field
 //- value - init value of field
@@ -29,17 +30,16 @@ mixin form-text-field
     const inputMaskType = allowedInputmaskTypes.find((type) => type === attributes.type) || 'text';
     const inputModeAttr =
       allowedInputmodeAttribute.find((type) => type === attributes.type) || 'text';
-  .form-text-field(class=componentClassModificator, class=attributes.class)
-    if attributes.label
-      h3.form-label
-        label(for=attributes.id)= attributes.label
+  .form-text-field(class=[componentClassModificator, attributes.class])
+    if attributes.heading
+      +heading(attributes.heading, { isLabel: true })(for=attributes.name)
     .form-field
       input.form-text-field__input(
-        id=attributes.id,
         data-is-filter=attributes['data-is-filter'] ? `${attributes['data-is-filter']}` : null,
         type=inputMaskType,
         inputmode=inputModeAttr,
         name=attributes.name,
+        id=attributes.name,
         data-placeholder=reservedPlaceholders[attributes.type] || attributes.data - placeholder,
         value=attributes.value,
         autofocus=attributes.autofocus

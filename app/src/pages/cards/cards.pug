@@ -16,19 +16,19 @@ block append variables
 block content
   - const msPerDay = 1000 * 60 * 60 * 24;
   main.cards-layout.ui-kit-container
-    +card-pick-room#card-pick-room.cards-layout__pick-room(
+    +card-pick-room.cards-layout__pick-room(
       name="pick-room",
       action="",
       method=""
     )
-    +card-registration#card-registration.cards-layout__registration(
+    +card-registration.cards-layout__registration(
       name="registration",
       action="",
       method="",
       href=""
     )
-    +card-entering#card-entering.cards-layout__entering(name="entering", action="", method="")
-    +card-room-definition#card-room-definition.cards-layout__room-definition(
+    +card-entering.cards-layout__entering(name="entering", action="", method="")
+    +card-room-definition.cards-layout__room-definition(
       name="room-definition",
       action="",
       room-number=888,
@@ -41,7 +41,7 @@ block content
       services-sale=2179,
       additional-services-payment=300
     )
-    +card-room#card-room-luxury.cards-layout__card-luxury-room(
+    +card-room.cards-layout__card-luxury-room(
       href="#room-luxury",
       name="room-luxury",
       paths=[htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/common/840/840.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/common/840/840.png').default : ''],
@@ -51,7 +51,7 @@ block content
       rate=5,
       comments-amount=145
     )
-    +card-room#card-room-common.cards-layout__card-common-room(
+    +card-room.cards-layout__card-common-room(
       href="#room-common",
       name="room-common",
       paths=[htmlWebpackPlugin ? require('@contents/rooms/common/840/840.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/common/840/840.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : ''],
@@ -64,7 +64,7 @@ block content
       const cardDatepickerSelectedDates = `${new Date(
         Date.now() + msPerDay
       ).toISOString()},${new Date(Date.now() + msPerDay * 4).toISOString()}`;
-    +card-datepicker#card-datepicker.cards-layout__datepicker(
+    +card-datepicker.cards-layout__datepicker(
       data-is-filter,
       name="card-datepicker",
       selected-dates=cardDatepickerSelectedDates,

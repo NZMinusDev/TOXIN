@@ -1,7 +1,6 @@
 include ~@common.blocks/primitives/form-dropdown/form-dropdown.pug
 include ~@common.blocks/primitives/button/button.pug
 
-//- id: {string} - id of card
 //- class: {string} - class for component bem mix: such as positioning functionality
 //- name: {string} - name of <form>, also it is used such prefix for names of inner forms
 //- action: {string} - form action
@@ -10,7 +9,6 @@ include ~@common.blocks/primitives/button/button.pug
 //- disabled?: same as fieldset disabled (disable all buttons)
 mixin card-pick-room
   form.card-base.card-pick-room(
-    id=attributes.id,
     class=attributes.class,
     name=attributes.name,
     action=attributes.action,
@@ -21,14 +19,14 @@ mixin card-pick-room
     fieldset.card-pick-room__datepicker-fieldset(disabled=attributes.disabled)
       .card-pick-room__datepicker
         +form-dropdown.card-pick-room__arrival-date-dropdown(
-          label="Прибытие",
+          heading={ h3: 'Прибытие' },
           name=`${attributes.name}-arrival`,
           type="date",
           output="plural",
           altFields=`.card-pick-room__departure-date-dropdown [name=${attributes.name}-departure]`
         )
         +form-dropdown.card-pick-room__departure-date-dropdown(
-          label="Выезд",
+          heading={ h3: 'Выезд' },
           name=`${attributes.name}-departure`,
           type="date",
           isAltField
@@ -36,7 +34,7 @@ mixin card-pick-room
     +form-dropdown.card-pick-room__guests-single-apply(
       name=`${attributes.name}-guests`,
       type="item-quantity",
-      label="Гости",
+      heading={ h3: 'Гости' },
       data-placeholder="Сколько гостей",
       openMod="apply",
       groups={ гости: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } },

@@ -12,12 +12,12 @@
 
     // default: bordered
     &:after {
-      content: "\e83a";
+      content: '\e83a';
     }
   }
 
   // selected: filled
   &:checked ~ .icon:after {
-    content: "\f0ec";
+    content: '\e838';
   }
 }

@@ -1,40 +1,38 @@
+include ~@common.blocks/primitives/heading/heading.pug
+
 //- buttons: {
   'name-1':{
-    id:string,
-    itemLabel:string,
+    label:string,
     description:string, // additional for "rich" mod
     checked: 'checked'
   },
   'name-2':{
-    id:string,
-    itemLabel:string,
+    label:string,
     description:string, // additional for "rich" mod
     checked: ''
   },...}
-//- id?: id of checkbox buttons' container
 //- class?: class for component bem mix: such as positioning functionality
 //- data-is-filter?: {boolean} - if true, change event will reload page with chosen value(get method)
-//- label?: text of label
+//- heading?: { tag: text }, example: { h3: 'awesome heading' }
 //- mod?: "rich" - mod of component
 //- disabled?: same as fieldset disabled (disable all buttons)
 mixin form-checkbox-buttons
-  - const modClass = attributes.mod ? `form-checkbox-buttons_${attributes.mod}` : null;
-  .form-checkbox-buttons(id=attributes.id, class=modClass, class=attributes.class)
-    if attributes.label
-      h3.form-label
-        label(for=attributes.id)= attributes.label
+  -
+    const modClass = attributes.mod ? `form-checkbox-buttons_${attributes.mod}` : null;
+  .form-checkbox-buttons(class=[modClass, attributes.class])
+    if attributes.heading
+      +heading(attributes.heading)
     fieldset(disabled=attributes.disabled)
       ul.form-checkbox-buttons__list
         each btn, key in attributes.buttons
           li.form-checkbox-buttons__item
             input.form-checkbox-buttons__button-item(
-              id=btn.id,
+              id=key,
               type="checkbox",
               name=key,
-              data-is-filter=attributes['data-is-filter'] ? `${attributes['data-is-filter']}`:null,
+              data-is-filter=attributes['data-is-filter'] ? `${attributes['data-is-filter']}` : null,
               checked=btn.checked
             )
-            if btn.itemLabel
-              label.form-checkbox-buttons__label-item(for=btn.id)= btn.itemLabel
-              if btn.description
-                p.form-checkbox-buttons__description= btn.description
+            label.form-checkbox-buttons__label-item(for=key)= btn.label
+            if btn.description
+              p.form-checkbox-buttons__description= btn.description

@@ -1,7 +1,6 @@
 include ~@common.blocks/primitives/form-text-field/form-text-field.pug
 
 //- type?: 'creative'
-//- id?: id of component
 //- class?: class for component bem mix: such as positioning functionality
 
 mixin footer
@@ -14,7 +13,7 @@ mixin footer
     const copyright = 'Copyright © 2018 Toxin отель. Все права зачищены.';
   case attributes.type
     when 'creative'
-      footer.footer.footer_creative.content-container(id=attributes.id, class=attributes.class)
+      footer.footer.footer_creative.content-container(class=attributes.class)
         section.footer__logo
           .logo.logo_color-gradient-primary
           span.logo__title TOXIN
@@ -29,7 +28,7 @@ mixin footer
                   title=icon.title
                 )
     default
-      footer.footer.content-container(id=attributes.id, class=attributes.class)
+      footer.footer.content-container(class=attributes.class)
         section.footer__widgets
           section.footer__logo
             .logo.logo_color-gradient-primary
@@ -81,7 +80,7 @@ mixin footer
               h3
                 label.footer__list-label(for="footer-subscription-checkbox") Подписка
               p Получайте специальные предложения и новости сервиса
-              +form-text-field#subscription-text-field(
+              +form-text-field(
                 type="email",
                 name="subscription-form-text-field",
                 data-material-icon="arrow_forward"

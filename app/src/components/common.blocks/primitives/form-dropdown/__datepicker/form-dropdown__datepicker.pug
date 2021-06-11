@@ -1,22 +1,28 @@
 include ~@common.blocks/primitives/card-datepicker/card-datepicker.pug
 
+//- name: {string} - name of input
+//- id?: { string } - is of button
+//- class?: { string } - class of button
+//- selected-dates?: {ISODateString | ISODateString,ISODateString,...} - initial dates(date), for several values use ','; example: "2020-11-18T21:00:00.000Z" or 2020-11-18T21:00:00.000Z,
+//- isAltField?: {boolean} - mark this as field that uses a different calendar
+//- altFields?: {string} - selector of bonded alt fields
+//- data-range?: {boolean|number} - lib argument, enable range functionality
+//- data-placeholder - text of placeholder
+//- data-is-filter?: {boolean} - if true, apply button will reload page with chosen value(get method)
+
 mixin form-dropdown__datepicker
   button.form-dropdown__datepicker-btn(id=attributes.id, class=attributes.class, type="button")
+    input.form-dropdown__datepicker-input(
+      type="hidden",
+      name=attributes.name,
+      value=attributes['selected-dates'],
+      data-is-filter=attributes['data-is-filter'] ? `${attributes['data-is-filter']}` : null
+    )
     if !attributes.isAltField
       +card-datepicker.form-dropdown__datepicker(
-        data-is-filter=attributes['data-is-filter'],
         altFields=attributes.altFields,
-        name=attributes.name,
-        selected-dates=attributes['selected-dates'],
         data-range=attributes['data-range']
-      )
-    else
-      input(
-        type="hidden",
-        name=attributes.name,
-        value=attributes['selected-dates'],
-        data-is-filter=attributes['data-is-filter'] ? `${attributes['data-is-filter']}` : null
-      )
+      ) 
     p.form-dropdown__selection-text
       time(
         datetime=attributes['selected-dates'],
