@@ -5,7 +5,7 @@ include ~@common.blocks/primitives/form-like-button/form-like-button.pug
 include ~@utils/devTools/pug/mixins/picture.pug
 
 //- items: {
-  id1:{
+  'id-1':{
     personName:string,
     iconPath:string,
     date:datestring,
@@ -13,7 +13,7 @@ include ~@utils/devTools/pug/mixins/picture.pug
     likeButtonCounter:number,
     isLikeButtonChecked
   },
-  id2:{
+  'id-2':{
     personName:string,
     iconPath:string,
     date:datestring,
@@ -41,8 +41,8 @@ mixin comments
         p.comments__content-item= item.content
         .comments__like-button-item
           +form-like-button(
-            id=`${key}__like-button`,
-            name=`${key}__like-button`,
+            id=`${key}-like-button`,
+            name=`${key}-like-button`,
             counter=item.likeButtonCounter,
             checked=item.isLikeButtonChecked
           )

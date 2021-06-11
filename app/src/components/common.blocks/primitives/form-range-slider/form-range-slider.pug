@@ -3,21 +3,21 @@
 //- start: array of init values such as [5000, 10000]
 //- id?: id of slider
 //- class?: class for component bem mix: such as positioning functionality
-//- isFilter?: {boolean} - if true, input change event will reload page with chosen value(get method), default is false
+//- data-is-filter?: {boolean} - if true, input change event will reload page with chosen value(get method), default is false
 //- label?: text of label
 //- description: {string} - appended text after slider
 //- step?: {number}
 mixin form-range-slider
   .form-range-slider(
     class=attributes.class,
-    isFilter=attributes.isFilter ? attributes.isFilter + '' : null
+    data-is-filter=attributes['data-is-filter'] ? `${attributes['data-is-filter']}` : null
   )
     if attributes.label
       h3.form-label.form-range-slider__label
         label(for=attributes.id)= attributes.label
     input.form-range-slider__input(
-      name=attributes.name + '-from',
-      id=attributes.id ? attributes.id + '-from' : null,
+      name=`${attributes.name}-from`,
+      id=attributes.id ? `${attributes.id}-from` : null,
       type="range",
       min=attributes.range.min,
       max=attributes.range.max,
@@ -25,8 +25,8 @@ mixin form-range-slider
       step=attributes.step ? attributes.step : 1
     )
     input.form-range-slider__input(
-      name=attributes.name + '-to',
-      id=attributes.id ? attributes.id + '-to' : null,
+      name=`${attributes.name}-to`,
+      id=attributes.id ? `${attributes.id}-to` : null,
       type="range",
       min=attributes.range.min,
       max=attributes.range.max,
@@ -35,8 +35,8 @@ mixin form-range-slider
     )
     output.form-range-slider__result(
       name=attributes.name,
-      id=attributes.id ? attributes.id + '-result' : null,
-      for=attributes.id ? attributes.id + '-from' + ' ' + attributes.id + '-to' : null
+      id=attributes.id ? `${attributes.id}-result` : null,
+      for=attributes.id ? `${attributes.id}-from  ${attributes.id}-to` : null
     )
     .form-range-slider__slider(id=attributes.id)
     if attributes.description

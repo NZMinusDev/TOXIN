@@ -11,15 +11,15 @@ mixin form-dropdown__item-quantity-list
     name=attributes.name,
     type="hidden",
     value=total,
-    isFilter=attributes.isFilter
+    data-is-filter=attributes['data-is-filter']
   )
   button.iqdropdown.form-dropdown__item-quantity-list(id=attributes.id, class=attributes.class, type="button")
-    p.iqdropdown-selection(data-placeholder=attributes.placeholder || '')
+    p.iqdropdown-selection(data-placeholder=attributes['data-placeholder'] || '')
     .iqdropdown-menu(data-groups=attributes.groups)
       each limits, item in attributes.list
         input.form-dropdown__option-input(
           type="hidden",
-          name=attributes.name + '-' + item,
+          name=`${attributes.name}-${item}`,
           value=limits.default
         )
         .iqdropdown-menu-option(

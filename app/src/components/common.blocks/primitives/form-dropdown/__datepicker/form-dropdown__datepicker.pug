@@ -4,7 +4,7 @@ mixin form-dropdown__datepicker
   button.form-dropdown__datepicker-btn(id=attributes.id, class=attributes.class, type="button")
     if !attributes.isAltField
       +card-datepicker.form-dropdown__datepicker(
-        isFilter=attributes.isFilter,
+        data-is-filter=attributes['data-is-filter'],
         altFields=attributes.altFields,
         name=attributes.name,
         selected-dates=attributes['selected-dates'],
@@ -15,10 +15,10 @@ mixin form-dropdown__datepicker
         type="hidden",
         name=attributes.name,
         value=attributes['selected-dates'],
-        isFilter=attributes.isFilter ? attributes.isFilter + '' : null
+        data-is-filter=attributes['data-is-filter'] ? `${attributes['data-is-filter']}` : null
       )
     p.form-dropdown__selection-text
       time(
         datetime=attributes['selected-dates'],
-        placeholder=attributes.placeholder || (attributes['data-range'] && !attributes.altFields) ? 'День месяц - день месяц' : 'ДД.ММ.ГГГГ'
+        data-placeholder=attributes['data-placeholder'] || (attributes['data-range'] && !attributes.altFields) ? 'День месяц - день месяц' : 'ДД.ММ.ГГГГ'
       )

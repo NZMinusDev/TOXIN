@@ -1,13 +1,13 @@
-//- attributes.id - id for input field inside component
-//- attributes.class - class for component bem mix: such as positioning functionality
-//- isFilter: {boolean} - if true, input change event will reload page with chosen value(get method)
-//- attributes.label - text for label
-//- attributes.type - type of field for validation: 'email' | 'password' | 'date' 
-//- attributes.name - name of input field
-//- attributes.value - init value of field
-//- attributes.placeholder - placeholder text
+//- id - id for input field inside component
+//- class - class for component bem mix: such as positioning functionality
+//- data-is-filter: {boolean} - if true, input change event will reload page with chosen value(get method)
+//- label - text for label
+//- type - type of field for validation: 'email' | 'password' | 'date' 
+//- name - name of input field
+//- value - init value of field
+//- data-placeholder - placeholder text
 //- autofocus - just add it for it works
-//- materialIcon - material icon name for submit btn in field
+//- data-material-icon - material icon name for submit btn in field
 mixin form-text-field
   -
     const allowedInputmaskTypes = ['text', 'search', 'tel', 'url', 'password'];
@@ -36,13 +36,16 @@ mixin form-text-field
     .form-field
       input.form-text-field__input(
         id=attributes.id,
-        isFilter=attributes.isFilter ? attributes.isFilter + '' : null,
+        data-is-filter=attributes['data-is-filter'] ? `${attributes['data-is-filter']}` : null,
         type=inputMaskType,
         inputmode=inputModeAttr,
         name=attributes.name,
-        placeholder=reservedPlaceholders[attributes.type] || attributes.placeholder,
+        data-placeholder=reservedPlaceholders[attributes.type] || attributes.data - placeholder,
         value=attributes.value,
         autofocus=attributes.autofocus
       )
-      if attributes.materialIcon
-        button.icon.form-text-field__link-icon(type="submit", data-icon=attributes.materialIcon)
+      if attributes['data-material-icon']
+        button.icon.form-text-field__link-icon(
+          type="submit",
+          data-icon=attributes['data-material-icon']
+        )

@@ -18,7 +18,7 @@ mixin form-rate-button
     fieldset.form-rate-button__rating(disabled=attributes.disabled)
       while counter > 0
         -
-          const currentID = `${attributes.name}_${counter}`;
+          const currentID = `${attributes.name}-${counter}`;
           const checked = counter === attributes.rate ? 'checked' : null;
         input.form-rate-button__button-item(
           id=currentID,

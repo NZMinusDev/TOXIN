@@ -1,19 +1,19 @@
 include ~@common.blocks/containers/form-checkbox-buttons/form-checkbox-buttons.pug
 //- label: text of label
 //- buttons: {
-  name1:{
+  'name-1':{
     id:string,
     itemLabel:string,
     checked: 'checked'
   },
-  name2:{
+  'name-2':{
     id:string,
     itemLabel:string,
     checked: ''
   },...}
 //- id?: id of expander
 //- class?: class for component bem mix: such as positioning functionality
-//- isFilter?: {boolean} - if true, change event will reload page with chosen value(get method)
+//- data-is-filter?: {boolean} - if true, change event will reload page with chosen value(get method)
 //- checked?: open the list
 //- disabled?: same as fieldset disabled (disable all buttons)
 //- Tip: be careful if use large amount of items: max-height limited by 32em for transition animation
@@ -25,6 +25,6 @@ mixin form-expandable-checkbox-list
       label.icon.form-expandable-checkbox-list__expand-icon(for=attributes.id)
       +form-checkbox-buttons.form-expandable-checkbox-list__list(
         buttons=attributes.buttons,
-        isFilter=attributes.isFilter ? attributes.isFilter + '' : null,
+        data-is-filter=attributes['data-is-filter'] ? `${attributes['data-is-filter']}` : null,
         disabled=attributes.disabled
       )

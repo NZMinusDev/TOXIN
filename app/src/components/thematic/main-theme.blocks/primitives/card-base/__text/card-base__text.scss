@@ -1,0 +1,5 @@
+@use "@utils/devTools/styles/functions.scss";
+
+.card-base__text {
+  color: functions.getColor(color__dark-shade, 0.5);
+}

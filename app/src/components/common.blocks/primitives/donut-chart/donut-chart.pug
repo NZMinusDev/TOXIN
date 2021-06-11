@@ -1,6 +1,6 @@
 include ~@common.blocks/containers/form-bullet-list/form-bullet-list.pug
 
-//- items: {title1: number, title2: number, ...} - data partitions, numbers is [0;1], the first number isn't 0, up to 5 items
+//- items: {'title text 1': number, 'title text 2': number, ...} - data partitions, numbers is [0;1], the first number isn't 0, up to 5 items
 //- dataName: {string} - name of data
 //- list?: {boolean} - append list with designations
 //- label?: {tag: text}, example: {h2: "my label"}
@@ -36,7 +36,7 @@ mixin donut-chart
       each ratio in chartsRatio
         - endVal += ratio !== 0 ? ratio * round : 0;
         .donut-chart__slice(
-          style=`--start:${startVal + gapDegree / 2 + 'deg'}; --end:${endVal - gapDegree / 2 + 'deg'};`
+          style=`--start:${startVal + gapDegree / 2}'deg'; --end:${endVal - gapDegree / 2}'deg';`
         )
         - startVal += ratio !== 0 ? ratio * round : 0;
       .donut-chart__counter

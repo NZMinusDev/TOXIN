@@ -65,7 +65,7 @@ block content
         Date.now() + msPerDay
       ).toISOString()},${new Date(Date.now() + msPerDay * 4).toISOString()}`;
     +card-datepicker#card-datepicker.cards-layout__datepicker(
-      isFilter,
+      data-is-filter,
       name="card-datepicker",
       selected-dates=cardDatepickerSelectedDates,
       data-range

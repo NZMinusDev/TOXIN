@@ -6,7 +6,7 @@
  * @example
  * animate(
  * (progress) => { // draw
- *    elem.style.width = progress * 100 + '%';
+ *    elem.style.width = `${progress * 100}%`;
  *  }
  *  1000, // duration
  *  {timing: (timeFraction) => { // parabolic curve timing function

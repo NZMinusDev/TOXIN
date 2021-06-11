@@ -1,8 +1,7 @@
 @use "@utils/devTools/styles/functions.scss";
 
 .card-room__day-payment {
-  &,
-  & .normal-weight-text {
+  & {
     color: functions.getColor(color__dark-shade, 0.5);
   }
 }

@@ -7,14 +7,14 @@ include ~@utils/devTools/pug/mixins/picture.pug
 mixin slideshow
   .slideshow(id=attributes.id, class=attributes.class)
     -
-      let labelID = attributes.name + (attributes.paths.length - 1);
+      let labelID = `${attributes.name}-${(attributes.paths.length - 1)}`;
 
       const radioContainerRightOffset = 15;
       const radioSize = 7.5;
       const radioGap = 7.5 / 2;
     each path, index in attributes.paths
       -
-        const pictureID = attributes.name + index;
+        const pictureID = `${attributes.name}-${index}`;
 
         const reverseOrderIndex = attributes.paths.length - index - 1;
         const rightRadioOffset =
@@ -30,4 +30,4 @@ mixin slideshow
       +picture.slideshow__picture(path=path, alt=`Изображение № ${index + 1}`)
       - labelID = pictureID;
     label.icon.slideshow__switcher(for=pictureID)= `View ${pictureID}`
-    label.icon.slideshow__switcher(for=attributes.name + 0)= `View ${attributes.name + 0}`
+    label.icon.slideshow__switcher(for=`${attributes.name}-0`)= `View ${attributes.name + 0}`

@@ -31,7 +31,7 @@
   "author": "Nikita Zaitsev <developer.n.zaytsev@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@prettier/plugin-pug": "^1.5.1",
+    "@prettier/plugin-pug": "^1.15.2",
     "@types/jquery": "^3.5.2",
     "@types/lodash-es": "^4.17.4",
     "@typescript-eslint/eslint-plugin": "^4.1.0",
@@ -110,6 +110,7 @@
   "prettier": {
     "endOfLine": "auto",
     "printWidth": 100,
-    "singleQuote": true
+    "singleQuote": true,
+    "pugSingleQuote": false
   }
 }

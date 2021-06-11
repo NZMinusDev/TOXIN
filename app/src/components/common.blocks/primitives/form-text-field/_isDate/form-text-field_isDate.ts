@@ -7,7 +7,7 @@ dateFormTextFields.forEach((dateFormTextField) => {
   dateFormTextField.setAttribute("inputmode", "numeric");
   Inputmask("datetime", {
     inputFormat: "dd.mm.yyyy",
-    placeholder: dateFormTextField.getAttribute("placeholder"),
+    placeholder: dateFormTextField.dataset.placeholder,
     autoUnmask: true,
     showMaskOnHover: false,
   }).mask(dateFormTextField);

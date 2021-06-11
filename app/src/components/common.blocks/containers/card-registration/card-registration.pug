@@ -22,15 +22,15 @@ mixin card-registration
     h1.card-registration__title Регистрация аккаунта
     +form-text-field.card-registration__name-field(
       name=`${attributes.name}-name`,
-      placeholder="Имя"
+      data-placeholder="Имя"
     )
     +form-text-field.card-registration__surname-field(
       name=`${attributes.name}-surname`,
-      placeholder="Фамилия"
+      data-placeholder="Фамилия"
     )
     +form-radio-buttons.card-registration__gender-radio-btn(
       name=`${attributes.name}-gender`,
-      buttons={ isMale: { id: 'isMaleRadio', itemLabel: 'Мужчина', checked: 'checked' }, isFemale: { id: 'isFemaleRadio', itemLabel: 'Женщина' } }
+      buttons={ male: { id: 'male-radio', itemLabel: 'Мужчина', checked: 'checked' }, female: { id: 'female-radio', itemLabel: 'Женщина' } }
     )
     +form-text-field.card-registration__birthday-field(
       label="Дата рождения",
@@ -47,7 +47,7 @@ mixin card-registration
       name=`${attributes.name}-password`
     )
     +form-toggle#special-offer-toggle.card-registration__special-offer-toggle(
-      name=`${attributes.name}-specialOffers`,
+      name=`${attributes.name}-special-offers`,
       itemLabel="Получать спецпредложения"
     )
     +button.card-registration__link-btn(

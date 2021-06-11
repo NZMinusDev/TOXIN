@@ -19,7 +19,7 @@ block content
       +form-dropdown#dates-of-stay-dropdown.search-room-layout__dates-of-stay-dropdown(
         name="dates-of-stay",
         type="date",
-        isFilter,
+        data-is-filter,
         label="Даты пребывания в отеле",
         output="plural",
         selected-dates="2019-08-19, 2019-08-23"
@@ -28,8 +28,8 @@ block content
         name="guests",
         type="item-quantity",
         label="Гости",
-        isFilter,
-        placeholder="Сколько гостей",
+        data-is-filter,
+        data-placeholder="Сколько гостей",
         openMod="apply",
         groups={ гости: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } },
         list={ взрослые: { default: 2, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 1, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 1, min: 0, max: 1 / 0 } }
@@ -38,25 +38,25 @@ block content
         name="price",
         range={ min: 341, max: 15454 },
         start=[5000, 10000],
-        isFilter,
+        data-is-filter,
         label="Диапазон цены",
         description="Стоимость за сутки пребывания в номере"
       )
       +form-checkbox-buttons#checkbox-buttons.search-room-layout__checkbox-buttons(
-        isFilter,
+        data-is-filter,
         label="checkbox buttons",
-        buttons={ isSmoking: { id: 'isSmokingCheckbox', itemLabel: 'Можно курить' }, isWithPets: { id: 'isWithPetsCheckbox', itemLabel: 'Можно с питомцами', checked: 'checked' }, isGuests: { id: 'isGuestsCheckbox', itemLabel: 'Можно пригласить гостей (до 10 человек)', checked: 'checked' } }
+        buttons={ 'is-smoking': { id: 'is-smoking-checkbox', itemLabel: 'Можно курить' }, 'is-with-pets': { id: 'is-with-pets-checkbox', itemLabel: 'Можно с питомцами', checked: 'checked' }, 'is-guests': { id: 'is-guests-checkbox', itemLabel: 'Можно пригласить гостей (до 10 человек)', checked: 'checked' } }
       )
       +form-checkbox-buttons#affordable-rich-checkbox-buttons.search-room-layout__affordable-rich-checkbox-buttons(
-        isFilter,
+        data-is-filter,
         label="Доступность",
         mod="rich",
-        buttons={ wideCorridor: { id: 'wideCorridorCheckbox', itemLabel: 'Широкий коридор', description: 'Ширина коридоров в номере не менее 91 см.' }, assistantForTheDisabled: { id: 'assistantForTheDisabledCheckbox', itemLabel: 'Помощник для инвалидов', description: 'На 1 этаже вас встретит специалист  и проводит до номера.' } }
+        buttons={ 'wide-corridor': { id: 'wide-corridor-checkbox', itemLabel: 'Широкий коридор', description: 'Ширина коридоров в номере не менее 91 см.' }, 'assistant-for-the-disabled': { id: 'assistant-for-the-disabled-checkbox', itemLabel: 'Помощник для инвалидов', description: 'На 1 этаже вас встретит специалист  и проводит до номера.' } }
       )
       +form-dropdown#facilities-dropdown.search-room-layout__facilities-dropdown(
         name="facilities",
         type="item-quantity",
-        isFilter,
+        data-is-filter,
         label="dropdown",
         output="plural",
         openMod="fold",
@@ -64,15 +64,15 @@ block content
         list={ спальни: { default: 2, min: 1, max: 3 }, кровати: { default: 2, min: 1, max: 3 }, 'ванные комнаты': { default: 0, min: 0, max: 2 } }
       )
       +form-expandable-checkbox-list#additional-comfort-expandable-checkbox-list.search-room-layout__additional-comfort-expandable-checkbox-list(
-        isFilter,
+        data-is-filter,
         label="Дополнительные удобства",
-        buttons={ breakfast: { id: 'breakfastCheckbox', itemLabel: 'Завтрак' }, desk: { id: 'deskCheckbox', itemLabel: 'Письменный стол', checked: 'checked' }, feedingChair: { id: 'feedingChairCheckbox', itemLabel: 'Стол для кормления', checked: 'checked' }, cot: { id: 'cotCheckbox', itemLabel: 'Кроватка', checked: 'checked' }, tv1: { id: 'tv1Checkbox', itemLabel: 'Телевизор' }, shampoo1: { id: 'shampoo1Checkbox', itemLabel: 'Шампунь' }, tv2: { id: 'tv2Checkbox', itemLabel: 'Телевизор' }, shampoo2: { id: 'shampoo2Checkbox', itemLabel: 'Шампунь' } }
+        buttons={ breakfast: { id: 'breakfast-checkbox', itemLabel: 'Завтрак' }, desk: { id: 'desk-checkbox', itemLabel: 'Письменный стол', checked: 'checked' }, 'feeding-chair': { id: 'feeding-chair-checkbox', itemLabel: 'Стол для кормления', checked: 'checked' }, cot: { id: 'cot-checkbox', itemLabel: 'Кроватка', checked: 'checked' }, 'tv-1': { id: 'tv-1-checkbox', itemLabel: 'Телевизор' }, 'shampoo-1': { id: 'shampoo-1-checkbox', itemLabel: 'Шампунь' }, 'tv-2': { id: 'tv-2-checkbox', itemLabel: 'Телевизор' }, 'shampoo-2': { id: 'shampoo-2-checkbox', itemLabel: 'Шампунь' } }
       )
     h1.search-room-layout__title Номера, которые мы для вас подобрали
     main.search-room-layout__rooms
       +card-room(
-        href="#room-luxury1",
-        name="room-luxury1",
+        href="#room-luxury-1",
+        name="room-luxury-1",
         paths=[htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/common/840/840.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/common/840/840.png').default : ''],
         room-number=888,
         room-grade="Люкс",
@@ -81,8 +81,8 @@ block content
         comments-amount=145
       )
       +card-room(
-        href="#room-common1",
-        name="room-common1",
+        href="#room-common-1",
+        name="room-common-1",
         paths=[htmlWebpackPlugin ? require('@contents/rooms/common/840/840.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/common/840/840.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : ''],
         room-number=840,
         payment-amount=9900,
@@ -90,8 +90,8 @@ block content
         comments-amount=65
       )
       +card-room(
-        href="#room-luxury2",
-        name="room-luxury2",
+        href="#room-luxury-2",
+        name="room-luxury-2",
         paths=[htmlWebpackPlugin ? require('@contents/rooms/luxury/980/980.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/common/840/840.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/common/840/840.png').default : ''],
         room-number=980,
         room-grade="Люкс",
@@ -100,8 +100,8 @@ block content
         comments-amount=35
       )
       +card-room(
-        href="#room-common2",
-        name="room-common2",
+        href="#room-common-2",
+        name="room-common-2",
         paths=[htmlWebpackPlugin ? require('@contents/rooms/common/856/856.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/common/840/840.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : ''],
         room-number=856,
         payment-amount=7300,
@@ -109,8 +109,8 @@ block content
         comments-amount=19
       )
       +card-room(
-        href="#room-common3",
-        name="room-common3",
+        href="#room-common-3",
+        name="room-common-3",
         paths=[htmlWebpackPlugin ? require('@contents/rooms/common/740/740.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/common/840/840.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : ''],
         room-number=740,
         payment-amount=6000,
@@ -118,8 +118,8 @@ block content
         comments-amount=44
       )
       +card-room(
-        href="#room-common4",
-        name="room-common4",
+        href="#room-common-4",
+        name="room-common-4",
         paths=[htmlWebpackPlugin ? require('@contents/rooms/common/982/982.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/common/840/840.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : ''],
         room-number=982,
         payment-amount=5800,
@@ -127,8 +127,8 @@ block content
         comments-amount=56
       )
       +card-room(
-        href="#room-common5",
-        name="room-common5",
+        href="#room-common-5",
+        name="room-common-5",
         paths=[htmlWebpackPlugin ? require('@contents/rooms/common/678/678.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/common/840/840.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : ''],
         room-number=678,
         payment-amount=5500,
@@ -136,8 +136,8 @@ block content
         comments-amount=45
       )
       +card-room(
-        href="#room-common6",
-        name="room-common6",
+        href="#room-common-6",
+        name="room-common-6",
         paths=[htmlWebpackPlugin ? require('@contents/rooms/common/450/450.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/common/840/840.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : ''],
         room-number=450,
         payment-amount=5300,
@@ -145,8 +145,8 @@ block content
         comments-amount=39
       )
       +card-room(
-        href="#room-common7",
-        name="room-common7",
+        href="#room-common-7",
+        name="room-common-7",
         paths=[htmlWebpackPlugin ? require('@contents/rooms/common/350/350.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/common/840/840.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : ''],
         room-number=350,
         payment-amount=5000,
@@ -154,8 +154,8 @@ block content
         comments-amount=77
       )
       +card-room(
-        href="#room-common9",
-        name="room-common9",
+        href="#room-common-9",
+        name="room-common-9",
         paths=[htmlWebpackPlugin ? require('@contents/rooms/common/666/666.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/common/840/840.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : ''],
         room-number=666,
         payment-amount=5000,
@@ -163,8 +163,8 @@ block content
         comments-amount=25
       )
       +card-room(
-        href="#room-common10",
-        name="room-common10",
+        href="#room-common-10",
+        name="room-common-10",
         paths=[htmlWebpackPlugin ? require('@contents/rooms/common/444/444.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/common/840/840.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : ''],
         room-number=444,
         payment-amount=5000,
@@ -172,8 +172,8 @@ block content
         comments-amount=15
       )
       +card-room(
-        href="#room-common8",
-        name="room-common8",
+        href="#room-common-8",
+        name="room-common-8",
         paths=[htmlWebpackPlugin ? require('@contents/rooms/common/352/352.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/common/840/840.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : ''],
         room-number=352,
         payment-amount=5000,

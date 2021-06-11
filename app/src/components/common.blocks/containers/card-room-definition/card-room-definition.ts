@@ -10,7 +10,7 @@ $(function () {
   const cards = $(".card-room-definition");
   cards.each(function (index) {
     const dayPaymentValue = parseFloat(
-      $(this).find(".card-room-definition__day-payment").attr("data-amount-js")
+      $(this).find(".card-room-definition__day-payment").attr("data-amount")
     );
 
     const $paymentRates = $(this).find(".card-room-definition__payment-rates");
@@ -45,14 +45,14 @@ $(function () {
         `${dayPaymentValue.toLocaleString()}${CURRENCY} x ${days.toLocaleString()} суток`
       );
       $totalDayPaymentAmount.text(`${(dayPaymentValue * days).toLocaleString()}${CURRENCY}`);
-      $totalDayPaymentAmount.attr("data-amount-js", dayPaymentValue * days);
+      $totalDayPaymentAmount.attr("data-amount", dayPaymentValue * days);
 
       let accumulator = 0;
       paymentAmounts.each(function () {
-        accumulator += parseFloat($(this).attr("data-amount-js"));
+        accumulator += parseFloat($(this).attr("data-amount"));
       });
       $totalPaymentAmount.text(`${accumulator.toLocaleString()}${CURRENCY}`);
-      $totalPaymentAmount.attr("data-amount-js", accumulator);
+      $totalPaymentAmount.attr("data-amount", accumulator);
     };
     updatePaymentDisplay();
 

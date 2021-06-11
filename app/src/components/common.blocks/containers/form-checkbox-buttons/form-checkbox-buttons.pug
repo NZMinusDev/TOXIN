@@ -1,11 +1,11 @@
 //- buttons: {
-  name1:{
+  'name-1':{
     id:string,
     itemLabel:string,
     description:string, // additional for "rich" mod
     checked: 'checked'
   },
-  name2:{
+  'name-2':{
     id:string,
     itemLabel:string,
     description:string, // additional for "rich" mod
@@ -13,7 +13,7 @@
   },...}
 //- id?: id of checkbox buttons' container
 //- class?: class for component bem mix: such as positioning functionality
-//- isFilter?: {boolean} - if true, change event will reload page with chosen value(get method)
+//- data-is-filter?: {boolean} - if true, change event will reload page with chosen value(get method)
 //- label?: text of label
 //- mod?: "rich" - mod of component
 //- disabled?: same as fieldset disabled (disable all buttons)
@@ -31,7 +31,7 @@ mixin form-checkbox-buttons
               id=btn.id,
               type="checkbox",
               name=key,
-              isFilter=attributes.isFilter ? attributes.isFilter + '' : null,
+              data-is-filter=attributes['data-is-filter'] ? `${attributes['data-is-filter']}`:null,
               checked=btn.checked
             )
             if btn.itemLabel

@@ -1,18 +1,18 @@
 //- name: name of group
 //- buttons: {
-  name1:{
+  'name-1':{
     id:string,
     itemLabel:string,
     checked: 'checked'
   },
-  name2:{
+  'name-2':{
     id:string,
     itemLabel:string,
     checked: ''
   },...}
 //- id?: id of radio buttons' container
 //- class?: class for component bem mix: such as positioning functionality
-//- isFilter?: {boolean} - if true, change event will reload page with chosen value(get method)
+//- data-is-filter?: {boolean} - if true, change event will reload page with chosen value(get method)
 //- label?: text of label
 //- disabled?: same as fieldset disabled (disable all buttons)
 mixin form-radio-buttons
@@ -27,7 +27,7 @@ mixin form-radio-buttons
             id=btn.id,
             type="radio",
             name=attributes.name,
-            isFilter=attributes.isFilter ? attributes.isFilter + '' : null,
+            data-is-filter=attributes['data-is-filter'] ? `${attributes['data-is-filter']}` : null,
             checked=btn.checked,
             value=key
           )
