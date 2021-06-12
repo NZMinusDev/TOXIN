@@ -8,7 +8,7 @@
   padding-bottom: 19px/14px * 1em;
 
   @include mixins.backgroundAutoCarousel(
-    "@images/backgrounds/room4.png" "@images/backgrounds/room3.png"
+    "@images/backgrounds/rooms/room-4.png" "@images/backgrounds/rooms/room-3.png"
   );
 }
 
