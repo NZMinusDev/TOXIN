@@ -1,14 +1,12 @@
-const arrowToTop = document.querySelector('.arrow-to-top');
-if (arrowToTop) {
-  const onClick = () => {
-    window.scrollTo(window.pageXOffset, 0);
-  };
+const arrowToTop = document.querySelector('.arrow-to-top') as HTMLElement;
 
-  const onScroll = () => {
-    (arrowToTop as HTMLElement).hidden = window.pageYOffset < document.documentElement.clientHeight;
-  };
+const onClick = () => {
+  window.scrollTo(window.pageXOffset, 0);
+};
 
-  (arrowToTop as HTMLElement).addEventListener('click', onClick);
+const onScroll = () => {
+  arrowToTop.hidden = window.pageYOffset < document.documentElement.clientHeight;
+};
 
-  window.addEventListener('scroll', onScroll);
-}
+arrowToTop.addEventListener('click', onClick);
+window.addEventListener('scroll', onScroll);
