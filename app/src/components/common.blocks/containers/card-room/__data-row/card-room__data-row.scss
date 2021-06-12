@@ -1,6 +1,7 @@
 .card-room__data-row {
   display: grid;
   grid-template-columns: auto auto;
+  grid-column-gap: 1em;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 0.714285714285715em;
