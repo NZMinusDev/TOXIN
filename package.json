@@ -67,6 +67,7 @@
     "babel-loader": "^8.1.0",
     "bemdecl-to-fs-loader": "0.0.4",
     "circular-dependency-plugin": "^5.2.0",
+    "copy-webpack-plugin": "^6.4.1",
     "cross-env": "^7.0.2",
     "css-loader": "^4.3.0",
     "doiuse": "^4.2.0",

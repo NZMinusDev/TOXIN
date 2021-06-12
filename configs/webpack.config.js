@@ -16,6 +16,7 @@ const PostCSSPresetEnv = require('postcss-preset-env');
 const PostCSSNormalize = require('postcss-normalize');
 const OptimizeCssAssetWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const WebpackImagesResizer = require('webpack-images-resizer');
 const { UnusedFilesWebpackPlugin } = require('unused-files-webpack-plugin');
@@ -90,7 +91,6 @@ class ResultOfTemplatesProcessing {
         new HTMLWebpackPlugin({
           template: `!!pug-loader!app/src/pages/${shortNameOfTemplate}/${nameOfTemplate}`,
           filename: hashedFileName(`./${shortNameOfTemplate}`, 'html'),
-          favicon: './assets/ico/favicon.ico',
 
           // see ~@layouts/basic/main-layout/main-layout.pug
           inject: false,
@@ -165,6 +165,7 @@ const designWidth = 1440;
  * MiniCssExtractPlugin - extract css into separate files.
  * WrapperPlugin - wrap output css depending on RegExp.
  * ProvidePlugin - Automatically load modules instead of having to import or require them everywhere.
+ * CopyWebpackPlugin - copy ico files
  * ImageMinimizerPlugin - Plugin and Loader for webpack to optimize (compress) all images. Make sure ImageMinimizerPlugin place after any plugins that add images or other assets which you want to optimized.
  * WebpackImagesResizer - resizes images.
  * CircularDependencyPlugin - scan bundles to alert about circular dependencies.
@@ -204,6 +205,16 @@ const webpackPlugins = () => {
       jQuery: 'jquery',
     }),
 
+    // copy ico
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(PATHS.src_absolute, './assets/ico/'),
+          to: path.resolve(PATHS.dist_absolute, './assets/ico/'),
+        },
+      ],
+    }),
+
     // FIXME: this plugin keeps compillation from end, doesn't know why
     new WebpackImagesResizer(listOfSourceImages320, {
       // 4:3 - QVGA
@@ -229,6 +240,7 @@ const webpackPlugins = () => {
 
       // Tip: hashed by assetsLoader (file-loader)
       filename: '[path]/[name].webp',
+      exclude: /\/ico\//,
 
       // keep compressed image
       deleteOriginalAssets: false,
@@ -261,6 +273,7 @@ const webpackPlugins = () => {
 
         // Tip: hashed by assetsLoader (file-loader)
         filename: '[path]/[name].[ext]',
+        exclude: /\/ico\//,
         minimizerOptions: {
           // Lossless optimization with custom option
           plugins: [
