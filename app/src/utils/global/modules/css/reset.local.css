@@ -28,6 +28,9 @@ input {
   margin: 0;
   background-color: inherit;
 }
+input[type='text'] {
+  padding-right: 1em;
+}
 button,
 input {
   font: inherit;
