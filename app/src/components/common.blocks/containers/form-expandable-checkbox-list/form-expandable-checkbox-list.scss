@@ -1,0 +1,12 @@
+.form-expandable-checkbox-list {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  text-align: start;
+  cursor: default;
+
+  & > .heading label {
+    cursor: pointer;
+    user-select: none;
+  }
+}

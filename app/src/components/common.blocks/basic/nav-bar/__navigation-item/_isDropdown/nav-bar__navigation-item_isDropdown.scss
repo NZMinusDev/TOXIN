@@ -28,7 +28,8 @@
       display: flex;
       position: relative;
 
-      &:hover {
+      &:hover,
+      &:focus-within {
         & > .nav-bar__navigation-list {
           visibility: visible;
           opacity: 1;
@@ -39,7 +40,8 @@
               transform: rotate(-90deg);
             }
 
-            &:hover {
+            &:hover,
+            &:focus-within {
               & > .nav-bar__navigation-list {
                 top: 0;
                 left: 100%;

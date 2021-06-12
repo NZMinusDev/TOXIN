@@ -8,7 +8,6 @@ include ~@common.blocks/primitives/button/button.pug
 //- action: {string} - form action
 //- method: {"get" | "post"} - form method
 //- target: {("_self"|null)|"_blank"|"_parent"|"_top"} - form target
-//- href: {string} - redirect href for page of entrance
 mixin card-registration
   form.card-base.card-registration(
     class=attributes.class,
@@ -51,8 +50,9 @@ mixin card-registration
     +button.card-registration__link-btn(
       type="submit",
       value="Перейти к оплате",
-      modClass="link"
+      modClass="link",
+      tabindex="1"
     )
     p.card-registration__caption-of-redirect-to-entering Уже есть аккаунт на Toxin
-    a.card-registration__switch-btn(href=attributes.href)
-      +button(type="button", value="Войти", modClass="bordered")
+    a.card-registration__switch-btn(href="./mock.html")
+      +button(type="button", value="Войти", modClass="bordered", tabindex="-1")

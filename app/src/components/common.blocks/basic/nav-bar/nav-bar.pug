@@ -3,9 +3,6 @@ include ~@common.blocks/primitives/button/button.pug
 
 //- active?: {string} - key of items const object
 //- status?: "unconfirmed" | "confirmed" - add entering and registration btn or person link, default is "unconfirmed"
-  //- Additional for "unconfirmed" status
-    //- enteringHref: {string} - href for entering button
-    //- registrationHref: {string} - href for registration button
   //- Additional for "confirmed" status
     //- personHref: {string} - href for person account
     //- personName: {string} - person name
@@ -15,32 +12,32 @@ mixin nav-bar
   -
     const status = attributes.status ? attributes.status : 'unconfirmed';
     const items = {// tip: maximum nesting is conditionally inf and you can set active?: 'active' only for children(parents would be automatically settled)
-      'О нас': { href: null },
+      'О нас': { href: '/mock.html' },
       Услуги: {
-        href: null,
+        href: '/mock.html',
         items: {
-          'Услуга 1': { href: null },
-          'Услуга 2': { href: null },
-          'Услуга 3': { href: null },
-          'Услуга 4': { href: null },
-          'Услуга 5': { href: null },
+          'Услуга 1': { href: '/mock.html' },
+          'Услуга 2': { href: '/mock.html' },
+          'Услуга 3': { href: '/mock.html' },
+          'Услуга 4': { href: '/mock.html' },
+          'Услуга 5': { href: '/mock.html' },
         },
       },
-      Вакансии: { href: null },
-      Новости: { href: null },
+      Вакансии: { href: '/mock.html' },
+      Новости: { href: '/mock.html' },
       Соглашения: {
-        href: null,
+        href: '/mock.html',
         items: {
-          'Соглашение 1': { href: null },
-          'Соглашение 2': { href: null },
+          'Соглашение 1': { href: '/mock.html' },
+          'Соглашение 2': { href: '/mock.html' },
           'Соглашение 3': {
-            href: null,
+            href: '/mock.html',
             items: {
               'Соглашение 3-1': {
-                href: null,
-                items: { 'Соглашение 3-1-1': { href: null } },
+                href: '/mock.html',
+                items: { 'Соглашение 3-1-1': { href: '/mock.html' } },
               },
-              'Соглашение 3-2': { href: null },
+              'Соглашение 3-2': { href: '/mock.html' },
             },
           },
         },
@@ -57,9 +54,19 @@ mixin nav-bar
     )
       case status
         when "unconfirmed"
-          a(href=attributes.enteringHref)
-            +button.nav-bar__button(type="button", value="Войти", modClass="bordered")
-          a(href=attributes.registrationHref)
-            +button.nav-bar__button(type="button", value="Зарегистрироваться", modClass="filled")
+          a(href="/mock.html")
+            +button.nav-bar__button(
+              type="button",
+              value="Войти",
+              modClass="bordered",
+              tabindex="-1"
+            )
+          a(href="/mock.html")
+            +button.nav-bar__button(
+              type="button",
+              value="Зарегистрироваться",
+              modClass="filled",
+              tabindex="-1"
+            )
         when "confirmed"
           a.nav-bar__person(href=attributes.personHref, title="в личный кабинет")= attributes.personName

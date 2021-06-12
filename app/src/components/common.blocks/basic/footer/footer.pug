@@ -40,7 +40,7 @@ mixin footer
           section.footer__navigation
             input#footer-navigation-checkbox.footer__list-checkbox(type="checkbox") 
             h3.footer__list-label
-              label(for="footer-navigation-checkbox") Навигация
+              label(for="footer-navigation-checkbox", tabindex="0") Навигация
             ul.footer__list
               li.footer__list-item
                 a(href="/mock.html") О нас
@@ -53,7 +53,7 @@ mixin footer
           section.footer__about
             input#footer-about-checkbox.footer__list-checkbox(type="checkbox")
             h3.footer__list-label
-              label(for="footer-about-checkbox") О нас
+              label(for="footer-about-checkbox", tabindex="0") О нас
             ul.footer__list
               li.footer__list-item
                 a(href="/mock.html") О сервисе
@@ -66,7 +66,7 @@ mixin footer
           section.footer__support
             input#footer-support-checkbox.footer__list-checkbox(type="checkbox")
             h3.footer__list-label
-              label(for="footer-support-checkbox") Служба поддержки
+              label(for="footer-support-checkbox", tabindex="0") Служба поддержки
             ul.footer__list
               li.footer__list-item
                 a(href="/mock.html") Соглашения
@@ -77,7 +77,7 @@ mixin footer
           section.footer__subscription
             input#footer-subscription-checkbox.footer__list-checkbox(type="checkbox")
             h3.footer__list-label
-              label(for="footer-subscription-checkbox") Подписка
+              label(for="footer-subscription-checkbox", tabindex="0") Подписка
             ul.footer__list
               li.footer__list-item
                 p.footer__description Получайте специальные предложения и новости сервиса
@@ -93,7 +93,7 @@ mixin footer
           .footer__icons
             each icon in icons
               a.icon.icon_color-gradient-primary.footer__brand-icon(
-                href="",
+                href="/mock.html",
                 data-icon=icon.img,
                 title=icon.title
               )

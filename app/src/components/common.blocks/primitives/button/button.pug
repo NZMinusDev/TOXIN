@@ -8,6 +8,7 @@
 //- formmethod - same as button's formmethod (get | post)
 //- formtarget - same as button's formtarget (<имя окна> | _blank | _self | _parent | _top)
 //- disabled - same as button's disabled
+//- tabindex - same as tabindex attr
 mixin button
   -
     const modClass = attributes.modClass
@@ -24,6 +25,7 @@ mixin button
     formmethod=attributes.formmethod,
     formtarget=attributes.formtarget,
     disabled=attributes.disabled
+    tabindex=attributes.tabindex
   )= attributes.value
     if attributes.modClass === "link"
       .icon
