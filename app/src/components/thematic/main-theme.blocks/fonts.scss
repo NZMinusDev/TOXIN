@@ -1,31 +1,33 @@
 @use "@utils/devTools/styles/functions.scss";
 
 @font-face {
-  font-family: "Quicksand";
-  src: local("Quicksand"), url("@fonts/quicksand-regular/quicksand-regular.woff") format("woff"),
-    url("@fonts/quicksand-regular/quicksand-regular.eot"),
-    url("@fonts/quicksand-regular/quicksand-regular.otf") format("opentype"),
-    url("@fonts/quicksand-regular/quicksand-regular.ttf") format("truetype"),
-    url("@fonts/quicksand-regular/quicksand-regular.svg") format("svg");
+  font-family: 'Quicksand';
+  src: local('Quicksand'),
+    url('@assets/fonts/quicksand-regular/quicksand-regular.woff') format('woff'),
+    url('@assets/fonts/quicksand-regular/quicksand-regular.eot'),
+    url('@assets/fonts/quicksand-regular/quicksand-regular.otf') format('opentype'),
+    url('@assets/fonts/quicksand-regular/quicksand-regular.ttf') format('truetype'),
+    url('@assets/fonts/quicksand-regular/quicksand-regular.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "Montserrat";
-  src: local("Montserrat"), url("@fonts/montserrat-regular/montserrat-regular.woff") format("woff"),
-    url("@fonts/montserrat-regular/montserrat-regular.eot"),
-    url("@fonts/montserrat-regular/montserrat-regular.otf") format("opentype"),
-    url("@fonts/montserrat-regular/montserrat-regular.ttf") format("truetype"),
-    url("@fonts/montserrat-regular/montserrat-regular.svg") format("svg");
+  font-family: 'Montserrat';
+  src: local('Montserrat'),
+    url('@assets/fonts/montserrat-regular/montserrat-regular.woff') format('woff'),
+    url('@assets/fonts/montserrat-regular/montserrat-regular.eot'),
+    url('@assets/fonts/montserrat-regular/montserrat-regular.otf') format('opentype'),
+    url('@assets/fonts/montserrat-regular/montserrat-regular.ttf') format('truetype'),
+    url('@assets/fonts/montserrat-regular/montserrat-regular.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
 :root {
-  --font__h1: 700 1rem / 1.25rem "Quicksand";
-  --font__h2: 700 0.79167rem / 0.9895833rem "Quicksand";
-  --font__h3: 700 0.5rem / 0.6095833rem "Montserrat";
-  --font__body: 400 0.5833rem / 1rem "Montserrat";
+  --font__h1: 700 1rem / 1.25rem 'Quicksand';
+  --font__h2: 700 0.79167rem / 0.9895833rem 'Quicksand';
+  --font__h3: 700 0.5rem / 0.6095833rem 'Montserrat';
+  --font__body: 400 0.5833rem / 1rem 'Montserrat';
 }
 
 html {

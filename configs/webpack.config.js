@@ -28,8 +28,6 @@ const isProd = !isDev;
 
 const PATHS = {
   src_absolute: path.resolve(__dirname, '../app/src/'),
-  srcPages_absolute: path.resolve(__dirname, '../app/src/pages/'),
-  srcPictures_absolute: path.resolve(__dirname, '../app/src/assets/pictures/'),
   dist_absolute: path.resolve(__dirname, '../app/dist/'),
 };
 
@@ -48,9 +46,7 @@ const sharedAliases = {
   '@common.blocks': path.resolve(PATHS.src_absolute, './components/common.blocks/'),
   '@thematic': path.resolve(PATHS.src_absolute, './components/thematic/'),
   '@experiments': path.resolve(PATHS.src_absolute, './components/experimental/'),
-  '@images': path.resolve(PATHS.src_absolute, './assets/pictures/images/'),
-  '@contents': path.resolve(PATHS.src_absolute, './assets/pictures/contents/'),
-  '@fonts': path.resolve(PATHS.src_absolute, './assets/fonts/'),
+  '@assets': path.resolve(PATHS.src_absolute, './assets/'),
   '@utils': path.resolve(PATHS.src_absolute, './utils/'),
 };
 
@@ -67,13 +63,13 @@ const hashedFileName = (name, ext) => (isDev ? `${name}.${ext}` : `${name}.[hash
  */
 class ResultOfTemplatesProcessing {
   constructor() {
-    const foldersOfPages = fs.readdirSync(PATHS.srcPages_absolute);
+    const foldersOfPages = fs.readdirSync(path.resolve(PATHS.src_absolute, './pages/'));
 
     // get all pug templates from each page folder
     const namesOfTemplates = [].concat(
       ...foldersOfPages.map((folder) =>
         fs
-          .readdirSync(`${PATHS.srcPages_absolute}\\${folder}\\`)
+          .readdirSync(`${path.resolve(PATHS.src_absolute, './pages/')}\\${folder}\\`)
           .filter((filename) => filename.endsWith(`.pug`))
       )
     );
@@ -152,7 +148,9 @@ const listOfSourceImagesMapping = (list, suffix, base = PATHS.src_absolute) =>
     };
   });
 
-let listOfSourceImages320 = getFilesDeep(PATHS.srcPictures_absolute, ['svg']);
+let listOfSourceImages320 = getFilesDeep(path.resolve(PATHS.src_absolute, './assets/pictures/'), [
+  'svg',
+]);
 const listOfSourceImages640 = listOfSourceImagesMapping(listOfSourceImages320, '640');
 const listOfSourceImages960 = listOfSourceImagesMapping(listOfSourceImages320, '960');
 const listOfSourceImages1920 = listOfSourceImagesMapping(listOfSourceImages320, '1920');
@@ -357,6 +355,9 @@ const cssLoaders = (extraLoader) => {
 
         // if hmr does not work, this is a forceful method.
         reloadAll: true,
+
+        // dist/styles/[name]/style.css -> dist/
+        publicPath: './../../',
       },
     },
     {
@@ -423,9 +424,6 @@ const assetsLoaders = (extraLoader) => {
       loader: 'file-loader',
       options: {
         name: '[path]/[name].[ext]',
-
-        // assets base dir -> css file will use this path in output css as link to asset (redirect from ./styles folder/chunk folder/ to dist folder)
-        publicPath: './../../',
       },
     },
   ];
