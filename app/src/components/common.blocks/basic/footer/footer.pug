@@ -2,6 +2,9 @@ include ~@common.blocks/primitives/form-text-field/form-text-field.pug
 
 //- type?: 'creative'
 //- class?: class for component bem mix: such as positioning functionality
+//- if type !== 'creative'
+  //- action: email form action attribute
+  //- method: email form method attribute
 
 mixin footer
   -
@@ -79,11 +82,12 @@ mixin footer
               li.footer__list-item
                 p.footer__description Получайте специальные предложения и новости сервиса
               li.footer__list-item
-                +form-text-field(
-                  type="email",
-                  name="subscription-form-text-field",
-                  data-material-icon="arrow_forward"
-                )
+                form(action=attributes.action, method=attributes.method) 
+                  +form-text-field(
+                    type="email",
+                    name="subscription-form-text-field",
+                    data-material-icon="arrow_forward"
+                  )
         section.footer__copyright-bar
           p.footer__copyright= copyright
           .footer__icons
