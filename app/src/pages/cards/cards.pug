@@ -16,11 +16,7 @@ block append variables
 block content
   - const msPerDay = 1000 * 60 * 60 * 24;
   main.cards-layout.ui-kit-container
-    +card-pick-room.cards-layout__pick-room(
-      name="pick-room",
-      action="",
-      method=""
-    )
+    +card-pick-room.cards-layout__pick-room(name="pick-room", action="", method="")
     +card-registration.cards-layout__registration(
       name="registration",
       action="",
@@ -42,7 +38,7 @@ block content
       additional-services-payment=300
     )
     +card-room.cards-layout__card-luxury-room(
-      href="#room-luxury",
+      href="/mock.html",
       name="room-luxury",
       paths=[htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/common/840/840.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/common/840/840.png').default : ''],
       room-number=888,
@@ -52,7 +48,7 @@ block content
       comments-amount=145
     )
     +card-room.cards-layout__card-common-room(
-      href="#room-common",
+      href="/mock.html",
       name="room-common",
       paths=[htmlWebpackPlugin ? require('@contents/rooms/common/840/840.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/common/840/840.png').default : '', htmlWebpackPlugin ? require('@contents/rooms/luxury/888/888.png').default : ''],
       room-number=840,
