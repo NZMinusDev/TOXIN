@@ -4,7 +4,4 @@
   & > *:not(:first-child) {
     color: functions.getColor(color__dark-shade, 0.5);
   }
-  & > .footer__description {
-    color: functions.getColor(color__dark-shade, 0.75);
-  }
 }

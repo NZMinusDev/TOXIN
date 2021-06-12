@@ -1,0 +1,5 @@
+@use "@utils/devTools/styles/functions.scss";
+
+.footer__description {
+  color: functions.getColor(color__dark-shade, 0.75);
+}

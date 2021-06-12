@@ -1,0 +1,29 @@
+.footer__list-checkbox {
+  @media print, screen and (min-width: 0px) {
+    display: none;
+
+    & ~ .footer__list {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height linear 0.3s;
+    }
+    &:checked ~ .footer__list {
+      max-height: 32em;
+    }
+
+    &:checked + .footer__list-label label {
+      &:after {
+        content: '\e5ce';
+      }
+    }
+  }
+
+  @media print, screen and (min-width: 992px) {
+    & ~ .footer__list {
+      max-height: initial;
+    }
+    &:checked ~ .footer__list {
+      max-height: initial;
+    }
+  }
+}

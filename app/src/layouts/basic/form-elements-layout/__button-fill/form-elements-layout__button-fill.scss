@@ -3,12 +3,19 @@
     & {
       grid-area: button-fill;
       display: grid;
-      grid-template-rows: auto 1fr;
+      grid:
+        'heading heading' auto
+        'button button' 1fr / 7.071428571428571em 1fr;
       grid-row-gap: 1.071428571428571em;
-      grid-template-columns: 7.071428571428571em 1fr;
       grid-column-gap: 1.357142857142857em;
       place-items: start;
       margin-top: 5px / 320px * 100%;
     }
+  }
+}
+
+.form-elements-layout__button-fill-heading {
+  @media print, screen and (min-width: 0px) {
+    grid-area: heading;
   }
 }

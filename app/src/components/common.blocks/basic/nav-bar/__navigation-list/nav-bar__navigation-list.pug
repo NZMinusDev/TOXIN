@@ -28,8 +28,5 @@ mixin nav-bar__navigation-list
           .icon.nav-bar__expand-icon
           +nav-bar__navigation-list(items=itemSettings.items)
       else
-        a.nav-bar__navigation-item(
-          href=itemSettings.href,
-          class=itemSettings.active ? 'nav-bar__navigation-item_isActive' : ''
-        )
-          li(class=itemSettings.items ? 'nav-bar__navigation-item_isDropdown' : '')= itemName
+        li.nav-bar__navigation-item(class=itemSettings.items ? 'nav-bar__navigation-item_isDropdown' : '')
+          a(href=itemSettings.href, class=itemSettings.active ? 'nav-bar__navigation-item_isActive' : '')= itemName

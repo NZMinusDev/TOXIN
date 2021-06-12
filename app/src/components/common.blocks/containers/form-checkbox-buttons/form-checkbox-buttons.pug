@@ -22,7 +22,7 @@ mixin form-checkbox-buttons
   .form-checkbox-buttons(class=[modClass, attributes.class])
     if attributes.heading
       +heading(attributes.heading)
-    fieldset(disabled=attributes.disabled)
+    fieldset.form-checkbox-buttons__fieldset(disabled=attributes.disabled)
       ul.form-checkbox-buttons__list
         each btn, key in attributes.buttons
           li.form-checkbox-buttons__item

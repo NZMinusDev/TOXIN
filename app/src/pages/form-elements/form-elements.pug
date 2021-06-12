@@ -22,7 +22,7 @@ block append variables
     description = 'Формы, используемые в базовом макете сайта TOXIN';
 
 block content
-  form(method="get")
+  form(method="get", name="main-form")
     main.form-elements-layout.ui-kit-container
       +form-text-field.form-elements-layout__text-field-default(
         heading={ h3: 'text field' },
@@ -110,8 +110,7 @@ block content
         heading={ h3: 'range slider' }
       )
       .form-elements-layout__button-fill
-        h3 buttons
-        div
+        h3.form-elements-layout__button-fill-heading buttons
         +button(type="button", value="click me", modClass="filled")
         +button(type="button", value="click me", modClass="filled")
       .form-elements-layout__button-empty

@@ -19,9 +19,9 @@ mixin footer
           span.logo__title TOXIN
         p.footer__copyright= copyright
         section.footer__icons
-          ul
+          ul.footer__icons-list
             each icon in icons
-              li 
+              li.footer__icons-list-item
                 a.icon.icon_color-gradient-primary.footer__brand-icon(
                   href="#",
                   data-icon=icon.img,
@@ -35,56 +35,55 @@ mixin footer
             span.logo__title TOXIN
           p.footer__description Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»
           section.footer__navigation
-            input#footer-navigation-checkbox.footer__list-checkbox(type="checkbox")
-            .footer__list
-              h3
-                label.footer__list-label(for="footer-navigation-checkbox") Навигация
-              ul
-                li
-                  a(href="/mock-address/change-me") О нас
-                li
-                  a(href="/mock-address/change-me") Новости
-                li
-                  a(href="/mock-address/change-me") Служба поддержки
-                li
-                  a(href="/mock-address/change-me") Услуги
+            input#footer-navigation-checkbox.footer__list-checkbox(type="checkbox") 
+            h3.footer__list-label
+              label(for="footer-navigation-checkbox") Навигация
+            ul.footer__list
+              li.footer__list-item
+                a(href="/mock-address/change-me") О нас
+              li.footer__list-item
+                a(href="/mock-address/change-me") Новости
+              li.footer__list-item
+                a(href="/mock-address/change-me") Служба поддержки
+              li.footer__list-item
+                a(href="/mock-address/change-me") Услуги
           section.footer__about
             input#footer-about-checkbox.footer__list-checkbox(type="checkbox")
-            .footer__list
-              h3
-                label.footer__list-label(for="footer-about-checkbox") О нас
-              ul
-                li
-                  a(href="/mock-address/change-me") О сервисе
-                li
-                  a(href="/mock-address/change-me") Наша команда
-                li
-                  a(href="/mock-address/change-me") Вакансии
-                li
-                  a(href="/mock-address/change-me") Инвесторы
+            h3.footer__list-label
+              label(for="footer-about-checkbox") О нас
+            ul.footer__list
+              li.footer__list-item
+                a(href="/mock-address/change-me") О сервисе
+              li.footer__list-item
+                a(href="/mock-address/change-me") Наша команда
+              li.footer__list-item
+                a(href="/mock-address/change-me") Вакансии
+              li.footer__list-item
+                a(href="/mock-address/change-me") Инвесторы
           section.footer__support
             input#footer-support-checkbox.footer__list-checkbox(type="checkbox")
-            .footer__list
-              h3 
-                label.footer__list-label(for="footer-support-checkbox") Служба поддержки
-              ul
-                li
-                  a(href="/mock-address/change-me") Соглашения
-                li
-                  a(href="/mock-address/change-me") Сообщества
-                li
-                  a(href="/mock-address/change-me") Связь с нами
+            h3.footer__list-label
+              label(for="footer-support-checkbox") Служба поддержки
+            ul.footer__list
+              li.footer__list-item
+                a(href="/mock-address/change-me") Соглашения
+              li.footer__list-item
+                a(href="/mock-address/change-me") Сообщества
+              li.footer__list-item
+                a(href="/mock-address/change-me") Связь с нами
           section.footer__subscription
             input#footer-subscription-checkbox.footer__list-checkbox(type="checkbox")
-            .footer__list
-              h3
-                label.footer__list-label(for="footer-subscription-checkbox") Подписка
-              p Получайте специальные предложения и новости сервиса
-              +form-text-field(
-                type="email",
-                name="subscription-form-text-field",
-                data-material-icon="arrow_forward"
-              )
+            h3.footer__list-label
+              label(for="footer-subscription-checkbox") Подписка
+            ul.footer__list
+              li.footer__list-item
+                p.footer__description Получайте специальные предложения и новости сервиса
+              li.footer__list-item
+                +form-text-field(
+                  type="email",
+                  name="subscription-form-text-field",
+                  data-material-icon="arrow_forward"
+                )
         section.footer__copyright-bar
           p.footer__copyright= copyright
           .footer__icons
