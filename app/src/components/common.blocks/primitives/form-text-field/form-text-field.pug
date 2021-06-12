@@ -6,7 +6,7 @@ include ~@common.blocks/primitives/heading/heading.pug
 //- type - type of field for validation: 'email' | 'password' | 'date' 
 //- name - name of input field
 //- value - init value of field
-//- data-placeholder - placeholder text
+//- placeholder - placeholder text
 //- autofocus - just add it for it works
 //- data-material-icon - material icon name for submit btn in field
 mixin form-text-field
@@ -40,7 +40,7 @@ mixin form-text-field
         inputmode=inputModeAttr,
         name=attributes.name,
         id=attributes.name,
-        data-placeholder=reservedPlaceholders[attributes.type] || attributes.data - placeholder,
+        placeholder=reservedPlaceholders[attributes.type] || attributes.placeholder,
         value=attributes.value,
         autofocus=attributes.autofocus
       )

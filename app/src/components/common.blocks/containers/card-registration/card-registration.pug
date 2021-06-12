@@ -19,11 +19,11 @@ mixin card-registration
     h1.card-registration__title Регистрация аккаунта
     +form-text-field.card-registration__name-field(
       name=`${attributes.name}-name`,
-      data-placeholder="Имя"
+      placeholder="Имя"
     )
     +form-text-field.card-registration__surname-field(
       name=`${attributes.name}-surname`,
-      data-placeholder="Фамилия"
+      placeholder="Фамилия"
     )
     +form-radio-buttons.card-registration__gender-radio-btn(
       name=`${attributes.name}-gender`,
