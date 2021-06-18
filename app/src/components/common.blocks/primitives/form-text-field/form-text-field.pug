@@ -25,7 +25,7 @@ mixin form-text-field({ name = 'text-field', type = 'text', value = '', placehol
     const reservedPlaceholders = { email: 'Email', password: 'Пароль', date: 'ДД.ММ.ГГГГ' };
 
     const componentClassModificator = type
-      ? `form-text-field_is${type[0].toUpperCase()}${type.slice(1)}`
+      ? `form-text-field_type-${type}`
       : '';
     const inputMaskType = allowedInputMaskTypes.find((inputMaskType) => inputMaskType === type) || 'text';
     const inputModeAttr =
@@ -45,7 +45,4 @@ mixin form-text-field({ name = 'text-field', type = 'text', value = '', placehol
         autofocus=autofocus
       )
       if materialIcon
-        button.icon.form-text-field__link-icon(
-          type="submit",
-          data-icon=materialIcon
-        )
+        button.icon.form-text-field__link-icon(type="submit", data-icon=materialIcon)
