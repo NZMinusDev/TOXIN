@@ -19,24 +19,19 @@ include ~@utils/devTools/pug/mixins/picture.pug
     likeButtonCounter:number,
     isLikeButtonChecked
   },...}
-//- class?: class for component bem mix: such as positioning functionality
 //- heading?: { tag: text }, example: { h3: 'awesome heading' }
 
-mixin comments
-  .comments(class=attributes.class)
-    if attributes.heading
-      +heading(attributes.heading)
-    each item, key in attributes.items
+mixin comments({ heading = undefined, items = {} } = {})
+  .comments&attributes(attributes)
+    if heading
+      +heading(heading)
+    each item, key in items
       .comments__item
-        +picture.comments__icon-item(path=item.iconPath, alt="Иконка комментирующего")
+        +picture(item.iconPath, "Иконка комментирующего").comments__icon-item
         .comments__source-item
           h3.comments__name-item= item.personName
           p.comments__date-item
             time(datetime=item.date)
         p.comments__content-item= item.content
         .comments__like-button-item
-          +form-like-button(
-            name=`${key}-like-button`,
-            counter=item.likeButtonCounter,
-            checked=item.isLikeButtonChecked
-          )
+          +form-like-button({ name: `${key}-like-button`, counter: item.likeButtonCounter, checked: item.isLikeButtonChecked})

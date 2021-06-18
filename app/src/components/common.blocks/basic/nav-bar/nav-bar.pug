@@ -2,15 +2,14 @@ include ~@common.blocks/basic/nav-bar/__navigation-list/nav-bar__navigation-list
 include ~@common.blocks/primitives/button/button.pug
 
 //- active?: {string} - key of items const object
-//- status?: "unconfirmed" | "confirmed" - add entering and registration btn or person link, default is "unconfirmed"
+//- status?: "confirmed" - add entering and registration btn or person link, default is "unconfirmed"
   //- Additional for "confirmed" status
     //- personHref: {string} - href for person account
     //- personName: {string} - person name
 //- class?: class for component bem mix: such as positioning functionality
 
-mixin nav-bar
+mixin nav-bar({ active = undefined, status = undefined, personHref = '/mock.html', personName = 'Константин Константинопольский' } = {})
   -
-    const status = attributes.status ? attributes.status : 'unconfirmed';
     const items = {// tip: maximum nesting is conditionally inf and you can set active?: 'active' only for children(parents would be automatically settled)
       'О нас': { href: '/mock.html' },
       Услуги: {
@@ -43,30 +42,28 @@ mixin nav-bar
         },
       },
     }
-  header.nav-bar.content-container(class=attributes.class)
+  header.nav-bar.content-container&attributes(attributes)
     section.nav-bar__logo
       .logo.logo_color-gradient-primary
       span.logo__title TOXIN
     nav.nav-bar__navigation
-      +nav-bar__navigation-list(items=items, active=attributes.active)
+      +nav-bar__navigation-list(active, items)
     section.nav-bar__login(
-      class=status === 'unconfirmed' ? 'nav-bar__login_isUnConfirmed' : 'nav-bar__login_isConfirmed'
+      class=status === 'confirmed' ? 'nav-bar__login_isConfirmed' : 'nav-bar__login_isUnConfirmed'
     )
       case status
-        when "unconfirmed"
+        when "confirmed"
+          a.nav-bar__person(href=personHref, title="в личный кабинет")= personName
+        default
           a(href="/mock.html")
-            +button.nav-bar__button(
+            +button({ mod: 'bordered' }).nav-bar__button(
               type="button",
               value="Войти",
-              modClass="bordered",
               tabindex="-1"
             )
           a(href="/mock.html")
             +button.nav-bar__button(
               type="button",
               value="Зарегистрироваться",
-              modClass="filled",
               tabindex="-1"
             )
-        when "confirmed"
-          a.nav-bar__person(href=attributes.personHref, title="в личный кабинет")= attributes.personName

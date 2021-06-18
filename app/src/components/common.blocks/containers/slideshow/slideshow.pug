@@ -1,33 +1,32 @@
 include ~@utils/devTools/pug/mixins/picture.pug
 
-//- class: class for component bem mix: such as positioning functionality
 //- name: {string} - name of radio group
 //- paths: {Array<string>} - paths for images
-mixin slideshow
-  .slideshow(class=attributes.class)
+mixin slideshow({ name = 'slideshow', paths = [] } = {})
+  .slideshow&attributes(attributes)
     -
       let pictureID;
-      let labelID = `${attributes.name}-${(attributes.paths.length - 1)}`;
+      let labelID = `${name}-${(paths.length - 1)}`;
 
       const radioContainerRightOffset = 15;
       const radioSize = 7.5;
       const radioGap = 7.5 / 2;
-    each path, index in attributes.paths
+    each path, index in paths
       -
-        pictureID = `${attributes.name}-${index}`;
+        pictureID = `${name}-${index}`;
 
-        const reverseOrderIndex = attributes.paths.length - index - 1;
+        const reverseOrderIndex = paths.length - index - 1;
         const rightRadioOffset =
           radioContainerRightOffset + radioSize * reverseOrderIndex + radioGap * reverseOrderIndex;
       input.slideshow__radio(
         id=pictureID,
         type="radio",
-        name=attributes.name,
+        name=name,
         checked=index === 0 ? 'checked' : null,
         style=`right: ${rightRadioOffset}px`
       )
       label.icon.slideshow__switcher(for=labelID)= `К изображению ${labelID}`
-      +picture.slideshow__picture(path=path, alt=`Изображение ${index + 1}`)
+      +picture(path, `Изображение ${index + 1}`).slideshow__picture
       - labelID = pictureID;
     label.icon.slideshow__switcher(for=pictureID)= `К изображению ${pictureID}`
-    label.icon.slideshow__switcher(for=`${attributes.name}-0`)= `К изображению ${attributes.name}-0`
+    label.icon.slideshow__switcher(for=`${name}-0`)= `К изображению ${name}-0`

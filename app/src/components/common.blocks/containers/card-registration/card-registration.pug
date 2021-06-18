@@ -8,51 +8,21 @@ include ~@common.blocks/primitives/button/button.pug
 //- action: {string} - form action
 //- method: {"get" | "post"} - form method
 //- target: {("_self"|null)|"_blank"|"_parent"|"_top"} - form target
-mixin card-registration
-  form.card-base.card-registration(
-    class=attributes.class,
-    name=attributes.name,
-    action=attributes.action,
-    method=attributes.method || 'post',
-    target=attributes.target
-  )
+mixin card-registration({ name = 'card-registration', action = '/mock.js', method = 'post' } = {})
+  form.card-base.card-registration(name=name, action=action, method=method)&attributes(attributes)
     h1.card-registration__title Регистрация аккаунта
-    +form-text-field.card-registration__name-field(
-      name=`${attributes.name}-name`,
-      placeholder="Имя"
-    )
-    +form-text-field.card-registration__surname-field(
-      name=`${attributes.name}-surname`,
-      placeholder="Фамилия"
-    )
-    +form-radio-buttons.card-registration__gender-radio-btn(
-      name=`${attributes.name}-gender`,
-      buttons={ male: { label: 'Мужчина', checked: 'checked' }, female: { label: 'Женщина' } }
-    )
-    +form-text-field.card-registration__birthday-field(
-      heading={ h3: 'Дата рождения' },
-      type="date",
-      name=`${attributes.name}-birthday`
-    )
-    +form-text-field.card-registration__email-field(
-      heading={ h3: 'Данные для входа в сервис' },
-      type="email",
-      name=`${attributes.name}-email`
-    )
-    +form-text-field.card-registration__password-field(
-      type="password",
-      name=`${attributes.name}-password`
-    )
-    +form-toggle.card-registration__special-offer-toggle(
-      label="Получать спецпредложения",
-      name=`${attributes.name}-special-offers`
-    )
-    +button.card-registration__link-btn(
+    +form-text-field({ name: `${name}-name`, placeholder: 'Имя' }).card-registration__name-field
+    +form-text-field({ name: `${name}-surname`, placeholder: 'Фамилия' }).card-registration__surname-field
+    +form-radio-buttons({ buttons:{ male: { label: 'Мужчина', checked: 'checked' }, female: { label: 'Женщина' } } }).card-registration__gender-radio-btn
+    +form-text-field({ heading: { h3: 'Дата рождения' }, type: 'date', name: `${name}-birthday` }).card-registration__birthday-field
+    +form-text-field({ heading: { h3: 'Данные для входа в сервис' }, type: 'email', name: `${name}-email` }).card-registration__email-field
+    +form-text-field({ type: 'password', name: `${name}-password` }).card-registration__password-field
+    +form-toggle({label: 'Получать спецпредложения', name: `${name}-special-offers`}).card-registration__special-offer-toggle
+    +button({ mod: 'link' }).card-registration__link-btn(
       type="submit",
       value="Перейти к оплате",
-      modClass="link",
       tabindex="1"
     )
     p.card-registration__caption-of-redirect-to-entering Уже есть аккаунт на Toxin
     a.card-registration__switch-btn(href="./mock.html")
-      +button(type="button", value="Войти", modClass="bordered", tabindex="-1")
+      +button({ mod: 'bordered' })(type="button", value="Войти", tabindex="-1")

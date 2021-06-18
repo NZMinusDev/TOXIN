@@ -1,15 +1,14 @@
 //- displayed: {number} - amount of items to display 
 //- total: {number} - amount of searched items
-//- class?: class for component bem mix: such as positioning functionality or size
-//- mod?: "href" | "async", default is href
-  //- Additional for type="href":
+//- type?: 'href' | 'async'
+  //- Additional for type='href':
     //-  hrefPrefix: {string} - href with: location, filter get settings, name of pagination. Example: /catalog?date1=date&guests=3&page=
-//- page?: {number} - active page, default is 1
+//- page?: {number} - active page
 //- text?: {string} - placed text after amounts
-mixin pagination
+mixin pagination({ total = 100, displayed = 12, page = 1, text = '', type = 'href', hrefPrefix = '?page=',} = {})
   -
-    const pages = Math.ceil(attributes.total / attributes.displayed);
-    const activePage = attributes.page || 1;
+    const pages = Math.ceil(total / displayed);
+    const activePage = page;
 
     // Determine how many pages to show after the current page index
     let pageCutLow = activePage - 1;
@@ -27,39 +26,36 @@ mixin pagination
       pageCutHigh = pages;
     }
 
-    const counterFrom = (activePage - 1) * attributes.displayed + 1;
+    const counterFrom = (activePage - 1) * displayed + 1;
     const counterTo =
-      activePage * attributes.displayed > attributes.total
-        ? attributes.total
-        : activePage * attributes.displayed;
+      activePage * displayed > total
+        ? total
+        : activePage * displayed;
     const counterToString = `${counterTo}`;
-    const counterTotalString = `${attributes.total}`;
+    const counterTotalString = `${total}`;
     const counterTotal =
       counterTotalString.length > counterToString.length
         ? `${
-            Math.floor(attributes.total / Math.pow(10, counterToString.length)) *
+            Math.floor(total / Math.pow(10, counterToString.length)) *
             Math.pow(10, counterToString.length)
           }+ `
-        : `${attributes.total} `;
+        : `${total} `;
 
-    const counterText = `${counterFrom} - ${counterTo} из ${counterTotal}${attributes.text}`;
-
-    const type = attributes.type || 'href';
+    const counterText = `${counterFrom} - ${counterTo} из ${counterTotal}${text}`;
 
     let paginationHrefs;
     if (type === 'href') {
       paginationHrefs = new Array(pages)
         .fill('')
-        .map((value, index) => `${attributes.hrefPrefix}${index}`);
+        .map((value, index) => `${hrefPrefix}${index}`);
     }
   nav.pagination(
-    class=attributes.class,
     class=type === 'async' ? 'pagination_mod-async' : null,
     data-page=type === 'async' ? activePage : null,
-    data-displayed=type === 'async' ? attributes.displayed : null,
-    data-total=type === 'async' ? attributes.total : null,
-    data-text=type === 'async' ? attributes.text : null
-  )
+    data-displayed=type === 'async' ? displayed : null,
+    data-total=type === 'async' ? total : null,
+    data-text=type === 'async' ? text : null
+  )&attributes(attributes)
     ul.pagination__list
       //- Show the Previous button only if you are on a page other than the first
       if activePage > 1

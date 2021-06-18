@@ -5,95 +5,55 @@ include ~@common.blocks/primitives/button/button.pug
 //- name: {string} - name of <form>, also it is used such prefix for names of inner forms
 //- action: form action
 //- method: form method - default is 'get'
-//- target: {("_self"|null)|"_blank"|"_parent"|"_top"} - form target
-//- room-number: {number} - number of room
-//- room-grade: {string} - grade of room
-//- payment-amount: {number} - daily cost
-//- selected-dates?: {ISODateString,ISODateString} - initial dates; example: "2020-11-18T21:00:00.000Z,2020-11-20T21:00:00.000Z";
-//- guests-groups: {'group-name-1':{selectionText: string, textPlural: string},'group-name-2':selectionText: string, textPlural: string,...}, example: { guests: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } }
-//- guests-list: {''Item title 1'': {default: number, min: number, max: number, group?: 'group-name-2'},''Item title 2'': {default: number, min: number, max: number, group?: 'group-name-1'},...}, example:{ взрослые: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0} }; - if group is unset the itemName will be used instead 
-//- services-payment: {number} - amount of services payment
-//- services-sale: {number} - amount of services sale
-//- additional-services-payment: {number} - amount of additional services payment
-mixin card-room-definition
+//- roomNumber: {number} - number of room
+//- roomGrade: {string} - grade of room
+//- paymentAmount: {number} - daily cost
+//- selectedDates?: {ISODateString,ISODateString} - initial dates; example: "2020-11-18T21:00:00.000Z,2020-11-20T21:00:00.000Z";
+//- guestsGroups: {'group-name-1':{selectionText: string, textPlural: string},'group-name-2':selectionText: string, textPlural: string,...}, example: { guests: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } }
+//- guestsList: {''Item title 1'': {default: number, min: number, max: number, group?: 'group-name-2'},''Item title 2'': {default: number, min: number, max: number, group?: 'group-name-1'},...}, example:{ взрослые: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0} }; - if group is unset the itemName will be used instead 
+//- servicesPayment: {number} - amount of services payment
+//- servicesSale: {number} - amount of services sale
+//- additionalServicesPayment: {number} - amount of additional services payment
+mixin card-room-definition({ roomNumber = -1, roomGrade = '', paymentAmount = -1, selectedDates = '', guestsGroups = {}, guestsList = {}, servicesPayment = -1, servicesSale = -1, additionalServicesPayment = -1, name = 'card-room-definition', action = '/mock.js', method = 'post' } = {})
   -
     const currency = '₽';
 
-    const roomNumberSentence = `№ ${attributes['room-number'].toLocaleString()}`;
-    const paymentAmountSentence = `${attributes[
-      'payment-amount'
-    ].toLocaleString()}${currency}<span class="card-base__text card-base__text_size-small"> в сутки</span>`;
+    const roomNumberSentence = `№ ${roomNumber.toLocaleString()}`;
+    const paymentAmountSentence = `${paymentAmount.toLocaleString()}${currency}<span class="card-base__text card-base__text_size-small"> в сутки</span>`;
 
-    const servicesSaleAmount = attributes['services-sale'];
-    const servicesPaymentAmount = attributes['services-payment'] - attributes['services-sale'];
-    const servicesSaleSentence = servicesSaleAmount
-      ? `скидка ${servicesSaleAmount.toLocaleString()}${currency}`
+    servicesPayment = servicesPayment - servicesSale;
+    const servicesSaleSentence = servicesSale
+      ? `скидка ${servicesSale.toLocaleString()}${currency}`
       : '';
-    const servicesPayment = {
-      sentence: `Сбор за услуги: ${servicesSaleSentence}`,
-      amount: servicesPaymentAmount,
-    };
-
-    const additionalServicesPayment = {
-      sentence: 'Сбор за дополнительные услуги',
-      amount: attributes['additional-services-payment'],
-    };
-  form.card-base.card-room-definition(
-    class=attributes.class,
-    name=attributes.name,
-    action=attributes.action,
-    method=attributes.method || 'get',
-    target=attributes.target
-  )
+  form.card-base.card-room-definition(name=name, action=action, method=method)&attributes(attributes)
     .card-room-definition__room-title
       h1.card-room-definition__room-number= roomNumberSentence
-      h3.card-room-definition__room-grade= attributes['room-grade']
-    h3.card-room-definition__day-payment(data-amount=attributes['payment-amount'])!= paymentAmountSentence
-    +form-dropdown.card-room-definition__arrival-date-dropdown(
-      heading={ h3: 'Прибытие' },
-      name=`${attributes.name}-arrival`,
-      type="date",
-      output="plural",
-      selected-dates=attributes['selected-dates'],
-      altFields=`.card-room-definition__departure-date-dropdown [name=${attributes.name}-departure]`
-    )
-    +form-dropdown.card-room-definition__departure-date-dropdown(
-      heading={ h3: 'Выезд' },
-      name=`${attributes.name}-departure`,
-      type="date",
-      isAltField
-    )
-    +form-dropdown.card-room-definition__guests-single-apply(
-      name=`${attributes.name}-guests`,
-      type="item-quantity",
-      heading={ h3: 'Гости' },
-      data-placeholder="Сколько гостей",
-      openMod="apply",
-      groups=attributes['guests-groups'],
-      list=attributes['guests-list']
-    )
+      h3.card-room-definition__room-grade= roomGrade
+    h3.card-room-definition__day-payment(data-amount=paymentAmount)!= paymentAmountSentence
+    +form-dropdown('date', { heading: { h3: 'Прибытие' }, name: `${name}-arrival`, output: 'plural', selectedDates, altFields: `.card-room-definition__departure-date-dropdown [name=${name}-departure]`}).card-room-definition__arrival-date-dropdown
+    +form-dropdown('date',{ heading: { h3: 'Выезд' }, name: `${name}-departure`, isAltField: true}).card-room-definition__departure-date-dropdown
+    +form-dropdown('item-quantity',{ name: `${name}-guests`, heading: { h3: 'Гости' }, placeholder: 'Сколько гостей', openMod: 'apply', groups: guestsGroups, list: guestsList}).card-room-definition__guests-single-apply
     .card-room-definition__payment-rates
       p.card-room-definition__payment-item.card-room-definition__total-day-payment
         span.card-room-definition__payment-sentence
         span.card-room-definition__payment-amount
       p.card-room-definition__payment-item.card-room-definition__services-payment
-        span.card-room-definition__payment-sentence= servicesPayment.sentence
+        span.card-room-definition__payment-sentence= `Сбор за услуги: ${servicesSaleSentence}`
           span.tooltip.card-room-definition__payment-tooltip(
             data-content="Подсказка к сборам за услуги"
           ) i
-        span.card-room-definition__payment-amount(data-amount=servicesPayment.amount)= `${servicesPayment.amount.toLocaleString()}${currency}`
+        span.card-room-definition__payment-amount(data-amount=servicesPayment)= `${servicesPayment.toLocaleString()}${currency}`
       p.card-room-definition__payment-item.card-room-definition__additional-services-payment
-        span.card-room-definition__payment-sentence= additionalServicesPayment.sentence
+        span.card-room-definition__payment-sentence Сбор за дополнительные услуги
           span.tooltip.card-room-definition__payment-tooltip(
             data-content="Подсказка к сборам за дополнительные услуги"
           ) i
-        span.card-room-definition__payment-amount(data-amount=additionalServicesPayment.amount)= `${additionalServicesPayment.amount.toLocaleString()}${currency}`
+        span.card-room-definition__payment-amount(data-amount=additionalServicesPayment)= `${additionalServicesPayment.toLocaleString()}${currency}`
     h2.card-room-definition__payment-item.card-room-definition__total-payment
       span Итого
       .text-separator
       span.card-room-definition__total-payment-amount
-    +button.card-room-definition__submit-btn(
+    +button({ mod: 'link' }).card-room-definition__submit-btn(
       type="submit",
-      value="Забронировать",
-      modClass="link"
+      value="Забронировать"
     )

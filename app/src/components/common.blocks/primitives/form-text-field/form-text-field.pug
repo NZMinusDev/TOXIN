@@ -7,11 +7,11 @@ include ~@common.blocks/primitives/heading/heading.pug
 //- name - name of input field
 //- value - init value of field
 //- placeholder - placeholder text
-//- autofocus - just add it for it works
-//- data-material-icon - material icon name for submit btn in field
-mixin form-text-field
+//- autofocus - { boolean } - autofocus of field
+//- materialIcon - material icon name for submit btn in field
+mixin form-text-field({ name = 'text-field', type = 'text', value = '', placeholder = '', autofocus = false, heading = undefined, materialIcon = '', isFilter = undefined } = {})
   -
-    const allowedInputmaskTypes = ['text', 'search', 'tel', 'url', 'password'];
+    const allowedInputMaskTypes = ['text', 'search', 'tel', 'url', 'password'];
     const allowedInputmodeAttribute = [
       'none',
       'text',
@@ -24,28 +24,28 @@ mixin form-text-field
     ];
     const reservedPlaceholders = { email: 'Email', password: 'Пароль', date: 'ДД.ММ.ГГГГ' };
 
-    const componentClassModificator = attributes.type
-      ? `form-text-field_is${attributes.type[0].toUpperCase()}${attributes.type.slice(1)}`
+    const componentClassModificator = type
+      ? `form-text-field_is${type[0].toUpperCase()}${type.slice(1)}`
       : '';
-    const inputMaskType = allowedInputmaskTypes.find((type) => type === attributes.type) || 'text';
+    const inputMaskType = allowedInputMaskTypes.find((inputMaskType) => inputMaskType === type) || 'text';
     const inputModeAttr =
-      allowedInputmodeAttribute.find((type) => type === attributes.type) || 'text';
-  .form-text-field(class=[componentClassModificator, attributes.class])
-    if attributes.heading
-      +heading(attributes.heading, { isLabel: true })(for=attributes.name)
+      allowedInputmodeAttribute.find((attr) => attr === type);
+  .form-text-field(class=componentClassModificator)&attributes(attributes)
+    if heading
+      +heading(heading, { isLabel: true })(for=name)
     .form-field
       input.form-text-field__input(
-        data-is-filter=attributes['data-is-filter'] ? `${attributes['data-is-filter']}` : null,
+        data-is-filter=isFilter ? `${isFilter}` : null,
         type=inputMaskType,
         inputmode=inputModeAttr,
-        name=attributes.name,
-        id=attributes.name,
-        placeholder=reservedPlaceholders[attributes.type] || attributes.placeholder,
-        value=attributes.value,
-        autofocus=attributes.autofocus
+        name=name,
+        id=name,
+        placeholder=reservedPlaceholders[type] || placeholder,
+        value=value,
+        autofocus=autofocus
       )
-      if attributes['data-material-icon']
+      if materialIcon
         button.icon.form-text-field__link-icon(
           type="submit",
-          data-icon=attributes['data-material-icon']
+          data-icon=materialIcon
         )

@@ -1,7 +1,6 @@
 //- Just wrapped apply and reset buttons
-//- class: class for component bem mix: such as positioning functionality
 mixin apply-control
-  .apply-control(class=attributes.class)
+  .apply-control&attributes(attributes)
     input.apply-control__clear-btn-js.apply-control__clear-btn-js_isHidden(
       type="button",
       value="очистить"

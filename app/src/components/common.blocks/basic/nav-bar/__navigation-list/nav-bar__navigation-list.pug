@@ -1,4 +1,4 @@
-mixin nav-bar__navigation-list
+mixin nav-bar__navigation-list(active, items)
   -
     const bubbleActiveStatus = (items, activeKey) => {
       Object.entries(items).forEach(([key, item]) => {
@@ -18,16 +18,21 @@ mixin nav-bar__navigation-list
       return false;
     };
 
-    bubbleActiveStatus(attributes.items, attributes.active);   
+    bubbleActiveStatus(items, active);   
   ul.nav-bar__navigation-list
-    each itemSettings, itemName in attributes.items
+    each itemSettings, itemName in items
       if itemSettings.items
         li.nav-bar__navigation-item(
           class=[itemSettings.items ? 'nav-bar__navigation-item_isDropdown' : null, itemSettings.active ? 'nav-bar__navigation-item_isActive' : null],
           tabindex="0"
         )= itemName
           .icon.nav-bar__expand-icon
-          +nav-bar__navigation-list(items=itemSettings.items)
+          +nav-bar__navigation-list(null, itemSettings.items)
       else
-        li.nav-bar__navigation-item(class=itemSettings.items ? 'nav-bar__navigation-item_isDropdown' : null)
-          a(href=itemSettings.href, class=itemSettings.active ? 'nav-bar__navigation-item_isActive' : null)= itemName
+        li.nav-bar__navigation-item(
+          class=itemSettings.items ? 'nav-bar__navigation-item_isDropdown' : null
+        )
+          a(
+            href=itemSettings.href,
+            class=itemSettings.active ? 'nav-bar__navigation-item_isActive' : null
+          )= itemName

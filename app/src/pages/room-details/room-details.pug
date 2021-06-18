@@ -15,56 +15,19 @@ block variables
 block content
   main.room-details-layout.content-container
     section.room-details-layout__demo.content-container__negative
-      +picture.room-details-layout__big-img(
-        path=htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null,
-        alt="Фотография номера № 1"
-      )
-      +picture.room-details-layout__small-img-1(
-        path=htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888_2.png').default : null,
-        alt="Фотография номера № 2"
-      )
-      +picture.room-details-layout__small-img-2(
-        path=htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888_3.png').default : null,
-        alt="Фотография номера № 3"
-      )
+      +picture(htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, "Фотография номера № 1").room-details-layout__big-img
+      +picture(htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888_2.png').default : null, "Фотография номера № 2").room-details-layout__small-img-1
+      +picture(htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888_3.png').default : null, "Фотография номера № 3").room-details-layout__small-img-2
     section.room-details-layout__info
-      +form-bullet-list.room-details-layout__data(
-        heading={ h2: 'Сведения о номере' },
-        mod="rich",
-        items={ Комфорт: { icon: 'insert_emoticon', description: 'Шумопоглощающие стены' }, Удобство: { icon: 'location_city', description: 'Окно в каждой из спален' }, Уют: { icon: 'whatshot', description: 'Номер оснащен камином' } }
-      )
-      +donut-chart.room-details-layout__impression(
-        heading={ h2: 'Впечатления от номера' },
-        items={ Великолепно: 130, Хорошо: 65, Удовлетворительно: 65, Разочарован: 0 },
-        dataName="голосов",
-        list
-      )
+      +form-bullet-list({ heading: { h2: 'Сведения о номере' }, mod: "rich", items: { Комфорт: { icon: 'insert_emoticon', description: 'Шумопоглощающие стены' }, Удобство: { icon: 'location_city', description: 'Окно в каждой из спален' }, Уют: { icon: 'whatshot', description: 'Номер оснащен камином' } }}).room-details-layout__data
+      +donut-chart({ heading: { h2: 'Впечатления от номера' }, items: { Великолепно: 130, Хорошо: 65, Удовлетворительно: 65, Разочарован: 0 }, dataName: 'голосов', list: true }).room-details-layout__impression
       -
         const msPerDay = 1000 * 60 * 60 * 24;
         const fiveDaysAgo = new Date(Date.now() - msPerDay * 5).toISOString();
         const sevenDaysAgo = new Date(Date.now() - msPerDay * 7).toISOString();
-      +comments.room-details-layout__comments(
-        heading={ h2: 'Отзывы посетителей номера' },
-        items={ 'comment-1': { personName: 'Мурад Сарафанов', iconPath: htmlWebpackPlugin ? require('@assets/pictures/contents/personas/1/1.png').default : null, date: fiveDaysAgo, content: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.', likeButtonCounter: 12, isLikeButtonChecked: 'checked' }, 'comment-2': { personName: 'Патрисия Стёклышкова', iconPath: htmlWebpackPlugin ? require('@assets/pictures/contents/personas/2/2.png').default : null, date: sevenDaysAgo, content: 'Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент', likeButtonCounter: 2 } }
-      )
-      +form-bullet-list.room-details-layout__rules(
-        heading={ h2: 'Правила' },
-        items=['Нельзя с питомцами', 'Без вечеринок и мероприятий', 'Время прибытия — после 13:00, а выезд до 12:00']
-      )
+      +comments({ heading: { h2: 'Отзывы посетителей номера' }, items: { 'comment-1': { personName: 'Мурад Сарафанов', iconPath: htmlWebpackPlugin ? require('@assets/pictures/contents/personas/1/1.png').default : null, date: fiveDaysAgo, content: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.', likeButtonCounter: 12, isLikeButtonChecked: 'checked' }, 'comment-2': { personName: 'Патрисия Стёклышкова', iconPath: htmlWebpackPlugin ? require('@assets/pictures/contents/personas/2/2.png').default : null, date: sevenDaysAgo, content: 'Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент', likeButtonCounter: 2 } } }).room-details-layout__comments
+      +form-bullet-list({ heading: { h2: 'Правила' }, items: ['Нельзя с питомцами', 'Без вечеринок и мероприятий', 'Время прибытия — после 13:00, а выезд до 12:00']}).room-details-layout__rules
       .room-details-layout__alert
         h2 Отмена
         p Бесплатная отмена в течение 48 ч. После этого при отмене не позднее чем за 5 дн. до прибытия вы получите полный возврат за вычетом сбора за услуги.
-    +card-room-definition.room-details-layout__reservation(
-      name="room-definition",
-      action="",
-      room-number=888,
-      room-grade="Люкс",
-      payment-amount=9990,
-      arrival-value="2019-08-19",
-      departure-value="2019-08-23",
-      guests-groups={ гости: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } },
-      guests-list={ взрослые: { default: 2, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 1, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 1, min: 0, max: 1 / 0 } },
-      services-payment=2179,
-      services-sale=2179,
-      additional-services-payment=300
-    )
+    +card-room-definition({ roomNumber:888, roomGrade:"Люкс", paymentAmount:9990, selectedDates:"2019-08-19,2019-08-23", guestsGroups:{ гости: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } }, guestsList:{ взрослые: { default: 2, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 1, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 1, min: 0, max: 1 / 0 } }, servicesPayment:2179, servicesSale:2179, additionalServicesPayment:300 }).room-details-layout__reservation

@@ -16,174 +16,25 @@ block variables
 block content
   .search-room-layout.content-container
     aside.search-room-layout__filter
-      +form-dropdown.search-room-layout__dates-of-stay-dropdown(
-        name="dates-of-stay",
-        type="date",
-        data-is-filter,
-        heading={ h3: 'Даты пребывания в отеле' },
-        output="plural",
-        selected-dates="2019-08-19, 2019-08-23"
-      )
-      +form-dropdown.search-room-layout__guests-dropdown(
-        name="guests",
-        type="item-quantity",
-        heading={ h3: 'Гости' },
-        data-is-filter,
-        data-placeholder="Сколько гостей",
-        openMod="apply",
-        groups={ гости: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } },
-        list={ взрослые: { default: 2, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 1, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 1, min: 0, max: 1 / 0 } }
-      )
-      +form-range-slider.search-room-layout__price-range-slider(
-        name="price",
-        range={ min: 341, max: 15454 },
-        start=[5000, 10000],
-        data-is-filter,
-        heading={ h3: 'Диапазон цены' },
-        description="Стоимость за сутки пребывания в номере"
-      )
-      +form-checkbox-buttons.search-room-layout__checkbox-buttons(
-        data-is-filter,
-        heading={ h3: 'checkbox buttons' },
-        buttons={ 'is-smoking': { label: 'Можно курить' }, 'is-with-pets': { label: 'Можно с питомцами', checked: 'checked' }, 'is-guests': { label: 'Можно пригласить гостей (до 10 человек)', checked: 'checked' } }
-      )
-      +form-checkbox-buttons.search-room-layout__affordable-rich-checkbox-buttons(
-        data-is-filter,
-        heading={ h3: 'Доступность' },
-        mod="rich",
-        buttons={ 'wide-corridor': { label: 'Широкий коридор', description: 'Ширина коридоров в номере не менее 91 см.' }, 'assistant-for-the-disabled': { label: 'Помощник для инвалидов', description: 'На 1 этаже вас встретит специалист  и проводит до номера.' } }
-      )
-      +form-dropdown.search-room-layout__facilities-dropdown(
-        name="facilities",
-        type="item-quantity",
-        data-is-filter,
-        heading={ h3: 'dropdown' },
-        output="plural",
-        openMod="fold",
-        groups={ спальни: { selectionText: 'спальня', textPlural: 'спальни' }, кровати: { selectionText: 'кровать', textPlural: 'кровати' }, 'ванные комнаты': { selectionText: 'ванная комната', textPlural: 'ванные комнаты' } },
-        list={ спальни: { default: 2, min: 1, max: 3 }, кровати: { default: 2, min: 1, max: 3 }, 'ванные комнаты': { default: 0, min: 0, max: 2 } }
-      )
-      +form-expandable-checkbox-list.search-room-layout__additional-comfort-expandable-checkbox-list(
-        data-is-filter,
-        heading={ h3: 'Дополнительные удобства' },
-        buttons={ breakfast: { label: 'Завтрак' }, desk: { label: 'Письменный стол', checked: 'checked' }, 'feeding-chair': { label: 'Стол для кормления', checked: 'checked' }, cot: { label: 'Кроватка', checked: 'checked' }, 'tv-1': { label: 'Телевизор' }, 'shampoo-1': { label: 'Шампунь' }, 'tv-2': { label: 'Телевизор' }, 'shampoo-2': { label: 'Шампунь' } }
-      )
+      +form-dropdown('date', { name: 'dates-of-stay', isFilter: true, heading: { h3: 'Даты пребывания в отеле' }, output: 'plural', selectedDates: '2019-08-19, 2019-08-23'}).search-room-layout__dates-of-stay-dropdown
+      +form-dropdown('item-quantity', { name: 'guests', heading: { h3: 'Гости' }, isFilter: true, placeholder: 'Сколько гостей', openMod: 'apply', groups: { гости: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } }, list: { взрослые: { default: 2, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 1, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 1, min: 0, max: 1 / 0 } } }).search-room-layout__guests-dropdown
+      +form-range-slider({ name: 'price', range: { min: 341, max: 15454 }, start: [5000, 10000], isFilter: true, heading: { h3: 'Диапазон цены' }, description: 'Стоимость за сутки пребывания в номере' }).search-room-layout__price-range-slider
+      +form-checkbox-buttons({ heading: { h3: 'checkbox buttons' }, buttons: { 'is-smoking': { label: 'Можно курить' }, 'is-with-pets': { label: 'Можно с питомцами', checked: 'checked' }, 'is-guests': { label: 'Можно пригласить гостей (до 10 человек)', checked: 'checked' } }, isFilter: true }).search-room-layout__checkbox-buttons
+      +form-checkbox-buttons({ heading: { h3: 'Доступность' }, mod: "rich", buttons: { 'wide-corridor': { label: 'Широкий коридор', description: 'Ширина коридоров в номере не менее 91 см.' }, 'assistant-for-the-disabled': { label: 'Помощник для инвалидов', description: 'На 1 этаже вас встретит специалист и проводит до номера.' } }, isFilter: true }).search-room-layout__affordable-rich-checkbox-buttons
+      +form-dropdown('item-quantity', { name: 'facilities', isFilter: true, heading: { h3: 'dropdown' }, output: 'plural', openMod: 'fold', groups: { спальни: { selectionText: 'спальня', textPlural: 'спальни' }, кровати: { selectionText: 'кровать', textPlural: 'кровати' }, 'ванные комнаты': { selectionText: 'ванная комната', textPlural: 'ванные комнаты' } }, list: { спальни: { default: 2, min: 1, max: 3 }, кровати: { default: 2, min: 1, max: 3 }, 'ванные комнаты': { default: 0, min: 0, max: 2 } } }).search-room-layout__facilities-dropdown
+      +form-expandable-checkbox-list({ heading: { h3: 'Дополнительные удобства' }, buttons: { breakfast: { label: 'Завтрак' }, desk: { label: 'Письменный стол', checked: 'checked' }, 'feeding-chair': { label: 'Стол для кормления', checked: 'checked' }, cot: { label: 'Кроватка', checked: 'checked' }, 'tv-1': { label: 'Телевизор' }, 'shampoo-1': { label: 'Шампунь' }, 'tv-2': { label: 'Телевизор' }, 'shampoo-2': { label: 'Шампунь' } }, isFilter: true }).search-room-layout__additional-comfort-expandable-checkbox-list
     h1.search-room-layout__title Номера, которые мы для вас подобрали
     main.search-room-layout__rooms
-      +card-room(
-        href="/mock.html",
-        name="room-luxury-1",
-        paths=[htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null],
-        room-number=888,
-        room-grade="Люкс",
-        payment-amount=9990,
-        rate=5,
-        comments-amount=145
-      )
-      +card-room(
-        href="/mock.html",
-        name="room-common-1",
-        paths=[htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null],
-        room-number=840,
-        payment-amount=9900,
-        rate=4,
-        comments-amount=65
-      )
-      +card-room(
-        href="/mock.html",
-        name="room-luxury-2",
-        paths=[htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/980/980.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null],
-        room-number=980,
-        room-grade="Люкс",
-        payment-amount=8500,
-        rate=3,
-        comments-amount=35
-      )
-      +card-room(
-        href="/mock.html",
-        name="room-common-2",
-        paths=[htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/856/856.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null],
-        room-number=856,
-        payment-amount=7300,
-        rate=5,
-        comments-amount=19
-      )
-      +card-room(
-        href="/mock.html",
-        name="room-common-3",
-        paths=[htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/740/740.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null],
-        room-number=740,
-        payment-amount=6000,
-        rate=4,
-        comments-amount=44
-      )
-      +card-room(
-        href="/mock.html",
-        name="room-common-4",
-        paths=[htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/982/982.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null],
-        room-number=982,
-        payment-amount=5800,
-        rate=3,
-        comments-amount=56
-      )
-      +card-room(
-        href="/mock.html",
-        name="room-common-5",
-        paths=[htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/678/678.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null],
-        room-number=678,
-        payment-amount=5500,
-        rate=5,
-        comments-amount=45
-      )
-      +card-room(
-        href="/mock.html",
-        name="room-common-6",
-        paths=[htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/450/450.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null],
-        room-number=450,
-        payment-amount=5300,
-        rate=4,
-        comments-amount=39
-      )
-      +card-room(
-        href="/mock.html",
-        name="room-common-7",
-        paths=[htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/350/350.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null],
-        room-number=350,
-        payment-amount=5000,
-        rate=3,
-        comments-amount=77
-      )
-      +card-room(
-        href="/mock.html",
-        name="room-common-9",
-        paths=[htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/666/666.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null],
-        room-number=666,
-        payment-amount=5000,
-        rate=5,
-        comments-amount=25
-      )
-      +card-room(
-        href="/mock.html",
-        name="room-common-10",
-        paths=[htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/444/444.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null],
-        room-number=444,
-        payment-amount=5000,
-        rate=3,
-        comments-amount=15
-      )
-      +card-room(
-        href="/mock.html",
-        name="room-common-8",
-        paths=[htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/352/352.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null],
-        room-number=352,
-        payment-amount=5000,
-        rate=3,
-        comments-amount=55
-      )
-    +pagination.search-room-layout__pagination(
-      page=1,
-      displayed=12,
-      total=179,
-      text="вариантов аренды",
-      hrefPrefix="?page="
-    )
+      +card-room({ href:"/mock.html", roomNumber:888, roomGrade:"Люкс", paymentAmount:9990, rate:5, commentsAmount:145, paths:[htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null] })
+      +card-room({ href:"/mock.html", roomNumber:840, paymentAmount:9900, rate:4, commentsAmount:65, paths:[htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null] })
+      +card-room({ href:"/mock.html", roomNumber:980, roomGrade:"Люкс", paymentAmount:8500, rate:3, commentsAmount:35, paths:[htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/980/980.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null] })
+      +card-room({ href:"/mock.html", roomNumber:856, paymentAmount:7300, rate:5, commentsAmount:19, paths:[htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/856/856.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null] })
+      +card-room({ href:"/mock.html", roomNumber:740, paymentAmount:6000, rate:4, commentsAmount:44, paths:[htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/740/740.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null] })
+      +card-room({ href:"/mock.html", roomNumber:982, paymentAmount:5800, rate:3, commentsAmount:56, paths:[htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/982/982.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null] })
+      +card-room({ href:"/mock.html", roomNumber:678, paymentAmount:5500, rate:5, commentsAmount:45, paths:[htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/678/678.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null] })
+      +card-room({ href:"/mock.html", roomNumber:450, paymentAmount:5300, rate:4, commentsAmount:39, paths:[htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/450/450.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null] })
+      +card-room({ href:"/mock.html", roomNumber:350, paymentAmount:5000, rate:3, commentsAmount:77, paths:[htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/350/350.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null] })
+      +card-room({ href:"/mock.html", roomNumber:666, paymentAmount:5000, rate:5, commentsAmount:25, paths:[htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/666/666.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null] })
+      +card-room({ href:"/mock.html", roomNumber:444, paymentAmount:5000, rate:3, commentsAmount:15, paths:[htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/444/444.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null] })
+      +card-room({ href:"/mock.html", roomNumber:352, paymentAmount:5000, rate:3, commentsAmount:55, paths:[htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/352/352.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/common/840/840.png').default : null, htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null] })
+    +pagination({ total: 179, text: 'вариантов аренды', hrefPrefix: '?page=' }).search-room-layout__pagination

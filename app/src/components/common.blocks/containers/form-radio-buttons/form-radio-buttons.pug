@@ -10,23 +10,22 @@ include ~@common.blocks/primitives/heading/heading.pug
     label:string,
     checked: ''
   },...}
-//- class?: class for component bem mix: such as positioning functionality
 //- data-is-filter?: {boolean} - if true, change event will reload page with chosen value(get method)
 //- heading?: { tag: text }, example: { h3: 'awesome heading' }
 //- disabled?: same as fieldset disabled (disable all buttons)
-mixin form-radio-buttons
-  .form-radio-buttons(class=attributes.class)
-    if attributes.heading
+mixin form-radio-buttons({ heading = undefined, disabled = undefined, buttons = {}, name = 'radio', isFilter = undefined } = {})
+  .form-radio-buttons&attributes(attributes)
+    if heading
       .form-radio-buttons__heading
-        +heading(attributes.heading)
-    fieldset.form-radio-buttons__fieldset(disabled=attributes.disabled)
-      each btn, key in attributes.buttons
+        +heading(heading)
+    fieldset.form-radio-buttons__fieldset(disabled=disabled)
+      each btn, key in buttons
         .form-radio-buttons__item
           input.form-radio-buttons__button-item(
             id=key,
             type="radio",
-            name=attributes.name,
-            data-is-filter=attributes['data-is-filter'] ? `${attributes['data-is-filter']}` : null,
+            name=name,
+            data-is-filter=isFilter ? `${isFilter}` : null,
             checked=btn.checked,
             value=key
           )

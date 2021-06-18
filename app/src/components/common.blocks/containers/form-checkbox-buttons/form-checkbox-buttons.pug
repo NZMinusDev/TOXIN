@@ -11,26 +11,25 @@ include ~@common.blocks/primitives/heading/heading.pug
     description:string, // additional for "rich" mod
     checked: ''
   },...}
-//- class?: class for component bem mix: such as positioning functionality
 //- data-is-filter?: {boolean} - if true, change event will reload page with chosen value(get method)
 //- heading?: { tag: text }, example: { h3: 'awesome heading' }
 //- mod?: "rich" - mod of component
 //- disabled?: same as fieldset disabled (disable all buttons)
-mixin form-checkbox-buttons
+mixin form-checkbox-buttons({ mod = undefined, heading = undefined, buttons = {}, disabled = undefined, isFilter = false } = {})
   -
-    const modClass = attributes.mod ? `form-checkbox-buttons_${attributes.mod}` : null;
-  .form-checkbox-buttons(class=[modClass, attributes.class])
-    if attributes.heading
-      +heading(attributes.heading)
-    fieldset.form-checkbox-buttons__fieldset(disabled=attributes.disabled)
+    const modClass = mod ? `form-checkbox-buttons_${mod}` : null;
+  .form-checkbox-buttons(class=modClass)&attributes(attributes)
+    if heading
+      +heading(heading)
+    fieldset.form-checkbox-buttons__fieldset(disabled=disabled)
       ul.form-checkbox-buttons__list
-        each btn, key in attributes.buttons
+        each btn, key in buttons
           li.form-checkbox-buttons__item
             input.form-checkbox-buttons__button-item(
               id=key,
               type="checkbox",
               name=key,
-              data-is-filter=attributes['data-is-filter'] ? `${attributes['data-is-filter']}` : null,
+              data-is-filter=isFilter ? `${isFilter}` : null,
               checked=btn.checked
             )
             label.form-checkbox-buttons__label-item(for=key)= btn.label

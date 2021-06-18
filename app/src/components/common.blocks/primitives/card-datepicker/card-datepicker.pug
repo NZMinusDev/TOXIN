@@ -1,10 +1,8 @@
-//- class?: {string} - class for component bem mix: such as positioning functionality
 //- data-range?: {boolean|number} - lib argument, enable range functionality
-//- altFields?: {string} - selector of bonded alt fields
+//- data-alt-fields?: {string} - selector of bonded alt fields
 mixin card-datepicker
   .datepicker-here.card-datepicker(
-    class=attributes.class,
     data-range=attributes['data-range'] ? `${attributes['data-range']}` : null,
     data-multiple-dates-separator=" - ",
-    data-alt-fields=attributes.altFields
-  )
+    data-alt-fields=attributes['data-alt-fields']
+  )&attributes(attributes)

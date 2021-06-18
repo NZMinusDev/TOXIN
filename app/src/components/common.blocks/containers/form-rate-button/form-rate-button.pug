@@ -1,29 +1,26 @@
 include ~@common.blocks/primitives/heading/heading.pug
 
-//- class: class for component bem mix: such as positioning functionality
 //- heading?: { tag: text }, example: { h3: 'awesome heading' }
 //- name: name of group
 //- length: number of stars
 //- rate: init rate amount
 //- titles:Array<string> - stars titles(hints)
 //- disabled: same as fieldset disabled (disable all buttons)
-mixin form-rate-button
-  .form-rate-button(class=attributes.class)
+mixin form-rate-button({ length = 5, titles = ['очень плохо', 'плохо', 'нормально', 'хорошо', 'очень хорошо'], heading = undefined, disabled = undefined, name = 'rate', rate = 3 } = {})
+  .form-rate-button&attributes(attributes)
     -
-      const rateLength = attributes.length;
-      const titles = attributes.titles || ['очень плохо', 'плохо', 'нормально', 'хорошо', 'очень хорошо'];
-      let counter = rateLength;
-    if attributes.heading
-      +heading(attributes.heading)
-    fieldset.form-rate-button__rating(disabled=attributes.disabled)
+      let counter = length;
+    if heading
+      +heading(heading)
+    fieldset.form-rate-button__rating(disabled=disabled)
       while counter > 0
         -
-          const currentID = `${attributes.name}-${counter}`;
-          const checked = counter === attributes.rate ? 'checked' : null;
+          const currentID = `${name}-${counter}`;
+          const checked = counter === rate ? 'checked' : null;
         input.form-rate-button__button-item(
           id=currentID,
           type="radio",
-          name=attributes.name,
+          name=name,
           checked=checked,
           value=counter
         )

@@ -3,35 +3,24 @@ include ~@common.blocks/primitives/heading/heading.pug
 //- name: name of slider form
 //- range: object of ranges such as { min: 341, max: 15454 }
 //- start: array of init values such as [5000, 10000]
-//- class?: class for component bem mix: such as positioning functionality
-//- data-is-filter?: {boolean} - if true, input change event will reload page with chosen value(get method), default is false
+//- isFilter?: {boolean} - if true, input change event will reload page with chosen value(get method), default is false
 //- heading: { tag: text }, example: { h3: 'awesome heading' }
 //- description: {string} - appended text after slider
 //- step?: {number}
-mixin form-range-slider
-  .form-range-slider(
-    class=attributes.class,
-    data-is-filter=attributes['data-is-filter'] ? `${attributes['data-is-filter']}` : null
-  )
+mixin form-range-slider({ heading = { h3: 'range slider' }, description = '', name = 'range-slider', range = { min: -100, max: 100 }, start = [0, 0], step = undefined, isFilter = undefined } = {})
+  .form-range-slider(data-is-filter=isFilter ? `${isFilter}` : null)&attributes(attributes)
     .form-range-slider__label
-      +heading(attributes.heading)
-    input.form-range-slider__input(
-      name=`${attributes.name}-from`,
-      type="range",
-      min=attributes.range.min,
-      max=attributes.range.max,
-      value=attributes.start[0],
-      step=attributes.step ? attributes.step : 1
-    )
-    input.form-range-slider__input(
-      name=`${attributes.name}-to`,
-      type="range",
-      min=attributes.range.min,
-      max=attributes.range.max,
-      value=attributes.start[1],
-      step=attributes.step ? attributes.step : 1
-    )
-    output.form-range-slider__result(name=attributes.name)
+      +heading(heading)
+    each val, index in start
+      input.form-range-slider__input(
+        name=`${name}-${index}`,
+        type="range",
+        min=range.min,
+        max=range.max,
+        value=val,
+        step=step
+      )
+    output.form-range-slider__result(name=name)
     .form-range-slider__slider
-    if attributes.description
-      p.form-range-slider__description= attributes.description
+    if description
+      p.form-range-slider__description= description

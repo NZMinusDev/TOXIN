@@ -1,17 +1,15 @@
 //- path:string - relative(in dist) path to img
 //- alt:string - img alt attr
 //- title:string - title attribute
-//- class: class for component bem mix: such as positioning functionality
 //- Tip: split your picture and inner img styles
-mixin picture
+mixin picture(path, alt, title = undefined)
   -
-    let fullPath = attributes.path;
-    if(!fullPath){
-      fullPath = '';
+    if(!path){
+      path = '';
     }
-    const filePath = fullPath.substring(0, fullPath.lastIndexOf('.')) || fullPath;
-    const fileExt = fullPath.substring(fullPath.lastIndexOf('.') + 1, fullPath.length) || fullPath;
-  picture(class=attributes.class)
+    const filePath = path.substring(0, path.lastIndexOf('.')) || path;
+    const fileExt = path.substring(path.lastIndexOf('.') + 1, path.length) || path;
+  picture&attributes(attributes)
     //- FIXME: suffixed webp images doesn't work with devServer, don't know why; building is ok and the another img formats the same ok;
     source(
       type="image/webp",
@@ -64,9 +62,9 @@ mixin picture
     )
     img(
       src=htmlWebpackPlugin ? require('@assets/pictures/images/placeholders/lazy-loading-placeholder.svg').default : null,
-      alt=attributes.alt,
-      title=attributes.title,
+      alt=alt,
+      title=title,
       width="100%",
       height="100%",
-      data-src=fullPath
+      data-src=path
     )

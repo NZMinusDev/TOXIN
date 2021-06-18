@@ -6,25 +6,24 @@ include ~@common.blocks/containers/form-bullet-list/form-bullet-list.pug
 //- list?: {boolean} - append list with designations
 //- heading?: { tag: text }, example: { h3: 'awesome heading' }
 //- type?: "bordered"
-//- class?: {string} - class for component bem mix: such as positioning functionality
 
-mixin donut-chart
+mixin donut-chart({ items = {}, heading = undefined, dataName = 'data', list = false } = {})
   -
     let total = 0;
-    Object.values(attributes.items).forEach((value) => {
+    Object.values(items).forEach((value) => {
       total += value;
     });
 
     const bulletItems = [];
     const chartsRatio = [];
-    Object.entries(attributes.items).forEach(([key, value]) => {
+    Object.entries(items).forEach(([key, value]) => {
       bulletItems.push(key);
       chartsRatio.push(value / total);
     });
-  .donut-chart(class=attributes.class)
+  .donut-chart&attributes(attributes)
     .donut-chart__heading
-      if attributes.heading
-        +heading(attributes.heading)
+      if heading
+        +heading(heading)
     .donut-chart__chart
       -
         const round = 360;
@@ -39,6 +38,6 @@ mixin donut-chart
         - startVal += ratio !== 0 ? ratio * round : 0;
       .donut-chart__counter
         h1.donut-chart__data-amount= total
-        h3.donut-chart__data-name= attributes.dataName
-    if attributes.list
-      +form-bullet-list.donut-chart__bullet-list(items=bulletItems)
+        h3.donut-chart__data-name= dataName
+    if list
+      +form-bullet-list({ items: bulletItems }).donut-chart__bullet-list

@@ -1,13 +1,12 @@
-//- class: class for component bem mix: such as positioning functionality
 //- name: name of like button
 //- counter: number of init likes
 //- checked: same as input checked
-mixin form-like-button
-  .form-like-button(class=attributes.class)
+mixin form-like-button({ name = 'like', counter = -1, checked = undefined} = {})
+  .form-like-button&attributes(attributes)
     input.form-like-button__button(
       type="checkbox",
-      name=attributes.name,
-      checked=attributes.checked,
+      name=name,
+      checked=checked,
       title="нравится"
     )
-    span.form-like-button__counter= attributes.counter
+    span.form-like-button__counter= counter

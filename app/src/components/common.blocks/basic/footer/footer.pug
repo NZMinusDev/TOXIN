@@ -1,12 +1,10 @@
 include ~@common.blocks/primitives/form-text-field/form-text-field.pug
 
 //- type?: 'creative'
-//- class?: class for component bem mix: such as positioning functionality
 //- if type !== 'creative'
   //- action: email form action attribute
   //- method: email form method attribute
-
-mixin footer
+mixin footer({ type = undefined, name = 'footer-subscription', action = '/mock.js', method = 'post' } = {})
   -
     const icons = [
       { img: '', title: 'twitter' },
@@ -14,9 +12,9 @@ mixin footer
       { img: '', title: 'instagram' },
     ];
     const copyright = 'Copyright © 2018 Toxin отель. Все права зачищены.';
-  case attributes.type
+  case type
     when 'creative'
-      footer.footer.footer_creative.content-container(class=attributes.class)
+      footer.footer.footer_creative.content-container&attributes(attributes)
         section.footer__logo
           .logo.logo_color-gradient-primary
           span.logo__title TOXIN
@@ -31,7 +29,7 @@ mixin footer
                   title=icon.title
                 )
     default
-      footer.footer.content-container(class=attributes.class)
+      footer.footer.content-container&attributes(attributes)
         section.footer__widgets
           section.footer__logo
             .logo.logo_color-gradient-primary
@@ -82,12 +80,8 @@ mixin footer
               li.footer__list-item
                 p.footer__description Получайте специальные предложения и новости сервиса
               li.footer__list-item
-                form(action=attributes.action, method=attributes.method) 
-                  +form-text-field(
-                    type="email",
-                    name="subscription-form-text-field",
-                    data-material-icon="arrow_forward"
-                  )
+                form(name=name, action=action, method=method) 
+                  +form-text-field({ type: 'email', name: 'subscription-form-text-field', materialIcon: 'arrow_forward'})
         section.footer__copyright-bar
           p.footer__copyright= copyright
           .footer__icons

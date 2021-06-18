@@ -1,26 +1,31 @@
+//- name: name of component hidden input
+//- groups: {'group-name-1':{selectionText: string, textPlural: string},'group-name-2':selectionText: string, textPlural: string,...}, example: { guests: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } }
+//- list: {'Item title 1': {default: number, min: number, max: number, group?: 'group-name-2'},'Item title 2': {default: number, min: number, max: number, group?: 'group-name-1'},...}, example:{ взрослые: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0} }; - if group is unset the itemName will be used instead
+//- placeholder?: text of placeholder
+//- isFilter?: {boolean} - if true, input change event will reload page with chosen value(get method)
 //- @see https://github.com/reservamos/item-quantity-dropdown
-mixin form-dropdown__item-quantity-list
+mixin form-dropdown__item-quantity-list({ groups = {}, list = {}, name = 'iqList', isFilter = undefined, placeholder = '',} = {})
   -
     let total = '';
     let counter = 0;
-    Object.values(attributes.list).forEach((value) => {
+    Object.values(list).forEach((value) => {
       if (counter > 0) total += ',';
       total += value.default;
       counter++;
     });
-  button.iqdropdown.form-dropdown__item-quantity-list(id=attributes.id, class=attributes.class, type="button")
+  button.iqdropdown.form-dropdown__item-quantity-list(id=name, type="button")&attributes(attributes)
     input.form-dropdown__list-input(
-      name=attributes.name,
+      name=name,
       type="hidden",
       value=total,
-      data-is-filter=attributes['data-is-filter']
+      data-is-filter=isFilter ? `${isFilter}` : null
     )
-    p.iqdropdown-selection(data-placeholder=attributes['data-placeholder'] || '')
-    .iqdropdown-menu(data-groups=attributes.groups)
-      each limits, item in attributes.list
+    p.iqdropdown-selection(data-placeholder=placeholder)
+    .iqdropdown-menu(data-groups=groups)
+      each limits, item in list
         input.form-dropdown__option-input(
           type="hidden",
-          name=`${attributes.name}-${item}`,
+          name=`${name}-${item}`,
           value=limits.default
         )
         .iqdropdown-menu-option(

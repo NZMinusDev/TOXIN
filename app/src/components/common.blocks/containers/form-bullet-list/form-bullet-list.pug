@@ -5,20 +5,19 @@ include ~@common.blocks/primitives/heading/heading.pug
 //-   'text 1':{icon:"material icon name", description:string},
 //-   'text 2':{icon:"material icon name", description:string}
 //- }
-//- mod?: "rich" | null
+//- mod?: "rich"
 //- heading?: { tag: text }, example: { h3: 'awesome heading' }
-//- class?: class for component bem mix: such as positioning functionality
 
-mixin form-bullet-list
+mixin form-bullet-list({ mod = undefined, heading = undefined, items = {}} = {})
   -
-    const modClass = attributes.mod ? `form-bullet-list_${attributes.mod}` : null;
-  .form-bullet-list(class=modClass, class=attributes.class)
-    if attributes.heading
+    const modClass = mod ? `form-bullet-list_${mod}` : null;
+  .form-bullet-list(class=modClass)&attributes(attributes)
+    if heading
       .form-bullet-list__heading 
-        +heading(attributes.heading)
+        +heading(heading)
     ul.form-bullet-list__list
-      each item, key in attributes.items
-        case attributes.mod
+      each item, key in items
+        case mod
           when "rich"
             li.form-bullet-list__item(data-icon=item.icon)= key
               p.form-bullet-list__description= item.description

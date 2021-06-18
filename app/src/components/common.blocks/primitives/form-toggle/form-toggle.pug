@@ -1,14 +1,13 @@
-//- class: class for component bem mix: such as positioning functionality
 //- label?: text of label
 //- name: name of toggle button
-//- checked: same as input checked
-mixin form-toggle
-  .form-toggle(class=attributes.class)
+//- checked: { boolean } - same as input checked
+mixin form-toggle({ name = 'toggle', label = '', checked = false } = {})
+  .form-toggle&attributes(attributes)
     input.form-toggle__button(
-      id=attributes.name,
+      id=name,
       type="checkbox",
-      name=attributes.name,
-      checked=attributes.checked
+      name=name,
+      checked=checked
     )
-    if attributes.label
-      label.form-toggle__label(for=attributes.name)= attributes.label
+    if label
+      label.form-toggle__label(for=name)= label

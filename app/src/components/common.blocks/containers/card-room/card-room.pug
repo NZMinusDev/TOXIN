@@ -3,41 +3,29 @@ include ~@common.blocks/containers/form-rate-button/form-rate-button.pug
 
 //- class: class for component bem mix: such as positioning functionality
 //- href: {string} - link to room's page
-//- name: {string} - name of slideshow's radio group
 //- paths: {Array<string>} - paths for images
-//- room-number: {number} - number of room
-//- room-grade: {string} - grade of room
-//- payment-amount: {number} - daily cost
+//- roomNumber: {number} - number of room
+//- roomGrade?: {string} - grade of room, for example: Люкс
+//- paymentAmount: {number} - daily cost
 //- rate: {number} - initial rating
-//- comments-amount: {number} - amount of comments about room
-mixin card-room
+//- commentsAmount: {number} - amount of comments about room
+mixin card-room({ href = '/mock.html', roomNumber = -1, roomGrade = '', paymentAmount = -1, rate = 0, commentsAmount = -1, paths = [] } = {})
   -
     const currency = '₽';
 
-    const roomNumberSentence = `№ ${attributes['room-number'].toLocaleString()}`;
-    const paymentAmountSentence = `${attributes[
-      'payment-amount'
-    ].toLocaleString()}${currency}<span class="card-base__text card-base__text_size-small"> в сутки</span>`;
-    const commentsAmountSentence = `${attributes[
-      'comments-amount'
-    ].toLocaleString()}<span class="card-base__text"> Отзывов</span>`;
-  a.card-base.card-room(
-    class=attributes.class,
-    href=attributes.href,
-    title="Подробнее о номере"
-  )
-    +slideshow.card-room__slideshow(name=`${attributes.name}-slideshow`, paths=attributes.paths)
+    const roomNumberSentence = `№ ${roomNumber.toLocaleString()}`;
+    const paymentAmountSentence = `${paymentAmount.toLocaleString()}${currency}<span class="card-base__text card-base__text_size-small"> в сутки</span>`;
+    const commentsAmountSentence = `${commentsAmount.toLocaleString()}<span class="card-base__text"> Отзывов</span>`;
+
+    const uniqueNamePostfix = Math.random();
+  a.card-base.card-room(href=href, title="Подробнее о номере")&attributes(attributes)
+    +slideshow({ name: `${href}-slideshow-${uniqueNamePostfix}`, paths: paths }).card-room__slideshow
     .card-room__room-data
       .card-room__data-row
         .card-room__room-title
           h2.card-room__room-number= roomNumberSentence
-          h3.card-room__room-grade= attributes['room-grade']
+          h3.card-room__room-grade= roomGrade
         h3.card-room__day-payment!= paymentAmountSentence
       .card-room__data-row
-        +form-rate-button.card-room__room-rating(
-          length=5,
-          rate=attributes.rate,
-          name=`${attributes.name}-rating`,
-          disabled
-        )
+        +form-rate-button({ rate, name: `${href}-rating-${uniqueNamePostfix}`, disabled: true }).card-room__room-rating
         h3.card-room__room-comments!= commentsAmountSentence

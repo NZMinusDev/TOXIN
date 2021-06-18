@@ -10,25 +10,20 @@ include ~@common.blocks/containers/form-checkbox-buttons/form-checkbox-buttons.p
     label:string,
     checked: ''
   },...}
-//- class?: class for component bem mix: such as positioning functionality
 //- data-is-filter?: {boolean} - if true, change event will reload page with chosen value(get method)
 //- checked?: open the list
 //- disabled?: same as fieldset disabled (disable all buttons)
 //- Tip: be careful if use large amount of items: max-height limited by 32em for transition animation
-mixin form-expandable-checkbox-list
-  button.form-expandable-checkbox-list(class=attributes.class, type="button", tabindex="-1")
+mixin form-expandable-checkbox-list({ buttons = {}, heading = undefined, checked = undefined, disabled = undefined, isFilter = undefined } = {})
+  button.form-expandable-checkbox-list(type="button", tabindex="-1")&attributes(attributes)
     -
       const expanderID =
-        Object.keys(attributes.buttons).reduce((acc, current) => acc + current) + Math.random();
-    +heading(attributes.heading, { isLabel: true })(for=expanderID, tabindex="0")
+        Object.keys(buttons).reduce((acc, current) => acc + current) + Math.random();
+    +heading(heading, { isLabel: true })(for=expanderID, tabindex="0")
       span.icon.form-expandable-checkbox-list__expand-icon
     input.form-expandable-checkbox-list__expander-input(
       id=expanderID,
       type="checkbox",
-      checked=attributes.checked
+      checked=checked
     )
-    +form-checkbox-buttons.form-expandable-checkbox-list__list(
-      buttons=attributes.buttons,
-      data-is-filter=attributes['data-is-filter'] ? `${attributes['data-is-filter']}` : null,
-      disabled=attributes.disabled
-    )
+    +form-checkbox-buttons({ buttons: buttons, disabled: disabled, isFilter: isFilter ? `${isFilter}` : null }).form-expandable-checkbox-list__list
