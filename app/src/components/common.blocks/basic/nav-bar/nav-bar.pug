@@ -56,7 +56,7 @@ mixin nav-bar({ active = undefined, status = undefined, personHref = '/mock.html
           a.nav-bar__person(href=personHref, title="в личный кабинет")= personName
         default
           a(href="/mock.html")
-            +button({ mod: 'bordered' }).nav-bar__button(
+            +button({ type: 'bordered' }).nav-bar__button(
               type="button",
               value="Войти",
               tabindex="-1"

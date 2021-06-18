@@ -1,6 +1,6 @@
 @use "@thematic/main-theme.blocks/gradients.scss";
 
-.button_isFilled {
+.button_type-link {
   background: gradients.primary(1);
 
   &:hover {

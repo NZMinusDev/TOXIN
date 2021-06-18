@@ -53,7 +53,7 @@ mixin card-room-definition({ roomNumber = -1, roomGrade = '', paymentAmount = -1
       span Итого
       .text-separator
       span.card-room-definition__total-payment-amount
-    +button({ mod: 'link' }).card-room-definition__submit-btn(
+    +button({ type: 'link' }).card-room-definition__submit-btn(
       type="submit",
       value="Забронировать"
     )

@@ -11,11 +11,11 @@ mixin card-entering({ name = 'card-entering', action = '/mock.js', method = 'pos
     h1.card-entering__title Войти
     +form-text-field({ type: 'email', name: `${name}-email` }).card-entering__email-field
     +form-text-field({ type: 'password', name: `${name}-password` }).card-entering__password-field
-    +button({ mod: 'link' }).card-entering__link-btn(
+    +button({ type: 'link' }).card-entering__link-btn(
       type="submit",
       value="Войти",
       tabindex="1"
     )
     p.card-entering__caption-of-redirect-to-registration Нет аккаунта на Toxin?
     a.card-entering__switch-btn(href="/mock.html")
-      +button({ mod: 'bordered' })(type="button", value="Создать", tabindex="-1")
+      +button({ type: 'bordered' })(type="button", value="Создать", tabindex="-1")

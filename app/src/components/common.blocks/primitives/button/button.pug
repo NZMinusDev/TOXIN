@@ -1,7 +1,7 @@
-//- mod: "filled" | "bordered" | "icon-link" | "link"
-mixin button({ mod = 'filled' } = {})
+//- type: "filled" | "bordered" | "icon-link" | "link"
+mixin button({ type = 'filled' } = {})
   -
-    const modClass = `button_is${mod[0].toUpperCase()}${mod.slice(1)}`;
-  button.button(class=modClass)&attributes(attributes)= attributes.value
-    if mod === "link"
+    const typeClass = `button_type-${type}`;
+  button.button(class=typeClass)&attributes(attributes)= attributes.value
+    if type === "link"
       .icon
