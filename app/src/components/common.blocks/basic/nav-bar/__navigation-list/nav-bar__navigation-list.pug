@@ -23,16 +23,16 @@ mixin nav-bar__navigation-list(active, items)
     each itemSettings, itemName in items
       if itemSettings.items
         li.nav-bar__navigation-item(
-          class=[itemSettings.items ? 'nav-bar__navigation-item_isDropdown' : null, itemSettings.active ? 'nav-bar__navigation-item_isActive' : null],
+          class=[itemSettings.items ? 'nav-bar__navigation-item_isDropdown' : undefined, itemSettings.active ? 'nav-bar__navigation-item_isActive' : undefined],
           tabindex="0"
         )= itemName
           .icon.nav-bar__expand-icon
-          +nav-bar__navigation-list(null, itemSettings.items)
+          +nav-bar__navigation-list(undefined, itemSettings.items)
       else
         li.nav-bar__navigation-item(
-          class=itemSettings.items ? 'nav-bar__navigation-item_isDropdown' : null
+          class=itemSettings.items ? 'nav-bar__navigation-item_isDropdown' : undefined
         )
           a(
             href=itemSettings.href,
-            class=itemSettings.active ? 'nav-bar__navigation-item_isActive' : null
+            class=itemSettings.active ? 'nav-bar__navigation-item_isActive' : undefined
           )= itemName

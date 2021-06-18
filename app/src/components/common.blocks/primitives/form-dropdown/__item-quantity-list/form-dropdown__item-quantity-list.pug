@@ -18,7 +18,7 @@ mixin form-dropdown__item-quantity-list({ groups = {}, list = {}, name = 'iqList
       name=name,
       type="hidden",
       value=total,
-      data-is-filter=isFilter ? `${isFilter}` : null
+      data-is-filter=isFilter ? `${isFilter}` : undefined
     )
     p.iqdropdown-selection(data-placeholder=placeholder)
     .iqdropdown-menu(data-groups=groups)

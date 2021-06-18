@@ -2,7 +2,7 @@
 //- data-alt-fields?: {string} - selector of bonded alt fields
 mixin card-datepicker
   .datepicker-here.card-datepicker(
-    data-range=attributes['data-range'] ? `${attributes['data-range']}` : null,
+    data-range=attributes['data-range'] ? `${attributes['data-range']}` : undefined,
     data-multiple-dates-separator=" - ",
     data-alt-fields=attributes['data-alt-fields']
   )&attributes(attributes)

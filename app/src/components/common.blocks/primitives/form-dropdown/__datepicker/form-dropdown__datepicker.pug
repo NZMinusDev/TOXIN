@@ -14,7 +14,7 @@ mixin form-dropdown__datepicker({ name = 'datepicker', selectedDates = '', place
       type="hidden",
       name=name,
       value=selectedDates,
-      data-is-filter=isFilter ? `${isFilter}` : null
+      data-is-filter=isFilter ? `${isFilter}` : undefined
     )
     if !isAltField
       +card-datepicker.form-dropdown__datepicker(data-alt-fields=altFields, data-range=range) 

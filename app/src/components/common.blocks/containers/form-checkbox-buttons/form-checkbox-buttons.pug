@@ -17,7 +17,7 @@ include ~@common.blocks/primitives/heading/heading.pug
 //- disabled?: same as fieldset disabled (disable all buttons)
 mixin form-checkbox-buttons({ mod = undefined, heading = undefined, buttons = {}, disabled = undefined, isFilter = false } = {})
   -
-    const modClass = mod ? `form-checkbox-buttons_${mod}` : null;
+    const modClass = mod ? `form-checkbox-buttons_${mod}` : undefined;
   .form-checkbox-buttons(class=modClass)&attributes(attributes)
     if heading
       +heading(heading)
@@ -29,7 +29,7 @@ mixin form-checkbox-buttons({ mod = undefined, heading = undefined, buttons = {}
               id=key,
               type="checkbox",
               name=key,
-              data-is-filter=isFilter ? `${isFilter}` : null,
+              data-is-filter=isFilter ? `${isFilter}` : undefined,
               checked=btn.checked
             )
             label.form-checkbox-buttons__label-item(for=key)= btn.label

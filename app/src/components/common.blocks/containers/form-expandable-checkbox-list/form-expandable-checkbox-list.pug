@@ -26,4 +26,4 @@ mixin form-expandable-checkbox-list({ buttons = {}, heading = undefined, checked
       type="checkbox",
       checked=checked
     )
-    +form-checkbox-buttons({ buttons: buttons, disabled: disabled, isFilter: isFilter ? `${isFilter}` : null }).form-expandable-checkbox-list__list
+    +form-checkbox-buttons({ buttons: buttons, disabled: disabled, isFilter: isFilter ? `${isFilter}` : undefined }).form-expandable-checkbox-list__list

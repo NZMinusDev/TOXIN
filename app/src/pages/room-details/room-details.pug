@@ -15,9 +15,9 @@ block variables
 block content
   main.room-details-layout.content-container
     section.room-details-layout__demo.content-container__negative
-      +picture(htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : null, "Фотография номера № 1").room-details-layout__big-img
-      +picture(htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888_2.png').default : null, "Фотография номера № 2").room-details-layout__small-img-1
-      +picture(htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888_3.png').default : null, "Фотография номера № 3").room-details-layout__small-img-2
+      +picture(htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.png').default : undefined, "Фотография номера № 1").room-details-layout__big-img
+      +picture(htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888_2.png').default : undefined, "Фотография номера № 2").room-details-layout__small-img-1
+      +picture(htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888_3.png').default : undefined, "Фотография номера № 3").room-details-layout__small-img-2
     section.room-details-layout__info
       +form-bullet-list({ heading: { h2: 'Сведения о номере' }, mod: "rich", items: { Комфорт: { icon: 'insert_emoticon', description: 'Шумопоглощающие стены' }, Удобство: { icon: 'location_city', description: 'Окно в каждой из спален' }, Уют: { icon: 'whatshot', description: 'Номер оснащен камином' } }}).room-details-layout__data
       +donut-chart({ heading: { h2: 'Впечатления от номера' }, items: { Великолепно: 130, Хорошо: 65, Удовлетворительно: 65, Разочарован: 0 }, dataName: 'голосов', list: true }).room-details-layout__impression
@@ -25,7 +25,7 @@ block content
         const msPerDay = 1000 * 60 * 60 * 24;
         const fiveDaysAgo = new Date(Date.now() - msPerDay * 5).toISOString();
         const sevenDaysAgo = new Date(Date.now() - msPerDay * 7).toISOString();
-      +comments({ heading: { h2: 'Отзывы посетителей номера' }, items: { 'comment-1': { personName: 'Мурад Сарафанов', iconPath: htmlWebpackPlugin ? require('@assets/pictures/contents/personas/1/1.png').default : null, date: fiveDaysAgo, content: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.', likeButtonCounter: 12, isLikeButtonChecked: 'checked' }, 'comment-2': { personName: 'Патрисия Стёклышкова', iconPath: htmlWebpackPlugin ? require('@assets/pictures/contents/personas/2/2.png').default : null, date: sevenDaysAgo, content: 'Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент', likeButtonCounter: 2 } } }).room-details-layout__comments
+      +comments({ heading: { h2: 'Отзывы посетителей номера' }, items: { 'comment-1': { personName: 'Мурад Сарафанов', iconPath: htmlWebpackPlugin ? require('@assets/pictures/contents/personas/1/1.png').default : undefined, date: fiveDaysAgo, content: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.', likeButtonCounter: 12, isLikeButtonChecked: 'checked' }, 'comment-2': { personName: 'Патрисия Стёклышкова', iconPath: htmlWebpackPlugin ? require('@assets/pictures/contents/personas/2/2.png').default : undefined, date: sevenDaysAgo, content: 'Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент', likeButtonCounter: 2 } } }).room-details-layout__comments
       +form-bullet-list({ heading: { h2: 'Правила' }, items: ['Нельзя с питомцами', 'Без вечеринок и мероприятий', 'Время прибытия — после 13:00, а выезд до 12:00']}).room-details-layout__rules
       .room-details-layout__alert
         h2 Отмена

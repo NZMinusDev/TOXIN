@@ -10,7 +10,7 @@ include ~@common.blocks/primitives/heading/heading.pug
 
 mixin form-bullet-list({ mod = undefined, heading = undefined, items = {}} = {})
   -
-    const modClass = mod ? `form-bullet-list_${mod}` : null;
+    const modClass = mod ? `form-bullet-list_${mod}` : undefined;
   .form-bullet-list(class=modClass)&attributes(attributes)
     if heading
       .form-bullet-list__heading 

@@ -26,8 +26,8 @@ mixin form-dropdown(type, { output = 'single', openMod = 'toggle', name = 'dropd
       span.icon.form-dropdown__expand-icon
       case type
         when 'date'
-          +form-dropdown__datepicker({ name, isFilter: isFilter ? `${isFilter}` : null, isAltField, altFields, range: output === 'plural' ? true : false, placeholder, selectedDates})
+          +form-dropdown__datepicker({ name, isFilter: isFilter ? `${isFilter}` : undefined, isAltField, altFields, range: output === 'plural' ? true : false, placeholder, selectedDates})
         when 'item-quantity'
-          +form-dropdown__item-quantity-list({ name, class:`form-dropdown__item-quantity-list_openMod-${openMod}`, isFilter:isFilter ? `${isFilter}` : null, placeholder, groups, list})
+          +form-dropdown__item-quantity-list({ name, class:`form-dropdown__item-quantity-list_openMod-${openMod}`, isFilter:isFilter ? `${isFilter}` : undefined, placeholder, groups, list})
             if openMod === 'apply'
               +apply-control.form-dropdown__link-btns

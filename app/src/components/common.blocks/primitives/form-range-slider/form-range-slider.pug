@@ -8,7 +8,7 @@ include ~@common.blocks/primitives/heading/heading.pug
 //- description: {string} - appended text after slider
 //- step?: {number}
 mixin form-range-slider({ heading = { h3: 'range slider' }, description = '', name = 'range-slider', range = { min: -100, max: 100 }, start = [0, 0], step = undefined, isFilter = undefined } = {})
-  .form-range-slider(data-is-filter=isFilter ? `${isFilter}` : null)&attributes(attributes)
+  .form-range-slider(data-is-filter=isFilter ? `${isFilter}` : undefined)&attributes(attributes)
     .form-range-slider__label
       +heading(heading)
     each val, index in start

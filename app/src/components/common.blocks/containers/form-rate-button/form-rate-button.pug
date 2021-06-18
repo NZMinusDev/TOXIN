@@ -16,7 +16,7 @@ mixin form-rate-button({ length = 5, titles = ['очень плохо', 'пло�
       while counter > 0
         -
           const currentID = `${name}-${counter}`;
-          const checked = counter === rate ? 'checked' : null;
+          const checked = counter === rate ? 'checked' : undefined;
         input.form-rate-button__button-item(
           id=currentID,
           type="radio",

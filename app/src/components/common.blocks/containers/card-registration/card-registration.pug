@@ -7,7 +7,7 @@ include ~@common.blocks/primitives/button/button.pug
 //- name: {string} - name of <form>, also it is used such prefix for names of inner forms
 //- action: {string} - form action
 //- method: {"get" | "post"} - form method
-//- target: {("_self"|null)|"_blank"|"_parent"|"_top"} - form target
+//- target: {("_self"|undefined)|"_blank"|"_parent"|"_top"} - form target
 mixin card-registration({ name = 'card-registration', action = '/mock.js', method = 'post' } = {})
   form.card-base.card-registration(name=name, action=action, method=method)&attributes(attributes)
     h1.card-registration__title Регистрация аккаунта

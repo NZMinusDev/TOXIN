@@ -50,51 +50,51 @@ mixin pagination({ total = 100, displayed = 12, page = 1, text = '', type = 'hre
         .map((value, index) => `${hrefPrefix}${index}`);
     }
   nav.pagination(
-    class=type === 'async' ? 'pagination_mod-async' : null,
-    data-page=type === 'async' ? activePage : null,
-    data-displayed=type === 'async' ? displayed : null,
-    data-total=type === 'async' ? total : null,
-    data-text=type === 'async' ? text : null
+    class=type === 'async' ? 'pagination_mod-async' : undefined,
+    data-page=type === 'async' ? activePage : undefined,
+    data-displayed=type === 'async' ? displayed : undefined,
+    data-total=type === 'async' ? total : undefined,
+    data-text=type === 'async' ? text : undefined
   )&attributes(attributes)
     ul.pagination__list
       //- Show the Previous button only if you are on a page other than the first
       if activePage > 1
         li.pagination__item.pagination__item_previous(title="на предыдущую страницу")
-          a(href=type === 'href' ? paginationHrefs[activePage - 2] : null)= 'arrow_back'
+          a(href=type === 'href' ? paginationHrefs[activePage - 2] : undefined)= 'arrow_back'
       //- Show all the pagination elements if there are less than 6 pages total
       if pages < 6
         - for (let p = 1; p <= pages; p++)
         li.pagination__item(
-          class=activePage === p ? 'pagination__item_active' : null,
+          class=activePage === p ? 'pagination__item_active' : undefined,
           title="текущая страница"
         )
-          a(href=type === 'href' ? paginationHrefs[p - 1] : null)= p
+          a(href=type === 'href' ? paginationHrefs[p - 1] : undefined)= p
       //- Use "..." to collapse pages outside of a certain range
       else
         //- Show the very first page followed by a "..." at the beginning of the pagination section (after the Previous button)
         if activePage > 2
           li.pagination__item
-            a(href=type === 'href' ? paginationHrefs[0] : null)= 1
+            a(href=type === 'href' ? paginationHrefs[0] : undefined)= 1
           if activePage > 3
             li.pagination__item.pagination__item_out-of-range
-              a(href=type === 'href' ? paginationHrefs[1] : null)= '...'
+              a(href=type === 'href' ? paginationHrefs[1] : undefined)= '...'
         //- Output the indexes for pages that fall inside the range of pageCutLow and pageCutHigh
         - for (let p = pageCutLow; p <= pageCutHigh; p++)
           li.pagination__item(
-            class=activePage === p ? 'pagination__item_active' : null,
+            class=activePage === p ? 'pagination__item_active' : undefined,
             title="текущая страница"
           )
-            a(href=type === 'href' ? paginationHrefs[p - 1] : null)= p
+            a(href=type === 'href' ? paginationHrefs[p - 1] : undefined)= p
         //- Show the very last page preceded by a "..." at the end of the pagination section (before the Next button)
         if activePage < pages - 1
           if activePage < pages - 2
             li.pagination__item.pagination__item_out-of-range
-              a(href=type === 'href' ? paginationHrefs[pages - 3] : null)= '...'
+              a(href=type === 'href' ? paginationHrefs[pages - 3] : undefined)= '...'
           li.pagination__item
-            a(href=type === 'href' ? paginationHrefs[pages - 1] : null)= pages
+            a(href=type === 'href' ? paginationHrefs[pages - 1] : undefined)= pages
       //- Show the Next button only if you are on a page other than the last
       if activePage < pages
         li.pagination__item.pagination__item_next(title="на следующую страницу")
-          a(href=type === 'href' ? paginationHrefs[activePage] : null)= 'arrow_forward'
+          a(href=type === 'href' ? paginationHrefs[activePage] : undefined)= 'arrow_forward'
     //- counter
     p.pagination__counter= counterText
