@@ -16,12 +16,12 @@ mixin form-dropdown__datepicker({ name = 'datepicker', range = false, selectedDa
       type="hidden",
       name=name,
       value=selectedDates,
-      data-is-filter=isFilter ? `${isFilter}` : undefined
+      data-is-filter=isFilter
     )
     if !isAltField
       +card-datepicker({ range, altFields }).form-dropdown__datepicker
     p.form-dropdown__selection-text
       time(
         datetime=selectedDates,
-        data-placeholder=placeholder || (range && !altFields) ? 'День месяц - день месяц' : 'ДД.ММ.ГГГГ'
+        data-placeholder=placeholder || (range && !altFields) ? 'ДД ММ - ДД ММ' : 'ДД.ММ.ГГГГ'
       )

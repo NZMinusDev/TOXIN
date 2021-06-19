@@ -27,7 +27,7 @@ mixin form-checkbox-buttons({ heading = '', mod = '', buttons = {}, disabled = f
               id=key,
               type="checkbox",
               name=key,
-              data-is-filter=isFilter ? `${isFilter}` : undefined,
+              data-is-filter=isFilter,
               checked=btn.checked
             )
             label.form-checkbox-buttons__label-item(for=key)= btn.label

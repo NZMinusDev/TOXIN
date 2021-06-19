@@ -33,7 +33,7 @@ document.querySelectorAll('input').forEach((element) => {
     inputElement.addEventListener('change', onChange);
   }
 
-  if (inputElement.dataset.isFilter) {
+  if (inputElement.dataset.isFilter !== undefined) {
     const onChange = (event) => {
       addURLValues({
         name: inputElement.getAttribute('name'),

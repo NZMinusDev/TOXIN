@@ -28,8 +28,8 @@ mixin form-dropdown(type, { heading = '', name = 'dropdown', placeholder = 'plac
       span.icon.form-dropdown__expand-icon
       case type
         when 'date'
-          +form-dropdown__datepicker({ name, range, selectedDates, placeholder, altFields, isAltField, isFilter: isFilter ? `${isFilter}` : undefined })
+          +form-dropdown__datepicker({ name, range, selectedDates, placeholder, altFields, isAltField, isFilter })
         when 'item-quantity'
-          +form-dropdown__item-quantity-list({ name, placeholder, openMod, groups, list, isFilter: isFilter ? `${isFilter}` : undefined })
+          +form-dropdown__item-quantity-list({ name, placeholder, openMod, groups, list, isFilter })
             if openMod === 'apply'
               +apply-control.form-dropdown__link-btns

@@ -23,7 +23,7 @@ mixin form-radio-buttons({ heading = '', name = 'radio', buttons = {}, disabled 
             id=key,
             type="radio",
             name=name,
-            data-is-filter=isFilter ? `${isFilter}` : undefined,
+            data-is-filter=isFilter,
             checked=btn.checked,
             value=key
           )

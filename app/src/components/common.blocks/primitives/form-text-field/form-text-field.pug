@@ -36,7 +36,7 @@ mixin form-text-field({ heading = '', name = 'text-field', type = 'text', placeh
       +heading(heading, { isLabel: true })(for=name)
     .form-field
       input.form-text-field__input(
-        data-is-filter=isFilter ? `${isFilter}` : undefined,
+        data-is-filter=isFilter,
         type=inputMaskType,
         inputmode=inputModeAttr,
         name=name,
