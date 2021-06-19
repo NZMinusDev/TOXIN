@@ -192,6 +192,7 @@ const webpackPlugins = () => {
     new MiniCssExtractPlugin({
       // FIXME: can't use styles/[name]/[name] cause of MediaQueryPlugin interpolation bug
       filename: hashedFileName('styles/[name]/style', 'css'),
+      ignoreOrder: true,
     }),
 
     // FIXME: make it works before MediaQueryPlugin for extracting wrapped content
@@ -464,54 +465,28 @@ const optimization = () => {
       cacheGroups: {
         global: {
           test: /.*\\utils\\global\\.*/,
-          priority: 12,
+          priority: 7,
           enforce: true,
         },
         vendors: {
           test: /[\\/]node_modules[\\/]/,
 
           // The optimization will prefer the cache group with a higher priority
-          priority: 11,
+          priority: 6,
 
           // always create chunks (ignore: minSize, maxAsyncRequests, ... )
           enforce: true,
         },
         lib: {
           test: /.*\\library.blocks\\.*/,
-          priority: 10,
+          priority: 5,
           enforce: true,
         },
         common: {
           test: /.*\\common.blocks\\.*/,
-          priority: 9,
+          priority: 4,
           enforce: true,
         },
-
-        // "small-mobile": {
-        //   test: /.*\\adaptive\\small-mobile.blocks\\.*/,
-        //   priority: 8,
-        //   enforce: true,
-        // },
-        // "large-mobile": {
-        //   test: /.*\\adaptive\\large-mobile.blocks\\.*/,
-        //   priority: 7,
-        //   enforce: true,
-        // },
-        // tablet: {
-        //   test: /.*\\adaptive\\tablet.blocks\\.*/,
-        //   priority: 6,
-        //   enforce: true,
-        // },
-        // "small-desktop": {
-        //   test: /.*\\adaptive\\small-desktop.blocks\\.*/,
-        //   priority: 5,
-        //   enforce: true,
-        // },
-        // "large-desktop": {
-        //   test: /.*\\adaptive\\large-desktop.blocks\\.*/,
-        //   priority: 4,
-        //   enforce: true,
-        // },
         thematic: {
           test: /.*\\thematic\\.*\.blocks.*/,
           priority: 3,

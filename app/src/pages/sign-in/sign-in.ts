@@ -3,7 +3,7 @@ import "./sign-in.scss";
 
 document.querySelectorAll(".sign-in-layout__card").forEach((cardElement, key, nodeList) => {
   let switchBtn = cardElement.querySelector(
-    `.card-${cardElement.getAttribute("name")}__switch-btn`
+    `.${cardElement.getAttribute("name")}__switch-btn`
   );
 
   switchBtn.addEventListener("click", () => {

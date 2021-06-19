@@ -12,16 +12,16 @@ import {
 } from '@common.blocks/primitives/form-dropdown/__item-quantity-list/form-dropdown__item-quantity-list';
 
 // focus components
-(document.querySelector('#text-field-hover') as HTMLElement).focus();
+(document.querySelector('#text') as HTMLElement).focus();
 
 const DROPDOWN_SELECTOR = '.form-dropdown';
 
-(has(dropdownsWithIQList, '#dropdown-expanded-plural').closest(
+(has(dropdownsWithIQList, '#facilities-2').closest(
   DROPDOWN_SELECTOR
 ) as ToxinIQDropdownElement).toxinIQDropdown.open();
-(has(dropdownsWithIQList, '#dropdown-expanded-apply').closest(
+(has(dropdownsWithIQList, '#guests-1').closest(
   DROPDOWN_SELECTOR
 ) as ToxinIQDropdownElement).toxinIQDropdown.open();
-(has(dropdownsWithIQList, '#dropdown-expanded-clear-apply').closest(
+(has(dropdownsWithIQList, '#guests-2').closest(
   DROPDOWN_SELECTOR
 ) as ToxinIQDropdownElement).toxinIQDropdown.open();
