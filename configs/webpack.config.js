@@ -5,7 +5,6 @@ const fs = require('fs');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const MediaQueryPlugin = require('media-query-plugin');
 const DartSASS = require('sass');
 const fibers = require('fibers');
 const WrapperPlugin = require('wrapper-webpack-plugin');
@@ -161,7 +160,6 @@ const designWidth = 1440;
 
 /**
  * HTMLWebpackPlugin - create html of pages with plug in scripts.
- * MediaQueryPlugin - extract css media into separate files
  * MiniCssExtractPlugin - extract css into separate files.
  * WrapperPlugin - wrap output css depending on RegExp.
  * ProvidePlugin - Automatically load modules instead of having to import or require them everywhere.
@@ -178,24 +176,10 @@ const designWidth = 1440;
 const webpackPlugins = () => {
   const plugins = [
     ...resultOfTemplatesProcessing.HTMLWebpackPlugins,
-    new MediaQueryPlugin({
-      include: true,
-      queries: {
-        'print, screen and (min-width: 0px)': 'small-mobile',
-        'print, screen and (min-width: 600px)': 'large-mobile',
-        'print, screen and (min-width: 768px)': 'tablet',
-        'print, screen and (min-width: 992px)': 'small-desktop',
-        'print, screen and (min-width: 1200px)': 'large-desktop',
-        'print, screen and (color)': 'thematic',
-      },
-    }),
     new MiniCssExtractPlugin({
-      // FIXME: can't use styles/[name]/[name] cause of MediaQueryPlugin interpolation bug
-      filename: hashedFileName('styles/[name]/style', 'css'),
+      filename: hashedFileName(isDev ? 'styles/[name]/[name]' : 'styles/[id]/style', 'css'),
       ignoreOrder: true,
     }),
-
-    // FIXME: make it works before MediaQueryPlugin for extracting wrapped content
     new WrapperPlugin({
       test: /.*thematic.*\.css$/,
       header: '@media print, screen and (color) {',
@@ -378,9 +362,6 @@ const cssLoaders = (extraLoader) => {
       loader: 'css-loader',
     },
     {
-      loader: MediaQueryPlugin.loader,
-    },
-    {
       loader: 'postcss-loader',
       options: {
         postcssOptions: {
@@ -536,7 +517,7 @@ module.exports = smp.wrap({
 
   // Where to put bundles for every entry point
   output: {
-    filename: hashedFileName('bundles/[id]/[name]', 'js'),
+    filename: hashedFileName(isDev ? 'bundles/[name]/[name]' : 'bundles/[id]/script', 'js'),
     path: PATHS.dist_absolute,
   },
   resolve: {
