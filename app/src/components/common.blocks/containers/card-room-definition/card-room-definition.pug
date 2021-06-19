@@ -52,9 +52,9 @@ mixin card-room-definition({ action = '/mock.js', name = 'card-room-definition',
         span.card-room-definition__payment-amount(data-amount=additionalServicesPayment)= `${additionalServicesPayment.toLocaleString()}${currency}`
     h2.card-room-definition__payment-item.card-room-definition__total-payment
       span Итого
-      .text-separator
+      span.text-separator
       span.card-room-definition__total-payment-amount
-    +button({ type: 'link' }).card-room-definition__submit-btn(
+    +button({ appearance: 'link' }).card-room-definition__submit-btn(
       type="submit",
       value="Забронировать"
     )

@@ -1,6 +1,6 @@
 @use "./../variables.scss";
 
-.button_type-bordered {
+.button_appearance-bordered {
   $BORDER_WIDTH: 2px;
   border: #{$BORDER_WIDTH} solid transparent;
   padding-left: calc(#{variables.$X_PADDING} - #{$BORDER_WIDTH});

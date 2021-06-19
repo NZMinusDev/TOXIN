@@ -2,14 +2,14 @@ include ~@common.blocks/containers/slideshow/slideshow.pug
 include ~@common.blocks/containers/form-rate-button/form-rate-button.pug
 
 //- 
- href: string - link to room's page
- roomNumber: number - number of room
- roomGrade?: string - grade of room, for example: Люкс
- paymentAmount: number - daily cost
- rate: number - initial rating
- commentsAmount: number - amount of comments about room
- paths: string[] - images' paths
- Tip: mixin also uses 'and attributes'(&attributes)
+  href: string - link to room's page
+  roomNumber: number - number of room
+  roomGrade?: string - grade of room, for example: Люкс
+  paymentAmount: number - daily cost
+  rate: number - initial rating
+  commentsAmount: number - amount of comments about room
+  paths: string[] - images' paths
+  Tip: mixin also uses 'and attributes'(&attributes)
 mixin card-room({ href = '/mock.html', roomNumber = -1, roomGrade = '', paymentAmount = -1, rate = 0, commentsAmount = -1, paths = [] } = {})
   -
     const currency = '₽';
@@ -19,13 +19,14 @@ mixin card-room({ href = '/mock.html', roomNumber = -1, roomGrade = '', paymentA
     const commentsAmountSentence = `${commentsAmount.toLocaleString()}<span class="card-base__text"> Отзывов</span>`;
 
     const uniqueNamePostfix = Math.random();
-  a.card-base.card-room(href=href, title="Подробнее о номере")&attributes(attributes)
+  .card-base.card-room&attributes(attributes)
     +slideshow({ name: `${href}-slideshow-${uniqueNamePostfix}`, paths }).card-room__slideshow
-    .card-room__room-data
-      .card-room__data-row
+    .card-room__room-data 
+      a.card-room__data-row(href=href, title="Подробнее о номере")
         .card-room__room-title
           h2.card-room__room-number= roomNumberSentence
-          h3.card-room__room-grade= roomGrade
+          if roomGrade
+            h3.card-room__room-grade= roomGrade
         h3.card-room__day-payment!= paymentAmountSentence
       .card-room__data-row
         +form-rate-button({ name: `${href}-rating-${uniqueNamePostfix}`, rate, disabled: true }).card-room__room-rating

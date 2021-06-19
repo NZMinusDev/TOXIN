@@ -1,24 +1,24 @@
 include ~@common.blocks/primitives/heading/heading.pug
 include ~@common.blocks/containers/form-checkbox-buttons/form-checkbox-buttons.pug
 //-
-  heading: { [tag: string]: string }, example: { h3: 'awesome heading' }
-  buttons: {
-    [name: string]: {
-      label:string,
-      checked?: boolean
-    },
-  }
- checked?: boolean - open the list
- disabled?: boolean - same as fieldset disabled (disable all buttons)
- isFilter?: boolean - if true, change event will reload page with chosen value(get method)
- Tip: mixin also uses 'and attributes'(&attributes)
- Tip: be careful if use large amount of items: max-height limited by 32em for transition animation
+   heading: { [tag: string]: string }, example: { h3: 'awesome heading' }
+   buttons: {
+     [name: string]: {
+       label:string,
+       checked?: boolean
+     },
+   }
+  checked?: boolean - open the list
+  disabled?: boolean - same as fieldset disabled (disable all buttons)
+  isFilter?: boolean - if true, change event will reload page with chosen value(get method)
+  Tip: mixin also uses 'and attributes'(&attributes)
+  Tip: be careful if use large amount of items: max-height limited by 32em for transition animation
 mixin form-expandable-checkbox-list({ heading = 'expandable-checkbox-list', buttons = {}, checked = false, disabled = false, isFilter = false } = {})
-  button.form-expandable-checkbox-list(type="button", tabindex="-1")&attributes(attributes)
+  .form-expandable-checkbox-list
     -
       const expanderID =
         Object.keys(buttons).reduce((acc, current) => acc + current) + Math.random();
-    +heading(heading, { isLabel: true })(for=expanderID, tabindex="0")
+    +heading(heading, { isLabel: true })(for=expanderID, tabindex="0")&attributes(attributes)
       span.icon.form-expandable-checkbox-list__expand-icon
     input.form-expandable-checkbox-list__expander-input(
       id=expanderID,

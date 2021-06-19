@@ -7,10 +7,10 @@ include ~@common.blocks/containers/comments/comments.pug
 include ~@common.blocks/primitives/donut-chart/donut-chart.pug
 include ~@utils/devTools/pug/mixins/picture.pug
 
-block variables
+block append variables
   -
-    let title = 'Детали номера';
-    let description = 'Страница деталей номера в макете сайта TOXIN';
+    title = 'Детали номера';
+    description = 'Страница деталей номера в макете сайта TOXIN';
 
 block content
   main.room-details-layout.content-container

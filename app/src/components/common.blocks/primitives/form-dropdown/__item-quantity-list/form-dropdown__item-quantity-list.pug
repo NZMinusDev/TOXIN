@@ -16,17 +16,12 @@ mixin form-dropdown__item-quantity-list({ name = 'iqList', placeholder = 'placeh
       total += value.default;
       counter++;
     });
-  button.iqdropdown.form-dropdown__item-quantity-list(
+  .iqdropdown.form-dropdown__item-quantity-list(
     id=name,
     class=`form-dropdown__item-quantity-list_openMod-${openMod}`,
-    type="button"
+    tabindex="0"
   )&attributes(attributes)
-    input.form-dropdown__list-input(
-      name=name,
-      type="hidden",
-      value=total,
-      data-is-filter=isFilter
-    )
+    input.form-dropdown__list-input(name=name, type="hidden", value=total, data-is-filter=isFilter)
     p.iqdropdown-selection(data-placeholder=placeholder)
     .iqdropdown-menu(data-groups=groups)
       each limits, item in list
@@ -43,6 +38,6 @@ mixin form-dropdown__item-quantity-list({ name = 'iqList', placeholder = 'placeh
           data-group=limits.group
         ) 
           div
-            h3.iqdropdown-itemItem= item
+            h3.iqdropdown-item= item
       if block
         block

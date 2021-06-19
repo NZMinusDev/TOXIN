@@ -8,10 +8,10 @@ include ~@common.blocks/specific/pagination/pagination.pug
 include ~@common.blocks/containers/form-expandable-checkbox-list/form-expandable-checkbox-list.pug
 include ~@common.blocks/containers/card-room/card-room.pug
 
-block variables
+block append variables
   -
-    let title = 'Поиск по номерам';
-    let description = 'Страница поиска по номерам в макете сайта TOXIN';
+    title = 'Поиск по номерам';
+    description = 'Страница поиска по номерам в макете сайта TOXIN';
 
 block content
   .search-room-layout.content-container

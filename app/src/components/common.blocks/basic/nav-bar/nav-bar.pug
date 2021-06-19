@@ -24,11 +24,9 @@ mixin nav-bar({ status = undefined, personHref = '/mock.html', personName = 'К�
         when 'confirmed'
           a.nav-bar__person(href=personHref, title="в личный кабинет")= personName
         default
-          a(href="/mock.html")
-            +button({ type: 'bordered' }).nav-bar__button(
-              type="button",
-              value="Войти",
-              tabindex="-1"
-            )
-          a(href="/mock.html")
-            +button.nav-bar__button(type="button", value="Зарегистрироваться", tabindex="-1")
+          +button({ tag: 'a', text: 'Войти', appearance: 'bordered' }).nav-bar__button(
+            href="/sign-in.html"
+          )
+          +button({ tag: 'a', text: 'Зарегистрироваться' }).nav-bar__button(
+            href="/sign-in.html"
+          )

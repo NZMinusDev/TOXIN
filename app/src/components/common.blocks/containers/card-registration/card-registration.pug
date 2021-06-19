@@ -4,10 +4,10 @@ include ~@common.blocks/containers/form-radio-buttons/form-radio-buttons.pug
 include ~@common.blocks/primitives/button/button.pug
 
 //- 
- action: string - form action
- name?: string - name of <form>, also it is used such prefix for names of inner forms
- method?: 'get' | 'post' - form method
- Tip: mixin also uses 'and attributes'(&attributes)
+  action: string - form action
+  name?: string - name of <form>, also it is used such prefix for names of inner forms
+  method?: 'get' | 'post' - form method
+  Tip: mixin also uses 'and attributes'(&attributes)
 mixin card-registration({ action = '/mock.js', name = 'card-registration', method = 'post' } = {})
   form.card-base.card-registration(name=name, action=action, method=method)&attributes(attributes)
     h1.card-registration__title Регистрация аккаунта
@@ -18,11 +18,12 @@ mixin card-registration({ action = '/mock.js', name = 'card-registration', metho
     +form-text-field({ heading: { h3: 'Данные для входа в сервис' }, name: `${name}-email`, type: 'email' }).card-registration__email-field
     +form-text-field({ name: `${name}-password`, type: 'password' }).card-registration__password-field
     +form-toggle({ name: `${name}-special-offers`, label: 'Получать спецпредложения' }).card-registration__special-offer-toggle
-    +button({ type: 'link' }).card-registration__link-btn(
+    +button({ appearance: 'link' }).card-registration__link-btn(
       type="submit",
       value="Перейти к оплате",
       tabindex="1"
     )
     p.card-registration__caption-of-redirect-to-entering Уже есть аккаунт на Toxin
-    a.card-registration__switch-btn
-      +button({ type: 'bordered' })(type="button", value="Войти", tabindex="-1")
+    +button({ tag:'a', text: 'Войти', appearance: 'bordered' }).card-registration__switch-btn(
+      href="/sign-in.html"
+    )

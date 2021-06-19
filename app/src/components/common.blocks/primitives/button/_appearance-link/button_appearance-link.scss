@@ -1,7 +1,7 @@
 @use "./../variables.scss";
 
 $ICON_WIDTH: 3.666666666666667em;
-.button_type-link {
+.button_appearance-link {
   position: relative;
   padding-left: $ICON_WIDTH + variables.$X_PADDING;
   padding-right: $ICON_WIDTH + variables.$X_PADDING;

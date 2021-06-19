@@ -1,9 +1,11 @@
 //-
-  type?: 'filled' | 'bordered' | 'icon-link' | 'link'
+  tag?: 'button' | 'a'
+  text: string - inner text of button
+  appearance?: 'filled' | 'bordered' | 'icon-link' | 'link'
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin button({ type = 'filled' } = {})
+mixin button({ tag = 'button', text = '', appearance = 'filled' } = {})
   -
-    const typeClass = `button_type-${type}`;
-  button.button(class=typeClass)&attributes(attributes)= attributes.value
-    if type === 'link'
-      .icon
+    const appearanceClass = `button_appearance-${appearance}`;
+  #{tag}.button(class=appearanceClass)&attributes(attributes)= text || attributes.value
+    if appearance === 'link'
+      span.icon
