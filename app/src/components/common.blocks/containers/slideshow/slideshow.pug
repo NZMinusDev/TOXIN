@@ -1,7 +1,9 @@
 include ~@utils/devTools/pug/mixins/picture.pug
 
-//- name: {string} - name of radio group
-//- paths: {Array<string>} - paths for images
+//-
+  name?: string - name of radio group
+  paths: string[] - paths for images
+  Tip: mixin also uses 'and attributes'(&attributes)
 mixin slideshow({ name = 'slideshow', paths = [] } = {})
   .slideshow&attributes(attributes)
     -

@@ -1,14 +1,16 @@
 include ~@common.blocks/primitives/card-datepicker/card-datepicker.pug
 
-//- name: {string} - name of input
-//- selected-dates?: {ISODateString | ISODateString,ISODateString,...} - initial dates(date), for several values use ','; example: "2020-11-18T21:00:00.000Z" or 2020-11-18T21:00:00.000Z,
-//- isAltField?: {boolean} - mark this as field that uses a different calendar
-//- altFields?: {string} - selector of bonded alt fields
-//- data-range?: {boolean|number} - lib argument, enable range functionality
-//- data-placeholder - text of placeholder
-//- data-is-filter?: {boolean} - if true, apply button will reload page with chosen value(get method)
+//-
+  name?: string - name of input
+  range?: boolean | number - lib argument, enable range functionality
+  selectedDates?: 'ISODateString,ISODateString,...' - initial dates(date), for several values use ','; example: '2020-11-18T21:00:00.000Z' or '2020-11-18T21:00:00.000Z,2020-11-20T21:00:00.000Z';
+  placeholder?: string - text of placeholder
+  altFields?: string - selector of bonded alt fields
+  isAltField?: boolean - mark this as field that uses a different calendar
+  isFilter?: boolean - if true, apply button will reload page with chosen value(get method)
+  Tip: mixin also uses 'and attributes'(&attributes)
 
-mixin form-dropdown__datepicker({ name = 'datepicker', selectedDates = '', placeholder = 'ДД.ММ.ГГГГ', range = undefined, isFilter = undefined, isAltField = undefined, altFields = undefined } = {})
+mixin form-dropdown__datepicker({ name = 'datepicker', range = false, selectedDates = '', placeholder = 'ДД.ММ.ГГГГ', altFields = undefined, isAltField = false, isFilter = false } = {})
   button.form-dropdown__datepicker-btn(id=name, type="button")&attributes(attributes)
     input.form-dropdown__datepicker-input(
       type="hidden",
@@ -17,7 +19,7 @@ mixin form-dropdown__datepicker({ name = 'datepicker', selectedDates = '', place
       data-is-filter=isFilter ? `${isFilter}` : undefined
     )
     if !isAltField
-      +card-datepicker.form-dropdown__datepicker(data-alt-fields=altFields, data-range=range) 
+      +card-datepicker({ range, altFields }).form-dropdown__datepicker
     p.form-dropdown__selection-text
       time(
         datetime=selectedDates,

@@ -1,14 +1,15 @@
 include ~@common.blocks/containers/slideshow/slideshow.pug
 include ~@common.blocks/containers/form-rate-button/form-rate-button.pug
 
-//- class: class for component bem mix: such as positioning functionality
-//- href: {string} - link to room's page
-//- paths: {Array<string>} - paths for images
-//- roomNumber: {number} - number of room
-//- roomGrade?: {string} - grade of room, for example: Люкс
-//- paymentAmount: {number} - daily cost
-//- rate: {number} - initial rating
-//- commentsAmount: {number} - amount of comments about room
+//- 
+ href: string - link to room's page
+ roomNumber: number - number of room
+ roomGrade?: string - grade of room, for example: Люкс
+ paymentAmount: number - daily cost
+ rate: number - initial rating
+ commentsAmount: number - amount of comments about room
+ paths: string[] - images' paths
+ Tip: mixin also uses 'and attributes'(&attributes)
 mixin card-room({ href = '/mock.html', roomNumber = -1, roomGrade = '', paymentAmount = -1, rate = 0, commentsAmount = -1, paths = [] } = {})
   -
     const currency = '₽';
@@ -19,7 +20,7 @@ mixin card-room({ href = '/mock.html', roomNumber = -1, roomGrade = '', paymentA
 
     const uniqueNamePostfix = Math.random();
   a.card-base.card-room(href=href, title="Подробнее о номере")&attributes(attributes)
-    +slideshow({ name: `${href}-slideshow-${uniqueNamePostfix}`, paths: paths }).card-room__slideshow
+    +slideshow({ name: `${href}-slideshow-${uniqueNamePostfix}`, paths }).card-room__slideshow
     .card-room__room-data
       .card-room__data-row
         .card-room__room-title
@@ -27,5 +28,5 @@ mixin card-room({ href = '/mock.html', roomNumber = -1, roomGrade = '', paymentA
           h3.card-room__room-grade= roomGrade
         h3.card-room__day-payment!= paymentAmountSentence
       .card-room__data-row
-        +form-rate-button({ rate, name: `${href}-rating-${uniqueNamePostfix}`, disabled: true }).card-room__room-rating
+        +form-rate-button({ name: `${href}-rating-${uniqueNamePostfix}`, rate, disabled: true }).card-room__room-rating
         h3.card-room__room-comments!= commentsAmountSentence

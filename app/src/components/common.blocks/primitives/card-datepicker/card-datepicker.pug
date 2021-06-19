@@ -1,8 +1,10 @@
-//- data-range?: {boolean|number} - lib argument, enable range functionality
-//- data-alt-fields?: {string} - selector of bonded alt fields
-mixin card-datepicker
+//-
+  range?: boolean | number - lib argument, enable range functionality
+  altFields?: string - selector of bonded alt fields
+  Tip: mixin also uses 'and attributes'(&attributes)
+mixin card-datepicker({ range = false, altFields = undefined } = {})
   .datepicker-here.card-datepicker(
-    data-range=attributes['data-range'] ? `${attributes['data-range']}` : undefined,
+    data-range=range ? `${range}` : undefined,
     data-multiple-dates-separator=" - ",
-    data-alt-fields=attributes['data-alt-fields']
+    data-alt-fields=altFields
   )&attributes(attributes)

@@ -1,6 +1,7 @@
-//- heading: { tag: text }, example: { h3: 'awesome heading' }
-//- isLabel?: { boolean } - if true, add nested label tag and take a block of pug
-
+//-
+  heading: { [tag: string]: text }, example: { h3: 'awesome heading' }
+  isLabel?: boolean - if true, add nested label tag and take a block of pug
+  Tip: mixin also uses 'and attributes'(&attributes)
 mixin heading(heading, { isLabel = false } = {})
   - const headingTag = Object.keys(heading)[0];
   if isLabel

@@ -1,16 +1,16 @@
 include ~@common.blocks/primitives/form-text-field/form-text-field.pug
 include ~@common.blocks/primitives/button/button.pug
 
-//- class: class for component bem mix: such as positioning functionality
-//- name: {string} - name of <form>, also it is used such prefix for names of inner forms
-//- action - form action
-//- method - form method
-//- target: {("_self"|undefined)|"_blank"|"_parent"|"_top"} - form target
-mixin card-entering({ name = 'card-entering', action = '/mock.js', method = 'post' } = {})
+//- 
+  action: string - form action
+  name?: string - name of <form>, also it is used such prefix for names of inner forms
+  method?: 'get' | 'post' - form method
+  Tip: mixin also uses 'and attributes'(&attributes)
+mixin card-entering({ action = '/mock.js', name = 'card-entering', method = 'post' } = {})
   form.card-base.card-entering(name=name, action=action, method=method)&attributes(attributes)
     h1.card-entering__title Войти
-    +form-text-field({ type: 'email', name: `${name}-email` }).card-entering__email-field
-    +form-text-field({ type: 'password', name: `${name}-password` }).card-entering__password-field
+    +form-text-field({ name: `${name}-email`, type: 'email' }).card-entering__email-field
+    +form-text-field({ name: `${name}-password`, type: 'password' }).card-entering__password-field
     +button({ type: 'link' }).card-entering__link-btn(
       type="submit",
       value="Войти",

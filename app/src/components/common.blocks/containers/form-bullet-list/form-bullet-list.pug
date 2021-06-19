@@ -1,14 +1,12 @@
 include ~@common.blocks/primitives/heading/heading.pug
 
-//- items: Array<string> // if just use list
-//- items: {// if mod==="rich"
-//-   'text 1':{icon:"material icon name", description:string},
-//-   'text 2':{icon:"material icon name", description:string}
-//- }
-//- mod?: "rich"
-//- heading?: { tag: text }, example: { h3: 'awesome heading' }
+//- 
+ heading?: { tag: text }, example: { h3: 'awesome heading' } - list heading
+ mod?: 'rich' - mod of list
+ items: string[] | { [text: string]: { icon: 'material icon name', description: string } } - items of list
+ Tip: mixin also uses 'and attributes'(&attributes)
 
-mixin form-bullet-list({ mod = undefined, heading = undefined, items = {}} = {})
+mixin form-bullet-list({ heading = '', mod = '', items = {} } = {})
   -
     const modClass = mod ? `form-bullet-list_${mod}` : undefined;
   .form-bullet-list(class=modClass)&attributes(attributes)
@@ -18,7 +16,7 @@ mixin form-bullet-list({ mod = undefined, heading = undefined, items = {}} = {})
     ul.form-bullet-list__list
       each item, key in items
         case mod
-          when "rich"
+          when 'rich'
             li.form-bullet-list__item(data-icon=item.icon)= key
               p.form-bullet-list__description= item.description
           default

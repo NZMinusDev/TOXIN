@@ -3,21 +3,21 @@ include ~@common.blocks/primitives/form-toggle/form-toggle.pug
 include ~@common.blocks/containers/form-radio-buttons/form-radio-buttons.pug
 include ~@common.blocks/primitives/button/button.pug
 
-//- class: {string} - class for component bem mix: such as positioning functionality
-//- name: {string} - name of <form>, also it is used such prefix for names of inner forms
-//- action: {string} - form action
-//- method: {"get" | "post"} - form method
-//- target: {("_self"|undefined)|"_blank"|"_parent"|"_top"} - form target
-mixin card-registration({ name = 'card-registration', action = '/mock.js', method = 'post' } = {})
+//- 
+ action: string - form action
+ name?: string - name of <form>, also it is used such prefix for names of inner forms
+ method?: 'get' | 'post' - form method
+ Tip: mixin also uses 'and attributes'(&attributes)
+mixin card-registration({ action = '/mock.js', name = 'card-registration', method = 'post' } = {})
   form.card-base.card-registration(name=name, action=action, method=method)&attributes(attributes)
     h1.card-registration__title Регистрация аккаунта
     +form-text-field({ name: `${name}-name`, placeholder: 'Имя' }).card-registration__name-field
     +form-text-field({ name: `${name}-surname`, placeholder: 'Фамилия' }).card-registration__surname-field
-    +form-radio-buttons({ buttons:{ male: { label: 'Мужчина', checked: 'checked' }, female: { label: 'Женщина' } } }).card-registration__gender-radio-btn
-    +form-text-field({ heading: { h3: 'Дата рождения' }, type: 'date', name: `${name}-birthday` }).card-registration__birthday-field
-    +form-text-field({ heading: { h3: 'Данные для входа в сервис' }, type: 'email', name: `${name}-email` }).card-registration__email-field
-    +form-text-field({ type: 'password', name: `${name}-password` }).card-registration__password-field
-    +form-toggle({label: 'Получать спецпредложения', name: `${name}-special-offers`}).card-registration__special-offer-toggle
+    +form-radio-buttons({ buttons: { male: { label: 'Мужчина', checked: true }, female: { label: 'Женщина' } } }).card-registration__gender-radio-btn
+    +form-text-field({ heading: { h3: 'Дата рождения' }, name: `${name}-birthday`, type: 'date' }).card-registration__birthday-field
+    +form-text-field({ heading: { h3: 'Данные для входа в сервис' }, name: `${name}-email`, type: 'email' }).card-registration__email-field
+    +form-text-field({ name: `${name}-password`, type: 'password' }).card-registration__password-field
+    +form-toggle({ name: `${name}-special-offers`, label: 'Получать спецпредложения' }).card-registration__special-offer-toggle
     +button({ type: 'link' }).card-registration__link-btn(
       type="submit",
       value="Перейти к оплате",

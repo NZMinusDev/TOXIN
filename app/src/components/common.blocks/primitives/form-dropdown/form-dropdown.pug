@@ -4,21 +4,23 @@ include ~@common.blocks/primitives/apply-control/apply-control.pug
 include ./__item-quantity-list/form-dropdown__item-quantity-list.pug
 include ./__datepicker/form-dropdown__datepicker.pug
 
-//- name: name of component hidden input
-//- type: "date" | "item-quantity"
-//- isFilter?: {boolean} - if true, input change event will reload page with chosen value(get method)
-//- heading?: { tag: text }, example: { h3: 'awesome heading' }
-//- output?: "single" | "plural"
-//- placeholder?: text of placeholder
-//- Additional for type "date":
-//-   selected-dates?: {ISODateString | ISODateString,ISODateString,...} - initial dates(date), for several values use ','; example: "2020-11-18T21:00:00.000Z" or 2020-11-18T21:00:00.000Z,2020-11-20T21:00:00.000Z; tip: if output is 'plural' -> you should write 2 dates
-//-   isAltField?: {boolean} - mark dropdown as field that uses a different calendar
-//-   altFields?: {string} - selector of bonded alt fields
-//- Additional for type: item-quantity
-  //- openMod?: "toggle" | "fold" | "apply"
-  //- groups: {'group-name-1':{selectionText: string, textPlural: string},'group-name-2':selectionText: string, textPlural: string,...}, example: { guests: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } }
-  //- list: {'Item title 1': {default: number, min: number, max: number, group?: 'group-name-2'},'Item title 2': {default: number, min: number, max: number, group?: 'group-name-1'},...}, example:{ взрослые: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0} }; - if group is unset the itemName will be used instead
-mixin form-dropdown(type, { output = 'single', openMod = 'toggle', name = 'dropdown', heading = undefined, placeholder = 'placeholder', isFilter = undefined, isAltField = undefined, altFields = undefined, selectedDates = '', groups = {}, list = {} } = {})
+//-
+  type: 'date' | 'item-quantity'
+    when 'date':
+      range?: boolean
+      selectedDates?: 'ISODateString,ISODateString,...' - initial dates(date), for several values use ','; example: '2020-11-18T21:00:00.000Z' or '2020-11-18T21:00:00.000Z,2020-11-20T21:00:00.000Z'; tip: if range is true -> you should write 2 dates
+      altFields?: string - selector of bonded alt fields
+      isAltField?: boolean - mark dropdown as field that uses a different calendar
+    when 'item-quantity'
+      openMod?: 'toggle' | 'fold' | 'apply'
+      groups: { ['group-name': string]: { selectionText: string, textPlural: string } }, example: { guests: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } }
+      list: {['item-title': string]: { default: number, min: number, max: number, group?: 'group-name' } }, example: { взрослые: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0} }; - if group is unset the itemName will be used instead
+  heading?: { [tag: string]: string }, example: { h3: 'awesome heading' }
+  name?: string - name of component hidden input
+  placeholder?: string - text of placeholder
+  isFilter?: boolean - if true, input change event will reload page with chosen value(get method)
+  Tip: mixin also uses 'and attributes'(&attributes)
+mixin form-dropdown(type, { heading = '', name = 'dropdown', placeholder = 'placeholder', range = false, selectedDates = '', altFields = undefined, isAltField = false, openMod = 'toggle', groups = {}, list = {}, isFilter = false } = {})
   .form-dropdown&attributes(attributes)
     if heading
       +heading(heading, { isLabel: true })(for=name)
@@ -26,8 +28,8 @@ mixin form-dropdown(type, { output = 'single', openMod = 'toggle', name = 'dropd
       span.icon.form-dropdown__expand-icon
       case type
         when 'date'
-          +form-dropdown__datepicker({ name, isFilter: isFilter ? `${isFilter}` : undefined, isAltField, altFields, range: output === 'plural' ? true : false, placeholder, selectedDates})
+          +form-dropdown__datepicker({ name, range, selectedDates, placeholder, altFields, isAltField, isFilter: isFilter ? `${isFilter}` : undefined })
         when 'item-quantity'
-          +form-dropdown__item-quantity-list({ name, class:`form-dropdown__item-quantity-list_openMod-${openMod}`, isFilter:isFilter ? `${isFilter}` : undefined, placeholder, groups, list})
+          +form-dropdown__item-quantity-list({ name, placeholder, openMod, groups, list, isFilter: isFilter ? `${isFilter}` : undefined })
             if openMod === 'apply'
               +apply-control.form-dropdown__link-btns

@@ -1,13 +1,15 @@
 include ~@common.blocks/primitives/heading/heading.pug
 
-//- name: name of slider form
-//- range: object of ranges such as { min: 341, max: 15454 }
-//- start: array of init values such as [5000, 10000]
-//- isFilter?: {boolean} - if true, input change event will reload page with chosen value(get method), default is false
-//- heading: { tag: text }, example: { h3: 'awesome heading' }
-//- description: {string} - appended text after slider
-//- step?: {number}
-mixin form-range-slider({ heading = { h3: 'range slider' }, description = '', name = 'range-slider', range = { min: -100, max: 100 }, start = [0, 0], step = undefined, isFilter = undefined } = {})
+//-
+  name?: string - name of slider form
+  range: { min: number, max: number }
+  start: number[]
+  step?: number
+  heading: { [tag: string]: string }, example: { h3: 'awesome heading' }
+  description: string - appended text after slider
+  isFilter?: boolean - if true, input change event will reload page with chosen value(get method), default is false
+  Tip: mixin also uses 'and attributes'(&attributes)
+mixin form-range-slider({ name = 'range-slider', range = { min: -100, max: 100 }, start = [0, 0], step = undefined, heading = { h3: 'range slider' }, description = '', isFilter = false } = {})
   .form-range-slider(data-is-filter=isFilter ? `${isFilter}` : undefined)&attributes(attributes)
     .form-range-slider__label
       +heading(heading)

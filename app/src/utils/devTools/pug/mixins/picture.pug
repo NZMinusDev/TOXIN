@@ -1,7 +1,9 @@
-//- path:string - relative(in dist) path to img
-//- alt:string - img alt attr
-//- title:string - title attribute
-//- Tip: split your picture and inner img styles
+//-
+  path: string - relative(in dist) path to img
+  alt: string - img alt attr
+  title?: string - title attribute
+  Tip: mixin also uses 'and attributes'(&attributes)
+  Tip: split your picture and inner img styles
 mixin picture(path, alt, title = undefined)
   -
     if(!path){

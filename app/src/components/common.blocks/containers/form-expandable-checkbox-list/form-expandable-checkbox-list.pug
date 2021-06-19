@@ -1,20 +1,19 @@
 include ~@common.blocks/primitives/heading/heading.pug
 include ~@common.blocks/containers/form-checkbox-buttons/form-checkbox-buttons.pug
-//- heading: { tag: text }, example: { h3: 'awesome heading' }
-//- buttons: {
-  'name-1':{
-    label:string,
-    checked: 'checked'
-  },
-  'name-2':{
-    label:string,
-    checked: ''
-  },...}
-//- data-is-filter?: {boolean} - if true, change event will reload page with chosen value(get method)
-//- checked?: open the list
-//- disabled?: same as fieldset disabled (disable all buttons)
-//- Tip: be careful if use large amount of items: max-height limited by 32em for transition animation
-mixin form-expandable-checkbox-list({ buttons = {}, heading = undefined, checked = undefined, disabled = undefined, isFilter = undefined } = {})
+//-
+  heading: { [tag: string]: string }, example: { h3: 'awesome heading' }
+  buttons: {
+    [name: string]: {
+      label:string,
+      checked?: boolean
+    },
+  }
+ checked?: boolean - open the list
+ disabled?: boolean - same as fieldset disabled (disable all buttons)
+ isFilter?: boolean - if true, change event will reload page with chosen value(get method)
+ Tip: mixin also uses 'and attributes'(&attributes)
+ Tip: be careful if use large amount of items: max-height limited by 32em for transition animation
+mixin form-expandable-checkbox-list({ heading = 'expandable-checkbox-list', buttons = {}, checked = false, disabled = false, isFilter = false } = {})
   button.form-expandable-checkbox-list(type="button", tabindex="-1")&attributes(attributes)
     -
       const expanderID =
@@ -26,4 +25,4 @@ mixin form-expandable-checkbox-list({ buttons = {}, heading = undefined, checked
       type="checkbox",
       checked=checked
     )
-    +form-checkbox-buttons({ buttons: buttons, disabled: disabled, isFilter: isFilter ? `${isFilter}` : undefined }).form-expandable-checkbox-list__list
+    +form-checkbox-buttons({ buttons, disabled, isFilter: isFilter ? `${isFilter}` : undefined }).form-expandable-checkbox-list__list

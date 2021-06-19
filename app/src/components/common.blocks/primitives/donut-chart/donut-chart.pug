@@ -1,13 +1,13 @@
 include ~@common.blocks/primitives/heading/heading.pug
 include ~@common.blocks/containers/form-bullet-list/form-bullet-list.pug
 
-//- items: {'title text 1': number, 'title text 2': number, ...} - data partitions, numbers is [0;1], the first number isn't 0, up to 5 items
-//- dataName: {string} - name of data
-//- list?: {boolean} - append list with designations
-//- heading?: { tag: text }, example: { h3: 'awesome heading' }
-//- type?: "bordered"
-
-mixin donut-chart({ items = {}, heading = undefined, dataName = 'data', list = false } = {})
+//-
+  heading?: { [tag: string]: string }, example: { h3: 'awesome heading' }
+  items: { ['title': string]: number } - data partitions, numbers is [0; 1], the first number isn't 0, up to 5 items
+  dataName?: string - name of data content
+  list?: boolean - append list with designations
+  Tip: mixin also uses 'and attributes'(&attributes)
+mixin donut-chart({ heading = '', items = {}, dataName = 'data', list = false } = {})
   -
     let total = 0;
     Object.values(items).forEach((value) => {

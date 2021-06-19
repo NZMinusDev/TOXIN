@@ -1,17 +1,15 @@
 include ~@common.blocks/primitives/form-text-field/form-text-field.pug
 
-//- type?: 'creative'
-//- if type !== 'creative'
-  //- action: email form action attribute
-  //- method: email form method attribute
-mixin footer({ type = undefined, name = 'footer-subscription', action = '/mock.js', method = 'post' } = {})
-  -
-    const icons = [
-      { img: '', title: 'twitter' },
-      { img: '', title: 'facebook' },
-      { img: '', title: 'instagram' },
-    ];
-    const copyright = 'Copyright © 2018 Toxin отель. Все права зачищены.';
+//- 
+  type?: 'creative' - type of footer
+    when undefined
+      action: string - action of form with subscription
+      name?: string - name of form with subscription
+      method?: 'get' | 'post' - method of form with subscription
+  icons?: { img: string, title: string, href: string }[] - icons
+  copyright?: string - copyright text
+  Tip: mixin also uses 'and attributes'(&attributes)
+mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscription', method = 'post', icons = [ { img: '', title: 'twitter', href: '/mock.html' }, { img: '', title: 'facebook', href: '/mock.html' }, { img: '', title: 'instagram', href: '/mock.html' } ], copyright = 'Copyright © 2018 Toxin отель. Все права зачищены.' } = {})
   case type
     when 'creative'
       footer.footer.footer_creative.content-container&attributes(attributes)
@@ -24,7 +22,7 @@ mixin footer({ type = undefined, name = 'footer-subscription', action = '/mock.j
             each icon in icons
               li.footer__icons-list-item
                 a.icon.icon_color-gradient-primary.footer__brand-icon(
-                  href="/mock.html",
+                  href=icon.href,
                   data-icon=icon.img,
                   title=icon.title
                 )
@@ -81,13 +79,13 @@ mixin footer({ type = undefined, name = 'footer-subscription', action = '/mock.j
                 p.footer__description Получайте специальные предложения и новости сервиса
               li.footer__list-item
                 form(name=name, action=action, method=method) 
-                  +form-text-field({ type: 'email', name: 'subscription-form-text-field', materialIcon: 'arrow_forward'})
+                  +form-text-field({ name: 'subscription-form-text-field', type: 'email', materialIcon: 'arrow_forward'})
         section.footer__copyright-bar
           p.footer__copyright= copyright
           .footer__icons
             each icon in icons
               a.icon.icon_color-gradient-primary.footer__brand-icon(
-                href="/mock.html",
+                href=icon.href,
                 data-icon=icon.img,
                 title=icon.title
               )

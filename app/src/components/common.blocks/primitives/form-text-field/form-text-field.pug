@@ -1,15 +1,16 @@
 include ~@common.blocks/primitives/heading/heading.pug
 
-//- class - class for component bem mix: such as positioning functionality
-//- data-is-filter: {boolean} - if true, input change event will reload page with chosen value(get method)
-//- heading?: { tag: text }, example: { h3: 'awesome heading' }
-//- type - type of field for validation: 'email' | 'password' | 'date' 
-//- name - name of input field
-//- value - init value of field
-//- placeholder - placeholder text
-//- autofocus - { boolean } - autofocus of field
-//- materialIcon - material icon name for submit btn in field
-mixin form-text-field({ name = 'text-field', type = 'text', value = '', placeholder = '', autofocus = false, heading = undefined, materialIcon = '', isFilter = undefined } = {})
+//-
+  heading?: { [tag: string]: string }, example: { h3: 'awesome heading' }
+  name?: string - name of input field
+  type?: 'text' | 'email' | 'password' | 'date' - type of field for validation 
+  placeholder?: string - placeholder text
+  value?: string - init value of field
+  autofocus?: boolean - autofocus of field
+  materialIcon?: string - material icon name for submit btn in field
+  isFilter?: boolean - if true, input change event will reload page with chosen value(get method)
+  Tip: mixin also uses 'and attributes'(&attributes)
+mixin form-text-field({ heading = '', name = 'text-field', type = 'text', placeholder = '', value = '', autofocus = false, materialIcon = '', isFilter = false } = {})
   -
     const allowedInputMaskTypes = ['text', 'search', 'tel', 'url', 'password'];
     const allowedInputmodeAttribute = [

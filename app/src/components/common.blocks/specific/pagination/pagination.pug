@@ -1,11 +1,13 @@
-//- displayed: {number} - amount of items to display 
-//- total: {number} - amount of searched items
-//- type?: 'href' | 'async'
-  //- Additional for type='href':
-    //-  hrefPrefix: {string} - href with: location, filter get settings, name of pagination. Example: /catalog?date1=date&guests=3&page=
-//- page?: {number} - active page
-//- text?: {string} - placed text after amounts
-mixin pagination({ total = 100, displayed = 12, page = 1, text = '', type = 'href', hrefPrefix = '?page=',} = {})
+//-
+  type?: 'href' | 'async'
+    when 'href':
+      hrefPrefix?: string - href with: location, filter get settings, name of pagination. Example: /catalog?date1=date&guests=3&page=
+  total: number - amount of searched items
+  displayed: number - amount of items to display 
+  page?: number - active page
+  text?: string - placed text after amounts
+  Tip: mixin also uses 'and attributes'(&attributes)
+mixin pagination({ type = 'href', hrefPrefix = '?page=', total = 100, displayed = 12, page = 1, text = '' } = {})
   -
     const pages = Math.ceil(total / displayed);
     const activePage = page;
@@ -69,9 +71,9 @@ mixin pagination({ total = 100, displayed = 12, page = 1, text = '', type = 'hre
           title="текущая страница"
         )
           a(href=type === 'href' ? paginationHrefs[p - 1] : undefined)= p
-      //- Use "..." to collapse pages outside of a certain range
+      //- Use '...' to collapse pages outside of a certain range
       else
-        //- Show the very first page followed by a "..." at the beginning of the pagination section (after the Previous button)
+        //- Show the very first page followed by a '...' at the beginning of the pagination section (after the Previous button)
         if activePage > 2
           li.pagination__item
             a(href=type === 'href' ? paginationHrefs[0] : undefined)= 1
@@ -85,7 +87,7 @@ mixin pagination({ total = 100, displayed = 12, page = 1, text = '', type = 'hre
             title="текущая страница"
           )
             a(href=type === 'href' ? paginationHrefs[p - 1] : undefined)= p
-        //- Show the very last page preceded by a "..." at the end of the pagination section (before the Next button)
+        //- Show the very last page preceded by a '...' at the end of the pagination section (before the Next button)
         if activePage < pages - 1
           if activePage < pages - 2
             li.pagination__item.pagination__item_out-of-range

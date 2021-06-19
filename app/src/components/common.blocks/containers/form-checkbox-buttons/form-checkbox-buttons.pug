@@ -1,21 +1,19 @@
 include ~@common.blocks/primitives/heading/heading.pug
 
-//- buttons: {
-  'name-1':{
-    label:string,
-    description:string, // additional for "rich" mod
-    checked: 'checked'
-  },
-  'name-2':{
-    label:string,
-    description:string, // additional for "rich" mod
-    checked: ''
-  },...}
-//- data-is-filter?: {boolean} - if true, change event will reload page with chosen value(get method)
-//- heading?: { tag: text }, example: { h3: 'awesome heading' }
-//- mod?: "rich" - mod of component
-//- disabled?: same as fieldset disabled (disable all buttons)
-mixin form-checkbox-buttons({ mod = undefined, heading = undefined, buttons = {}, disabled = undefined, isFilter = false } = {})
+//- 
+  heading?: { [tag: string]: string }, example: { h3: 'awesome heading' }
+  mod?: 'rich' - mod of component
+  buttons: {
+    [name: string]: {
+      label: string,
+      description?: string, // additional for 'rich' mod
+      checked?: boolean
+    }
+  }
+  disabled?: boolean - same as fieldset disabled (disable all buttons)
+  isFilter?: boolean - if true, change event will reload page with chosen value(get method)
+  Tip: mixin also uses 'and attributes'(&attributes)
+mixin form-checkbox-buttons({ heading = '', mod = '', buttons = {}, disabled = false, isFilter = false } = {})
   -
     const modClass = mod ? `form-checkbox-buttons_${mod}` : undefined;
   .form-checkbox-buttons(class=modClass)&attributes(attributes)

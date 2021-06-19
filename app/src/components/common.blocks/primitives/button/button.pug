@@ -1,7 +1,9 @@
-//- type: "filled" | "bordered" | "icon-link" | "link"
+//-
+  type?: 'filled' | 'bordered' | 'icon-link' | 'link'
+  Tip: mixin also uses 'and attributes'(&attributes)
 mixin button({ type = 'filled' } = {})
   -
     const typeClass = `button_type-${type}`;
   button.button(class=typeClass)&attributes(attributes)= attributes.value
-    if type === "link"
+    if type === 'link'
       .icon

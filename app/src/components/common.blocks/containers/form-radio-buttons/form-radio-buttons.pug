@@ -1,19 +1,17 @@
 include ~@common.blocks/primitives/heading/heading.pug
 
-//- name: name of group
-//- buttons: {
-  'name-1':{
-    label:string,
-    checked: 'checked'
-  },
-  'name-2':{
-    label:string,
-    checked: ''
-  },...}
-//- data-is-filter?: {boolean} - if true, change event will reload page with chosen value(get method)
-//- heading?: { tag: text }, example: { h3: 'awesome heading' }
-//- disabled?: same as fieldset disabled (disable all buttons)
-mixin form-radio-buttons({ heading = undefined, disabled = undefined, buttons = {}, name = 'radio', isFilter = undefined } = {})
+//-
+  heading?: { [tag: string]: string }, example: { h3: 'awesome heading' }
+  buttons: {
+    [value: string]: {
+      label: string,
+      checked?: boolean
+  }}
+  name?: string - name of group
+  disabled?: boolean - same as fieldset disabled (disable all buttons)
+  isFilter?: boolean - if true, change event will reload page with chosen value(get method)
+  Tip: mixin also uses 'and attributes'(&attributes)
+mixin form-radio-buttons({ heading = '', name = 'radio', buttons = {}, disabled = false, isFilter = false } = {})
   .form-radio-buttons&attributes(attributes)
     if heading
       .form-radio-buttons__heading

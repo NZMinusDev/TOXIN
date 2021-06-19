@@ -2,36 +2,31 @@ include ~@common.blocks/primitives/heading/heading.pug
 include ~@common.blocks/primitives/form-like-button/form-like-button.pug
 include ~@utils/devTools/pug/mixins/picture.pug
 
-//- items: {
-  'name-1':{
-    personName:string,
-    iconPath:string,
-    date:datestring,
-    content:string,
-    likeButtonCounter:number,
-    isLikeButtonChecked
-  },
-  'name-2':{
-    personName:string,
-    iconPath:string,
-    date:datestring,
-    content:string,
-    likeButtonCounter:number,
-    isLikeButtonChecked
-  },...}
-//- heading?: { tag: text }, example: { h3: 'awesome heading' }
+//-
+  heading?: { [tag: string]: string }, example: { h3: 'awesome heading' }
+  items: {
+    ['like-btn-name': string]: {
+      personName: string,
+      iconPath: string,
+      date: datestring,
+      content: string,
+      likeButtonCounter: number,
+      isLikeButtonChecked: boolean
+    } 
+  }
+  Tip: mixin also uses 'and attributes'(&attributes)
 
-mixin comments({ heading = undefined, items = {} } = {})
+mixin comments({ heading = '', items = {}} = {})
   .comments&attributes(attributes)
     if heading
       +heading(heading)
     each item, key in items
       .comments__item
-        +picture(item.iconPath, "Иконка комментирующего").comments__icon-item
+        +picture(item.iconPath, 'Иконка комментирующего').comments__icon-item
         .comments__source-item
           h3.comments__name-item= item.personName
           p.comments__date-item
             time(datetime=item.date)
         p.comments__content-item= item.content
         .comments__like-button-item
-          +form-like-button({ name: `${key}-like-button`, counter: item.likeButtonCounter, checked: item.isLikeButtonChecked})
+          +form-like-button({ name: `${key}-like-button`, counter: item.likeButtonCounter, checked: item.isLikeButtonChecked })

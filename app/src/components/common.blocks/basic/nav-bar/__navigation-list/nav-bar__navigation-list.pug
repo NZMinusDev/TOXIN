@@ -1,4 +1,7 @@
-mixin nav-bar__navigation-list(active, items)
+//-
+  items: { [textContent: string]: { href: string, items?: [textContent: string]: { href: string, items?: } } } - recursive items of nav-bar list
+  active?: string - key of active item
+mixin nav-bar__navigation-list(items, active)
   -
     const bubbleActiveStatus = (items, activeKey) => {
       Object.entries(items).forEach(([key, item]) => {
@@ -27,7 +30,7 @@ mixin nav-bar__navigation-list(active, items)
           tabindex="0"
         )= itemName
           .icon.nav-bar__expand-icon
-          +nav-bar__navigation-list(undefined, itemSettings.items)
+          +nav-bar__navigation-list(itemSettings.items)
       else
         li.nav-bar__navigation-item(
           class=itemSettings.items ? 'nav-bar__navigation-item_isDropdown' : undefined
