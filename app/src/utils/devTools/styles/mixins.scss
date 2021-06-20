@@ -1,4 +1,7 @@
 @use "sass:list";
+@use "sass:string";
+
+@use "@utils/devTools/styles/functions.scss";
 
 @mixin centerAbsPosition {
   position: absolute;
@@ -18,36 +21,171 @@
   background-clip: text;
 }
 
+// in the future should be refactored with https://developer.mozilla.org/ru/docs/orphaned/Web/CSS/image-set()
+// be aware of css directives (for example @keyframes): scss can't extract @supports from it
+@mixin optimizedImages($property, $imagesPaths, $values...) {
+  $urls: '';
+  $urls320: '';
+  $urls640: '';
+  $urls960: '';
+  $urls1920: '';
+  $webpUrls: '';
+  $webpUrls320: '';
+  $webpUrls640: '';
+  $webpUrls960: '';
+  $webpUrls1920: '';
+  $index: 0;
+  @each $path in $imagesPaths {
+    $parsedPath: functions.parsePath($path);
+    $filePath: list.nth($parsedPath, 1);
+    $fileExt: list.nth($parsedPath, 2);
+
+    @if $index != 0 {
+      $urls: $urls + ',';
+      $urls320: $urls320 + ',';
+      $urls640: $urls640 + ',';
+      $urls960: $urls960 + ',';
+      $urls1920: $urls1920 + ',';
+      $webpUrls: $webpUrls + ',';
+      $webpUrls320: $webpUrls320 + ',';
+      $webpUrls640: $webpUrls640 + ',';
+      $webpUrls960: $webpUrls960 + ',';
+      $webpUrls1920: $webpUrls1920 + ',';
+    }
+    $urls: $urls + url($path);
+    $urls320: $urls320 + url(functions.resolveUnresolvedAssetPath($path, '-320.' + $fileExt));
+    $urls640: $urls640 + url(functions.resolveUnresolvedAssetPath($path, '-640.' + $fileExt));
+    $urls960: $urls960 + url(functions.resolveUnresolvedAssetPath($path, '-960.' + $fileExt));
+    $urls1920: $urls1920 + url(functions.resolveUnresolvedAssetPath($path, '-1920.' + $fileExt));
+
+    $webpUrls: $webpUrls + url(functions.resolveUnresolvedAssetPath($path, '.webp'));
+    $webpUrls320: $webpUrls320 + url(functions.resolveUnresolvedAssetPath($path, '-320.webp'));
+    $webpUrls640: $webpUrls640 + url(functions.resolveUnresolvedAssetPath($path, '-640.webp'));
+    $webpUrls960: $webpUrls960 + url(functions.resolveUnresolvedAssetPath($path, '-960.webp'));
+    $webpUrls1920: $webpUrls1920 + url(functions.resolveUnresolvedAssetPath($path, '-1920.webp'));
+
+    $index: $index + 1;
+  }
+
+  @media print, screen and (min-width: 0px) {
+    #{$property}: #{$urls320} $values;
+  }
+  @media print, screen and (min-width: 600px) {
+    #{$property}: #{$urls640} $values;
+  }
+  @media print, screen and (min-width: 960px) {
+    #{$property}: #{$urls960} $values;
+  }
+  @media print, screen and (min-width: 1200px) {
+    #{$property}: #{$urls1920} $values;
+  }
+  @supports (background-image: #{$webpUrls}) {
+    @media print, screen and (min-width: 0px) {
+      #{$property}: #{$webpUrls320} $values;
+    }
+    @media print, screen and (min-width: 600px) {
+      #{$property}: #{$webpUrls640} $values;
+    }
+    @media print, screen and (min-width: 960px) {
+      #{$property}: #{$webpUrls960} $values;
+    }
+    @media print, screen and (min-width: 1200px) {
+      #{$property}: #{$webpUrls1920} $values;
+    }
+  }
+}
+
 /*
 * $imagesPaths: {string string ...} - scss list using space between img paths
 */
 @mixin backgroundAutoCarousel($imagesPaths) {
-  $backgroundImages: "";
+  $backgroundImages: '';
   $index: 0;
   @each $path in $imagesPaths {
     @if $index != 0 {
-      $backgroundImages: $backgroundImages + ",";
+      $backgroundImages: $backgroundImages + ',';
     }
     $index: $index + 1;
     $backgroundImages: $backgroundImages + url($path);
   }
 
   background: white no-repeat fixed;
-  background-image: #{$backgroundImages};
+  @include optimizedImages(background-image, $imagesPaths);
   background-size: cover;
   animation: change-image #{list.length($imagesPaths) * 6s} linear infinite;
 
+  @media print, screen and (min-width: 0px) {
+    @include _changeImageKeyframes($imagesPaths, 320);
+  }
+  @media print, screen and (min-width: 600px) {
+    @include _changeImageKeyframes($imagesPaths, 640);
+  }
+  @media print, screen and (min-width: 960px) {
+    @include _changeImageKeyframes($imagesPaths, 960);
+  }
+  @media print, screen and (min-width: 1200px) {
+    @include _changeImageKeyframes($imagesPaths, 1920);
+  }
+
+  @supports (
+    background-image: url(functions.resolveUnresolvedAssetPath(list.nth($imagesPaths, 1), '.webp'))
+  ) {
+    @media print, screen and (min-width: 0px) {
+      @include _changeImageKeyframes($imagesPaths, 320, 'webp');
+    }
+    @media print, screen and (min-width: 600px) {
+      @include _changeImageKeyframes($imagesPaths, 640, 'webp');
+    }
+    @media print, screen and (min-width: 960px) {
+      @include _changeImageKeyframes($imagesPaths, 960, 'webp');
+    }
+    @media print, screen and (min-width: 1200px) {
+      @include _changeImageKeyframes($imagesPaths, 1920, 'webp');
+    }
+  }
+}
+@mixin _changeImageKeyframes($imagesPaths, $sizePostfix, $newExt: '') {
   @keyframes change-image {
     $index: 0;
     @each $path in $imagesPaths {
+      $parsedPath: functions.parsePath($path);
+      $filePath: list.nth($parsedPath, 1);
+      $fileExt: list.nth($parsedPath, 2);
+
       $keyframe: #{100 / list.length($imagesPaths) * $index * 1%};
+
       #{$keyframe} {
-        background-image: url($path);
+        @if $newExt == '' {
+          background-image: url(functions.resolveUnresolvedAssetPath(
+            $path,
+            '-#{$sizePostfix}.#{$fileExt}'
+          ));
+        } @else {
+          background-image: url(functions.resolveUnresolvedAssetPath(
+            $path,
+            '-#{$sizePostfix}.#{$newExt}'
+          ));
+        }
       }
+
       $index: $index + 1;
     }
     100% {
-      background-image: url(list.nth($imagesPaths, 1));
+      $parsedPath: functions.parsePath(list.nth($imagesPaths, 1));
+      $filePath: list.nth($parsedPath, 1);
+      $fileExt: list.nth($parsedPath, 2);
+
+      @if $newExt == '' {
+        background-image: url(functions.resolveUnresolvedAssetPath(
+          list.nth($imagesPaths, 1),
+          '-#{$sizePostfix}.#{$fileExt}'
+        ));
+      } @else {
+        background-image: url(functions.resolveUnresolvedAssetPath(
+          list.nth($imagesPaths, 1),
+          '-#{$sizePostfix}.#{$newExt}'
+        ));
+      }
     }
   }
 }

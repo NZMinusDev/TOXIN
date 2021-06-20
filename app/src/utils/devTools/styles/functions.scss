@@ -1,3 +1,6 @@
+@use "sass:list";
+@use "sass:string";
+
 /*
  * get color by css var color name with defining opacity
  * color-name {string} - css var name of color without '--'
@@ -18,4 +21,22 @@
   $addSize: $pcSize - $mobSize;
   $maxWidth: $templateWidth - 320;
   @return calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth}));
+}
+
+// with .
+@function resolveUnresolvedAssetPath($path, $newExt) {
+  $filePath: list.nth(parsePath($path), 1);
+
+  // resolve path for generated in runtime images: @assets -> ./../../assets
+  $resolvedFilePath: string.insert(string.slice($filePath, 2), './../../', 0);
+
+  @return $resolvedFilePath + $newExt;
+}
+
+@function parsePath($path) {
+  $pathExtensionIndex: string.index($path, '.');
+  $filePath: string.slice($path, 0, $pathExtensionIndex - 1);
+  $fileExt: string.slice($path, $pathExtensionIndex + 1);
+
+  @return ($filePath, $fileExt);
 }

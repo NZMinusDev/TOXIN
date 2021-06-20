@@ -31,6 +31,9 @@ const PATHS = {
   dist_absolute: path.resolve(__dirname, '../app/dist/'),
 };
 
+// FIXME: change it depending on your design template for proper scaling images
+const designWidth = 1440;
+
 const redefinitionLevels = [
   'layouts',
   'components/library.blocks',
@@ -120,7 +123,7 @@ const getFilesDeep = (dir, excludedExt, _files) => {
       return;
 
     if (fs.statSync(name).isDirectory()) {
-      getFilesDeep(name, _files);
+      getFilesDeep(name, excludedExt, _files);
     } else {
       _files.push(name);
     }
@@ -147,16 +150,13 @@ const listOfSourceImagesMapping = (list, suffix, base = PATHS.src_absolute) =>
     };
   });
 
-let listOfSourceImages320 = getFilesDeep(path.resolve(PATHS.src_absolute, './assets/pictures/'), [
+let listOfSourceImages320 = getFilesDeep(path.resolve(PATHS.src_absolute, './assets/pictures'), [
   'svg',
 ]);
 const listOfSourceImages640 = listOfSourceImagesMapping(listOfSourceImages320, '640');
 const listOfSourceImages960 = listOfSourceImagesMapping(listOfSourceImages320, '960');
 const listOfSourceImages1920 = listOfSourceImagesMapping(listOfSourceImages320, '1920');
 listOfSourceImages320 = listOfSourceImagesMapping(listOfSourceImages320, '320');
-
-// FIXME: change it depending on your design template for proper scaling images
-const designWidth = 1440;
 
 /**
  * HTMLWebpackPlugin - create html of pages with plug in scripts.
@@ -185,6 +185,7 @@ const webpackPlugins = () => {
       header: '@media print, screen and (color) {',
       footer: '}',
     }),
+
     new ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
@@ -199,66 +200,59 @@ const webpackPlugins = () => {
         },
       ],
     }),
-
-    // FIXME: this plugin keeps compillation from end, doesn't know why
-    new WebpackImagesResizer(listOfSourceImages320, {
-      // 4:3 - QVGA
-      width: designWidth > 320 ? `${(320 / designWidth) * 100}%` : '100%',
-    }),
-    new WebpackImagesResizer(listOfSourceImages640, {
-      // 16:9 - nHD
-      width: designWidth > 640 ? `${(640 / designWidth) * 100}%` : '100%',
-    }),
-    new WebpackImagesResizer(listOfSourceImages960, {
-      // 16:9 - qHD
-      width: designWidth > 960 ? `${(960 / designWidth) * 100}%` : '100%',
-    }),
-    new WebpackImagesResizer(listOfSourceImages1920, {
-      // 16:9 - Full HD
-      width: designWidth > 1920 ? `${(1920 / designWidth) * 100}%` : '100%',
-    }),
-
-    // images are converted to WEBP
-    new ImageMinimizerPlugin({
-      // Enable file caching and set path to cache directory
-      cache: './app/cache/webpack__ImageMinimizerPlugin',
-
-      // Tip: hashed by assetsLoader (file-loader)
-      filename: '[path]/[name].webp',
-      exclude: /\/ico\//,
-
-      // keep compressed image
-      deleteOriginalAssets: false,
-      minimizerOptions: {
-        // Lossless optimization with custom option
-        plugins: [
-          [
-            'imagemin-webp',
-            {
-              /*
-               * preset: default //default, photo, picture, drawing, icon and text
-               * lossless: true,
-               */
-              // pre compression with lossless mode on
-              nearLossless: 0,
-            },
-          ],
-        ],
-      },
-    }),
   ];
 
   if (isProd) {
     plugins.push(
       // eslint-disable-next-line lines-around-comment
-      // original images will compressed lossless
+      // FIXME: this plugin keeps compillation from end, doesn't know why
+      new WebpackImagesResizer(listOfSourceImages320, {
+        // 4:3 - QVGA
+        width: designWidth > 320 ? `${(320 / designWidth) * 100}%` : '100%',
+      }),
+      new WebpackImagesResizer(listOfSourceImages640, {
+        // 16:9 - nHD
+        width: designWidth > 640 ? `${(640 / designWidth) * 100}%` : '100%',
+      }),
+      new WebpackImagesResizer(listOfSourceImages960, {
+        // 16:9 - qHD
+        width: designWidth > 960 ? `${(960 / designWidth) * 100}%` : '100%',
+      }),
+      new WebpackImagesResizer(listOfSourceImages1920, {
+        // 16:9 - Full HD
+        width: designWidth > 1920 ? `${(1920 / designWidth) * 100}%` : '100%',
+      }),
+
+      // images are converted to WEBP
       new ImageMinimizerPlugin({
         // Enable file caching and set path to cache directory
         cache: './app/cache/webpack__ImageMinimizerPlugin',
 
-        // Tip: hashed by assetsLoader (file-loader)
-        filename: '[path]/[name].[ext]',
-        exclude: /\/ico\//,
+        filename: '[path][name].webp',
+        include: /pictures/,
+        minimizerOptions: {
+          // Lossless optimization with custom option
+          plugins: [
+            [
+              'imagemin-webp',
+              {
+                /*
+                 * preset: default //default, photo, picture, drawing, icon and text
+                 * lossless: true,
+                 */
+                // pre compression with lossless mode on
+                nearLossless: 0,
+              },
+            ],
+          ],
+        },
+      }),
+
+      // original images will compressed lossless
+      new ImageMinimizerPlugin({
+        // Enable file caching and set path to cache directory
+        cache: './app/cache/webpack__ImageMinimizerPlugin',
+        include: /pictures/,
         minimizerOptions: {
           // Lossless optimization with custom option
           plugins: [
@@ -360,6 +354,24 @@ const cssLoaders = (extraLoader) => {
     },
     {
       loader: 'css-loader',
+      options: {
+        url: (url, resourcePath) => {
+          // resourcePath - path to css file
+
+          const isResized =
+            url.includes('-320.') ||
+            url.includes('-640.') ||
+            url.includes('-960.') ||
+            url.includes('-1920.');
+
+          // Don't handle resized ` and .webp` urls
+          if (isResized || url.includes('.webp')) {
+            return false;
+          }
+
+          return true;
+        },
+      },
     },
     {
       loader: 'postcss-loader',

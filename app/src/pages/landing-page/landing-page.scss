@@ -5,9 +5,9 @@
   position: relative;
 
   @include mixins.backgroundAutoCarousel(
-    '@assets/pictures/images/backgrounds/rooms/room-1.png'
-      '@assets/pictures/images/backgrounds/rooms/room-2.png'
-      '@assets/pictures/images/backgrounds/rooms/room-3.png'
+    '@assets/pictures/images/backgrounds/rooms/room-1.jpg'
+      '@assets/pictures/images/backgrounds/rooms/room-2.jpg'
+      '@assets/pictures/images/backgrounds/rooms/room-3.jpg'
   );
 }
 

@@ -12,36 +12,35 @@ mixin picture(path, alt, title = undefined)
     const filePath = path.substring(0, path.lastIndexOf('.')) || path;
     const fileExt = path.substring(path.lastIndexOf('.') + 1, path.length) || path;
   picture&attributes(attributes)
-    //- FIXME: suffixed webp images doesn't work with devServer, don't know why; building is ok and the another img formats the same ok;
+    source(
+      media="(min-width:1200px)",
+      type="image/webp",
+      srcset=htmlWebpackPlugin ? require('@assets/pictures/images/placeholders/lazy-loading-placeholder.svg').default : undefined,
+      data-srcset=`${filePath}-1920.webp 1x`
+    )
+    source(
+      media="(min-width:960px)",
+      type="image/webp",
+      srcset=htmlWebpackPlugin ? require('@assets/pictures/images/placeholders/lazy-loading-placeholder.svg').default : undefined,
+      data-srcset=`${filePath}-960.webp 1x`
+    )
+    source(
+      media="(min-width:600px)",
+      type="image/webp",
+      srcset=htmlWebpackPlugin ? require('@assets/pictures/images/placeholders/lazy-loading-placeholder.svg').default : undefined,
+      data-srcset=`${filePath}-640.webp 1x`
+    )
+    source(
+      media="(min-width:0px)",
+      type="image/webp",
+      srcset=htmlWebpackPlugin ? require('@assets/pictures/images/placeholders/lazy-loading-placeholder.svg').default : undefined,
+      data-srcset=`${filePath}-320.webp 1x`
+    )
     source(
       type="image/webp",
       srcset=htmlWebpackPlugin ? require('@assets/pictures/images/placeholders/lazy-loading-placeholder.svg').default : undefined,
       data-srcset=`${filePath}.webp 1x`
     )
-    //- source(
-    //-   media="(min-width:1200px)",
-    //-   type="image/webp",
-    //-   srcset=htmlWebpackPlugin ? require('@assets/pictures/images/placeholders/lazy-loading-placeholder.svg').default : undefined,
-    //-   data-srcset=`${filePath}-1920.webp 1x`
-    //- )
-    //- source(
-    //-   media="(min-width:960px)",
-    //-   type="image/webp",
-    //-   srcset=htmlWebpackPlugin ? require('@assets/pictures/images/placeholders/lazy-loading-placeholder.svg').default : undefined,
-    //-   data-srcset=`${filePath}-960.webp 1x`
-    //- )
-    //- source(
-    //-   media="(min-width:600px)",
-    //-   type="image/webp",
-    //-   srcset=htmlWebpackPlugin ? require('@assets/pictures/images/placeholders/lazy-loading-placeholder.svg').default : undefined,
-    //-   data-srcset=`${filePath}-640.webp 1x`
-    //- )
-    //- source(
-    //-   media="(min-width:0px)",
-    //-   type="image/webp",
-    //-   srcset=htmlWebpackPlugin ? require('@assets/pictures/images/placeholders/lazy-loading-placeholder.svg').default : undefined,
-    //-   data-srcset=`${filePath}-320.webp 1x`
-    //- )
     source(
       media="(min-width:1200px)",
       srcset=htmlWebpackPlugin ? require('@assets/pictures/images/placeholders/lazy-loading-placeholder.svg').default : undefined,
