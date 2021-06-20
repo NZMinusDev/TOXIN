@@ -92,7 +92,7 @@ class ResultOfTemplatesProcessing {
       this.HTMLWebpackPlugins.push(
         new HTMLWebpackPlugin({
           template: `!!pug-loader!app/src/pages/${shortNameOfTemplate}/${nameOfTemplate}`,
-          filename: hashedFileName(`./${shortNameOfTemplate}`, 'html'),
+          filename: `./${shortNameOfTemplate}.html`,
 
           // see ~@layouts/basic/main-layout/main-layout.pug
           inject: false,
