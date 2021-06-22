@@ -23,10 +23,10 @@ include ./__datepicker/form-dropdown__datepicker.pug
 mixin form-dropdown(type, { heading = '', name = 'dropdown', placeholder = 'placeholder', range = false, selectedDates = '', altFields = undefined, isAltField = false, openMod = 'toggle', groups = {}, list = {}, isFilter = false } = {})
   .form-dropdown&attributes(attributes)
     if heading
-      //- TODO: lib doesn't allow change DOM of 'item-quantity' for corresponding with label
-      +heading(heading, { isLabel: type !== 'item-quantity' })(for=name)
+      +heading(heading, { isLabel: true })(for=name)
     .form-field
-      span.icon.form-dropdown__expand-icon
+      button.form-dropdown__expand-btn(id=name, type="button", aria-expanded="false")
+        span.icon.form-dropdown__expand-icon
       case type
         when 'date'
           +form-dropdown__datepicker({ name, range, selectedDates, placeholder, altFields, isAltField, isFilter })
