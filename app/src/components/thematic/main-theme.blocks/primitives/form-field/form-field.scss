@@ -1,14 +1,12 @@
-@use "@utils/devTools/styles/functions.scss";
-
 .form-field {
-  color: functions.getColor(color__dark-shade, 0.25);
+  color: rgba(var(--color__dark-shade), 0.25);
   border: var(--border);
   border-radius: var(--border-radius-size);
 
   &:hover,
   &:focus,
   &:focus-within {
-    color: functions.getColor(color__dark-shade, 0.75);
+    color: rgba(var(--color__dark-shade), 0.75);
     border: var(--border-hover);
   }
 }

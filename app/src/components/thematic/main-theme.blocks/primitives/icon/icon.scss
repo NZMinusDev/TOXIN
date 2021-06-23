@@ -1,8 +1,6 @@
-@use "@utils/devTools/styles/functions.scss";
-
 .icon {
   &:after {
     font-size: 1rem;
-    color: functions.getColor(color__dark-shade, 0.5);
+    color: rgba(var(--color__dark-shade), 0.5);
   }
 }

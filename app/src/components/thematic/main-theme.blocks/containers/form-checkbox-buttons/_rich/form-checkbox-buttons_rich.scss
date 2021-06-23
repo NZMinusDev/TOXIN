@@ -1,11 +1,9 @@
-@use "@utils/devTools/styles/functions.scss";
-
 .form-checkbox-buttons_rich {
   .form-checkbox-buttons__label-item {
     font-weight: 700;
-    color: functions.getColor(color__dark-shade, 0.75);
+    color: rgba(var(--color__dark-shade), 0.75);
   }
   .form-checkbox-buttons__description {
-    color: functions.getColor(color__dark-shade, 0.5);
+    color: rgba(var(--color__dark-shade), 0.5);
   }
 }

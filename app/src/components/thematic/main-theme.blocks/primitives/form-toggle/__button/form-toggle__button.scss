@@ -1,17 +1,15 @@
-@use "@utils/devTools/styles/functions.scss";
-
 .form-toggle__button {
   border: var(--border);
 
   &:checked {
-    border-color: functions.getColor(color__primary, 1);
+    border-color: rgba(var(--color__primary), 1);
   }
 
   &:before {
-    background-color: functions.getColor(color__dark-shade, 0.25);
+    background-color: rgba(var(--color__dark-shade), 0.25);
   }
 
   &:checked:before {
-    background-color: functions.getColor(color__primary, 1);
+    background-color: rgba(var(--color__primary), 1);
   }
 }

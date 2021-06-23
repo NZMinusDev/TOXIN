@@ -1,12 +1,10 @@
-@use "@utils/devTools/styles/functions.scss";
-
 @use "@thematic/main-theme.blocks/gradients.scss";
 
 .form-radio-buttons__button-item {
   border: var(--border);
 
   &:checked {
-    border-color: functions.getColor(color__primary, 1);
+    border-color: rgba(var(--color__primary), 1);
   }
 
   &:before {

@@ -1,18 +1,16 @@
-@use "@utils/devTools/styles/functions.scss";
-
 $THEME_COLORS: (
-  "color__dark-shade_100": functions.getColor(color__dark-shade, 1),
-  "color__dark-shade_75": functions.getColor(color__dark-shade, 0.75),
-  "color__dark-shade_50": functions.getColor(color__dark-shade, 0.5),
-  "color__dark-shade_25": functions.getColor(color__dark-shade, 0.25),
-  "color__dark-shade_5": functions.getColor(color__dark-shade, 0.05),
-  "color__primary_100": functions.getColor(color__primary, 1),
-  "color__secondary_100": functions.getColor(color__secondary, 1),
+  'color__dark-shade_100': rgba(var(--color__dark-shade), 1),
+  'color__dark-shade_75': rgba(var(--color__dark-shade), 0.75),
+  'color__dark-shade_50': rgba(var(--color__dark-shade), 0.5),
+  'color__dark-shade_25': rgba(var(--color__dark-shade), 0.25),
+  'color__dark-shade_5': rgba(var(--color__dark-shade), 0.05),
+  'color__primary_100': rgba(var(--color__primary), 1),
+  'color__secondary_100': rgba(var(--color__secondary), 1),
 );
 
 $counter: 1;
 @each $color-name, $color-value in $THEME_COLORS {
-  [class="color-sample"]:nth-child(#{$counter}) > .color-sample__sample {
+  [class='color-sample']:nth-child(#{$counter}) > .color-sample__sample {
     background-color: map-get($THEME_COLORS, $color-name);
   }
   $counter: $counter + 1;

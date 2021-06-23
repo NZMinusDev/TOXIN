@@ -1,5 +1,3 @@
-@use "@utils/devTools/styles/functions.scss";
-
 .apply-control {
   .apply-control__clear-btn-js,
   .apply-control__apply-btn-js {
@@ -8,9 +6,9 @@
   }
 
   .apply-control__clear-btn-js {
-    color: functions.getColor(color__dark-shade, 0.5);
+    color: rgba(var(--color__dark-shade), 0.5);
   }
   .apply-control__apply-btn-js {
-    color: functions.getColor(color__primary, 1);
+    color: rgba(var(--color__primary), 1);
   }
 }

@@ -1,6 +1,4 @@
-@use "@utils/devTools/styles/functions.scss";
-
 .footer__description {
   font: var(--font__body);
-  color: functions.getColor(color__dark-shade, 0.75);
+  color: rgba(var(--color__dark-shade), 0.75);
 }

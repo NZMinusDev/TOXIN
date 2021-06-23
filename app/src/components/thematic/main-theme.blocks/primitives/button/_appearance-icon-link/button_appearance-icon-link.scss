@@ -1,9 +1,7 @@
-@use "@utils/devTools/styles/functions.scss";
-
 .button_appearance-icon-link {
-  color: functions.getColor(color__primary, 1);
+  color: rgba(var(--color__primary), 1);
 
   &:hover {
-    color: functions.getColor(color__dark-shade, 0.5);
+    color: rgba(var(--color__dark-shade), 0.5);
   }
 }
