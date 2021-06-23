@@ -3,6 +3,7 @@
 
 @use "@utils/devTools/styles/functions.scss";
 
+/// Places item to center using position: absolute
 @mixin centerAbsPosition {
   position: absolute;
   top: 50%;
@@ -10,19 +11,26 @@
   transform: translate(-50%, -50%);
   text-align: center;
 }
-@mixin ellipsisText() {
+/// Makes text ellipsis
+@mixin ellipsisText {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+/// Makes text color gradient
+/// @param {*} $background - css gradient
 @mixin gradientFont($background) {
   color: transparent;
   background: $background;
   background-clip: text;
 }
 
-// in the future should be refactored with https://developer.mozilla.org/ru/docs/orphaned/Web/CSS/image-set()
-// be aware of css directives (for example @keyframes): scss can't extract @supports from it
+/// Adds generated in runtime smaller resolution and optimized versions of images
+/// @param {*} $property - css property for images
+/// @param { string string ... } $imagesPaths - list of images' paths
+/// @param {*} $values... - additional values for $property
+/// @link ./../../../../../configs/webpack.config.js
+/// @todo in the future should be refactored with https://developer.mozilla.org/ru/docs/orphaned/Web/CSS/image-set()
 @mixin optimizedImages($property, $imagesPaths, $values...) {
   $urls: '';
   $urls320: '';
@@ -95,9 +103,8 @@
   }
 }
 
-/*
-* $imagesPaths: {string string ...} - scss list using space between img paths
-*/
+/// Carousel with rotating images
+/// @param { string string ... } $imagesPaths - scss list using space between img paths
 @mixin backgroundAutoCarousel($imagesPaths) {
   $backgroundImages: '';
   $index: 0;
