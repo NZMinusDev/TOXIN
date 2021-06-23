@@ -12,7 +12,7 @@ include ~@common.blocks/primitives/form-text-field/form-text-field.pug
 mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscription', method = 'post', icons = [ { img: '', title: 'twitter', href: '/mock.html' }, { img: '', title: 'facebook', href: '/mock.html' }, { img: '', title: 'instagram', href: '/mock.html' } ], copyright = 'Copyright © 2018 Toxin отель. Все права зачищены.' } = {})
   case type
     when 'creative'
-      footer.footer.footer_creative.content-container&attributes(attributes)
+      footer.footer.footer_creative&attributes(attributes)
         section.footer__logo
           .logo.logo_color-gradient-primary
           span.logo__title TOXIN
@@ -27,8 +27,8 @@ mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscriptio
                   title=icon.title
                 )
     default
-      footer.footer.content-container&attributes(attributes)
-        section.footer__widgets
+      footer.footer&attributes(attributes)
+        section.footer__widgets.content-container
           section.footer__logo
             .logo.logo_color-gradient-primary
             span.logo__title TOXIN
@@ -76,16 +76,19 @@ mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscriptio
               label(for="footer-subscription-checkbox", tabindex="0") Подписка
             ul.footer__list
               li.footer__list-item
-                p.footer__description Получайте специальные предложения и новости сервиса
+                p.footer__description
+                  span.footer__description-aligner Получайте специальные предложения и новости сервиса
               li.footer__list-item
                 form(name=name, action=action, method=method) 
                   +form-text-field({ name: 'subscription-form-text-field', type: 'email', materialIcon: 'arrow_forward'})
-        section.footer__copyright-bar
+        section.footer__copyright-bar.content-container
           p.footer__copyright= copyright
           .footer__icons
-            each icon in icons
-              a.icon.icon_color-gradient-primary.footer__brand-icon(
-                href=icon.href,
-                data-icon=icon.img,
-                title=icon.title
-              )
+            ul.footer__icons-list
+              each icon in icons
+                li.footer__icons-list-item
+                  a.icon.icon_color-gradient-primary.footer__brand-icon(
+                    href=icon.href,
+                    data-icon=icon.img,
+                    title=icon.title
+                  )

@@ -1,4 +1,6 @@
 .form-radio-buttons__fieldset {
-  display: flex;
-  flex-wrap: wrap;
+  width: fit-content;
+  display: grid;
+  grid: auto / auto auto;
+  gap: 20px / 14px * 1em;
 }

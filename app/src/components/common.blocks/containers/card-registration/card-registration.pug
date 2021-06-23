@@ -11,19 +11,22 @@ include ~@common.blocks/primitives/button/button.pug
 mixin card-registration({ action = '/mock.js', name = 'card-registration', method = 'post' } = {})
   form.card-base.card-registration(name=name, action=action, method=method)&attributes(attributes)
     h1.card-registration__title Регистрация аккаунта
-    +form-text-field({ name: `${name}-name`, placeholder: 'Имя' }).card-registration__name-field
-    +form-text-field({ name: `${name}-surname`, placeholder: 'Фамилия' }).card-registration__surname-field
-    +form-radio-buttons({ buttons: { male: { label: 'Мужчина', checked: true }, female: { label: 'Женщина' } } }).card-registration__gender-radio-btn
-    +form-text-field({ heading: { h3: 'Дата рождения' }, name: `${name}-birthday`, type: 'date' }).card-registration__birthday-field
-    +form-text-field({ heading: { h3: 'Данные для входа в сервис' }, name: `${name}-email`, type: 'email' }).card-registration__email-field
-    +form-text-field({ name: `${name}-password`, type: 'password' }).card-registration__password-field
-    +form-toggle({ name: `${name}-special-offers`, label: 'Получать спецпредложения' }).card-registration__special-offer-toggle
-    +button({ appearance: 'link' }).card-registration__link-btn(
-      type="submit",
-      value="Перейти к оплате",
-      tabindex="1"
-    )
-    p.card-registration__caption-of-redirect-to-entering Уже есть аккаунт на Toxin
-    +button({ tag:'a', text: 'Войти', appearance: 'bordered' }).card-registration__switch-btn(
-      href="/sign-in.html"
-    )
+    fieldset.card-registration__name-fieldset 
+      +form-text-field({ name: `${name}-name`, placeholder: 'Имя' })
+      +form-text-field({ name: `${name}-surname`, placeholder: 'Фамилия' })
+      +form-radio-buttons({ buttons: { male: { label: 'Мужчина', checked: true }, female: { label: 'Женщина' } } })
+    .card-registration__birthday-field
+      +form-text-field({ heading: { h3: 'Дата рождения' }, name: `${name}-birthday`, type: 'date' })
+    fieldset.card-registration__login-fieldset
+      +form-text-field({ heading: { h3: 'Данные для входа в сервис' }, name: `${name}-email`, type: 'email' })
+      +form-text-field({ name: `${name}-password`, type: 'password' })
+      +form-toggle({ name: `${name}-special-offers`, label: 'Получать спецпредложения' })
+    .card-registration__link-btn
+      +button({ appearance: 'link' })(type="submit", value="Перейти к оплате", tabindex="1")
+    .card-registration__to-login
+      p.card-registration__caption-of-redirect-to-entering Уже есть аккаунт на Toxin
+      .card-registration__switch-btn
+        +button({ appearance: 'bordered', horizontalPadding: 'large' })(
+          type="button",
+          value="Войти"
+        )

@@ -1,0 +1,7 @@
+.card-registration__to-login {
+  grid-area: to-login;
+  display: grid;
+  grid: 'caption-of-redirect-to-entering switch-btn';
+  align-items: center;
+  justify-content: space-between;
+}

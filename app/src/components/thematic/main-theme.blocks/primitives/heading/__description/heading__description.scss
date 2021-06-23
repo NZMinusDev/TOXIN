@@ -1,0 +1,6 @@
+@use "@utils/devTools/styles/functions.scss";
+
+.heading__description {
+  font-weight: normal;
+  color: functions.getColor(color__dark-shade, 0.5);
+}

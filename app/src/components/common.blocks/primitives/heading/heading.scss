@@ -1,4 +1,6 @@
 .heading {
-  margin-bottom: 0.4166666666666667em;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px / 12px * 1em;
   user-select: none;
 }

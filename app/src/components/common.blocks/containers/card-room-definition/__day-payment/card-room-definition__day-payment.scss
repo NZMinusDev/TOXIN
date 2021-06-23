@@ -1,6 +1,6 @@
 .card-room-definition__day-payment {
   grid-area: day-payment;
-  place-self: start end;
+  place-self: end;
   font-size: 1em;
-  line-height: 1.285714285714286em;
+  line-height: 24px / 14px * 1em;
 }

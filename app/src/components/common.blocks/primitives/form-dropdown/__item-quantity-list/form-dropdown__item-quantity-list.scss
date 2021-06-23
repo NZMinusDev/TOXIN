@@ -1,8 +1,8 @@
 @use "@utils/devTools/styles/mixins.scss";
 
 .form-dropdown__item-quantity-list {
-  display: block;
-  height: initial;
+  height: 100%;
+  display: flex;
   position: absolute;
   padding: 0;
   text-align: inherit;
@@ -73,7 +73,7 @@
       display: inline-block;
       width: 2.285714285714286em;
       text-align: center;
-      @include mixins.ellipsisText();
+      @include mixins.ellipsisText;
     }
   }
 }

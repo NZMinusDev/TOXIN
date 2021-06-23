@@ -2,6 +2,8 @@ include ~@common.blocks/primitives/heading/heading.pug
 
 //-
   heading?: { [tag: string]: string }, example: { h3: 'awesome heading' }
+  description?: string - description text
+  headingMarginBottom?: 'large' | 'extra-large' - bottom margin of heading
   name?: string - name of input field
   type?: 'text' | 'email' | 'password' | 'date' - type of field for validation 
   placeholder?: string - placeholder text
@@ -10,7 +12,7 @@ include ~@common.blocks/primitives/heading/heading.pug
   materialIcon?: string - material icon name for submit btn in field
   isFilter?: boolean - if true, input change event will reload page with chosen value(get method)
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin form-text-field({ heading = '', name = 'text-field', type = 'text', placeholder = '', value = '', autofocus = false, materialIcon = '', isFilter = false } = {})
+mixin form-text-field({ heading = '', description = '', headingMarginBottom = '', name = 'text-field', type = 'text', placeholder = '', value = '', autofocus = false, materialIcon = '', isFilter = false } = {})
   -
     const allowedInputMaskTypes = ['text', 'search', 'tel', 'url', 'password'];
     const allowedInputmodeAttribute = [
@@ -33,7 +35,7 @@ mixin form-text-field({ heading = '', name = 'text-field', type = 'text', placeh
       allowedInputmodeAttribute.find((attr) => attr === type);
   .form-text-field(class=componentClassModificator)&attributes(attributes)
     if heading
-      +heading(heading, { isLabel: true })(for=name)
+      +heading(heading, { description, marginBottom: headingMarginBottom, isLabel: true })(for=name)
     .form-field
       input.form-text-field__input(
         data-is-filter=isFilter,

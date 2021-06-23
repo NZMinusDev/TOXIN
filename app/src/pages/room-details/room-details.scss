@@ -81,10 +81,6 @@
 .room-details-layout__data {
   grid-area: data;
 
-  .form-bullet-list__heading {
-    margin-bottom: 20px/19px * 1em;
-  }
-
   @media (min-width: 0px) {
     justify-self: center;
   }
@@ -95,19 +91,8 @@
 .room-details-layout__impression {
   grid-area: impression;
 
-  .donut-chart__heading {
-    margin-bottom: 20px/19px * 1em;
-  }
   .donut-chart__bullet-list {
     align-items: flex-end;
-  }
-  .form-bullet-list__item {
-    &:not(:first-child) {
-      margin-top: 0;
-    }
-    &:before {
-      margin-right: 5px/14px * 1em;
-    }
   }
 
   @media (min-width: 0px) {
@@ -119,22 +104,10 @@
 }
 .room-details-layout__comments {
   grid-area: comments;
-
-  .heading {
-    margin-bottom: 20px/19px * 1em;
-  }
 }
 .room-details-layout__rules {
   grid-area: rules;
-
-  .form-bullet-list__heading {
-    margin-left: 20.43px/19px * 1em;
-  }
 }
 .room-details-layout__alert {
   grid-area: alert;
-
-  h2 {
-    margin-bottom: 20px/19px * 1em;
-  }
 }

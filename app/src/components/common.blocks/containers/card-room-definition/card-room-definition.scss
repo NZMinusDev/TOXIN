@@ -1,10 +1,16 @@
 .card-room-definition {
+  $mediumGap: 20px / 14px * 1em;
+  $largeGap: 30px / 14px * 1em;
   grid:
     "room-title day-payment"
-    "arrival-date-dropdown departure-date-dropdown"
+    ". ." #{$mediumGap}
+    "datepicker-fieldset datepicker-fieldset"
+    ". ." #{$mediumGap}
     "guests-single-apply guests-single-apply"
+    ". ." #{$mediumGap}
     "payment-rates payment-rates"
+    ". ." #{$largeGap}
     "total-payment total-payment"
+    ". ." #{$mediumGap}
     "submit-btn submit-btn" / 1fr 1fr;
-  grid-row-gap: 0.7142857142857143em;
 }

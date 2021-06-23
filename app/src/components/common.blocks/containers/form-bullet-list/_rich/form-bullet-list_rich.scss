@@ -1,12 +1,12 @@
 .form-bullet-list_rich {
+  .form-bullet-list__list {
+    grid-row-gap: 20px / 14px * 1em;
+  }
+
   .form-bullet-list__item {
     grid:
-      "icon label" auto
-      "icon description" auto / auto 1fr;
-      
-    &:not(:first-child) {
-      margin-top: 1.428571428571429em;
-    }
+      'icon label' auto
+      'icon description' auto / auto 1fr;
 
     &:not(:last-child) {
       padding-bottom: 1.428571428571429em;
@@ -15,14 +15,12 @@
 
     &:before {
       content: attr(data-icon);
-      font-family: "Material Icons";
-      background: transparent;
-      grid-area: icon;
-      margin-top: initial;
-      margin-right: 0.2083333333333333em;
       width: initial;
       height: initial;
-      border-radius: initial;
+      grid-area: icon;
+      align-self: center;
+      font-family: 'Material Icons';
+      background: transparent;
     }
 
     .form-bullet-list__description {

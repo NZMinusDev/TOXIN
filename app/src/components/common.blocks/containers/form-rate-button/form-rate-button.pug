@@ -2,18 +2,19 @@ include ~@common.blocks/primitives/heading/heading.pug
 
 //-
   heading?: { [tag: string]: string }, example: { h3: 'awesome heading' }
+  headingMarginBottom?: 'large' | 'extra-large' - bottom margin of heading
   name?: string - name of group
   rate: number - init rate amount
   length?: number - number of stars
   titles?: string[] - stars titles(hints)
   disabled?: boolean - same as fieldset disabled (disable all buttons)
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin form-rate-button({ heading = '', name = 'rate', rate = 3, length = 5, titles = ['очень плохо', 'плохо', 'нормально', 'хорошо', 'очень хорошо'], disabled = false } = {})
+mixin form-rate-button({ heading = '', headingMarginBottom = 'large', name = 'rate', rate = 3, length = 5, titles = ['очень плохо', 'плохо', 'нормально', 'хорошо', 'очень хорошо'], disabled = false } = {})
   .form-rate-button&attributes(attributes)
     -
       let counter = length;
     if heading
-      +heading(heading)
+      +heading(heading, { marginBottom: headingMarginBottom })
     fieldset.form-rate-button__rating(disabled=disabled)
       while counter > 0
         -

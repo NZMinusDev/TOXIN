@@ -1,0 +1,5 @@
+@use "@utils/devTools/styles/functions.scss";
+
+.card-room-definition__day-payment {
+  color: functions.getColor(color__dark-shade, 0.5);
+}

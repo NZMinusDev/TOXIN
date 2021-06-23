@@ -16,14 +16,16 @@ include ./__datepicker/form-dropdown__datepicker.pug
       groups: { ['group-name': string]: { selectionText: string, textPlural: string } }, example: { guests: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } }
       list: {['item-title': string]: { default: number, min: number, max: number, group?: 'group-name' } }, example: { взрослые: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0} }; - if group is unset the itemName will be used instead
   heading?: { [tag: string]: string }, example: { h3: 'awesome heading' }
+  description?: string - description text
+  headingMarginBottom?: 'large' | 'extra-large' - bottom margin of heading
   name?: string - name of component hidden input
   placeholder?: string - text of placeholder
   isFilter?: boolean - if true, input change event will reload page with chosen value(get method)
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin form-dropdown(type, { heading = '', name = 'dropdown', placeholder = 'placeholder', range = false, selectedDates = '', altFields = undefined, isAltField = false, openMod = 'toggle', groups = {}, list = {}, isFilter = false } = {})
+mixin form-dropdown(type, { heading = '', description = '', headingMarginBottom = '', name = 'dropdown', placeholder = '', range = false, selectedDates = '', altFields = undefined, isAltField = false, openMod = 'toggle', groups = {}, list = {}, isFilter = false } = {})
   .form-dropdown&attributes(attributes)
     if heading
-      +heading(heading, { isLabel: true })(for=name)
+      +heading(heading, { description, marginBottom: headingMarginBottom, isLabel: true })(for=name)
     .form-field
       button.form-dropdown__expand-btn(id=name, type="button", aria-expanded="false")
         span.icon.form-dropdown__expand-icon

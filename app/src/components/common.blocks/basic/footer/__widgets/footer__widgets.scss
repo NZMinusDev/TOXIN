@@ -5,8 +5,10 @@
     grid: 'logo' 'description' 'navigation' 'about' 'support' 'subscription';
     grid-row-gap: 1.142857142857143em;
     justify-items: center;
-    padding-top: 7.142857142857143em;
+    padding-top: 100px / 14px * 1em;
     padding-bottom: 7.142857142857143em;
+    border: solid black;
+    border-width: 1px 0;
   }
 
   @media print, screen and (min-width: 992px) {

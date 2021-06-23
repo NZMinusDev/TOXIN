@@ -2,6 +2,7 @@ include ~@common.blocks/primitives/heading/heading.pug
 
 //-
   heading?: { [tag: string]: string }, example: { h3: 'awesome heading' }
+  headingMarginBottom?: 'large' | 'extra-large' - bottom margin of heading
   buttons: {
     [value: string]: {
       label: string,
@@ -11,11 +12,11 @@ include ~@common.blocks/primitives/heading/heading.pug
   disabled?: boolean - same as fieldset disabled (disable all buttons)
   isFilter?: boolean - if true, change event will reload page with chosen value(get method)
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin form-radio-buttons({ heading = '', name = 'radio', buttons = {}, disabled = false, isFilter = false } = {})
+mixin form-radio-buttons({ heading = '', headingMarginBottom = 'large', name = 'radio', buttons = {}, disabled = false, isFilter = false } = {})
   .form-radio-buttons&attributes(attributes)
     if heading
       .form-radio-buttons__heading
-        +heading(heading)
+        +heading(heading, { marginBottom: headingMarginBottom })
     fieldset.form-radio-buttons__fieldset(disabled=disabled)
       each btn, key in buttons
         .form-radio-buttons__item

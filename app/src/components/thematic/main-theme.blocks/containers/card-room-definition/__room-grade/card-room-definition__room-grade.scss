@@ -1,0 +1,5 @@
+@use "@utils/devTools/styles/functions.scss";
+
+.card-room-definition__room-grade{
+  color: functions.getColor(color__primary, 1);
+}

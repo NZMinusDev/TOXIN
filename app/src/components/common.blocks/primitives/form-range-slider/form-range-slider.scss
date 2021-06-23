@@ -2,8 +2,9 @@
   display: grid;
   grid:
     "label result"
-    ". ." 23px/14px * 1em
+    ". ." 23px / 14px * 1em
     "slider slider"
-    ". ." 13px/14px * 1em
+    ". ." 16px / 14px * 1em
     "description description";
+    align-items: baseline;
 }

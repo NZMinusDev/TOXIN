@@ -20,8 +20,8 @@ mixin form-dropdown__datepicker({ name = 'datepicker', range = false, selectedDa
   if !isAltField
     +card-datepicker({ range, altFields }).form-dropdown__datepicker&attributes(attributes)
   -
-    const dataPlaceholder = placeholder || (range && !altFields) ? "ДД ММ - ДД ММ" : "ДД.ММ.ГГГГ";
-    const splitSelectedDates = selectedDates.split(",");
+    const dataPlaceholder = placeholder || ((range && !altFields) ? 'ДД ММ - ДД ММ' : 'ДД.ММ.ГГГГ');
+    const splitSelectedDates = selectedDates.split(',');
     let dateTime;
     if (splitSelectedDates.length > 1) {
       const msInDay = 24 * 60 * 60 * 1000;

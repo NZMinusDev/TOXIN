@@ -1,12 +1,18 @@
 //-
   heading: { [tag: string]: text }, example: { h3: 'awesome heading' }
+  description?: string - description text
   isLabel?: boolean - if true, add nested label tag and take a block of pug
+  marginBottom?: 'medium'(12px) | 'large'(16px) | 'extra-large'(20px) | 'none' - bottom margin
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin heading(heading, { isLabel = false } = {})
-  - const headingTag = Object.keys(heading)[0];
+mixin heading(heading, { description = '', isLabel = false, marginBottom = '' } = {})
+  -
+    const headingTag = Object.keys(heading)[0];
+    const marginBottomCLass = marginBottom ? `heading_margin-bottom-${marginBottom}` : '';
   if isLabel
-    #{headingTag}.heading
+    #{headingTag}.heading(class=[marginBottomCLass])
       label&attributes(attributes)= heading[headingTag]
-        block
+      if description
+        label.heading__description= description
+      block
   else
-    #{headingTag}.heading= heading[headingTag]
+    #{headingTag}.heading(class=[marginBottomCLass])= heading[headingTag]

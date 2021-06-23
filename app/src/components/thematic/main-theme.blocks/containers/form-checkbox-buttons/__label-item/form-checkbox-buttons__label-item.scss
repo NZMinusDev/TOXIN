@@ -1,6 +1,5 @@
 @use "@utils/devTools/styles/functions.scss";
 
 .form-checkbox-buttons__label-item {
-  line-height: 0.75rem;
   color: functions.getColor(color__dark-shade, 0.5);
 }

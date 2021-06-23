@@ -1,15 +1,16 @@
 .card-registration {
+  $mediumGap: 20px / 14px * 1em;
+  $largeGap: 30px / 14px * 1em;
   grid:
     "title title"
-    "name-field name-field"
-    "surname-field surname-field"
-    "gender-radio-btn gender-radio-btn"
+    ". ." #{$mediumGap}
+    "name-fieldset name-fieldset"
+    ". ." #{$mediumGap}
     "birthday-field birthday-field"
-    "email-field email-field"
-    "password-field password-field"
-    "special-offer-toggle special-offer-toggle"
+    ". ." #{$mediumGap}
+    "login-fieldset login-fieldset"
+    ". ." #{$mediumGap}
     "link-btn link-btn"
-    ". ." 0.7142857142857143em
-    "caption-of-redirect-to-entering switch-btn" / auto 1fr;
-  gap: 0.7142857142857143em;
+    ". ." #{$largeGap}
+    "to-login to-login" / auto 1fr;
 }

@@ -1,10 +1,5 @@
 .form-radio-buttons__item {
-  flex: 1 1;
   display: inline-grid;
   grid-template-columns: auto 1fr;
   place-items: center start;
-
-  &:nth-of-type(even) {
-    margin-left: 1.428571428571429em;
-  }
 }

@@ -200,80 +200,75 @@ const webpackPlugins = () => {
         },
       ],
     }),
+
+    // FIXME: this plugin keeps compillation from end, doesn't know why
+    new WebpackImagesResizer(listOfSourceImages320, {
+      // 4:3 - QVGA
+      width: designWidth > 320 ? `${(320 / designWidth) * 100}%` : '100%',
+    }),
+    new WebpackImagesResizer(listOfSourceImages640, {
+      // 16:9 - nHD
+      width: designWidth > 640 ? `${(640 / designWidth) * 100}%` : '100%',
+    }),
+    new WebpackImagesResizer(listOfSourceImages960, {
+      // 16:9 - qHD
+      width: designWidth > 960 ? `${(960 / designWidth) * 100}%` : '100%',
+    }),
+    new WebpackImagesResizer(listOfSourceImages1920, {
+      // 16:9 - Full HD
+      width: designWidth > 1920 ? `${(1920 / designWidth) * 100}%` : '100%',
+    }),
+
+    // images are converted to WEBP
+    new ImageMinimizerPlugin({
+      // Enable file caching and set path to cache directory
+      cache: './app/cache/webpack__ImageMinimizerPlugin',
+
+      filename: '[path][name].webp',
+      include: /pictures/,
+      minimizerOptions: {
+        // Lossless optimization with custom option
+        plugins: [
+          [
+            'imagemin-webp',
+            {
+              /*
+               * preset: default //default, photo, picture, drawing, icon and text
+               * lossless: true,
+               */
+              // pre compression with lossless mode on
+              nearLossless: 0,
+            },
+          ],
+        ],
+      },
+    }),
+
+    // original images will compressed lossless
+    new ImageMinimizerPlugin({
+      // Enable file caching and set path to cache directory
+      cache: './app/cache/webpack__ImageMinimizerPlugin',
+      include: /pictures/,
+      minimizerOptions: {
+        // Lossless optimization with custom option
+        plugins: [
+          ['gifsicle', { interlaced: true }],
+          ['jpegtran', { progressive: true }],
+          ['optipng', { optimizationLevel: 5 }],
+          [
+            'svgo',
+            {
+              plugins: [
+                {
+                  removeViewBox: false,
+                },
+              ],
+            },
+          ],
+        ],
+      },
+    }),
   ];
-
-  if (isProd) {
-    plugins.push(
-      // eslint-disable-next-line lines-around-comment
-      // FIXME: this plugin keeps compillation from end, doesn't know why
-      new WebpackImagesResizer(listOfSourceImages320, {
-        // 4:3 - QVGA
-        width: designWidth > 320 ? `${(320 / designWidth) * 100}%` : '100%',
-      }),
-      new WebpackImagesResizer(listOfSourceImages640, {
-        // 16:9 - nHD
-        width: designWidth > 640 ? `${(640 / designWidth) * 100}%` : '100%',
-      }),
-      new WebpackImagesResizer(listOfSourceImages960, {
-        // 16:9 - qHD
-        width: designWidth > 960 ? `${(960 / designWidth) * 100}%` : '100%',
-      }),
-      new WebpackImagesResizer(listOfSourceImages1920, {
-        // 16:9 - Full HD
-        width: designWidth > 1920 ? `${(1920 / designWidth) * 100}%` : '100%',
-      }),
-
-      // images are converted to WEBP
-      new ImageMinimizerPlugin({
-        // Enable file caching and set path to cache directory
-        cache: './app/cache/webpack__ImageMinimizerPlugin',
-
-        filename: '[path][name].webp',
-        include: /pictures/,
-        minimizerOptions: {
-          // Lossless optimization with custom option
-          plugins: [
-            [
-              'imagemin-webp',
-              {
-                /*
-                 * preset: default //default, photo, picture, drawing, icon and text
-                 * lossless: true,
-                 */
-                // pre compression with lossless mode on
-                nearLossless: 0,
-              },
-            ],
-          ],
-        },
-      }),
-
-      // original images will compressed lossless
-      new ImageMinimizerPlugin({
-        // Enable file caching and set path to cache directory
-        cache: './app/cache/webpack__ImageMinimizerPlugin',
-        include: /pictures/,
-        minimizerOptions: {
-          // Lossless optimization with custom option
-          plugins: [
-            ['gifsicle', { interlaced: true }],
-            ['jpegtran', { progressive: true }],
-            ['optipng', { optimizationLevel: 5 }],
-            [
-              'svgo',
-              {
-                plugins: [
-                  {
-                    removeViewBox: false,
-                  },
-                ],
-              },
-            ],
-          ],
-        },
-      })
-    );
-  }
 
   if (process.env.MEASURE === 'true') {
     // writes data in stats.json as plain text, shouldn't be in dev mod)

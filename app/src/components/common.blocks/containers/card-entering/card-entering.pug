@@ -17,6 +17,7 @@ mixin card-entering({ action = '/mock.js', name = 'card-entering', method = 'pos
       tabindex="1"
     )
     p.card-entering__caption-of-redirect-to-registration Нет аккаунта на Toxin?
-    +button({ tag: 'a', text: 'Создать', appearance: 'bordered' }).card-entering__switch-btn(
-      href="/sign-in.html"
+    +button({ appearance: 'bordered' }).card-entering__switch-btn(
+      type="button",
+      value="Создать"
     )

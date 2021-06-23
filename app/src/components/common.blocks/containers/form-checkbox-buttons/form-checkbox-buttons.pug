@@ -2,6 +2,7 @@ include ~@common.blocks/primitives/heading/heading.pug
 
 //- 
   heading?: { [tag: string]: string }, example: { h3: 'awesome heading' }
+  headingMarginBottom?: 'large' | 'extra-large' - bottom margin of heading
   mod?: 'rich' - mod of component
   buttons: {
     [name: string]: {
@@ -13,12 +14,13 @@ include ~@common.blocks/primitives/heading/heading.pug
   disabled?: boolean - same as fieldset disabled (disable all buttons)
   isFilter?: boolean - if true, change event will reload page with chosen value(get method)
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin form-checkbox-buttons({ heading = '', mod = '', buttons = {}, disabled = false, isFilter = false } = {})
+mixin form-checkbox-buttons({ heading = '', headingMarginBottom = 'large', mod = '', buttons = {}, disabled = false, isFilter = false } = {})
   -
     const modClass = mod ? `form-checkbox-buttons_${mod}` : undefined;
   .form-checkbox-buttons(class=modClass)&attributes(attributes)
     if heading
-      +heading(heading)
+      .form-checkbox-buttons__heading
+        +heading(heading, { marginBottom: headingMarginBottom })
     fieldset.form-checkbox-buttons__fieldset(disabled=disabled)
       ul.form-checkbox-buttons__list
         each btn, key in buttons

@@ -2,19 +2,19 @@ include ~@common.blocks/primitives/form-dropdown/form-dropdown.pug
 include ~@common.blocks/primitives/button/button.pug
 
 //- 
- action: string - form action
- name?: string - name of <form>, also it is used such prefix for names of inner forms
- method?: 'get' | 'post' - form method - default is 'get'
- roomNumber: number - number of room
- roomGrade: string - grade of room
- paymentAmount: number - daily cost
- selectedDates?: 'ISODateString,ISODateString' - initial dates; example: '2020-11-18T21:00:00.000Z,2020-11-20T21:00:00.000Z'
- guestsGroups: { ['group-name': string]: { selectionText: string, textPlural: string } }, example: { guests: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } }
- guestsList: { ['item-title': string]: { default: number, min: number, max: number, group?: 'group-name' } }, example: { взрослые: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0} }; - if group is unset the itemName will be used instead 
- servicesPayment: number - amount of services payment
- servicesSale: number - amount of services sale
- additionalServicesPayment: number - amount of additional services payment
- Tip: mixin also uses 'and attributes'(&attributes)
+  action: string - form action
+  name?: string - name of <form>, also it is used such prefix for names of inner forms
+  method?: 'get' | 'post' - form method - default is 'get'
+  roomNumber: number - number of room
+  roomGrade: string - grade of room
+  paymentAmount: number - daily cost
+  selectedDates?: 'ISODateString,ISODateString' - initial dates; example: '2020-11-18T21:00:00.000Z,2020-11-20T21:00:00.000Z'
+  guestsGroups: { ['group-name': string]: { selectionText: string, textPlural: string } }, example: { guests: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } }
+  guestsList: { ['item-title': string]: { default: number, min: number, max: number, group?: 'group-name' } }, example: { взрослые: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0} }; - if group is unset the itemName will be used instead 
+  servicesPayment: number - amount of services payment
+  servicesSale: number - amount of services sale
+  additionalServicesPayment: number - amount of additional services payment
+  Tip: mixin also uses 'and attributes'(&attributes)
 mixin card-room-definition({ action = '/mock.js', name = 'card-room-definition', method = 'post', roomNumber = -1, roomGrade = '', paymentAmount = -1, selectedDates = '', guestsGroups = {}, guestsList = {}, servicesPayment = -1, servicesSale = -1, additionalServicesPayment = -1 } = {})
   -
     const currency = '₽';
@@ -31,8 +31,12 @@ mixin card-room-definition({ action = '/mock.js', name = 'card-room-definition',
       h1.card-room-definition__room-number= roomNumberSentence
       h3.card-room-definition__room-grade= roomGrade
     h3.card-room-definition__day-payment(data-amount=paymentAmount)!= paymentAmountSentence
-    +form-dropdown('date', { heading: { h3: 'Прибытие' }, name: `${name}-arrival`, range: true, selectedDates, altFields: `.card-room-definition__departure-date-dropdown [name=${name}-departure]` }).card-room-definition__arrival-date-dropdown
-    +form-dropdown('date', { heading: { h3: 'Выезд' }, name: `${name}-departure`, isAltField: true }).card-room-definition__departure-date-dropdown
+    fieldset.card-room-definition__datepicker-fieldset
+      .card-room-definition__datepicker
+        .card-room-definition__arrival-date-dropdown
+          +form-dropdown('date', { heading: { h3: 'Прибытие' }, name: `${name}-arrival`, range: true, selectedDates, altFields: `.card-room-definition__departure-date-dropdown [name=${name}-departure]` })
+        .card-room-definition__departure-date-dropdown
+          +form-dropdown('date', { heading: { h3: 'Выезд' }, name: `${name}-departure`, isAltField: true })
     +form-dropdown('item-quantity', { heading: { h3: 'Гости' }, name: `${name}-guests`, placeholder: 'Сколько гостей', openMod: 'apply', groups: guestsGroups, list: guestsList }).card-room-definition__guests-single-apply
     .card-room-definition__payment-rates
       p.card-room-definition__payment-item.card-room-definition__total-day-payment

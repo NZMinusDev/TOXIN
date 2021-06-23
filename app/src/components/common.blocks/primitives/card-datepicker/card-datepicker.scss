@@ -1,5 +1,7 @@
 /* lib redefinition */
 .card-datepicker {
+  z-index: 100;
+
   .datepicker-inline {
     width: 22.85714285714286em;
   }
@@ -23,7 +25,7 @@
     color: inherit;
   }
   .datepicker--nav-action {
-    font-family: "Material Icons";
+    font-family: 'Material Icons';
     width: initial;
     border-radius: 0;
   }
@@ -41,7 +43,7 @@
   .datepicker--cell {
     &.-range-from-:before,
     &.-range-to-:before {
-      content: "";
+      content: '';
       position: absolute;
       z-index: -1;
       top: 0;
@@ -57,6 +59,6 @@
   }
 
   .apply-control {
-    margin-top: 1.428571428571429em;
+    margin-top: 20px / 12px * 1em;
   }
 }

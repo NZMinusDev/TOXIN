@@ -4,7 +4,7 @@
       grid-area: like-button;
       display: grid;
       grid: "label label" "btn-checked btn-unchecked";
-      grid-column-gap: 0.7142857142857143em;
+      gap: 10px / 14px * 1em;
       place-content: end start;
     }
   }
