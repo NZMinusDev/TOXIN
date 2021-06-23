@@ -5,7 +5,7 @@ include ~@common.blocks/primitives/heading/heading.pug
   range: { min: number, max: number }
   start: number[]
   step?: number
-  heading: { [tag: string]: string }, example: { h3: 'awesome heading' }
+  heading?: see mixin heading
   description: string - appended text after slider
   isFilter?: boolean - if true, input change event will reload page with chosen value(get method), default is false
   Tip: mixin also uses 'and attributes'(&attributes)

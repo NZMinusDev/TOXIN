@@ -2,8 +2,8 @@ include ~@common.blocks/primitives/heading/heading.pug
 include ~@common.blocks/containers/form-bullet-list/form-bullet-list.pug
 
 //-
-  heading?: { [tag: string]: string }, example: { h3: 'awesome heading' }
-  headingMarginBottom?: 'large' | 'extra-large' - bottom margin of heading
+  heading?: see mixin heading
+  headingMarginBottom?: marginBottom in mixin heading
   items: { ['title': string]: number } - data partitions, numbers is [0; 1], the first number isn't 0, up to 5 items
   dataName?: string - name of data content
   list?: boolean - append list with designations
