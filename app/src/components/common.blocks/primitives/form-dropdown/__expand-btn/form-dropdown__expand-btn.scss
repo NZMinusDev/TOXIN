@@ -1,5 +1,7 @@
 .form-dropdown__expand-btn {
   width: 100%;
+  display: inline-flex;
+  justify-content: flex-end;
   z-index: 1;
   text-align: inherit;
   text-indent: inherit;

@@ -1,5 +1,6 @@
 .slideshow__switcher {
   display: none;
+  position: absolute;
   top: 0;
   // left/right defined in slideshow__radio
   width: 42px / 270px * 100%;
