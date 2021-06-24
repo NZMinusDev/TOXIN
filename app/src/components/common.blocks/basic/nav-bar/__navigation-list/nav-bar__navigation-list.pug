@@ -4,6 +4,8 @@
 mixin nav-bar__navigation-list(items, active)
   -
     const bubbleActiveStatus = (items, activeKey) => {
+      let isActive = false;
+
       Object.entries(items).forEach(([key, item]) => {
         if (item.items) {
           if (bubbleActiveStatus(item.items, activeKey)) {
@@ -14,11 +16,11 @@ mixin nav-bar__navigation-list(items, active)
         if (key === activeKey || item.active) {
           item.active = 'active';
 
-          return true;
+          isActive = true;
         }
       });
 
-      return false;
+      return isActive;
     };
 
     bubbleActiveStatus(items, active);   
