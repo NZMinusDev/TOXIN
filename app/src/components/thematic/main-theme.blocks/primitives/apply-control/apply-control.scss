@@ -1,14 +1,14 @@
 .apply-control {
-  .apply-control__clear-btn-js,
-  .apply-control__apply-btn-js {
+  .apply-control__clear-btn,
+  .apply-control__apply-btn {
     font: var(--font__h3);
     text-transform: uppercase;
   }
 
-  .apply-control__clear-btn-js {
+  .apply-control__clear-btn {
     color: rgba(var(--color__dark-shade), 0.5);
   }
-  .apply-control__apply-btn-js {
+  .apply-control__apply-btn {
     color: rgba(var(--color__primary), 1);
   }
 }

@@ -20,10 +20,10 @@ export class ToxinIQDropdownApplyOpeningMethodModifier extends ToxinIQDropdownOp
     };
 
     (toxinIQDropdown.dom as ToxinIQDropdownApplyOpeningMethodDOM).clearBtn = toxinIQDropdown.dom.menu.querySelector(
-      ".apply-control__clear-btn-js"
+      ".apply-control__clear-btn"
     );
     (toxinIQDropdown.dom as ToxinIQDropdownApplyOpeningMethodDOM).applyBtn = toxinIQDropdown.dom.menu.querySelector(
-      ".apply-control__apply-btn-js"
+      ".apply-control__apply-btn"
     );
 
     const clearHandler = (clickEvent: MouseEvent) => {

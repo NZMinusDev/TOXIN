@@ -1,9 +1,10 @@
+import { MS_IN_DAY } from "@utils/devTools/scripts/DateHelper";
+
 import {
   DatepickerDropdownElement,
   AltDatepickerDropdownElement,
 } from "@common.blocks/primitives/form-dropdown/__datepicker/form-dropdown__datepicker";
 
-const MS_IN_DAY = 1000 * 60 * 60 * 24;
 const CURRENCY = "₽";
 
 $(function () {
@@ -26,10 +27,10 @@ $(function () {
     const $totalPaymentAmount = $(this).find(".card-room-definition__total-payment-amount");
 
     const arrivalDropdown = this.querySelector(
-      ".card-room-definition__arrival-date-dropdown"
+      ".card-room-definition__arrival-date-dropdown .form-dropdown"
     ) as DatepickerDropdownElement;
     const departureDropdown = this.querySelector(
-      ".card-room-definition__departure-date-dropdown"
+      ".card-room-definition__departure-date-dropdown .form-dropdown"
     ) as AltDatepickerDropdownElement;
 
     const updatePaymentDisplay = () => {
