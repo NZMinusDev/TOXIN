@@ -56,7 +56,7 @@ mixin card-room-definition({ action = '/mock.js', name = 'card-room-definition',
         span.card-room-definition__payment-amount(data-amount=additionalServicesPayment)= `${additionalServicesPayment.toLocaleString()}${currency}`
     h2.card-room-definition__payment-item.card-room-definition__total-payment
       span Итого
-      span.text-separator
+      span.card-room-definition__text-separator
       span.card-room-definition__total-payment-amount
     +button({ appearance: 'like-a-link' }).card-room-definition__submit-btn(
       type="submit",
