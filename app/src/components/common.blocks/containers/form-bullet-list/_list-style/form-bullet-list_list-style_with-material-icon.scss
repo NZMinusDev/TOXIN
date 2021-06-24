@@ -1,0 +1,30 @@
+.form-bullet-list_list-style_with-material-icon {
+  .form-bullet-list__list {
+    grid-row-gap: 20px / 14px * 1em;
+  }
+
+  .form-bullet-list__item {
+    grid:
+      'icon label' auto
+      'icon description' auto / auto 1fr;
+
+    &:not(:last-child) {
+      padding-bottom: 1.428571428571429em;
+      border-bottom: 1px solid black;
+    }
+
+    &:before {
+      content: attr(data-icon);
+      width: initial;
+      height: initial;
+      grid-area: icon;
+      align-self: center;
+      font-family: 'Material Icons';
+      background: transparent;
+    }
+
+    .form-bullet-list__description {
+      grid-area: description;
+    }
+  }
+}

@@ -12,16 +12,16 @@ include ~@common.blocks/primitives/form-text-field/form-text-field.pug
 mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscription', method = 'post', icons = [ { img: '', title: 'twitter', href: '/mock.html' }, { img: '', title: 'facebook', href: '/mock.html' }, { img: '', title: 'instagram', href: '/mock.html' } ], copyright = 'Copyright © 2018 Toxin отель. Все права зачищены.' } = {})
   case type
     when 'creative'
-      footer.footer.footer_creative&attributes(attributes)
+      footer.footer.footer_type_creative&attributes(attributes)
         section.footer__logo
-          .logo.logo_color-gradient-primary
+          .logo.logo_color_primary-gradient
           span.logo__title TOXIN
         p.footer__copyright= copyright
         section.footer__icons
           ul.footer__icons-list
             each icon in icons
               li.footer__icons-list-item
-                a.icon.icon_color-gradient-primary.footer__brand-icon(
+                a.icon.icon_color_primary-gradient.footer__brand-icon(
                   href=icon.href,
                   data-icon=icon.img,
                   title=icon.title
@@ -30,7 +30,7 @@ mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscriptio
       footer.footer&attributes(attributes)
         section.footer__widgets.content-container
           section.footer__logo
-            .logo.logo_color-gradient-primary
+            .logo.logo_color_primary-gradient
             span.logo__title TOXIN
           p.footer__description Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»
           section.footer__navigation
@@ -87,7 +87,7 @@ mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscriptio
             ul.footer__icons-list
               each icon in icons
                 li.footer__icons-list-item
-                  a.icon.icon_color-gradient-primary.footer__brand-icon(
+                  a.icon.icon_color_primary-gradient.footer__brand-icon(
                     href=icon.href,
                     data-icon=icon.img,
                     title=icon.title

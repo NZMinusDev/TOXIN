@@ -25,17 +25,14 @@ mixin nav-bar__navigation-list(items, active)
   ul.nav-bar__navigation-list
     each itemSettings, itemName in items
       if itemSettings.items
-        li.nav-bar__navigation-item(
-          class=[itemSettings.items ? 'nav-bar__navigation-item_isDropdown' : undefined, itemSettings.active ? 'nav-bar__navigation-item_isActive' : undefined],
+        li.nav-bar__navigation-item.nav-bar__navigation-item_expandable(
+          class=[itemSettings.active ? 'nav-bar__navigation-item_active' : undefined],
           tabindex="0"
         )= itemName
-          .icon.nav-bar__expand-icon
+          span.icon.nav-bar__expand-icon
           +nav-bar__navigation-list(itemSettings.items)
       else
         li.nav-bar__navigation-item(
-          class=itemSettings.items ? 'nav-bar__navigation-item_isDropdown' : undefined
+          class=itemSettings.active ? 'nav-bar__navigation-item_active' : undefined
         )
-          a(
-            href=itemSettings.href,
-            class=itemSettings.active ? 'nav-bar__navigation-item_isActive' : undefined
-          )= itemName
+          a(href=itemSettings.href)= itemName

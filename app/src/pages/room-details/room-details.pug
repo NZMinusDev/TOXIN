@@ -20,7 +20,7 @@ block content
       +picture(htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888_2.jpg').default : undefined, 'Фотография номера № 2').room-details-layout__small-img-1
       +picture(htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888_3.jpg').default : undefined, 'Фотография номера № 3').room-details-layout__small-img-2
     section.room-details-layout__info
-      +form-bullet-list({ heading: { h2: 'Сведения о номере' }, mod: 'rich', items: { Комфорт: { icon: 'insert_emoticon', description: 'Шумопоглощающие стены' }, Удобство: { icon: 'location_city', description: 'Окно в каждой из спален' }, Уют: { icon: 'whatshot', description: 'Номер оснащен камином' } } }).room-details-layout__data
+      +form-bullet-list({ heading: { h2: 'Сведения о номере' }, listStyle: 'material-icon', items: { Комфорт: { icon: 'insert_emoticon', description: 'Шумопоглощающие стены' }, Удобство: { icon: 'location_city', description: 'Окно в каждой из спален' }, Уют: { icon: 'whatshot', description: 'Номер оснащен камином' } } }).room-details-layout__data
       +donut-chart({ heading: { h2: 'Впечатления от номера' }, items: { Великолепно: 130, Хорошо: 65, Удовлетворительно: 65, Разочарован: 0 }, dataName: 'голосов', list: true }).room-details-layout__impression
       -
         const msPerDay = 1000 * 60 * 60 * 24;

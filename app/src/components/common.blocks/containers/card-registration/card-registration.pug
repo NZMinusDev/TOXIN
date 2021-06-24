@@ -22,7 +22,7 @@ mixin card-registration({ action = '/mock.js', name = 'card-registration', metho
       +form-text-field({ name: `${name}-password`, type: 'password' })
       +form-toggle({ name: `${name}-special-offers`, label: 'Получать спецпредложения' })
     .card-registration__link-btn
-      +button({ appearance: 'link' })(type="submit", value="Перейти к оплате", tabindex="1")
+      +button({ appearance: 'like-a-link' })(type="submit", value="Перейти к оплате", tabindex="1")
     .card-registration__to-login
       p.card-registration__caption-of-redirect-to-entering Уже есть аккаунт на Toxin
       .card-registration__switch-btn

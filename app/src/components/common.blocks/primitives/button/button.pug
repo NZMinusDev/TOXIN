@@ -1,13 +1,13 @@
 //-
   tag?: 'button' | 'a'
   text: string - inner text of button
-  appearance?: 'filled' | 'bordered' | 'icon-link' | 'link'
+  appearance?: 'filled' | 'bordered' | 'like-a-icon-link' | 'like-a-link'
   horizontalPadding?: 'large'(26px)
   Tip: mixin also uses 'and attributes'(&attributes)
 mixin button({ tag = 'button', text = '', appearance = 'filled', horizontalPadding = '' } = {})
   -
-    const appearanceClass = `button_appearance-${appearance}`;
-    const horizontalPaddingClass = horizontalPadding ? `button_horizontal-padding-${horizontalPadding}` : '';
+    const appearanceClass = `button_appearance_${appearance}`;
+    const horizontalPaddingClass = horizontalPadding ? `button_horizontal-padding_${horizontalPadding}` : '';
   #{tag}.button(class=[appearanceClass, horizontalPaddingClass])&attributes(attributes)= text || attributes.value
-    if appearance === 'link'
+    if appearance === 'like-a-link'
       span.icon

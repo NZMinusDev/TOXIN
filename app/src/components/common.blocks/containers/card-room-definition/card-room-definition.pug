@@ -20,7 +20,7 @@ mixin card-room-definition({ action = '/mock.js', name = 'card-room-definition',
     const currency = '₽';
 
     const roomNumberSentence = `№ ${roomNumber.toLocaleString()}`;
-    const paymentAmountSentence = `${paymentAmount.toLocaleString()}${currency}<span class="card-base__text card-base__text_size-small"> в сутки</span>`;
+    const paymentAmountSentence = `${paymentAmount.toLocaleString()}${currency}<span class="card-base__text card-base__text_size_small"> в сутки</span>`;
 
     servicesPayment = servicesPayment - servicesSale;
     const servicesSaleSentence = servicesSale
@@ -37,7 +37,7 @@ mixin card-room-definition({ action = '/mock.js', name = 'card-room-definition',
           +form-dropdown('date', { heading: { h3: 'Прибытие' }, name: `${name}-arrival`, range: true, selectedDates, altFields: `.card-room-definition__departure-date-dropdown [name=${name}-departure]` })
         .card-room-definition__departure-date-dropdown
           +form-dropdown('date', { heading: { h3: 'Выезд' }, name: `${name}-departure`, isAltField: true })
-    +form-dropdown('item-quantity', { heading: { h3: 'Гости' }, name: `${name}-guests`, placeholder: 'Сколько гостей', openMod: 'apply', groups: guestsGroups, list: guestsList }).card-room-definition__guests-single-apply
+    +form-dropdown('item-quantity', { heading: { h3: 'Гости' }, name: `${name}-guests`, placeholder: 'Сколько гостей', openingMethod: 'apply', groups: guestsGroups, list: guestsList }).card-room-definition__guests-single-apply
     .card-room-definition__payment-rates
       p.card-room-definition__payment-item.card-room-definition__total-day-payment
         span.card-room-definition__payment-sentence
@@ -58,7 +58,7 @@ mixin card-room-definition({ action = '/mock.js', name = 'card-room-definition',
       span Итого
       span.text-separator
       span.card-room-definition__total-payment-amount
-    +button({ appearance: 'link' }).card-room-definition__submit-btn(
+    +button({ appearance: 'like-a-link' }).card-room-definition__submit-btn(
       type="submit",
       value="Забронировать"
     )

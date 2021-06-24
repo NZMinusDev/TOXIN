@@ -5,23 +5,23 @@ include ~@common.blocks/primitives/heading/heading.pug
   headingMarginBottom?: marginBottom in mixin heading
   rowGap?: 'none'
   textIndent?: 'medium'(5px)
-  mod?: 'rich' - mod of list
+  listStyle?: 'material-icon' - type of list-style
   items: string[] | { [text: string]: { icon: 'material icon name', description: string } } - items of list
   Tip: mixin also uses 'and attributes'(&attributes)
 
-mixin form-bullet-list({ heading = '', headingMarginBottom = 'medium', rowGap = '', textIndent = '', mod = '', items = {} } = {})
+mixin form-bullet-list({ heading = '', headingMarginBottom = 'medium', rowGap = '', textIndent = '', listStyle = '', items = {} } = {})
   -
-    const rowGapClass = rowGap ? `form-bullet-list__list_row-gap-${rowGap}` : undefined;  
-    const textIndentClass = textIndent ? `form-bullet-list__item_text-indent-${textIndent}` : undefined;  
-    const modClass = mod ? `form-bullet-list_${mod}` : undefined;
-  .form-bullet-list(class=modClass)&attributes(attributes)
+    const rowGapClass = rowGap ? `form-bullet-list__list_row-gap_${rowGap}` : undefined;  
+    const textIndentClass = textIndent ? `form-bullet-list__item_text-indent_${textIndent}` : undefined;  
+    const listStyleClass = listStyle ? `form-bullet-list_list-style_with-${listStyle}` : undefined;
+  .form-bullet-list(class=listStyleClass)&attributes(attributes)
     if heading
       .form-bullet-list__heading 
         +heading(heading, { marginBottom: headingMarginBottom })
     ul.form-bullet-list__list(class=[rowGapClass])
       each item, key in items
-        case mod
-          when 'rich'
+        case listStyle
+          when 'material-icon'
             li.form-bullet-list__item(class=[textIndentClass], data-icon=item.icon)= key
               p.form-bullet-list__description= item.description
           default

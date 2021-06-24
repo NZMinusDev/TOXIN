@@ -7,7 +7,7 @@
 mixin heading(heading, { description = '', isLabel = false, marginBottom = '' } = {})
   -
     const headingTag = Object.keys(heading)[0];
-    const marginBottomCLass = marginBottom ? `heading_margin-bottom-${marginBottom}` : '';
+    const marginBottomCLass = marginBottom ? `heading_margin-bottom_${marginBottom}` : '';
   if isLabel
     #{headingTag}.heading(class=[marginBottomCLass])
       label&attributes(attributes)= heading[headingTag]

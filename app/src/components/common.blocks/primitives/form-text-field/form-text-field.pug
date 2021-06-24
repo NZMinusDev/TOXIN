@@ -28,7 +28,7 @@ mixin form-text-field({ heading = '', description = '', headingMarginBottom = ''
     const reservedPlaceholders = { email: 'Email', password: 'Пароль', date: 'ДД.ММ.ГГГГ' };
 
     const componentClassModificator = type
-      ? `form-text-field_type-${type}`
+      ? `form-text-field_type${type}`
       : '';
     const inputMaskType = allowedInputMaskTypes.find((inputMaskType) => inputMaskType === type) || 'text';
     const inputModeAttr =
