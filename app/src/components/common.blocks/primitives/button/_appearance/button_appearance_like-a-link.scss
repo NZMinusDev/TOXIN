@@ -1,10 +1,10 @@
 @use "./../variables.scss";
 
-$ICON_WIDTH: 3.666666666666667em;
+$iconWidth: 3.666666666666667em;
 .button_appearance_like-a-link {
   position: relative;
-  padding-left: $ICON_WIDTH + variables.$X_PADDING;
-  padding-right: $ICON_WIDTH + variables.$X_PADDING;
+  padding-left: $iconWidth + variables.$X_PADDING;
+  padding-right: $iconWidth + variables.$X_PADDING;
   background: rgba(169, 169, 169, 1);
 
   &:hover {
@@ -12,7 +12,7 @@ $ICON_WIDTH: 3.666666666666667em;
   }
 
   .icon {
-    width: $ICON_WIDTH;
+    width: $iconWidth;
     top: 0;
     right: 0;
 

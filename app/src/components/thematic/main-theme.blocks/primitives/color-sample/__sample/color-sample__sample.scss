@@ -1,4 +1,4 @@
-$THEME_COLORS: (
+$themeColors: (
   'color__dark-shade_100': rgba(var(--color__dark-shade), 1),
   'color__dark-shade_75': rgba(var(--color__dark-shade), 0.75),
   'color__dark-shade_50': rgba(var(--color__dark-shade), 0.5),
@@ -9,9 +9,9 @@ $THEME_COLORS: (
 );
 
 $counter: 1;
-@each $color-name, $color-value in $THEME_COLORS {
+@each $color-name, $color-value in $themeColors {
   [class='color-sample']:nth-child(#{$counter}) > .color-sample__sample {
-    background-color: map-get($THEME_COLORS, $color-name);
+    background-color: map-get($themeColors, $color-name);
   }
   $counter: $counter + 1;
 }

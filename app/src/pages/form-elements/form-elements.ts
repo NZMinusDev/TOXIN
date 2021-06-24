@@ -14,14 +14,14 @@ import {
 // focus components
 (document.querySelector('#text') as HTMLElement).focus();
 
-const DROPDOWN_SELECTOR = '.form-dropdown';
+const dropdownSelector = '.form-dropdown';
 
 (has(dropdownsWithIQList, '#facilities-2').closest(
-  DROPDOWN_SELECTOR
+  dropdownSelector
 ) as ToxinIQDropdownElement).toxinIQDropdown.open();
 (has(dropdownsWithIQList, '#guests-1').closest(
-  DROPDOWN_SELECTOR
+  dropdownSelector
 ) as ToxinIQDropdownElement).toxinIQDropdown.open();
 (has(dropdownsWithIQList, '#guests-2').closest(
-  DROPDOWN_SELECTOR
+  dropdownSelector
 ) as ToxinIQDropdownElement).toxinIQDropdown.open();
