@@ -22,6 +22,9 @@ figure {
 img {
   display: block;
 }
+label {
+  user-select: none;
+}
 input {
   border: 0;
   padding: 0;
