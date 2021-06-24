@@ -1,6 +1,6 @@
-@use "@utils/devTools/styles/mixins.scss";
+@use '@utils/devTools/styles/mixins.scss';
 
-@use "@thematic/main-theme.blocks/gradients.scss";
+@use '@thematic/main-theme.blocks/gradients.scss';
 
 .form-rate-button__button-item {
   & + .icon {

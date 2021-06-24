@@ -1,4 +1,4 @@
-@use "./../variables.scss";
+@use './../variables.scss';
 
 $iconWidth: 44px / 12px * 1em;
 .button_appearance_like-a-link {
@@ -18,7 +18,7 @@ $iconWidth: 44px / 12px * 1em;
     right: 0;
 
     &:after {
-      content: "\e5c8";
+      content: '\e5c8';
       color: white;
     }
   }

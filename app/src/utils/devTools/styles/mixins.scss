@@ -1,7 +1,7 @@
-@use "sass:list";
-@use "sass:string";
+@use 'sass:list';
+@use 'sass:string';
 
-@use "@utils/devTools/styles/functions.scss";
+@use '@utils/devTools/styles/functions.scss';
 
 /// Places item to center using position: absolute
 @mixin centerAbsPosition {

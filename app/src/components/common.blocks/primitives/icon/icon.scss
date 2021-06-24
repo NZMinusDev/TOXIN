@@ -6,13 +6,13 @@
   cursor: pointer;
 
   &:before {
-    content: "";
+    content: '';
     display: block;
     padding-top: 100%; /* 1:1 Aspect Ratio */
   }
 
   &:after {
-    content: "\e813";
+    content: '\e813';
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,7 +21,7 @@
     left: 0;
     bottom: 0;
     right: 0;
-    font-family: "Material Icons";
+    font-family: 'Material Icons';
     text-indent: 0;
   }
 }

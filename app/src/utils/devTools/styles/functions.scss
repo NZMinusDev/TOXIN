@@ -1,5 +1,5 @@
-@use "sass:list";
-@use "sass:string";
+@use 'sass:list';
+@use 'sass:string';
 
  
 /// Adjustable size depending on the user's device, if you need upper or lower border for fixed value - use this function in @media (max-width/min-width) in your project and point out the same $pcSize for default value

@@ -14,7 +14,7 @@ $borderWidth: 3px;
   $curve-x: 11.29px / 48px * 100%;
   $left-curve-size: (14.12px - $borderWidth) / 48px * 100%;
   &:before {
-    content: "";
+    content: '';
     position: absolute;
     top: $curve-y;
     left: $curve-x;
@@ -28,7 +28,7 @@ $borderWidth: 3px;
   $right-curve-width: (10.94px - $borderWidth) / 48px * 100%;
   $right-curve-height: (7.09px - $borderWidth) / 48px * 100%;
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     top: $curve-y;
     right: $curve-x;

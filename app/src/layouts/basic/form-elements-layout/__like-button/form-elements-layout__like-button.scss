@@ -3,7 +3,7 @@
     & {
       grid-area: like-button;
       display: grid;
-      grid: "label label" "btn-checked btn-unchecked";
+      grid: 'label label' 'btn-checked btn-unchecked';
       gap: 10px / 14px * 1em;
       place-content: end start;
     }

@@ -1,10 +1,10 @@
 .form-range-slider {
   display: grid;
   grid:
-    "label result"
-    ". ." 23px / 14px * 1em
-    "slider slider"
-    ". ." 16px / 14px * 1em
-    "description description";
-    align-items: baseline;
+    'label result'
+    '. .' 23px / 14px * 1em
+    'slider slider'
+    '. .' 16px / 14px * 1em
+    'description description';
+  align-items: baseline;
 }
