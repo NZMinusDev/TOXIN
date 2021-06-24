@@ -125,6 +125,18 @@ The order of redefinition levels is as follows: layouts -> library -> common -> 
 
 _\* - inside the directories, there are additional folders for each individual redefinition sublevel. To connect them, you need to modify webpack.config_.
 
+### Some tips about code practice
+
+#### SCSS
+
+```scss
+width: 100px / 14px * 1em; // means translating of 100px design size to em value, where 14px is size of font for this selector
+/*
+the goal is to achieve liquidness, see the formula of fluid font: ./app/src/utils/devTools/styles/mixins.scss
+- main advantages: it has browsers' support, the size is always proportional to the neighboring content, the size is fluid
+*/
+```
+
 ### Technologies
 
 1. [Shared VS Code settings](./.vscode/settings.json).
