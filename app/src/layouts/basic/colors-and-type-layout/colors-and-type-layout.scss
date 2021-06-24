@@ -8,7 +8,7 @@
   }
 
   @media print, screen and (min-width: 992px) {
-    grid: 'colors type' / auto 28.78571428571429em;
+    grid: 'colors type' / auto #{403px / 14px * 1em};
     place-content: normal space-between;
     place-items: normal;
   }

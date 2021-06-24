@@ -2,6 +2,6 @@
   height: fit-content;
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-column-gap: 0.7142857142857143em;
+  grid-column-gap: 10px / 14px * 1em;
   place-items: center start;
 }

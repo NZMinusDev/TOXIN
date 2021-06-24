@@ -3,14 +3,14 @@
   appearance: none;
   position: relative;
   display: inline-block;
-  width: 1.428571428571429em;
-  height: 1.428571428571429em;
+  width: 20px / 14px * 1em;
+  height: 20px / 14px * 1em;
   border: 1px solid black;
   cursor: pointer;
 
   &:before {
     $border-width: 2px;
-    content: "";
+    content: '';
     width: calc(#{$border-width} + 20%);
     height: calc(#{$border-width} + 30%);
     position: absolute;

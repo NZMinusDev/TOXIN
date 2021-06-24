@@ -2,5 +2,5 @@
   grid-area: room-data;
   display: grid;
   grid-template-rows: 1fr 1fr;
-  padding: 1.428571428571429em 1.142857142857143em #{12px / 14px * 1em} 1.428571428571429em;
+  padding: #{20px / 14px * 1em} #{16px / 14px * 1em} #{12px / 14px * 1em} #{20px / 14px * 1em};
 }

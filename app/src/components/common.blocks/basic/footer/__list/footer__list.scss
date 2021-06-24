@@ -1,7 +1,7 @@
 .footer__list {
   @media print, screen and (min-width: 0px) {
     display: grid;
-    grid-row-gap: 1.571428571428571em;
+    grid-row-gap: 22px / 14px * 1em;
     justify-items: center;
     margin-top: 24px / 14px * 1em;
   }

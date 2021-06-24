@@ -1,8 +1,7 @@
 .comments__item {
   display: grid;
   grid:
-    "icon source"
-    "like content" / auto 1fr;
-  grid-row-gap: 0.7142857142857143em;
-  grid-column-gap: 0.7142857142857143em;
+    'icon source'
+    'like content' / auto 1fr;
+  gap: 10px / 14px * 1em;
 }

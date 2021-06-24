@@ -3,20 +3,21 @@
     grid-area: widgets;
     display: grid;
     grid: 'logo' 'description' 'navigation' 'about' 'support' 'subscription';
-    grid-row-gap: 1.142857142857143em;
+    grid-row-gap: 16px / 14px * 1em;
     justify-items: center;
     padding-top: 100px / 14px * 1em;
-    padding-bottom: 7.142857142857143em;
+    padding-bottom: 100px / 14px * 1em;
     border: solid black;
     border-width: 1px 0;
   }
 
   @media print, screen and (min-width: 992px) {
-    $descriptionWidth: 260 / (1440 - 140 * 2) * 100%;
-    $navigationGapWidth: 40 / (1440 - 140 * 2) * 100%;
-    $aboutGapWidth: 57 / (1440 - 140 * 2) * 100%;
-    $supportGapWidth: 92 / (1440 - 140 * 2) * 100%;
-    $subscriptionGapWidth: 57 / (1440 - 140 * 2) * 100%;
+    $padding: 140px;
+    $descriptionWidth: 260px / (1440px - $padding * 2) * 100%;
+    $navigationGapWidth: 40px / (1440px - $padding * 2) * 100%;
+    $aboutGapWidth: 57px / (1440px - $padding * 2) * 100%;
+    $supportGapWidth: 92px / (1440px - $padding * 2) * 100%;
+    $subscriptionGapWidth: 57px / (1440px - $padding * 2) * 100%;
     grid:
       'logo . navigation . about . support . subscription' auto
       'description . navigation . about . support . subscription' 1fr / #{$descriptionWidth} #{$navigationGapWidth} auto #{$aboutGapWidth} auto #{$supportGapWidth} auto #{$subscriptionGapWidth} auto;

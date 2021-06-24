@@ -4,7 +4,7 @@
       grid-area: button-icon-link;
       display: grid;
       grid-template-columns: auto 1fr;
-      grid-column-gap: 1.571428571428571em;
+      grid-column-gap: 22px / 14px * 1em;
       place-items: start;
       margin-top: 10px / 320px * 100%;
     }

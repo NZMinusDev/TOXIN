@@ -4,14 +4,14 @@
     right: 0;
     left: 0;
     margin: auto;
-    width: 768 / 1440 * 100%;
-    padding-top: 8.571428571428571em;
+    width: 768px / 1440px * 100%;
+    padding-top: 120px / 14px * 1em;
     padding-bottom: 112px / 14px * 1em;
     grid:
       'logo'
       'copyright'
       'icons';
-    grid-row-gap: 1.428571428571429em;
+    grid-row-gap: 20px / 14px * 1em;
     justify-items: center;
   }
 }

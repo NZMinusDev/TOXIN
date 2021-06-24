@@ -5,17 +5,17 @@
   }
   /* lib redefinition */
   .noUi-horizontal {
-    height: 0.4285714285714286em;
+    height: 6px / 14px * 1em;
   }
   .noUi-target,
   .noUi-connect {
     border-radius: 3px;
   }
   .noUi-horizontal .noUi-handle {
-    width: 1.142857142857143em;
-    height: 1.142857142857143em;
-    top: -0.4285714285714286em;
-    right: -0.5714285714285714em;
+    width: 16px / 14px * 1em;
+    height: 16px / 14px * 1em;
+    top: -6px / 14px * 1em;
+    right: -8px / 14px * 1em;
     border: 2px solid #ffffff;
     border-radius: 100%;
     &:focus {

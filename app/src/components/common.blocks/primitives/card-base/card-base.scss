@@ -1,10 +1,10 @@
 .card-base {
-  width: 27.14285714285714em;
+  width: 380px / 14px * 1em;
   height: fit-content;
   display: grid;
   align-items: center;
-  padding: 2.142857142857143em;
-  padding-top: 2.857142857142857em;
+  padding: 30px / 14px * 1em;
+  padding-top: 40px / 14px * 1em;
   border: 1px solid rgba(0, 0, 0, 0.12);
   background-color: white;
 }

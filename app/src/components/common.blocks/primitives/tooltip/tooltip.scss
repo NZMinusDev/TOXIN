@@ -1,6 +1,6 @@
 .tooltip {
-  $tooltipIconSize: 1.428571428571429em;
-  $tooltipArrowSize: 0.3571428571428571em;
+  $tooltipIconSize: 20px / 14px * 1em;
+  $tooltipArrowSize: 5px / 14px * 1em;
 
   display: inline-flex;
   justify-content: center;
@@ -26,7 +26,7 @@
 
   //Tooltip arrow
   &:after {
-    content: "";
+    content: '';
     top: $tooltipIconSize;
     border-bottom: $tooltipArrowSize solid black;
     border-right: $tooltipArrowSize solid transparent;

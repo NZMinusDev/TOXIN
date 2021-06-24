@@ -4,7 +4,7 @@
   grid-column-gap: 1em;
   justify-content: space-between;
   align-items: end;
-  padding-bottom: 0.714285714285715em;
+  padding-bottom: 10px / 14px * 1em;
 
   &:not(:last-child) {
     border-bottom: 1px solid black;

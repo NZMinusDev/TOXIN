@@ -21,7 +21,7 @@
   grid-area: demo;
   display: grid;
 
-  $cellHeight: 485px/14px * 1em / 2;
+  $cellHeight: 485px / 14px * 1em / 2;
   @media (min-width: 0px) {
     grid:
       'big-img' #{$cellHeight * 2}
@@ -29,7 +29,7 @@
       'small-img-2' #{$cellHeight * 2};
   }
   @media (min-width: 992px) {
-    $bigImgWidth: 981px/1440px * 100%;
+    $bigImgWidth: 981px / 1440px * 100%;
     grid:
       'big-img small-img-1' #{$cellHeight}
       'big-img small-img-2' #{$cellHeight} / #{$bigImgWidth} 1fr;
@@ -38,7 +38,7 @@
 .room-details-layout__info {
   grid-area: info;
   display: grid;
-  grid-row-gap: 30px/14px * 1em;
+  grid-row-gap: 30px / 14px * 1em;
   grid-column-gap: inherit;
 
   @media (min-width: 0px) {

@@ -3,13 +3,13 @@
   z-index: 100;
 
   .datepicker-inline {
-    width: 22.85714285714286em;
+    width: 320px / 14px * 1em;
   }
 
   .datepicker {
     width: initial;
     font: inherit;
-    padding: 1.428571428571429em;
+    padding: 20px / 14px * 1em;
   }
 
   .datepicker--nav,
@@ -31,14 +31,14 @@
   }
 
   .datepicker--content {
-    margin-top: 2.142857142857143em;
+    margin-top: 30px / 14px * 1em;
   }
   .datepicker--days-names {
     margin: 0;
   }
   .datepicker--cell,
   .datepicker--day-name {
-    height: 3.333333333333333em;
+    height: 40px / 12px * 1em;
   }
   .datepicker--cell {
     &.-range-from-:before,

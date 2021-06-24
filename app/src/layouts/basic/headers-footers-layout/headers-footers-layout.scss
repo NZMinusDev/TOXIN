@@ -2,8 +2,8 @@
   @media print, screen and (min-width: 0px) {
     & {
       display: grid;
-      grid-row-gap: 2.857142857142857em;
-      margin-top: 3.928571428571429em;
+      grid-row-gap: 40px / 14px * 1em;
+      margin-top: 55px / 14px * 1em;
     }
   }
 }

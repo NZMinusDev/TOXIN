@@ -11,7 +11,7 @@
   border-radius: 0;
 
   .iqdropdown-selection {
-    width: (15px+160px)/266px * 100%;
+    width: (15px + 160px) / 266px * 100%;
     color: inherit;
     font: inherit;
     @include mixins.ellipsisText;
@@ -25,8 +25,8 @@
   .iqdropdown-menu {
     z-index: 1;
     margin: 0 -1px;
-    top: 3em;
-    padding: 0.4285714285714286em 0.5em 0.3571428571428571em 1.071428571428571em;
+    top: 42px / 14px * 1em;
+    padding: #{6px / 14px * 1em} #{7px / 14px * 1em} #{5px / 14px * 1em} #{15px / 14px * 1em};
     box-shadow: initial;
     border: 1px solid black;
   }
@@ -37,7 +37,7 @@
     text-indent: 0;
 
     &:not(:first-of-type) {
-      margin-top: 0.5em;
+      margin-top: #{7px / 14px * 1em};
     }
   }
 
@@ -57,8 +57,8 @@
 
     button.button-decrement,
     button.button-increment {
-      height: 2.142857142857143em;
-      width: 2.142857142857143em;
+      height: #{30px / 14px * 1em};
+      width: #{30px / 14px * 1em};
       border-radius: 100%;
       border: 1px solid black;
     }
@@ -71,7 +71,7 @@
 
     .counter {
       display: inline-block;
-      width: 2.285714285714286em;
+      width: #{32px / 14px * 1em};
       text-align: center;
       @include mixins.ellipsisText;
     }

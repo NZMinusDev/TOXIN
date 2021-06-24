@@ -1,7 +1,7 @@
 .footer__brand-icon {
   @media print, screen and (min-width: 0px) {
     position: relative;
-    width: 1.714285714285714em;
+    width: 24px / 14px * 1em;
 
     &:after {
       font-family: 'Font Awesome 5 Brands';

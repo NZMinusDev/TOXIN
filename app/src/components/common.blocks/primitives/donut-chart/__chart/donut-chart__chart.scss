@@ -3,7 +3,7 @@
 .donut-chart__chart {
   grid-area: chart;
 
-  $donutSize: 8.571428571428571em;
+  $donutSize: 120px / 14px * 1em;
   width: $donutSize;
   height: $donutSize;
   position: relative;

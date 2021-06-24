@@ -1,11 +1,12 @@
 .cards-layout {
+  $gap: 40px / 14px * 1em;
+
   @media print, screen and (min-width: 0px) {
     display: grid;
-    grid-row-gap: 2.857142857142857em;
+    grid-row-gap: $gap;
   }
 
   @media print, screen and (min-width: 992px) {
-    $gap: 40px / 14px * 1em;
     grid:
       'pick-room room-definition calendar'
       '. room-definition .' $gap

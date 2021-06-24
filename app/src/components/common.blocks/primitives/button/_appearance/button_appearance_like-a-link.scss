@@ -1,6 +1,6 @@
 @use "./../variables.scss";
 
-$iconWidth: 3.666666666666667em;
+$iconWidth: 44px / 12px * 1em;
 .button_appearance_like-a-link {
   position: relative;
   padding-left: $iconWidth + variables.$X_PADDING;

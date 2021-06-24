@@ -66,13 +66,13 @@
 
 .search-room-layout__title {
   grid-area: title;
-  margin-bottom: 0.8541666666666667em;
+  margin-bottom: 20.5px / 24px * 1em;
 }
 .search-room-layout__rooms {
   grid-area: rooms;
   display: grid;
   grid: auto-flow auto / 1fr 1fr 1fr;
-  grid-gap: #{20.5px/14px+0em} #{12px/14px+0em};
+  grid-gap: #{20.5px / 14px * 1em} #{12px / 14px * 1em};
   justify-items: center;
 
   @media (min-width: 0px) {
@@ -87,5 +87,5 @@
 }
 .search-room-layout__pagination {
   grid-area: pagination;
-  margin-top: 2.928571428571429em;
+  margin-top: 41px / 14px * 1em;
 }

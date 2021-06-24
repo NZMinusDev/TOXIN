@@ -3,7 +3,7 @@
     & {
       grid-area: rate-button;
       display: grid;
-      grid-template-columns: 10em 1fr;
+      grid-template-columns: #{140px / 14px * 1em} 1fr;
       place-content: end start;
       place-items: end start;
       margin-bottom: 14px / 320px * 100%;

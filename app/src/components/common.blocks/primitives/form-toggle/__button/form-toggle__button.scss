@@ -2,14 +2,14 @@
   appearance: none;
   position: relative;
   display: inline-block;
-  width: 2.857142857142857em;
-  height: 1.428571428571429em;
+  width: 40px / 14px * 1em;
+  height: 20px / 14px * 1em;
   border: 1px solid black;
   border-radius: 25% / 50%;
   cursor: pointer;
 
   &:before {
-    content: "";
+    content: '';
     width: 30%;
     height: 60%;
     position: absolute;

@@ -1,7 +1,7 @@
 @use "@utils/devTools/styles/mixins.scss";
 
 .landing-page-layout {
-  height: 59.28571428571429em;
+  height: 830px / 14px * 1em;
   position: relative;
 
   @include mixins.backgroundAutoCarousel(
@@ -17,7 +17,7 @@
 }
 .landing-page-layout__pick-room {
   height: auto;
-  top: 5em;
+  top: 70px / 14px * 1em;
   left: 0;
   right: 0;
   margin-left: auto;
@@ -31,9 +31,9 @@
   }
 }
 .landing-page-layout__welcome-text {
-  width: 21.21428571428571em;
-  bottom: 1.285714285714286em;
-  right: 134px/1440px * 100%;
+  width: 297px / 14px * 1em;
+  bottom: 18px / 14px * 1em;
+  right: 134px / 1440px * 100%;
   text-align: right;
   word-break: normal;
 }

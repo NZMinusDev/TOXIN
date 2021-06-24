@@ -4,7 +4,7 @@
     "email-field email-field"
     "password-field password-field"
     "link-btn link-btn"
-    ". ." 0.7142857142857143em
+    ". ." #{10px / 14px * 1em}
     "caption-of-redirect-to-registration switch-btn";
-  gap: 0.7142857143em;
+  gap: 10px / 14px * 1em;
 }
