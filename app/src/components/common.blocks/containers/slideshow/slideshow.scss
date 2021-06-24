@@ -10,9 +10,10 @@
         rgba(255, 255, 255, 0) 100%
       );
 
-      //icon
-      &:after {
-        color: white;
+      .icon {
+        &:after {
+          color: white;
+        }
       }
     }
   }

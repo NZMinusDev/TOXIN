@@ -20,9 +20,9 @@
 
     // switcher to next picture
     & ~ .slideshow__switcher ~ .slideshow__switcher ~ .slideshow__switcher {
-      display: inline-block;
+      display: inline-flex;
       right: 0;
-      transform: matrix(-1, 0, 0, 1, 0, 0);
+      transform: rotate(180deg);
 
       //another switchers
       & ~ .slideshow__switcher {
@@ -32,7 +32,7 @@
 
     // switcher to previous picture
     & + .slideshow__switcher {
-      display: inline-block;
+      display: inline-flex;
       left: 0;
     }
   }

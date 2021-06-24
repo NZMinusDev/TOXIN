@@ -27,8 +27,14 @@ mixin slideshow({ name = 'slideshow', paths = [] } = {})
         checked=index === 0 ? true : false,
         style=`right: ${rightRadioOffset}px`
       )
-      label.icon.slideshow__switcher(for=labelID)= `К изображению ${labelID}`
+      label.slideshow__switcher(
+        for=labelID,
+        title=`К изображению №${index === 0 ? paths.length : index}`
+      )
+        span.icon
       +picture(path, `Изображение ${index + 1}`).slideshow__picture
       - labelID = pictureID;
-    label.icon.slideshow__switcher(for=pictureID)= `К изображению ${pictureID}`
-    label.icon.slideshow__switcher(for=`${name}-0`)= `К изображению ${name}-0`
+    label.slideshow__switcher(for=pictureID, title=`К изображению №${paths.length}`)
+      span.icon
+    label.slideshow__switcher(for=`${name}-0`, title=`К изображению №1`)
+      span.icon
