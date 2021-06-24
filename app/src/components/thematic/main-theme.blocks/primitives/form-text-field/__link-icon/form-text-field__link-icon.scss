@@ -4,7 +4,6 @@
 
 .form-text-field__link-icon {
   &:after {
-    font-size: 1rem;
     @include mixins.gradientFont(gradients.primary(1));
   }
 }

@@ -13,15 +13,15 @@
 
   &:after {
     content: "\e813";
-    font-family: "Material Icons";
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
+    font-family: "Material Icons";
     text-indent: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 }

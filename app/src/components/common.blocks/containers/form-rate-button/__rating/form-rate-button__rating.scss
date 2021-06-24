@@ -1,5 +1,7 @@
 .form-rate-button__rating {
   display: inline;
+  font-size: 24px / 14px * 1em;
+  line-height: 1em;
 
   //after selected by hover: filled
   & > .icon:hover:after,

@@ -7,6 +7,7 @@
     grid:
       'icon label' auto
       'icon description' auto / auto 1fr;
+    font-weight: 700;
 
     &:not(:last-child) {
       padding-bottom: 20px / 14px * 1em;
@@ -20,11 +21,14 @@
       grid-area: icon;
       align-self: center;
       font-family: 'Material Icons';
+      font-size: 48px / 14px * 1em;
+      line-height: 1em;
       background: transparent;
     }
 
     .form-bullet-list__description {
       grid-area: description;
+      font-weight: 400;
     }
   }
 }
