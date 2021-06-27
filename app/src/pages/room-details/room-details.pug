@@ -14,12 +14,12 @@ block append variables
     description = 'Страница деталей номера в макете сайта TOXIN';
 
 block content
-  main.room-details-layout.content-container
-    section.room-details-layout__demo.content-container__negative
+  main.room-details-layout
+    section.room-details-layout__demo
       +picture(htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.jpg').default : undefined, 'Фотография номера № 1').room-details-layout__big-img
       +picture(htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888_2.jpg').default : undefined, 'Фотография номера № 2').room-details-layout__small-img-1
       +picture(htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888_3.jpg').default : undefined, 'Фотография номера № 3').room-details-layout__small-img-2
-    section.room-details-layout__info
+    section.room-details-layout__info.content-container
       +form-bullet-list({ heading: { h2: 'Сведения о номере' }, listStyle: 'material-icon', items: { Комфорт: { icon: 'insert_emoticon', description: 'Шумопоглощающие стены' }, Удобство: { icon: 'location_city', description: 'Окно в каждой из спален' }, Уют: { icon: 'whatshot', description: 'Номер оснащен камином' } } }).room-details-layout__data
       +donut-chart({ heading: { h2: 'Впечатления от номера' }, items: { Великолепно: 130, Хорошо: 65, Удовлетворительно: 65, Разочарован: 0 }, dataName: 'голосов', list: true }).room-details-layout__impression
       -
@@ -31,4 +31,5 @@ block content
       .room-details-layout__alert
         +heading({ h2: 'Отмена' }, { marginBottom: 'medium' }) 
         p.room-details-layout__alert-content Бесплатная отмена в течение 48 ч. После этого при отмене не позднее чем за 5 дн. до прибытия вы получите полный возврат за вычетом сбора за услуги.
-    +card-room-definition({ roomNumber: 888, roomGrade: 'Люкс', paymentAmount: 9990, selectedDates: '2019-08-19,2019-08-23', guestsGroups: { гости: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } }, guestsList: { взрослые: { default: 2, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 1, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 1, min: 0, max: 1 / 0 } }, servicesPayment: 2179, servicesSale: 2179, additionalServicesPayment: 300 }).room-details-layout__reservation
+    .content-container
+      +card-room-definition({ roomNumber: 888, roomGrade: 'Люкс', paymentAmount: 9990, selectedDates: '2019-08-19,2019-08-23', guestsGroups: { гости: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } }, guestsList: { взрослые: { default: 2, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 1, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 1, min: 0, max: 1 / 0 } }, servicesPayment: 2179, servicesSale: 2179, additionalServicesPayment: 300 }).room-details-layout__reservation
