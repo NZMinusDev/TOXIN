@@ -34,7 +34,7 @@ html(lang="ru")
               parseInt(b.query.slice(b.query.indexOf(': ') + 2, b.query.indexOf('px')), 10));
         each css in extractedCSS
           link(rel="stylesheet", href=css.file, media=css.query)
-  body
+  body.main-layout
     if haveClickJackingDivProtector
       +click-jacking-protector
     +noscript
