@@ -1,39 +1,37 @@
-$basicSize: 48px / 14px * 1em;
+$designSize: 48px;
+$basicSize: $designSize / 14px * 1em;
 $borderWidth: 3px;
 
 .logo {
-  display: inline-block;
-  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   width: $basicSize;
   height: $basicSize;
   border-radius: 100%;
   background: transparent;
   border: $borderWidth solid black;
 
-  $curve-y: 18.35px / 48px * 100%;
-  $curve-x: 11.29px / 48px * 100%;
-  $left-curve-size: (14.12px - $borderWidth) / 48px * 100%;
+  $left-curve-size: (14.12px - $borderWidth) / $designSize * 100%;
   &:before {
     content: '';
-    position: absolute;
-    top: $curve-y;
-    left: $curve-x;
     width: calc(#{$borderWidth} + #{$left-curve-size});
     height: calc(#{$borderWidth} + #{$left-curve-size});
+    margin-top: 3px / $designSize * 100%;
+    margin-left: 2px / $designSize * 100%;
     border-top: $borderWidth solid black;
     border-right: $borderWidth solid black;
     border-top-right-radius: 100%;
   }
 
-  $right-curve-width: (10.94px - $borderWidth) / 48px * 100%;
-  $right-curve-height: (7.09px - $borderWidth) / 48px * 100%;
+  $right-curve-width: (10.94px - $borderWidth) / $designSize * 100%;
+  $right-curve-height: (7.09px - $borderWidth) / $designSize * 100%;
   &:after {
     content: '';
-    position: absolute;
-    top: $curve-y;
-    right: $curve-x;
     width: calc(#{$borderWidth} + #{$right-curve-width});
     height: calc(#{$borderWidth} + #{$right-curve-height});
+    margin-left: 2px / $designSize * 100%;
+    margin-bottom: 3px / $designSize * 100%;
     border-top: $borderWidth solid black;
     border-left: $borderWidth solid black;
     border-top-left-radius: 100%;

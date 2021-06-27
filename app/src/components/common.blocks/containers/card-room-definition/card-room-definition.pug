@@ -42,17 +42,15 @@ mixin card-room-definition({ action = '/mock.js', name = 'card-room-definition',
       p.card-room-definition__payment-item.card-room-definition__total-day-payment
         span.card-room-definition__payment-sentence
         span.card-room-definition__payment-amount
-      p.card-room-definition__payment-item.card-room-definition__services-payment
+      p.card-room-definition__payment-item.card-room-definition__services-payment.card-room-definition__payment-item_col-template_with-tooltip
         span.card-room-definition__payment-sentence= `Сбор за услуги: ${servicesSaleSentence}`
-          span.tooltip.card-room-definition__payment-tooltip(
-            data-content="Подсказка к сборам за услуги"
-          ) i
+        span.card-room-definition__payment-tooltip
+          span.tooltip(data-content="Подсказка к сборам за услуги") i
         span.card-room-definition__payment-amount(data-amount=servicesPayment)= `${servicesPayment.toLocaleString()}${currency}`
-      p.card-room-definition__payment-item.card-room-definition__additional-services-payment
+      p.card-room-definition__payment-item.card-room-definition__additional-services-payment.card-room-definition__payment-item_col-template_with-tooltip
         span.card-room-definition__payment-sentence Сбор за дополнительные услуги
-          span.tooltip.card-room-definition__payment-tooltip(
-            data-content="Подсказка к сборам за дополнительные услуги"
-          ) i
+        span.card-room-definition__payment-tooltip
+          span.tooltip(data-content="Подсказка к сборам за дополнительные услуги") i
         span.card-room-definition__payment-amount(data-amount=additionalServicesPayment)= `${additionalServicesPayment.toLocaleString()}${currency}`
     h2.card-room-definition__payment-item.card-room-definition__total-payment
       span Итого
