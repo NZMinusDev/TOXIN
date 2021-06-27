@@ -1,5 +1,11 @@
+@use '@utils/devTools/styles/functions.scss';
+
 html {
   height: 100%;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: functions.getLiquidSize(24, 18);
+  color: black;
+  background-color: white;
 }
 
 .main-layout {
