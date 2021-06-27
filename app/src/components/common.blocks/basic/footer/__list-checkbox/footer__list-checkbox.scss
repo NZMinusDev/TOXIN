@@ -25,5 +25,11 @@
     &:checked ~ .footer__list {
       max-height: initial;
     }
+
+    &:checked + .footer__list-label label {
+      &:after {
+        content: '';
+      }
+    }
   }
 }

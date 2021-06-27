@@ -1,11 +1,10 @@
 .nav-bar__navigation-item_expandable {
-  cursor: pointer;
-
   @media print, screen and (min-width: 0px) {
     & {
       display: grid;
       grid: 'content icon' 'list list' auto / 1fr auto;
       justify-items: center;
+      cursor: pointer;
 
       &.nav-bar__navigation-item_active > .nav-bar__expand-icon {
         &:after {
@@ -27,6 +26,7 @@
     & {
       display: flex;
       position: relative;
+      cursor: auto;
 
       &:hover,
       &:focus-within {

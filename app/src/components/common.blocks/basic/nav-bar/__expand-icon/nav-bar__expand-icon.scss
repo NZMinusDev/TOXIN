@@ -4,4 +4,8 @@
   &:after {
     content: '\e5cf';
   }
+
+  @media print, screen and (min-width: 992px) {
+    cursor: auto;
+  }
 }
