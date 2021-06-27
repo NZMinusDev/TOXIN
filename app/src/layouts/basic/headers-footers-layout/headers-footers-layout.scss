@@ -2,6 +2,7 @@
   @media print, screen and (min-width: 0px) {
     & {
       display: grid;
+      justify-items: center;
       grid-row-gap: 40px / 14px * 1em;
       margin-top: 55px / 14px * 1em;
     }
