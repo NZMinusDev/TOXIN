@@ -12,6 +12,19 @@
   @return calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth}));
 }
 
+/// font-family with spare fonts
+/// @param { string } $pluggedFont - font-family of pugged font
+/// @param { serif | sans-serif | monospace } $font ['sans-serif'] - spare font
+@function safeFontFamily($pluggedFont, $font: sans-serif) {
+  $spareFontMatch: (
+    serif: Georgia,
+    sans-serif: Arial,
+    monospace: 'Courier New',
+  );
+
+  @return $pluggedFont, map-get($map: $spareFontMatch, $key: $font), $font;
+}
+
 /// Resolve path for generated in runtime images: @assets -> ./../../assets & assign new path('.' isn't included)
 /// @param { string } $path - path to img using @assets alias
 /// @param { string } $newExt - new extension of img
@@ -23,10 +36,25 @@
   @return $resolvedFilePath + $newExt;
 }
 
+/// Returns the last index of $substring in $string, or null if $string doesn’t contain $substring
+/// @param { string } $string 
+/// @param { string } $substring
+@function str-last-index($string, $substring) {
+  $index: null;
+  $length: str-length($string);
+  
+  @for $n from $length through 1 {
+    $index: str-index(str-slice($string, $n, $length), $substring);
+    @if $index { @return $index + $n - 1; }
+  }
+  
+  @return $index;
+}
+
 /// Returns list with path and extension
 /// @param { string } $path - path to file
 @function parsePath($path) {
-  $pathExtensionIndex: string.index($path, '.');
+  $pathExtensionIndex: str-last-index($path, '.');
   $filePath: string.slice($path, 0, $pathExtensionIndex - 1);
   $fileExt: string.slice($path, $pathExtensionIndex + 1);
 

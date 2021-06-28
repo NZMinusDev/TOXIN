@@ -1,33 +1,30 @@
+@use '@utils/devTools/styles/mixins.scss';
 @use '@utils/devTools/styles/functions.scss';
 
-@font-face {
-  font-family: 'Quicksand';
-  src: local('Quicksand'),
-    url('@assets/fonts/quicksand-regular/quicksand-regular.woff') format('woff'),
-    url('@assets/fonts/quicksand-regular/quicksand-regular.eot'),
-    url('@assets/fonts/quicksand-regular/quicksand-regular.otf') format('opentype'),
-    url('@assets/fonts/quicksand-regular/quicksand-regular.ttf') format('truetype'),
-    url('@assets/fonts/quicksand-regular/quicksand-regular.svg') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Montserrat';
-  src: local('Montserrat'),
-    url('@assets/fonts/montserrat-regular/montserrat-regular.woff') format('woff'),
-    url('@assets/fonts/montserrat-regular/montserrat-regular.eot'),
-    url('@assets/fonts/montserrat-regular/montserrat-regular.otf') format('opentype'),
-    url('@assets/fonts/montserrat-regular/montserrat-regular.ttf') format('truetype'),
-    url('@assets/fonts/montserrat-regular/montserrat-regular.svg') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
+@include mixins.importFont(
+  'Quicksand',
+  '@assets/fonts/quicksand/quicksand-regular/quicksand-regular.ttf'
+);
+@include mixins.importFont(
+  'Quicksand',
+  '@assets/fonts/quicksand/quicksand-bold/quicksand-bold.ttf',
+  bold
+);
+@include mixins.importFont(
+  'Montserrat',
+  '@assets/fonts/montserrat/montserrat-regular/montserrat-regular.ttf'
+);
+@include mixins.importFont(
+  'Montserrat',
+  '@assets/fonts/montserrat/montserrat-bold/montserrat-bold.ttf',
+  bold
+);
 
 :root {
-  --font__h1: 700 1rem / 1.25rem 'Quicksand';
-  --font__h2: 700 0.79167rem / 0.9895833rem 'Quicksand';
-  --font__h3: 700 0.5rem / 0.6095833rem 'Montserrat';
-  --font__body: 400 0.5833rem / 1rem 'Montserrat';
+  --font__h1: 700 1rem / 1.25rem #{functions.safeFontFamily('Quicksand')};
+  --font__h2: 700 0.79167rem / 0.9895833rem #{functions.safeFontFamily('Quicksand')};
+  --font__h3: 700 0.5rem / 0.6095833rem #{functions.safeFontFamily('Montserrat')};
+  --font__body: 400 0.5833rem / 1rem #{functions.safeFontFamily('Montserrat')};
 }
 
 html {

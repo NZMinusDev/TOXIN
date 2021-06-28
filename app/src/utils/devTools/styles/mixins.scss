@@ -25,6 +25,35 @@
   background-clip: text;
 }
 
+/// @font-face shortcut
+/// @param { string } $family
+/// @param { string } $path
+/// @param {*} $font-weight [normal]
+/// @param {*} $font-style [normal]
+/// @link https://developer.mozilla.org/ru/docs/Learn/CSS/Styling_text/Web_fonts#font-face_%D0%B1%D0%BE%D0%BB%D0%B5%D0%B5_%D0%B4%D0%B5%D1%82%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE
+@mixin importFont($family, $path, $font-weight: normal, $font-style: normal) {
+  @font-face {
+    $parsedPath: functions.parsePath($path);
+    $filePath: list.nth($parsedPath, 1);
+
+    font-family: $family;
+    //  IE9 Compat Modes
+    src: url($filePath + '.eot');
+    src: local($family),
+      // IE6-IE8
+      url($filePath + '.eot?#iefix') format('embedded-opentype'),
+      //Modern Browsers
+      url($filePath + '.woff2') format('woff2'),
+      url($filePath + '.woff') format('woff'), url($filePath + '.otf') format('opentype'),
+      // Safari, Android, iOS
+      url($filePath + '.ttf') format('truetype'),
+      // Legacy iOS
+      url($filePath + '.svg') format('svg');
+    font-weight: $font-weight;
+    font-style: $font-style;
+  }
+}
+
 /// Adds generated in runtime smaller resolution and optimized versions of images
 /// @param {*} $property - css property for images
 /// @param { string string ... } $imagesPaths - list of images' paths
