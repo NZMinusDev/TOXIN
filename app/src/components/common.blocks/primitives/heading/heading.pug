@@ -11,8 +11,8 @@ mixin heading(heading, { description = '', isLabel = false, marginBottom = '' } 
   if isLabel
     #{headingTag}.heading(class=[marginBottomCLass])
       label&attributes(attributes)= heading[headingTag]
+        block
       if description
         label.heading__description= description
-      block
   else
     #{headingTag}.heading(class=[marginBottomCLass])= heading[headingTag]
