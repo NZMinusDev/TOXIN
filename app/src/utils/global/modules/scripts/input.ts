@@ -23,7 +23,7 @@ document.querySelectorAll('input').forEach((element) => {
     }
   }
 
-  if (inputElement.type === 'checkbox') {
+  if (inputElement.type === 'checkbox' && inputElement.name) {
     const onChange = (e: Event) => {
       (e.currentTarget as HTMLInputElement).value = (e.currentTarget as HTMLInputElement).checked
         ? 'on'
