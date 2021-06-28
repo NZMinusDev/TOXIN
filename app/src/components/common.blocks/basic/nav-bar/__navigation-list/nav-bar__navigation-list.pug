@@ -28,10 +28,12 @@ mixin nav-bar__navigation-list(items, active)
     each itemSettings, itemName in items
       if itemSettings.items
         li.nav-bar__navigation-item.nav-bar__navigation-item_expandable(
-          class=[itemSettings.active ? 'nav-bar__navigation-item_active' : undefined],
-          tabindex="0"
-        )= itemName
-          span.icon.nav-bar__expand-icon
+          class=[itemSettings.active ? 'nav-bar__navigation-item_active' : undefined]
+        )
+          - const checkboxID = Date.now() + Math.random();
+          input.nav-bar__navigation-item-dropdown-checkbox(id=checkboxID, type="checkbox")
+          label.nav-bar__navigation-item-dropdown-label(for=checkboxID, tabindex="0")= itemName
+            span.icon.nav-bar__expand-icon
           +nav-bar__navigation-list(itemSettings.items)
       else
         li.nav-bar__navigation-item(

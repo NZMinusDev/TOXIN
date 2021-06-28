@@ -3,12 +3,10 @@
     display: none;
 
     & ~ .footer__list {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height linear 0.3s;
+      display: none;
     }
     &:checked ~ .footer__list {
-      max-height: 32em;
+      display: grid;
     }
 
     &:checked + .footer__list-label label {
@@ -20,10 +18,7 @@
 
   @media print, screen and (min-width: 992px) {
     & ~ .footer__list {
-      max-height: initial;
-    }
-    &:checked ~ .footer__list {
-      max-height: initial;
+      display: grid;
     }
 
     &:checked + .footer__list-label label {

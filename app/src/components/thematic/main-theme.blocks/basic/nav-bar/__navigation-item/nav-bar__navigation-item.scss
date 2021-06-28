@@ -1,11 +1,9 @@
 .nav-bar__navigation-item {
   color: rgba(var(--color__dark-shade), 0.5);
 
-  &:hover {
+  *:hover,
+  *:hover:after,
+  *:hover:before {
     color: rgba(var(--color__dark-shade), 0.75);
-
-    & > .nav-bar__expand-icon:after {
-      color: rgba(var(--color__dark-shade), 0.75);
-    }
   }
 }

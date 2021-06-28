@@ -1,11 +1,4 @@
 .nav-bar__expand-icon {
   width: 24px / 14px * 1em;
-
-  &:after {
-    content: '\e5cf';
-  }
-
-  @media print, screen and (min-width: 992px) {
-    cursor: auto;
-  }
+  vertical-align: middle;
 }
