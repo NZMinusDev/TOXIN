@@ -23,11 +23,17 @@ document.querySelectorAll('input').forEach((element) => {
     }
   }
 
-  if (inputElement.type === 'checkbox' && inputElement.name) {
+  if (inputElement.type === 'checkbox') {
     const onChange = (e: Event) => {
-      (e.currentTarget as HTMLInputElement).value = (e.currentTarget as HTMLInputElement).checked
-        ? 'on'
-        : 'off';
+      const checkbox = e.currentTarget as HTMLInputElement;
+
+      if (checkbox.name) {
+        checkbox.value = checkbox.checked ? 'on' : 'off';
+      }
+
+      if (!checkbox.checked) {
+        checkbox.removeAttribute('checked');
+      }
     };
 
     inputElement.addEventListener('change', onChange);
