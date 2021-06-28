@@ -1,6 +1,4 @@
 .nav-bar {
-  padding-top: 15px / 14px * 1em;
-  padding-bottom: 15px / 14px * 1em;
   background-color: white;
 
   @media print, screen and (min-width: 0px) {
@@ -9,6 +7,8 @@
     grid: 'logo' 'navigation' 'login' auto / auto;
     grid-row-gap: 20px / 14px * 1em;
     justify-items: center;
+    padding-top: 15px / 14px * 1em;
+    padding-bottom: 15px / 14px * 1em;
   }
 
   @media print, screen and (min-width: 992px) {

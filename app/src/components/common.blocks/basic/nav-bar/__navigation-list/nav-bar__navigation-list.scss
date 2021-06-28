@@ -1,5 +1,5 @@
-@media print, screen and (min-width: 992px) {
-  .nav-bar__navigation-list {
+.nav-bar__navigation-list {
+  @media print, screen and (min-width: 992px) {
     display: inline-flex;
     flex-flow: row wrap;
   }

@@ -1,4 +1,7 @@
 .footer__widgets {
+  border: solid black;
+  border-width: 1px 0;
+
   @media print, screen and (min-width: 0px) {
     grid-area: widgets;
     display: grid;
@@ -7,8 +10,6 @@
     justify-items: center;
     padding-top: 100px / 14px * 1em;
     padding-bottom: 100px / 14px * 1em;
-    border: solid black;
-    border-width: 1px 0;
   }
 
   @media print, screen and (min-width: 992px) {
