@@ -8,31 +8,31 @@
   "small mobile media query snippet for css and scss files": {
     "prefix": "@sm",
     "scope": "css,scss,sass",
-    "body": ["@media print, screen and (min-width: 0px) {", "\t& {", "\t\t$0", "\t}", "}"],
+    "body": ["@media print, screen and (min-width: 0px) {", "\t$0", "}"],
     "description": "small mobile media query snippet for css and scss files"
   },
   "large mobile media query snippet for css and scss files": {
     "prefix": "@lm",
     "scope": "css,scss,sass",
-    "body": ["@media print, screen and (min-width: 600px) {", "\t& {", "\t\t$0", "\t}", "}"],
+    "body": ["@media print, screen and (min-width: 600px) {", "\t$0", "}"],
     "description": "large mobile media query snippet for css and scss files"
   },
   "tablet media query snippet for css and scss files": {
     "prefix": "@t",
     "scope": "css,scss,sass",
-    "body": ["@media print, screen and (min-width: 768px) {", "\t& {", "\t\t$0", "\t}", "}"],
+    "body": ["@media print, screen and (min-width: 768px) {", "\t$0", "}"],
     "description": "tablet media query snippet for css and scss files"
   },
   "small-desktop media query snippet for css and scss files": {
     "prefix": "@sd",
     "scope": "css,scss,sass",
-    "body": ["@media print, screen and (min-width: 992px) {", "\t& {", "\t\t$0", "\t}", "}"],
+    "body": ["@media print, screen and (min-width: 992px) {", "\t$0", "}"],
     "description": "small-desktop media query snippet for css and scss files"
   },
   "large-desktop media query snippet for css and scss files": {
     "prefix": "@ld",
     "scope": "css,scss,sass",
-    "body": ["@media print, screen and (min-width: 1200px) {", "\t& {", "\t\t$0", "\t}", "}"],
+    "body": ["@media print, screen and (min-width: 1200px) {", "\t$0", "}"],
     "description": "large-desktop media query snippet for css and scss files"
   }
 }

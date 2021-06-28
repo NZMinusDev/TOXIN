@@ -1,7 +1,5 @@
 .form-elements-layout__like-button-label {
   @media print, screen and (min-width: 992px) {
-    & {
-      grid-area: label;
-    }
+    grid-area: label;
   }
 }
