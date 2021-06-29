@@ -7,14 +7,9 @@ include ./__datepicker/form-dropdown__datepicker.pug
 //-
   type: 'date' | 'item-quantity'
     when 'date':
-      range?: boolean
-      selectedDates?: 'ISODateString,ISODateString,...' - initial dates(date), for several values use ','; example: '2020-11-18T21:00:00.000Z' or '2020-11-18T21:00:00.000Z,2020-11-20T21:00:00.000Z'; tip: if range is true -> you should write 2 dates
-      altFields?: string - selector of bonded alt fields
-      isAltField?: boolean - mark dropdown as field that uses a different calendar
+      range?, selectedDates?, altFields?, isAltField? -> see mixin form-dropdown__datepicker
     when 'item-quantity'
-      openingMethod?: 'toggle' | 'fold' | 'apply'
-      groups: { ['group-name': string]: { selectionText: string, textPlural: string } }, example: { guests: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } }
-      list: {['item-title': string]: { default: number, min: number, max: number, group?: 'group-name' } }, example: { взрослые: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0} }; - if group is unset the itemName will be used instead
+      openingMethod?, groups, list -> see mixin form-dropdown__item-quantity-list
   heading?: see mixin heading
   description?: see mixin heading
   headingMarginBottom?: see marginBottom in mixin heading
@@ -22,7 +17,7 @@ include ./__datepicker/form-dropdown__datepicker.pug
   placeholder?: string - text of placeholder
   isFilter?: boolean - if true, input change event will reload page with chosen value(get method)
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin form-dropdown(type, { heading = '', description = '', headingMarginBottom = '', name = 'dropdown', placeholder = '', range = false, selectedDates = '', altFields = undefined, isAltField = false, openingMethod = 'toggle', groups = {}, list = {}, isFilter = false } = {})
+mixin form-dropdown(type, { heading = '', description = '', headingMarginBottom = '', name = 'dropdown', placeholder = '', range = false, selectedDates = '', altFields = undefined, isAltField = false, openingMethod = 'switchable', groups = {}, list = {}, isFilter = false } = {})
   .form-dropdown&attributes(attributes)
     if heading
       +heading(heading, { description, marginBottom: headingMarginBottom, isLabel: true })(for=name)
@@ -34,5 +29,5 @@ mixin form-dropdown(type, { heading = '', description = '', headingMarginBottom 
           +form-dropdown__datepicker({ name, range, selectedDates, placeholder, altFields, isAltField, isFilter })
         when 'item-quantity'
           +form-dropdown__item-quantity-list({ name, placeholder, openingMethod, groups, list, isFilter })
-            if openingMethod === 'apply'
+            if openingMethod === 'applied'
               +apply-control.form-dropdown__link-btns

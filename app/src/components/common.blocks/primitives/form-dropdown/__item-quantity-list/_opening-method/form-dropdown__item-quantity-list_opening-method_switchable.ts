@@ -24,7 +24,7 @@ export class ToxinIQDropdownToggleOpeningMethodModifier extends ToxinIQDropdownO
 dropdownsWithIQList.forEach((dropdown, index) => {
   if (
     (dropdown as ToxinIQDropdownElement).toxinIQDropdown.dom.openingButton.classList.contains(
-      "form-dropdown__item-quantity-list_opening-method_toggle"
+      "form-dropdown__item-quantity-list_opening-method_switchable"
     )
   ) {
     new ToxinIQDropdownToggleOpeningMethodModifier(

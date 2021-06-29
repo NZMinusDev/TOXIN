@@ -5,7 +5,7 @@
   @media print, screen and (min-width: 0px) {
     grid-area: widgets;
     display: grid;
-    grid: 'logo' 'description' 'navigation' 'about' 'support' 'subscription';
+    grid: 'logo' 'description' 'navigation' 'about-us-section' 'support' 'subscription';
     grid-row-gap: 16px / 14px * 1em;
     justify-items: center;
     padding-top: 100px / 14px * 1em;
@@ -20,8 +20,8 @@
     $supportGapWidth: 92px / (1440px - $padding * 2) * 100%;
     $subscriptionGapWidth: 57px / (1440px - $padding * 2) * 100%;
     grid:
-      'logo . navigation . about . support . subscription' auto
-      'description . navigation . about . support . subscription' 1fr / #{$descriptionWidth} #{$navigationGapWidth} auto #{$aboutGapWidth} auto #{$supportGapWidth} auto #{$subscriptionGapWidth} auto;
+      'logo . navigation . about-us-section . support . subscription' auto
+      'description . navigation . about-us-section . support . subscription' 1fr / #{$descriptionWidth} #{$navigationGapWidth} auto #{$aboutGapWidth} auto #{$supportGapWidth} auto #{$subscriptionGapWidth} auto;
     justify-items: start;
   }
 }

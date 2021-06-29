@@ -28,7 +28,7 @@ export class ToxinIQDropdownFoldOpeningMethodModifier extends ToxinIQDropdownOpe
 dropdownsWithIQList.forEach((dropdown, index) => {
   if (
     (dropdown as ToxinIQDropdownElement).toxinIQDropdown.dom.openingButton.classList.contains(
-      "form-dropdown__item-quantity-list_opening-method_fold"
+      "form-dropdown__item-quantity-list_opening-method_folded"
     )
   ) {
     new ToxinIQDropdownFoldOpeningMethodModifier(

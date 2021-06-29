@@ -16,7 +16,7 @@ mixin card-pick-room({ action = '/mock.js', name = 'card-pick-room', method = 'p
           +form-dropdown('date', { heading: { h3: 'Прибытие' }, name: `${name}-arrival`, range: true, altFields: `.card-pick-room__departure-date-dropdown [name=${name}-departure]` })
         .card-pick-room__departure-date-dropdown
           +form-dropdown('date', { heading: { h3: 'Выезд' }, name: `${name}-departure`, isAltField: true })
-    +form-dropdown('item-quantity', { heading: { h3: 'Гости' }, name: `${name}-guests`, placeholder: 'Сколько гостей', openingMethod: 'apply', groups: { гости: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } }, list: { взрослые: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0 } } }).card-pick-room__guests-single-apply
+    +form-dropdown('item-quantity', { heading: { h3: 'Гости' }, name: `${name}-guests`, placeholder: 'Сколько гостей', openingMethod: 'applied', groups: { гости: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } }, list: { взрослые: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0 } } }).card-pick-room__guests-dropdown
     +button({ appearance: 'like-a-link' }).card-pick-room__submit-btn(
       type="submit",
       value="Подобрать номер"

@@ -90,7 +90,7 @@ export class ToxinIQDropdownApplyOpeningMethodModifier extends ToxinIQDropdownOp
 dropdownsWithIQList.forEach((dropdown, index) => {
   if (
     (dropdown as ToxinIQDropdownElement).toxinIQDropdown.dom.openingButton.classList.contains(
-      "form-dropdown__item-quantity-list_opening-method_apply"
+      "form-dropdown__item-quantity-list_opening-method_applied"
     )
   ) {
     new ToxinIQDropdownApplyOpeningMethodModifier(
