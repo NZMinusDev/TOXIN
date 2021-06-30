@@ -1,27 +1,23 @@
 .footer__list-label {
   @media print, screen and (min-width: 0px) {
-    label {
-      display: flex;
-      cursor: pointer;
+    display: flex;
+    cursor: pointer;
 
-      &:after {
-        content: '\e5cf';
-        font-family: 'Material Icons';
-        font-size: 2em;
-        color: inherit;
-      }
+    &:after {
+      content: '\e5cf';
+      font-family: 'Material Icons';
+      font-size: 2em;
+      color: inherit;
     }
   }
 
   @media print, screen and (min-width: 992px) {
     margin-top: 4px;
 
-    label {
-      cursor: initial;
+    cursor: initial;
 
-      &:after {
-        content: '';
-      }
+    &:after {
+      content: '';
     }
   }
 }

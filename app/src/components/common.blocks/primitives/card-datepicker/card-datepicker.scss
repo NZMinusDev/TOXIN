@@ -1,7 +1,5 @@
 /* lib redefinition */
 .card-datepicker {
-  z-index: 100;
-
   .datepicker-inline {
     width: 320px / 14px * 1em;
   }
@@ -58,9 +56,5 @@
     &.-range-to-:before {
       left: 0;
     }
-  }
-
-  .apply-control {
-    margin-top: 20px / 12px * 1em;
   }
 }

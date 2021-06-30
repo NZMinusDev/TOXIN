@@ -1,4 +1,5 @@
 include ~@common.blocks/primitives/heading/heading.pug
+include ~@common.blocks/primitives/icon/icon.pug
 include ~@common.blocks/primitives/apply-control/apply-control.pug
 
 include ./__item-quantity-list/form-dropdown__item-quantity-list.pug
@@ -20,14 +21,17 @@ include ./__datepicker/form-dropdown__datepicker.pug
 mixin form-dropdown(type, { heading = '', description = '', headingMarginBottom = '', name = 'dropdown', placeholder = '', range = false, selectedDates = '', altFields = undefined, isAltField = false, openingMethod = 'switchable', groups = {}, list = {}, isFilter = false } = {})
   .form-dropdown&attributes(attributes)
     if heading
-      +heading(heading, { description, marginBottom: headingMarginBottom, isLabel: true })(for=name)
+      +heading(heading, { description, marginBottom: headingMarginBottom, isLabel: true })(
+        for=name
+      )
     .form-field
       button.form-dropdown__expand-btn(id=name, type="button", aria-expanded="false")
-        span.icon.form-dropdown__expand-icon
+        +icon({ content: 'expand_more', width: 'large' })
       case type
         when 'date'
           +form-dropdown__datepicker({ name, range, selectedDates, placeholder, altFields, isAltField, isFilter })
         when 'item-quantity'
           +form-dropdown__item-quantity-list({ name, placeholder, openingMethod, groups, list, isFilter })
             if openingMethod === 'applied'
-              +apply-control.form-dropdown__link-btns
+              .form-dropdown__link-btns
+                +apply-control

@@ -1,29 +1,17 @@
 @use '@thematic/main-theme.blocks/gradients.scss';
 
 /* Styles just for demonstration in ui-kit, not fof production use*/
-.form-elements-layout__dropdown-expanded-plural > .form-field {
+.form-elements-layout__dropdown-expanded-plural .form-field {
   border: var(--border-hover);
   color: rgba(var(--color__dark-shade), 0.75);
-
-  & > .form-dropdown__expand-icon {
-    color: rgba(var(--color__dark-shade), 0.75);
-  }
 }
-.form-elements-layout__dropdown-expanded-apply > .form-field {
+.form-elements-layout__dropdown-expanded-apply .form-field {
   border: var(--border-hover);
   color: rgba(var(--color__dark-shade), 0.75);
-
-  & > .form-dropdown__expand-icon {
-    color: rgba(var(--color__dark-shade), 0.75);
-  }
 }
-.form-elements-layout__dropdown-expanded-clear-apply > .form-field {
+.form-elements-layout__dropdown-expanded-clear-apply .form-field {
   border: var(--border-hover);
   color: rgba(var(--color__dark-shade), 0.75);
-
-  & > .form-dropdown__expand-icon {
-    color: rgba(var(--color__dark-shade), 0.75);
-  }
 }
 
 .button_appearance_filled:nth-of-type(2) {

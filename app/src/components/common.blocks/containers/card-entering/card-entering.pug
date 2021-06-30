@@ -9,15 +9,12 @@ include ~@common.blocks/primitives/button/button.pug
 mixin card-entering({ action = '/mock.js', name = 'card-entering', method = 'post' } = {})
   form.card-base.card-entering(name=name, action=action, method=method)&attributes(attributes)
     h1.card-entering__title Войти
-    +form-text-field({ name: `${name}-email`, type: 'email' }).card-entering__email-field
-    +form-text-field({ name: `${name}-password`, type: 'password' }).card-entering__password-field
-    +button({ appearance: 'like-a-link' }).card-entering__link-btn(
-      type="submit",
-      value="Войти",
-      tabindex="1"
-    )
+    .card-entering__email-field
+      +form-text-field({ name: `${name}-email`, type: 'email' })
+    .card-entering__password-field
+      +form-text-field({ name: `${name}-password`, type: 'password' })
+    .card-entering__link-btn
+      +button({ appearance: 'like-a-link' })(type="submit", value="Войти", tabindex="1")
     p.card-entering__caption-of-redirect-to-registration Нет аккаунта на Toxin?
-    +button({ appearance: 'bordered' }).card-entering__switch-btn(
-      type="button",
-      value="Создать"
-    )
+    .card-entering__switch-btn
+      +button({ appearance: 'bordered' })(type="button", value="Создать")

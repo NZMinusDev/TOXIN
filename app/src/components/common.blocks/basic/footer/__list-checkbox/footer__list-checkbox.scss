@@ -9,7 +9,7 @@
       display: grid;
     }
 
-    &:checked + .footer__list-label label {
+    &:checked + .footer__list-label {
       &:after {
         content: '\e5ce';
       }
@@ -21,7 +21,7 @@
       display: grid;
     }
 
-    &:checked + .footer__list-label label {
+    &:checked + .footer__list-label {
       &:after {
         content: '';
       }

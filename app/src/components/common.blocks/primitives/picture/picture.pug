@@ -2,16 +2,18 @@
   path: string - relative(in dist) path to img
   alt: string - img alt attr
   title?: string - title attribute
+  size?: 'rectangle' | 'full' - size of picture
   Tip: mixin also uses 'and attributes'(&attributes)
-  Tip: split your picture and inner img styles
-mixin picture(path, alt, title = undefined)
+mixin picture(path, alt, { title = undefined, size = 'contain' } = {} )
   -
     if(!path){
       path = '';
     }
     const filePath = path.substring(0, path.lastIndexOf('.')) || path;
     const fileExt = path.substring(path.lastIndexOf('.') + 1, path.length) || path;
-  picture&attributes(attributes)
+
+    const sizeClass = size === 'rectangle' ? undefined : `picture_size_${size}`;
+  picture.picture(class=[sizeClass])&attributes(attributes)
     source(
       media="(min-width:1200px)",
       type="image/webp",
@@ -61,7 +63,7 @@ mixin picture(path, alt, title = undefined)
       srcset=htmlWebpackPlugin ? require('@assets/pictures/images/placeholders/lazy-loading-placeholder.svg').default : undefined,
       data-srcset=`${filePath}-320.${fileExt} 1x`
     )
-    img(
+    img.picture__img(
       src=htmlWebpackPlugin ? require('@assets/pictures/images/placeholders/lazy-loading-placeholder.svg').default : undefined,
       alt=alt,
       title=title,

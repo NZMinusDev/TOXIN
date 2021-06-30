@@ -1,23 +1,10 @@
 .nav-bar__navigation-item_expandable {
-  .nav-bar__navigation-item-dropdown-label {
-    display: inline-flex;
-    vertical-align: middle;
-    cursor: pointer;
-  }
-
   @media print, screen and (min-width: 0px) {
     & > .nav-bar__navigation-item-dropdown-checkbox {
       display: none;
 
-      & + .nav-bar__navigation-item-dropdown-label > .icon.nav-bar__expand-icon {
-        &:after {
-          content: '\e5cf';
-        }
-      }
-      &:checked + .nav-bar__navigation-item-dropdown-label > .icon.nav-bar__expand-icon {
-        &:after {
-          content: '\e5ce';
-        }
+      &:checked + .nav-bar__navigation-item-dropdown-label > .nav-bar__expand-icon {
+        transform: rotate(180deg);
       }
 
       & ~ .nav-bar__navigation-list {

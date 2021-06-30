@@ -63,7 +63,7 @@ mixin pagination({ addressingMethod = 'href', hrefPrefix = '?page=', total = 100
       if activePage > 1
         li.pagination__item.pagination__item_previous(title="на предыдущую страницу")
           if addressingMethod === 'href'
-            a(href=paginationHrefs[activePage - 2])= 'arrow_back'
+            a.pagination__link(href=paginationHrefs[activePage - 2])= 'arrow_back'
           else
             = 'arrow_back'
       //- Show all the pagination elements if there are less than 6 pages total
@@ -74,7 +74,7 @@ mixin pagination({ addressingMethod = 'href', hrefPrefix = '?page=', total = 100
           title="текущая страница"
         )
           if addressingMethod === 'href'
-            a(href=paginationHrefs[p - 1])= p
+            a.pagination__link(href=paginationHrefs[p - 1])= p
           else
             = p
       //- Use '...' to collapse pages outside of a certain range
@@ -83,7 +83,7 @@ mixin pagination({ addressingMethod = 'href', hrefPrefix = '?page=', total = 100
         if activePage > 2
           li.pagination__item
             if addressingMethod === 'href'
-              a(href=paginationHrefs[0])= 1
+              a.pagination__link(href=paginationHrefs[0])= 1
             else
               = 1
           if activePage > 3
@@ -99,7 +99,7 @@ mixin pagination({ addressingMethod = 'href', hrefPrefix = '?page=', total = 100
             title="текущая страница"
           )
             if addressingMethod === 'href'
-              a(href=paginationHrefs[p - 1])= p
+              a.pagination__link(href=paginationHrefs[p - 1])= p
             else
               = p
         //- Show the very last page preceded by a '...' at the end of the pagination section (before the Next button)
@@ -107,19 +107,19 @@ mixin pagination({ addressingMethod = 'href', hrefPrefix = '?page=', total = 100
           if activePage < pages - 2
             li.pagination__item.pagination__item_out-of-range
               if addressingMethod === 'href'
-                a(href=paginationHrefs[pages - 3])= '...'
+                a.pagination__link(href=paginationHrefs[pages - 3])= '...'
               else
                 = '...'
           li.pagination__item
             if addressingMethod === 'href'
-              a(href=paginationHrefs[pages - 1])= pages
+              a.pagination__link(href=paginationHrefs[pages - 1])= pages
             else
               = pages
       //- Show the Next button only if you are on a page other than the last
       if activePage < pages
         li.pagination__item.pagination__item_next(title="на следующую страницу")
           if addressingMethod === 'href'
-            a(href=paginationHrefs[activePage])= 'arrow_forward'
+            a.pagination__link(href=paginationHrefs[activePage])= 'arrow_forward'
           else
             = 'arrow_forward'
     //- counter

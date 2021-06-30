@@ -27,5 +27,5 @@ mixin form-rate-button({ heading = '', headingMarginBottom = 'large', name = 'ra
           checked=checked,
           value=counter
         )
-        label.icon(for=currentID, tabindex="0", title=titles[counter - 1])= `количество звезд: ${counter}`
+        label.form-rate-button__icon(for=currentID, tabindex="0", title=titles[counter - 1])= `количество звезд: ${counter}`
         - counter -= 1;

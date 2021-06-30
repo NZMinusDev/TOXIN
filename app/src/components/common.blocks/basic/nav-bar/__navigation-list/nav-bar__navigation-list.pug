@@ -1,3 +1,5 @@
+include ~@common.blocks/primitives/icon/icon.pug
+
 //-
   items: { [textContent: string]: { href: string, items?: [textContent: string]: { href: string, items?: } } } - recursive items of nav-bar list
   active?: string - key of active item
@@ -33,7 +35,8 @@ mixin nav-bar__navigation-list(items, active)
           - const checkboxID = Date.now() + Math.random();
           input.nav-bar__navigation-item-dropdown-checkbox(id=checkboxID, type="checkbox")
           label.nav-bar__navigation-item-dropdown-label(for=checkboxID, tabindex="0")= itemName
-            span.icon.nav-bar__expand-icon
+            span.nav-bar__expand-icon
+              +icon({content: 'expand_more', width: 'medium'})
           +nav-bar__navigation-list(itemSettings.items)
       else
         li.nav-bar__navigation-item(

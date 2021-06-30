@@ -1,9 +1,8 @@
 @use '@utils/devTools/styles/mixins.scss';
-
 @use '@thematic/main-theme.blocks/gradients.scss';
 
-.form-text-field__link-icon {
-  &:after {
+.form-rate-button__icon {
+  &:before {
     @include mixins.gradientFont(gradients.primary(1));
   }
 }

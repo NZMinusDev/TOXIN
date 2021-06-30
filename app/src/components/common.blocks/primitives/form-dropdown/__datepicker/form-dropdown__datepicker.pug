@@ -18,7 +18,8 @@ mixin form-dropdown__datepicker({ name = 'datepicker', range = false, selectedDa
     data-is-filter=isFilter
   )
   if !isAltField
-    +card-datepicker({ range, altFields }).form-dropdown__datepicker&attributes(attributes)
+    .form-dropdown__datepicker
+      +card-datepicker({ range, altFields })&attributes(attributes)
   -
     const dataPlaceholder = placeholder || ((range && !altFields) ? 'ДД ММ - ДД ММ' : 'ДД.ММ.ГГГГ');
     const splitSelectedDates = selectedDates.split(',');

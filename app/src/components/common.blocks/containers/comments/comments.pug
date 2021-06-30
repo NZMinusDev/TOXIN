@@ -1,6 +1,6 @@
 include ~@common.blocks/primitives/heading/heading.pug
+include ~@common.blocks/primitives/picture/picture.pug
 include ~@common.blocks/primitives/form-like-button/form-like-button.pug
-include ~@utils/devTools/pug/mixins/picture.pug
 
 //-
   heading?: see mixin heading
@@ -28,7 +28,8 @@ mixin comments({ heading = '', headingMarginBottom = 'large', counter = false, i
     .comments__items
       each item, key in items
         .comments__item
-          +picture(item.iconPath, 'Иконка комментирующего').comments__icon-item
+          .comments__icon-item
+            +picture(item.iconPath, 'Иконка комментирующего')
           .comments__source-item
             h3.comments__name-item= item.personName
             p.comments__date-item

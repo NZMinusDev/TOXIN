@@ -1,0 +1,24 @@
+//-
+  tag?: string - tag of icon
+  fontFamily?: 'branded'(Font Awesome 5 Brands) - font-family of icon
+  isCodePoint?: boolean - force using of codePoint instead of content
+  content?: string - codePoint or content of icon
+  width?: 'medium'(24px) | 'large'(44px) - width of icon
+  color?: 'primary-gradient' - color of icon
+  Tip: mixin also uses 'and attributes'(&attributes)
+mixin icon({ tag = 'span', fontFamily = 'Material Icons', content = 'sentiment_satisfied', width = '', color = '' } = {})
+  -
+    const fontFamilyClass = fontFamily !== 'Material Icons' ? `icon_font-family_${fontFamily}` : undefined;
+
+    const fontFamilyNestingStatus = {
+      'Material Icons': true,
+      'branded': false,
+    };
+    const isNested = isCodePoint || fontFamilyNestingStatus[fontFamily];
+    const isNestedClass = isNested ? undefined : 'icon_not-nested';
+    const nestedIconContent = isNested ? content : undefined;
+    const dataIconCode = isNested ? undefined : content;
+
+    const widthClass = width ? `icon_width_${width}` : undefined;
+    const colorClass = color ? 'icon_color_primary-gradient' : undefined;
+  #{tag}.icon(class=[fontFamilyClass, isNestedClass, widthClass, colorClass], data-icon=dataIconCode)&attributes(attributes)= nestedIconContent

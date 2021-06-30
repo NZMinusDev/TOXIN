@@ -1,4 +1,5 @@
-include ~@utils/devTools/pug/mixins/picture.pug
+include ~@common.blocks/primitives/icon/icon.pug
+include ~@common.blocks/primitives/picture/picture.pug
 
 //-
   name?: string - name of radio group
@@ -31,10 +32,14 @@ mixin slideshow({ name = 'slideshow', paths = [] } = {})
         for=labelID,
         title=`К изображению №${index === 0 ? paths.length : index}`
       )
-        span.icon
-      +picture(path, `Изображение ${index + 1}`).slideshow__picture
+        span.slideshow__switcher-icon
+          +icon({ content: 'expand_more' })
+      .slideshow__picture
+        +picture(path, `Изображение ${index + 1}`)
       - labelID = pictureID;
     label.slideshow__switcher(for=pictureID, title=`К изображению №${paths.length}`)
-      span.icon
+      span.slideshow__switcher-icon
+        +icon({ content: 'expand_more' })
     label.slideshow__switcher(for=`${name}-0`, title=`К изображению №1`)
-      span.icon
+      span.slideshow__switcher-icon
+        +icon({ content: 'expand_more' })

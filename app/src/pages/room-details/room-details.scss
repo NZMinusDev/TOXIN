@@ -35,11 +35,6 @@
       'big-img small-img-2' #{$cellHeight} / #{$bigImgWidth} 1fr;
   }
 }
-.room-details-layout__big-img,
-.room-details-layout__small-img-1,
-.room-details-layout__small-img-2 {
-  padding-top: initial;
-}
 .room-details-layout__big-img {
   grid-area: big-img;
 }
@@ -85,10 +80,6 @@
 }
 .room-details-layout__impression {
   grid-area: impression;
-
-  .donut-chart__bullet-list {
-    align-items: flex-end;
-  }
 
   @media (min-width: 0px) {
     justify-self: center;

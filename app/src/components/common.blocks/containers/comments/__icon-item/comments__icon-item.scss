@@ -1,9 +1,6 @@
 .comments__icon-item {
+  grid-area: icon;
   width: 48px / 14px * 1em;
-  
-  & > img {
-    grid-area: icon;
-    border: 2px solid white;
-    border-radius: 100%;
-  }
+  border: 2px solid white;
+  border-radius: 100%;
 }

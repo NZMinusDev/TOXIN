@@ -14,7 +14,7 @@
 
     //current picture
     & + .slideshow__switcher + .slideshow__picture {
-      display: block;
+      position: relative;
       opacity: 1;
     }
 

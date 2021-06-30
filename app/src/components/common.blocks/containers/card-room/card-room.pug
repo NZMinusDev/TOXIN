@@ -20,7 +20,8 @@ mixin card-room({ href = '/mock.html', roomNumber = -1, roomGrade = '', paymentA
 
     const uniqueNamePostfix = Math.random();
   .card-base.card-room&attributes(attributes)
-    +slideshow({ name: `${href}-slideshow-${uniqueNamePostfix}`, paths }).card-room__slideshow
+    .card-room__slideshow
+      +slideshow({ name: `${href}-slideshow-${uniqueNamePostfix}`, paths })
     .card-room__room-data 
       a.card-room__data-row(href=href, title="Подробнее о номере")
         .card-room__room-title
@@ -29,5 +30,6 @@ mixin card-room({ href = '/mock.html', roomNumber = -1, roomGrade = '', paymentA
             h3.card-room__room-grade= roomGrade
         h3.card-room__day-payment!= paymentAmountSentence
       .card-room__data-row
-        +form-rate-button({ name: `${href}-rating-${uniqueNamePostfix}`, rate, disabled: true }).card-room__room-rating
+        .card-room__room-rating
+          +form-rate-button({ name: `${href}-rating-${uniqueNamePostfix}`, rate, disabled: true, interaction: 'rejected' })
         h3.card-room__room-comments!= commentsAmountSentence

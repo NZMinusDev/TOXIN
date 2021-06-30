@@ -1,7 +1,0 @@
-*:focus > .form-dropdown__expand-icon,
-*:hover > .form-dropdown__expand-icon,
-*:focus-within > .form-dropdown__expand-icon {
-  &:after {
-    color: rgba(var(--color__dark-shade), 0.75);
-  }
-}

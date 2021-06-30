@@ -8,14 +8,4 @@
   height: 100%;
   z-index: 1;
   cursor: pointer;
-
-  .icon {
-    font-size: 24px / 14px * 1em;
-    transform: rotate(90deg);
-
-    &:after {
-      content: '\e5cf';
-      color: transparent;
-    }
-  }
 }

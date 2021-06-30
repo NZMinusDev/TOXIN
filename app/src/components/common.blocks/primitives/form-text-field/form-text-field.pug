@@ -1,4 +1,5 @@
 include ~@common.blocks/primitives/heading/heading.pug
+include ~@common.blocks/primitives/icon/icon.pug
 
 //-
   heading?: see mixin heading
@@ -28,14 +29,16 @@ mixin form-text-field({ heading = '', description = '', headingMarginBottom = ''
     const reservedPlaceholders = { email: 'Email', password: 'Пароль', date: 'ДД.ММ.ГГГГ' };
 
     const componentClassModificator = type
-      ? `form-text-field_type${type}`
+      ? `form-text-field_type_with-${type}`
       : '';
     const inputMaskType = allowedInputMaskTypes.find((inputMaskType) => inputMaskType === type) || 'text';
     const inputModeAttr =
       allowedInputmodeAttribute.find((attr) => attr === type);
   .form-text-field(class=componentClassModificator)&attributes(attributes)
     if heading
-      +heading(heading, { description, marginBottom: headingMarginBottom, isLabel: true })(for=name)
+      +heading(heading, { description, marginBottom: headingMarginBottom, isLabel: true })(
+        for=name
+      )
     .form-field
       input.form-text-field__input(
         data-is-filter=isFilter,
@@ -48,4 +51,6 @@ mixin form-text-field({ heading = '', description = '', headingMarginBottom = ''
         autofocus=autofocus
       )
       if materialIcon
-        button.icon.form-text-field__link-icon(type="submit", data-icon=materialIcon)
+        +icon({ tag: 'button', content: materialIcon, width: 'large', color: 'primary-gradient' })(
+          type="submit"
+        )

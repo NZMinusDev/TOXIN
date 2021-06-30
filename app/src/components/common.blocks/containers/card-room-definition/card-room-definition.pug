@@ -37,7 +37,8 @@ mixin card-room-definition({ action = '/mock.js', name = 'card-room-definition',
           +form-dropdown('date', { heading: { h3: 'Прибытие' }, name: `${name}-arrival`, range: true, selectedDates, altFields: `.card-room-definition__departure-date-dropdown [name=${name}-departure]` })
         .card-room-definition__departure-date-dropdown
           +form-dropdown('date', { heading: { h3: 'Выезд' }, name: `${name}-departure`, isAltField: true })
-    +form-dropdown('item-quantity', { heading: { h3: 'Гости' }, name: `${name}-guests`, placeholder: 'Сколько гостей', openingMethod: 'applied', groups: guestsGroups, list: guestsList }).card-room-definition__guests-dropdown
+    .card-room-definition__guests-dropdown
+      +form-dropdown('item-quantity', { heading: { h3: 'Гости' }, name: `${name}-guests`, placeholder: 'Сколько гостей', openingMethod: 'applied', groups: guestsGroups, list: guestsList })
     .card-room-definition__payment-rates
       p.card-room-definition__payment-item.card-room-definition__total-day-payment
         span.card-room-definition__payment-sentence
@@ -56,7 +57,5 @@ mixin card-room-definition({ action = '/mock.js', name = 'card-room-definition',
       span Итого
       span.card-room-definition__text-separator
       span.card-room-definition__total-payment-amount
-    +button({ appearance: 'like-a-link' }).card-room-definition__submit-btn(
-      type="submit",
-      value="Забронировать"
-    )
+    .card-room-definition__submit-btn
+      +button({ appearance: 'like-a-link' })(type="submit", value="Забронировать")

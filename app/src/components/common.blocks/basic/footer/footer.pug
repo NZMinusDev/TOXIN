@@ -1,4 +1,5 @@
 include ~@common.blocks/primitives/form-text-field/form-text-field.pug
+include ~@common.blocks/primitives/icon/icon.pug
 
 //- 
   type?: 'creative' - type of footer
@@ -21,7 +22,7 @@ mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscriptio
           ul.footer__icons-list
             each icon in icons
               li.footer__icons-list-item
-                a.icon.icon_color_primary-gradient.footer__brand-icon(
+                +icon({ tag: 'a', fontFamily: 'branded', content: 'expand_more', width: 'medium', color: 'primary-gradient' })(
                   href=icon.href,
                   data-icon=icon.img,
                   title=icon.title
@@ -87,7 +88,7 @@ mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscriptio
             ul.footer__icons-list
               each icon in icons
                 li.footer__icons-list-item
-                  a.icon.icon_color_primary-gradient.footer__brand-icon(
+                  +icon({ tag: 'a', fontFamily: 'branded', content: 'expand_more', width: 'medium', color: 'primary-gradient' })(
                     href=icon.href,
                     data-icon=icon.img,
                     title=icon.title
