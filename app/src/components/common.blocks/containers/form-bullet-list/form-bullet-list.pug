@@ -4,19 +4,20 @@ include ~@common.blocks/primitives/heading/heading.pug
   heading?: see mixin heading
   headingMarginBottom?: marginBottom in mixin heading
   rowGap?: 'none'
-  textIndent?: 'medium'(5px)
+  textIndent?: 'small'(5px)
   listStyle?: 'material-icon' - type of list-style
+  listColor?: 'main-theme' - color of list icons
   items: string[] | { [text: string]: { icon: 'material icon name', description: string } } - items of list
   Tip: mixin also uses 'and attributes'(&attributes)
-
-mixin form-bullet-list({ heading = '', headingMarginBottom = 'medium', rowGap = '', textIndent = '', listStyle = '', items = {} } = {})
+mixin form-bullet-list({ heading = '', headingMarginBottom = 'medium', rowGap = '', textIndent = '', listStyle = '', listColor = '', items = {} } = {})
   -
     const rowGapClass = rowGap ? `form-bullet-list__list_row-gap_${rowGap}` : undefined;  
     const textIndentClass = textIndent ? `form-bullet-list__item_text-indent_${textIndent}` : undefined;  
     const listStyleClass = listStyle ? `form-bullet-list_list-style_with-${listStyle}` : undefined;
+    const listColorClass = listColor ? `form-bullet-list__item_color_${listColor}` : undefined;
   .form-bullet-list(class=listStyleClass)&attributes(attributes)
     if heading
-      .form-bullet-list__heading 
+      .form-bullet-list__heading
         +heading(heading, { marginBottom: headingMarginBottom })
     ul.form-bullet-list__list(class=[rowGapClass])
       each item, key in items
@@ -25,4 +26,4 @@ mixin form-bullet-list({ heading = '', headingMarginBottom = 'medium', rowGap = 
             li.form-bullet-list__item(class=[textIndentClass], data-icon=item.icon)= key
               p.form-bullet-list__description= item.description
           default
-            li.form-bullet-list__item(class=[textIndentClass])= item
+            li.form-bullet-list__item(class=[textIndentClass, listColorClass])= item

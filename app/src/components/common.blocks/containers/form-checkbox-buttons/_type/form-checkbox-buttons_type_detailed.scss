@@ -3,7 +3,7 @@
     font-weight: 700;
   }
   .form-checkbox-buttons__item {
-    grid:
+    grid-template-areas:
       'button-item label-item'
       '. description';
   }

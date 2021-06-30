@@ -1,5 +1,5 @@
 .form-elements-layout__button-empty {
-  @media print, screen and (min-width: 992px) {
+  @media print, screen and (min-width: 1200px) {
     grid-area: button-empty;
     display: grid;
     grid-template-columns: #{99px / 14px * 1em} 1fr;

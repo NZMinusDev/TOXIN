@@ -12,6 +12,7 @@
         overflow: hidden;
         max-height: 0;
         transition: max-height 0.2s linear, visibility 0.2s linear;
+        background-color: rgba($color: #ffffff, $alpha: 0.75);
       }
       &:checked ~ .nav-bar__navigation-list {
         visibility: visible;
@@ -25,7 +26,6 @@
     .nav-bar__navigation-item {
       padding-left: 0.5em;
       padding-right: 0.5em;
-      background-color: rgba($color: #ffffff, $alpha: 0.75);
     }
     .nav-bar__navigation-list,
     .nav-bar__navigation-item-dropdown-label {
@@ -35,6 +35,7 @@
     & > .nav-bar__navigation-item-dropdown-checkbox ~ .nav-bar__navigation-list {
       display: flex;
       flex-flow: column;
+      align-items: flex-start;
       overflow: initial;
       visibility: hidden;
       opacity: 0;

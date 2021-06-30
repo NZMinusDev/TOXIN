@@ -11,6 +11,7 @@ include ~@common.blocks/primitives/form-like-button/form-like-button.pug
       personName: string,
       iconPath: string,
       date: datestring,
+      dateText: string,
       content: string,
       likeButtonCounter: number,
       isLikeButtonChecked: boolean
@@ -33,7 +34,7 @@ mixin comments({ heading = '', headingMarginBottom = 'large', counter = false, i
           .comments__source-item
             h3.comments__name-item= item.personName
             p.comments__date-item
-              time(datetime=item.date)
+              time(datetime=item.date)= item.dateText
           p.comments__content-item= item.content
           .comments__like-button-item
             +form-like-button({ name: `${key}-like-button`, counter: item.likeButtonCounter, checked: item.isLikeButtonChecked })

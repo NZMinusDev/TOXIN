@@ -1,9 +1,9 @@
 .footer__list {
   @media print, screen and (min-width: 0px) {
     display: grid;
-    grid-row-gap: 22px / 14px * 1em;
+    grid-row-gap: 21px / 14px * 1em;
     text-align: center;
-    margin-top: 24px / 14px * 1em;
+    margin-top: 20px / 14px * 1em;
   }
 
   @media print, screen and (min-width: 992px) {

@@ -1,6 +1,3 @@
 .footer__description-aligner {
-  @media print, screen and (min-width: 0px) {
-    line-height: 1;
-    vertical-align: top;
-  }
+  line-height: 24px / 14px * 1em;
 }

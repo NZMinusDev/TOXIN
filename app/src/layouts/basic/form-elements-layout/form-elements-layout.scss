@@ -7,7 +7,7 @@
     justify-content: center;
   }
 
-  @media print, screen and (min-width: 992px) {
+  @media print, screen and (min-width: 1200px) {
     grid:
       'text-field-default . checkbox-buttons . range-slider' #{84px / 14px * 1em}
       'text-field-hover . checkbox-buttons . button-fill' #{84px / 14px * 1em}
@@ -24,9 +24,8 @@
       'expandable-checkbox-list . rich-checkbox-buttons . bullet-list' #{272px / 14px * 1em}
       '. . . . .' #{100px / 14px * 1em}
       'logo-comfort . comment comment comment' #{152px / 14px * 1em} / #{320px / 14px * 1em} #{126px / 14px * 1em} #{320px / 14px * 1em} #{72px / 14px * 1em} #{320px / 14px * 1em};
-    padding-top: 59px / 14px * 1em;
-    padding-right: 141px / 1440px * 100%;
-    padding-left: 141px / 1440px * 100%;
+    padding: #{65px / 1440px * 100%} #{141px / 1440px * 100%} #{147px / 1440px * 100%} #{141px / 1440px *
+      100%};
     grid-row-gap: initial;
     width: initial;
     margin: initial;

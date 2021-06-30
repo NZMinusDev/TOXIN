@@ -1,24 +1,20 @@
 //-
   tag?: string - tag of icon
-  fontFamily?: 'branded'(Font Awesome 5 Brands) - font-family of icon
-  isCodePoint?: boolean - force using of codePoint instead of content
-  content?: string - codePoint or content of icon
+  fontFamily?: 'material' | 'branded'(Font Awesome 5 Brands) - font-family of icon
+  content?: string - unicode code or alias of icon
   width?: 'medium'(24px) | 'large'(44px) - width of icon
+  height?: 'stretchable' | 'font' 
   color?: 'primary-gradient' - color of icon
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin icon({ tag = 'span', fontFamily = 'Material Icons', content = 'sentiment_satisfied', width = '', color = '' } = {})
+mixin icon({ tag = 'span', fontFamily = 'material', content = 'sentiment_satisfied', width = '', height = 'stretchable', color = '' } = {})
   -
-    const fontFamilyClass = fontFamily !== 'Material Icons' ? `icon_font-family_${fontFamily}` : undefined;
-
-    const fontFamilyNestingStatus = {
-      'Material Icons': true,
-      'branded': false,
+    const fontFamilyLibClassDecoder = {
+      'material': 'material-icons',
+      'branded': 'fab',
     };
-    const isNested = isCodePoint || fontFamilyNestingStatus[fontFamily];
-    const isNestedClass = isNested ? undefined : 'icon_not-nested';
-    const nestedIconContent = isNested ? content : undefined;
-    const dataIconCode = isNested ? undefined : content;
+    const fontFamilyClass = fontFamilyLibClassDecoder[fontFamily];
 
     const widthClass = width ? `icon_width_${width}` : undefined;
-    const colorClass = color ? 'icon_color_primary-gradient' : undefined;
-  #{tag}.icon(class=[fontFamilyClass, isNestedClass, widthClass, colorClass], data-icon=dataIconCode)&attributes(attributes)= nestedIconContent
+    const heightClass = height !== 'stretchable' ? `icon_height_${height}` : undefined;
+    const colorClass = color ? `icon_color_${color}` : undefined;
+  #{tag}.icon(class=[fontFamilyClass, widthClass, heightClass, colorClass])&attributes(attributes)!= content

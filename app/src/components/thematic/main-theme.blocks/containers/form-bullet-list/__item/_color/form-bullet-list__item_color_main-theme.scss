@@ -1,4 +1,6 @@
-.form-bullet-list__item {
+@use '@thematic/main-theme.blocks/gradients.scss';
+
+.form-bullet-list__item_color_main-theme {
   &:nth-child(1) {
     &:before {
       background: linear-gradient(180deg, #ffe39c 0%, #ffba9c 100%);

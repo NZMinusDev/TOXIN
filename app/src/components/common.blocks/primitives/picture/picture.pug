@@ -2,9 +2,9 @@
   path: string - relative(in dist) path to img
   alt: string - img alt attr
   title?: string - title attribute
-  size?: 'rectangle' | 'full' - size of picture
+  size?: 'rectangle' | 'contain' - size of picture
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin picture(path, alt, { title = undefined, size = 'contain' } = {} )
+mixin picture(path, alt, { title = undefined, size = 'rectangle' } = {} )
   -
     if(!path){
       path = '';

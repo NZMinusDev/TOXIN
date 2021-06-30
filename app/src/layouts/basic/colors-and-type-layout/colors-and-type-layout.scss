@@ -4,11 +4,12 @@
     grid: 'colors' 'type';
     grid-row-gap: 1em;
     place-items: center;
-    padding-top: 60px / 14px * 1em;
+    padding-top: 67px / 1440px * 100%;
+    padding-bottom: 145px / 1440px * 100%;
   }
 
   @media print, screen and (min-width: 992px) {
-    grid: 'colors type' / auto #{403px / 14px * 1em};
+    grid: 'colors type' / auto #{407px / 14px * 1em};
     place-content: normal space-between;
     place-items: normal;
   }

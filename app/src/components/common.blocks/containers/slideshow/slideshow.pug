@@ -35,7 +35,7 @@ mixin slideshow({ name = 'slideshow', paths = [] } = {})
         span.slideshow__switcher-icon
           +icon({ content: 'expand_more' })
       .slideshow__picture
-        +picture(path, `Изображение ${index + 1}`)
+        +picture(path, `Изображение ${index + 1}`, { size: 'contain' })
       - labelID = pictureID;
     label.slideshow__switcher(for=pictureID, title=`К изображению №${paths.length}`)
       span.slideshow__switcher-icon

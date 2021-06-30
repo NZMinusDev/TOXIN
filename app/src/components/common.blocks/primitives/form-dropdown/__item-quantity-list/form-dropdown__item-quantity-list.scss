@@ -28,8 +28,8 @@
 
   .iqdropdown-menu {
     z-index: 1;
-    top: 42px / 14px * 1em;
-    padding: #{6px / 14px * 1em} #{7px / 14px * 1em} #{5px / 14px * 1em} #{15px / 14px * 1em};
+    top: 44px / 14px * 1em;
+    padding: #{6px / 14px * 1em} #{7px / 14px * 1em} #{7px / 14px * 1em} #{15px / 14px * 1em};
     box-shadow: initial;
     border: 1px solid black;
   }
@@ -74,7 +74,7 @@
 
     .counter {
       display: inline-block;
-      width: #{32px / 14px * 1em};
+      width: #{30px / 12px * 1em};
       text-align: center;
       @include mixins.ellipsisText;
     }

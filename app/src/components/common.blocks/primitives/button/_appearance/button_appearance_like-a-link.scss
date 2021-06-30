@@ -2,6 +2,7 @@
 
 $iconWidth: 44px / 12px * 1em;
 .button_appearance_like-a-link {
+  width: 100%;
   position: relative;
   padding-left: $iconWidth + variables.$X_PADDING;
   padding-right: $iconWidth + variables.$X_PADDING;

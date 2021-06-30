@@ -21,10 +21,14 @@
 );
 
 :root {
-  --font__h1: 700 1rem / 1.25rem #{functions.safeFontFamily('Quicksand')};
-  --font__h2: 700 0.79167rem / 0.9895833rem #{functions.safeFontFamily('Quicksand')};
-  --font__h3: 700 0.5rem / 0.6095833rem #{functions.safeFontFamily('Montserrat')};
-  --font__body: 400 0.5833rem / 1rem #{functions.safeFontFamily('Montserrat')};
+  --font__h1: 700 1rem / #{30px / 24px * 1rem} #{functions.safeFontFamily('Quicksand')};
+  --font__h2: 700 #{19px / 24px * 1rem} / #{23.75px / 24px * 1rem} #{functions.safeFontFamily(
+      'Quicksand'
+    )};
+  --font__h3: 700 #{12px / 24px * 1rem} / #{14.63px / 24px * 1rem} #{functions.safeFontFamily(
+      'Montserrat'
+    )};
+  --font__body: 400 #{14px / 24px * 1rem} / 1rem #{functions.safeFontFamily('Montserrat')};
 }
 
 html {

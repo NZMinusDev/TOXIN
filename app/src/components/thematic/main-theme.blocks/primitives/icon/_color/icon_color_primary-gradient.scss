@@ -3,8 +3,5 @@
 @use '@thematic/main-theme.blocks/gradients.scss';
 
 .icon_color_primary-gradient {
-  &,
-  &:after {
-    @include mixins.gradientFont(gradients.primary(1));
-  }
+  @include mixins.gradientFont(gradients.primary(1));
 }

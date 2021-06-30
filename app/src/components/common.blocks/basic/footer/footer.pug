@@ -7,10 +7,10 @@ include ~@common.blocks/primitives/icon/icon.pug
       action: string - action of form with subscription
       name?: string - name of form with subscription
       method?: 'get' | 'post' - method of form with subscription
-  icons?: { img: string, title: string, href: string }[] - icons
+  icons?: { glyph: string, title: string, href: string }[] - icons
   copyright?: string - copyright text
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscription', method = 'post', icons = [ { img: '', title: 'twitter', href: '/mock.html' }, { img: '', title: 'facebook', href: '/mock.html' }, { img: '', title: 'instagram', href: '/mock.html' } ], copyright = 'Copyright © 2018 Toxin отель. Все права зачищены.' } = {})
+mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscription', method = 'post', icons = [ { glyph: '&#xf099;', title: 'twitter', href: '/mock.html' }, { glyph: '&#xf082;', title: 'facebook', href: '/mock.html' }, { glyph: '&#xf16d;', title: 'instagram', href: '/mock.html' } ], copyright = 'Copyright © 2018 Toxin отель. Все права зачищены.' } = {})
   case type
     when 'creative'
       footer.footer.footer_type_creative&attributes(attributes)
@@ -22,9 +22,8 @@ mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscriptio
           ul.footer__icons-list
             each icon in icons
               li.footer__icons-list-item
-                +icon({ tag: 'a', fontFamily: 'branded', content: 'expand_more', width: 'medium', color: 'primary-gradient' })(
+                +icon({ tag: 'a', fontFamily: 'branded', content: icon.glyph, width: 'medium', height: 'font', color: 'primary-gradient' })(
                   href=icon.href,
-                  data-icon=icon.img,
                   title=icon.title
                 )
     default
@@ -40,37 +39,37 @@ mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscriptio
               label(for="footer-navigation-checkbox", tabindex="0") Навигация
             ul.footer__list
               li.footer__list-item
-                a(href="/mock.html") О нас
+                a.footer__link(href="/mock.html") О нас
               li.footer__list-item
-                a(href="/mock.html") Новости
+                a.footer__link(href="/mock.html") Новости
               li.footer__list-item
-                a(href="/mock.html") Служба поддержки
+                a.footer__link(href="/mock.html") Служба поддержки
               li.footer__list-item
-                a(href="/mock.html") Услуги
+                a.footer__link(href="/mock.html") Услуги
           section.footer__about-us-section
             input#footer-about-checkbox.footer__list-checkbox(type="checkbox")
             h3.footer__list-label
               label(for="footer-about-checkbox", tabindex="0") О нас
             ul.footer__list
               li.footer__list-item
-                a(href="/mock.html") О сервисе
+                a.footer__link(href="/mock.html") О сервисе
               li.footer__list-item
-                a(href="/mock.html") Наша команда
+                a.footer__link(href="/mock.html") Наша команда
               li.footer__list-item
-                a(href="/mock.html") Вакансии
+                a.footer__link(href="/mock.html") Вакансии
               li.footer__list-item
-                a(href="/mock.html") Инвесторы
+                a.footer__link(href="/mock.html") Инвесторы
           section.footer__support
             input#footer-support-checkbox.footer__list-checkbox(type="checkbox")
             h3.footer__list-label
               label(for="footer-support-checkbox", tabindex="0") Служба поддержки
             ul.footer__list
               li.footer__list-item
-                a(href="/mock.html") Соглашения
+                a.footer__link(href="/mock.html") Соглашения
               li.footer__list-item
-                a(href="/mock.html") Сообщества
+                a.footer__link(href="/mock.html") Сообщества
               li.footer__list-item
-                a(href="/mock.html") Связь с нами
+                a.footer__link(href="/mock.html") Связь с нами
           section.footer__subscription
             input#footer-subscription-checkbox.footer__list-checkbox(type="checkbox")
             h3.footer__list-label
@@ -88,8 +87,7 @@ mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscriptio
             ul.footer__icons-list
               each icon in icons
                 li.footer__icons-list-item
-                  +icon({ tag: 'a', fontFamily: 'branded', content: 'expand_more', width: 'medium', color: 'primary-gradient' })(
+                  +icon({ tag: 'a', fontFamily: 'branded', content: icon.glyph, width: 'medium',height: 'font', color: 'primary-gradient' })(
                     href=icon.href,
-                    data-icon=icon.img,
                     title=icon.title
                   )

@@ -18,7 +18,7 @@
     $navigationGapWidth: 40px / (1440px - $padding * 2) * 100%;
     $aboutGapWidth: 57px / (1440px - $padding * 2) * 100%;
     $supportGapWidth: 92px / (1440px - $padding * 2) * 100%;
-    $subscriptionGapWidth: 57px / (1440px - $padding * 2) * 100%;
+    $subscriptionGapWidth: 54px / (1440px - $padding * 2) * 100%;
     grid:
       'logo . navigation . about-us-section . support . subscription' auto
       'description . navigation . about-us-section . support . subscription' 1fr / #{$descriptionWidth} #{$navigationGapWidth} auto #{$aboutGapWidth} auto #{$supportGapWidth} auto #{$subscriptionGapWidth} auto;

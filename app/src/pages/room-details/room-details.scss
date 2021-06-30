@@ -1,19 +1,10 @@
 .room-details-layout {
   display: grid;
-  grid-row-gap: 70px / 14px * 1em;
-  grid-column-gap: 70px / 14px * 1em;
-  padding-bottom: 70px / 14px * 1em;
 
   @media (min-width: 0px) {
     grid:
       'demo'
-      'info'
-      'reservation';
-  }
-  @media (min-width: 1440px) {
-    grid:
-      'demo demo'
-      'info reservation';
+      'content';
   }
 }
 
@@ -45,27 +36,43 @@
   grid-area: small-img-2;
 }
 
+.room-details-layout__content {
+  display: grid;
+  padding-top: 70px / 14px * 1em;
+  padding-bottom: 70px / 14px * 1em;
+
+  @media print, screen and (min-width: 0px) {
+    grid:
+      'info'
+      'reservation';
+    grid-gap: 70px / 14px * 1em;
+  }
+
+  @media print, screen and (min-width: 1440px) {
+    grid: 'info reservation';
+  }
+}
 .room-details-layout__info {
   grid-area: info;
   display: grid;
-  grid-row-gap: 30px / 14px * 1em;
-  grid-column-gap: inherit;
 
   @media (min-width: 0px) {
     grid:
-      'data '
+      'data'
       'impression'
       'comments'
       'rules'
       'alert';
+    grid-row-gap: 1em;
   }
   @media (min-width: 768px) {
-    $theFirstCellWidth: 291px;
     grid:
-      'data impression'
-      'data .'
-      'comments comments'
-      'rules alert' / #{$theFirstCellWidth} auto;
+      'data . impression'
+      '. . .' #{35px / 14px * 1em}
+      'comments comments comments'
+      '. . .' #{35px / 14px * 1em}
+      'rules . alert' / #{291px / 14px * 1em} #{70px / 14px * 1em} auto;
+    grid-row-gap: initial;
   }
 }
 .room-details-layout__data {
@@ -93,6 +100,9 @@
 }
 .room-details-layout__rules {
   grid-area: rules;
+}
+.room-details-layout__rules-heading {
+  text-indent: 20px / 14px * 1em;
 }
 .room-details-layout__alert {
   grid-area: alert;

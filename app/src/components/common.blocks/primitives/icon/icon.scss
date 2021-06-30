@@ -1,9 +1,19 @@
+@use '@utils/devTools/styles/functions.scss';
+
 .icon {
-  display: inline-flex;
   height: 100%;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Material Icons';
-  line-height: 0;
-  text-transform: lowercase;
+  text-align: center;
+  text-indent: 0;
+  font-size: functions.getLiquidSize(24, 18);
+  line-height: 1;
+  font-weight: normal;
+  font-style: normal;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
 }
