@@ -28,7 +28,7 @@ mixin comments({ heading = '', headingMarginBottom = 'large', counter = false, i
       span.comments__counter= `${Object.keys(items).length.toLocaleString()} отзыва`
     .comments__items
       each item, key in items
-        .comments__item
+        article.comments__item
           .comments__icon-item
             +picture(item.iconPath, 'Иконка комментирующего')
           .comments__source-item

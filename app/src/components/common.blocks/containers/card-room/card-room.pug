@@ -19,10 +19,10 @@ mixin card-room({ href = '/mock.html', roomNumber = -1, roomGrade = '', paymentA
     const commentsAmountSentence = `${commentsAmount.toLocaleString()}<span class="card-base__text"> Отзывов</span>`;
 
     const uniqueNamePostfix = Math.random();
-  .card-base.card-room&attributes(attributes)
+  figure.card-base.card-room&attributes(attributes)
     .card-room__slideshow
       +slideshow({ name: `${href}-slideshow-${uniqueNamePostfix}`, paths })
-    .card-room__room-data 
+    figcaption.card-room__room-data
       a.card-room__data-row(href=href, title="Подробнее о номере")
         .card-room__room-title
           h2.card-room__room-number= roomNumberSentence
