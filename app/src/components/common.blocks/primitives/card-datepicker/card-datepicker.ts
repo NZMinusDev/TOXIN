@@ -21,7 +21,7 @@ type CardDatepickerGeneratedDOM = {
   applyBtn: HTMLButtonElement;
 };
 
-type CardDatepickerEvents = 'select' | 'change' | 'clear';
+type CardDatepickerEvents = 'select' | 'clear' | 'change';
 
 interface CardDatepickerAPI extends Plugin<CardDatepickerEvents> {
   readonly element: CardDatepickerElement;
@@ -153,7 +153,12 @@ class CardDatepicker implements CardDatepickerAPI {
 
         this._changeInputValue(ISOSelectedDates);
 
-        this.element.dispatchEvent(new CustomEvent('change', { bubbles: true }));
+        this.element.dispatchEvent(
+          new CustomEvent('change', {
+            bubbles: true,
+            detail: { value: this._staticDOM.input.value },
+          })
+        );
       }
     },
   };
@@ -170,8 +175,7 @@ class CardDatepicker implements CardDatepickerAPI {
     return selectedDates.length === maxSelected || selectedDates.length === 0;
   }
   protected _changeInputValue(ISODates: string[]) {
-    this._staticDOM.input.value =
-      this._staticDOM.$altFields === undefined ? ISODates.toString() : ISODates[0] || '';
+    this._staticDOM.input.value = ISODates.toString();
     this._staticDOM.$altFields?.each((index, altField) => {
       // eslint-disable-next-line no-param-reassign
       altField.value = ISODates[index + 1];

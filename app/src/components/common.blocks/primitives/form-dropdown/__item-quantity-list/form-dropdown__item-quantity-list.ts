@@ -39,7 +39,7 @@ type DatasetIQListOptions = {
   >;
 };
 
-type IQListEvents = 'select' | 'close';
+type IQListEvents = 'select' | 'close' | 'change';
 
 type ParentBlock = Unpacked<typeof dropdowns>;
 
@@ -212,6 +212,13 @@ class IQList implements Plugin<IQListEvents> {
   }
   protected onClose = () => {
     this._updateValueOfInputs();
+
+    this.element.dispatchEvent(
+      new CustomEvent('change', {
+        bubbles: true,
+        detail: { value: this._staticDOM.mainInput.value },
+      })
+    );
   };
 
   protected _generateResultText() {

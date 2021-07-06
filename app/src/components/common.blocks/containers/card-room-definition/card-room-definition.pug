@@ -18,14 +18,22 @@ include ~@common.blocks/primitives/button/button.pug
 mixin card-room-definition({ action = '/mock.js', name = 'card-room-definition', method = 'post', roomNumber = -1, roomGrade = '', paymentAmount = -1, selectedDates = '', guestsGroups = {}, guestsList = {}, servicesPayment = -1, servicesSale = -1, additionalServicesPayment = -1 } = {})
   -
     const currency = '₽';
+    const msInADay = 24 * 60 * 60 * 1000;
+
+    const dates = selectedDates.split(',').map((ISODateString) => new Date(ISODateString));
+    const days = (dates[1].getTime() - dates[0].getTime()) / msInADay;
+    const totalDayPaymentAmount = paymentAmount * days;
+
+    const totalDayPaymentSentence = `${paymentAmount.toLocaleString()}${currency} x ${days.toLocaleString()} суток`;
+    const totalDayPaymentAmountSentence = `${totalDayPaymentAmount.toLocaleString()}${currency}`;
 
     const roomNumberSentence = `№ ${roomNumber.toLocaleString()}`;
     const paymentAmountSentence = `${paymentAmount.toLocaleString()}${currency}<span class="card-base__text card-base__text_size_small"> в сутки</span>`;
 
     servicesPayment = servicesPayment - servicesSale;
-    const servicesSaleSentence = servicesSale
-      ? `скидка ${servicesSale.toLocaleString()}${currency}`
-      : '';
+    const servicesSaleSentence = `Сбор за услуги: скидка ${servicesSale.toLocaleString()}${currency}`;
+
+    const totalPaymentAmount = totalDayPaymentAmount + servicesPayment + additionalServicesPayment;
   form.card-base.card-room-definition(name=name, action=action, method=method)&attributes(attributes)
     .card-room-definition__room-title
       h1.card-room-definition__room-number= roomNumberSentence
@@ -41,10 +49,10 @@ mixin card-room-definition({ action = '/mock.js', name = 'card-room-definition',
       +form-dropdown('item-quantity', { heading: { h3: 'Гости' }, name: `${name}-guests`, placeholder: 'Сколько гостей', openingMethod: 'applied', groups: guestsGroups, list: guestsList })
     .card-room-definition__payment-rates
       p.card-room-definition__payment-item.card-room-definition__total-day-payment
-        span.card-room-definition__payment-sentence
-        span.card-room-definition__payment-amount
+        span.card-room-definition__payment-sentence= totalDayPaymentSentence
+        span.card-room-definition__payment-amount= totalDayPaymentAmountSentence
       p.card-room-definition__payment-item.card-room-definition__services-payment.card-room-definition__payment-item_col-template_with-tooltip
-        span.card-room-definition__payment-sentence= `Сбор за услуги: ${servicesSaleSentence}`
+        span.card-room-definition__payment-sentence= servicesSaleSentence
         span.card-room-definition__payment-tooltip
           span.tooltip(data-content="Подсказка к сборам за услуги") i
         span.card-room-definition__payment-amount(data-amount=servicesPayment)= `${servicesPayment.toLocaleString()}${currency}`
@@ -56,6 +64,6 @@ mixin card-room-definition({ action = '/mock.js', name = 'card-room-definition',
     h2.card-room-definition__payment-item.card-room-definition__total-payment
       span Итого
       span.card-room-definition__text-separator
-      span.card-room-definition__total-payment-amount
+      span.card-room-definition__total-payment-amount= `${totalPaymentAmount.toLocaleString()}${currency}`
     .card-room-definition__submit-btn
       +button({ appearance: 'like-a-link' })(type="submit", value="Забронировать")
