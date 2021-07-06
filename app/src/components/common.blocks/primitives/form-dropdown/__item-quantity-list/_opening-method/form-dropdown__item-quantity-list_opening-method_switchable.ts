@@ -1,34 +1,35 @@
-import {
-  ToxinIQDropdown,
-  ToxinIQDropdownElement,
-  ToxinIQDropdownOpeningMethodModifier,
-  dropdownsWithIQList,
-} from "../form-dropdown__item-quantity-list";
+import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
 
-export class ToxinIQDropdownToggleOpeningMethodModifier extends ToxinIQDropdownOpeningMethodModifier {
-  constructor(toxinIQDropdown: ToxinIQDropdown) {
-    const toggleMenuHandler = (event) => {
-      toxinIQDropdown.toggle();
-    };
+import IQListOpeningMethodModifier from './coupling';
+import iqLists from '../form-dropdown__item-quantity-list';
 
-    super(toxinIQDropdown, [
-      {
-        currentTarget: toxinIQDropdown.dom.openingButton,
-        eventType: "click",
-        listener: toggleMenuHandler,
-      },
-    ]);
+type IQList = Unpacked<typeof iqLists>;
+
+class IQListSwitchableOpeningMethodModifier extends IQListOpeningMethodModifier {
+  constructor(iqList: IQList) {
+    super(iqList);
+
+    this._bindParentBlockListeners();
   }
-}
 
-dropdownsWithIQList.forEach((dropdown, index) => {
-  if (
-    (dropdown as ToxinIQDropdownElement).toxinIQDropdown.dom.openingButton.classList.contains(
-      "form-dropdown__item-quantity-list_opening-method_switchable"
-    )
-  ) {
-    new ToxinIQDropdownToggleOpeningMethodModifier(
-      (dropdown as ToxinIQDropdownElement).toxinIQDropdown as ToxinIQDropdown
+  protected _bindParentBlockListeners() {
+    // eslint-disable-next-line dot-notation
+    this.plugin['_parentBlock'].element.addEventListener(
+      'open',
+      this._parentBlockEventListenerObject.handleParentBlockOpen
     );
   }
-});
+  protected _parentBlockEventListenerObject = {
+    handleParentBlockOpen: () => {
+      this.plugin.toggle();
+    },
+  };
+}
+
+const iqListWithSwitchableOpeningMethod = iqLists.filter((iqList) =>
+  iqList.element.classList.contains('form-dropdown__item-quantity-list_opening-method_switchable')
+);
+
+const iqListSwitchableOpeningMethodModifier = iqListWithSwitchableOpeningMethod.map(
+  (iqList) => new IQListSwitchableOpeningMethodModifier(iqList)
+);

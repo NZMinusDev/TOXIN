@@ -1,3 +1,5 @@
+include ~@common.blocks/primitives/apply-control/apply-control.pug
+
 //-
   name?: string - name of component hidden input
   placeholder?: string - text of placeholder
@@ -7,7 +9,7 @@
   isFilter?: boolean - if true, input change event will reload page with chosen value(get method)
   Tip: https://github.com/reservamos/item-quantity-dropdown
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin form-dropdown__item-quantity-list({ name = 'iqList', placeholder = 'placeholder', openingMethod = 'switchable', groups = {}, list = {}, isFilter = false } = {})
+mixin form-dropdown__item-quantity-list({ name = 'iqList', placeholder = 'placeholder', openingMethod = 'folded', groups = {}, list = {}, isFilter = false } = {})
   -
     let total = '';
     let counter = 0;
@@ -17,25 +19,26 @@ mixin form-dropdown__item-quantity-list({ name = 'iqList', placeholder = 'placeh
       counter++;
     });
   .iqdropdown.form-dropdown__item-quantity-list(
-    class=`form-dropdown__item-quantity-list_opening-method_${openingMethod}`,
+    class=`form-dropdown__item-quantity-list_opening-method_${openingMethod}`
   )&attributes(attributes)
     input.form-dropdown__list-input(name=name, type="hidden", value=total, data-is-filter=isFilter)
     p.iqdropdown-selection(data-placeholder=placeholder)
     .iqdropdown-menu(data-groups=groups)
-      each limits, item in list
+      each limits, itemTitle in list
         input.form-dropdown__option-input(
           type="hidden",
-          name=`${name}-${item}`,
+          name=`${name}-${itemTitle}`,
           value=limits.default
         )
         .iqdropdown-menu-option(
-          data-id=item,
-          data-defaultcount=limits.default,
-          data-mincount=limits.min,
-          data-maxcount=limits.max,
-          data-group=limits.group
+          data-id=itemTitle,
+          data-defaultcount=`${limits.default}`,
+          data-mincount=`${limits.min}`,
+          data-maxcount=`${limits.max}`,
+          data-group=limits.group || itemTitle
         ) 
           div
-            h3.iqdropdown-item= item
-      if block
-        block
+            h3.iqdropdown-item= itemTitle
+      if openingMethod === 'applied'
+        .form-dropdown__link-btns
+          +apply-control

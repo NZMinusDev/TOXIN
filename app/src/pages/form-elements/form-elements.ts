@@ -2,26 +2,19 @@
 import './form-elements.pug';
 import './form-elements.scss';
 
-// libs
-import { has } from '@utils/devTools/scripts/DOMHelper';
-
 // components
-import {
-  dropdownsWithIQList,
-  ToxinIQDropdownElement,
-} from '@common.blocks/primitives/form-dropdown/__item-quantity-list/form-dropdown__item-quantity-list';
+import iqLists from '@common.blocks/primitives/form-dropdown/__item-quantity-list/form-dropdown__item-quantity-list';
 
 // focus components
 (document.querySelector('#text') as HTMLElement).focus();
 
-const dropdownSelector = '.form-dropdown';
+iqLists.forEach((iqList) => {
+  const shouldBeOpened =
+    iqList.element.closest('.form-elements-layout__dropdown-expanded-plural') ||
+    iqList.element.closest('.form-elements-layout__dropdown-expanded-apply') ||
+    iqList.element.closest('.form-elements-layout__dropdown-expanded-clear-apply');
 
-(has(dropdownsWithIQList, '#facilities-2').closest(
-  dropdownSelector
-) as ToxinIQDropdownElement).toxinIQDropdown.open();
-(has(dropdownsWithIQList, '#guests-1').closest(
-  dropdownSelector
-) as ToxinIQDropdownElement).toxinIQDropdown.open();
-(has(dropdownsWithIQList, '#guests-2').closest(
-  dropdownSelector
-) as ToxinIQDropdownElement).toxinIQDropdown.open();
+  if (shouldBeOpened) {
+    iqList.open();
+  }
+});

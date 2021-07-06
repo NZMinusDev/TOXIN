@@ -1,251 +1,347 @@
-import { PluginCreation, DOMHelper } from "@utils/devTools/devTools";
-import merge from "lodash-es/merge";
+import { Plugin } from '@utils/devTools/scripts/PluginCreationHelper';
+import { has } from '@utils/devTools/scripts/DOMHelper';
 
-import { dropdowns } from "./../form-dropdown";
+import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
+import dropdowns from '../form-dropdown';
 
-export interface ToxinIQDropdownElement extends HTMLDivElement {
-  toxinIQDropdown: ToxinIQDropdownAPI;
-}
+// TODO: aria-expanded менять для кнопки использовать dispatchEvent
 
-export type ToxinIQDropdownDOM = {
-  self: ToxinIQDropdownElement;
+type ToxinIQDropdownElement = HTMLDivElement;
+
+type IQListStaticDOM = {
+  $self: JQuery<ToxinIQDropdownElement>;
   mainInput: HTMLInputElement;
-  openingButton: HTMLButtonElement;
   selection: HTMLParagraphElement;
   menu: HTMLDivElement;
   optionInputs: NodeListOf<HTMLInputElement>;
   menuOptions: NodeListOf<HTMLDivElement>;
   optionTitles: NodeListOf<HTMLHeadingElement>;
+};
+type IQListGeneratedDOM = {
   controls: NodeListOf<HTMLDivElement>;
-  decrementBtns: NodeListOf<HTMLButtonElement>;
-  incrementBtns: NodeListOf<HTMLButtonElement>;
+  decrementButtons: NodeListOf<HTMLButtonElement>;
+  incrementButtons: NodeListOf<HTMLButtonElement>;
   counters: NodeListOf<HTMLSpanElement>;
 };
-export interface ToxinIQDropdownAPI extends PluginCreation.Plugin {
-  readonly dom: ToxinIQDropdownDOM;
 
-  readonly groupCounterList: Map<string, number>;
+type DatasetIQListOptions = {
+  selection: { placeholder: string };
+  menu: { groups: { [groupName: string]: { selectionText: string; textPlural: string } } };
+  menuOptions: Map<
+    HTMLDivElement,
+    {
+      id: string;
+      defaultCount: number;
+      minCount: number;
+      maxCount: number;
+      group: string;
+    }
+  >;
+};
 
-  open(): boolean;
-  close(): boolean;
-  toggle(): void;
-}
+type IQListEvents = 'select' | 'close';
 
-// Component
-export class ToxinIQDropdown implements ToxinIQDropdownAPI {
-  public readonly dom: ToxinIQDropdownDOM = {
-    mainInput: null,
-    self: null,
-    openingButton: null,
-    selection: null,
-    menu: null,
-    optionInputs: null,
-    menuOptions: null,
-    optionTitles: null,
-    controls: null,
-    decrementBtns: null,
-    incrementBtns: null,
-    counters: null,
-  };
+type ParentBlock = Unpacked<typeof dropdowns>;
 
-  private _groupCounterList = new Map<string, number>();
-  public get groupCounterList(): Map<string, number> {
-    return this._groupCounterList;
+class IQList implements Plugin<IQListEvents> {
+  readonly element: ToxinIQDropdownElement;
+  protected readonly _staticDOM: Readonly<IQListStaticDOM>;
+  protected readonly _generatedDOM: Readonly<IQListGeneratedDOM>;
+
+  private _datasetIQListOptions: DatasetIQListOptions;
+  protected _totalItems = -1;
+
+  protected _itemsCounter = new Map<string, number>();
+  protected _groupsCounter = new Map<string, number>();
+
+  protected _parentBlock: ParentBlock;
+
+  constructor(IQListElement: ToxinIQDropdownElement) {
+    this.element = IQListElement;
+    this._staticDOM = IQList._initStaticDOM(IQListElement);
+    this._datasetIQListOptions = this._initDatasetIQListOptions();
+    this._initLibIQList();
+    this._generatedDOM = this._initGeneratedDOM();
+
+    const subBlocks = this._initSubBlocks();
+    this._parentBlock = subBlocks._parentBlock;
+
+    this._bindListeners();
+    this._bindCounterBtnListeners();
+
+    this._init();
   }
 
-  private _libOptions: LibIQDropdownOptions = {
-    setSelectionText: (itemCount, totalItems) => {
-      let result = "";
-      const groups = JSON.parse(this.dom.menu.dataset.groups);
-      this._groupCounterList.clear();
+  getTotalAmount() {
+    return this._totalItems;
+  }
+  reset() {
+    this._staticDOM.menuOptions.forEach((menuOption, index) => {
+      const menuOptionDataset = this._datasetIQListOptions.menuOptions.get(menuOption) as Unpacked<
+        DatasetIQListOptions['menuOptions']
+      >;
 
-      this.dom.menuOptions.forEach((menuOption) => {
-        const groupKey = menuOption.dataset.group || menuOption.dataset.id;
-        const groupAmount = this._groupCounterList.get(groupKey)
-          ? this._groupCounterList.get(groupKey) + itemCount[menuOption.dataset.id]
-          : itemCount[menuOption.dataset.id];
+      const currAmount = this._itemsCounter.get(menuOptionDataset.id) as number;
+      const minAmount = menuOptionDataset.minCount as number;
+      let amountToDecrement = currAmount - minAmount;
 
-        this._groupCounterList.set(groupKey, groupAmount);
-      });
+      const decrementBtn = this._generatedDOM.decrementButtons.item(index);
 
-      if (totalItems > 0) {
-        let appendedText = "";
-
-        this._groupCounterList.forEach((amount, group) => {
-          if (amount > 0) {
-            if (result !== "") result += ", ";
-
-            appendedText = amount === 1 ? groups[group].selectionText : groups[group].textPlural;
-            result += amount + " " + appendedText;
-          }
-        });
-      } else {
-        result = this.dom.selection.dataset.placeholder;
+      // eslint-disable-next-line no-loops/no-loops
+      while (amountToDecrement !== 0) {
+        decrementBtn.dispatchEvent(new Event('click'));
+        amountToDecrement -= 1;
       }
-
-      return result;
-    },
-    controls: {
-      position: "right",
-      displayCls: "iqdropdown-content",
-      controlsCls: "form-dropdown__counter-control",
-      counterCls: "counter",
-    },
-  };
-
-  constructor(dropdown: ToxinIQDropdownElement, libOptions?: LibIQDropdownOptions) {
-    this._initStaticDOM(dropdown);
-
-    this._setOptions(libOptions);
-
-    this._initLibDropdown();
-    this._initGeneratedDOM();
-    this._clearOpenMode();
-
-    this._initControlBtnListeners();
-    this._initInputUpdateListeners();
-
-    dropdown.toxinIQDropdown = this;
+    });
   }
 
-  public open() {
-    if (!this.dom.openingButton.classList.contains("menu-open")) {
-      this.dom.openingButton.classList.add("menu-open");
-      this.dom.self.dispatchEvent(new CustomEvent("open"));
+  open() {
+    if (!this.element.classList.contains('menu-open')) {
+      this.element.classList.add('menu-open');
+
       return true;
     }
+
     return false;
   }
-  public close() {
-    if (this.dom.openingButton.classList.contains("menu-open")) {
-      this.dom.openingButton.classList.remove("menu-open");
-      this.dom.self.dispatchEvent(new CustomEvent("close"));
+  close() {
+    if (this.element.classList.contains('menu-open')) {
+      this.element.classList.remove('menu-open');
+
+      this.element.dispatchEvent(new CustomEvent('close', { bubbles: true }));
+
       return true;
     }
+
     return false;
   }
-  public toggle() {
+  toggle() {
     if (!this.open()) {
       this.close();
     }
   }
 
-  protected _setOptions(libOptions: LibIQDropdownOptions) {
-    if (libOptions) this._libOptions = merge(this._libOptions, libOptions);
-  }
-
-  protected _initStaticDOM(dropdown: ToxinIQDropdownElement) {
-    this.dom.self = dropdown;
-    this.dom.mainInput = this.dom.self.querySelector(".form-dropdown__list-input");
-    this.dom.openingButton = this.dom.self.querySelector(
-      ".iqdropdown.form-dropdown__item-quantity-list"
-    );
-    this.dom.selection = this.dom.openingButton.querySelector(".iqdropdown-selection");
-    this.dom.menu = this.dom.openingButton.querySelector(".iqdropdown-menu");
-    this.dom.optionInputs = this.dom.menu.querySelectorAll(".form-dropdown__option-input");
-    this.dom.menuOptions = this.dom.menu.querySelectorAll(".iqdropdown-menu-option");
-    this.dom.optionTitles = this.dom.menu.querySelectorAll(".iqdropdown-itemItem");
-  }
-  protected _initGeneratedDOM() {
-    this.dom.controls = this.dom.self.querySelectorAll(".form-dropdown__counter-control");
-    this.dom.decrementBtns = this.dom.self.querySelectorAll(".button-decrement");
-    this.dom.incrementBtns = this.dom.self.querySelectorAll(".button-increment");
-    this.dom.counters = this.dom.self.querySelectorAll(".counter");
-  }
-
-  protected _initControlBtnListeners() {
-    const counterBtnVisibilityClickHandler = (clickEvent: MouseEvent) => {
-      const targetMenuOption = DOMHelper.has(
-        this.dom.menuOptions,
-        clickEvent.currentTarget as Element
-      );
-      const decrementBtn = targetMenuOption.querySelector(".button-decrement");
-      const incrementBtn = targetMenuOption.querySelector(".button-increment");
-      const counterAmount = parseInt(
-        (targetMenuOption.querySelector(".counter") as HTMLDivElement).textContent
-      );
-
-      if (parseInt(targetMenuOption.getAttribute("data-mincount")) === counterAmount) {
-        decrementBtn.classList.add("iqdropdown__counter_isDisabled");
-      } else {
-        decrementBtn.classList.remove("iqdropdown__counter_isDisabled");
-      }
-      if (parseInt(targetMenuOption.getAttribute("data-maxcount")) === counterAmount) {
-        incrementBtn.classList.add("iqdropdown__counter_isDisabled");
-      } else {
-        incrementBtn.classList.remove("iqdropdown__counter_isDisabled");
-      }
+  protected static _initStaticDOM(dropdown: ToxinIQDropdownElement): IQListStaticDOM {
+    return {
+      $self: $(dropdown) as IQListStaticDOM['$self'],
+      mainInput: dropdown.querySelector(
+        '.form-dropdown__list-input'
+      ) as IQListStaticDOM['mainInput'],
+      selection: dropdown.querySelector('.iqdropdown-selection') as IQListStaticDOM['selection'],
+      menu: dropdown.querySelector('.iqdropdown-menu') as IQListStaticDOM['menu'],
+      optionInputs: dropdown.querySelectorAll(
+        '.form-dropdown__option-input'
+      ) as IQListStaticDOM['optionInputs'],
+      menuOptions: dropdown.querySelectorAll(
+        '.iqdropdown-menu-option'
+      ) as IQListStaticDOM['menuOptions'],
+      optionTitles: dropdown.querySelectorAll(
+        '.iqdropdown-item'
+      ) as IQListStaticDOM['optionTitles'],
     };
-    this.dom.incrementBtns.forEach((incrementBtn) => {
-      incrementBtn.addEventListener("click", counterBtnVisibilityClickHandler);
-    });
-    this.dom.decrementBtns.forEach((decrementBtn) => {
-      decrementBtn.addEventListener("click", counterBtnVisibilityClickHandler);
-    });
-
-    // init btns' state
-    Array.from(this.dom.decrementBtns)
-      .concat(Array.from(this.dom.incrementBtns))
-      .forEach((btn) => {
-        counterBtnVisibilityClickHandler(({ currentTarget: btn } as unknown) as MouseEvent);
-      });
   }
-  protected _initInputUpdateListeners() {
-    const changeInputValueHandler = () => {
-      let accumulator = "";
-      this.dom.menuOptions.forEach((menuOption, index) => {
-        const counterAmount = this.dom.counters.item(index).textContent;
-        const input = this.dom.optionInputs.item(index);
-
-        input.value = counterAmount;
-
-        if (index > 0) accumulator += ",";
-        accumulator += counterAmount;
-      });
-      this.dom.mainInput.value = accumulator;
-      this.dom.mainInput.dispatchEvent(new Event("change"));
-      this.dom.self.dispatchEvent(
-        new CustomEvent("change", {
-          detail: {
-            value: this.dom.mainInput.value,
+  protected _initDatasetIQListOptions(): DatasetIQListOptions {
+    return {
+      selection: { placeholder: this._staticDOM.selection.dataset.placeholder || '' },
+      menu: {
+        groups:
+          this._staticDOM.menu.dataset.groups !== undefined
+            ? JSON.parse(this._staticDOM.menu.dataset.groups)
+            : '',
+      },
+      menuOptions: new Map(
+        Array.from(this._staticDOM.menuOptions).map((menuOption) => [
+          menuOption,
+          {
+            id: menuOption.dataset.id || '',
+            defaultCount: Number(menuOption.dataset.defaultcount),
+            minCount: Number(menuOption.dataset.mincount),
+            maxCount: Number(menuOption.dataset.maxcount),
+            group: menuOption.dataset.group || '',
           },
-        })
-      );
+        ])
+      ),
     };
-    this.dom.self.addEventListener("close", changeInputValueHandler);
   }
+  private _initLibIQList() {
+    this._staticDOM.$self.iqDropdown({
+      setSelectionText: (itemCount, totalItems) => {
+        this._totalItems = totalItems;
+        this._updateCounters(itemCount);
 
-  private _initLibDropdown() {
-    this.dom.mainInput.value.split(",").map((menuOptionInputValue, index) => {
-      this.dom.optionInputs.item(index).value = menuOptionInputValue;
-      this.dom.menuOptions.item(index).dataset.defaultcount = menuOptionInputValue;
+        return this._generateResultText();
+      },
+      controls: {
+        position: 'right',
+        displayCls: 'iqdropdown-content',
+        controlsCls: 'form-dropdown__counter-control',
+        counterCls: 'counter',
+      },
     });
 
-    $(this.dom.openingButton).iqDropdown(this._libOptions);
+    // disable toggle menu
+    $(this.element).off('click');
   }
-  private _clearOpenMode() {
-    $(this.dom.openingButton).off("click");
-    this.dom.menu.addEventListener("click", (event) => {
-      event.stopPropagation();
+  protected _initGeneratedDOM(): IQListGeneratedDOM {
+    return {
+      controls: this._staticDOM.menu.querySelectorAll(
+        '.form-dropdown__counter-control'
+      ) as IQListGeneratedDOM['controls'],
+      decrementButtons: this._staticDOM.menu.querySelectorAll(
+        '.button-decrement'
+      ) as IQListGeneratedDOM['decrementButtons'],
+      incrementButtons: this._staticDOM.menu.querySelectorAll(
+        '.button-increment'
+      ) as IQListGeneratedDOM['incrementButtons'],
+      counters: this._staticDOM.menu.querySelectorAll('.counter') as IQListGeneratedDOM['counters'],
+    };
+  }
+
+  protected _initSubBlocks() {
+    const outerDropdownElement = this.element.closest('.form-dropdown');
+
+    const _parentBlock = dropdowns.find(
+      (dropdown) => dropdown.element === outerDropdownElement
+    ) as ParentBlock;
+
+    return { _parentBlock };
+  }
+
+  protected _bindListeners() {
+    this.element.addEventListener('close', this.onClose);
+  }
+  protected onClose = () => {
+    this._updateValueOfInputs();
+  };
+
+  protected _generateResultText() {
+    const { groups } = this._datasetIQListOptions.menu;
+
+    let result = '';
+    if (this._totalItems > 0) {
+      let appendedText = '';
+
+      this._groupsCounter.forEach((groupAmount, groupKey) => {
+        if (groupAmount > 0) {
+          if (result !== '') result += ', ';
+
+          appendedText =
+            groupAmount === 1 ? groups[groupKey].selectionText : groups[groupKey].textPlural;
+          result += `${groupAmount} ${appendedText}`;
+        }
+      });
+    } else {
+      result = this._datasetIQListOptions.selection.placeholder;
+    }
+
+    return result;
+  }
+  protected _updateCounters(itemCount: { [itemID: string]: number }) {
+    this._itemsCounter.clear();
+    this._groupsCounter.clear();
+
+    this._staticDOM.menuOptions.forEach((menuOption) => {
+      const menuOptionDataset = this._datasetIQListOptions.menuOptions.get(menuOption) as Unpacked<
+        DatasetIQListOptions['menuOptions']
+      >;
+
+      this._itemsCounter.set(menuOptionDataset.id, itemCount[menuOptionDataset.id]);
+      this._groupsCounter.set(
+        menuOptionDataset.group,
+        (this._groupsCounter.get(menuOptionDataset.group) || 0) + itemCount[menuOptionDataset.id]
+      );
     });
   }
-}
+  protected _updateValueOfInputs() {
+    let accumulator = '';
+    this._staticDOM.menuOptions.forEach((menuOption, index) => {
+      const menuOptionDataset = this._datasetIQListOptions.menuOptions.get(menuOption) as Unpacked<
+        DatasetIQListOptions['menuOptions']
+      >;
 
-// init and export our dropdowns
-export const dropdownsWithIQList = Array.from(dropdowns).filter((dropdown) => {
-  if (dropdown.querySelector(".form-dropdown__item-quantity-list")) {
-    new ToxinIQDropdown(dropdown as ToxinIQDropdownElement);
-    return true;
+      const counterAmount = this._itemsCounter.get(menuOptionDataset.id as string);
+      const input = this._staticDOM.optionInputs.item(index);
+
+      input.value = `${counterAmount}`;
+
+      if (index > 0) accumulator += ',';
+      accumulator += counterAmount;
+    });
+
+    this._staticDOM.mainInput.value = accumulator;
   }
-  return false;
-}) as Array<ToxinIQDropdownElement>;
 
-// Component modifiers
-export abstract class ToxinIQDropdownOpenModModifier extends PluginCreation.ChangerOfComponentListeners {
-  constructor(
-    toxinIQDropdown: ToxinIQDropdown,
-    listeners: Array<PluginCreation.ListenersByPlugin>
+  protected _bindCounterBtnListeners() {
+    this._generatedDOM.incrementButtons.forEach((incrementBtn) => {
+      incrementBtn.addEventListener(
+        'click',
+        this._counterButtonEventListenerObject.handleCounterButtonClick
+      );
+    });
+    this._generatedDOM.decrementButtons.forEach((decrementBtn) => {
+      decrementBtn.addEventListener(
+        'click',
+        this._counterButtonEventListenerObject.handleCounterButtonClick
+      );
+    });
+  }
+  protected _counterButtonEventListenerObject = {
+    handleCounterButtonClick: (clickEvent: MouseEvent) => {
+      const targetMenuOption = has(
+        this._staticDOM.menuOptions,
+        clickEvent.currentTarget as Unpacked<
+          IQListGeneratedDOM['decrementButtons'] | IQListGeneratedDOM['incrementButtons']
+        >
+      ) as Unpacked<IQListStaticDOM['menuOptions']>;
+
+      this._updateCounterButtonDisplay(targetMenuOption);
+
+      this.element.dispatchEvent(new CustomEvent('select', { bubbles: true }));
+    },
+  };
+
+  protected _updateCounterButtonDisplay(
+    targetMenuOption: Unpacked<IQListStaticDOM['menuOptions']>
   ) {
-    super(toxinIQDropdown, listeners, "toxinIQDropdownOpenModModifier");
+    const targetMenuOptionDataset = this._datasetIQListOptions.menuOptions.get(
+      targetMenuOption
+    ) as Unpacked<DatasetIQListOptions['menuOptions']>;
+
+    const menuOptionIndex = Array.from(this._staticDOM.menuOptions).indexOf(targetMenuOption);
+    const decrementBtn = this._generatedDOM.decrementButtons.item(menuOptionIndex);
+    const incrementBtn = this._generatedDOM.incrementButtons.item(menuOptionIndex);
+
+    const counterAmount = this._itemsCounter.get(targetMenuOptionDataset.id);
+
+    if (targetMenuOptionDataset.minCount === counterAmount) {
+      decrementBtn.classList.add('iqdropdown__counter_isDisabled');
+    } else {
+      decrementBtn.classList.remove('iqdropdown__counter_isDisabled');
+    }
+
+    if (targetMenuOptionDataset.maxCount === counterAmount) {
+      incrementBtn.classList.add('iqdropdown__counter_isDisabled');
+    } else {
+      incrementBtn.classList.remove('iqdropdown__counter_isDisabled');
+    }
+  }
+
+  protected _init() {
+    this._staticDOM.menuOptions.forEach((menuOption) => {
+      this._updateCounterButtonDisplay(menuOption);
+    });
   }
 }
+
+const dropdownsWithIQList = dropdowns.filter((dropdown) =>
+  dropdown.element.querySelector('.form-dropdown__item-quantity-list')
+);
+
+const iqLists = dropdownsWithIQList.map(
+  (dropdown) =>
+    new IQList(
+      dropdown.element.querySelector('.form-dropdown__item-quantity-list') as ToxinIQDropdownElement
+    )
+);
+
+export { iqLists as default, IQListEvents };

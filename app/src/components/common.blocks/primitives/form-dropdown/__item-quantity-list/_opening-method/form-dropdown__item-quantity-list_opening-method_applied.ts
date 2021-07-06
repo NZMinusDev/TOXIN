@@ -1,100 +1,111 @@
-import {
-  dropdownsWithIQList,
-  ToxinIQDropdownElement,
-  ToxinIQDropdownDOM,
-  ToxinIQDropdown,
-  ToxinIQDropdownOpeningMethodModifier,
-} from "../form-dropdown__item-quantity-list";
+import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
 
-export type ToxinIQDropdownApplyOpeningMethoddDOM = ToxinIQDropdownDOM & {
+import IQListOpeningMethodModifier from './coupling';
+import iqLists from '../form-dropdown__item-quantity-list';
+
+type IQListApplyOpeningMethodDOM = {
   clearBtn: HTMLButtonElement;
   applyBtn: HTMLButtonElement;
 };
 
-export class ToxinIQDropdownApplyOpeningMethodModifier extends ToxinIQDropdownOpeningMethodModifier {
-  constructor(toxinIQDropdown: ToxinIQDropdown) {
-    const open = (event: MouseEvent) => {
-      if (toxinIQDropdown.dom.openingButton.contains(event.target as Element)) {
-        toxinIQDropdown.open();
-      }
-    };
+type IQList = Unpacked<typeof iqLists>;
 
-    (toxinIQDropdown.dom as ToxinIQDropdownApplyOpeningMethodDOM).clearBtn = toxinIQDropdown.dom.menu.querySelector(
-      ".apply-control__clear-btn"
-    );
-    (toxinIQDropdown.dom as ToxinIQDropdownApplyOpeningMethodDOM).applyBtn = toxinIQDropdown.dom.menu.querySelector(
-      ".apply-control__apply-btn"
-    );
+class IQListApplyOpeningMethodModifier extends IQListOpeningMethodModifier {
+  protected _dom: IQListApplyOpeningMethodDOM;
 
-    const clearHandler = (clickEvent: MouseEvent) => {
-      toxinIQDropdown.dom.counters.forEach((counter, index) => {
-        for (let i = parseInt(toxinIQDropdown.dom.counters.item(index).textContent); i > 0; i--) {
-          toxinIQDropdown.dom.decrementBtns.item(index).dispatchEvent(new Event("click"));
-        }
-      });
-    };
+  constructor(iqList: IQList) {
+    super(iqList);
 
-    const clearBtnVisibilityHandler = (clickEvent: MouseEvent) => {
-      let totalItems = 0;
-      toxinIQDropdown.dom.counters.forEach((counter) => {
-        totalItems += parseInt(counter.textContent);
-      });
+    this._dom = this._initDOM();
 
-      if (totalItems === 0) {
-        (toxinIQDropdown.dom as ToxinIQDropdownApplyOpeningMethodDOM).clearBtn.classList.add(
-          "apply-control__clear-btn_hidden"
-        );
-      } else {
-        (toxinIQDropdown.dom as ToxinIQDropdownApplyOpeningMethodDOM).clearBtn.classList.remove(
-          "apply-control__clear-btn_hidden"
-        );
-      }
-    };
+    this._bindParentBlockListeners();
+    this._bindPluginListeners();
+    this._bindClearBtnListeners();
+    this._bindApplyBtnListeners();
 
-    const close = (clickEvent: MouseEvent) => {
-      toxinIQDropdown.close();
-    };
-
-    super(toxinIQDropdown, [
-      { currentTarget: toxinIQDropdown.dom.openingButton, eventType: "click", listener: open },
-      {
-        currentTarget: (toxinIQDropdown.dom as ToxinIQDropdownApplyOpeningMethodDOM).clearBtn,
-        eventType: "click",
-        listener: clearHandler,
-      },
-      {
-        currentTarget: Array.from(toxinIQDropdown.dom.decrementBtns).concat(
-          Array.from(toxinIQDropdown.dom.incrementBtns)
-        ),
-        eventType: "click",
-        listener: clearBtnVisibilityHandler,
-      },
-      {
-        currentTarget: (toxinIQDropdown.dom as ToxinIQDropdownApplyOpeningMethodDOM).applyBtn,
-        eventType: "click",
-        listener: close,
-      },
-    ]);
-
-    //init clearBtn visibility
-    clearBtnVisibilityHandler(null);
+    this._init();
   }
-  protected cancel() {
-    super.cancel();
 
-    (this.plugin.dom as ToxinIQDropdownApplyOpeningMethodDOM).clearBtn = null;
-    (this.plugin.dom as ToxinIQDropdownApplyOpeningMethodDOM).applyBtn = null;
+  protected _initDOM(): IQListApplyOpeningMethodDOM {
+    return {
+      clearBtn: this.plugin.element.querySelector(
+        '.apply-control__clear-btn'
+      ) as IQListApplyOpeningMethodDOM['clearBtn'],
+      applyBtn: this.plugin.element.querySelector(
+        '.apply-control__apply-btn'
+      ) as IQListApplyOpeningMethodDOM['applyBtn'],
+    };
+  }
+
+  protected _bindParentBlockListeners() {
+    // eslint-disable-next-line dot-notation
+    this.plugin['_parentBlock'].element.addEventListener(
+      'open',
+      this._parentBlockEventListenerObject.handleParentBlockOpen
+    );
+  }
+  protected _parentBlockEventListenerObject = {
+    handleParentBlockOpen: () => {
+      this.plugin.open();
+    },
+  };
+
+  protected _bindPluginListeners() {
+    this.plugin.element.addEventListener(
+      'select',
+      this._pluginEventListenerObject.handlePluginSelect
+    );
+  }
+  protected _pluginEventListenerObject = {
+    handlePluginSelect: () => {
+      this._updateClearBtnDisplay();
+    },
+  };
+
+  protected _bindClearBtnListeners() {
+    this._dom.clearBtn.addEventListener(
+      'click',
+      this._clearBtnEventListenerObject.handleClearBtnClick
+    );
+  }
+  protected _clearBtnEventListenerObject = {
+    handleClearBtnClick: () => {
+      this.plugin.reset();
+      this._updateClearBtnDisplay();
+    },
+  };
+
+  protected _updateClearBtnDisplay() {
+    const total = this.plugin.getTotalAmount();
+
+    if (total === 0) {
+      this._dom.clearBtn.classList.add('apply-control__clear-btn_hidden');
+    } else {
+      this._dom.clearBtn.classList.remove('apply-control__clear-btn_hidden');
+    }
+  }
+
+  protected _bindApplyBtnListeners() {
+    this._dom.applyBtn.addEventListener(
+      'click',
+      this._applyBtnEventListenerObject.handleApplyBtnClick
+    );
+  }
+  protected _applyBtnEventListenerObject = {
+    handleApplyBtnClick: (event: MouseEvent) => {
+      this.plugin.close();
+    },
+  };
+
+  protected _init() {
+    this._updateClearBtnDisplay();
   }
 }
 
-dropdownsWithIQList.forEach((dropdown, index) => {
-  if (
-    (dropdown as ToxinIQDropdownElement).toxinIQDropdown.dom.openingButton.classList.contains(
-      "form-dropdown__item-quantity-list_opening-method_applied"
-    )
-  ) {
-    new ToxinIQDropdownApplyOpeningMethodModifier(
-      (dropdown as ToxinIQDropdownElement).toxinIQDropdown as ToxinIQDropdown
-    );
-  }
-});
+const iqListWithApplyOpeningMethod = iqLists.filter((iqList) =>
+  iqList.element.classList.contains('form-dropdown__item-quantity-list_opening-method_applied')
+);
+
+const iqListApplyOpeningMethodModifier = iqListWithApplyOpeningMethod.map(
+  (iqList) => new IQListApplyOpeningMethodModifier(iqList)
+);

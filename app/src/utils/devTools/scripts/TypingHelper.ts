@@ -28,6 +28,13 @@ type GenericConstructor<TCreator extends new (...args: any[]) => any> = new (
  * //   ^ = type T4 = Promise
  * type T5 = Unpacked<Unpacked<Promise<string>[]>>;
  * //   ^ = type T5 = string
+ * type T6 = Unpacked<Map<HTMLDivElement, {
+ *   id: string;
+ *   group: string;
+ * }>>;
+ * //   ^ = type T6 = { id: string; group: string; }
+ * type T7 = Unpacked<NodeListOf<HTMLDivElement>>;
+ * //   ^ = type T7 = HTMLDivElement
  */
 type Unpacked<TType> = TType extends (infer TUnpacked)[]
   ? TUnpacked
@@ -36,6 +43,12 @@ type Unpacked<TType> = TType extends (infer TUnpacked)[]
   ? TUnpacked
   : // eslint-disable-next-line no-shadow
   TType extends Promise<infer TUnpacked>
+  ? TUnpacked
+  : // eslint-disable-next-line no-shadow
+  TType extends Map<any, infer TUnpacked>
+  ? TUnpacked
+  : // eslint-disable-next-line no-shadow
+  TType extends NodeListOf<infer TUnpacked>
   ? TUnpacked
   : TType;
 

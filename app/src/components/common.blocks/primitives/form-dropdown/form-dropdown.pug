@@ -1,6 +1,5 @@
 include ~@common.blocks/primitives/heading/heading.pug
 include ~@common.blocks/primitives/icon/icon.pug
-include ~@common.blocks/primitives/apply-control/apply-control.pug
 
 include ./__item-quantity-list/form-dropdown__item-quantity-list.pug
 include ./__datepicker/form-dropdown__datepicker.pug
@@ -18,7 +17,7 @@ include ./__datepicker/form-dropdown__datepicker.pug
   placeholder?: string - text of placeholder
   isFilter?: boolean - if true, input change event will reload page with chosen value(get method)
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin form-dropdown(type, { heading = '', description = '', headingMarginBottom = '', name = 'dropdown', placeholder = '', range = false, selectedDates = '', altFields = undefined, isAltField = false, openingMethod = 'switchable', groups = {}, list = {}, isFilter = false } = {})
+mixin form-dropdown(type, { heading = '', description = '', headingMarginBottom = '', name = 'dropdown', placeholder = '', range = false, selectedDates = '', altFields = undefined, isAltField = false, openingMethod = 'folded', groups = {}, list = {}, isFilter = false } = {})
   .form-dropdown&attributes(attributes)
     if heading
       +heading(heading, { description, marginBottom: headingMarginBottom, isLabel: true })(
@@ -32,6 +31,3 @@ mixin form-dropdown(type, { heading = '', description = '', headingMarginBottom 
           +form-dropdown__datepicker({ name, range, selectedDates, placeholder, altFields, isAltField, isFilter })
         when 'item-quantity'
           +form-dropdown__item-quantity-list({ name, placeholder, openingMethod, groups, list, isFilter })
-            if openingMethod === 'applied'
-              .form-dropdown__link-btns
-                +apply-control
