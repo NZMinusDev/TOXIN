@@ -51,7 +51,7 @@ class CardDatepicker implements CardDatepickerAPI {
   getDates() {
     return [...this._dates];
   }
-  getSlitFormattedDates() {
+  getSplitFormattedDates() {
     return this._formattedDates.split(
       this._staticDOM.$element.data('datepicker').opts.multipleDatesSeparator
     );

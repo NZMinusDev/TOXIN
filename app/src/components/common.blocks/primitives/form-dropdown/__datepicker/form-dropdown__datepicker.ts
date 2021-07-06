@@ -100,7 +100,7 @@ class DropdownDatepicker implements Plugin<DropdownDatepickerEvents> {
     const placeholder = this._dom.selection.dataset.placeholder || '';
 
     if ($altFields !== undefined) {
-      const formattedDates = this._datepicker.getSlitFormattedDates();
+      const formattedDates = this._datepicker.getSplitFormattedDates();
 
       this._dom.input.value = dates[0] || '';
       this._dom.selection.innerHTML = dateTimes[0]
