@@ -20,13 +20,12 @@ block content
       +card-pick-room
     .cards-layout__room-definition
       +card-room-definition({ roomNumber: 888, roomGrade: 'Люкс', paymentAmount: 9990, selectedDates: '2019-08-19,2019-08-23', guestsGroups: { гости: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } }, guestsList: { взрослые: { default: 2, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 1, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0 } }, servicesPayment: 2179, servicesSale: 2179, additionalServicesPayment: 300 })
-    -
-      const cardDatepickerSelectedDates = `${new Date(
-        Date.now() + msPerDay
-      ).toISOString()},${new Date(Date.now() + msPerDay * 4).toISOString()}`;
     .cards-layout__calendar
-      input(type="hidden", name="card-datepicker", value=cardDatepickerSelectedDates)
-      +card-datepicker({ range: true })
+      -
+        const cardDatepickerSelectedDates = `${new Date(
+          Date.now() + msPerDay
+        ).toISOString()},${new Date(Date.now() + msPerDay * 4).toISOString()}`;
+      +card-datepicker({ selectedDates: cardDatepickerSelectedDates, range: true })
     .cards-layout__registration
       +card-registration
     .cards-layout__entering

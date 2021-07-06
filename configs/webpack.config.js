@@ -399,7 +399,10 @@ const cssLoaders = (extraLoader) => {
 const jsLoaders = (extraPreset) => {
   const babelOptions = {
     presets: ['@babel/preset-env'],
-    plugins: ['@babel/plugin-proposal-class-properties'],
+    plugins: [
+      '@babel/plugin-proposal-class-properties',
+      '@babel/plugin-proposal-optional-chaining',
+    ],
     cacheDirectory: './app/cache/webpack__babel',
   };
 

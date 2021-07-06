@@ -1,131 +1,202 @@
-import { PluginCreation } from "@utils/devTools/devTools";
+import { Plugin } from '@utils/devTools/scripts/PluginCreationHelper';
 
-import "@common.blocks/primitives/apply-control/apply-control.scss";
-import "@common.blocks/primitives/apply-control/__clear-btn-js/apply-control__clear-btn-js.scss";
-import "@common.blocks/primitives/apply-control/__clear-btn-js/_isHidden/apply-control__clear-btn-js_isHidden.scss";
-import "@common.blocks/primitives/apply-control/__apply-btn-js/apply-control__apply-btn-js.scss";
+import '@common.blocks/primitives/apply-control/apply-control.scss';
+import '@common.blocks/primitives/apply-control/__clear-btn/apply-control__clear-btn.scss';
+import '@common.blocks/primitives/apply-control/__clear-btn/_hidden/apply-control__clear-btn_hidden.scss';
+import '@common.blocks/primitives/apply-control/__apply-btn/apply-control__apply-btn.scss';
 
-export const cardDatePickers = document.querySelectorAll(
-  ".datepicker-here.card-datepicker"
-) as NodeListOf<CardDatepickerElement>;
+import './__apply-control/card-datepicker__apply-control.scss';
+import { formatToPeriodDateTime } from '@utils/devTools/scripts/DateHelper';
 
-export interface CardDatepickerElement extends HTMLElement {
-  cardDatepicker: CardDatepickerAPI;
-}
+type CardDatepickerElement = HTMLDivElement;
 
-export type CardDatepickerDOM = {
-  self: CardDatepickerElement;
-  $self: JQuery<CardDatepickerElement>;
+type CardDatepickerStaticDOM = {
+  $element: JQuery<CardDatepickerElement>;
   input: HTMLInputElement;
-  calendar: HTMLDivElement;
+  $altFields?: JQuery<HTMLInputElement>;
+};
+type CardDatepickerGeneratedDOM = {
+  $calendar: JQuery<HTMLDivElement>;
   clearBtn: HTMLButtonElement;
   applyBtn: HTMLButtonElement;
-  $altFields: JQuery<HTMLElement>;
 };
-export interface CardDatepickerAPI extends PluginCreation.Plugin {
-  readonly dom: CardDatepickerDOM;
-  readonly lastFormattedDate: string;
-  readonly lastDates: Array<Date>;
+
+type CardDatepickerEvents = 'select' | 'change' | 'clear';
+
+interface CardDatepickerAPI extends Plugin<CardDatepickerEvents> {
+  readonly element: CardDatepickerElement;
 }
-export class CardDatepicker implements CardDatepickerAPI {
-  readonly dom: CardDatepickerDOM = {
-    self: null,
-    $self: null,
-    input: null,
-    calendar: null,
-    clearBtn: null,
-    applyBtn: null,
-    $altFields: null,
-  };
 
-  private _lastFormattedDate = "";
-  public get lastFormattedDate(): string {
-    return this._lastFormattedDate;
-  }
-  private _lastDates = [];
-  public get lastDates(): Array<Date> {
-    return this._lastDates;
-  }
+class CardDatepicker implements CardDatepickerAPI {
+  readonly element: CardDatepickerElement;
+  protected readonly _staticDOM: Readonly<CardDatepickerStaticDOM>;
+  protected readonly _generatedDOM: Readonly<CardDatepickerGeneratedDOM>;
 
-  private APPLY_CONTROL = `<div class="apply-control"><input class="apply-control__clear-btn-js apply-control__clear-btn-js_isHidden" type="button" value="очистить"><input class="apply-control__apply-btn-js" type="button" value="применить"></div>`;
+  protected _applyControlTemplate = `<div class="card-datepicker__apply-control"><div class="apply-control"><input class="apply-control__clear-btn apply-control__clear-btn_hidden" type="button" value="очистить"><input class="apply-control__apply-btn" type="button" value="применить"></div></div>`;
 
-  constructor(cardDatepicker: CardDatepickerElement) {
-    this._initStaticDOM(cardDatepicker);
+  protected _dates: Date[] = [];
+  protected _formattedDates = '';
 
+  constructor(cardDatepickerElement: CardDatepickerElement) {
+    this.element = cardDatepickerElement;
+    this._staticDOM = this._initStaticDOM();
     this._initLibDatepicker();
+    this._generatedDOM = this._initGeneratedDOM();
 
-    this._initGeneratedDOM();
+    this._bindApplyControlListeners();
 
-    this._initApplyControlListeners();
-
-    cardDatepicker.cardDatepicker = this;
+    this._init();
   }
 
-  protected _initStaticDOM(cardDatepicker: CardDatepickerElement) {
-    this.dom.self = cardDatepicker;
-    this.dom.$self = $(cardDatepicker);
-    this.dom.input = cardDatepicker.previousElementSibling as HTMLInputElement;
-    this.dom.$altFields = $(this.dom.self.dataset.altFields);
+  getDates() {
+    return [...this._dates];
   }
-  protected _initGeneratedDOM() {
-    this.dom.calendar = this.dom.self.querySelector(".datepicker");
-
-    this.dom.calendar.insertAdjacentHTML("beforeend", this.APPLY_CONTROL);
-    this.dom.clearBtn = this.dom.self.querySelector(
-      ".apply-control .apply-control__clear-btn-js"
-    ) as HTMLButtonElement;
-    this.dom.applyBtn = this.dom.self.querySelector(
-      ".apply-control .apply-control__apply-btn-js"
-    ) as HTMLButtonElement;
+  getSlitFormattedDates() {
+    return this._formattedDates.split(
+      this._staticDOM.$element.data('datepicker').opts.multipleDatesSeparator
+    );
   }
+  getDateTimes() {
+    if (
+      this._staticDOM.$element.data('datepicker').opts.range &&
+      this._staticDOM.$altFields === undefined
+    ) {
+      return this._dates.length === 2
+        ? [formatToPeriodDateTime(this._dates[0].toISOString(), this._dates[1].toISOString())]
+        : this._dates.map((date) => date.toISOString());
+    }
 
-  protected _initApplyControlListeners() {
-    this.dom.clearBtn.addEventListener("click", (event: MouseEvent) => {
-      this.dom.$self.data("datepicker").clear();
-
-      this.dom.clearBtn.classList.add("apply-control__clear-btn-js_isHidden");
-    });
-    this.dom.applyBtn.addEventListener("click", (event: MouseEvent) => {
-      this.dom.input.value = this.dom.$self
-        .data("datepicker")
-        .selectedDates.map((date) => date.toISOString());
-      this.dom.input.dispatchEvent(new Event("change"));
-      this.dom.self.dispatchEvent(new CustomEvent("change"));
-    });
+    return this._dates.map((date) => date.toISOString());
+  }
+  getFormattedDate() {
+    return this._formattedDates;
+  }
+  get$altFields() {
+    return this._staticDOM.$altFields;
   }
 
+  protected _initStaticDOM(): CardDatepickerStaticDOM {
+    return {
+      $element: $(this.element),
+      input: this.element.previousElementSibling as CardDatepickerStaticDOM['input'],
+      $altFields:
+        this.element.dataset.altFields !== undefined
+          ? $<HTMLInputElement>(this.element.dataset.altFields)
+          : undefined,
+    };
+  }
   private _initLibDatepicker() {
-    $(this.dom.self).datepicker({
+    this._staticDOM.$element.datepicker({
       prevHtml: `arrow_back`,
       nextHtml: `arrow_forward`,
-      dateFormat: this.dom.self.dataset.range && !this.dom.$altFields ? "dd M" : "dd.mm.yyyy",
-      altField: this.dom.$altFields,
-      altFieldDateFormat: "dd.mm.yyyy",
+      dateFormat:
+        !!this.element.dataset.range && !this._staticDOM.$altFields ? 'dd M' : 'dd.mm.yyyy',
       minDate: new Date(),
       toggleSelected: false,
-      onSelect: (formattedDate, date, inst) => {
-        this._lastFormattedDate = formattedDate;
-        this._lastDates = date;
+      onSelect: (formattedDate: string, date: Date | Array<Date>, inst) => {
+        this._generatedDOM.clearBtn.classList.remove('apply-control__clear-btn_hidden');
 
-        if (this.dom.clearBtn) {
-          this.dom.clearBtn.classList.remove("apply-control__clear-btn-js_isHidden");
+        if (date) {
+          this._dates = Array.isArray(date) ? date : [date];
+        } else {
+          this._dates = [];
         }
 
-        this.dom.self.dispatchEvent(new CustomEvent("select"));
+        this._formattedDates = formattedDate;
+
+        this.element.dispatchEvent(new CustomEvent('select', { bubbles: true }));
       },
     });
+  }
+  protected _initGeneratedDOM(): CardDatepickerGeneratedDOM {
+    const $calendar = this._staticDOM.$element.find(
+      '.datepicker'
+    ) as CardDatepickerGeneratedDOM['$calendar'];
+    $calendar.get(0).insertAdjacentHTML('beforeend', this._applyControlTemplate);
 
-    const dates = this.dom.input.value;
-    if (dates) {
-      this.dom.$self
-        .data("datepicker")
-        .selectDate(dates.split(",").map((datestring) => new Date(datestring)));
+    return {
+      $calendar,
+      clearBtn: this.element.querySelector(
+        '.apply-control .apply-control__clear-btn'
+      ) as CardDatepickerGeneratedDOM['clearBtn'],
+      applyBtn: this.element.querySelector(
+        '.apply-control .apply-control__apply-btn'
+      ) as CardDatepickerGeneratedDOM['applyBtn'],
+    };
+  }
+
+  protected _bindApplyControlListeners() {
+    this._generatedDOM.clearBtn.addEventListener(
+      'click',
+      this._applyControlEventListenerObject.handleClearBtnClick
+    );
+
+    this._generatedDOM.applyBtn.addEventListener(
+      'click',
+      this._applyControlEventListenerObject.handleApplyBtnClick
+    );
+  }
+  protected _applyControlEventListenerObject = {
+    handleClearBtnClick: (e: MouseEvent) => {
+      this._staticDOM.$element.data('datepicker').clear();
+
+      this._generatedDOM.clearBtn.classList.add('apply-control__clear-btn_hidden');
+
+      this.element.dispatchEvent(new CustomEvent('clear', { bubbles: true }));
+    },
+    handleApplyBtnClick: (e: MouseEvent) => {
+      if (this._verifyApplying()) {
+        const { selectedDates } = this._staticDOM.$element.data('datepicker');
+        const ISOSelectedDates: string[] = selectedDates.map((selectedDate: Date) =>
+          selectedDate.toISOString()
+        );
+
+        this._changeInputValue(ISOSelectedDates);
+
+        this.element.dispatchEvent(new CustomEvent('change', { bubbles: true }));
+      }
+    },
+  };
+  protected _verifyApplying() {
+    const { selectedDates, opts } = this._staticDOM.$element.data('datepicker');
+
+    let maxSelected = selectedDates.length;
+    if (this._staticDOM.$altFields !== undefined) {
+      maxSelected = this._staticDOM.$altFields.length + 1;
+    } else if (opts.range) {
+      maxSelected = 2;
+    }
+
+    return selectedDates.length === maxSelected || selectedDates.length === 0;
+  }
+  protected _changeInputValue(ISODates: string[]) {
+    this._staticDOM.input.value =
+      this._staticDOM.$altFields === undefined ? ISODates.toString() : ISODates[0] || '';
+    this._staticDOM.$altFields?.each((index, altField) => {
+      // eslint-disable-next-line no-param-reassign
+      altField.value = ISODates[index + 1];
+    });
+  }
+
+  protected _init() {
+    const ISODates = this._staticDOM.input.value.split(',');
+
+    if (this._staticDOM.input.value) {
+      this._staticDOM.$element
+        .data('datepicker')
+        .selectDate(ISODates.map((ISODate) => new Date(ISODate)));
+
+      this._changeInputValue(ISODates);
     }
   }
 }
 
-$(function () {
-  cardDatePickers.forEach(function (cardDatePicker) {
-    new CardDatepicker(cardDatePicker);
-  });
-});
+const cardDatePickerElements = document.querySelectorAll('.card-datepicker') as NodeListOf<
+  CardDatepickerElement
+>;
+
+const cardDatePickers = Array.from(cardDatePickerElements).map(
+  (cardDatePickerElement) => new CardDatepicker(cardDatePickerElement)
+);
+
+export { cardDatePickers as default, CardDatepickerEvents };

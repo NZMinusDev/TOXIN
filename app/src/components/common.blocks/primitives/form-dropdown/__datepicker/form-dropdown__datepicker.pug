@@ -2,10 +2,10 @@ include ~@common.blocks/primitives/card-datepicker/card-datepicker.pug
 
 //-
   name?: string - name of input
-  range?: boolean | number - lib argument, enable range functionality
+  range?: boolean - lib argument, enable range functionality
   selectedDates?: 'ISODateString,ISODateString,...' - initial dates(date), for several values use ','; example: '2020-11-18T21:00:00.000Z' or '2020-11-18T21:00:00.000Z,2020-11-20T21:00:00.000Z';
   placeholder?: string - text of placeholder
-  altFields?: string - selector of bonded alt fields
+  altFields?: string - selector of bonded alt fields(input)
   isAltField?: boolean - mark this as field that uses a different calendar
   isFilter?: boolean - if true, apply button will reload page with chosen value(get method)
   Tip: mixin also uses 'and attributes'(&attributes)
@@ -18,8 +18,8 @@ mixin form-dropdown__datepicker({ name = 'datepicker', range = false, selectedDa
     data-is-filter=isFilter
   )
   if !isAltField
-    .form-dropdown__datepicker
-      +card-datepicker({ range, altFields })&attributes(attributes)
+    .form-dropdown__datepicker.form-dropdown__datepicker_hidden
+      +card-datepicker({ selectedDates, range, altFields })&attributes(attributes)
   -
     const dataPlaceholder = placeholder || ((range && !altFields) ? 'ДД ММ - ДД ММ' : 'ДД.ММ.ГГГГ');
     const splitSelectedDates = selectedDates.split(',');

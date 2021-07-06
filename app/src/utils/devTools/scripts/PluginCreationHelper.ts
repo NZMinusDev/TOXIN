@@ -26,10 +26,6 @@ interface CustomEventListenerObject {
 
 type handler = CustomEventListener | CustomEventListenerObject;
 
-interface Plugin {
-  readonly dom: { self: HTMLElement | null };
-}
-
 /**
  * Add events processing inside class without inheritances and make child's handlers inside one class
  * @example
@@ -287,65 +283,43 @@ interface MVPModel<State> {
   whenStateIsChanged(callback: (state: Required<State>) => void): void;
 }
 
-interface ListenersByPlugin {
-  currentTarget: HTMLElement | HTMLElement[];
-  eventType: keyof HTMLElementEventMap;
-  listener(this: Element, ev: HTMLElementEventMap[keyof HTMLElementEventMap]): unknown;
-  options?: boolean | AddEventListenerOptions;
+/**
+ * Common BEM block / element class
+ */
+interface Plugin<TBublingEvents extends string = ''> {
+  readonly element: HTMLElement;
 }
 
-abstract class PluginDecorator {
-  protected plugin: Plugin;
-  protected listeners: ListenersByPlugin[];
+/**
+ * BEM modifier class
+ */
+abstract class PluginDecorator<TPlugin extends Plugin> {
+  protected plugin: TPlugin;
 
-  constructor(plugin: Plugin, listeners: ListenersByPlugin[], modifierName: string) {
+  constructor(plugin: TPlugin, modifierName: string) {
     this.plugin = plugin;
-    this.listeners = listeners;
 
-    if (this.plugin.dom.self !== null) {
-      if (this.plugin.dom.self[modifierName]) {
-        this.plugin.dom.self[modifierName].cancel();
-      }
+    this.plugin[modifierName] = this;
+  }
+}
 
-      this.plugin.dom.self[modifierName] = this;
-      this.plugin.dom.self[modifierName].assign();
+/**
+ *  Switchable BEM modifier class
+ */
+abstract class CancelablePluginDecorator<TPlugin extends Plugin> {
+  protected plugin: TPlugin;
+
+  constructor(plugin: TPlugin, modifierName: string) {
+    this.plugin = plugin;
+
+    if (this.plugin[modifierName]) {
+      this.plugin[modifierName].cancel();
     }
+
+    this.plugin[modifierName] = this;
   }
 
-  protected assign(): void {
-    if (this.listeners) {
-      this.listeners.forEach((listener) => {
-        if (Array.isArray(listener.currentTarget)) {
-          listener.currentTarget.forEach((element) => {
-            element.addEventListener(listener.eventType, listener.listener, listener.options);
-          });
-        } else {
-          listener.currentTarget.addEventListener(
-            listener.eventType,
-            listener.listener,
-            listener.options
-          );
-        }
-      });
-    }
-  }
-  protected cancel(): void {
-    if (this.listeners) {
-      this.listeners.forEach((listener) => {
-        if (Array.isArray(listener.currentTarget)) {
-          listener.currentTarget.forEach((element) => {
-            element.removeEventListener(listener.eventType, listener.listener, listener.options);
-          });
-        } else {
-          listener.currentTarget.removeEventListener(
-            listener.eventType,
-            listener.listener,
-            listener.options
-          );
-        }
-      });
-    }
-  }
+  protected abstract cancel(): void;
 }
 
 /**
@@ -420,8 +394,8 @@ export {
   EventManagerMixin,
   MVPView,
   MVPModel,
-  ListenersByPlugin,
   PluginDecorator,
+  CancelablePluginDecorator,
   checkDelegatingEvents,
   applyMixins,
 };
