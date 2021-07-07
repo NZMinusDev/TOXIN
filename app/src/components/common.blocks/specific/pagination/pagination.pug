@@ -71,7 +71,7 @@ mixin pagination({ addressingMethod = 'href', hrefPrefix = '?page=', total = 100
         - for (let p = 1; p <= pages; p++)
         li.pagination__item(
           class=activePage === p ? 'pagination__item_active' : undefined,
-          title="текущая страница"
+          title=activePage === p ? 'текущая страница' : `на страницу ${p}`
         )
           if addressingMethod === 'href'
             a.pagination__link(href=paginationHrefs[p - 1])= p
@@ -81,13 +81,13 @@ mixin pagination({ addressingMethod = 'href', hrefPrefix = '?page=', total = 100
       else
         //- Show the very first page followed by a '...' at the beginning of the pagination section (after the Previous button)
         if activePage > 2
-          li.pagination__item
+          li.pagination__item(title=`на страницу ${1}`)
             if addressingMethod === 'href'
               a.pagination__link(href=paginationHrefs[0])= 1
             else
               = 1
           if activePage > 3
-            li.pagination__item.pagination__item_out-of-range
+            li.pagination__item.pagination__item_out-of-range(title=`на страницу ${2}`)
               if addressingMethod === 'href'
                 a(href=paginationHrefs[1])= '...'
               else
@@ -96,7 +96,7 @@ mixin pagination({ addressingMethod = 'href', hrefPrefix = '?page=', total = 100
         - for (let p = pageCutLow; p <= pageCutHigh; p++)
           li.pagination__item(
             class=activePage === p ? 'pagination__item_active' : undefined,
-            title="текущая страница"
+            title=activePage === p ? 'текущая страница' : `на страницу ${p}`
           )
             if addressingMethod === 'href'
               a.pagination__link(href=paginationHrefs[p - 1])= p
@@ -105,12 +105,12 @@ mixin pagination({ addressingMethod = 'href', hrefPrefix = '?page=', total = 100
         //- Show the very last page preceded by a '...' at the end of the pagination section (before the Next button)
         if activePage < pages - 1
           if activePage < pages - 2
-            li.pagination__item.pagination__item_out-of-range
+            li.pagination__item.pagination__item_out-of-range(title=`на страницу ${pages - 1}`)
               if addressingMethod === 'href'
-                a.pagination__link(href=paginationHrefs[pages - 3])= '...'
+                a.pagination__link(href=paginationHrefs[pages - 2])= '...'
               else
                 = '...'
-          li.pagination__item
+          li.pagination__item(title=`на страницу ${pages}`)
             if addressingMethod === 'href'
               a.pagination__link(href=paginationHrefs[pages - 1])= pages
             else

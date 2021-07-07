@@ -1,4 +1,3 @@
-import "./__item/_next/pagination__item_next.scss";
-import "./__item/_previous/pagination__item_previous.scss";
+const paginations = document.querySelectorAll('.pagination') as NodeListOf<HTMLElement>;
 
-export const paginations = document.querySelectorAll(".pagination") as NodeListOf<HTMLElement>;
+export { paginations as default };

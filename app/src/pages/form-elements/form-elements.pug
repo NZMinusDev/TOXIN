@@ -71,7 +71,7 @@ block content
         +button({ appearance: 'like-a-link' })(type="submit", value="перейти к оплате")
       .form-elements-layout__pagination
         +heading({ h3: 'pagination' }, { marginBottom: 'large' })
-        +pagination({ hrefPrefix: '?page=', total: 179, text: 'вариантов аренды' })
+        +pagination({ addressingMethod: 'async', total: 179, text: 'вариантов аренды' })
       .form-elements-layout__dropdown-default-plural
         +form-dropdown('item-quantity', { heading: { h3: 'dropdown' }, description: 'default', name: 'facilities-1', groups: { спальни: { selectionText: 'спальня', textPlural: 'спальни' }, кровати: { selectionText: 'кровать', textPlural: 'кровати' }, 'ванные комнаты': { selectionText: 'ванная комната', textPlural: 'ванные комнаты' } }, list: { спальни: { default: 2, min: 1, max: 3 }, кровати: { default: 2, min: 1, max: 3 }, 'ванные комнаты': { default: 0, min: 0, max: 2 } } })
       .form-elements-layout__dropdown-expanded-plural
