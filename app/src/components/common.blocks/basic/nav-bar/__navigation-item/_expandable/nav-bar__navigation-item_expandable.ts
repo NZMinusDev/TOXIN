@@ -8,9 +8,9 @@ const dropdownItems = document.querySelectorAll(expandableItemSelector);
 
 const resetListMaxHeight = () => {
   dropdownItems.forEach((dropdownItem) => {
-    const lists = dropdownItem.querySelectorAll(listSelector) as NodeListOf<HTMLUListElement>;
+    const lists = dropdownItem.querySelectorAll<HTMLUListElement>(listSelector);
 
-    Array.from(lists).forEach((list) => {
+    lists.forEach((list) => {
       // eslint-disable-next-line no-param-reassign
       list.style.maxHeight = '';
     });

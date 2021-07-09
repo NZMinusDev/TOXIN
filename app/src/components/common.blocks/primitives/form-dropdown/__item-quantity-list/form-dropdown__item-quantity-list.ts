@@ -53,8 +53,8 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
 
   protected _parentBlock: ParentBlock;
 
-  constructor(ItemQuantityListElement: ToxinIQDropdownElement) {
-    this.element = ItemQuantityListElement;
+  constructor(itemQuantityListElement: ToxinIQDropdownElement) {
+    this.element = itemQuantityListElement;
     this._staticDOM = this._initStaticDOM();
     this._datasetOptions = this._initOptionsFromDataset();
     this._initLibItemQuantityList();

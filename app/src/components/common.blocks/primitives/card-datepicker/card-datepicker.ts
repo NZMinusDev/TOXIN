@@ -204,11 +204,11 @@ class CardDatepicker implements CardDatepickerAPI {
   }
 }
 
-const cardDatePickerElements = document.querySelectorAll('.card-datepicker') as NodeListOf<
-  CardDatepickerElement
->;
+const cardDatePickerElements = Array.from(
+  document.querySelectorAll('.card-datepicker')
+) as CardDatepickerElement[];
 
-const cardDatePickers = Array.from(cardDatePickerElements).map(
+const cardDatePickers = cardDatePickerElements.map(
   (cardDatePickerElement) => new CardDatepicker(cardDatePickerElement)
 );
 

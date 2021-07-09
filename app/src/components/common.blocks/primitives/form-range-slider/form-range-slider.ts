@@ -88,12 +88,12 @@ class RangeSlider implements BEMComponent<RangeSliderCustomEvents> {
   };
 }
 
-const sliderContainers = document.querySelectorAll('.form-range-slider') as NodeListOf<
-  HTMLDivElement
->;
+const rangeSliderElements = Array.from(
+  document.querySelectorAll('.form-range-slider')
+) as HTMLDivElement[];
 
-const rangeSliders = Array.from(sliderContainers).map(
-  (sliderContainer) => new RangeSlider(sliderContainer)
+const rangeSliders = rangeSliderElements.map(
+  (rangeSliderElement) => new RangeSlider(rangeSliderElement)
 );
 
 export { rangeSliders as default, RangeSliderCustomEvents };

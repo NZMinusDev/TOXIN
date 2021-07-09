@@ -41,10 +41,10 @@ class Dropdown implements DropdownAPI {
   };
 }
 
-const dropdownElements = document.querySelectorAll('.form-dropdown') as NodeListOf<HTMLDivElement>;
+const dropdownElements = Array.from(
+  document.querySelectorAll('.form-dropdown')
+) as HTMLDivElement[];
 
-const dropdowns = Array.from(dropdownElements).map(
-  (dropdownElement) => new Dropdown(dropdownElement)
-);
+const dropdowns = dropdownElements.map((dropdownElement) => new Dropdown(dropdownElement));
 
 export { dropdowns as default, DropdownCustomEvents };
