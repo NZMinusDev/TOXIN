@@ -8,11 +8,7 @@ type DropdownDOM = {
 
 type DropdownCustomEvents = 'open';
 
-interface DropdownAPI extends BEMComponent<DropdownCustomEvents> {
-  readonly element: DropdownElement;
-}
-
-class Dropdown implements DropdownAPI {
+class Dropdown implements BEMComponent<DropdownCustomEvents> {
   readonly element: DropdownElement;
   protected readonly _DOM: Readonly<DropdownDOM>;
 

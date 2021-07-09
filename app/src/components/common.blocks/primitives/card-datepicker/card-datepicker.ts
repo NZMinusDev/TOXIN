@@ -23,11 +23,7 @@ type CardDatepickerGeneratedDOM = {
 
 type CardDatepickerCustomEvents = 'select' | 'clear' | 'change';
 
-interface CardDatepickerAPI extends BEMComponent<CardDatepickerCustomEvents> {
-  readonly element: CardDatepickerElement;
-}
-
-class CardDatepicker implements CardDatepickerAPI {
+class CardDatepicker implements BEMComponent<CardDatepickerCustomEvents> {
   readonly element: CardDatepickerElement;
   protected readonly _staticDOM: Readonly<CardDatepickerStaticDOM>;
   protected readonly _generatedDOM: Readonly<CardDatepickerGeneratedDOM>;
