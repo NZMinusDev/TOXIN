@@ -301,5 +301,3 @@ const asyncPaginations = paginations.filter((pagination) => {
 
   return false;
 });
-
-export { asyncPaginations as default };
