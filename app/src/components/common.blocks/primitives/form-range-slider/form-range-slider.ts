@@ -9,7 +9,7 @@ const sliderContainers = document.querySelectorAll('.form-range-slider') as Node
   HTMLDivElement
 >;
 
-const parseDOM = (sliderContainer: HTMLDivElement) => {
+const _initDOM = (sliderContainer: HTMLDivElement) => {
   const slider = sliderContainer.querySelector(
     '.form-range-slider__slider'
   ) as HTMLDivElementWithSlider;
@@ -21,7 +21,7 @@ const parseDOM = (sliderContainer: HTMLDivElement) => {
 };
 
 sliderContainers.forEach((sliderContainer) => {
-  const DOM = parseDOM(sliderContainer);
+  const DOM = _initDOM(sliderContainer);
 
   noUiSlider.create(DOM.slider, {
     start: [DOM.inputFrom.value, DOM.inputTo.value],

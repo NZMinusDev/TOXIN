@@ -22,14 +22,14 @@ type DatepickerBlock = Unpacked<typeof cardDatePickers>;
 // TODO: aria-expanded менять для кнопки использовать dispatchEvent
 class DropdownDatepicker implements BEMComponent<DropdownDatepickerEvents> {
   readonly element: DatepickerElement;
-  protected readonly _dom: Readonly<DropdownDatepickerDOM>;
+  protected readonly _DOM: Readonly<DropdownDatepickerDOM>;
 
   protected _parentBlock: ParentBlock;
   protected _datepicker: DatepickerBlock;
 
   constructor(datepickerElement: DatepickerElement) {
     this.element = datepickerElement;
-    this._dom = DropdownDatepicker._initDOM(datepickerElement);
+    this._DOM = this._initDOM();
 
     const subBlocks = this._initSubBlocks();
     this._parentBlock = subBlocks._parentBlock;
@@ -49,10 +49,13 @@ class DropdownDatepicker implements BEMComponent<DropdownDatepickerEvents> {
     this.element.classList.add('form-dropdown__datepicker_hidden');
   }
 
-  protected static _initDOM(datepickerElement: DatepickerElement): DropdownDatepickerDOM {
+  protected _initDOM(): DropdownDatepickerDOM {
+    const selection = this.element.nextElementSibling as DropdownDatepickerDOM['selection'];
+    const input = this.element.previousElementSibling as DropdownDatepickerDOM['input'];
+
     return {
-      selection: datepickerElement.nextElementSibling as DropdownDatepickerDOM['selection'],
-      input: datepickerElement.previousElementSibling as DropdownDatepickerDOM['input'],
+      selection,
+      input,
     };
   }
 
@@ -97,13 +100,13 @@ class DropdownDatepicker implements BEMComponent<DropdownDatepickerEvents> {
     const dates = this._datepicker.getDates().map((date) => date.toISOString());
     const dateTimes = this._datepicker.getDateTimes();
 
-    const placeholder = this._dom.selection.dataset.placeholder || '';
+    const placeholder = this._DOM.selection.dataset.placeholder || '';
 
     if ($altFields !== undefined) {
       const formattedDates = this._datepicker.getSplitFormattedDates();
 
-      this._dom.input.value = dates[0] || '';
-      this._dom.selection.innerHTML = dateTimes[0]
+      this._DOM.input.value = dates[0] || '';
+      this._DOM.selection.innerHTML = dateTimes[0]
         ? `<time datetime="${dateTimes[0]}">${formattedDates[0] || placeholder}</time>`
         : placeholder;
 
@@ -111,8 +114,8 @@ class DropdownDatepicker implements BEMComponent<DropdownDatepickerEvents> {
     } else {
       const formattedDate = this._datepicker.getFormattedDate();
 
-      this._dom.input.value = dates.toString();
-      this._dom.selection.innerHTML = dateTimes.toString()
+      this._DOM.input.value = dates.toString();
+      this._DOM.selection.innerHTML = dateTimes.toString()
         ? `<time datetime="${dateTimes.toString()}">${formattedDate || placeholder}</time>`
         : placeholder;
     }

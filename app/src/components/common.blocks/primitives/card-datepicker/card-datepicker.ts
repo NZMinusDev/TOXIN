@@ -76,13 +76,17 @@ class CardDatepicker implements CardDatepickerAPI {
   }
 
   protected _initStaticDOM(): CardDatepickerStaticDOM {
+    const $element = $(this.element);
+    const input = this.element.previousElementSibling as CardDatepickerStaticDOM['input'];
+    const $altFields =
+      this.element.dataset.altFields !== undefined
+        ? $<HTMLInputElement>(this.element.dataset.altFields)
+        : undefined;
+
     return {
-      $element: $(this.element),
-      input: this.element.previousElementSibling as CardDatepickerStaticDOM['input'],
-      $altFields:
-        this.element.dataset.altFields !== undefined
-          ? $<HTMLInputElement>(this.element.dataset.altFields)
-          : undefined,
+      $element,
+      input,
+      $altFields,
     };
   }
   private _initLibDatepicker() {
@@ -112,16 +116,21 @@ class CardDatepicker implements CardDatepickerAPI {
     const $calendar = this._staticDOM.$element.find(
       '.datepicker'
     ) as CardDatepickerGeneratedDOM['$calendar'];
+
     $calendar.get(0).insertAdjacentHTML('beforeend', this._applyControlTemplate);
+
+    const applyControl = this.element.querySelector('.apply-control') as HTMLDivElement;
+    const clearBtn = applyControl.querySelector(
+      '.apply-control__clear-btn'
+    ) as CardDatepickerGeneratedDOM['clearBtn'];
+    const applyBtn = applyControl.querySelector(
+      '.apply-control__apply-btn'
+    ) as CardDatepickerGeneratedDOM['applyBtn'];
 
     return {
       $calendar,
-      clearBtn: this.element.querySelector(
-        '.apply-control .apply-control__clear-btn'
-      ) as CardDatepickerGeneratedDOM['clearBtn'],
-      applyBtn: this.element.querySelector(
-        '.apply-control .apply-control__apply-btn'
-      ) as CardDatepickerGeneratedDOM['applyBtn'],
+      clearBtn,
+      applyBtn,
     };
   }
 

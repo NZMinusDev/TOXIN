@@ -10,18 +10,15 @@ type ToxinIQDropdownElement = HTMLDivElement;
 
 type ItemQuantityListStaticDOM = {
   $self: JQuery<ToxinIQDropdownElement>;
-  mainInput: HTMLInputElement;
+  listInput: HTMLInputElement;
   selection: HTMLParagraphElement;
   menu: HTMLDivElement;
   optionInputs: NodeListOf<HTMLInputElement>;
   menuOptions: NodeListOf<HTMLDivElement>;
-  optionTitles: NodeListOf<HTMLHeadingElement>;
 };
 type ItemQuantityListGeneratedDOM = {
-  controls: NodeListOf<HTMLDivElement>;
   decrementButtons: NodeListOf<HTMLButtonElement>;
   incrementButtons: NodeListOf<HTMLButtonElement>;
-  counters: NodeListOf<HTMLSpanElement>;
 };
 
 type DatasetItemQuantityListOptions = {
@@ -58,7 +55,7 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListEvents> {
 
   constructor(ItemQuantityListElement: ToxinIQDropdownElement) {
     this.element = ItemQuantityListElement;
-    this._staticDOM = ItemQuantityList._initStaticDOM(ItemQuantityListElement);
+    this._staticDOM = this._initStaticDOM();
     this._datasetItemQuantityListOptions = this._initDatasetItemQuantityListOptions();
     this._initLibItemQuantityList();
     this._generatedDOM = this._initGeneratedDOM();
@@ -121,25 +118,31 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListEvents> {
     }
   }
 
-  protected static _initStaticDOM(dropdown: ToxinIQDropdownElement): ItemQuantityListStaticDOM {
+  protected _initStaticDOM(): ItemQuantityListStaticDOM {
+    const $self = $(this.element) as ItemQuantityListStaticDOM['$self'];
+    const listInput = this.element.querySelector(
+      '.form-dropdown__list-input'
+    ) as ItemQuantityListStaticDOM['listInput'];
+    const selection = this.element.querySelector(
+      '.iqdropdown-selection'
+    ) as ItemQuantityListStaticDOM['selection'];
+    const menu = this.element.querySelector(
+      '.iqdropdown-menu'
+    ) as ItemQuantityListStaticDOM['menu'];
+    const optionInputs = menu.querySelectorAll(
+      '.form-dropdown__option-input'
+    ) as ItemQuantityListStaticDOM['optionInputs'];
+    const menuOptions = menu.querySelectorAll(
+      '.iqdropdown-menu-option'
+    ) as ItemQuantityListStaticDOM['menuOptions'];
+
     return {
-      $self: $(dropdown) as ItemQuantityListStaticDOM['$self'],
-      mainInput: dropdown.querySelector(
-        '.form-dropdown__list-input'
-      ) as ItemQuantityListStaticDOM['mainInput'],
-      selection: dropdown.querySelector(
-        '.iqdropdown-selection'
-      ) as ItemQuantityListStaticDOM['selection'],
-      menu: dropdown.querySelector('.iqdropdown-menu') as ItemQuantityListStaticDOM['menu'],
-      optionInputs: dropdown.querySelectorAll(
-        '.form-dropdown__option-input'
-      ) as ItemQuantityListStaticDOM['optionInputs'],
-      menuOptions: dropdown.querySelectorAll(
-        '.iqdropdown-menu-option'
-      ) as ItemQuantityListStaticDOM['menuOptions'],
-      optionTitles: dropdown.querySelectorAll(
-        '.iqdropdown-item'
-      ) as ItemQuantityListStaticDOM['optionTitles'],
+      $self,
+      listInput,
+      selection,
+      menu,
+      optionInputs,
+      menuOptions,
     };
   }
   protected _initDatasetItemQuantityListOptions(): DatasetItemQuantityListOptions {
@@ -185,19 +188,16 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListEvents> {
     $(this.element).off('click');
   }
   protected _initGeneratedDOM(): ItemQuantityListGeneratedDOM {
+    const decrementButtons = this._staticDOM.menu.querySelectorAll(
+      '.button-decrement'
+    ) as ItemQuantityListGeneratedDOM['decrementButtons'];
+    const incrementButtons = this._staticDOM.menu.querySelectorAll(
+      '.button-increment'
+    ) as ItemQuantityListGeneratedDOM['incrementButtons'];
+
     return {
-      controls: this._staticDOM.menu.querySelectorAll(
-        '.form-dropdown__counter-control'
-      ) as ItemQuantityListGeneratedDOM['controls'],
-      decrementButtons: this._staticDOM.menu.querySelectorAll(
-        '.button-decrement'
-      ) as ItemQuantityListGeneratedDOM['decrementButtons'],
-      incrementButtons: this._staticDOM.menu.querySelectorAll(
-        '.button-increment'
-      ) as ItemQuantityListGeneratedDOM['incrementButtons'],
-      counters: this._staticDOM.menu.querySelectorAll(
-        '.counter'
-      ) as ItemQuantityListGeneratedDOM['counters'],
+      decrementButtons,
+      incrementButtons,
     };
   }
 
@@ -220,7 +220,7 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListEvents> {
     this.element.dispatchEvent(
       new CustomEvent('change', {
         bubbles: true,
-        detail: { value: this._staticDOM.mainInput.value },
+        detail: { value: this._staticDOM.listInput.value },
       })
     );
   };
@@ -279,7 +279,7 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListEvents> {
       accumulator += counterAmount;
     });
 
-    this._staticDOM.mainInput.value = accumulator;
+    this._staticDOM.listInput.value = accumulator;
   }
 
   protected _bindCounterBtnListeners() {

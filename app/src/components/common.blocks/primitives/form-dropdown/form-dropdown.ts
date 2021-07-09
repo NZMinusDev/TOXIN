@@ -3,7 +3,7 @@ import { BEMComponent } from '@utils/devTools/scripts/ComponentCreationHelper';
 type DropdownElement = HTMLDivElement;
 
 type DropdownDOM = {
-  openingButton: HTMLButtonElement;
+  expandButton: HTMLButtonElement;
 };
 
 type DropdownEvents = 'open';
@@ -14,25 +14,27 @@ interface DropdownAPI extends BEMComponent<DropdownEvents> {
 
 class Dropdown implements DropdownAPI {
   readonly element: DropdownElement;
-  protected readonly _dom: Readonly<DropdownDOM>;
+  protected readonly _DOM: Readonly<DropdownDOM>;
 
   constructor(dropdownElement: DropdownElement) {
     this.element = dropdownElement;
-    this._dom = Dropdown._initDOM(dropdownElement);
+    this._DOM = this._initDOM();
 
     this.bindListeners();
   }
 
-  protected static _initDOM(dropdownElement: DropdownElement): DropdownDOM {
+  protected _initDOM(): DropdownDOM {
+    const expandButton = this.element.querySelector(
+      '.form-dropdown__expand-btn'
+    ) as DropdownDOM['expandButton'];
+
     return {
-      openingButton: dropdownElement.querySelector(
-        '.form-dropdown__expand-btn'
-      ) as DropdownDOM['openingButton'],
+      expandButton,
     };
   }
 
   protected bindListeners() {
-    this._dom.openingButton.addEventListener('click', this.onClick);
+    this._DOM.expandButton.addEventListener('click', this.onClick);
   }
   protected onClick = (event: MouseEvent) => {
     this.element.dispatchEvent(new CustomEvent('open', { bubbles: true }));

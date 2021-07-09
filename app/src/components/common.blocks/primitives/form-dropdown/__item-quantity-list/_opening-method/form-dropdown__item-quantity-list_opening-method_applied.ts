@@ -11,12 +11,12 @@ type ItemQuantityListApplyOpeningMethodDOM = {
 type ItemQuantityList = Unpacked<typeof itemQuantityLists>;
 
 class ItemQuantityListApplyOpeningMethodModifier extends ItemQuantityListOpeningMethodModifier {
-  protected _dom: ItemQuantityListApplyOpeningMethodDOM;
+  protected _DOM: ItemQuantityListApplyOpeningMethodDOM;
 
   constructor(itemQuantityList: ItemQuantityList) {
     super(itemQuantityList);
 
-    this._dom = this._initDOM();
+    this._DOM = this._initDOM();
 
     this._bindParentBlockListeners();
     this._bindComponentListeners();
@@ -27,13 +27,17 @@ class ItemQuantityListApplyOpeningMethodModifier extends ItemQuantityListOpening
   }
 
   protected _initDOM(): ItemQuantityListApplyOpeningMethodDOM {
+    const applyControl = this.component.element.querySelector('.apply-control') as HTMLDivElement;
+    const clearBtn = applyControl.querySelector(
+      '.apply-control__clear-btn'
+    ) as ItemQuantityListApplyOpeningMethodDOM['clearBtn'];
+    const applyBtn = applyControl.querySelector(
+      '.apply-control__apply-btn'
+    ) as ItemQuantityListApplyOpeningMethodDOM['applyBtn'];
+
     return {
-      clearBtn: this.component.element.querySelector(
-        '.apply-control__clear-btn'
-      ) as ItemQuantityListApplyOpeningMethodDOM['clearBtn'],
-      applyBtn: this.component.element.querySelector(
-        '.apply-control__apply-btn'
-      ) as ItemQuantityListApplyOpeningMethodDOM['applyBtn'],
+      clearBtn,
+      applyBtn,
     };
   }
 
@@ -63,7 +67,7 @@ class ItemQuantityListApplyOpeningMethodModifier extends ItemQuantityListOpening
   };
 
   protected _bindClearBtnListeners() {
-    this._dom.clearBtn.addEventListener(
+    this._DOM.clearBtn.addEventListener(
       'click',
       this._clearBtnEventListenerObject.handleClearBtnClick
     );
@@ -79,14 +83,14 @@ class ItemQuantityListApplyOpeningMethodModifier extends ItemQuantityListOpening
     const total = this.component.getTotalAmount();
 
     if (total === 0) {
-      this._dom.clearBtn.classList.add('apply-control__clear-btn_hidden');
+      this._DOM.clearBtn.classList.add('apply-control__clear-btn_hidden');
     } else {
-      this._dom.clearBtn.classList.remove('apply-control__clear-btn_hidden');
+      this._DOM.clearBtn.classList.remove('apply-control__clear-btn_hidden');
     }
   }
 
   protected _bindApplyBtnListeners() {
-    this._dom.applyBtn.addEventListener(
+    this._DOM.applyBtn.addEventListener(
       'click',
       this._applyBtnEventListenerObject.handleApplyBtnClick
     );
