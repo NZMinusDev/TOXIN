@@ -6,10 +6,10 @@ import dropdowns from '../form-dropdown';
 
 // TODO: aria-expanded менять для кнопки использовать dispatchEvent
 
-type ToxinIQDropdownElement = HTMLDivElement;
+type ItemQuantityListElement = HTMLDivElement;
 
 type ItemQuantityListStaticDOM = {
-  $self: JQuery<ToxinIQDropdownElement>;
+  $self: JQuery<ItemQuantityListElement>;
   listInput: HTMLInputElement;
   selection: HTMLParagraphElement;
   menu: HTMLDivElement;
@@ -41,7 +41,7 @@ type ItemQuantityListCustomEvents = 'select' | 'close' | 'change';
 type ParentBlock = Unpacked<typeof dropdowns>;
 
 class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
-  readonly element: ToxinIQDropdownElement;
+  readonly element: ItemQuantityListElement;
   protected readonly _staticDOM: Readonly<ItemQuantityListStaticDOM>;
   protected readonly _generatedDOM: Readonly<ItemQuantityListGeneratedDOM>;
 
@@ -53,7 +53,7 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
 
   protected _parentBlock: ParentBlock;
 
-  constructor(itemQuantityListElement: ToxinIQDropdownElement) {
+  constructor(itemQuantityListElement: ItemQuantityListElement) {
     this.element = itemQuantityListElement;
     this._staticDOM = this._initStaticDOM();
     this._datasetOptions = this._initOptionsFromDataset();
@@ -352,7 +352,7 @@ const dropdownsWithItemQuantityList = dropdowns.filter((dropdown) =>
 const itemQuantityLists = dropdownsWithItemQuantityList.map(
   (dropdown) =>
     new ItemQuantityList(
-      dropdown.element.querySelector('.form-dropdown__item-quantity-list') as ToxinIQDropdownElement
+      dropdown.element.querySelector('.form-dropdown__item-quantity-list') as ItemQuantityListElement
     )
 );
 
