@@ -1,4 +1,4 @@
-type LibIQListOptions = {
+type LibItemQuantityListOptions = {
   // eslint-disable-next-line lines-around-comment
   // max total items
   maxItems?: number;
@@ -34,5 +34,5 @@ type LibIQListOptions = {
 };
 
 interface JQuery {
-  iqDropdown: (options: LibIQListOptions) => JQuery<HTMLElement>;
+  iqDropdown: (options: LibItemQuantityListOptions) => JQuery<HTMLElement>;
 }

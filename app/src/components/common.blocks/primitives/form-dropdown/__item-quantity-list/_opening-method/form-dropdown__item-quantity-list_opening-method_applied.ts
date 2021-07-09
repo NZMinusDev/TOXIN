@@ -1,20 +1,20 @@
 import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
 
-import IQListOpeningMethodModifier from './coupling';
-import iqLists from '../form-dropdown__item-quantity-list';
+import ItemQuantityListOpeningMethodModifier from './coupling';
+import itemQuantityLists from '../form-dropdown__item-quantity-list';
 
-type IQListApplyOpeningMethodDOM = {
+type ItemQuantityListApplyOpeningMethodDOM = {
   clearBtn: HTMLButtonElement;
   applyBtn: HTMLButtonElement;
 };
 
-type IQList = Unpacked<typeof iqLists>;
+type ItemQuantityList = Unpacked<typeof itemQuantityLists>;
 
-class IQListApplyOpeningMethodModifier extends IQListOpeningMethodModifier {
-  protected _dom: IQListApplyOpeningMethodDOM;
+class ItemQuantityListApplyOpeningMethodModifier extends ItemQuantityListOpeningMethodModifier {
+  protected _dom: ItemQuantityListApplyOpeningMethodDOM;
 
-  constructor(iqList: IQList) {
-    super(iqList);
+  constructor(itemQuantityList: ItemQuantityList) {
+    super(itemQuantityList);
 
     this._dom = this._initDOM();
 
@@ -26,14 +26,14 @@ class IQListApplyOpeningMethodModifier extends IQListOpeningMethodModifier {
     this._init();
   }
 
-  protected _initDOM(): IQListApplyOpeningMethodDOM {
+  protected _initDOM(): ItemQuantityListApplyOpeningMethodDOM {
     return {
       clearBtn: this.component.element.querySelector(
         '.apply-control__clear-btn'
-      ) as IQListApplyOpeningMethodDOM['clearBtn'],
+      ) as ItemQuantityListApplyOpeningMethodDOM['clearBtn'],
       applyBtn: this.component.element.querySelector(
         '.apply-control__apply-btn'
-      ) as IQListApplyOpeningMethodDOM['applyBtn'],
+      ) as ItemQuantityListApplyOpeningMethodDOM['applyBtn'],
     };
   }
 
@@ -102,10 +102,12 @@ class IQListApplyOpeningMethodModifier extends IQListOpeningMethodModifier {
   }
 }
 
-const iqListWithApplyOpeningMethod = iqLists.filter((iqList) =>
-  iqList.element.classList.contains('form-dropdown__item-quantity-list_opening-method_applied')
+const itemQuantityListWithApplyOpeningMethod = itemQuantityLists.filter((itemQuantityList) =>
+  itemQuantityList.element.classList.contains(
+    'form-dropdown__item-quantity-list_opening-method_applied'
+  )
 );
 
-const iqListApplyOpeningMethodModifier = iqListWithApplyOpeningMethod.map(
-  (iqList) => new IQListApplyOpeningMethodModifier(iqList)
+const itemQuantityListApplyOpeningMethodModifier = itemQuantityListWithApplyOpeningMethod.map(
+  (itemQuantityList) => new ItemQuantityListApplyOpeningMethodModifier(itemQuantityList)
 );

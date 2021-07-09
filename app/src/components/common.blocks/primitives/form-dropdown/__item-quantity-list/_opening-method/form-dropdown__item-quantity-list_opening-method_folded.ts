@@ -1,13 +1,13 @@
 import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
 
-import IQListOpeningMethodModifier from './coupling';
-import iqLists from '../form-dropdown__item-quantity-list';
+import ItemQuantityListOpeningMethodModifier from './coupling';
+import itemQuantityLists from '../form-dropdown__item-quantity-list';
 
-type IQList = Unpacked<typeof iqLists>;
+type ItemQuantityList = Unpacked<typeof itemQuantityLists>;
 
-class IQListFoldedOpeningMethodModifier extends IQListOpeningMethodModifier {
-  constructor(iqList: IQList) {
-    super(iqList);
+class ItemQuantityListFoldedOpeningMethodModifier extends ItemQuantityListOpeningMethodModifier {
+  constructor(itemQuantityList: ItemQuantityList) {
+    super(itemQuantityList);
 
     this._bindParentBlockListeners();
     this._bindWindowListeners();
@@ -41,10 +41,12 @@ class IQListFoldedOpeningMethodModifier extends IQListOpeningMethodModifier {
   };
 }
 
-const iqListWithFoldedOpeningMethod = iqLists.filter((iqList) =>
-  iqList.element.classList.contains('form-dropdown__item-quantity-list_opening-method_folded')
+const itemQuantityListWithFoldedOpeningMethod = itemQuantityLists.filter((itemQuantityList) =>
+  itemQuantityList.element.classList.contains(
+    'form-dropdown__item-quantity-list_opening-method_folded'
+  )
 );
 
-const iqListFoldedOpeningMethodModifier = iqListWithFoldedOpeningMethod.map(
-  (iqList) => new IQListFoldedOpeningMethodModifier(iqList)
+const itemQuantityListFoldedOpeningMethodModifier = itemQuantityListWithFoldedOpeningMethod.map(
+  (itemQuantityList) => new ItemQuantityListFoldedOpeningMethodModifier(itemQuantityList)
 );

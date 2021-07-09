@@ -1,13 +1,13 @@
 import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
 
-import IQListOpeningMethodModifier from './coupling';
-import iqLists from '../form-dropdown__item-quantity-list';
+import ItemQuantityListOpeningMethodModifier from './coupling';
+import itemQuantityLists from '../form-dropdown__item-quantity-list';
 
-type IQList = Unpacked<typeof iqLists>;
+type ItemQuantityList = Unpacked<typeof itemQuantityLists>;
 
-class IQListSwitchableOpeningMethodModifier extends IQListOpeningMethodModifier {
-  constructor(iqList: IQList) {
-    super(iqList);
+class ItemQuantityListSwitchableOpeningMethodModifier extends ItemQuantityListOpeningMethodModifier {
+  constructor(itemQuantityList: ItemQuantityList) {
+    super(itemQuantityList);
 
     this._bindParentBlockListeners();
   }
@@ -26,10 +26,12 @@ class IQListSwitchableOpeningMethodModifier extends IQListOpeningMethodModifier 
   };
 }
 
-const iqListWithSwitchableOpeningMethod = iqLists.filter((iqList) =>
-  iqList.element.classList.contains('form-dropdown__item-quantity-list_opening-method_switchable')
+const itemQuantityListWithSwitchableOpeningMethod = itemQuantityLists.filter((itemQuantityList) =>
+  itemQuantityList.element.classList.contains(
+    'form-dropdown__item-quantity-list_opening-method_switchable'
+  )
 );
 
-const iqListSwitchableOpeningMethodModifier = iqListWithSwitchableOpeningMethod.map(
-  (iqList) => new IQListSwitchableOpeningMethodModifier(iqList)
+const itemQuantityListSwitchableOpeningMethodModifier = itemQuantityListWithSwitchableOpeningMethod.map(
+  (itemQuantityList) => new ItemQuantityListSwitchableOpeningMethodModifier(itemQuantityList)
 );

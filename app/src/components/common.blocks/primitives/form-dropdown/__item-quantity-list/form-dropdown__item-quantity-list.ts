@@ -8,7 +8,7 @@ import dropdowns from '../form-dropdown';
 
 type ToxinIQDropdownElement = HTMLDivElement;
 
-type IQListStaticDOM = {
+type ItemQuantityListStaticDOM = {
   $self: JQuery<ToxinIQDropdownElement>;
   mainInput: HTMLInputElement;
   selection: HTMLParagraphElement;
@@ -17,14 +17,14 @@ type IQListStaticDOM = {
   menuOptions: NodeListOf<HTMLDivElement>;
   optionTitles: NodeListOf<HTMLHeadingElement>;
 };
-type IQListGeneratedDOM = {
+type ItemQuantityListGeneratedDOM = {
   controls: NodeListOf<HTMLDivElement>;
   decrementButtons: NodeListOf<HTMLButtonElement>;
   incrementButtons: NodeListOf<HTMLButtonElement>;
   counters: NodeListOf<HTMLSpanElement>;
 };
 
-type DatasetIQListOptions = {
+type DatasetItemQuantityListOptions = {
   selection: { placeholder: string };
   menu: { groups: { [groupName: string]: { selectionText: string; textPlural: string } } };
   menuOptions: Map<
@@ -39,16 +39,16 @@ type DatasetIQListOptions = {
   >;
 };
 
-type IQListEvents = 'select' | 'close' | 'change';
+type ItemQuantityListEvents = 'select' | 'close' | 'change';
 
 type ParentBlock = Unpacked<typeof dropdowns>;
 
-class IQList implements BEMComponent<IQListEvents> {
+class ItemQuantityList implements BEMComponent<ItemQuantityListEvents> {
   readonly element: ToxinIQDropdownElement;
-  protected readonly _staticDOM: Readonly<IQListStaticDOM>;
-  protected readonly _generatedDOM: Readonly<IQListGeneratedDOM>;
+  protected readonly _staticDOM: Readonly<ItemQuantityListStaticDOM>;
+  protected readonly _generatedDOM: Readonly<ItemQuantityListGeneratedDOM>;
 
-  private _datasetIQListOptions: DatasetIQListOptions;
+  private _datasetItemQuantityListOptions: DatasetItemQuantityListOptions;
   protected _totalItems = -1;
 
   protected _itemsCounter = new Map<string, number>();
@@ -56,11 +56,11 @@ class IQList implements BEMComponent<IQListEvents> {
 
   protected _parentBlock: ParentBlock;
 
-  constructor(IQListElement: ToxinIQDropdownElement) {
-    this.element = IQListElement;
-    this._staticDOM = IQList._initStaticDOM(IQListElement);
-    this._datasetIQListOptions = this._initDatasetIQListOptions();
-    this._initLibIQList();
+  constructor(ItemQuantityListElement: ToxinIQDropdownElement) {
+    this.element = ItemQuantityListElement;
+    this._staticDOM = ItemQuantityList._initStaticDOM(ItemQuantityListElement);
+    this._datasetItemQuantityListOptions = this._initDatasetItemQuantityListOptions();
+    this._initLibItemQuantityList();
     this._generatedDOM = this._initGeneratedDOM();
 
     const subBlocks = this._initSubBlocks();
@@ -77,9 +77,9 @@ class IQList implements BEMComponent<IQListEvents> {
   }
   reset() {
     this._staticDOM.menuOptions.forEach((menuOption, index) => {
-      const menuOptionDataset = this._datasetIQListOptions.menuOptions.get(menuOption) as Unpacked<
-        DatasetIQListOptions['menuOptions']
-      >;
+      const menuOptionDataset = this._datasetItemQuantityListOptions.menuOptions.get(
+        menuOption
+      ) as Unpacked<DatasetItemQuantityListOptions['menuOptions']>;
 
       const currAmount = this._itemsCounter.get(menuOptionDataset.id) as number;
       const minAmount = menuOptionDataset.minCount as number;
@@ -121,26 +121,28 @@ class IQList implements BEMComponent<IQListEvents> {
     }
   }
 
-  protected static _initStaticDOM(dropdown: ToxinIQDropdownElement): IQListStaticDOM {
+  protected static _initStaticDOM(dropdown: ToxinIQDropdownElement): ItemQuantityListStaticDOM {
     return {
-      $self: $(dropdown) as IQListStaticDOM['$self'],
+      $self: $(dropdown) as ItemQuantityListStaticDOM['$self'],
       mainInput: dropdown.querySelector(
         '.form-dropdown__list-input'
-      ) as IQListStaticDOM['mainInput'],
-      selection: dropdown.querySelector('.iqdropdown-selection') as IQListStaticDOM['selection'],
-      menu: dropdown.querySelector('.iqdropdown-menu') as IQListStaticDOM['menu'],
+      ) as ItemQuantityListStaticDOM['mainInput'],
+      selection: dropdown.querySelector(
+        '.iqdropdown-selection'
+      ) as ItemQuantityListStaticDOM['selection'],
+      menu: dropdown.querySelector('.iqdropdown-menu') as ItemQuantityListStaticDOM['menu'],
       optionInputs: dropdown.querySelectorAll(
         '.form-dropdown__option-input'
-      ) as IQListStaticDOM['optionInputs'],
+      ) as ItemQuantityListStaticDOM['optionInputs'],
       menuOptions: dropdown.querySelectorAll(
         '.iqdropdown-menu-option'
-      ) as IQListStaticDOM['menuOptions'],
+      ) as ItemQuantityListStaticDOM['menuOptions'],
       optionTitles: dropdown.querySelectorAll(
         '.iqdropdown-item'
-      ) as IQListStaticDOM['optionTitles'],
+      ) as ItemQuantityListStaticDOM['optionTitles'],
     };
   }
-  protected _initDatasetIQListOptions(): DatasetIQListOptions {
+  protected _initDatasetItemQuantityListOptions(): DatasetItemQuantityListOptions {
     return {
       selection: { placeholder: this._staticDOM.selection.dataset.placeholder || '' },
       menu: {
@@ -163,7 +165,7 @@ class IQList implements BEMComponent<IQListEvents> {
       ),
     };
   }
-  private _initLibIQList() {
+  private _initLibItemQuantityList() {
     this._staticDOM.$self.iqDropdown({
       setSelectionText: (itemCount, totalItems) => {
         this._totalItems = totalItems;
@@ -182,18 +184,20 @@ class IQList implements BEMComponent<IQListEvents> {
     // disable toggle menu
     $(this.element).off('click');
   }
-  protected _initGeneratedDOM(): IQListGeneratedDOM {
+  protected _initGeneratedDOM(): ItemQuantityListGeneratedDOM {
     return {
       controls: this._staticDOM.menu.querySelectorAll(
         '.form-dropdown__counter-control'
-      ) as IQListGeneratedDOM['controls'],
+      ) as ItemQuantityListGeneratedDOM['controls'],
       decrementButtons: this._staticDOM.menu.querySelectorAll(
         '.button-decrement'
-      ) as IQListGeneratedDOM['decrementButtons'],
+      ) as ItemQuantityListGeneratedDOM['decrementButtons'],
       incrementButtons: this._staticDOM.menu.querySelectorAll(
         '.button-increment'
-      ) as IQListGeneratedDOM['incrementButtons'],
-      counters: this._staticDOM.menu.querySelectorAll('.counter') as IQListGeneratedDOM['counters'],
+      ) as ItemQuantityListGeneratedDOM['incrementButtons'],
+      counters: this._staticDOM.menu.querySelectorAll(
+        '.counter'
+      ) as ItemQuantityListGeneratedDOM['counters'],
     };
   }
 
@@ -222,7 +226,7 @@ class IQList implements BEMComponent<IQListEvents> {
   };
 
   protected _generateResultText() {
-    const { groups } = this._datasetIQListOptions.menu;
+    const { groups } = this._datasetItemQuantityListOptions.menu;
 
     let result = '';
     if (this._totalItems > 0) {
@@ -238,7 +242,7 @@ class IQList implements BEMComponent<IQListEvents> {
         }
       });
     } else {
-      result = this._datasetIQListOptions.selection.placeholder;
+      result = this._datasetItemQuantityListOptions.selection.placeholder;
     }
 
     return result;
@@ -248,9 +252,9 @@ class IQList implements BEMComponent<IQListEvents> {
     this._groupsCounter.clear();
 
     this._staticDOM.menuOptions.forEach((menuOption) => {
-      const menuOptionDataset = this._datasetIQListOptions.menuOptions.get(menuOption) as Unpacked<
-        DatasetIQListOptions['menuOptions']
-      >;
+      const menuOptionDataset = this._datasetItemQuantityListOptions.menuOptions.get(
+        menuOption
+      ) as Unpacked<DatasetItemQuantityListOptions['menuOptions']>;
 
       this._itemsCounter.set(menuOptionDataset.id, itemCount[menuOptionDataset.id]);
       this._groupsCounter.set(
@@ -262,9 +266,9 @@ class IQList implements BEMComponent<IQListEvents> {
   protected _updateValueOfInputs() {
     let accumulator = '';
     this._staticDOM.menuOptions.forEach((menuOption, index) => {
-      const menuOptionDataset = this._datasetIQListOptions.menuOptions.get(menuOption) as Unpacked<
-        DatasetIQListOptions['menuOptions']
-      >;
+      const menuOptionDataset = this._datasetItemQuantityListOptions.menuOptions.get(
+        menuOption
+      ) as Unpacked<DatasetItemQuantityListOptions['menuOptions']>;
 
       const counterAmount = this._itemsCounter.get(menuOptionDataset.id as string);
       const input = this._staticDOM.optionInputs.item(index);
@@ -297,9 +301,10 @@ class IQList implements BEMComponent<IQListEvents> {
       const targetMenuOption = has(
         this._staticDOM.menuOptions,
         clickEvent.currentTarget as Unpacked<
-          IQListGeneratedDOM['decrementButtons'] | IQListGeneratedDOM['incrementButtons']
+          | ItemQuantityListGeneratedDOM['decrementButtons']
+          | ItemQuantityListGeneratedDOM['incrementButtons']
         >
-      ) as Unpacked<IQListStaticDOM['menuOptions']>;
+      ) as Unpacked<ItemQuantityListStaticDOM['menuOptions']>;
 
       this._updateCounterButtonDisplay(targetMenuOption);
 
@@ -308,11 +313,11 @@ class IQList implements BEMComponent<IQListEvents> {
   };
 
   protected _updateCounterButtonDisplay(
-    targetMenuOption: Unpacked<IQListStaticDOM['menuOptions']>
+    targetMenuOption: Unpacked<ItemQuantityListStaticDOM['menuOptions']>
   ) {
-    const targetMenuOptionDataset = this._datasetIQListOptions.menuOptions.get(
+    const targetMenuOptionDataset = this._datasetItemQuantityListOptions.menuOptions.get(
       targetMenuOption
-    ) as Unpacked<DatasetIQListOptions['menuOptions']>;
+    ) as Unpacked<DatasetItemQuantityListOptions['menuOptions']>;
 
     const menuOptionIndex = Array.from(this._staticDOM.menuOptions).indexOf(targetMenuOption);
     const decrementBtn = this._generatedDOM.decrementButtons.item(menuOptionIndex);
@@ -340,15 +345,15 @@ class IQList implements BEMComponent<IQListEvents> {
   }
 }
 
-const dropdownsWithIQList = dropdowns.filter((dropdown) =>
+const dropdownsWithItemQuantityList = dropdowns.filter((dropdown) =>
   dropdown.element.querySelector('.form-dropdown__item-quantity-list')
 );
 
-const iqLists = dropdownsWithIQList.map(
+const itemQuantityLists = dropdownsWithItemQuantityList.map(
   (dropdown) =>
-    new IQList(
+    new ItemQuantityList(
       dropdown.element.querySelector('.form-dropdown__item-quantity-list') as ToxinIQDropdownElement
     )
 );
 
-export { iqLists as default, IQListEvents };
+export { itemQuantityLists as default, ItemQuantityListEvents };
