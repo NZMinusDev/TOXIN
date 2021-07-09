@@ -11,7 +11,7 @@ type ItemQuantityListApplyOpeningMethodDOM = {
 type ItemQuantityList = Unpacked<typeof itemQuantityLists>;
 
 class ItemQuantityListApplyOpeningMethodModifier extends ItemQuantityListOpeningMethodModifier {
-  protected _DOM: ItemQuantityListApplyOpeningMethodDOM;
+  protected readonly _DOM: Readonly<ItemQuantityListApplyOpeningMethodDOM>;
 
   constructor(itemQuantityList: ItemQuantityList) {
     super(itemQuantityList);
