@@ -161,13 +161,6 @@ class CardDatepicker implements CardDatepickerAPI {
         );
 
         this._changeInputValue(ISOSelectedDates);
-
-        this.element.dispatchEvent(
-          new CustomEvent('change', {
-            bubbles: true,
-            detail: { value: this._staticDOM.input.value },
-          })
-        );
       }
     },
   };
@@ -189,12 +182,19 @@ class CardDatepicker implements CardDatepickerAPI {
       // eslint-disable-next-line no-param-reassign
       altField.value = ISODates[index + 1];
     });
+
+    this.element.dispatchEvent(
+      new CustomEvent('change', {
+        bubbles: true,
+        detail: { value: this._staticDOM.input.value },
+      })
+    );
   }
 
   protected _init() {
-    const ISODates = this._staticDOM.input.value.split(',');
-
     if (this._staticDOM.input.value) {
+      const ISODates = this._staticDOM.input.value.split(',');
+
       this._staticDOM.$element
         .data('datepicker')
         .selectDate(ISODates.map((ISODate) => new Date(ISODate)));

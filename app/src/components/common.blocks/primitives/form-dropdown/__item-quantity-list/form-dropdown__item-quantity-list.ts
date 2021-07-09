@@ -215,14 +215,7 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListEvents> {
     this.element.addEventListener('close', this.onClose);
   }
   protected onClose = () => {
-    this._updateValueOfInputs();
-
-    this.element.dispatchEvent(
-      new CustomEvent('change', {
-        bubbles: true,
-        detail: { value: this._staticDOM.listInput.value },
-      })
-    );
+    this._changeValueOfInputs();
   };
 
   protected _generateResultText() {
@@ -263,7 +256,7 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListEvents> {
       );
     });
   }
-  protected _updateValueOfInputs() {
+  protected _changeValueOfInputs() {
     let accumulator = '';
     this._staticDOM.menuOptions.forEach((menuOption, index) => {
       const menuOptionDataset = this._datasetItemQuantityListOptions.menuOptions.get(
@@ -280,6 +273,13 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListEvents> {
     });
 
     this._staticDOM.listInput.value = accumulator;
+
+    this.element.dispatchEvent(
+      new CustomEvent('change', {
+        bubbles: true,
+        detail: { value: this._staticDOM.listInput.value },
+      })
+    );
   }
 
   protected _bindCounterBtnListeners() {
