@@ -18,7 +18,7 @@ class Pagination implements BEMComponent<PaginationEvents> {
     this._DOM = this._initDOM();
   }
 
-  protected _initDOM() {
+  protected _initDOM(): PaginationDOM {
     const list = this.element.querySelector('.pagination__list') as PaginationDOM['list'];
     const counter = this.element.querySelector('.pagination__counter') as PaginationDOM['counter'];
 

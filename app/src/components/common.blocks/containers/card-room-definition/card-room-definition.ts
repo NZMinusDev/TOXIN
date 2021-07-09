@@ -41,7 +41,7 @@ class CardRoomDefinition implements BEMComponent<CardRoomDefinitionEvents> {
     this._bindArrivalDateDropdownListeners();
   }
 
-  protected _initDOM() {
+  protected _initDOM(): CardRoomDefinitionDOM {
     const dayPayment = this.element.querySelector(
       '.card-room-definition__day-payment'
     ) as CardRoomDefinitionDOM['dayPayment'];

@@ -29,13 +29,19 @@ class RangeSlider implements BEMComponent<RangeSliderEvents> {
     this._bindSliderListeners();
   }
 
-  protected _initDOM() {
+  protected _initDOM(): RangeSliderDOM {
     const slider = this.element.querySelector(
       '.form-range-slider__slider'
-    ) as HTMLDivElementWithSlider;
-    const result = this.element.querySelector('.form-range-slider__result') as HTMLOutputElement;
-    const inputFrom = this.element.querySelector(`[name=${result.name}-0]`) as HTMLInputElement;
-    const inputTo = this.element.querySelector(`[name=${result.name}-1]`) as HTMLInputElement;
+    ) as RangeSliderDOM['slider'];
+    const result = this.element.querySelector(
+      '.form-range-slider__result'
+    ) as RangeSliderDOM['result'];
+    const inputFrom = this.element.querySelector(
+      `[name=${result.name}-0]`
+    ) as RangeSliderDOM['inputFrom'];
+    const inputTo = this.element.querySelector(
+      `[name=${result.name}-1]`
+    ) as RangeSliderDOM['inputTo'];
 
     return { slider, result, inputFrom, inputTo };
   }
