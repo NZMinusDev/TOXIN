@@ -51,7 +51,6 @@ const getWindowSizes = () => ({
 
 const isHidden = (elem: HTMLElement) => !elem.offsetWidth && !elem.offsetHeight;
 
-/** @see module:PluginCreation/eventMixin */
 const setFullHeight = (element: HTMLElement) => {
   // eslint-disable-next-line no-param-reassign
   element.style.height = `${element.scrollHeight}px`;
@@ -67,7 +66,6 @@ enum Direction {
 
 /**
  * Cross-browsers(be aware of https://bugs.webkit.org/show_bug.cgi?id=5991 and use document.body instead of document.documentElement for old browsers only) extended scrollTo
- * @see module:PluginCreation/eventMixin
  */
 const scrollTo = (
   element: HTMLElement,
@@ -121,7 +119,6 @@ const scrollTo = (
 
 /**
  * Cross-browsers(be aware of https://bugs.webkit.org/show_bug.cgi?id=5991 and use document.body instead of document.documentElement for old browsers only) scrollBy
- * @see module:PluginCreation/eventMixin
  */
 const scrollBy = (element: HTMLElement, x: number, y: number) => {
   // eslint-disable-next-line no-param-reassign
@@ -130,7 +127,6 @@ const scrollBy = (element: HTMLElement, x: number, y: number) => {
   element.scrollTop += y;
 };
 
-/** @see module:PluginCreation/eventMixin */
 const freezeScroll = (element: HTMLElement, { freeze = true } = {}) => {
   if (freeze === true) {
     const clientWidthBeforeFreeze = element.clientWidth;
@@ -148,7 +144,6 @@ const freezeScroll = (element: HTMLElement, { freeze = true } = {}) => {
 
 /**
  * @returns proper css coordinates for position:absolute
- * @see module:PluginCreation/eventMixin
  *
  */
 const getCoordinatesOfAbsoluteElement = (element: HTMLElement) => {
@@ -162,7 +157,6 @@ const getCoordinatesOfAbsoluteElement = (element: HTMLElement) => {
   };
 };
 
-/** @see module:PluginCreation/eventMixin */
 const place = (element: HTMLElement, { position = 'absolute' } = {}) => {
   // eslint-disable-next-line no-param-reassign
   element.style.position = position;

@@ -116,6 +116,54 @@ class EventManagerMixin<TEvents extends string> {
   }
 }
 
+/**
+ * Apply mixins to derivedConstructor.
+ * @param derivedConstructor - class/constructor to derived
+ * @param mixinConstructors - classes/constructors adding functionality to derivedConstructor
+ * @example
+ * // Each mixin is a traditional ES class
+ * class Jumpable {
+ *  jump() {}
+ * }
+ *
+ * class Duckable {
+ *   duck() {}
+ * }
+ *
+ * // Including the base
+ * class Sprite {
+ *   x = 0;
+ *   y = 0;
+ * }
+ *
+ * // Then you create an interface which merges
+ * // the expected mixins with the same name as your base
+ * interface Sprite extends Jumpable, Duckable {}
+ * // Apply the mixins into the base class via the JS at runtime
+ * applyMixins(Sprite, [Jumpable, Duckable]);
+ *
+ * let player = new Sprite();
+ * player.jump();
+ * console.log(player.x, player.y);
+ */
+const applyMixins = <
+  TDerivedConstructor extends new (...args: unknown[]) => unknown,
+  TMixinConstructors extends new (...args: unknown[]) => unknown
+>(
+  derivedConstructor: TDerivedConstructor,
+  mixinConstructors: TMixinConstructors[]
+) => {
+  mixinConstructors.forEach((baseConstructor) => {
+    Object.getOwnPropertyNames(baseConstructor.prototype).forEach((name) => {
+      Object.defineProperty(
+        derivedConstructor.prototype,
+        name,
+        Object.getOwnPropertyDescriptor(baseConstructor.prototype, name) || Object.create(null)
+      );
+    });
+  });
+};
+
 abstract class MVPView<
   TOptionsToGet extends Record<string, unknown>,
   TOptionsToSet extends Record<string, unknown>,
@@ -286,37 +334,37 @@ interface MVPModel<State> {
 /**
  * Common BEM block / element class
  */
-interface Plugin<TBublingEvents extends string = ''> {
+interface BEMComponent<TElementBublingEvents extends string = ''> {
   readonly element: HTMLElement;
 }
 
 /**
  * BEM modifier class
  */
-abstract class PluginDecorator<TPlugin extends Plugin> {
-  protected plugin: TPlugin;
+abstract class BEMModifier<TBEMComponent extends BEMComponent> {
+  protected component: TBEMComponent;
 
-  constructor(plugin: TPlugin, modifierName: string) {
-    this.plugin = plugin;
+  constructor(component: TBEMComponent, modifierName: string) {
+    this.component = component;
 
-    this.plugin[modifierName] = this;
+    this.component[modifierName] = this;
   }
 }
 
 /**
  *  Switchable BEM modifier class
  */
-abstract class CancelablePluginDecorator<TPlugin extends Plugin> {
-  protected plugin: TPlugin;
+abstract class CancelableBEMModifier<TBEMComponent extends BEMComponent> {
+  protected component: TBEMComponent;
 
-  constructor(plugin: TPlugin, modifierName: string) {
-    this.plugin = plugin;
+  constructor(component: TBEMComponent, modifierName: string) {
+    this.component = component;
 
-    if (this.plugin[modifierName]) {
-      this.plugin[modifierName].cancel();
+    if (this.component[modifierName]) {
+      this.component[modifierName].cancel();
     }
 
-    this.plugin[modifierName] = this;
+    this.component[modifierName] = this;
   }
 
   protected abstract cancel(): void;
@@ -337,65 +385,17 @@ const checkDelegatingEvents = (event: Event, parent: HTMLElement, descendantSele
   return true;
 };
 
-/**
- * Apply mixins to derivedConstructor.
- * @param derivedConstructor - class/constructor to derived
- * @param mixinConstructors - classes/constructors adding functionality to derivedConstructor
- * @example
- * // Each mixin is a traditional ES class
- * class Jumpable {
- *  jump() {}
- * }
- *
- * class Duckable {
- *   duck() {}
- * }
- *
- * // Including the base
- * class Sprite {
- *   x = 0;
- *   y = 0;
- * }
- *
- * // Then you create an interface which merges
- * // the expected mixins with the same name as your base
- * interface Sprite extends Jumpable, Duckable {}
- * // Apply the mixins into the base class via the JS at runtime
- * applyMixins(Sprite, [Jumpable, Duckable]);
- *
- * let player = new Sprite();
- * player.jump();
- * console.log(player.x, player.y);
- */
-const applyMixins = <
-  TDerivedConstructor extends new (...args: unknown[]) => unknown,
-  TMixinConstructors extends new (...args: unknown[]) => unknown
->(
-  derivedConstructor: TDerivedConstructor,
-  mixinConstructors: TMixinConstructors[]
-) => {
-  mixinConstructors.forEach((baseConstructor) => {
-    Object.getOwnPropertyNames(baseConstructor.prototype).forEach((name) => {
-      Object.defineProperty(
-        derivedConstructor.prototype,
-        name,
-        Object.getOwnPropertyDescriptor(baseConstructor.prototype, name) || Object.create(null)
-      );
-    });
-  });
-};
-
 export {
   handleEvent,
   CustomEventListener,
   CustomEventListenerObject,
   handler,
-  Plugin,
   EventManagerMixin,
+  applyMixins,
   MVPView,
   MVPModel,
-  PluginDecorator,
-  CancelablePluginDecorator,
+  BEMComponent,
+  BEMModifier,
+  CancelableBEMModifier,
   checkDelegatingEvents,
-  applyMixins,
 };

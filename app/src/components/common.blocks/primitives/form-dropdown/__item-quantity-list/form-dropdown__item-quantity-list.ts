@@ -1,4 +1,4 @@
-import { Plugin } from '@utils/devTools/scripts/PluginCreationHelper';
+import { BEMComponent } from '@utils/devTools/scripts/ComponentCreationHelper';
 import { has } from '@utils/devTools/scripts/DOMHelper';
 
 import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
@@ -43,7 +43,7 @@ type IQListEvents = 'select' | 'close' | 'change';
 
 type ParentBlock = Unpacked<typeof dropdowns>;
 
-class IQList implements Plugin<IQListEvents> {
+class IQList implements BEMComponent<IQListEvents> {
   readonly element: ToxinIQDropdownElement;
   protected readonly _staticDOM: Readonly<IQListStaticDOM>;
   protected readonly _generatedDOM: Readonly<IQListGeneratedDOM>;

@@ -19,7 +19,7 @@ class IQListApplyOpeningMethodModifier extends IQListOpeningMethodModifier {
     this._dom = this._initDOM();
 
     this._bindParentBlockListeners();
-    this._bindPluginListeners();
+    this._bindComponentListeners();
     this._bindClearBtnListeners();
     this._bindApplyBtnListeners();
 
@@ -28,10 +28,10 @@ class IQListApplyOpeningMethodModifier extends IQListOpeningMethodModifier {
 
   protected _initDOM(): IQListApplyOpeningMethodDOM {
     return {
-      clearBtn: this.plugin.element.querySelector(
+      clearBtn: this.component.element.querySelector(
         '.apply-control__clear-btn'
       ) as IQListApplyOpeningMethodDOM['clearBtn'],
-      applyBtn: this.plugin.element.querySelector(
+      applyBtn: this.component.element.querySelector(
         '.apply-control__apply-btn'
       ) as IQListApplyOpeningMethodDOM['applyBtn'],
     };
@@ -39,25 +39,25 @@ class IQListApplyOpeningMethodModifier extends IQListOpeningMethodModifier {
 
   protected _bindParentBlockListeners() {
     // eslint-disable-next-line dot-notation
-    this.plugin['_parentBlock'].element.addEventListener(
+    this.component['_parentBlock'].element.addEventListener(
       'open',
       this._parentBlockEventListenerObject.handleParentBlockOpen
     );
   }
   protected _parentBlockEventListenerObject = {
     handleParentBlockOpen: () => {
-      this.plugin.open();
+      this.component.open();
     },
   };
 
-  protected _bindPluginListeners() {
-    this.plugin.element.addEventListener(
+  protected _bindComponentListeners() {
+    this.component.element.addEventListener(
       'select',
-      this._pluginEventListenerObject.handlePluginSelect
+      this._componentEventListenerObject.handleComponentSelect
     );
   }
-  protected _pluginEventListenerObject = {
-    handlePluginSelect: () => {
+  protected _componentEventListenerObject = {
+    handleComponentSelect: () => {
       this._updateClearBtnDisplay();
     },
   };
@@ -70,13 +70,13 @@ class IQListApplyOpeningMethodModifier extends IQListOpeningMethodModifier {
   }
   protected _clearBtnEventListenerObject = {
     handleClearBtnClick: () => {
-      this.plugin.reset();
+      this.component.reset();
       this._updateClearBtnDisplay();
     },
   };
 
   protected _updateClearBtnDisplay() {
-    const total = this.plugin.getTotalAmount();
+    const total = this.component.getTotalAmount();
 
     if (total === 0) {
       this._dom.clearBtn.classList.add('apply-control__clear-btn_hidden');
@@ -93,7 +93,7 @@ class IQListApplyOpeningMethodModifier extends IQListOpeningMethodModifier {
   }
   protected _applyBtnEventListenerObject = {
     handleApplyBtnClick: (event: MouseEvent) => {
-      this.plugin.close();
+      this.component.close();
     },
   };
 

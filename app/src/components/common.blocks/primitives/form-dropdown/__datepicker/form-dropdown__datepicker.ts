@@ -1,4 +1,4 @@
-import { Plugin } from '@utils/devTools/scripts/PluginCreationHelper';
+import { BEMComponent } from '@utils/devTools/scripts/ComponentCreationHelper';
 
 import cardDatePickers, {
   CardDatepickerEvents,
@@ -20,7 +20,7 @@ type ParentBlock = Unpacked<typeof dropdowns>;
 type DatepickerBlock = Unpacked<typeof cardDatePickers>;
 
 // TODO: aria-expanded менять для кнопки использовать dispatchEvent
-class DropdownDatepicker implements Plugin<DropdownDatepickerEvents> {
+class DropdownDatepicker implements BEMComponent<DropdownDatepickerEvents> {
   readonly element: DatepickerElement;
   protected readonly _dom: Readonly<DropdownDatepickerDOM>;
 

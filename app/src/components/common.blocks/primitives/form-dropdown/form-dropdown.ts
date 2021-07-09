@@ -1,4 +1,4 @@
-import { Plugin } from '@utils/devTools/scripts/PluginCreationHelper';
+import { BEMComponent } from '@utils/devTools/scripts/ComponentCreationHelper';
 
 type DropdownElement = HTMLDivElement;
 
@@ -8,7 +8,7 @@ type DropdownDOM = {
 
 type DropdownEvents = 'open';
 
-interface DropdownAPI extends Plugin<DropdownEvents> {
+interface DropdownAPI extends BEMComponent<DropdownEvents> {
   readonly element: DropdownElement;
 }
 

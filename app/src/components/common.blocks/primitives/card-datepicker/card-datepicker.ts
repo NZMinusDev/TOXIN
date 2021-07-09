@@ -1,4 +1,4 @@
-import { Plugin } from '@utils/devTools/scripts/PluginCreationHelper';
+import { BEMComponent } from '@utils/devTools/scripts/ComponentCreationHelper';
 
 import '@common.blocks/primitives/apply-control/apply-control.scss';
 import '@common.blocks/primitives/apply-control/__clear-btn/apply-control__clear-btn.scss';
@@ -23,7 +23,7 @@ type CardDatepickerGeneratedDOM = {
 
 type CardDatepickerEvents = 'select' | 'clear' | 'change';
 
-interface CardDatepickerAPI extends Plugin<CardDatepickerEvents> {
+interface CardDatepickerAPI extends BEMComponent<CardDatepickerEvents> {
   readonly element: CardDatepickerElement;
 }
 

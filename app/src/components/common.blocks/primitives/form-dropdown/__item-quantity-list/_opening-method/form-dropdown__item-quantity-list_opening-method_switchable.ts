@@ -14,14 +14,14 @@ class IQListSwitchableOpeningMethodModifier extends IQListOpeningMethodModifier 
 
   protected _bindParentBlockListeners() {
     // eslint-disable-next-line dot-notation
-    this.plugin['_parentBlock'].element.addEventListener(
+    this.component['_parentBlock'].element.addEventListener(
       'open',
       this._parentBlockEventListenerObject.handleParentBlockOpen
     );
   }
   protected _parentBlockEventListenerObject = {
     handleParentBlockOpen: () => {
-      this.plugin.toggle();
+      this.component.toggle();
     },
   };
 }
