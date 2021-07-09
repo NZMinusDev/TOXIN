@@ -3,8 +3,6 @@ import '../__item/_active/pagination__item_active.scss';
 import '../__item/_previous/pagination__item_previous.scss';
 import '../__item/_next/pagination__item_next.scss';
 
-// TODO: Добавить title атрибут
-
 const createPaginationItem = (
   innerText: string,
   linkClickListener: (event: MouseEvent) => void,
@@ -288,15 +286,14 @@ const showNextButton = (
   );
 };
 
-//  init and export our paginations
-const asyncPaginations = Array.from(paginations).filter((pagination) => {
-  if (pagination.classList.contains('pagination_addressing-method_async')) {
+const asyncPaginations = paginations.filter((pagination) => {
+  if (pagination.element.classList.contains('pagination_addressing-method_async')) {
     createPagination(
-      pagination,
-      parseInt(pagination.dataset.page as string, 10),
-      parseInt(pagination.dataset.displayed as string, 10),
-      parseInt(pagination.dataset.total as string, 10),
-      pagination.dataset.text as string
+      pagination.element,
+      parseInt(pagination.element.dataset.page as string, 10),
+      parseInt(pagination.element.dataset.displayed as string, 10),
+      parseInt(pagination.element.dataset.total as string, 10),
+      pagination.element.dataset.text as string
     );
 
     return true;
