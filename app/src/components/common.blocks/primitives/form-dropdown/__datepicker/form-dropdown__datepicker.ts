@@ -45,7 +45,7 @@ class DropdownDatepicker implements BEMComponent<DropdownDatepickerCustomEvents>
     this._bindListeners();
     this._bindAltFieldsListeners();
 
-    this._init();
+    this._initDisplay();
   }
 
   show() {
@@ -172,7 +172,7 @@ class DropdownDatepicker implements BEMComponent<DropdownDatepickerCustomEvents>
     handleAltFieldOpen: this._parentBlockEventListenerObject.handleParentBlockOpen,
   };
 
-  protected _init() {
+  protected _initDisplay() {
     this._changeValue();
   }
 }

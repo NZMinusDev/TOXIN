@@ -45,7 +45,7 @@ class CardDatepicker implements CardDatepickerAPI {
 
     this._bindApplyControlListeners();
 
-    this._init();
+    this._initDisplay();
   }
 
   getDates() {
@@ -191,7 +191,7 @@ class CardDatepicker implements CardDatepickerAPI {
     );
   }
 
-  protected _init() {
+  protected _initDisplay() {
     if (this._staticDOM.input.value) {
       const ISODates = this._staticDOM.input.value.split(',');
 

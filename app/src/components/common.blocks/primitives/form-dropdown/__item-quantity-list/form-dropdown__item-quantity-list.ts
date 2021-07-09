@@ -66,7 +66,7 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
     this._bindListeners();
     this._bindCounterBtnListeners();
 
-    this._init();
+    this._initDisplay();
   }
 
   getTotalAmount() {
@@ -338,7 +338,7 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
     }
   }
 
-  protected _init() {
+  protected _initDisplay() {
     this._staticDOM.menuOptions.forEach((menuOption) => {
       this._updateCounterButtonDisplay(menuOption);
     });

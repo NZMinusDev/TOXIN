@@ -23,7 +23,7 @@ class ItemQuantityListApplyOpeningMethodModifier extends ItemQuantityListOpening
     this._bindClearBtnListeners();
     this._bindApplyBtnListeners();
 
-    this._init();
+    this._initDisplay();
   }
 
   protected _initDOM(): ItemQuantityListApplyOpeningMethodDOM {
@@ -101,7 +101,7 @@ class ItemQuantityListApplyOpeningMethodModifier extends ItemQuantityListOpening
     },
   };
 
-  protected _init() {
+  protected _initDisplay() {
     this._updateClearBtnDisplay();
   }
 }
