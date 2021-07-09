@@ -1,12 +1,14 @@
-import Inputmask from "inputmask";
+import Inputmask from 'inputmask';
 
-const dateFormTextFields = document.querySelectorAll(
-  ".form-text-field_type_with-date .form-text-field__input"
+import formTextFieldElements from '../form-text-field';
+
+const dateFormTextFields = formTextFieldElements.filter((formTextFieldElement) =>
+  formTextFieldElement.closest('.form-text-field_type_with-date')
 );
+
 dateFormTextFields.forEach((dateFormTextField) => {
-  dateFormTextField.setAttribute("inputmode", "numeric");
-  Inputmask("datetime", {
-    inputFormat: "dd.mm.yyyy",
+  Inputmask('datetime', {
+    inputFormat: 'dd.mm.yyyy',
     placeholder: dateFormTextField.dataset.placeholder,
     autoUnmask: true,
     showMaskOnHover: false,

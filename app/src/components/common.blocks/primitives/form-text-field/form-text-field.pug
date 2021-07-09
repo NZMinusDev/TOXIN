@@ -15,26 +15,34 @@ include ~@common.blocks/primitives/icon/icon.pug
   Tip: mixin also uses 'and attributes'(&attributes)
 mixin form-text-field({ heading = '', description = '', headingMarginBottom = '', name = 'text-field', type = 'text', placeholder = '', value = '', autofocus = false, materialIcon = '', isFilter = false } = {})
   -
-    const allowedInputMaskTypes = ['text', 'search', 'tel', 'url', 'password'];
-    const allowedInputmodeAttribute = [
-      'none',
-      'text',
-      'decimal',
-      'numeric',
-      'tel',
-      'search',
-      'email',
-      'url',
-    ];
-    const reservedPlaceholders = { email: 'Email', password: 'Пароль', date: 'ДД.ММ.ГГГГ' };
+    //- allowed inputMask types: 'text' | 'search' | 'tel' | 'url' | 'password', see: https://github.com/RobinHerbots/Inputmask#allowed-html-elements
+    //- allowed inputmode:  'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url',
 
-    const componentClassModificator = type
-      ? `form-text-field_type_with-${type}`
-      : '';
-    const inputMaskType = allowedInputMaskTypes.find((inputMaskType) => inputMaskType === type) || 'text';
-    const inputModeAttr =
-      allowedInputmodeAttribute.find((attr) => attr === type);
-  .form-text-field(class=componentClassModificator)&attributes(attributes)
+    const attributesOfType = {
+      text:{
+        inputType: 'text',
+        inputmode: 'text',
+        placeholder: '',
+      },
+      email:{
+        inputType: 'text',
+        inputmode: 'email',
+        placeholder: 'Email',
+      },
+      password:{
+        inputType: 'password',
+        inputmode: 'text',
+        placeholder: 'Пароль',
+      },
+      date:{
+        inputType: 'text',
+        inputmode: 'numeric',
+        placeholder: 'ДД.ММ.ГГГГ',
+      }
+    }
+
+    const typeClass = type ? `form-text-field_type_with-${type}` : undefined;
+  .form-text-field(class=[typeClass])&attributes(attributes)
     if heading
       +heading(heading, { description, marginBottom: headingMarginBottom, isLabel: true })(
         for=name
@@ -42,11 +50,11 @@ mixin form-text-field({ heading = '', description = '', headingMarginBottom = ''
     .form-field
       input.form-text-field__input(
         data-is-filter=isFilter,
-        type=inputMaskType,
-        inputmode=inputModeAttr,
+        type=attributesOfType[type].inputType,
+        inputmode=attributesOfType[type].inputmode,
         name=name,
         id=name,
-        placeholder=reservedPlaceholders[type] || placeholder,
+        placeholder=attributesOfType[type].placeholder || placeholder,
         value=value,
         autofocus=autofocus
       )
