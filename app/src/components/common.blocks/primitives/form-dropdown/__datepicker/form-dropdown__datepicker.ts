@@ -1,8 +1,8 @@
 import { BEMComponent } from '@utils/devTools/scripts/ComponentCreationHelper';
 
-import cardDatePickers, {
-  CardDatepickerCustomEvents,
-} from '@common.blocks/primitives/card-datepicker/card-datepicker';
+import DatepickerCards, {
+  DatepickerCardCustomEvents,
+} from '@common.blocks/primitives/datepicker-card/datepicker-card';
 
 import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
 import dropdowns from '../form-dropdown';
@@ -16,10 +16,10 @@ type DropdownDatepickerDOM = {
 
 type DropdownDatepickerDatasetOptions = { placeholder: string };
 
-type DropdownDatepickerCustomEvents = CardDatepickerCustomEvents;
+type DropdownDatepickerCustomEvents = DatepickerCardCustomEvents;
 
 type ParentBlock = Unpacked<typeof dropdowns>;
-type DatepickerBlock = Unpacked<typeof cardDatePickers>;
+type DatepickerBlock = Unpacked<typeof DatepickerCards>;
 
 // TODO: aria-expanded менять для кнопки использовать dispatchEvent
 class DropdownDatepicker implements BEMComponent<DropdownDatepickerCustomEvents> {
@@ -73,10 +73,10 @@ class DropdownDatepicker implements BEMComponent<DropdownDatepickerCustomEvents>
 
   protected _initSubBlocks() {
     const outerDropdownElement = this.element.closest('.form-dropdown');
-    const innerCardDatepickerElement = this.element.querySelector('.card-datepicker');
+    const innerDatepickerCardElement = this.element.querySelector('.datepicker-card');
 
-    const _datepicker = cardDatePickers.find(
-      (cardDatePicker) => cardDatePicker.element === innerCardDatepickerElement
+    const _datepicker = DatepickerCards.find(
+      (datepickerCard) => datepickerCard.element === innerDatepickerCardElement
     ) as DatepickerBlock;
     const _parentBlock = dropdowns.find(
       (dropdown) => dropdown.element === outerDropdownElement

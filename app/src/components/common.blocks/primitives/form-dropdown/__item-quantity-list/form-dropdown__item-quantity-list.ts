@@ -352,7 +352,9 @@ const dropdownsWithItemQuantityList = dropdowns.filter((dropdown) =>
 const itemQuantityLists = dropdownsWithItemQuantityList.map(
   (dropdown) =>
     new ItemQuantityList(
-      dropdown.element.querySelector('.form-dropdown__item-quantity-list') as ItemQuantityListElement
+      dropdown.element.querySelector(
+        '.form-dropdown__item-quantity-list'
+      ) as ItemQuantityListElement
     )
 );
 

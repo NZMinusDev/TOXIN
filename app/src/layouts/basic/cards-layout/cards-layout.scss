@@ -12,11 +12,11 @@
     grid:
       'pick-room room-definition calendar'
       '. room-definition .' $gap
-      'registration room-definition card-luxury-room' #{100px / 14px * 1em}
-      'registration . card-luxury-room' $gap
-      'registration entering card-luxury-room' #{114px / 14px * 1em}
+      'registration room-definition luxury-room-card' #{100px / 14px * 1em}
+      'registration . luxury-room-card' $gap
+      'registration entering luxury-room-card' #{114px / 14px * 1em}
       'registration entering .' $gap
-      'registration entering card-common-room';
+      'registration entering common-room-card';
     justify-content: initial;
     justify-items: initial;
     grid-row-gap: initial;

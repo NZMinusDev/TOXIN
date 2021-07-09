@@ -1,4 +1,4 @@
-include ~@common.blocks/primitives/card-datepicker/card-datepicker.pug
+include ~@common.blocks/primitives/datepicker-card/datepicker-card.pug
 
 //-
   name?: string - name of input
@@ -19,7 +19,7 @@ mixin form-dropdown__datepicker({ name = 'datepicker', range = false, selectedDa
   )
   if !isAltField
     .form-dropdown__datepicker.form-dropdown__datepicker_hidden
-      +card-datepicker({ selectedDates, range, altFields })&attributes(attributes)
+      +datepicker-card({ selectedDates, range, altFields })&attributes(attributes)
   -
     const dataPlaceholder = placeholder || ((range && !altFields) ? 'ДД ММ - ДД ММ' : 'ДД.ММ.ГГГГ');
     const splitSelectedDates = selectedDates.split(',');
