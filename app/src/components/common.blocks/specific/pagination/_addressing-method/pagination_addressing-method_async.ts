@@ -15,7 +15,7 @@ const createPaginationItem = (
   listItem.addEventListener('click', linkClickListener);
 
   Object.entries(attributes).forEach(([qualifiedName, value]) => {
-    listItem.setAttribute(qualifiedName, value);
+    listItem[qualifiedName] = value;
   });
 
   return listItem;

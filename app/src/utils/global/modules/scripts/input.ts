@@ -2,7 +2,7 @@ import { getURLValue, addURLValues } from '@utils/devTools/scripts/URLHelper';
 
 document.querySelectorAll('input').forEach((element) => {
   const inputElement = element as HTMLInputElement;
-  const hrefValue = getURLValue(inputElement.getAttribute('name')) as string;
+  const hrefValue = getURLValue(inputElement.name) as string;
 
   if (hrefValue) {
     switch (inputElement.type) {
@@ -42,7 +42,7 @@ document.querySelectorAll('input').forEach((element) => {
   if (inputElement.dataset.isFilter !== undefined) {
     const onChange = (event) => {
       addURLValues({
-        name: inputElement.getAttribute('name'),
+        name: inputElement.name,
         value: inputElement.value,
       });
     };
