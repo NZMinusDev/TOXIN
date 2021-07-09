@@ -21,7 +21,7 @@ type ItemQuantityListGeneratedDOM = {
   incrementButtons: NodeListOf<HTMLButtonElement>;
 };
 
-type DatasetItemQuantityListOptions = {
+type ItemQuantityListDatasetOptions = {
   selection: { placeholder: string };
   menu: { groups: { [groupName: string]: { selectionText: string; textPlural: string } } };
   menuOptions: Map<
@@ -45,7 +45,7 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
   protected readonly _staticDOM: Readonly<ItemQuantityListStaticDOM>;
   protected readonly _generatedDOM: Readonly<ItemQuantityListGeneratedDOM>;
 
-  private _datasetItemQuantityListOptions: DatasetItemQuantityListOptions;
+  private _datasetOptions: ItemQuantityListDatasetOptions;
   protected _totalItems = -1;
 
   protected _itemsCounter = new Map<string, number>();
@@ -56,7 +56,7 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
   constructor(ItemQuantityListElement: ToxinIQDropdownElement) {
     this.element = ItemQuantityListElement;
     this._staticDOM = this._initStaticDOM();
-    this._datasetItemQuantityListOptions = this._initDatasetItemQuantityListOptions();
+    this._datasetOptions = this._initOptionsFromDataset();
     this._initLibItemQuantityList();
     this._generatedDOM = this._initGeneratedDOM();
 
@@ -74,9 +74,9 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
   }
   reset() {
     this._staticDOM.menuOptions.forEach((menuOption, index) => {
-      const menuOptionDataset = this._datasetItemQuantityListOptions.menuOptions.get(
-        menuOption
-      ) as Unpacked<DatasetItemQuantityListOptions['menuOptions']>;
+      const menuOptionDataset = this._datasetOptions.menuOptions.get(menuOption) as Unpacked<
+        ItemQuantityListDatasetOptions['menuOptions']
+      >;
 
       const currAmount = this._itemsCounter.get(menuOptionDataset.id) as number;
       const minAmount = menuOptionDataset.minCount as number;
@@ -145,7 +145,7 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
       menuOptions,
     };
   }
-  protected _initDatasetItemQuantityListOptions(): DatasetItemQuantityListOptions {
+  protected _initOptionsFromDataset(): ItemQuantityListDatasetOptions {
     return {
       selection: { placeholder: this._staticDOM.selection.dataset.placeholder || '' },
       menu: {
@@ -219,7 +219,7 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
   };
 
   protected _generateResultText() {
-    const { groups } = this._datasetItemQuantityListOptions.menu;
+    const { groups } = this._datasetOptions.menu;
 
     let result = '';
     if (this._totalItems > 0) {
@@ -235,7 +235,7 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
         }
       });
     } else {
-      result = this._datasetItemQuantityListOptions.selection.placeholder;
+      result = this._datasetOptions.selection.placeholder;
     }
 
     return result;
@@ -245,9 +245,9 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
     this._groupsCounter.clear();
 
     this._staticDOM.menuOptions.forEach((menuOption) => {
-      const menuOptionDataset = this._datasetItemQuantityListOptions.menuOptions.get(
-        menuOption
-      ) as Unpacked<DatasetItemQuantityListOptions['menuOptions']>;
+      const menuOptionDataset = this._datasetOptions.menuOptions.get(menuOption) as Unpacked<
+        ItemQuantityListDatasetOptions['menuOptions']
+      >;
 
       this._itemsCounter.set(menuOptionDataset.id, itemCount[menuOptionDataset.id]);
       this._groupsCounter.set(
@@ -259,9 +259,9 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
   protected _changeValueOfInputs() {
     let accumulator = '';
     this._staticDOM.menuOptions.forEach((menuOption, index) => {
-      const menuOptionDataset = this._datasetItemQuantityListOptions.menuOptions.get(
-        menuOption
-      ) as Unpacked<DatasetItemQuantityListOptions['menuOptions']>;
+      const menuOptionDataset = this._datasetOptions.menuOptions.get(menuOption) as Unpacked<
+        ItemQuantityListDatasetOptions['menuOptions']
+      >;
 
       const counterAmount = this._itemsCounter.get(menuOptionDataset.id as string);
       const input = this._staticDOM.optionInputs.item(index);
@@ -315,9 +315,9 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
   protected _updateCounterButtonDisplay(
     targetMenuOption: Unpacked<ItemQuantityListStaticDOM['menuOptions']>
   ) {
-    const targetMenuOptionDataset = this._datasetItemQuantityListOptions.menuOptions.get(
+    const targetMenuOptionDataset = this._datasetOptions.menuOptions.get(
       targetMenuOption
-    ) as Unpacked<DatasetItemQuantityListOptions['menuOptions']>;
+    ) as Unpacked<ItemQuantityListDatasetOptions['menuOptions']>;
 
     const menuOptionIndex = Array.from(this._staticDOM.menuOptions).indexOf(targetMenuOption);
     const decrementBtn = this._generatedDOM.decrementButtons.item(menuOptionIndex);

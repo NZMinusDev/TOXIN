@@ -26,7 +26,7 @@ class DropdownDatepicker implements BEMComponent<DropdownDatepickerCustomEvents>
   readonly element: DatepickerElement;
   protected readonly _DOM: Readonly<DropdownDatepickerDOM>;
 
-  protected _dropdownDatepickerDatasetOptions: DropdownDatepickerDatasetOptions;
+  protected _datasetOptions: DropdownDatepickerDatasetOptions;
 
   protected _parentBlock: ParentBlock;
   protected _datepicker: DatepickerBlock;
@@ -35,7 +35,7 @@ class DropdownDatepicker implements BEMComponent<DropdownDatepickerCustomEvents>
     this.element = datepickerElement;
     this._DOM = this._initDOM();
 
-    this._dropdownDatepickerDatasetOptions = this._initDropdownDatepickerDataset();
+    this._datasetOptions = this._initOptionsFromDataset();
 
     const subBlocks = this._initSubBlocks();
     this._parentBlock = subBlocks._parentBlock;
@@ -65,7 +65,7 @@ class DropdownDatepicker implements BEMComponent<DropdownDatepickerCustomEvents>
     };
   }
 
-  protected _initDropdownDatepickerDataset(): DropdownDatepickerDatasetOptions {
+  protected _initOptionsFromDataset(): DropdownDatepickerDatasetOptions {
     return {
       placeholder: this._DOM.selection.dataset.placeholder || '',
     };
@@ -118,9 +118,9 @@ class DropdownDatepicker implements BEMComponent<DropdownDatepickerCustomEvents>
       this._DOM.input.value = dates[0] || '';
       this._DOM.selection.innerHTML = dateTimes[0]
         ? `<time datetime="${dateTimes[0]}">${
-            formattedDates[0] || this._dropdownDatepickerDatasetOptions.placeholder
+            formattedDates[0] || this._datasetOptions.placeholder
           }</time>`
-        : this._dropdownDatepickerDatasetOptions.placeholder;
+        : this._datasetOptions.placeholder;
 
       this._changeAltFieldsValues(dateTimes, formattedDates);
     } else {
@@ -129,9 +129,9 @@ class DropdownDatepicker implements BEMComponent<DropdownDatepickerCustomEvents>
       this._DOM.input.value = dates.toString();
       this._DOM.selection.innerHTML = dateTimes.toString()
         ? `<time datetime="${dateTimes.toString()}">${
-            formattedDate || this._dropdownDatepickerDatasetOptions.placeholder
+            formattedDate || this._datasetOptions.placeholder
           }</time>`
-        : this._dropdownDatepickerDatasetOptions.placeholder;
+        : this._datasetOptions.placeholder;
     }
   }
   protected _changeAltFieldsValues(dateTimes: string[], formattedDates: string[]) {

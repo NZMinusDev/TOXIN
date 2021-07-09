@@ -27,7 +27,7 @@ class CardRoomDefinition implements BEMComponent<CardRoomDefinitionCustomEvents>
   readonly element: CardRoomDefinitionElement;
   protected readonly _DOM: Readonly<CardRoomDefinitionDOM>;
 
-  protected _cardRoomDefinitionDatasetOptions: CardRoomDefinitionDatasetOptions;
+  protected _datasetOptions: CardRoomDefinitionDatasetOptions;
 
   protected _days = 0;
   protected _currency = '₽';
@@ -36,7 +36,7 @@ class CardRoomDefinition implements BEMComponent<CardRoomDefinitionCustomEvents>
     this.element = cardRoomDefinitionElement;
     this._DOM = this._initDOM();
 
-    this._cardRoomDefinitionDatasetOptions = this._initFromDataset();
+    this._datasetOptions = this._initOptionsFromDataset();
 
     this._bindArrivalDateDropdownListeners();
   }
@@ -80,7 +80,7 @@ class CardRoomDefinition implements BEMComponent<CardRoomDefinitionCustomEvents>
     };
   }
 
-  protected _initFromDataset() {
+  protected _initOptionsFromDataset() {
     const dayPaymentRate = Number(this._DOM.dayPayment.dataset.amount as string);
     const servicesPaymentRate = Number(this._DOM.servicesPaymentAmount.dataset.amount as string);
     const additionalServicesPaymentRate = Number(
@@ -108,14 +108,13 @@ class CardRoomDefinition implements BEMComponent<CardRoomDefinitionCustomEvents>
     },
   };
   protected _updatePaymentDisplay() {
-    const totalDayPaymentAmount =
-      this._cardRoomDefinitionDatasetOptions.dayPaymentRate * this._days;
+    const totalDayPaymentAmount = this._datasetOptions.dayPaymentRate * this._days;
     const totalPaymentAmount =
       totalDayPaymentAmount +
-      Number(this._cardRoomDefinitionDatasetOptions.servicesPaymentRate) +
-      Number(this._cardRoomDefinitionDatasetOptions.additionalServicesPaymentRate);
+      Number(this._datasetOptions.servicesPaymentRate) +
+      Number(this._datasetOptions.additionalServicesPaymentRate);
 
-    this._DOM.totalDayPaymentSentence.textContent = `${this._cardRoomDefinitionDatasetOptions.dayPaymentRate.toLocaleString()}${
+    this._DOM.totalDayPaymentSentence.textContent = `${this._datasetOptions.dayPaymentRate.toLocaleString()}${
       this._currency
     } x ${this._days.toLocaleString()} суток`;
     this._DOM.totalDayPaymentAmount.textContent = `${totalDayPaymentAmount.toLocaleString()}${
