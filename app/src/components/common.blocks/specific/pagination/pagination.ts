@@ -7,9 +7,9 @@ type PaginationDOM = {
   counter: HTMLParagraphElement;
 };
 
-type PaginationEvents = '';
+type PaginationCustomEvents = '';
 
-class Pagination implements BEMComponent<PaginationEvents> {
+class Pagination implements BEMComponent<PaginationCustomEvents> {
   readonly element: PaginationElement;
   protected readonly _DOM: Readonly<PaginationDOM>;
 
@@ -34,4 +34,4 @@ const paginations = paginationElements.map(
   (paginationElement) => new Pagination(paginationElement)
 );
 
-export { paginations as default };
+export { paginations as default, PaginationCustomEvents };

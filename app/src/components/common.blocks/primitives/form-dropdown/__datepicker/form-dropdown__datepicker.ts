@@ -1,7 +1,7 @@
 import { BEMComponent } from '@utils/devTools/scripts/ComponentCreationHelper';
 
 import cardDatePickers, {
-  CardDatepickerEvents,
+  CardDatepickerCustomEvents,
 } from '@common.blocks/primitives/card-datepicker/card-datepicker';
 
 import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
@@ -16,13 +16,13 @@ type DropdownDatepickerDOM = {
 
 type DropdownDatepickerDatasetOptions = { placeholder: string };
 
-type DropdownDatepickerEvents = CardDatepickerEvents;
+type DropdownDatepickerCustomEvents = CardDatepickerCustomEvents;
 
 type ParentBlock = Unpacked<typeof dropdowns>;
 type DatepickerBlock = Unpacked<typeof cardDatePickers>;
 
 // TODO: aria-expanded менять для кнопки использовать dispatchEvent
-class DropdownDatepicker implements BEMComponent<DropdownDatepickerEvents> {
+class DropdownDatepicker implements BEMComponent<DropdownDatepickerCustomEvents> {
   readonly element: DatepickerElement;
   protected readonly _DOM: Readonly<DropdownDatepickerDOM>;
 
@@ -190,4 +190,4 @@ const datepickers = dropdownsWithDatepicker.map(
     )
 );
 
-export { datepickers as default, DropdownDatepickerEvents };
+export { datepickers as default, DropdownDatepickerCustomEvents };

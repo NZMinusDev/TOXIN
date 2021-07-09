@@ -21,9 +21,9 @@ type CardDatepickerGeneratedDOM = {
   applyBtn: HTMLButtonElement;
 };
 
-type CardDatepickerEvents = 'select' | 'clear' | 'change';
+type CardDatepickerCustomEvents = 'select' | 'clear' | 'change';
 
-interface CardDatepickerAPI extends BEMComponent<CardDatepickerEvents> {
+interface CardDatepickerAPI extends BEMComponent<CardDatepickerCustomEvents> {
   readonly element: CardDatepickerElement;
 }
 
@@ -212,4 +212,4 @@ const cardDatePickers = Array.from(cardDatePickerElements).map(
   (cardDatePickerElement) => new CardDatepicker(cardDatePickerElement)
 );
 
-export { cardDatePickers as default, CardDatepickerEvents };
+export { cardDatePickers as default, CardDatepickerCustomEvents };

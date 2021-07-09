@@ -1,5 +1,5 @@
-import { DropdownDatepickerEvents } from '@common.blocks/primitives/form-dropdown/__datepicker/form-dropdown__datepicker';
-import { ItemQuantityListEvents } from '@common.blocks/primitives/form-dropdown/__item-quantity-list/form-dropdown__item-quantity-list';
+import { DropdownDatepickerCustomEvents } from '@common.blocks/primitives/form-dropdown/__datepicker/form-dropdown__datepicker';
+import { ItemQuantityListCustomEvents } from '@common.blocks/primitives/form-dropdown/__item-quantity-list/form-dropdown__item-quantity-list';
 import { BEMComponent } from '@utils/devTools/scripts/ComponentCreationHelper';
 import { getDatePeriod, MS_IN_A_DAY } from '@utils/devTools/scripts/DateHelper';
 
@@ -21,9 +21,9 @@ type CardRoomDefinitionDatasetOptions = {
   additionalServicesPaymentRate: number;
 };
 
-type CardRoomDefinitionEvents = ItemQuantityListEvents & DropdownDatepickerEvents;
+type CardRoomDefinitionCustomEvents = ItemQuantityListCustomEvents & DropdownDatepickerCustomEvents;
 
-class CardRoomDefinition implements BEMComponent<CardRoomDefinitionEvents> {
+class CardRoomDefinition implements BEMComponent<CardRoomDefinitionCustomEvents> {
   readonly element: CardRoomDefinitionElement;
   protected readonly _DOM: Readonly<CardRoomDefinitionDOM>;
 
@@ -136,4 +136,4 @@ const roomDefinitionCards = roomDefinitionCardElements.map(
   (roomDefinitionCardElement) => new CardRoomDefinition(roomDefinitionCardElement)
 );
 
-export { roomDefinitionCards as default };
+export { roomDefinitionCards as default, CardRoomDefinitionCustomEvents };

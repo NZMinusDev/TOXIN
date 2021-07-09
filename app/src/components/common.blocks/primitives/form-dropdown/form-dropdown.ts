@@ -6,9 +6,9 @@ type DropdownDOM = {
   expandButton: HTMLButtonElement;
 };
 
-type DropdownEvents = 'open';
+type DropdownCustomEvents = 'open';
 
-interface DropdownAPI extends BEMComponent<DropdownEvents> {
+interface DropdownAPI extends BEMComponent<DropdownCustomEvents> {
   readonly element: DropdownElement;
 }
 
@@ -47,4 +47,4 @@ const dropdowns = Array.from(dropdownElements).map(
   (dropdownElement) => new Dropdown(dropdownElement)
 );
 
-export { dropdowns as default, DropdownEvents };
+export { dropdowns as default, DropdownCustomEvents };

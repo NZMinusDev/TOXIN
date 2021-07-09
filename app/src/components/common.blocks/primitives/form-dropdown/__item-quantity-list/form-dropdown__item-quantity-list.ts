@@ -36,11 +36,11 @@ type DatasetItemQuantityListOptions = {
   >;
 };
 
-type ItemQuantityListEvents = 'select' | 'close' | 'change';
+type ItemQuantityListCustomEvents = 'select' | 'close' | 'change';
 
 type ParentBlock = Unpacked<typeof dropdowns>;
 
-class ItemQuantityList implements BEMComponent<ItemQuantityListEvents> {
+class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
   readonly element: ToxinIQDropdownElement;
   protected readonly _staticDOM: Readonly<ItemQuantityListStaticDOM>;
   protected readonly _generatedDOM: Readonly<ItemQuantityListGeneratedDOM>;
@@ -356,4 +356,4 @@ const itemQuantityLists = dropdownsWithItemQuantityList.map(
     )
 );
 
-export { itemQuantityLists as default, ItemQuantityListEvents };
+export { itemQuantityLists as default, ItemQuantityListCustomEvents };

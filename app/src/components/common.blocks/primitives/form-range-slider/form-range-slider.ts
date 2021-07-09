@@ -15,9 +15,9 @@ type RangeSliderDOM = {
   inputTo: HTMLInputElement;
 };
 
-type RangeSliderEvents = 'change';
+type RangeSliderCustomEvents = 'change';
 
-class RangeSlider implements BEMComponent<RangeSliderEvents> {
+class RangeSlider implements BEMComponent<RangeSliderCustomEvents> {
   readonly element: RangeSliderElement;
   protected readonly _DOM: Readonly<RangeSliderDOM>;
 
@@ -96,4 +96,4 @@ const rangeSliders = Array.from(sliderContainers).map(
   (sliderContainer) => new RangeSlider(sliderContainer)
 );
 
-export { rangeSliders as default };
+export { rangeSliders as default, RangeSliderCustomEvents };
