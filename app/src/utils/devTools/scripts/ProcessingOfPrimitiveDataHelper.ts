@@ -23,7 +23,6 @@ const compareLocaleString = (a: string, b: string) => {
 /**
  * Replacement or str.slice() cause of surrogate couples support.
  */
-const slice = (str: string, start: number, end: number) =>
-  Array.from(str).slice(start, end).join('');
+const slice = (str: string, start: number, end: number) => [...str].slice(start, end).join('');
 
 export { ascending, isEven, compareLocaleString, slice };

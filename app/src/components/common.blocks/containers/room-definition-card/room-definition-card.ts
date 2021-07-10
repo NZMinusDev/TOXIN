@@ -127,11 +127,8 @@ class RoomDefinitionCard implements BEMComponent<RoomDefinitionCardCustomEvents>
   }
 }
 
-const roomDefinitionCardElements = Array.from(
-  document.querySelectorAll('.room-definition-card')
-) as RoomDefinitionCardElement[];
-
-const roomDefinitionCards = roomDefinitionCardElements.map(
+const roomDefinitionCards = Array.from(
+  document.querySelectorAll('.room-definition-card') as NodeListOf<RoomDefinitionCardElement>,
   (roomDefinitionCardElement) => new RoomDefinitionCard(roomDefinitionCardElement)
 );
 

@@ -201,11 +201,8 @@ class DatepickerCard implements BEMComponent<DatepickerCardCustomEvents> {
   }
 }
 
-const datepickerCardElements = Array.from(
-  document.querySelectorAll('.datepicker-card')
-) as DatepickerCardElement[];
-
-const datepickerCards = datepickerCardElements.map(
+const datepickerCards = Array.from(
+  document.querySelectorAll('.datepicker-card') as NodeListOf<DatepickerCardElement>,
   (datepickerCardElement) => new DatepickerCard(datepickerCardElement)
 );
 

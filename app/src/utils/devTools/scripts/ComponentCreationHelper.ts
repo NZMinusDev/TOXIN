@@ -196,22 +196,18 @@ abstract class MVPView<
 
     type OptionsKey = Extract<keyof TOptionsToGet, string>;
     type StateKey = Extract<keyof TState, string>;
-    this._theOrderOfIteratingThroughTheOptions = Array.from(
-      new Set(
-        ([] as OptionsKey[]).concat(
-          theOrderOfIteratingThroughTheOptions,
-          Object.keys(this._options) as OptionsKey[]
-        )
-      )
-    );
-    this._theOrderOfIteratingThroughTheState = Array.from(
-      new Set(
-        ([] as StateKey[]).concat(
-          theOrderOfIteratingThroughTheState,
-          Object.keys(this._state) as StateKey[]
-        )
-      )
-    );
+    this._theOrderOfIteratingThroughTheOptions = [
+      ...new Set([
+        ...theOrderOfIteratingThroughTheOptions,
+        ...Object.keys(this._options),
+      ] as OptionsKey[]),
+    ];
+    this._theOrderOfIteratingThroughTheState = [
+      ...new Set([
+        ...theOrderOfIteratingThroughTheState,
+        ...Object.keys(this._state),
+      ] as StateKey[]),
+    ];
     this._theOrderOfIteratingThroughTheOptions.sort(
       (a, b) =>
         this._theOrderOfIteratingThroughTheOptions.indexOf(a as OptionsKey) -

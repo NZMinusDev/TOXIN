@@ -37,10 +37,9 @@ class Dropdown implements BEMComponent<DropdownCustomEvents> {
   };
 }
 
-const dropdownElements = Array.from(
-  document.querySelectorAll('.form-dropdown')
-) as HTMLDivElement[];
-
-const dropdowns = dropdownElements.map((dropdownElement) => new Dropdown(dropdownElement));
+const dropdowns = Array.from(
+  document.querySelectorAll('.form-dropdown') as NodeListOf<HTMLDivElement>,
+  (dropdownElement) => new Dropdown(dropdownElement)
+);
 
 export { dropdowns as default, DropdownCustomEvents };

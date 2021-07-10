@@ -20,9 +20,9 @@ const makeCurry = (func: (...args: unknown[]) => unknown) =>
       return func.apply(this, args);
     }
 
-    // eslint-disable-next-line no-shadow
-    return function (...args: unknown[]) {
-      return curried.apply(this, args.concat(args));
+    // eslint-disable-next-line func-names
+    return function (...args2: unknown[]) {
+      return curried.apply(this, args.concat(args2));
     };
   };
 

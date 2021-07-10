@@ -26,11 +26,8 @@ class Pagination implements BEMComponent<PaginationCustomEvents> {
   }
 }
 
-const paginationElements = Array.from(
-  document.querySelectorAll('.pagination')
-) as PaginationElement[];
-
-const paginations = paginationElements.map(
+const paginations = Array.from(
+  document.querySelectorAll('.pagination') as NodeListOf<PaginationElement>,
   (paginationElement) => new Pagination(paginationElement)
 );
 

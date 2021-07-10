@@ -1,9 +1,9 @@
 import './sign-in.pug';
 import './sign-in.scss';
 
-const cardContainerElements = Array.from(
-  document.querySelectorAll('.sign-in-layout__card')
-) as HTMLDivElement[];
+const cardContainerElements = [
+  ...document.querySelectorAll('.sign-in-layout__card'),
+] as HTMLDivElement[];
 
 cardContainerElements.forEach((cardContainerElement, key, nodeList) => {
   const handleSwitchBtnClick = (event: MouseEvent) => {

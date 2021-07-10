@@ -19,12 +19,12 @@ const resetListMaxHeight = () => {
 
 const uncheckExpandCheckboxes = () => {
   dropdownItems.forEach((dropdownItem) => {
-    dropdownItem
-      .querySelectorAll<HTMLInputElement>(expandCheckboxSelector)
-      .forEach((expandCheckbox) => {
-        // eslint-disable-next-line no-param-reassign
-        expandCheckbox.checked = false;
-      });
+    const checkboxes = dropdownItem.querySelectorAll<HTMLInputElement>(expandCheckboxSelector);
+
+    checkboxes.forEach((expandCheckbox) => {
+      // eslint-disable-next-line no-param-reassign
+      expandCheckbox.checked = false;
+    });
   });
 };
 

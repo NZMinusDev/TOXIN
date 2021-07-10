@@ -12,7 +12,7 @@ const isVisible = (elem: HTMLElement) => {
 };
 
 const showVisible = () => {
-  Array.from(images).forEach((img) => {
+  [...images].forEach((img) => {
     const realSrc = img.dataset.src;
 
     if (!realSrc) return;
@@ -25,7 +25,7 @@ const showVisible = () => {
     }
   });
 
-  Array.from(sources).forEach((source) => {
+  [...sources].forEach((source) => {
     const realSrcset = source.dataset.srcset;
 
     if (!realSrcset) return;

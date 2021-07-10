@@ -2,22 +2,26 @@ const has = (
   elements: NodeListOf<Element> | HTMLCollection | Element[],
   contained: string | Element
 ): Element | undefined => {
+  const copiedElements = [...elements];
+
   if (typeof contained === 'string') {
-    return Array.from(elements).find((element) => element.querySelector(contained));
+    return copiedElements.find((element) => element.querySelector(contained));
   }
 
-  return Array.from(elements).find((element) => element.contains(contained));
+  return copiedElements.find((element) => element.contains(contained));
 };
 
 const hasAll = (
   elements: NodeListOf<Element> | HTMLCollection | Element[],
   contained: string | Element
 ): Element[] | undefined => {
+  const copiedElements = [...elements];
   let isHas: Element[] = [];
+
   if (typeof contained === 'string') {
-    isHas = Array.from(elements).filter((element) => element.querySelector(contained));
+    isHas = copiedElements.filter((element) => element.querySelector(contained));
   } else {
-    isHas = Array.from(elements).filter((element) => element.contains(contained));
+    isHas = copiedElements.filter((element) => element.contains(contained));
   }
 
   return isHas.length > 0 ? isHas : undefined;

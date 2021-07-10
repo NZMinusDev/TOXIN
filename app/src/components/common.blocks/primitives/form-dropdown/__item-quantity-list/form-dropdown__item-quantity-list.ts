@@ -11,12 +11,12 @@ type ItemQuantityListStaticDOM = {
   listInput: HTMLInputElement;
   selection: HTMLParagraphElement;
   menu: HTMLDivElement;
-  optionInputs: NodeListOf<HTMLInputElement>;
-  menuOptions: NodeListOf<HTMLDivElement>;
+  optionInputs: HTMLInputElement[];
+  menuOptions: HTMLDivElement[];
 };
 type ItemQuantityListGeneratedDOM = {
-  decrementButtons: NodeListOf<HTMLButtonElement>;
-  incrementButtons: NodeListOf<HTMLButtonElement>;
+  decrementButtons: HTMLButtonElement[];
+  incrementButtons: HTMLButtonElement[];
 };
 
 type ItemQuantityListDatasetOptions = {
@@ -80,7 +80,7 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
       const minAmount = menuOptionDataset.minCount as number;
       let amountToDecrement = currAmount - minAmount;
 
-      const decrementBtn = this._generatedDOM.decrementButtons.item(index);
+      const decrementBtn = this._generatedDOM.decrementButtons[index];
 
       // eslint-disable-next-line no-loops/no-loops
       while (amountToDecrement !== 0) {
@@ -127,12 +127,12 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
     const menu = this.element.querySelector(
       '.iqdropdown-menu'
     ) as ItemQuantityListStaticDOM['menu'];
-    const optionInputs = menu.querySelectorAll(
-      '.form-dropdown__option-input'
-    ) as ItemQuantityListStaticDOM['optionInputs'];
-    const menuOptions = menu.querySelectorAll(
-      '.iqdropdown-menu-option'
-    ) as ItemQuantityListStaticDOM['menuOptions'];
+    const optionInputs = [
+      ...menu.querySelectorAll('.form-dropdown__option-input'),
+    ] as ItemQuantityListStaticDOM['optionInputs'];
+    const menuOptions = [
+      ...menu.querySelectorAll('.iqdropdown-menu-option'),
+    ] as ItemQuantityListStaticDOM['menuOptions'];
 
     return {
       $self,
@@ -155,7 +155,7 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
             : '',
       },
       menuOptions: new Map(
-        Array.from(this._staticDOM.menuOptions).map((menuOption, index) => {
+        this._staticDOM.menuOptions.map((menuOption, index) => {
           // eslint-disable-next-line no-param-reassign
           menuOption.dataset.defaultcount = values[index] ?? menuOption.dataset.defaultcount;
 
@@ -193,12 +193,12 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
     $(this.element).off('click');
   }
   protected _initGeneratedDOM(): ItemQuantityListGeneratedDOM {
-    const decrementButtons = this._staticDOM.menu.querySelectorAll(
-      '.button-decrement'
-    ) as ItemQuantityListGeneratedDOM['decrementButtons'];
-    const incrementButtons = this._staticDOM.menu.querySelectorAll(
-      '.button-increment'
-    ) as ItemQuantityListGeneratedDOM['incrementButtons'];
+    const decrementButtons = [
+      ...this._staticDOM.menu.querySelectorAll('.button-decrement'),
+    ] as ItemQuantityListGeneratedDOM['decrementButtons'];
+    const incrementButtons = [
+      ...this._staticDOM.menu.querySelectorAll('.button-increment'),
+    ] as ItemQuantityListGeneratedDOM['incrementButtons'];
 
     return {
       decrementButtons,
@@ -269,7 +269,7 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
       >;
 
       const counterAmount = this._itemsCounter.get(menuOptionDataset.id as string);
-      const input = this._staticDOM.optionInputs.item(index);
+      const input = this._staticDOM.optionInputs[index];
 
       input.value = `${counterAmount}`;
 
@@ -325,9 +325,9 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
       targetMenuOption
     ) as Unpacked<ItemQuantityListDatasetOptions['menuOptions']>;
 
-    const menuOptionIndex = Array.from(this._staticDOM.menuOptions).indexOf(targetMenuOption);
-    const decrementBtn = this._generatedDOM.decrementButtons.item(menuOptionIndex);
-    const incrementBtn = this._generatedDOM.incrementButtons.item(menuOptionIndex);
+    const menuOptionIndex = this._staticDOM.menuOptions.indexOf(targetMenuOption);
+    const decrementBtn = this._generatedDOM.decrementButtons[menuOptionIndex];
+    const incrementBtn = this._generatedDOM.incrementButtons[menuOptionIndex];
 
     const counterAmount = this._itemsCounter.get(targetMenuOptionDataset.id);
 
