@@ -4,8 +4,6 @@ import { has } from '@utils/devTools/scripts/DOMHelper';
 import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
 import dropdowns from '../form-dropdown';
 
-// TODO: aria-expanded менять для кнопки использовать dispatchEvent
-
 type ItemQuantityListElement = HTMLDivElement;
 
 type ItemQuantityListStaticDOM = {

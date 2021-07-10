@@ -7,7 +7,7 @@ type ItemQuantityList = Unpacked<typeof itemQuantityLists>;
 
 abstract class ItemQuantityListOpeningMethodModifier extends BEMModifier<ItemQuantityList> {
   constructor(itemQuantityList: ItemQuantityList) {
-    super(itemQuantityList, 'ItemQuantityListOpeningMethodModifier');
+    super(itemQuantityList, 'itemQuantityListOpeningMethodModifier');
   }
 }
 

@@ -21,7 +21,6 @@ type DropdownDatepickerCustomEvents = DatepickerCardCustomEvents;
 type ParentBlock = Unpacked<typeof dropdowns>;
 type DatepickerBlock = Unpacked<typeof DatepickerCards>;
 
-// TODO: aria-expanded менять для кнопки использовать dispatchEvent
 class DropdownDatepicker implements BEMComponent<DropdownDatepickerCustomEvents> {
   readonly element: DatepickerElement;
   protected readonly _DOM: Readonly<DropdownDatepickerDOM>;
