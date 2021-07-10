@@ -10,10 +10,6 @@
     "analyze": "mkdirp app/log && cross-env NODE_ENV=production MEASURE=false webpack --config configs/webpack.config.js --mode production --json > app/log/stats.json && webpack-bundle-analyzer app/log/stats.json",
     "ext": "code --install-extension eamodio.gitlens && code --install-extension ms-vscode.powershell && code --install-extension teabyii.ayu && code --install-extension PKief.material-icon-theme && code --install-extension pranaygp.vscode-css-peek && code --install-extension ecmel.vscode-html-css && code ----install-extension rafikis75.vscode-sassdoc && code --install-extension ionutvmi.path-autocomplete && code --install-extension formulahendry.auto-complete-tag && code --install-extension wmaurer.change-case && code --install-extension CoenraadS.bracket-pair-colorizer && code --install-extension streetsidesoftware.code-spell-checker && code --install-extension wayou.vscode-todo-highlight && code --install-extension wallabyjs.quokka-vscode && code --install-extension dbaeumer.vscode-eslint && code --install-extension esbenp.prettier-vscode && code --install-extension kisstkondoros.vscode-gutter-preview && code --install-extension jumpinjackie.vscode-map-preview && code --install-extension jock.svg && code --install-extension DavidAnson.vscode-markdownlint && code --install-extension earshinov.sort-lines-by-selection && code --install-extension ritwickdey.LiveServer && code --install-extension wix.vscode-import-cost && code --install-extension xabikos.JavaScriptSnippets && code --install-extension gogocrow.webpack-snippets"
   },
-  "browserslist": [
-    "last 2 Chrome versions",
-    "last 2 Firefox versions"
-  ],
   "keywords": [
     "frontend",
     "UI",
@@ -57,8 +53,6 @@
   },
   "dependencies": {
     "@babel/core": "^7.11.6",
-    "@babel/plugin-proposal-class-properties": "^7.10.4",
-    "@babel/plugin-proposal-optional-chaining": "^7.14.5",
     "@babel/polyfill": "^7.11.5",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-typescript": "^7.10.4",
