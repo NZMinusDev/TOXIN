@@ -16,7 +16,7 @@ const parseFileExtension = (fullPath: string) => {
  * @returns integer number
  */
 const collapsingParseInt = (str: string, radix = 10): number =>
-  +parseInt(str.replace(/[^0-9]-./g, ''), radix).toFixed(0);
+  Number(parseInt(str.replace(/[^0-9]-./g, ''), radix).toFixed(0));
 
 /**
  * Converts a string to a floating-point number by collapse numbers
@@ -25,7 +25,7 @@ const collapsingParseInt = (str: string, radix = 10): number =>
  * @returns
  */
 const collapsingParseFloat = (str: string, precision = 2): number =>
-  +parseFloat(str.replace(/[^0-9-.]/g, '')).toFixed(precision);
+  Number(Number(str.replace(/[^0-9-.]/g, '')).toFixed(precision));
 
 /**
  * Get amount of digits after the decimal point

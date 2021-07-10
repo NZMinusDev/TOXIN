@@ -80,7 +80,7 @@ const handleResponseProcess = async (
     const contentLengthAnswer = response.headers.get('Content-Length');
 
     if (contentLengthAnswer !== null) {
-      const contentLength = +contentLengthAnswer;
+      const contentLength = Number(contentLengthAnswer);
       const chunks: Uint8Array[] = [];
       let receivedLength = 0;
 
