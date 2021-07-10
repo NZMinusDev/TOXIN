@@ -117,7 +117,7 @@ class EventManagerMixin<TEvents extends string> {
 }
 
 /**
- * Apply mixins to derivedConstructor.
+ * Apply mixins to derivedConstructor. Tip: if you can use `extends` - do it instead of this function
  * @param derivedConstructor - class/constructor to derived
  * @param mixinConstructors - classes/constructors adding functionality to derivedConstructor
  * @example
@@ -324,7 +324,7 @@ abstract class MVPView<
 interface MVPModel<State> {
   getState(): Promise<Required<State>>;
   setState(state?: Partial<State>): Promise<this>;
-  whenStateIsChanged(callback: (state: Required<State>) => void): void;
+  whenStateIsChanged(callback: (state: Required<State>) => void): this;
 }
 
 /**
@@ -363,7 +363,7 @@ abstract class CancelableBEMModifier<TBEMComponent extends BEMComponent> {
     this.component[modifierName] = this;
   }
 
-  protected abstract cancel(): void;
+  protected abstract cancel(): this;
 }
 
 /**

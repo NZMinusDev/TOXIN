@@ -40,18 +40,20 @@ class DropdownDatepicker implements BEMComponent<DropdownDatepickerCustomEvents>
     this._parentBlock = subBlocks._parentBlock;
     this._datepicker = subBlocks._datepicker;
 
-    this._bindParentBlockListeners();
-    this._bindListeners();
-    this._bindAltFieldsListeners();
+    this._bindParentBlockListeners()._bindListeners()._bindAltFieldsListeners();
 
     this._initDisplay();
   }
 
   show() {
     this.element.classList.remove('form-dropdown__datepicker_hidden');
+
+    return this;
   }
   hide() {
     this.element.classList.add('form-dropdown__datepicker_hidden');
+
+    return this;
   }
 
   protected _initDOM(): DropdownDatepickerDOM {
@@ -89,6 +91,8 @@ class DropdownDatepicker implements BEMComponent<DropdownDatepickerCustomEvents>
       'open',
       this._parentBlockEventListenerObject.handleParentBlockOpen
     );
+
+    return this;
   }
   protected _parentBlockEventListenerObject = {
     handleParentBlockOpen: () => {
@@ -98,6 +102,8 @@ class DropdownDatepicker implements BEMComponent<DropdownDatepickerCustomEvents>
 
   protected _bindListeners() {
     this.element.addEventListener('change', this.onChange);
+
+    return this;
   }
   protected onChange = (e: Event) => {
     this._changeValue();
@@ -132,6 +138,8 @@ class DropdownDatepicker implements BEMComponent<DropdownDatepickerCustomEvents>
           }</time>`
         : this._datasetOptions.placeholder;
     }
+
+    return this;
   }
   protected _changeAltFieldsValues(dateTimes: string[], formattedDates: string[]) {
     const $altFields = this._datepicker.get$altFields();
@@ -149,6 +157,8 @@ class DropdownDatepicker implements BEMComponent<DropdownDatepickerCustomEvents>
         ? `<time datetime="${dateTime}">${formattedDates[dateIndex] || altFieldPlaceholder}</time>`
         : altFieldPlaceholder;
     });
+
+    return this;
   }
 
   protected _bindAltFieldsListeners() {
@@ -166,6 +176,8 @@ class DropdownDatepicker implements BEMComponent<DropdownDatepickerCustomEvents>
         );
       });
     }
+
+    return this;
   }
   protected _altFieldEventListenerObject = {
     handleAltFieldOpen: this._parentBlockEventListenerObject.handleParentBlockOpen,
@@ -173,6 +185,8 @@ class DropdownDatepicker implements BEMComponent<DropdownDatepickerCustomEvents>
 
   protected _initDisplay() {
     this._changeValue();
+
+    return this;
   }
 }
 

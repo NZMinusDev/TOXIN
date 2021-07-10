@@ -38,8 +38,7 @@ class DatepickerCard implements BEMComponent<DatepickerCardCustomEvents> {
   constructor(datepickerCardElement: DatepickerCardElement) {
     this.element = datepickerCardElement;
     this._staticDOM = this._initStaticDOM();
-    this._initLibDatepicker();
-    this._generatedDOM = this._initGeneratedDOM();
+    this._generatedDOM = this._initLibDatepicker()._initGeneratedDOM();
 
     this._bindApplyControlListeners();
 
@@ -109,6 +108,8 @@ class DatepickerCard implements BEMComponent<DatepickerCardCustomEvents> {
         this.element.dispatchEvent(new CustomEvent('select', { bubbles: true }));
       },
     });
+
+    return this;
   }
   protected _initGeneratedDOM(): DatepickerCardGeneratedDOM {
     const $calendar = this._staticDOM.$element.find(
@@ -142,6 +143,8 @@ class DatepickerCard implements BEMComponent<DatepickerCardCustomEvents> {
       'click',
       this._applyControlEventListenerObject.handleApplyBtnClick
     );
+
+    return this;
   }
   protected _applyControlEventListenerObject = {
     handleClearBtnClick: (e: MouseEvent) => {
@@ -188,6 +191,8 @@ class DatepickerCard implements BEMComponent<DatepickerCardCustomEvents> {
         detail: { value: this._staticDOM.input.value },
       })
     );
+
+    return this;
   }
 
   protected _initDisplay() {
@@ -198,6 +203,8 @@ class DatepickerCard implements BEMComponent<DatepickerCardCustomEvents> {
         .data('datepicker')
         .selectDate(ISODates.map((ISODate) => new Date(ISODate)));
     }
+
+    return this;
   }
 }
 

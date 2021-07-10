@@ -31,6 +31,8 @@ class Dropdown implements BEMComponent<DropdownCustomEvents> {
 
   protected bindListeners() {
     this._DOM.expandButton.addEventListener('click', this.onClick);
+
+    return this;
   }
   protected onClick = (event: MouseEvent) => {
     this.element.dispatchEvent(new CustomEvent('open', { bubbles: true }));

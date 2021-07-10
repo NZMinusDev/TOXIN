@@ -51,11 +51,15 @@ class RangeSlider implements BEMComponent<RangeSliderCustomEvents> {
       range: { min: Number(this._DOM.inputFrom.min), max: Number(this._DOM.inputFrom.max) },
       connect: true,
     });
+
+    return this;
   }
 
   protected _bindSliderListeners() {
     this._DOM.slider.noUiSlider.on('update', this._sliderEventListenerObject.handleSliderUpdate);
     this._DOM.slider.noUiSlider.on('change', this._sliderEventListenerObject.handleSliderChange);
+
+    return this;
   }
   protected _sliderEventListenerObject = {
     handleSliderUpdate: (values: Array<string>) => {

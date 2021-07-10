@@ -9,8 +9,7 @@ class ItemQuantityListFoldedOpeningMethodModifier extends ItemQuantityListOpenin
   constructor(itemQuantityList: ItemQuantityList) {
     super(itemQuantityList);
 
-    this._bindParentBlockListeners();
-    this._bindWindowListeners();
+    this._bindParentBlockListeners()._bindWindowListeners();
   }
 
   protected _bindParentBlockListeners() {
@@ -19,6 +18,8 @@ class ItemQuantityListFoldedOpeningMethodModifier extends ItemQuantityListOpenin
       'open',
       this._parentBlockEventListenerObject.handleParentBlockOpen
     );
+
+    return this;
   }
   protected _parentBlockEventListenerObject = {
     handleParentBlockOpen: () => {
@@ -28,6 +29,8 @@ class ItemQuantityListFoldedOpeningMethodModifier extends ItemQuantityListOpenin
 
   protected _bindWindowListeners() {
     window.addEventListener('click', this._windowEventListenerObject.handleWindowClick);
+
+    return this;
   }
   protected _windowEventListenerObject = {
     handleWindowClick: (event: MouseEvent) => {

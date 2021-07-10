@@ -18,6 +18,8 @@ class ItemQuantityListSwitchableOpeningMethodModifier extends ItemQuantityListOp
       'open',
       this._parentBlockEventListenerObject.handleParentBlockOpen
     );
+
+    return this;
   }
   protected _parentBlockEventListenerObject = {
     handleParentBlockOpen: () => {

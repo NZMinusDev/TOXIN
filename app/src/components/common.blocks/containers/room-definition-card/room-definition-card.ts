@@ -95,6 +95,8 @@ class RoomDefinitionCard implements BEMComponent<RoomDefinitionCardCustomEvents>
       'change',
       this._arrivalDateDropdownEventListenerObject.handleArrivalDateDropdownChange
     );
+
+    return this;
   }
   protected _arrivalDateDropdownEventListenerObject = {
     handleArrivalDateDropdownChange: (event: Event) => {
@@ -124,6 +126,8 @@ class RoomDefinitionCard implements BEMComponent<RoomDefinitionCardCustomEvents>
     this._DOM.totalPaymentAmount.textContent = `${totalPaymentAmount.toLocaleString()}${
       this._currency
     }`;
+
+    return this;
   }
 }
 

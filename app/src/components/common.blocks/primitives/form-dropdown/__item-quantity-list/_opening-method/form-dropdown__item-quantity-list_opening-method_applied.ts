@@ -18,10 +18,10 @@ class ItemQuantityListApplyOpeningMethodModifier extends ItemQuantityListOpening
 
     this._DOM = this._initDOM();
 
-    this._bindParentBlockListeners();
-    this._bindComponentListeners();
-    this._bindClearBtnListeners();
-    this._bindApplyBtnListeners();
+    this._bindParentBlockListeners()
+      ._bindComponentListeners()
+      ._bindClearBtnListeners()
+      ._bindApplyBtnListeners();
 
     this._initDisplay();
   }
@@ -47,6 +47,8 @@ class ItemQuantityListApplyOpeningMethodModifier extends ItemQuantityListOpening
       'open',
       this._parentBlockEventListenerObject.handleParentBlockOpen
     );
+
+    return this;
   }
   protected _parentBlockEventListenerObject = {
     handleParentBlockOpen: () => {
@@ -59,6 +61,8 @@ class ItemQuantityListApplyOpeningMethodModifier extends ItemQuantityListOpening
       'select',
       this._componentEventListenerObject.handleComponentSelect
     );
+
+    return this;
   }
   protected _componentEventListenerObject = {
     handleComponentSelect: () => {
@@ -71,6 +75,8 @@ class ItemQuantityListApplyOpeningMethodModifier extends ItemQuantityListOpening
       'click',
       this._clearBtnEventListenerObject.handleClearBtnClick
     );
+
+    return this;
   }
   protected _clearBtnEventListenerObject = {
     handleClearBtnClick: () => {
@@ -87,6 +93,8 @@ class ItemQuantityListApplyOpeningMethodModifier extends ItemQuantityListOpening
     } else {
       this._DOM.clearBtn.classList.remove('apply-control__clear-btn_hidden');
     }
+
+    return this;
   }
 
   protected _bindApplyBtnListeners() {
@@ -94,6 +102,8 @@ class ItemQuantityListApplyOpeningMethodModifier extends ItemQuantityListOpening
       'click',
       this._applyBtnEventListenerObject.handleApplyBtnClick
     );
+
+    return this;
   }
   protected _applyBtnEventListenerObject = {
     handleApplyBtnClick: (event: MouseEvent) => {
@@ -103,6 +113,8 @@ class ItemQuantityListApplyOpeningMethodModifier extends ItemQuantityListOpening
 
   protected _initDisplay() {
     this._updateClearBtnDisplay();
+
+    return this;
   }
 }
 

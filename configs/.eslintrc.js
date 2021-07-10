@@ -59,6 +59,11 @@ module.exports = {
     // https://github.com/airbnb/javascript#arrows--implicit-return
     'arrow-body-style': ['error', 'as-needed'],
 
+    /*
+     * TODO: here should be rule like as 'method-void-implicit-error'
+     * https://github.com/airbnb/javascript#constructors--chaining
+     */
+
     // https://github.com/airbnb/javascript#comments--multiline
     'multiline-comment-style': ['error', 'starred-block'],
 

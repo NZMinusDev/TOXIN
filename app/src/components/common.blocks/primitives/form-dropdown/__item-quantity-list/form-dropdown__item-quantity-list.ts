@@ -55,14 +55,12 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
     this.element = itemQuantityListElement;
     this._staticDOM = this._initStaticDOM();
     this._datasetOptions = this._initOptionsFromDataset();
-    this._initLibItemQuantityList();
-    this._generatedDOM = this._initGeneratedDOM();
+    this._generatedDOM = this._initLibItemQuantityList()._initGeneratedDOM();
 
     const subBlocks = this._initSubBlocks();
     this._parentBlock = subBlocks._parentBlock;
 
-    this._bindListeners();
-    this._bindCounterBtnListeners();
+    this._bindListeners()._bindCounterBtnListeners();
 
     this._initDisplay();
   }
@@ -88,32 +86,41 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
         amountToDecrement -= 1;
       }
     });
+
+    return this;
   }
 
   open() {
-    if (!this.element.classList.contains('menu-open')) {
+    if (this.isClosed()) {
       this.element.classList.add('menu-open');
-
-      return true;
     }
 
-    return false;
+    return this;
   }
   close() {
-    if (this.element.classList.contains('menu-open')) {
+    if (!this.isClosed()) {
       this.element.classList.remove('menu-open');
 
       this.element.dispatchEvent(new CustomEvent('close', { bubbles: true }));
+    }
 
+    return this;
+  }
+  toggle() {
+    if (this.isClosed()) {
+      this.open();
+    } else {
+      this.close();
+    }
+
+    return this;
+  }
+  isClosed() {
+    if (!this.element.classList.contains('menu-open')) {
       return true;
     }
 
     return false;
-  }
-  toggle() {
-    if (!this.open()) {
-      this.close();
-    }
   }
 
   protected _initStaticDOM(): ItemQuantityListStaticDOM {
@@ -191,6 +198,8 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
 
     // disable toggle menu
     $(this.element).off('click');
+
+    return this;
   }
   protected _initGeneratedDOM(): ItemQuantityListGeneratedDOM {
     const decrementButtons = [
@@ -218,6 +227,8 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
 
   protected _bindListeners() {
     this.element.addEventListener('close', this.onClose);
+
+    return this;
   }
   protected onClose = () => {
     this._changeValueOfInputs();
@@ -260,6 +271,8 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
         (this._groupsCounter.get(menuOptionDataset.group) || 0) + itemCount[menuOptionDataset.id]
       );
     });
+
+    return this;
   }
   protected _changeValueOfInputs() {
     let accumulator = '';
@@ -286,6 +299,8 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
         detail: { value: this._staticDOM.listInput.value },
       })
     );
+
+    return this;
   }
 
   protected _bindCounterBtnListeners() {
@@ -301,6 +316,8 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
         this._counterButtonEventListenerObject.handleCounterButtonClick
       );
     });
+
+    return this;
   }
   protected _counterButtonEventListenerObject = {
     handleCounterButtonClick: (clickEvent: MouseEvent) => {
@@ -342,12 +359,16 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
     } else {
       incrementBtn.classList.remove('iqdropdown__counter_isDisabled');
     }
+
+    return this;
   }
 
   protected _initDisplay() {
     this._staticDOM.menuOptions.forEach((menuOption) => {
       this._updateCounterButtonDisplay(menuOption);
     });
+
+    return this;
   }
 }
 
