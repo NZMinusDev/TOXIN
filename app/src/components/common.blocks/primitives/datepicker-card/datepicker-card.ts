@@ -8,7 +8,6 @@ import '@common.blocks/primitives/apply-control/__apply-btn/apply-control__apply
 import './__apply-control/datepicker-card__apply-control.scss';
 import { formatToPeriodDateTime } from '@utils/devTools/scripts/DateHelper';
 
-// FIXME: webpack should resolve this himself(delete this)
 import '@library.blocks/primitives/datepicker-card/datepicker-card';
 
 type DatepickerCardElement = HTMLDivElement;
