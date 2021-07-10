@@ -277,7 +277,10 @@ const webpackPlugins = () => {
 
   plugins.push(
     new CircularDependencyPlugin(),
-    new UnusedFilesWebpackPlugin({ patterns: ['**/*.scss', '**/*.ts'] }),
+    new UnusedFilesWebpackPlugin({
+      patterns: ['**/*.scss', '**/*.ts'],
+      globOptions: { ignore: ['node_modules/**/*', 'utils/**/*', '**/*.d.ts'] },
+    }),
     new HashedModuleIdsPlugin({
       hashFunction: 'md4',
       hashDigest: 'base64',
