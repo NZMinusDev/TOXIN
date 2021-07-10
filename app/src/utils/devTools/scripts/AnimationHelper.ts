@@ -52,17 +52,20 @@ export const animate = (
 
 export const power = (timeFraction: number, { pow = 2 } = {}) => timeFraction ** pow;
 
-export const circ = (timeFraction) => 1 - Math.sin(Math.acos(timeFraction));
+export const circ = (timeFraction: number) => 1 - Math.sin(Math.acos(timeFraction));
 
-export const shotFromABow = (x, timeFraction) => timeFraction ** 2 * ((x + 1) * timeFraction - x);
+export const shotFromABow = (x: number, timeFraction: number) =>
+  timeFraction ** 2 * ((x + 1) * timeFraction - x);
 
-export const bounce = (timeFraction) => {
+export const bounce = (timeFraction: number) => {
   // eslint-disable-next-line no-loops/no-loops
   for (let a = 0, b = 1; 1; a += b, b /= 2) {
     if (timeFraction >= (7 - 4 * a) / 11) {
       return -(((11 - 6 * a - 11 * timeFraction) / 4) ** 2) + b ** 2;
     }
   }
+
+  return timeFraction;
 };
 
 export const elastic = (x, timeFraction) =>

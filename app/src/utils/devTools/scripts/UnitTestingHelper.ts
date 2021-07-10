@@ -1,3 +1,7 @@
+/**
+ * This module is used for jest
+ */
+
 import cloneDeep from 'lodash-es/cloneDeep';
 import isPlainObject from 'lodash-es/isPlainObject';
 

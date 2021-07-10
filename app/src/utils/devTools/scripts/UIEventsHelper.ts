@@ -122,7 +122,7 @@ const addGoodMouseOver = (
     onmouseoverCallBack();
   };
 
-  const onMouseOut = function (event: MouseEvent) {
+  const onMouseOut = (event: MouseEvent) => {
     if (!currentElem) return;
 
     let { relatedTarget } = event;
@@ -140,7 +140,7 @@ const addGoodMouseOver = (
   };
 
   parent.addEventListener('mouseover', onMouseOver);
-  parent.addEventListener('onmouseout', onMouseOut);
+  parent.addEventListener('mouseout', onMouseOut);
 };
 
 /**

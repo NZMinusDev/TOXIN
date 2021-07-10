@@ -1,2 +1,2 @@
-import "./landing-page.pug";
-import "./landing-page.scss";
+import './landing-page.pug';
+import './landing-page.scss';
