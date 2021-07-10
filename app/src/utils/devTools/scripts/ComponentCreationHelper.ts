@@ -9,7 +9,7 @@ function handleEvent(event: Event) {
   // mousedown -> onMousedown
   const handlerName = `_on${event.type[0].toUpperCase()}${event.type.slice(1)}`;
 
-  if (this[handlerName]) {
+  if (this[handlerName] !== undefined) {
     this[handlerName](event);
   }
 
@@ -65,7 +65,7 @@ class EventManagerMixin<TEvents extends string> {
 
   // Subscribe to the event
   on(eventName: TEvents, eventHandler: handler) {
-    if (!this._eventHandlers[eventName]) {
+    if (this._eventHandlers[eventName] === undefined) {
       this._eventHandlers[eventName] = [];
     }
 
@@ -80,7 +80,7 @@ class EventManagerMixin<TEvents extends string> {
   off(eventName: TEvents, eventHandler: (...args: any) => void) {
     const handlers = this._eventHandlers && this._eventHandlers[eventName];
 
-    if (!handlers) {
+    if (handlers === undefined) {
       return this;
     }
 
@@ -92,7 +92,7 @@ class EventManagerMixin<TEvents extends string> {
   // Generate the event with the specified name and data
   trigger(eventName: TEvents, ...args: any) {
     // no handlers
-    if (!this._eventHandlers || !this._eventHandlers[eventName]) {
+    if (this._eventHandlers === undefined || this._eventHandlers[eventName] === undefined) {
       return this;
     }
 
@@ -112,7 +112,9 @@ class EventManagerMixin<TEvents extends string> {
     // mousedown -> onMousedown
     const methodName = `_on${event.type[0].toUpperCase()}${event.type.slice(1)}`;
 
-    if (this[methodName]) this[methodName](event);
+    if (this[methodName] !== undefined) {
+      this[methodName](event);
+    }
 
     return this;
   }
@@ -230,7 +232,9 @@ abstract class MVPView<
     this._theOrderOfIteratingThroughTheOptions.forEach((optionKey) => {
       const getOptionMethodName = `get${optionKey[0].toUpperCase() + optionKey.slice(1)}Option`;
 
-      if (this[getOptionMethodName]) options[optionKey] = this[getOptionMethodName]();
+      if (this[getOptionMethodName] !== undefined) {
+        options[optionKey] = this[getOptionMethodName]();
+      }
     });
 
     return options as TOptionsToGet;
@@ -253,7 +257,7 @@ abstract class MVPView<
         const setOptionMethodName = `set${optionKey[0].toUpperCase() + optionKey.slice(1)}Option`;
         const valueToPass = options === undefined ? undefined : optionValue;
 
-        if (this[setOptionMethodName]) {
+        if (this[setOptionMethodName] !== undefined) {
           this[setOptionMethodName](valueToPass);
         }
       });
@@ -282,7 +286,7 @@ abstract class MVPView<
         const setStateMethodName = `_set${stateKey[0].toUpperCase() + stateKey.slice(1)}State`;
         const valueToPass = state === undefined ? undefined : stateValue;
 
-        if (this[setStateMethodName]) {
+        if (this[setStateMethodName] !== undefined) {
           this[setStateMethodName](valueToPass);
         }
       });
@@ -296,7 +300,9 @@ abstract class MVPView<
     this._theOrderOfIteratingThroughTheOptions.forEach((option) => {
       const fixOptionMethodName = `_fix${option[0].toUpperCase() + option.slice(1)}Option`;
 
-      if (this[fixOptionMethodName]) this[fixOptionMethodName]();
+      if (this[fixOptionMethodName] !== undefined) {
+        this[fixOptionMethodName]();
+      }
     });
 
     return this;
@@ -306,7 +312,9 @@ abstract class MVPView<
     this._theOrderOfIteratingThroughTheState.forEach((state) => {
       const fixStateMethodName = `_fix${state[0].toUpperCase() + state.slice(1)}State`;
 
-      if (this[fixStateMethodName]) this[fixStateMethodName]();
+      if (this[fixStateMethodName] !== undefined) {
+        this[fixStateMethodName]();
+      }
     });
 
     return this;
@@ -354,7 +362,7 @@ abstract class CancelableBEMModifier<TBEMComponent extends BEMComponent> {
   constructor(component: TBEMComponent, modifierName: string) {
     this.component = component;
 
-    if (this.component[modifierName]) {
+    if (this.component[modifierName] !== undefined) {
       this.component[modifierName].cancel();
     }
 
@@ -374,7 +382,9 @@ abstract class CancelableBEMModifier<TBEMComponent extends BEMComponent> {
 const checkDelegatingEvents = (event: Event, parent: HTMLElement, descendantSelector: string) => {
   const descendant = (event.target as HTMLElement).closest(descendantSelector);
 
-  if (!descendant && !parent.contains(descendant)) return false;
+  if (descendant === null && !parent.contains(descendant)) {
+    return false;
+  }
 
   return true;
 };

@@ -245,7 +245,7 @@ const testInstance = <
     const instance: TInstance = new Creator(...constructorArgs);
     let passedArgs: TCreatorArgs | TMethodArgs = constructorArgs;
 
-    if (!methodOfInstanceToRun) {
+    if (methodOfInstanceToRun === undefined) {
       expectPassedArgsAreImmutable(constructorArgs, copyOfConstructorArgs);
     } else {
       const methodOfInstanceMock = jest.fn(
@@ -278,7 +278,7 @@ const testInstance = <
       );
     }
 
-    if (propsToSet) {
+    if (propsToSet !== undefined) {
       expectPropsAreApplied(propsToSet, instance);
     }
 
@@ -306,10 +306,11 @@ const runMethodOfInstanceWithDifferentArguments = <
   propsToSet?: PropsToSet<number | string>;
   // eslint-disable-next-line sonarjs/cognitive-complexity
 }) => {
-  const requiredConstructorArgs = (differentConstructorArgs.validRequiredArguments
+  const requiredConstructorArgs = (differentConstructorArgs.validRequiredArguments !== undefined
     ? differentConstructorArgs.validRequiredArguments[0]
     : []) as TCreatorArgs;
-  const requiredMethodArgs = (methodOfInstanceToTest?.differentArguments?.validRequiredArguments
+  const requiredMethodArgs = (methodOfInstanceToTest?.differentArguments?.validRequiredArguments !==
+  undefined
     ? methodOfInstanceToTest.differentArguments.validRequiredArguments[0]
     : []) as TMethodArgs;
 
@@ -322,7 +323,7 @@ const runMethodOfInstanceWithDifferentArguments = <
       ? methodOfInstanceToTest?.methodReference
       : methodOfInstanceToTest?.methodReference.name || 'init'
   }`, () => {
-    if (methodOfInstanceToTest) {
+    if (methodOfInstanceToTest !== undefined) {
       methodOfInstanceToRun = {
         methodReference: methodOfInstanceToTest.methodReference,
         argsToPass: requiredMethodArgs,
@@ -338,7 +339,7 @@ const runMethodOfInstanceWithDifferentArguments = <
     const amountOfDifferentArgs = eachOfDifferentArguments(
       differentArguments,
       (key, concreteDifferentArgs, index, isRequiredArgs, isValidArgs) => {
-        if (methodOfInstanceToRun) {
+        if (methodOfInstanceToRun !== undefined) {
           methodOfInstanceToRun.argsToPass = isRequiredArgs
             ? (concreteDifferentArgs as TMethodArgs)
             : (requiredMethodArgs.concat(concreteDifferentArgs) as TMethodArgs);
@@ -444,7 +445,7 @@ const testGetter = <
   const makeDefaultGetterExpecter = (
     expecter: InstanceMethodExpecter<Parameters<TMethod>, TInstance>
   ): InstanceMethodExpecter<Parameters<TMethod>, TInstance> => ({ mock, passedArgs, instance }) => {
-    if (methodOfInstanceToTest.returns) {
+    if (methodOfInstanceToTest.returns !== undefined) {
       expect(mock).toHaveReturnedWith(
         resolveLongBracketNotation(methodOfInstanceToTest.returns, instance)
       );

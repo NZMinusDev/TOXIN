@@ -121,22 +121,24 @@ class DropdownDatepicker implements BEMComponent<DropdownDatepickerCustomEvents>
       const formattedDates = this._datepicker.getSplitFormattedDates();
 
       this._DOM.input.value = dates[0] || '';
-      this._DOM.selection.innerHTML = dateTimes[0]
-        ? `<time datetime="${dateTimes[0]}">${
-            formattedDates[0] || this._datasetOptions.placeholder
-          }</time>`
-        : this._datasetOptions.placeholder;
+      this._DOM.selection.innerHTML =
+        dateTimes[0] !== ''
+          ? `<time datetime="${dateTimes[0]}">${
+              formattedDates[0] || this._datasetOptions.placeholder
+            }</time>`
+          : this._datasetOptions.placeholder;
 
       this._changeAltFieldsValues(dateTimes, formattedDates);
     } else {
       const formattedDate = this._datepicker.getFormattedDate();
 
       this._DOM.input.value = dates.toString();
-      this._DOM.selection.innerHTML = dateTimes.toString()
-        ? `<time datetime="${dateTimes.toString()}">${
-            formattedDate || this._datasetOptions.placeholder
-          }</time>`
-        : this._datasetOptions.placeholder;
+      this._DOM.selection.innerHTML =
+        dateTimes.toString() !== ''
+          ? `<time datetime="${dateTimes.toString()}">${
+              formattedDate || this._datasetOptions.placeholder
+            }</time>`
+          : this._datasetOptions.placeholder;
     }
 
     return this;
@@ -153,9 +155,12 @@ class DropdownDatepicker implements BEMComponent<DropdownDatepickerCustomEvents>
       // eslint-disable-next-line no-param-reassign
       inputElement.value = dateTime || '';
       // eslint-disable-next-line no-param-reassign
-      selection.innerHTML = dateTime
-        ? `<time datetime="${dateTime}">${formattedDates[dateIndex] || altFieldPlaceholder}</time>`
-        : altFieldPlaceholder;
+      selection.innerHTML =
+        dateTime !== ''
+          ? `<time datetime="${dateTime}">${
+              formattedDates[dateIndex] || altFieldPlaceholder
+            }</time>`
+          : altFieldPlaceholder;
     });
 
     return this;

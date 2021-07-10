@@ -91,13 +91,15 @@ class DatepickerCard implements BEMComponent<DatepickerCardCustomEvents> {
       prevHtml: `arrow_back`,
       nextHtml: `arrow_forward`,
       dateFormat:
-        !!this.element.dataset.range && !this._staticDOM.$altFields ? 'dd M' : 'dd.mm.yyyy',
+        !!this.element.dataset.range && this._staticDOM.$altFields !== undefined
+          ? 'dd M'
+          : 'dd.mm.yyyy',
       minDate: new Date(),
       toggleSelected: false,
       onSelect: (formattedDate: string, date: Date | Array<Date>, inst) => {
         this._generatedDOM.clearBtn.classList.remove('apply-control__clear-btn_hidden');
 
-        if (date) {
+        if (date !== undefined) {
           this._dates = Array.isArray(date) ? date : [date];
         } else {
           this._dates = [];
@@ -196,7 +198,7 @@ class DatepickerCard implements BEMComponent<DatepickerCardCustomEvents> {
   }
 
   protected _initDisplay() {
-    if (this._staticDOM.input.value) {
+    if (this._staticDOM.input.value !== '') {
       const ISODates = this._staticDOM.input.value.split(',');
 
       this._staticDOM.$element

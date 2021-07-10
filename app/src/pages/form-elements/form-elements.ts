@@ -11,7 +11,7 @@ itemQuantityLists.forEach((itemQuantityList) => {
     itemQuantityList.element.closest('.form-elements-layout__dropdown-expanded-apply') ||
     itemQuantityList.element.closest('.form-elements-layout__dropdown-expanded-clear-apply');
 
-  if (shouldBeOpened) {
+  if (shouldBeOpened !== null) {
     itemQuantityList.open();
   }
 });

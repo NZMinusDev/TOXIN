@@ -4,7 +4,7 @@ document.querySelectorAll('input').forEach((element) => {
   const inputElement = element as HTMLInputElement;
   const hrefValue = getURLValue(inputElement.name) as string;
 
-  if (hrefValue) {
+  if (hrefValue !== '') {
     switch (inputElement.type) {
       case 'radio': {
         inputElement.checked = inputElement.value === hrefValue;
@@ -27,7 +27,7 @@ document.querySelectorAll('input').forEach((element) => {
     const onChange = (e: Event) => {
       const checkbox = e.currentTarget as HTMLInputElement;
 
-      if (checkbox.name) {
+      if (checkbox.name !== '') {
         checkbox.value = checkbox.checked ? 'on' : 'off';
       }
 

@@ -15,7 +15,9 @@ const showVisible = () => {
   [...images].forEach((img) => {
     const realSrc = img.dataset.src;
 
-    if (!realSrc) return;
+    if (realSrc === undefined) {
+      return;
+    }
 
     if (isVisible(img)) {
       // eslint-disable-next-line no-param-reassign
@@ -28,7 +30,9 @@ const showVisible = () => {
   [...sources].forEach((source) => {
     const realSrcset = source.dataset.srcset;
 
-    if (!realSrcset) return;
+    if (realSrcset === undefined) {
+      return;
+    }
 
     if (isVisible(source)) {
       // eslint-disable-next-line no-param-reassign

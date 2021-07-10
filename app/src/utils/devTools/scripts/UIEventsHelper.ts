@@ -10,13 +10,15 @@ const addGoodMouseOver = (
   let currentElem: Element | null = null;
 
   const onMouseOver = (event: MouseEvent) => {
-    if (currentElem) return;
+    if (currentElem !== null) {
+      return;
+    }
 
     const target = (event.target as HTMLElement).closest(childSelector);
 
-    if (!target) return;
-
-    if (!(event.currentTarget as HTMLElement).contains(target)) return;
+    if (target === null || !(event.currentTarget as HTMLElement).contains(target)) {
+      return;
+    }
 
     currentElem = target;
 
@@ -24,13 +26,17 @@ const addGoodMouseOver = (
   };
 
   const onMouseOut = (event: MouseEvent) => {
-    if (!currentElem) return;
+    if (currentElem === null) {
+      return;
+    }
 
     let { relatedTarget } = event;
 
     // eslint-disable-next-line no-loops/no-loops
     while (relatedTarget) {
-      if (relatedTarget === currentElem) return;
+      if (relatedTarget === currentElem) {
+        return;
+      }
 
       relatedTarget = (relatedTarget as HTMLElement).parentNode;
     }
@@ -94,19 +100,19 @@ const addDragAndDrop = (
       // eslint-disable-next-line no-param-reassign
       element.hidden = false;
 
-      if (!elemBelow) return;
+      if (elemBelow === null) {
+        return;
+      }
 
       const droppableBelow = elemBelow.closest(droppableSelector);
 
       if (currentDroppable !== droppableBelow) {
-        if (currentDroppable) {
+        if (currentDroppable !== null) {
           leaveDroppable(currentDroppable);
         }
 
         currentDroppable = droppableBelow as HTMLElement;
-        if (currentDroppable) {
-          enterDroppable(currentDroppable);
-        }
+        enterDroppable(currentDroppable);
       }
     };
 

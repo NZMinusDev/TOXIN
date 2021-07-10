@@ -16,7 +16,7 @@ const toggleListSize = (dropdownItem: HTMLElement) => {
     fullScrollHeight += nestedDropdownList.scrollHeight;
   });
 
-  if (list.style.maxHeight) {
+  if (list.style.maxHeight !== '') {
     list.style.maxHeight = '';
   } else {
     list.style.maxHeight = `${fullScrollHeight}px`;

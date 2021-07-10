@@ -38,7 +38,10 @@ export const animate = (
   // eslint-disable-next-line no-shadow
   requestAnimationFrame(function animate(time) {
     let timeFraction = (time - start) / duration;
-    if (timeFraction > 1) timeFraction = 1;
+
+    if (timeFraction > 1) {
+      timeFraction = 1;
+    }
 
     const progress = timing(timeFraction);
 
@@ -127,7 +130,9 @@ export const makeEaseOut = (timingFunction: (timeFraction: number) => number) =>
  */
 export const makeEaseInOut = (timingFunction: (timeFraction: number) => number) =>
   function (timeFraction: number) {
-    if (timeFraction < 0.5) return timingFunction(2 * timeFraction) / 2;
+    if (timeFraction < 0.5) {
+      return timingFunction(2 * timeFraction) / 2;
+    }
 
     return (2 - timingFunction(2 * (1 - timeFraction))) / 2;
   };

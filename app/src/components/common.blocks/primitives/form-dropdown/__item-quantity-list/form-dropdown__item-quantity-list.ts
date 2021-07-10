@@ -241,7 +241,9 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
     if (this._totalItems > 0) {
       this._groupsCounter.forEach((groupAmount, groupKey) => {
         if (groupAmount > 0) {
-          if (result !== '') result += ', ';
+          if (result !== '') {
+            result += ', ';
+          }
 
           const appendedText =
             groupAmount === 1 ? groups[groupKey].selectionText : groups[groupKey].textPlural;
@@ -282,7 +284,10 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
 
       input.value = `${counterAmount}`;
 
-      if (index > 0) accumulator += ',';
+      if (index > 0) {
+        accumulator += ',';
+      }
+
       accumulator += counterAmount;
     });
 
