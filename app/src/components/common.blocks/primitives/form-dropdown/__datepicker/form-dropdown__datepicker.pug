@@ -7,19 +7,18 @@ include ~@common.blocks/primitives/datepicker-card/datepicker-card.pug
   placeholder?: string - text of placeholder
   altFields?: string - selector of bonded alt fields(input)
   isAltField?: boolean - mark this as field that uses a different calendar
-  isFilter?: boolean - if true, apply button will reload page with chosen value(get method)
+  isFilter?: see datepicker-card mixin
   Tip: mixin also uses 'and attributes'(&attributes)
 
 mixin form-dropdown__datepicker({ name = 'datepicker', range = false, selectedDates = '', placeholder = 'ДД.ММ.ГГГГ', altFields = undefined, isAltField = false, isFilter = false } = {})
   input.form-dropdown__datepicker-input(
     type="hidden",
     name=name,
-    value=selectedDates,
-    data-is-filter=isFilter
+    value=selectedDates
   )
   if !isAltField
     .form-dropdown__datepicker.form-dropdown__datepicker_hidden
-      +datepicker-card({ selectedDates, range, altFields })&attributes(attributes)
+      +datepicker-card({ selectedDates, range, altFields, isFilter })&attributes(attributes)
   -
     const dataPlaceholder = placeholder || ((range && !altFields) ? 'ДД ММ - ДД ММ' : 'ДД.ММ.ГГГГ');
     const splitSelectedDates = selectedDates.split(',');

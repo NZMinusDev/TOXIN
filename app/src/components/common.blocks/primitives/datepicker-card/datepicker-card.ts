@@ -182,6 +182,7 @@ class DatepickerCard implements BEMComponent<DatepickerCardCustomEvents> {
       altField.value = ISODates[index + 1];
     });
 
+    this._staticDOM.input.dispatchEvent(new Event('change'));
     this.element.dispatchEvent(
       new CustomEvent('change', {
         bubbles: true,
@@ -197,8 +198,6 @@ class DatepickerCard implements BEMComponent<DatepickerCardCustomEvents> {
       this._staticDOM.$element
         .data('datepicker')
         .selectDate(ISODates.map((ISODate) => new Date(ISODate)));
-
-      this._changeInputValue(ISODates);
     }
   }
 }

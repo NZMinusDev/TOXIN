@@ -144,6 +144,8 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
     };
   }
   protected _initOptionsFromDataset(): ItemQuantityListDatasetOptions {
+    const values = this._staticDOM.listInput.value.split(',');
+
     return {
       selection: { placeholder: this._staticDOM.selection.dataset.placeholder || '' },
       menu: {
@@ -153,16 +155,21 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
             : '',
       },
       menuOptions: new Map(
-        Array.from(this._staticDOM.menuOptions).map((menuOption) => [
-          menuOption,
-          {
-            id: menuOption.dataset.id || '',
-            defaultCount: Number(menuOption.dataset.defaultcount),
-            minCount: Number(menuOption.dataset.mincount),
-            maxCount: Number(menuOption.dataset.maxcount),
-            group: menuOption.dataset.group || '',
-          },
-        ])
+        Array.from(this._staticDOM.menuOptions).map((menuOption, index) => {
+          // eslint-disable-next-line no-param-reassign
+          menuOption.dataset.defaultcount = values[index] ?? menuOption.dataset.defaultcount;
+
+          return [
+            menuOption,
+            {
+              id: menuOption.dataset.id || '',
+              defaultCount: Number(menuOption.dataset.defaultcount),
+              minCount: Number(menuOption.dataset.mincount),
+              maxCount: Number(menuOption.dataset.maxcount),
+              group: menuOption.dataset.group || '',
+            },
+          ];
+        })
       ),
     };
   }
@@ -272,6 +279,7 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
 
     this._staticDOM.listInput.value = accumulator;
 
+    this._staticDOM.listInput.dispatchEvent(new Event('change'));
     this.element.dispatchEvent(
       new CustomEvent('change', {
         bubbles: true,
