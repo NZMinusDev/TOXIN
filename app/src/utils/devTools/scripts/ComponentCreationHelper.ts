@@ -8,6 +8,7 @@ import defaultsDeep from 'lodash-es/defaultsDeep';
 function handleEvent(event: Event) {
   // mousedown -> onMousedown
   const handlerName = `_on${event.type[0].toUpperCase()}${event.type.slice(1)}`;
+
   if (this[handlerName]) {
     this[handlerName](event);
   }
@@ -110,6 +111,7 @@ class EventManagerMixin<TEvents extends string> {
   handleEvent(event: Event) {
     // mousedown -> onMousedown
     const methodName = `_on${event.type[0].toUpperCase()}${event.type.slice(1)}`;
+
     if (this[methodName]) this[methodName](event);
 
     return this;
@@ -225,9 +227,9 @@ abstract class MVPView<
   getOptions(): TOptionsToGet {
     const options: any = {};
 
-    let getOptionMethodName;
     this._theOrderOfIteratingThroughTheOptions.forEach((optionKey) => {
-      getOptionMethodName = `get${optionKey[0].toUpperCase() + optionKey.slice(1)}Option`;
+      const getOptionMethodName = `get${optionKey[0].toUpperCase() + optionKey.slice(1)}Option`;
+
       if (this[getOptionMethodName]) options[optionKey] = this[getOptionMethodName]();
     });
 
@@ -237,8 +239,6 @@ abstract class MVPView<
   setOptions(options?: TOptionsToSet) {
     const optionsToForEach = options === undefined ? this._options : options;
 
-    let setOptionMethodName;
-    let valueToPass;
     Object.entries(optionsToForEach)
       .sort(
         ([a], [b]) =>
@@ -250,8 +250,8 @@ abstract class MVPView<
           )
       )
       .forEach(([optionKey, optionValue]) => {
-        setOptionMethodName = `set${optionKey[0].toUpperCase() + optionKey.slice(1)}Option`;
-        valueToPass = options === undefined ? undefined : optionValue;
+        const setOptionMethodName = `set${optionKey[0].toUpperCase() + optionKey.slice(1)}Option`;
+        const valueToPass = options === undefined ? undefined : optionValue;
 
         if (this[setOptionMethodName]) {
           this[setOptionMethodName](valueToPass);
@@ -272,8 +272,6 @@ abstract class MVPView<
   protected _setState(state?: Partial<TState>) {
     const keyOfStateToForEach = state === undefined ? this._state : state;
 
-    let setStateMethodName;
-    let valueToPass;
     Object.entries(keyOfStateToForEach)
       .sort(
         ([a], [b]) =>
@@ -281,8 +279,8 @@ abstract class MVPView<
           this._theOrderOfIteratingThroughTheState.indexOf(b as Extract<keyof TState, string>)
       )
       .forEach(([stateKey, stateValue]) => {
-        setStateMethodName = `_set${stateKey[0].toUpperCase() + stateKey.slice(1)}State`;
-        valueToPass = state === undefined ? undefined : stateValue;
+        const setStateMethodName = `_set${stateKey[0].toUpperCase() + stateKey.slice(1)}State`;
+        const valueToPass = state === undefined ? undefined : stateValue;
 
         if (this[setStateMethodName]) {
           this[setStateMethodName](valueToPass);
@@ -295,9 +293,9 @@ abstract class MVPView<
   }
 
   protected _fixOptions() {
-    let fixOptionMethodName;
     this._theOrderOfIteratingThroughTheOptions.forEach((option) => {
-      fixOptionMethodName = `_fix${option[0].toUpperCase() + option.slice(1)}Option`;
+      const fixOptionMethodName = `_fix${option[0].toUpperCase() + option.slice(1)}Option`;
+
       if (this[fixOptionMethodName]) this[fixOptionMethodName]();
     });
 
@@ -305,9 +303,9 @@ abstract class MVPView<
   }
 
   protected _fixState() {
-    let fixStateMethodName;
     this._theOrderOfIteratingThroughTheState.forEach((state) => {
-      fixStateMethodName = `_fix${state[0].toUpperCase() + state.slice(1)}State`;
+      const fixStateMethodName = `_fix${state[0].toUpperCase() + state.slice(1)}State`;
+
       if (this[fixStateMethodName]) this[fixStateMethodName]();
     });
 

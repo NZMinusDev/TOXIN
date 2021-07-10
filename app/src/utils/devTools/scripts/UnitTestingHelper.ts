@@ -107,7 +107,6 @@ const eachOfDifferentArguments = <TArgs extends unknown[]>(
   ) => void
 ) => {
   let counter = 0;
-
   Object.entries(differentArguments).forEach(([key, arrayOfConcreteDifferentArgs]) => {
     (arrayOfConcreteDifferentArgs as TArgs[][] | undefined)?.forEach(
       (concreteDifferentArgs, index) => {
@@ -149,6 +148,7 @@ const expectReturnedAreImmutable = <TInstance>(
   instance: TInstance
 ): void => {
   const propOfInstanceValue = resolveLongBracketNotation(returns, instance);
+
   if (isReferenceType(propOfInstanceValue)) {
     test(`returned referenced property should be cloned deep`, () => {
       expect(returned).not.toBe(propOfInstanceValue);

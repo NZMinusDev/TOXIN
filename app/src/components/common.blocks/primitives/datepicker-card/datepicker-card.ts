@@ -167,8 +167,8 @@ class DatepickerCard implements BEMComponent<DatepickerCardCustomEvents> {
   };
   protected _verifyApplying() {
     const { selectedDates, opts } = this._staticDOM.$element.data('datepicker');
-
     let maxSelected = selectedDates.length;
+
     if (this._staticDOM.$altFields !== undefined) {
       maxSelected = this._staticDOM.$altFields.length + 1;
     } else if (opts.range) {

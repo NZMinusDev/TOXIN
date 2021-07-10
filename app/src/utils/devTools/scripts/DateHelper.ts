@@ -44,15 +44,11 @@ const formatToPeriodDateTime = (
   const isWithTime = withHours || withMinutes || withSeconds;
   const isWithMinutesOrSeconds = withMinutes || withSeconds;
 
-  let days = 0;
-  let hours = 0;
-  let minutes = 0;
-  let seconds = 0;
   let timeRemains = datePeriod;
   let result = 'P';
 
   if (withDays) {
-    days = isWithTime
+    const days = isWithTime
       ? Math.floor(timeRemains / MS_IN_A_DAY)
       : Math.ceil(timeRemains / MS_IN_A_DAY);
     timeRemains -= days * MS_IN_A_DAY;
@@ -64,7 +60,7 @@ const formatToPeriodDateTime = (
   }
 
   if (withHours) {
-    hours = isWithMinutesOrSeconds
+    const hours = isWithMinutesOrSeconds
       ? Math.floor(timeRemains / MS_IN_A_HOUR)
       : Math.ceil(timeRemains / MS_IN_A_HOUR);
     timeRemains -= hours * MS_IN_A_HOUR;
@@ -72,7 +68,7 @@ const formatToPeriodDateTime = (
   }
 
   if (withMinutes) {
-    minutes = withSeconds
+    const minutes = withSeconds
       ? Math.floor(timeRemains / MS_IN_A_MINUTE)
       : Math.ceil(timeRemains / MS_IN_A_MINUTE);
     timeRemains -= minutes * MS_IN_A_MINUTE;
@@ -80,7 +76,7 @@ const formatToPeriodDateTime = (
   }
 
   if (withSeconds) {
-    seconds = timeRemains / MS_IN_A_SECOND;
+    const seconds = timeRemains / MS_IN_A_SECOND;
     result += `${seconds}S`;
   }
 

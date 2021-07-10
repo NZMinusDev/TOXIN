@@ -63,9 +63,8 @@ const eachDeep = <TSubject>(
   }) => void,
   path?: string
 ) => {
-  let deepPath;
   Object.entries(subject).forEach(([key, value]) => {
-    deepPath = path ? `${path}.${key}` : key;
+    const deepPath = path ? `${path}.${key}` : key;
 
     fn({ value, key, subject, path: deepPath });
 

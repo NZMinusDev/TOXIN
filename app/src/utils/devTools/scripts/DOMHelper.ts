@@ -206,6 +206,7 @@ const place = (element: HTMLElement, { position = 'absolute' } = {}) => {
 const loadScript = (src: URL) =>
   new Promise((resolve, reject) => {
     const script = document.createElement('script');
+
     script.src = src.toString();
 
     script.onload = () => resolve(script);

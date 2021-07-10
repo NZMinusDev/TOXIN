@@ -236,22 +236,18 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
 
   protected _generateResultText() {
     const { groups } = this._datasetOptions.menu;
+    let result = this._datasetOptions.selection.placeholder;
 
-    let result = '';
     if (this._totalItems > 0) {
-      let appendedText = '';
-
       this._groupsCounter.forEach((groupAmount, groupKey) => {
         if (groupAmount > 0) {
           if (result !== '') result += ', ';
 
-          appendedText =
+          const appendedText =
             groupAmount === 1 ? groups[groupKey].selectionText : groups[groupKey].textPlural;
           result += `${groupAmount} ${appendedText}`;
         }
       });
-    } else {
-      result = this._datasetOptions.selection.placeholder;
     }
 
     return result;

@@ -43,6 +43,7 @@ const cloneFunction = <TFuncArgs extends unknown[], TFuncReturn>(
   func: GenericFunc<TFuncArgs, TFuncReturn>
 ) => {
   const that = func;
+
   const temp = function (...args: TFuncArgs) {
     return that.apply(func, args);
   };

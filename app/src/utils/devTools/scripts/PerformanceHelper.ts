@@ -73,6 +73,7 @@ const makeCaching = <
 
   return function (...args) {
     const key = hash(args);
+
     if (cache.has(key)) {
       return cache.get(key);
     }

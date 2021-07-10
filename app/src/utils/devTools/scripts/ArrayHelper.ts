@@ -6,8 +6,9 @@ const fixLength = <TArray extends unknown[]>(
   desiredLength: number,
   filler: TArray[number]
 ) => {
-  const previousLength = arr.length;
   if (arr.length !== desiredLength) {
+    const previousLength = arr.length;
+
     // eslint-disable-next-line no-param-reassign
     arr.length = desiredLength;
     // eslint-disable-next-line no-param-reassign

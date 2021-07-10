@@ -36,9 +36,8 @@ const cancellableFetches = (
     })
   );
 
-  let response: Promise<unknown[]>;
   try {
-    response = Promise.all([...fetchJobs, ourJob]);
+    const response = Promise.all([...fetchJobs, ourJob]);
 
     return { controller, response };
   } catch (err) {
@@ -82,9 +81,8 @@ const handleResponseProcess = async (
 
     if (contentLengthAnswer !== null) {
       const contentLength = +contentLengthAnswer;
-
-      let receivedLength = 0;
       const chunks: Uint8Array[] = [];
+      let receivedLength = 0;
 
       // should be for await..of in the future
       // eslint-disable-next-line no-loops/no-loops

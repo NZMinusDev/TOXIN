@@ -103,6 +103,7 @@ class RoomDefinitionCard implements BEMComponent<RoomDefinitionCardCustomEvents>
       if (!event.isTrusted) {
         const ISODatesValue = (event as CustomEvent).detail.value.toString() as string;
         const datesValue = ISODatesValue.split(',').map((ISODateString) => new Date(ISODateString));
+
         this._days = getDatePeriod(datesValue[0], datesValue[1]) / MS_IN_A_DAY;
 
         this._updatePaymentDisplay();
