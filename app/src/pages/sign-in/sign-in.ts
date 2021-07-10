@@ -6,16 +6,17 @@ const cardContainerElements = Array.from(
 ) as HTMLDivElement[];
 
 cardContainerElements.forEach((cardContainerElement, key, nodeList) => {
-  const cardElement = cardContainerElement.querySelector('.card-base') as HTMLFormElement;
-  const switchBtn = cardElement.querySelector(
-    `.${cardElement.name}__switch-btn`
-  ) as HTMLButtonElement;
+  const handleSwitchBtnClick = (event: MouseEvent) => {
+    const target = event.target as HTMLButtonElement;
 
-  const handleSwitchBtnClick = () => {
-    nodeList.forEach((currentCardElement) => {
-      currentCardElement.classList.toggle('sign-in-layout__card_hidden');
-    });
+    const isSwitchBtn = target.value === 'Создать' || target.value === 'Войти';
+
+    if (target.type !== 'submit' && isSwitchBtn) {
+      nodeList.forEach((currentCardElement) => {
+        currentCardElement.classList.toggle('sign-in-layout__card_hidden');
+      });
+    }
   };
 
-  switchBtn.addEventListener('click', handleSwitchBtnClick);
+  cardContainerElement.addEventListener('click', handleSwitchBtnClick);
 });
