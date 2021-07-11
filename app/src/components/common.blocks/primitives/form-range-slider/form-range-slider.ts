@@ -17,12 +17,12 @@ type RangeSliderDOM = {
 
 type RangeSliderCustomEvents = 'change';
 
-class RangeSlider implements BEMComponent<RangeSliderCustomEvents> {
-  readonly element: RangeSliderElement;
+class RangeSlider extends BEMComponent<RangeSliderElement, RangeSliderCustomEvents> {
   protected readonly _DOM: Readonly<RangeSliderDOM>;
 
   constructor(rangeSliderElement: RangeSliderElement) {
-    this.element = rangeSliderElement;
+    super(rangeSliderElement);
+
     this._DOM = this._initDOM();
     this._initLibRangeSlider();
 

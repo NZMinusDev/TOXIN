@@ -9,14 +9,14 @@ type FormLikeButtonDOM = {
 
 type FormLikeButtonCustomEvents = '';
 
-class FormLikeButton implements BEMComponent<FormLikeButtonCustomEvents> {
-  readonly element: FormLikeButtonElement;
+class FormLikeButton extends BEMComponent<FormLikeButtonElement, FormLikeButtonCustomEvents> {
   protected readonly _DOM: Readonly<FormLikeButtonDOM>;
 
   protected _likes: number;
 
   constructor(formLikeButtonElement: FormLikeButtonElement) {
-    this.element = formLikeButtonElement;
+    super(formLikeButtonElement);
+
     this._DOM = this._initDOM();
 
     const state = this._initState();

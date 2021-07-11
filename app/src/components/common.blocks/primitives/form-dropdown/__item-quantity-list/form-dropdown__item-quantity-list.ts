@@ -1,4 +1,7 @@
-import { BEMComponent } from '@utils/devTools/scripts/ComponentCreationHelper';
+import {
+  BEMComponent,
+  HTMLElementWithComponent,
+} from '@utils/devTools/scripts/ComponentCreationHelper';
 import { has } from '@utils/devTools/scripts/DOMHelper';
 
 import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
@@ -36,10 +39,9 @@ type ItemQuantityListDatasetOptions = {
 
 type ItemQuantityListCustomEvents = 'select' | 'close' | 'change';
 
-type ParentBlock = Unpacked<typeof dropdowns>;
+type ParentComponent = Unpacked<typeof dropdowns>;
 
-class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
-  readonly element: ItemQuantityListElement;
+class ItemQuantityList extends BEMComponent<ItemQuantityListElement, ItemQuantityListCustomEvents> {
   protected readonly _staticDOM: Readonly<ItemQuantityListStaticDOM>;
   protected readonly _generatedDOM: Readonly<ItemQuantityListGeneratedDOM>;
 
@@ -49,16 +51,17 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
   protected _itemsCounter = new Map<string, number>();
   protected _groupsCounter = new Map<string, number>();
 
-  protected _parentBlock: ParentBlock;
+  protected _parentComponent: ParentComponent;
 
   constructor(itemQuantityListElement: ItemQuantityListElement) {
-    this.element = itemQuantityListElement;
+    super(itemQuantityListElement);
+
     this._staticDOM = this._initStaticDOM();
     this._datasetOptions = this._initOptionsFromDataset();
     this._generatedDOM = this._initLibItemQuantityList()._initGeneratedDOM();
 
-    const subBlocks = this._initSubBlocks();
-    this._parentBlock = subBlocks._parentBlock;
+    const subComponent = this._initSubComponent();
+    this._parentComponent = subComponent._parentComponent;
 
     this._bindListeners()._bindCounterBtnListeners();
 
@@ -215,14 +218,14 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
     };
   }
 
-  protected _initSubBlocks() {
+  protected _initSubComponent() {
     const outerDropdownElement = this.element.closest('.form-dropdown');
 
-    const _parentBlock = dropdowns.find(
+    const _parentComponent = dropdowns.find(
       (dropdown) => dropdown.element === outerDropdownElement
-    ) as ParentBlock;
+    ) as ParentComponent;
 
-    return { _parentBlock };
+    return { _parentComponent };
   }
 
   protected _bindListeners() {
@@ -373,6 +376,12 @@ class ItemQuantityList implements BEMComponent<ItemQuantityListCustomEvents> {
   }
 }
 
+type ItemQuantityListElementWithComponent = HTMLElementWithComponent<
+  ItemQuantityListElement,
+  ItemQuantityListCustomEvents,
+  ItemQuantityList
+>;
+
 const dropdownsWithItemQuantityList = dropdowns.filter((dropdown) =>
   dropdown.element.querySelector('.form-dropdown__item-quantity-list')
 );
@@ -386,4 +395,8 @@ const itemQuantityLists = dropdownsWithItemQuantityList.map(
     )
 );
 
-export { itemQuantityLists as default, ItemQuantityListCustomEvents };
+export {
+  itemQuantityLists as default,
+  ItemQuantityListCustomEvents,
+  ItemQuantityListElementWithComponent,
+};

@@ -18,7 +18,7 @@ class ItemQuantityListApplyOpeningMethodModifier extends ItemQuantityListOpening
 
     this._DOM = this._initDOM();
 
-    this._bindParentBlockListeners()
+    this._bindParentComponentListeners()
       ._bindComponentListeners()
       ._bindClearBtnListeners()
       ._bindApplyBtnListeners();
@@ -41,17 +41,17 @@ class ItemQuantityListApplyOpeningMethodModifier extends ItemQuantityListOpening
     };
   }
 
-  protected _bindParentBlockListeners() {
+  protected _bindParentComponentListeners() {
     // eslint-disable-next-line dot-notation
-    this.component['_parentBlock'].element.addEventListener(
+    this.component['_parentComponent'].element.addEventListener(
       'open',
-      this._parentBlockEventListenerObject.handleParentBlockOpen
+      this._parentComponentEventListenerObject.handleParentComponentOpen
     );
 
     return this;
   }
-  protected _parentBlockEventListenerObject = {
-    handleParentBlockOpen: () => {
+  protected _parentComponentEventListenerObject = {
+    handleParentComponentOpen: () => {
       this.component.open();
     },
   };

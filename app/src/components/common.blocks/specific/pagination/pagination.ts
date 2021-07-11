@@ -9,12 +9,12 @@ type PaginationDOM = {
 
 type PaginationCustomEvents = '';
 
-class Pagination implements BEMComponent<PaginationCustomEvents> {
-  readonly element: PaginationElement;
+class Pagination extends BEMComponent<PaginationElement, PaginationCustomEvents> {
   protected readonly _DOM: Readonly<PaginationDOM>;
 
   constructor(paginationElement: PaginationElement) {
-    this.element = paginationElement;
+    super(paginationElement);
+
     this._DOM = this._initDOM();
   }
 

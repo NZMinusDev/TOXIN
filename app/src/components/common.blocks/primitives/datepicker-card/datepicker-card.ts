@@ -1,4 +1,7 @@
-import { BEMComponent } from '@utils/devTools/scripts/ComponentCreationHelper';
+import {
+  BEMComponent,
+  HTMLElementWithComponent,
+} from '@utils/devTools/scripts/ComponentCreationHelper';
 
 import '@common.blocks/primitives/apply-control/apply-control.scss';
 import '@common.blocks/primitives/apply-control/__clear-btn/apply-control__clear-btn.scss';
@@ -25,8 +28,7 @@ type DatepickerCardGeneratedDOM = {
 
 type DatepickerCardCustomEvents = 'select' | 'clear' | 'change';
 
-class DatepickerCard implements BEMComponent<DatepickerCardCustomEvents> {
-  readonly element: DatepickerCardElement;
+class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardCustomEvents> {
   protected readonly _staticDOM: Readonly<DatepickerCardStaticDOM>;
   protected readonly _generatedDOM: Readonly<DatepickerCardGeneratedDOM>;
 
@@ -36,7 +38,8 @@ class DatepickerCard implements BEMComponent<DatepickerCardCustomEvents> {
   protected _formattedDates = '';
 
   constructor(datepickerCardElement: DatepickerCardElement) {
-    this.element = datepickerCardElement;
+    super(datepickerCardElement);
+
     this._staticDOM = this._initStaticDOM();
     this._generatedDOM = this._initLibDatepicker()._initGeneratedDOM();
 
@@ -210,9 +213,19 @@ class DatepickerCard implements BEMComponent<DatepickerCardCustomEvents> {
   }
 }
 
+type DatepickerCardElementWithComponent = HTMLElementWithComponent<
+  DatepickerCardElement,
+  DatepickerCardCustomEvents,
+  DatepickerCard
+>;
+
 const datepickerCards = Array.from(
   document.querySelectorAll('.datepicker-card') as NodeListOf<DatepickerCardElement>,
   (datepickerCardElement) => new DatepickerCard(datepickerCardElement)
 );
 
-export { datepickerCards as default, DatepickerCardCustomEvents };
+export {
+  datepickerCards as default,
+  DatepickerCardElementWithComponent,
+  DatepickerCardCustomEvents,
+};

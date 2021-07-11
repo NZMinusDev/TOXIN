@@ -333,17 +333,41 @@ interface MVPModel<State> {
   whenStateIsChanged(callback: (state: Required<State>) => void): this;
 }
 
+type HTMLElementWithComponent<
+  THTMLElement extends HTMLElement,
+  TElementCustomEvents extends string,
+  // eslint-disable-next-line no-use-before-define
+  TBEMComponent extends BEMComponent<THTMLElement, TElementCustomEvents>
+> = THTMLElement & { component: TBEMComponent };
+
 /**
  * Common BEM block / element class
+ * Tip: It has side effect - assigns 'component' prop to element
  */
-interface BEMComponent<TElementBublingEvents extends string = ''> {
-  readonly element: HTMLElement;
+abstract class BEMComponent<
+  THTMLElement extends HTMLElement,
+  TElementCustomEvents extends string = ''
+> {
+  readonly element: HTMLElementWithComponent<THTMLElement, TElementCustomEvents, this>;
+
+  constructor(element: THTMLElement) {
+    this.element = element as HTMLElementWithComponent<THTMLElement, TElementCustomEvents, this>;
+    this.element.component = this;
+  }
+
+  addEventListener<K extends keyof HTMLElementEventMap & TElementCustomEvents>(
+    type: K,
+    listener: EventListenerOrEventListenerObject,
+    options?: boolean | AddEventListenerOptions
+  ) {
+    this.element.addEventListener(type, listener, options);
+  }
 }
 
 /**
  * BEM modifier class
  */
-abstract class BEMModifier<TBEMComponent extends BEMComponent> {
+abstract class BEMModifier<TBEMComponent extends BEMComponent<HTMLElement>> {
   protected component: TBEMComponent;
 
   constructor(component: TBEMComponent, modifierName: string) {
@@ -356,7 +380,7 @@ abstract class BEMModifier<TBEMComponent extends BEMComponent> {
 /**
  *  Switchable BEM modifier class
  */
-abstract class CancelableBEMModifier<TBEMComponent extends BEMComponent> {
+abstract class CancelableBEMModifier<TBEMComponent extends BEMComponent<HTMLElement>> {
   protected component: TBEMComponent;
 
   constructor(component: TBEMComponent, modifierName: string) {
@@ -398,6 +422,7 @@ export {
   applyMixins,
   MVPView,
   MVPModel,
+  HTMLElementWithComponent,
   BEMComponent,
   BEMModifier,
   CancelableBEMModifier,

@@ -9,20 +9,20 @@ class ItemQuantityListFoldedOpeningMethodModifier extends ItemQuantityListOpenin
   constructor(itemQuantityList: ItemQuantityList) {
     super(itemQuantityList);
 
-    this._bindParentBlockListeners()._bindWindowListeners();
+    this._bindParentComponentListeners()._bindWindowListeners();
   }
 
-  protected _bindParentBlockListeners() {
+  protected _bindParentComponentListeners() {
     // eslint-disable-next-line dot-notation
-    this.component['_parentBlock'].element.addEventListener(
+    this.component['_parentComponent'].element.addEventListener(
       'open',
-      this._parentBlockEventListenerObject.handleParentBlockOpen
+      this._parentComponentEventListenerObject.handleParentComponentOpen
     );
 
     return this;
   }
-  protected _parentBlockEventListenerObject = {
-    handleParentBlockOpen: () => {
+  protected _parentComponentEventListenerObject = {
+    handleParentComponentOpen: () => {
       this.component.open();
     },
   };
@@ -35,7 +35,7 @@ class ItemQuantityListFoldedOpeningMethodModifier extends ItemQuantityListOpenin
   protected _windowEventListenerObject = {
     handleWindowClick: (event: MouseEvent) => {
       // eslint-disable-next-line dot-notation
-      if (this.component['_parentBlock'].element.contains(event.target as Element)) {
+      if (this.component['_parentComponent'].element.contains(event.target as Element)) {
         this.component.open();
       } else {
         this.component.close();

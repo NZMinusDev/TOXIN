@@ -23,8 +23,10 @@ type RoomDefinitionCardDatasetOptions = {
 
 type RoomDefinitionCardCustomEvents = ItemQuantityListCustomEvents & DropdownDatepickerCustomEvents;
 
-class RoomDefinitionCard implements BEMComponent<RoomDefinitionCardCustomEvents> {
-  readonly element: RoomDefinitionCardElement;
+class RoomDefinitionCard extends BEMComponent<
+  RoomDefinitionCardElement,
+  RoomDefinitionCardCustomEvents
+> {
   protected readonly _DOM: Readonly<RoomDefinitionCardDOM>;
 
   protected _datasetOptions: RoomDefinitionCardDatasetOptions;
@@ -33,7 +35,8 @@ class RoomDefinitionCard implements BEMComponent<RoomDefinitionCardCustomEvents>
   protected _currency = '₽';
 
   constructor(roomDefinitionCardElement: RoomDefinitionCardElement) {
-    this.element = roomDefinitionCardElement;
+    super(roomDefinitionCardElement);
+
     this._DOM = this._initDOM();
 
     this._datasetOptions = this._initOptionsFromDataset();

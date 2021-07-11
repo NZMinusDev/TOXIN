@@ -8,12 +8,12 @@ type DropdownDOM = {
 
 type DropdownCustomEvents = 'open';
 
-class Dropdown implements BEMComponent<DropdownCustomEvents> {
-  readonly element: DropdownElement;
+class Dropdown extends BEMComponent<DropdownElement, DropdownCustomEvents> {
   protected readonly _DOM: Readonly<DropdownDOM>;
 
   constructor(dropdownElement: DropdownElement) {
-    this.element = dropdownElement;
+    super(dropdownElement);
+
     this._DOM = this._initDOM();
 
     this.bindListeners();
