@@ -26,7 +26,7 @@ type DatepickerCardGeneratedDOM = {
   applyBtn: HTMLButtonElement;
 };
 
-type DatepickerCardCustomEvents = 'select' | 'clear' | 'change';
+type DatepickerCardCustomEvents = 'select' | 'change';
 
 class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardCustomEvents> {
   protected readonly _staticDOM: Readonly<DatepickerCardStaticDOM>;
@@ -157,7 +157,7 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
 
       this._generatedDOM.clearBtn.classList.add('apply-control__clear-btn_hidden');
 
-      this.element.dispatchEvent(new CustomEvent('clear', { bubbles: true }));
+      this.element.dispatchEvent(new CustomEvent('change', { bubbles: true }));
     },
     handleApplyBtnClick: (e: MouseEvent) => {
       if (this._verifyApplying()) {
@@ -224,8 +224,6 @@ const datepickerCards = Array.from(
   (datepickerCardElement) => new DatepickerCard(datepickerCardElement)
 );
 
-export {
-  datepickerCards as default,
-  DatepickerCardElementWithComponent,
-  DatepickerCardCustomEvents,
-};
+export type { DatepickerCardCustomEvents, DatepickerCard, DatepickerCardElementWithComponent };
+
+export { datepickerCards as default };

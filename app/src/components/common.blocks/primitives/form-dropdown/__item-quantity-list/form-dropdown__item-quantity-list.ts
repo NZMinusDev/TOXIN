@@ -39,8 +39,6 @@ type ItemQuantityListDatasetOptions = {
 
 type ItemQuantityListCustomEvents = 'select' | 'close' | 'change';
 
-type ParentComponent = Unpacked<typeof dropdowns>;
-
 class ItemQuantityList extends BEMComponent<ItemQuantityListElement, ItemQuantityListCustomEvents> {
   protected readonly _staticDOM: Readonly<ItemQuantityListStaticDOM>;
   protected readonly _generatedDOM: Readonly<ItemQuantityListGeneratedDOM>;
@@ -51,17 +49,12 @@ class ItemQuantityList extends BEMComponent<ItemQuantityListElement, ItemQuantit
   protected _itemsCounter = new Map<string, number>();
   protected _groupsCounter = new Map<string, number>();
 
-  protected _parentComponent: ParentComponent;
-
   constructor(itemQuantityListElement: ItemQuantityListElement) {
     super(itemQuantityListElement);
 
     this._staticDOM = this._initStaticDOM();
     this._datasetOptions = this._initOptionsFromDataset();
     this._generatedDOM = this._initLibItemQuantityList()._initGeneratedDOM();
-
-    const subComponent = this._initSubComponent();
-    this._parentComponent = subComponent._parentComponent;
 
     this._bindListeners()._bindCounterBtnListeners();
 
@@ -216,16 +209,6 @@ class ItemQuantityList extends BEMComponent<ItemQuantityListElement, ItemQuantit
       decrementButtons,
       incrementButtons,
     };
-  }
-
-  protected _initSubComponent() {
-    const outerDropdownElement = this.element.closest('.form-dropdown');
-
-    const _parentComponent = dropdowns.find(
-      (dropdown) => dropdown.element === outerDropdownElement
-    ) as ParentComponent;
-
-    return { _parentComponent };
   }
 
   protected _bindListeners() {
@@ -395,8 +378,10 @@ const itemQuantityLists = dropdownsWithItemQuantityList.map(
     )
 );
 
-export {
-  itemQuantityLists as default,
+export type {
   ItemQuantityListCustomEvents,
+  ItemQuantityList,
   ItemQuantityListElementWithComponent,
 };
+
+export { itemQuantityLists as default };

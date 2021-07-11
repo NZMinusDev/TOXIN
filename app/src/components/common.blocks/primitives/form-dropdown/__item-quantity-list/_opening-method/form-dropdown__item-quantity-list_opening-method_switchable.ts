@@ -9,20 +9,19 @@ class ItemQuantityListSwitchableOpeningMethodModifier extends ItemQuantityListOp
   constructor(itemQuantityList: ItemQuantityList) {
     super(itemQuantityList);
 
-    this._bindParentComponentListeners();
+    this._bindComponentListeners();
   }
 
-  protected _bindParentComponentListeners() {
-    // eslint-disable-next-line dot-notation
-    this.component['_parentComponent'].element.addEventListener(
+  protected _bindComponentListeners() {
+    this.component.element.addEventListener(
       'open',
-      this._parentComponentEventListenerObject.handleParentComponentOpen
+      this._componentEventListenerObject.handleComponentOpen
     );
 
     return this;
   }
-  protected _parentComponentEventListenerObject = {
-    handleParentComponentOpen: () => {
+  protected _componentEventListenerObject = {
+    handleComponentOpen: () => {
       this.component.toggle();
     },
   };

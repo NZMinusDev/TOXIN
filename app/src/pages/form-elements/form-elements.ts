@@ -3,15 +3,21 @@ import './form-elements.pug';
 import './form-elements.scss';
 
 // components
-import itemQuantityLists from '@common.blocks/primitives/form-dropdown/__item-quantity-list/form-dropdown__item-quantity-list';
+import {
+  DropdownElementWithComponent,
+  DropdownWithItemQuantityList,
+} from '@common.blocks/primitives/form-dropdown/form-dropdown';
 
-itemQuantityLists.forEach((itemQuantityList) => {
-  const shouldBeOpened =
-    itemQuantityList.element.closest('.form-elements-layout__dropdown-expanded-plural') ||
-    itemQuantityList.element.closest('.form-elements-layout__dropdown-expanded-apply') ||
-    itemQuantityList.element.closest('.form-elements-layout__dropdown-expanded-clear-apply');
+const components = {
+  dropdownExpandedPlural: (document.querySelector('.form-elements-layout__dropdown-expanded-plural')
+    ?.firstElementChild as DropdownElementWithComponent).component as DropdownWithItemQuantityList,
+  dropdownExpandedApply: (document.querySelector('.form-elements-layout__dropdown-expanded-apply')
+    ?.firstElementChild as DropdownElementWithComponent).component as DropdownWithItemQuantityList,
+  dropdownExpandedClearApply: (document.querySelector(
+    '.form-elements-layout__dropdown-expanded-clear-apply'
+  )?.firstElementChild as DropdownElementWithComponent).component as DropdownWithItemQuantityList,
+};
 
-  if (shouldBeOpened !== null) {
-    itemQuantityList.open();
-  }
-});
+components.dropdownExpandedPlural.getExpandableItemComponent().open();
+components.dropdownExpandedApply.getExpandableItemComponent().open();
+components.dropdownExpandedClearApply.getExpandableItemComponent().open();

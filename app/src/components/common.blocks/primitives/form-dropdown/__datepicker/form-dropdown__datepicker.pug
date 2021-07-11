@@ -11,13 +11,9 @@ include ~@common.blocks/primitives/datepicker-card/datepicker-card.pug
   Tip: mixin also uses 'and attributes'(&attributes)
 
 mixin form-dropdown__datepicker({ name = 'datepicker', range = false, selectedDates = '', placeholder = 'ДД.ММ.ГГГГ', altFields = undefined, isAltField = false, isFilter = false } = {})
-  input.form-dropdown__datepicker-input(
-    type="hidden",
-    name=name,
-    value=selectedDates
-  )
-  if !isAltField
-    .form-dropdown__datepicker.form-dropdown__datepicker_hidden
+  .form-dropdown__datepicker.form-dropdown__datepicker_hidden
+    input.form-dropdown__datepicker-input(type="hidden", name=name, value=selectedDates)
+    if !isAltField
       +datepicker-card({ selectedDates, range, altFields, isFilter })&attributes(attributes)
   -
     const dataPlaceholder = placeholder || ((range && !altFields) ? 'ДД ММ - ДД ММ' : 'ДД.ММ.ГГГГ');
