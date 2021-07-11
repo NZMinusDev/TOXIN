@@ -2,9 +2,9 @@ import { getURLValue, addURLValues } from '@utils/devTools/scripts/URLHelper';
 
 document.querySelectorAll('input').forEach((element) => {
   const inputElement = element as HTMLInputElement;
-  const hrefValue = getURLValue(inputElement.name) as string;
+  const hrefValue = getURLValue(inputElement.name);
 
-  if (hrefValue !== '') {
+  if (hrefValue !== undefined) {
     switch (inputElement.type) {
       case 'radio': {
         inputElement.checked = inputElement.value === hrefValue;

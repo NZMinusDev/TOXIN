@@ -222,7 +222,7 @@ class ItemQuantityList extends BEMComponent<ItemQuantityListElement, ItemQuantit
 
   protected _generateResultText() {
     const { groups } = this._datasetOptions.menu;
-    let result = this._datasetOptions.selection.placeholder;
+    let result = '';
 
     if (this._totalItems > 0) {
       this._groupsCounter.forEach((groupAmount, groupKey) => {
@@ -236,6 +236,8 @@ class ItemQuantityList extends BEMComponent<ItemQuantityListElement, ItemQuantit
           result += `${groupAmount} ${appendedText}`;
         }
       });
+    } else {
+      result = this._datasetOptions.selection.placeholder;
     }
 
     return result;

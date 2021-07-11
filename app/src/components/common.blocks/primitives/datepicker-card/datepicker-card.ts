@@ -94,7 +94,7 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
       prevHtml: `arrow_back`,
       nextHtml: `arrow_forward`,
       dateFormat:
-        !!this.element.dataset.range && this._staticDOM.$altFields !== undefined
+        Boolean(this.element.dataset.range) && this._staticDOM.$altFields === undefined
           ? 'dd M'
           : 'dd.mm.yyyy',
       minDate: new Date(),

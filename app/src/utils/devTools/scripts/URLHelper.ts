@@ -8,10 +8,12 @@ const addURLValues = (...added: { name: string; value: string }[]): void => {
   window.location.href = locationURL.toString();
 };
 
-const getURLValue = (name: string): string | null => {
+const getURLValue = (name: string): string | undefined => {
   const locationURL = new URL(window.location.href);
 
-  return locationURL.searchParams.get(name) || (locationURL.searchParams.has(name) ? '' : null);
+  return (
+    locationURL.searchParams.get(name) || (locationURL.searchParams.has(name) ? '' : undefined)
+  );
 };
 
 export { addURLValues, getURLValue };

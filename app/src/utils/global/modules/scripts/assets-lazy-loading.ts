@@ -15,7 +15,7 @@ const showVisible = () => {
   [...images].forEach((img) => {
     const realSrc = img.dataset.src;
 
-    if (realSrc === undefined) {
+    if (realSrc === undefined || realSrc === '') {
       return;
     }
 
@@ -30,7 +30,7 @@ const showVisible = () => {
   [...sources].forEach((source) => {
     const realSrcset = source.dataset.srcset;
 
-    if (realSrcset === undefined) {
+    if (realSrcset === undefined || realSrcset === '') {
       return;
     }
 
