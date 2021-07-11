@@ -42,7 +42,7 @@ class Dropdown<
 
     this._DOM = this._initDOM();
 
-    this._bindListeners();
+    this._bindExpandButtonListeners();
   }
 
   getExpandableItemComponent() {
@@ -61,13 +61,18 @@ class Dropdown<
     };
   }
 
-  protected _bindListeners() {
-    this._DOM.expandButton.addEventListener('click', this.onClick);
+  protected _bindExpandButtonListeners() {
+    this._DOM.expandButton.addEventListener(
+      'click',
+      this._expandButtonEventListenerObject.handleExpandButtonClick
+    );
 
     return this;
   }
-  protected onClick = (event: MouseEvent) => {
-    this._DOM.expandableItem.dispatchEvent(new CustomEvent('open', { bubbles: true }));
+  protected _expandButtonEventListenerObject = {
+    handleExpandButtonClick: (event: MouseEvent) => {
+      this._DOM.expandableItem.dispatchEvent(new CustomEvent('open', { bubbles: true }));
+    },
   };
 }
 
