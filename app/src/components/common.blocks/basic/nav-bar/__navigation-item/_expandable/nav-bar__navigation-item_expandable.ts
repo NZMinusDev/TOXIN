@@ -1,79 +1,125 @@
-const breakPointQuery = '(max-width: 992px)';
-let isCollapsible = window.matchMedia(breakPointQuery).matches;
+import { BEMModifier } from '@utils/devTools/scripts/ComponentCreationHelper';
 
-const expandableItemSelector = '.nav-bar__navigation-item_expandable';
-const expandCheckboxSelector = '.nav-bar__navigation-item-dropdown-checkbox';
-const listSelector = '.nav-bar__navigation-list';
+import navBarNavigationItems, { NavBarNavigationItem } from '../nav-bar__navigation-item';
 
-const dropdownItems = document.querySelectorAll(expandableItemSelector);
+type NavBarExpandableNavigationItemDOM = {
+  itemExpandCheckbox: HTMLInputElement;
+  childList: HTMLUListElement;
+  nestedLists: HTMLUListElement[];
+};
 
-const toggleListSize = (dropdownItem: HTMLElement) => {
-  const list = dropdownItem.querySelector(listSelector) as HTMLUListElement;
-  const nestedDropdownLists = list.querySelectorAll(listSelector);
-  let fullScrollHeight = list.scrollHeight;
+class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigationItem> {
+  protected _DOM: NavBarExpandableNavigationItemDOM;
 
-  nestedDropdownLists.forEach((nestedDropdownList) => {
-    fullScrollHeight += nestedDropdownList.scrollHeight;
-  });
+  protected _isMediaMatched: boolean;
 
-  if (list.style.maxHeight !== '') {
-    list.style.maxHeight = '';
-  } else {
-    list.style.maxHeight = `${fullScrollHeight}px`;
+  constructor(navBarNavigationItem: NavBarNavigationItem) {
+    super(navBarNavigationItem, 'iavBarExpandableNavigationItemModifier');
+
+    this._DOM = this._initDOM();
+
+    this._isMediaMatched = NavBarExpandableNavigationItemModifier._initMediaBreakPointFlag();
+
+    this._bindItemExpandCheckboxListeners()._bindWindowListeners();
   }
-};
 
-const resetListMaxHeight = () => {
-  dropdownItems.forEach((dropdownItem) => {
-    const lists = dropdownItem.querySelectorAll<HTMLUListElement>(listSelector);
+  protected _initDOM() {
+    const listSelector = '.nav-bar__navigation-list';
 
-    lists.forEach((list) => {
-      // eslint-disable-next-line no-param-reassign
-      list.style.maxHeight = '';
-    });
-  });
-};
+    const itemExpandCheckbox = this.component.element.querySelector(
+      '.nav-bar__navigation-item-dropdown-checkbox'
+    ) as NavBarExpandableNavigationItemDOM['itemExpandCheckbox'];
+    const childList = this.component.element.querySelector(
+      listSelector
+    ) as NavBarExpandableNavigationItemDOM['childList'];
+    const nestedLists = [
+      ...this.component.element.querySelectorAll(listSelector),
+    ] as NavBarExpandableNavigationItemDOM['nestedLists'];
 
-const uncheckExpandCheckboxes = () => {
-  dropdownItems.forEach((dropdownItem) => {
-    const checkboxes = dropdownItem.querySelectorAll<HTMLInputElement>(expandCheckboxSelector);
-
-    checkboxes.forEach((expandCheckbox) => {
-      // eslint-disable-next-line no-param-reassign
-      expandCheckbox.checked = false;
-    });
-  });
-};
-
-const windowOnResizeHandler = () => {
-  isCollapsible = window.matchMedia(breakPointQuery).matches;
-
-  if (!isCollapsible) {
-    resetListMaxHeight();
+    return { itemExpandCheckbox, childList, nestedLists };
   }
-};
 
-const windowOnClickHandler = (event: MouseEvent) => {
-  const target = event.target as HTMLElement;
-  const eventDropdownItem = target.closest(expandableItemSelector);
-
-  if (eventDropdownItem === null) {
-    uncheckExpandCheckboxes();
-    resetListMaxHeight();
+  protected static _initMediaBreakPointFlag() {
+    return window.matchMedia('(max-width: 992px)').matches;
   }
-};
 
-window.addEventListener('resize', windowOnResizeHandler);
-window.addEventListener('click', windowOnClickHandler);
-
-dropdownItems.forEach((dropdownItem) => {
-  const handleExpandCheckboxChange = (event: Event) => {
-    if (isCollapsible) {
-      toggleListSize(dropdownItem as HTMLElement);
+  protected _toggleChildListSize() {
+    if (this._DOM.childList.style.maxHeight !== '') {
+      this._collapseChildList();
+    } else {
+      this._openChildList();
     }
+
+    return this;
+  }
+
+  protected _openChildList() {
+    const childListScrollHeight = this._DOM.nestedLists.reduce(
+      (scrollHeight, nestedList) =>
+        scrollHeight + nestedList.scrollHeight - nestedList.clientHeight,
+      this._DOM.childList.scrollHeight
+    );
+
+    this._DOM.childList.style.maxHeight = `${childListScrollHeight}px`;
+  }
+  protected _uncheckItemExpandCheckbox() {
+    this._DOM.itemExpandCheckbox.checked = false;
+  }
+  protected _collapseChildList() {
+    this._DOM.childList.style.maxHeight = '';
+
+    return this;
+  }
+
+  protected _bindItemExpandCheckboxListeners() {
+    this._DOM.itemExpandCheckbox.addEventListener(
+      'change',
+      this._itemExpandCheckboxEventListenerObject.handleItemExpandCheckboxChange
+    );
+
+    return this;
+  }
+  protected _itemExpandCheckboxEventListenerObject = {
+    handleItemExpandCheckboxChange: (event: Event) => {
+      if (this._isMediaMatched) {
+        this._toggleChildListSize();
+      }
+    },
   };
 
-  const expandCheckbox = dropdownItem.querySelector(expandCheckboxSelector) as HTMLInputElement;
+  protected _bindWindowListeners() {
+    window.addEventListener('resize', this._windowEventListenerObject.handleWindowResize);
+    window.addEventListener('click', this._windowEventListenerObject.handleWindowClick);
 
-  expandCheckbox.addEventListener('change', handleExpandCheckboxChange);
-});
+    return this;
+  }
+  protected _windowEventListenerObject = {
+    handleWindowResize: () => {
+      this._isMediaMatched = NavBarExpandableNavigationItemModifier._initMediaBreakPointFlag();
+
+      if (!this._isMediaMatched) {
+        this._collapseChildList();
+      } else if (this._DOM.itemExpandCheckbox.checked) {
+        this._openChildList();
+      }
+    },
+    handleWindowClick: (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      const navBarExpandableNavigationItem = target.closest('.nav-bar__navigation-item_expandable');
+
+      if (navBarExpandableNavigationItem === null) {
+        this._uncheckItemExpandCheckbox();
+        this._collapseChildList();
+      }
+    },
+  };
+}
+
+const navBarExpandableNavigationItems = navBarNavigationItems.filter((navBarNavigationItem) =>
+  navBarNavigationItem.element.classList.contains('nav-bar__navigation-item_expandable')
+);
+
+const navBarExpandableNavigationItemModifiers = navBarExpandableNavigationItems.map(
+  (navBarExpandableNavigationItem) =>
+    new NavBarExpandableNavigationItemModifier(navBarExpandableNavigationItem)
+);

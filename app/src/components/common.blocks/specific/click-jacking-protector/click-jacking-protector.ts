@@ -1,7 +1,46 @@
-const clickJackingProtectorElement = document.querySelector(
-  '.click-jacking-protector'
-) as HTMLDivElement;
+import {
+  BEMComponent,
+  HTMLElementWithComponent,
+} from '@utils/devTools/scripts/ComponentCreationHelper';
 
-if (window.top.document.domain === document.domain) {
-  clickJackingProtectorElement.remove();
+type ClickJackingProtectorElement = HTMLDivElement;
+
+type ClickJackingProtectorCustomEvents = '';
+
+class ClickJackingProtector extends BEMComponent<
+  ClickJackingProtectorElement,
+  ClickJackingProtectorCustomEvents
+> {
+  constructor(clickJackingProtectorElement: ClickJackingProtectorElement) {
+    super(clickJackingProtectorElement);
+
+    this._initDisplay();
+  }
+
+  protected _initDisplay() {
+    if (window.top.document.domain === document.domain) {
+      this.element.remove();
+    }
+
+    return this;
+  }
 }
+
+type ClickJackingProtectorElementWithComponent = HTMLElementWithComponent<
+  ClickJackingProtectorElement,
+  ClickJackingProtectorCustomEvents,
+  ClickJackingProtector
+>;
+
+const clickJackingProtectors = Array.from(
+  document.querySelectorAll<ClickJackingProtectorElement>('.click-jacking-protector'),
+  (clickJackingProtectorElement) => new ClickJackingProtector(clickJackingProtectorElement)
+);
+
+export type {
+  ClickJackingProtectorCustomEvents,
+  ClickJackingProtector,
+  ClickJackingProtectorElementWithComponent,
+};
+
+export { clickJackingProtectors as default };

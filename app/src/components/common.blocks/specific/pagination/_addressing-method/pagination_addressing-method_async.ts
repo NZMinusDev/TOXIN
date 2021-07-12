@@ -1,303 +1,288 @@
-import paginations from '../pagination';
+import PaginationAddressingMethodModifier, { Pagination } from './coupling';
+import paginations, { PaginationElementWithComponent } from '../pagination';
 import '../__item/_active/pagination__item_active.scss';
 import '../__item/_previous/pagination__item_previous.scss';
 import '../__item/_next/pagination__item_next.scss';
 
-const createPaginationItem = (
-  innerText: string,
-  linkClickListener: (event: MouseEvent) => void,
-  listItemClasses: Array<string>,
-  attributes: { [attribute: string]: string } = {}
-): HTMLLIElement => {
-  const listItem = document.createElement('li');
-  listItem.textContent = innerText;
-  listItem.classList.add(...listItemClasses);
-  listItem.addEventListener('click', linkClickListener);
-
-  Object.entries(attributes).forEach(([qualifiedName, value]) => {
-    listItem[qualifiedName] = value;
-  });
-
-  return listItem;
+type PaginationAsyncAddressingMethodModifierOptions = {
+  page: number;
+  displayed: number;
+  total: number;
+  pages: number;
+  text: string;
+};
+type PaginationAsyncAddressingMethodModifierState = {
+  activePage: number;
 };
 
-const createPagination = (
-  paginationElement: HTMLElement,
-  activePage: number,
-  displayed: number,
-  total: number,
-  text: string
-  // eslint-disable-next-line sonarjs/cognitive-complexity
-) => {
-  const usedList = paginationElement.querySelector('.pagination__list') as HTMLElement;
-  const counterElement = paginationElement.querySelector(
-    '.pagination__counter'
-  ) as HTMLParagraphElement;
+type PaginationAsyncAddressingMethodModifierCustomEvents = 'change';
 
-  const pages = Math.ceil(total / displayed);
+class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethodModifier {
+  protected _options: PaginationAsyncAddressingMethodModifierOptions;
+  protected _state: PaginationAsyncAddressingMethodModifierState;
 
-  // - Determine how many pages to show after the current page index
-  let pageCutLow = activePage - 1;
+  constructor(pagination: Pagination) {
+    super(pagination);
 
-  // - Determine how many pages to show before the current page index
-  let pageCutHigh = activePage + 1;
+    this._options = this._initOptionsFromHTML();
+    this._state = this._initState();
 
-  if (activePage === 1) {
-    pageCutLow += 1;
-    pageCutHigh += 1;
+    this._renderPaginationItems();
   }
 
-  if (activePage >= pages) {
-    pageCutLow -= 1;
-    pageCutHigh = pages;
+  getActivePage() {
+    return this._state.activePage;
   }
 
-  const counterFrom = (activePage - 1) * displayed + 1;
-  const counterTo = activePage * displayed > total ? total : activePage * displayed;
+  protected _initOptionsFromHTML() {
+    const page = parseInt(this.component.element.dataset.page as string, 10);
+    const displayed = parseInt(this.component.element.dataset.displayed as string, 10);
+    const total = parseInt(this.component.element.dataset.total as string, 10);
+    const pages = Math.ceil(total / displayed);
+    const text = this.component.element.dataset.text as string;
 
-  const counterToDigits = `${counterTo}`.length;
-  const counterTotalDigits = `${total}`.length;
+    return { page, displayed, total, pages, text };
+  }
+  protected _initState() {
+    const activePage = this._options.page;
 
-  const counterTotalText =
-    counterTotalDigits > counterToDigits
-      ? `${Math.floor(total / 10 ** counterToDigits) * 10 ** counterToDigits}+ `
-      : `${total} `;
-  const counterText = `${counterFrom} - ${counterTo} из ${counterTotalText}${text}`;
-
-  const list = document.createElement('ul');
-  list.classList.add('pagination__list');
-
-  const createPaginationOnClickArgs = [
-    paginationElement,
-    activePage,
-    displayed,
-    total,
-    text,
-  ] as Parameters<typeof createPagination>;
-
-  // Show the Previous button only if you are on a page other than the first
-  if (activePage > 1) {
-    // eslint-disable-next-line no-use-before-define
-    showPreviousButton(list, activePage, createPaginationOnClickArgs);
+    return { activePage };
   }
 
-  // Show all the pagination elements if there are less than 6 pages total
-  if (pages < 6) {
-    // eslint-disable-next-line no-use-before-define
-    showAllPaginationElements(list, pages, activePage, createPaginationOnClickArgs);
-  }
+  protected _paginationItemEventListenerObject = {
+    handlePaginationItemClick: (event: MouseEvent) => {
+      this._state.activePage = event.currentTarget.pageNumber;
+      this._renderPaginationItems()._renderPaginationCounter();
+      this.component.element.dispatchEvent(new CustomEvent('change', { bubbles: true }));
+    },
+  };
 
-  // Use "..." to collapse pages outside of a certain range
-  else {
-    /*
-     * Show the very first page followed by a "..." at the beginning of the
-     * pagination section (after the Previous button)
-     */
-    if (activePage > 2) {
-      list.insertAdjacentElement(
-        'beforeend',
-        createPaginationItem(
-          '1',
-          () => createPagination(paginationElement, 1, displayed, total, text),
-          ['pagination__item'],
-          { title: 'на страницу 1' }
-        )
-      );
-      if (activePage > 3) {
-        // eslint-disable-next-line no-use-before-define
-        addSeparatorPaginationElement(list, 2, createPaginationOnClickArgs);
+  protected _renderPaginationItems() {
+    const newList = document.createDocumentFragment();
+
+    // Show the Previous button only if you are on a page other than the first
+    if (this._state.activePage > 1) {
+      this._insertPreviousButtonPaginationItem(newList);
+    }
+
+    // Show all the pagination elements if there are less than 6 pages total
+    if (this._options.pages < 6) {
+      this._insertAllPaginationItems(newList);
+    }
+
+    // Use "..." to collapse pages outside of a certain range
+    else {
+      /*
+       * Show the very first page followed by a "..." at the beginning of the
+       * pagination section (after the Previous button)
+       */
+      if (this._state.activePage > 2) {
+        this._insertTheFirstPagePaginationItem(newList);
+
+        if (this._state.activePage > 3) {
+          this._insertSeparatorPaginationItem(newList, 2);
+        }
+      }
+
+      /*
+       * Output the indexes for pages that fall inside the range of pageCutLow
+       * and pageCutHigh
+       */
+      this._insertPaginationItemsBeforeTheLastSeparator(newList);
+
+      /*
+       * Show the very last page preceded by a "..." at the end of the pagination
+       * section (before the Next button)
+       */
+      if (this._state.activePage < this._options.pages - 1) {
+        if (this._state.activePage < this._options.pages - 2) {
+          this._insertSeparatorPaginationItem(newList, this._options.pages - 1);
+        }
+
+        this._insertTheLastPagePaginationItem(newList);
       }
     }
 
-    /*
-     * Output the indexes for pages that fall inside the range of pageCutLow
-     * and pageCutHigh
-     */
-    // eslint-disable-next-line no-use-before-define
-    showPaginationElementsBeforeSeparator(
-      list,
-      pageCutLow,
-      pageCutHigh,
-      activePage,
-      createPaginationOnClickArgs
+    // Show the Next button only if you are on a page other than the last
+    if (this._state.activePage < this._options.pages) {
+      this._insertNextButtonPaginationItem(newList);
+    }
+
+    // eslint-disable-next-line dot-notation
+    this.component['_DOM'].list.innerHTML = '';
+    // eslint-disable-next-line dot-notation
+    this.component['_DOM'].list.append(newList);
+
+    return this;
+  }
+  protected static _createPaginationItem(
+    pageNumber: number,
+    innerText: string,
+    linkClickListener: (event: MouseEvent) => void,
+    classes: Array<string>,
+    attributes: { [attribute: string]: string } = {}
+  ) {
+    const item = document.createElement('li');
+    item.pageNumber = pageNumber;
+    item.textContent = innerText;
+    item.classList.add(...classes);
+    item.addEventListener('click', linkClickListener);
+
+    Object.entries(attributes).forEach(([qualifiedName, value]) => {
+      item[qualifiedName] = value;
+    });
+
+    return item;
+  }
+  protected _insertPreviousButtonPaginationItem(list: DocumentFragment) {
+    list.append(
+      PaginationAsyncAddressingMethodModifier._createPaginationItem(
+        this._state.activePage - 1,
+        'arrow_back',
+        this._paginationItemEventListenerObject.handlePaginationItemClick,
+        ['pagination__item', 'pagination__item_previous'],
+        { title: 'на предыдущую страницу' }
+      )
     );
 
-    /*
-     * Show the very last page preceded by a "..." at the end of the pagination
-     * section (before the Next button)
-     */
-    if (activePage < pages - 1) {
-      if (activePage < pages - 2) {
-        // eslint-disable-next-line no-use-before-define
-        addSeparatorPaginationElement(list, activePage + 2, createPaginationOnClickArgs);
-      }
+    return this;
+  }
+  protected _insertAllPaginationItems(list: DocumentFragment) {
+    // eslint-disable-next-line no-loops/no-loops
+    for (let p = 1; p <= this._options.pages; p += 1) {
+      const itemIsActiveClass = this._state.activePage === p ? 'pagination__item_active' : '';
+      const title = this._state.activePage === p ? 'текущая страница' : `на страницу ${p}`;
 
-      list.insertAdjacentElement(
-        'beforeend',
-        createPaginationItem(
-          `${pages}`,
-          () => createPagination(paginationElement, pages, displayed, total, text),
-          ['pagination__item'],
-          { title: `на страницу ${pages}` }
+      list.append(
+        PaginationAsyncAddressingMethodModifier._createPaginationItem(
+          p,
+          `${p}`,
+          this._paginationItemEventListenerObject.handlePaginationItemClick,
+          ['pagination__item', itemIsActiveClass].filter((element) => element !== ''),
+          { title }
         )
       );
     }
+
+    return this;
   }
+  protected _insertTheFirstPagePaginationItem(list: DocumentFragment) {
+    list.append(
+      PaginationAsyncAddressingMethodModifier._createPaginationItem(
+        1,
+        '1',
+        this._paginationItemEventListenerObject.handlePaginationItemClick,
+        ['pagination__item'],
+        { title: 'на страницу 1' }
+      )
+    );
 
-  // Show the Next button only if you are on a page other than the last
-  if (activePage < pages) {
-    // eslint-disable-next-line no-use-before-define
-    showNextButton(list, activePage, createPaginationOnClickArgs);
+    return this;
   }
+  protected _insertSeparatorPaginationItem(list: DocumentFragment, pageNumber: number) {
+    const title = `на страницу ${pageNumber}`;
 
-  // update pagination after item click
-  usedList.replaceWith(list);
-
-  // update counter
-  counterElement.textContent = counterText;
-
-  return list;
-};
-
-const showPreviousButton = (
-  list: HTMLUListElement,
-  activePage: number,
-  createPaginationOnClickArgs: Parameters<typeof createPagination>
-) => {
-  const currentCreatePaginationOnClickArgs = [
-    createPaginationOnClickArgs[0],
-    activePage - 1,
-    ...createPaginationOnClickArgs.slice(2),
-  ] as typeof createPaginationOnClickArgs;
-
-  list.insertAdjacentElement(
-    'beforeend',
-    createPaginationItem(
-      'arrow_back',
-      () => createPagination(...currentCreatePaginationOnClickArgs),
-      ['pagination__item', 'pagination__item_previous'],
-      { title: 'на предыдущую страницу' }
-    )
-  );
-};
-
-const showAllPaginationElements = (
-  list: HTMLUListElement,
-  pages: number,
-  activePage: number,
-  createPaginationOnClickArgs: Parameters<typeof createPagination>
-) => {
-  // eslint-disable-next-line no-loops/no-loops
-  for (let p = 1; p <= pages; p += 1) {
-    const itemIsActiveClass = activePage === p ? 'pagination__item_active' : '';
-    const title = activePage === p ? 'текущая страница' : `на страницу ${p}`;
-
-    const currentCreatePaginationOnClickArgs = [
-      createPaginationOnClickArgs[0],
-      p,
-      ...createPaginationOnClickArgs.slice(2),
-    ] as typeof createPaginationOnClickArgs;
-
-    list.insertAdjacentElement(
-      'beforeend',
-      createPaginationItem(
-        `${p}`,
-        () => createPagination(...currentCreatePaginationOnClickArgs),
-        ['pagination__item', itemIsActiveClass].filter((element) => element !== ''),
+    list.append(
+      PaginationAsyncAddressingMethodModifier._createPaginationItem(
+        pageNumber,
+        '...',
+        this._paginationItemEventListenerObject.handlePaginationItemClick,
+        ['pagination__item', 'pagination__item_out-of-range'],
         { title }
       )
     );
+
+    return this;
   }
-};
+  protected _insertPaginationItemsBeforeTheLastSeparator(list: DocumentFragment) {
+    // - Determine how many pages to show after the current page index
+    let pageCutLow = this._state.activePage - 1;
 
-const addSeparatorPaginationElement = (
-  list: HTMLUListElement,
-  activePage: number,
-  createPaginationOnClickArgs: Parameters<typeof createPagination>
-) => {
-  const currentCreatePaginationOnClickArgs = [
-    createPaginationOnClickArgs[0],
-    activePage,
-    ...createPaginationOnClickArgs.slice(2),
-  ] as typeof createPaginationOnClickArgs;
+    // - Determine how many pages to show before the current page index
+    let pageCutHigh = this._state.activePage + 1;
 
-  const title = `на страницу ${activePage}`;
+    if (this._state.activePage === 1) {
+      pageCutLow += 1;
+      pageCutHigh += 1;
+    }
 
-  list.insertAdjacentElement(
-    'beforeend',
-    createPaginationItem(
-      '...',
-      () => createPagination(...currentCreatePaginationOnClickArgs),
-      ['pagination__item', 'pagination__item_out-of-range'],
-      { title }
-    )
-  );
-};
+    if (this._state.activePage >= this._options.pages) {
+      pageCutLow -= 1;
+      pageCutHigh = this._options.pages;
+    }
 
-const showPaginationElementsBeforeSeparator = (
-  list: HTMLUListElement,
-  pageCutLow: number,
-  pageCutHigh: number,
-  activePage: number,
-  createPaginationOnClickArgs: Parameters<typeof createPagination>
-) => {
-  // eslint-disable-next-line no-loops/no-loops
-  for (let p = pageCutLow; p <= pageCutHigh; p += 1) {
-    const itemIsActiveClass = activePage === p ? 'pagination__item_active' : '';
-    const title = activePage === p ? 'текущая страница' : `на страницу ${p}`;
+    // eslint-disable-next-line no-loops/no-loops
+    for (let p = pageCutLow; p <= pageCutHigh; p += 1) {
+      const itemIsActiveClass = this._state.activePage === p ? 'pagination__item_active' : '';
+      const title = this._state.activePage === p ? 'текущая страница' : `на страницу ${p}`;
 
-    const currentCreatePaginationOnClickArgs = [
-      createPaginationOnClickArgs[0],
-      p,
-      ...createPaginationOnClickArgs.slice(2),
-    ] as typeof createPaginationOnClickArgs;
+      list.append(
+        PaginationAsyncAddressingMethodModifier._createPaginationItem(
+          p,
+          `${p}`,
+          this._paginationItemEventListenerObject.handlePaginationItemClick,
+          ['pagination__item', itemIsActiveClass].filter((element) => element !== ''),
+          { title }
+        )
+      );
+    }
 
-    list.insertAdjacentElement(
-      'beforeend',
-      createPaginationItem(
-        `${p}`,
-        () => createPagination(...currentCreatePaginationOnClickArgs),
-        ['pagination__item', itemIsActiveClass].filter((element) => element !== ''),
-        { title }
+    return this;
+  }
+  protected _insertTheLastPagePaginationItem(list: DocumentFragment) {
+    list.append(
+      PaginationAsyncAddressingMethodModifier._createPaginationItem(
+        this._options.pages,
+        `${this._options.pages}`,
+        this._paginationItemEventListenerObject.handlePaginationItemClick,
+        ['pagination__item'],
+        { title: `на страницу ${this._options.pages}` }
       )
     );
+
+    return this;
   }
-};
-
-const showNextButton = (
-  list: HTMLUListElement,
-  activePage: number,
-  createPaginationOnClickArgs: Parameters<typeof createPagination>
-) => {
-  const currentCreatePaginationOnClickArgs = [
-    createPaginationOnClickArgs[0],
-    activePage + 1,
-    ...createPaginationOnClickArgs.slice(2),
-  ] as typeof createPaginationOnClickArgs;
-
-  list.insertAdjacentElement(
-    'beforeend',
-    createPaginationItem(
-      'arrow_forward',
-      () => createPagination(...currentCreatePaginationOnClickArgs),
-      ['pagination__item', 'pagination__item_previous'],
-      { title: 'на следующую страницу' }
-    )
-  );
-};
-
-const asyncPaginations = paginations.filter((pagination) => {
-  if (pagination.element.classList.contains('pagination_addressing-method_async')) {
-    createPagination(
-      pagination.element,
-      parseInt(pagination.element.dataset.page as string, 10),
-      parseInt(pagination.element.dataset.displayed as string, 10),
-      parseInt(pagination.element.dataset.total as string, 10),
-      pagination.element.dataset.text as string
+  protected _insertNextButtonPaginationItem(list: DocumentFragment) {
+    list.append(
+      PaginationAsyncAddressingMethodModifier._createPaginationItem(
+        this._state.activePage + 1,
+        'arrow_forward',
+        this._paginationItemEventListenerObject.handlePaginationItemClick,
+        ['pagination__item', 'pagination__item_previous'],
+        { title: 'на следующую страницу' }
+      )
     );
 
-    return true;
+    return this;
   }
 
-  return false;
-});
+  protected _renderPaginationCounter() {
+    const counterFrom = (this._state.activePage - 1) * this._options.displayed + 1;
+    const counterTo =
+      this._state.activePage * this._options.displayed > this._options.total
+        ? this._options.total
+        : this._state.activePage * this._options.displayed;
+
+    const counterToDigits = `${counterTo}`.length;
+    const counterTotalDigits = `${this._options.total}`.length;
+
+    const counterTotalText =
+      counterTotalDigits > counterToDigits
+        ? `${Math.floor(this._options.total / 10 ** counterToDigits) * 10 ** counterToDigits}+ `
+        : `${this._options.total} `;
+    const counterText = `${counterFrom} - ${counterTo} из ${counterTotalText}${this._options.text}`;
+
+    // eslint-disable-next-line dot-notation
+    this.component['_DOM'].counter.textContent = counterText;
+
+    return this;
+  }
+}
+
+const paginationAsyncAddressingMethodModifiers = paginations
+  .filter((pagination) =>
+    pagination.element.classList.contains('pagination_addressing-method_async')
+  )
+  .map((pagination) => new PaginationAsyncAddressingMethodModifier(pagination));
+
+export { paginationAsyncAddressingMethodModifiers as default };

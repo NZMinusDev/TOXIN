@@ -1,4 +1,7 @@
-import { BEMComponent } from '@utils/devTools/scripts/ComponentCreationHelper';
+import {
+  BEMComponent,
+  HTMLElementWithComponent,
+} from '@utils/devTools/scripts/ComponentCreationHelper';
 
 type PaginationElement = HTMLElement;
 
@@ -26,9 +29,17 @@ class Pagination extends BEMComponent<PaginationElement, PaginationCustomEvents>
   }
 }
 
+type PaginationElementWithComponent = HTMLElementWithComponent<
+  PaginationElement,
+  PaginationCustomEvents,
+  Pagination
+>;
+
 const paginations = Array.from(
   document.querySelectorAll('.pagination') as NodeListOf<PaginationElement>,
   (paginationElement) => new Pagination(paginationElement)
 );
 
-export { paginations as default, PaginationCustomEvents };
+export type { PaginationCustomEvents, Pagination, PaginationElementWithComponent };
+
+export { paginations as default };
