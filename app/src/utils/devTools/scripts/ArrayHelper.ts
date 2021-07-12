@@ -27,5 +27,4 @@ const createFilledArray = <TItem>(
   callbackFn: (value: TItem, index: number) => TItem
 ) => Array.from(Array(arrayLength), callbackFn);
 
-// eslint-disable-next-line import/prefer-default-export
 export { fixLength, createFilledArray };

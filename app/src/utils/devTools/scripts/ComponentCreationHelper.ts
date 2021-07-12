@@ -346,16 +346,16 @@ type HTMLElementWithComponent<
  */
 abstract class BEMComponent<
   THTMLElement extends HTMLElement,
-  TElementCustomEvents extends string = ''
+  TComponentCustomEvents extends string = ''
 > {
-  readonly element: HTMLElementWithComponent<THTMLElement, TElementCustomEvents, this>;
+  readonly element: HTMLElementWithComponent<THTMLElement, TComponentCustomEvents, this>;
 
   constructor(element: THTMLElement) {
-    this.element = element as HTMLElementWithComponent<THTMLElement, TElementCustomEvents, this>;
+    this.element = element as HTMLElementWithComponent<THTMLElement, TComponentCustomEvents, this>;
     this.element.component = this;
   }
 
-  addEventListener<K extends keyof HTMLElementEventMap & TElementCustomEvents>(
+  addEventListener<K extends keyof HTMLElementEventMap & TComponentCustomEvents>(
     type: K,
     listener: EventListenerOrEventListenerObject,
     options?: boolean | AddEventListenerOptions
