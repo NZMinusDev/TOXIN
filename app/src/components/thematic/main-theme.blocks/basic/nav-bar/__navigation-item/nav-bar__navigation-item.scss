@@ -3,7 +3,10 @@
 
   *:hover,
   *:hover:after,
-  *:hover:before {
+  *:hover:before,
+  *:focus-within,
+  *:focus-within:after,
+  *:focus-within:before {
     color: rgba(var(--color__dark-shade), 0.75);
   }
 }
