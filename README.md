@@ -65,9 +65,11 @@ git subtree push --prefix app/dist origin gh-pages
 |   tsconfig.json
 │
 ├───.vscode
-|   ├───@media-snippets.code-snippets
+|   ├───@media-snippets.code-snippets // css snippets
+│   ├───extensions.json // recommended extensions
+│   ├───script-snippets.code-snippets
 │   ├───settings.json // settings for vscode to ensure compatibility on different machines
-|   └───template-snippetts.code-snippets
+|   └───template-snippets.code-snippets
 │
 ├───app
 │   ├───cache // folder for cache folders
@@ -194,7 +196,7 @@ the goal is to achieve liquidness, see the formula of fluid font: ./app/src/util
 7. Custom Tools:
    1. [Basic layouts](./app/src/layouts/);
    2. pug, scss, ts [shortcuts](./app/src/utils/devTools/);
-   3. [pug](<(./.vscode/template-snippetts.code-snippets)>) and [scss](<(./.vscode/@media-snippets.code-snippets)>) snippets;
+   3. [pug](<(./.vscode/template-snippets.code-snippets)>) and [scss](<(./.vscode/@media-snippets.code-snippets)>) snippets, [ts](<(./.vscode/script-snippets.code-snippets)>);
    4. [placeholder](./app/src/assets/pictures/images/placeholders/lazy-loading-placeholder.svg) for unloaded img (img [would be loaded](./app/src/utils/global/modules/scripts/assets-lazy-loading.ts) by user's scroll);
    5. [arrow-to-top](./app/src/components/common.blocks/specific/arrow-to-top/) component;
    6. [click-jacking-protector](./app/src/components/common.blocks/specific/click-jacking-protector/) for each page(you can configure it in [template](./app/src/layouts/basic/main-layout/main-layout.pug));
