@@ -194,8 +194,8 @@ class FormDropdownItemQuantityList extends BEMComponent<
       },
     });
 
-    // disable toggle menu
-    $(this.element).off('click');
+    // disable menu toggling by lib
+    this._DOM.$self.off('click');
 
     return this;
   }
