@@ -16,16 +16,18 @@ function handleEvent(event: Event) {
   return this;
 }
 
-interface CustomEventListener {
-  (...args: any): void;
+interface ListenerOfIsolatedEvent {
+  (...args: unknown[]): void;
 }
 
-interface CustomEventListenerObject {
-  handleEvent(...args: any): void;
-  [key: string]: any;
+interface ListenerObjectOfIsolatedEvent {
+  handleEvent(...args: unknown[]): void;
+  [key: string]: unknown;
 }
 
-type handler = CustomEventListener | CustomEventListenerObject;
+type ListenerOfIsolatedEventOrListenerObjectOfIsolatedEvent =
+  | ListenerOfIsolatedEvent
+  | ListenerObjectOfIsolatedEvent;
 
 /**
  * Add events processing inside class without inheritances and make child's handlers inside one class
@@ -60,11 +62,11 @@ type handler = CustomEventListener | CustomEventListenerObject;
  */
 class EventManagerMixin<TEvents extends string> {
   protected _eventHandlers: {
-    [key: string]: handler[];
+    [key: string]: ListenerOfIsolatedEventOrListenerObjectOfIsolatedEvent[];
   } = {};
 
   // Subscribe to the event
-  on(eventName: TEvents, eventHandler: handler) {
+  on(eventName: TEvents, eventHandler: ListenerOfIsolatedEventOrListenerObjectOfIsolatedEvent) {
     if (this._eventHandlers[eventName] === undefined) {
       this._eventHandlers[eventName] = [];
     }
@@ -333,11 +335,23 @@ interface MVPModel<State> {
   whenStateIsChanged(callback: (state: Required<State>) => void): this;
 }
 
+interface CustomEventListener<TEventDetail extends Record<string, unknown>> extends EventListener {
+  (event: CustomEvent<TEventDetail>): void;
+}
+interface CustomEventListenerObject<TEventDetail extends Record<string, unknown>>
+  extends EventListenerObject {
+  handleEvent(event: CustomEvent<TEventDetail>): void;
+  [key: string]: unknown;
+}
+type CustomEventListenerOrCustomEventListenerObject<TEventDetail extends Record<string, unknown>> =
+  | CustomEventListener<TEventDetail>
+  | CustomEventListenerObject<TEventDetail>;
+
 type HTMLElementWithComponent<
   THTMLElement extends HTMLElement,
-  TElementCustomEvents extends string,
+  TCustomEvents extends Record<string, Record<string, unknown>>,
   // eslint-disable-next-line no-use-before-define
-  TBEMComponent extends BEMComponent<THTMLElement, TElementCustomEvents>
+  TBEMComponent extends BEMComponent<THTMLElement, TCustomEvents>
 > = THTMLElement & { component: TBEMComponent };
 
 /**
@@ -346,28 +360,30 @@ type HTMLElementWithComponent<
  */
 abstract class BEMComponent<
   THTMLElement extends HTMLElement,
-  TComponentCustomEvents extends string = ''
+  TCustomEvents extends Record<string, Record<string, unknown>>
 > {
-  readonly element: HTMLElementWithComponent<THTMLElement, TComponentCustomEvents, this>;
+  readonly element: HTMLElementWithComponent<THTMLElement, TCustomEvents, this>;
 
   constructor(element: THTMLElement) {
-    this.element = element as HTMLElementWithComponent<THTMLElement, TComponentCustomEvents, this>;
+    this.element = element as HTMLElementWithComponent<THTMLElement, TCustomEvents, this>;
     this.element.component = this;
   }
 
-  addEventListener<TEventType extends keyof HTMLElementEventMap | TComponentCustomEvents | string>(
-    type: TEventType,
-    listener: EventListenerOrEventListenerObject,
+  addCustomEventListener<TCustomEventType extends keyof TCustomEvents>(
+    type: TCustomEventType,
+    listener: CustomEventListenerOrCustomEventListenerObject<TCustomEvents[TCustomEventType]>,
     options?: boolean | AddEventListenerOptions
   ) {
-    this.element.addEventListener(type, listener, options);
+    this.element.addEventListener(type as string, listener, options);
   }
 }
 
 /**
  * BEM modifier class
  */
-abstract class BEMModifier<TBEMComponent extends BEMComponent<HTMLElement>> {
+abstract class BEMModifier<
+  TBEMComponent extends BEMComponent<HTMLElement, Record<string, Record<string, unknown>>>
+> {
   protected component: TBEMComponent;
 
   constructor(component: TBEMComponent, modifierName: string) {
@@ -380,7 +396,9 @@ abstract class BEMModifier<TBEMComponent extends BEMComponent<HTMLElement>> {
 /**
  *  Switchable BEM modifier class
  */
-abstract class CancelableBEMModifier<TBEMComponent extends BEMComponent<HTMLElement>> {
+abstract class CancelableBEMModifier<
+  TBEMComponent extends BEMComponent<HTMLElement, Record<string, Record<string, unknown>>>
+> {
   protected component: TBEMComponent;
 
   constructor(component: TBEMComponent, modifierName: string) {
@@ -417,7 +435,7 @@ export {
   handleEvent,
   CustomEventListener,
   CustomEventListenerObject,
-  handler,
+  ListenerOfIsolatedEventOrListenerObjectOfIsolatedEvent,
   EventManagerMixin,
   applyMixins,
   MVPView,

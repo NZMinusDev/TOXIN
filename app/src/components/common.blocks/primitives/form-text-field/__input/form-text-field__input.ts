@@ -9,7 +9,8 @@ type FormTextFieldInputElement = HTMLInputElement;
 
 type FormTextFieldInputHTMLOptions = { placeholder: string };
 
-type FormTextFieldInputCustomEvents = '';
+// eslint-disable-next-line @typescript-eslint/ban-types
+type FormTextFieldInputCustomEvents = {};
 
 class FormTextFieldInput extends BEMComponent<
   FormTextFieldInputElement,

@@ -21,20 +21,21 @@ type FormDropdownDOM = {
   expandableItem: ExpandableItemElementWithComponent;
 };
 
-type FormDropdownCustomEvents = 'open';
-type FormDropdownWithItemQuantityListCustomEvents =
-  | FormDropdownCustomEvents
-  | FormDropdownItemQuantityListCustomEvents;
-type FormDropdownWithDatepickerCustomEvents =
-  | FormDropdownCustomEvents
-  | FormDropdownDatepickerCustomEvents;
+// eslint-disable-next-line @typescript-eslint/ban-types
+type FormDropdownCustomEvents = {};
+// eslint-disable-next-line @typescript-eslint/ban-types
+type ExpandableItemCustomEvents = { open: {} };
+type FormDropdownWithItemQuantityListCustomEvents = ExpandableItemCustomEvents &
+  FormDropdownItemQuantityListCustomEvents;
+type FormDropdownWithDatepickerCustomEvents = ExpandableItemCustomEvents &
+  FormDropdownDatepickerCustomEvents;
 
 class FormDropdown<
   TExpandableItemElementWithComponent extends ExpandableItemElementWithComponent,
   TCustomEvents extends
     | FormDropdownWithItemQuantityListCustomEvents
     | FormDropdownWithDatepickerCustomEvents
-> extends BEMComponent<FormDropdownElement, FormDropdownCustomEvents | TCustomEvents> {
+> extends BEMComponent<FormDropdownElement, TCustomEvents> {
   protected readonly _DOM: Readonly<FormDropdownDOM>;
 
   constructor(formDropdownElement: FormDropdownElement) {
@@ -70,7 +71,7 @@ class FormDropdown<
     return this;
   }
   protected _expandButtonEventListenerObject = {
-    handleExpandButtonClick: (event: MouseEvent) => {
+    handleExpandButtonClick: () => {
       this._DOM.expandableItem.dispatchEvent(new CustomEvent('open', { bubbles: true }));
     },
   };
@@ -107,6 +108,7 @@ const formDropdowns = Array.from(
 export type {
   FormDropdownWithItemQuantityListCustomEvents,
   FormDropdownWithDatepickerCustomEvents,
+  ExpandableItemCustomEvents,
   FormDropdownWithItemQuantityList,
   FormDropdownWithDatepicker,
   FormDropdownWithItemQuantityListElementWithComponent,

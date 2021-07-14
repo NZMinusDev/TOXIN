@@ -9,7 +9,7 @@ import type {
 } from '@common.blocks/primitives/datepicker-card/datepicker-card';
 import '@common.blocks/primitives/datepicker-card/datepicker-card';
 
-import formDropdowns from '../form-dropdown';
+import formDropdowns, { ExpandableItemCustomEvents } from '../form-dropdown';
 
 type FormDropdownDatepickerElement = HTMLDivElement;
 
@@ -29,7 +29,7 @@ type FormDropdownDatepickerState = {
 
 type FormDropdownDatepickerHTMLOptions = { placeholder: string };
 
-type FormDropdownDatepickerCustomEvents = DatepickerCardCustomEvents;
+type FormDropdownDatepickerCustomEvents = DatepickerCardCustomEvents & ExpandableItemCustomEvents;
 
 class FormDropdownDatepicker extends BEMComponent<
   FormDropdownDatepickerElement,

@@ -19,7 +19,8 @@ type PaginationAsyncAddressingMethodModifierState = {
   activePage: number;
 };
 
-type PaginationAsyncAddressingMethodModifierCustomEvents = 'change';
+// eslint-disable-next-line @typescript-eslint/ban-types
+type PaginationAsyncAddressingMethodModifierCustomEvents = { change: {} };
 
 class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethodModifier {
   protected readonly _options: PaginationAsyncAddressingMethodModifierHTMLOptions;
@@ -291,7 +292,6 @@ const paginationAsyncAddressingMethodModifiers = paginations
   )
   .map((pagination) => new PaginationAsyncAddressingMethodModifier(pagination));
 
-export {
-  paginationAsyncAddressingMethodModifiers as default,
-  PaginationAsyncAddressingMethodModifierCustomEvents,
-};
+export type { PaginationAsyncAddressingMethodModifierCustomEvents };
+
+export { paginationAsyncAddressingMethodModifiers as default };

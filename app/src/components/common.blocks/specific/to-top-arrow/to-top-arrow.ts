@@ -5,7 +5,8 @@ import {
 
 type ToTopArrowElement = HTMLDivElement;
 
-type ToTopArrowCustomEvents = '';
+// eslint-disable-next-line @typescript-eslint/ban-types
+type ToTopArrowCustomEvents = {};
 
 class ToTopArrow extends BEMComponent<ToTopArrowElement, ToTopArrowCustomEvents> {
   constructor(toTopArrowElement: ToTopArrowElement) {

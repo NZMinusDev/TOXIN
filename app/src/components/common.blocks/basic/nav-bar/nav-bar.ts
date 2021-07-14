@@ -5,7 +5,8 @@ import {
 
 type NavBarElement = HTMLElement;
 
-type NavBarCustomEvents = '';
+// eslint-disable-next-line @typescript-eslint/ban-types
+type NavBarCustomEvents = {};
 
 class NavBar extends BEMComponent<NavBarElement, NavBarCustomEvents> {
   // eslint-disable-next-line no-useless-constructor

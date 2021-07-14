@@ -7,7 +7,8 @@ import navBars from '../nav-bar';
 
 type NavBarNavigationItemElement = HTMLLIElement;
 
-type NavBarNavigationItemCustomEvents = '';
+// eslint-disable-next-line @typescript-eslint/ban-types
+type NavBarNavigationItemCustomEvents = {};
 
 class NavBarNavigationItem extends BEMComponent<
   NavBarNavigationItemElement,

@@ -5,7 +5,7 @@ import {
 import { has } from '@utils/devTools/scripts/DOMHelper';
 import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
 
-import formDropdowns from '../form-dropdown';
+import formDropdowns, { ExpandableItemCustomEvents } from '../form-dropdown';
 
 type FormDropdownItemQuantityListElement = HTMLDivElement;
 
@@ -42,7 +42,14 @@ type FormDropdownItemQuantityListState = {
   groupsCounter: Map<string, number>;
 };
 
-type FormDropdownItemQuantityListCustomEvents = 'select' | 'close' | 'change';
+type FormDropdownItemQuantityListCustomEvents = {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  select: {};
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  close: {};
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  change: {};
+} & ExpandableItemCustomEvents;
 
 class FormDropdownItemQuantityList extends BEMComponent<
   FormDropdownItemQuantityListElement,
@@ -327,12 +334,7 @@ class FormDropdownItemQuantityList extends BEMComponent<
     this._DOM.listInput.value = accumulator;
 
     this._DOM.listInput.dispatchEvent(new Event('change'));
-    this.element.dispatchEvent(
-      new CustomEvent('change', {
-        bubbles: true,
-        detail: { value: this._DOM.listInput.value },
-      })
-    );
+    this.element.dispatchEvent(new CustomEvent('change', { bubbles: true }));
 
     return this;
   }

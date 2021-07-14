@@ -31,7 +31,12 @@ type DatepickerCardState = {
   formattedDates: string;
 };
 
-type DatepickerCardCustomEvents = 'select' | 'change';
+type DatepickerCardCustomEvents = {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  select: {};
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  change: {};
+};
 
 class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardCustomEvents> {
   protected readonly _DOM: Readonly<DatepickerCardDOM>;

@@ -17,7 +17,8 @@ type FormRangeSliderDOM = {
   inputTo: HTMLInputElement;
 };
 
-type FormRangeSliderCustomEvents = 'change';
+// eslint-disable-next-line @typescript-eslint/ban-types
+type FormRangeSliderCustomEvents = { change: {} };
 
 class FormRangeSlider extends BEMComponent<FormRangeSliderElement, FormRangeSliderCustomEvents> {
   protected readonly _DOM: Readonly<FormRangeSliderDOM>;
@@ -79,11 +80,13 @@ class FormRangeSlider extends BEMComponent<FormRangeSliderElement, FormRangeSlid
       switch (handle) {
         case 0: {
           this._DOM.inputFrom.dispatchEvent(new Event('change'));
+          this.element.dispatchEvent(new CustomEvent('change', { bubbles: true }));
 
           break;
         }
         case 1: {
           this._DOM.inputTo.dispatchEvent(new Event('change'));
+          this.element.dispatchEvent(new CustomEvent('change', { bubbles: true }));
 
           break;
         }

@@ -2,6 +2,7 @@ import {
   BEMComponent,
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/ComponentCreationHelper';
+import { PaginationAsyncAddressingMethodModifierCustomEvents } from './_addressing-method/pagination_addressing-method_async';
 
 type PaginationElement = HTMLElement;
 
@@ -10,7 +11,10 @@ type PaginationDOM = {
   counter: HTMLParagraphElement;
 };
 
-type PaginationCustomEvents = '';
+// eslint-disable-next-line @typescript-eslint/ban-types
+type PaginationCustomEvents = {};
+type PaginationWithAsyncAddressingMethodModifierCustomEvents = PaginationCustomEvents &
+  PaginationAsyncAddressingMethodModifierCustomEvents;
 
 class Pagination extends BEMComponent<PaginationElement, PaginationCustomEvents> {
   protected readonly _DOM: Readonly<PaginationDOM>;
@@ -34,12 +38,23 @@ type PaginationElementWithComponent = HTMLElementWithComponent<
   PaginationCustomEvents,
   Pagination
 >;
+type PaginationWithAsyncAddressingMethodModifierElementWithComponent = HTMLElementWithComponent<
+  PaginationElement,
+  PaginationWithAsyncAddressingMethodModifierCustomEvents,
+  Pagination
+>;
 
 const paginations = Array.from(
   document.querySelectorAll('.pagination') as NodeListOf<PaginationElement>,
   (paginationElement) => new Pagination(paginationElement)
 );
 
-export type { PaginationCustomEvents, Pagination, PaginationElementWithComponent };
+export type {
+  PaginationCustomEvents,
+  PaginationWithAsyncAddressingMethodModifierCustomEvents,
+  Pagination,
+  PaginationElementWithComponent,
+  PaginationWithAsyncAddressingMethodModifierElementWithComponent,
+};
 
 export { paginations as default };

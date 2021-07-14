@@ -27,7 +27,10 @@ class FormDropdownItemQuantityListFoldedOpeningMethodModifier extends FormDropdo
   };
 
   protected _bindComponentListeners() {
-    this.component.addEventListener('open', this._componentEventListenerObject.handleComponentOpen);
+    this.component.addCustomEventListener(
+      'open',
+      this._componentEventListenerObject.handleComponentOpen
+    );
 
     return this;
   }

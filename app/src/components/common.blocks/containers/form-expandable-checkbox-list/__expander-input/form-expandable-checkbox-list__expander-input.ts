@@ -11,7 +11,8 @@ type FormExpandableCheckboxListExpanderInputDOM = {
   expandableList: HTMLDivElement;
 };
 
-type FormExpandableCheckboxListExpanderInputCustomEvents = '';
+// eslint-disable-next-line @typescript-eslint/ban-types
+type FormExpandableCheckboxListExpanderInputCustomEvents = {};
 
 class FormExpandableCheckboxListExpanderInput extends BEMComponent<
   FormExpandableCheckboxListExpanderInputElement,

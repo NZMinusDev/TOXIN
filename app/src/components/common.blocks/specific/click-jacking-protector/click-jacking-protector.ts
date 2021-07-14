@@ -5,7 +5,8 @@ import {
 
 type ClickJackingProtectorElement = HTMLDivElement;
 
-type ClickJackingProtectorCustomEvents = '';
+// eslint-disable-next-line @typescript-eslint/ban-types
+type ClickJackingProtectorCustomEvents = {};
 
 class ClickJackingProtector extends BEMComponent<
   ClickJackingProtectorElement,

@@ -47,9 +47,8 @@ type RoomDefinitionCardContext = {
   currency: string;
 };
 
-type RoomDefinitionCardCustomEvents =
-  | FormDropdownWithItemQuantityListCustomEvents
-  | FormDropdownWithDatepickerCustomEvents;
+type RoomDefinitionCardCustomEvents = FormDropdownWithItemQuantityListCustomEvents &
+  FormDropdownWithDatepickerCustomEvents;
 
 class RoomDefinitionCard extends BEMComponent<
   RoomDefinitionCardElement,
@@ -157,7 +156,7 @@ class RoomDefinitionCard extends BEMComponent<
   }
 
   protected _bindArrivalDateDropdownListeners() {
-    this._subComponents.arrivalDateDropdown.addEventListener(
+    this._subComponents.arrivalDateDropdown.addCustomEventListener(
       'change',
       this._arrivalDateDropdownEventListenerObject.handleArrivalDateDropdownChange
     );
