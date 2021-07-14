@@ -261,7 +261,7 @@ const testInstance = <
       const mockReturned = methodOfInstanceMock.apply(instance, passedArgs);
 
       expectPassedArgsAreImmutable(passedArgs, copyOfPassedArgs);
-      if (methodOfInstanceToRun.returns) {
+      if (methodOfInstanceToRun.returns !== undefined) {
         expectReturnedAreImmutable(mockReturned, methodOfInstanceToRun.returns, instance);
       }
 

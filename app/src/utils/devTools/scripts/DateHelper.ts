@@ -30,24 +30,24 @@ const getDatePeriod = (date1: Date, date2: Date) => date2.getTime() - date1.getT
 const formatToPeriodDateTime = (
   date1: string,
   date2: string,
-  { withDays, withHours, withMinutes, withSeconds } = {
-    withDays: true,
-    withHours: false,
-    withMinutes: false,
-    withSeconds: false,
+  { isWithDays, isWithHours, isWithMinutes, isWithSeconds } = {
+    isWithDays: true,
+    isWithHours: false,
+    isWithMinutes: false,
+    isWithSeconds: false,
   }
 ) => {
   const theLastDate = Math.max(Date.parse(date2), Date.parse(date1));
   const theFirstDate = Math.min(Date.parse(date2), Date.parse(date1));
   const datePeriod = theLastDate - theFirstDate;
 
-  const isWithTime = withHours || withMinutes || withSeconds;
-  const isWithMinutesOrSeconds = withMinutes || withSeconds;
+  const isWithTime = isWithHours || isWithMinutes || isWithSeconds;
+  const isWithMinutesOrSeconds = isWithMinutes || isWithSeconds;
 
   let timeRemains = datePeriod;
   let result = 'P';
 
-  if (withDays) {
+  if (isWithDays) {
     const days = isWithTime
       ? Math.floor(timeRemains / MS_IN_A_DAY)
       : Math.ceil(timeRemains / MS_IN_A_DAY);
@@ -59,7 +59,7 @@ const formatToPeriodDateTime = (
     result += 'T';
   }
 
-  if (withHours) {
+  if (isWithHours) {
     const hours = isWithMinutesOrSeconds
       ? Math.floor(timeRemains / MS_IN_A_HOUR)
       : Math.ceil(timeRemains / MS_IN_A_HOUR);
@@ -67,15 +67,15 @@ const formatToPeriodDateTime = (
     result += `${hours}H`;
   }
 
-  if (withMinutes) {
-    const minutes = withSeconds
+  if (isWithMinutes) {
+    const minutes = isWithSeconds
       ? Math.floor(timeRemains / MS_IN_A_MINUTE)
       : Math.ceil(timeRemains / MS_IN_A_MINUTE);
     timeRemains -= minutes * MS_IN_A_MINUTE;
     result += `${minutes}M`;
   }
 
-  if (withSeconds) {
+  if (isWithSeconds) {
     const seconds = timeRemains / MS_IN_A_SECOND;
     result += `${seconds}S`;
   }

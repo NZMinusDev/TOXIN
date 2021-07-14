@@ -176,7 +176,7 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
       this.element.dispatchEvent(new CustomEvent('change', { bubbles: true }));
     },
     handleApplyBtnClick: () => {
-      if (this._verifyApplying()) {
+      if (this._isApplyingAllower()) {
         const { selectedDates } = this._DOM.$element.data('datepicker');
         const ISOSelectedDates: string[] = selectedDates.map((selectedDate: Date) =>
           selectedDate.toISOString()
@@ -216,7 +216,7 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
     return this;
   }
 
-  protected _verifyApplying() {
+  protected _isApplyingAllower() {
     const { selectedDates, opts } = this._DOM.$element.data('datepicker');
     let maxSelected = selectedDates.length;
 

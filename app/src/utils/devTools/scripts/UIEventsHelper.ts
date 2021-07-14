@@ -113,7 +113,7 @@ const addDragAndDrop = (
 
         currentDroppable = droppableBelow;
 
-        if (currentDroppable) {
+        if (currentDroppable !== null) {
           enterDroppable(currentDroppable);
         }
       }

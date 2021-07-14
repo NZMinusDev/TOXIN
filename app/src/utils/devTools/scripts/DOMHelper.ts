@@ -131,8 +131,8 @@ const scrollBy = (element: HTMLElement, x: number, y: number) => {
   element.scrollTop += y;
 };
 
-const freezeScroll = (element: HTMLElement, { freeze = true } = {}) => {
-  if (freeze) {
+const freezeScroll = (element: HTMLElement, { shouldFreeze = true } = {}) => {
+  if (shouldFreeze) {
     const clientWidthBeforeFreeze = element.clientWidth;
     // eslint-disable-next-line no-param-reassign
     element.style.overflow = 'hidden';
