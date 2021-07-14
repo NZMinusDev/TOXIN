@@ -3,22 +3,16 @@ import './form-elements.pug';
 import './form-elements.scss';
 
 // components
-import {
-  FormDropdownWithItemQuantityList,
-  FormDropdownWithItemQuantityListElementWithComponent,
-} from '@common.blocks/primitives/form-dropdown/form-dropdown';
+import { FormDropdownWithItemQuantityListElementWithComponent } from '@common.blocks/primitives/form-dropdown/form-dropdown';
 
 const components = {
   dropdownExpandedPlural: (document.querySelector('.form-elements-layout__dropdown-expanded-plural')
-    ?.firstElementChild as FormDropdownWithItemQuantityListElementWithComponent)
-    .component as FormDropdownWithItemQuantityList,
+    ?.firstElementChild as FormDropdownWithItemQuantityListElementWithComponent).component,
   dropdownExpandedApply: (document.querySelector('.form-elements-layout__dropdown-expanded-apply')
-    ?.firstElementChild as FormDropdownWithItemQuantityListElementWithComponent)
-    .component as FormDropdownWithItemQuantityList,
+    ?.firstElementChild as FormDropdownWithItemQuantityListElementWithComponent).component,
   dropdownExpandedClearApply: (document.querySelector(
     '.form-elements-layout__dropdown-expanded-clear-apply'
-  )?.firstElementChild as FormDropdownWithItemQuantityListElementWithComponent)
-    .component as FormDropdownWithItemQuantityList,
+  )?.firstElementChild as FormDropdownWithItemQuantityListElementWithComponent).component,
 };
 
 components.dropdownExpandedPlural.getExpandableItemElement().component.open();
