@@ -40,7 +40,7 @@ document.querySelectorAll('input').forEach((element) => {
   }
 
   if (inputElement.dataset.isFilter !== undefined) {
-    const onChange = (event) => {
+    const onChange = () => {
       addURLValues({
         name: inputElement.name,
         value: inputElement.value,

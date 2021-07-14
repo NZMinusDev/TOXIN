@@ -1,9 +1,7 @@
-// page's resources
+import { FormDropdownWithItemQuantityListElementWithComponent } from '@common.blocks/primitives/form-dropdown/form-dropdown';
+
 import './form-elements.pug';
 import './form-elements.scss';
-
-// components
-import { FormDropdownWithItemQuantityListElementWithComponent } from '@common.blocks/primitives/form-dropdown/form-dropdown';
 
 const components = {
   dropdownExpandedPlural: (document.querySelector('.form-elements-layout__dropdown-expanded-plural')

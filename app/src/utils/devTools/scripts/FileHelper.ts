@@ -47,7 +47,7 @@ const blobToArrayBuffer = async (blob: Blob) => {
 const imgToCanvas = (
   img: HTMLImageElement,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  imgProcessing = function (canvas: HTMLCanvasElement) {}
+  imgProcessing = (canvas: HTMLCanvasElement) => {}
 ) => {
   const canvas = document.createElement('canvas');
   canvas.width = img.clientWidth;
@@ -64,7 +64,7 @@ const imgToCanvas = (
 const imgToBlob = async (
   img: HTMLImageElement,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  imgProcessing = function (canvas: HTMLCanvasElement) {}
+  imgProcessing = (canvas: HTMLCanvasElement) => {}
 ) => {
   const canvas = imgToCanvas(img, imgProcessing);
   // eslint-disable-next-line sonarjs/prefer-immediate-return

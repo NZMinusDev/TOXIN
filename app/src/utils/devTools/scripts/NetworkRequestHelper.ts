@@ -152,7 +152,7 @@ const getProgressedBlob = async (
   url: URL,
   {
     fetchOptions = {},
-    progressCallback = function (receivedLength: number, contentLength: number) {},
+    progressCallback = (receivedLength: number, contentLength: number) => {},
   }: HandleResponseProcessOptions = {}
 ) => {
   const result = await handleResponseProcess(url, { fetchOptions, progressCallback });
@@ -176,16 +176,16 @@ const sendJSON = async (url: URL, valueToStringify: unknown) =>
 const sendProgressedJSON = async (
   url: URL,
   valueToStringify: unknown,
-  { progressCallback = function (event: ProgressEvent<EventTarget>) {} } = {}
+  { progressCallback = (event: ProgressEvent<EventTarget>) => {} } = {}
 ) => {
   const xhr = new XMLHttpRequest();
 
-  xhr.upload.onprogress = function (event) {
+  xhr.upload.onprogress = (event) => {
     progressCallback(event);
   };
 
   return new Promise(async (resolve, reject) => {
-    xhr.onloadend = function () {
+    xhr.onloadend = () => {
       resolve(xhr);
     };
 
@@ -211,16 +211,16 @@ const sendImg = async (url: URL, img: HTMLImageElement, { name = 'image' } = {})
 const sendProgressedImg = async (
   url: URL,
   img: HTMLImageElement,
-  { progressCallback = function (event: ProgressEvent<EventTarget>) {}, name = 'image' } = {}
+  { progressCallback = (event: ProgressEvent<EventTarget>) => {}, name = 'image' } = {}
 ) => {
   const xhr = new XMLHttpRequest();
 
-  xhr.upload.onprogress = function (event) {
+  xhr.upload.onprogress = (event) => {
     progressCallback(event);
   };
 
   return await new Promise(async (resolve, reject) => {
-    xhr.onloadend = function () {
+    xhr.onloadend = () => {
       resolve(xhr);
     };
 

@@ -1,7 +1,7 @@
+import formDropdownItemQuantityLists from '../form-dropdown__item-quantity-list';
 import FormDropdownItemQuantityListOpeningMethodModifier, {
   FormDropdownItemQuantityList,
 } from './coupling';
-import formDropdownItemQuantityLists from '../form-dropdown__item-quantity-list';
 
 class FormDropdownItemQuantityListSwitchableOpeningMethodModifier extends FormDropdownItemQuantityListOpeningMethodModifier {
   constructor(formDropdownItemQuantityList: FormDropdownItemQuantityList) {
@@ -11,7 +11,10 @@ class FormDropdownItemQuantityListSwitchableOpeningMethodModifier extends FormDr
   }
 
   protected _bindComponentListeners() {
-    this.component.addEventListener('open', this._componentEventListenerObject.handleComponentOpen);
+    this.component.addCustomEventListener(
+      'open',
+      this._componentEventListenerObject.handleComponentOpen
+    );
 
     return this;
   }

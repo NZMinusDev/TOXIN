@@ -1,7 +1,7 @@
+import formDropdownItemQuantityLists from '../form-dropdown__item-quantity-list';
 import FormDropdownItemQuantityListOpeningTypeModifier, {
   FormDropdownItemQuantityList,
 } from './coupling';
-import formDropdownItemQuantityLists from '../form-dropdown__item-quantity-list';
 
 type FormDropdownItemQuantityListAppliedOpeningTypeModifierDOM = {
   clearBtn: HTMLButtonElement;

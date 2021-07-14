@@ -1,7 +1,7 @@
 import inputMask from 'inputmask';
 
-import FormTextFieldInputTypeModifier from './coupling';
 import formTextFieldInputs, { FormTextFieldInput } from '../form-text-field__input';
+import FormTextFieldInputTypeModifier from './coupling';
 
 class FormTextFieldInputWithDateTypeModifier extends FormTextFieldInputTypeModifier {
   constructor(formTextFieldInput: FormTextFieldInput) {

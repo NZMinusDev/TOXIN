@@ -2,16 +2,15 @@ import {
   BEMComponent,
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/ComponentCreationHelper';
-
-import '@common.blocks/primitives/apply-control/apply-control.scss';
-import '@common.blocks/primitives/apply-control/__clear-btn/apply-control__clear-btn.scss';
-import '@common.blocks/primitives/apply-control/__clear-btn/_hidden/apply-control__clear-btn_hidden.scss';
-import '@common.blocks/primitives/apply-control/__apply-btn/apply-control__apply-btn.scss';
-
-import './__apply-control/datepicker-card__apply-control.scss';
 import { formatToPeriodDateTime } from '@utils/devTools/scripts/DateHelper';
 
+import '@common.blocks/primitives/apply-control/__clear-btn/_hidden/apply-control__clear-btn_hidden.scss';
+import '@common.blocks/primitives/apply-control/__clear-btn/apply-control__clear-btn.scss';
+import '@common.blocks/primitives/apply-control/__apply-btn/apply-control__apply-btn.scss';
+import '@common.blocks/primitives/apply-control/apply-control.scss';
 import '@library.blocks/primitives/datepicker-card/datepicker-card';
+
+import './__apply-control/datepicker-card__apply-control.scss';
 
 type DatepickerCardElement = HTMLDivElement;
 
@@ -112,7 +111,7 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
           : 'dd.mm.yyyy',
       minDate: new Date(),
       toggleSelected: false,
-      onSelect: (formattedDate: string, date: Date | Array<Date>, inst) => {
+      onSelect: (formattedDate: string, date: Date | Array<Date>) => {
         this._generatedDOM.clearBtn.classList.remove('apply-control__clear-btn_hidden');
 
         if (date !== undefined) {
@@ -181,7 +180,7 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
       this.element.dispatchEvent(new CustomEvent('change', { bubbles: true }));
     },
     handleApplyBtnClick: () => {
-      if (this._isApplyingAllower()) {
+      if (this._isApplyingAllowed()) {
         const { selectedDates } = this._DOM.$element.data('datepicker');
         const ISOSelectedDates: string[] = selectedDates.map((selectedDate: Date) =>
           selectedDate.toISOString()
@@ -221,7 +220,7 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
     return this;
   }
 
-  protected _isApplyingAllower() {
+  protected _isApplyingAllowed() {
     const { selectedDates, opts } = this._DOM.$element.data('datepicker');
     let maxSelected = selectedDates.length;
 

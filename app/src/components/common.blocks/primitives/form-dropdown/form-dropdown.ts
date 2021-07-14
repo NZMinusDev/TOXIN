@@ -2,6 +2,7 @@ import {
   BEMComponent,
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/ComponentCreationHelper';
+
 import {
   FormDropdownItemQuantityListCustomEvents,
   FormDropdownItemQuantityListElementWithComponent,
@@ -25,9 +26,11 @@ type FormDropdownDOM = {
 type FormDropdownCustomEvents = {};
 // eslint-disable-next-line @typescript-eslint/ban-types
 type ExpandableItemCustomEvents = { open: {} };
-type FormDropdownWithItemQuantityListCustomEvents = ExpandableItemCustomEvents &
+type FormDropdownWithItemQuantityListCustomEvents = FormDropdownCustomEvents &
+  ExpandableItemCustomEvents &
   FormDropdownItemQuantityListCustomEvents;
-type FormDropdownWithDatepickerCustomEvents = ExpandableItemCustomEvents &
+type FormDropdownWithDatepickerCustomEvents = FormDropdownCustomEvents &
+  ExpandableItemCustomEvents &
   FormDropdownDatepickerCustomEvents;
 
 class FormDropdown<

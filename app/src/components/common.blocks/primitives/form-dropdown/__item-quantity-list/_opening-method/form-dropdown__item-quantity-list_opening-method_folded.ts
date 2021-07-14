@@ -1,7 +1,7 @@
+import formDropdownItemQuantityLists from '../form-dropdown__item-quantity-list';
 import FormDropdownItemQuantityListOpeningMethodModifier, {
   FormDropdownItemQuantityList,
 } from './coupling';
-import formDropdownItemQuantityLists from '../form-dropdown__item-quantity-list';
 
 class FormDropdownItemQuantityListFoldedOpeningMethodModifier extends FormDropdownItemQuantityListOpeningMethodModifier {
   constructor(formDropdownItemQuantityList: FormDropdownItemQuantityList) {

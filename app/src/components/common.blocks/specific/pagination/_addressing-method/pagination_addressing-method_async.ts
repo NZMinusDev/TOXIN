@@ -1,8 +1,8 @@
-import PaginationAddressingMethodModifier, { Pagination } from './coupling';
-import paginations from '../pagination';
 import '../__item/_active/pagination__item_active.scss';
 import '../__item/_previous/pagination__item_previous.scss';
 import '../__item/_next/pagination__item_next.scss';
+import paginations from '../pagination';
+import PaginationAddressingMethodModifier, { Pagination } from './coupling';
 
 interface AsyncPaginationItemElement extends HTMLLIElement {
   pageNumber: number;

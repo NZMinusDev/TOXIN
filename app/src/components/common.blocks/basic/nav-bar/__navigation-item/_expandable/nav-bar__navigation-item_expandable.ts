@@ -28,11 +28,11 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
   }
 
   protected _initDOM() {
-    const listSelector = '.nav-bar__navigation-list';
-
     const itemExpandCheckbox = this.component.element.querySelector(
       '.nav-bar__navigation-item-dropdown-checkbox'
     ) as NavBarExpandableNavigationItemModifierDOM['itemExpandCheckbox'];
+
+    const listSelector = '.nav-bar__navigation-list';
     const childList = this.component.element.querySelector(
       listSelector
     ) as NavBarExpandableNavigationItemModifierDOM['childList'];
@@ -59,7 +59,7 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
     return this;
   }
   protected _itemExpandCheckboxEventListenerObject = {
-    handleItemExpandCheckboxChange: (event: Event) => {
+    handleItemExpandCheckboxChange: () => {
       if (this._state.isSmallDesktopMediaMatched) {
         this._toggleChildListMaxHeight();
       }

@@ -28,6 +28,7 @@
   "license": "MIT",
   "devDependencies": {
     "@prettier/plugin-pug": "^1.15.2",
+    "@types/inputmask": "^5.0.1",
     "@types/jquery": "^3.5.2",
     "@types/lodash-es": "^4.17.4",
     "@typescript-eslint/eslint-plugin": "^4.1.0",

@@ -44,6 +44,7 @@ const cloneFunction = <TFuncArgs extends unknown[], TFuncReturn>(
 ) => {
   const that = func;
 
+  // eslint-disable-next-line func-names
   const temp = function (...args: TFuncArgs) {
     return that.apply(func, args);
   };

@@ -28,15 +28,14 @@
  *   return Math.pow(2, 10 * (timeFraction - 1)) * Math.cos(20 * Math.PI * x / 3 * timeFraction)
  * }
  */
-export const animate = (
+const animate = (
   drawCallBack: (progress: number) => unknown,
   duration: number,
   { timing = (timeFraction: number) => timeFraction } = {}
 ) => {
   const start = performance.now();
 
-  // eslint-disable-next-line no-shadow
-  requestAnimationFrame(function animate(time) {
+  const newAnimate = (time) => {
     let timeFraction = (time - start) / duration;
 
     if (timeFraction > 1) {
@@ -48,19 +47,21 @@ export const animate = (
     drawCallBack(progress);
 
     if (timeFraction < 1) {
-      requestAnimationFrame(animate);
+      window.requestAnimationFrame(newAnimate);
     }
-  });
+  };
+
+  window.requestAnimationFrame(newAnimate);
 };
 
-export const power = (timeFraction: number, { pow = 2 } = {}) => timeFraction ** pow;
+const power = (timeFraction: number, { pow = 2 } = {}) => timeFraction ** pow;
 
-export const circ = (timeFraction: number) => 1 - Math.sin(Math.acos(timeFraction));
+const circ = (timeFraction: number) => 1 - Math.sin(Math.acos(timeFraction));
 
-export const shotFromABow = (x: number, timeFraction: number) =>
+const shotFromABow = (x: number, timeFraction: number) =>
   timeFraction ** 2 * ((x + 1) * timeFraction - x);
 
-export const bounce = (timeFraction: number) => {
+const bounce = (timeFraction: number) => {
   // eslint-disable-next-line no-loops/no-loops
   for (let a = 0, b = 1; 1; a += b, b /= 2) {
     if (timeFraction >= (7 - 4 * a) / 11) {
@@ -71,13 +72,13 @@ export const bounce = (timeFraction: number) => {
   return timeFraction;
 };
 
-export const elastic = (x, timeFraction) =>
+const elastic = (x, timeFraction) =>
   2 ** (10 * (timeFraction - 1)) * Math.cos(((20 * Math.PI * x) / 3) * timeFraction);
 
 /**
  * Jumping animation of typing text
  */
-export const animateTextArea = (textArea: HTMLTextAreaElement) => {
+const animateTextArea = (textArea: HTMLTextAreaElement) => {
   const text = textArea.value;
   const to = text.length;
   const from = 0;
@@ -108,10 +109,8 @@ export const animateTextArea = (textArea: HTMLTextAreaElement) => {
  *
  * let bounceEaseOut = makeEaseOut(bounce);
  */
-export const makeEaseOut = (timingFunction: (timeFraction: number) => number) =>
-  function (timeFraction: number) {
-    return 1 - timingFunction(1 - timeFraction);
-  };
+const makeEaseOut = (timingFunction: (timeFraction: number) => number) => (timeFraction: number) =>
+  1 - timingFunction(1 - timeFraction);
 
 /**
  *
@@ -128,11 +127,24 @@ export const makeEaseOut = (timingFunction: (timeFraction: number) => number) =>
  *
  * let bounceEaseInOut = makeEaseInOut(bounce);
  */
-export const makeEaseInOut = (timingFunction: (timeFraction: number) => number) =>
-  function (timeFraction: number) {
-    if (timeFraction < 0.5) {
-      return timingFunction(2 * timeFraction) / 2;
-    }
+const makeEaseInOut = (timingFunction: (timeFraction: number) => number) => (
+  timeFraction: number
+) => {
+  if (timeFraction < 0.5) {
+    return timingFunction(2 * timeFraction) / 2;
+  }
 
-    return (2 - timingFunction(2 * (1 - timeFraction))) / 2;
-  };
+  return (2 - timingFunction(2 * (1 - timeFraction))) / 2;
+};
+
+export {
+  animate,
+  power,
+  circ,
+  shotFromABow,
+  bounce,
+  elastic,
+  animateTextArea,
+  makeEaseOut,
+  makeEaseInOut,
+};

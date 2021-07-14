@@ -79,7 +79,7 @@ class EventManagerMixin<TEvents extends string> {
   }
 
   // Cancel subscribe
-  off(eventName: TEvents, eventHandler: (...args: any) => void) {
+  off(eventName: TEvents, eventHandler: (...args: unknown[]) => void) {
     const handlers = this._eventHandlers && this._eventHandlers[eventName];
 
     if (handlers === undefined) {
@@ -92,7 +92,7 @@ class EventManagerMixin<TEvents extends string> {
   }
 
   // Generate the event with the specified name and data
-  trigger(eventName: TEvents, ...args: any) {
+  trigger(eventName: TEvents, ...args: unknown[]) {
     // no handlers
     if (this._eventHandlers === undefined || this._eventHandlers[eventName] === undefined) {
       return this;
@@ -229,7 +229,7 @@ abstract class MVPView<
   }
 
   getOptions(): TOptionsToGet {
-    const options: any = {};
+    const options = {} as Record<string, unknown>;
 
     this._theOrderOfIteratingThroughTheOptions.forEach((optionKey) => {
       const getOptionMethodName = `get${optionKey[0].toUpperCase() + optionKey.slice(1)}Option`;

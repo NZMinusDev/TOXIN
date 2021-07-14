@@ -2,6 +2,7 @@ import {
   BEMComponent,
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/ComponentCreationHelper';
+
 import { PaginationAsyncAddressingMethodModifierCustomEvents } from './_addressing-method/pagination_addressing-method_async';
 
 type PaginationElement = HTMLElement;
