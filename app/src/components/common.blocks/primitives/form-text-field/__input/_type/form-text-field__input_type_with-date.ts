@@ -8,8 +8,6 @@ class FormTextFieldInputWithDateTypeModifier extends FormTextFieldInputTypeModif
     super(formTextFieldInput);
 
     this._initInputMask();
-
-    this._bindFormTextFieldInputListeners();
   }
 
   protected _initInputMask() {
@@ -22,12 +20,6 @@ class FormTextFieldInputWithDateTypeModifier extends FormTextFieldInputTypeModif
 
     return this;
   }
-
-  protected _bindFormTextFieldInputListeners() {
-    return this;
-  }
-
-  protected _FormTextFieldInputEventListenerObject = {};
 }
 
 const formTextFieldInputWithDateTypeModifiers = formTextFieldInputs

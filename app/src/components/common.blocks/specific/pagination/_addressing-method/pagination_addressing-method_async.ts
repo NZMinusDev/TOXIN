@@ -1,10 +1,14 @@
 import PaginationAddressingMethodModifier, { Pagination } from './coupling';
-import paginations, { PaginationElementWithComponent } from '../pagination';
+import paginations from '../pagination';
 import '../__item/_active/pagination__item_active.scss';
 import '../__item/_previous/pagination__item_previous.scss';
 import '../__item/_next/pagination__item_next.scss';
 
-type PaginationAsyncAddressingMethodModifierOptions = {
+interface AsyncPaginationItemElement extends HTMLLIElement {
+  pageNumber: number;
+}
+
+type PaginationAsyncAddressingMethodModifierHTMLOptions = {
   page: number;
   displayed: number;
   total: number;
@@ -18,8 +22,8 @@ type PaginationAsyncAddressingMethodModifierState = {
 type PaginationAsyncAddressingMethodModifierCustomEvents = 'change';
 
 class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethodModifier {
-  protected _options: PaginationAsyncAddressingMethodModifierOptions;
-  protected _state: PaginationAsyncAddressingMethodModifierState;
+  protected readonly _options: PaginationAsyncAddressingMethodModifierHTMLOptions;
+  protected readonly _state: PaginationAsyncAddressingMethodModifierState;
 
   constructor(pagination: Pagination) {
     super(pagination);
@@ -51,7 +55,9 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
 
   protected _paginationItemEventListenerObject = {
     handlePaginationItemClick: (event: MouseEvent) => {
-      this._state.activePage = event.currentTarget.pageNumber;
+      const paginationItem = event.currentTarget as AsyncPaginationItemElement;
+
+      this._state.activePage = paginationItem.pageNumber;
       this._renderPaginationItems()._renderPaginationCounter();
       this.component.element.dispatchEvent(new CustomEvent('change', { bubbles: true }));
     },
@@ -122,7 +128,7 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
     classes: Array<string>,
     attributes: { [attribute: string]: string } = {}
   ) {
-    const item = document.createElement('li');
+    const item = document.createElement('li') as AsyncPaginationItemElement;
     item.pageNumber = pageNumber;
     item.textContent = innerText;
     item.classList.add(...classes);
@@ -285,4 +291,7 @@ const paginationAsyncAddressingMethodModifiers = paginations
   )
   .map((pagination) => new PaginationAsyncAddressingMethodModifier(pagination));
 
-export { paginationAsyncAddressingMethodModifiers as default };
+export {
+  paginationAsyncAddressingMethodModifiers as default,
+  PaginationAsyncAddressingMethodModifierCustomEvents,
+};

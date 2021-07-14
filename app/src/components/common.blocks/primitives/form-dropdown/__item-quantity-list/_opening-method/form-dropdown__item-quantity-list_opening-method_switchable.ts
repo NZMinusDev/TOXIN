@@ -1,22 +1,17 @@
-import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
+import FormDropdownItemQuantityListOpeningMethodModifier, {
+  FormDropdownItemQuantityList,
+} from './coupling';
+import formDropdownItemQuantityLists from '../form-dropdown__item-quantity-list';
 
-import ItemQuantityListOpeningMethodModifier from './coupling';
-import itemQuantityLists from '../form-dropdown__item-quantity-list';
-
-type ItemQuantityList = Unpacked<typeof itemQuantityLists>;
-
-class ItemQuantityListSwitchableOpeningMethodModifier extends ItemQuantityListOpeningMethodModifier {
-  constructor(itemQuantityList: ItemQuantityList) {
-    super(itemQuantityList);
+class FormDropdownItemQuantityListSwitchableOpeningMethodModifier extends FormDropdownItemQuantityListOpeningMethodModifier {
+  constructor(formDropdownItemQuantityList: FormDropdownItemQuantityList) {
+    super(formDropdownItemQuantityList);
 
     this._bindComponentListeners();
   }
 
   protected _bindComponentListeners() {
-    this.component.element.addEventListener(
-      'open',
-      this._componentEventListenerObject.handleComponentOpen
-    );
+    this.component.addEventListener('open', this._componentEventListenerObject.handleComponentOpen);
 
     return this;
   }
@@ -27,12 +22,15 @@ class ItemQuantityListSwitchableOpeningMethodModifier extends ItemQuantityListOp
   };
 }
 
-const itemQuantityListWithSwitchableOpeningMethod = itemQuantityLists.filter((itemQuantityList) =>
-  itemQuantityList.element.classList.contains(
-    'form-dropdown__item-quantity-list_opening-method_switchable'
+const formDropdownItemQuantityListSwitchableOpeningMethodModifiers = formDropdownItemQuantityLists
+  .filter((formDropdownItemQuantityList) =>
+    formDropdownItemQuantityList.element.classList.contains(
+      'form-dropdown__item-quantity-list_opening-method_switchable'
+    )
   )
-);
+  .map(
+    (formDropdownItemQuantityList) =>
+      new FormDropdownItemQuantityListSwitchableOpeningMethodModifier(formDropdownItemQuantityList)
+  );
 
-const itemQuantityListSwitchableOpeningMethodModifier = itemQuantityListWithSwitchableOpeningMethod.map(
-  (itemQuantityList) => new ItemQuantityListSwitchableOpeningMethodModifier(itemQuantityList)
-);
+export { formDropdownItemQuantityListSwitchableOpeningMethodModifiers as default };

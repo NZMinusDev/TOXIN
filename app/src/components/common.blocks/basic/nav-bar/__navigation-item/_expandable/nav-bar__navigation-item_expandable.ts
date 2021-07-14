@@ -2,23 +2,27 @@ import { BEMModifier } from '@utils/devTools/scripts/ComponentCreationHelper';
 
 import navBarNavigationItems, { NavBarNavigationItem } from '../nav-bar__navigation-item';
 
-type NavBarExpandableNavigationItemDOM = {
+type NavBarExpandableNavigationItemModifierDOM = {
   itemExpandCheckbox: HTMLInputElement;
   childList: HTMLUListElement;
   nestedLists: HTMLUListElement[];
 };
 
-class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigationItem> {
-  protected _DOM: NavBarExpandableNavigationItemDOM;
+type NavBarExpandableNavigationItemModifierState = {
+  isSmallDesktopMediaMatched: boolean;
+};
 
-  protected _isMediaMatched: boolean;
+class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigationItem> {
+  protected readonly _DOM: Readonly<NavBarExpandableNavigationItemModifierDOM>;
+
+  protected readonly _state: NavBarExpandableNavigationItemModifierState;
 
   constructor(navBarNavigationItem: NavBarNavigationItem) {
     super(navBarNavigationItem, 'iavBarExpandableNavigationItemModifier');
 
     this._DOM = this._initDOM();
 
-    this._isMediaMatched = NavBarExpandableNavigationItemModifier._initMediaBreakPointFlag();
+    this._state = this._initState();
 
     this._bindItemExpandCheckboxListeners()._bindWindowListeners();
   }
@@ -28,47 +32,22 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
 
     const itemExpandCheckbox = this.component.element.querySelector(
       '.nav-bar__navigation-item-dropdown-checkbox'
-    ) as NavBarExpandableNavigationItemDOM['itemExpandCheckbox'];
+    ) as NavBarExpandableNavigationItemModifierDOM['itemExpandCheckbox'];
     const childList = this.component.element.querySelector(
       listSelector
-    ) as NavBarExpandableNavigationItemDOM['childList'];
+    ) as NavBarExpandableNavigationItemModifierDOM['childList'];
     const nestedLists = [
       ...this.component.element.querySelectorAll(listSelector),
-    ] as NavBarExpandableNavigationItemDOM['nestedLists'];
+    ] as NavBarExpandableNavigationItemModifierDOM['nestedLists'];
 
     return { itemExpandCheckbox, childList, nestedLists };
   }
 
-  protected static _initMediaBreakPointFlag() {
-    return window.matchMedia('(max-width: 992px)').matches;
-  }
+  // eslint-disable-next-line class-methods-use-this
+  protected _initState() {
+    const isSmallDesktopMediaMatched = NavBarExpandableNavigationItemModifier._getSmallDesktopMediaMatching();
 
-  protected _toggleChildListSize() {
-    if (this._DOM.childList.style.maxHeight !== '') {
-      this._collapseChildList();
-    } else {
-      this._openChildList();
-    }
-
-    return this;
-  }
-
-  protected _openChildList() {
-    const childListScrollHeight = this._DOM.nestedLists.reduce(
-      (scrollHeight, nestedList) =>
-        scrollHeight + nestedList.scrollHeight - nestedList.clientHeight,
-      this._DOM.childList.scrollHeight
-    );
-
-    this._DOM.childList.style.maxHeight = `${childListScrollHeight}px`;
-  }
-  protected _uncheckItemExpandCheckbox() {
-    this._DOM.itemExpandCheckbox.checked = false;
-  }
-  protected _collapseChildList() {
-    this._DOM.childList.style.maxHeight = '';
-
-    return this;
+    return { isSmallDesktopMediaMatched };
   }
 
   protected _bindItemExpandCheckboxListeners() {
@@ -81,8 +60,8 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
   }
   protected _itemExpandCheckboxEventListenerObject = {
     handleItemExpandCheckboxChange: (event: Event) => {
-      if (this._isMediaMatched) {
-        this._toggleChildListSize();
+      if (this._state.isSmallDesktopMediaMatched) {
+        this._toggleChildListMaxHeight();
       }
     },
   };
@@ -95,12 +74,12 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
   }
   protected _windowEventListenerObject = {
     handleWindowResize: () => {
-      this._isMediaMatched = NavBarExpandableNavigationItemModifier._initMediaBreakPointFlag();
+      this._state.isSmallDesktopMediaMatched = NavBarExpandableNavigationItemModifier._getSmallDesktopMediaMatching();
 
-      if (!this._isMediaMatched) {
-        this._collapseChildList();
+      if (!this._state.isSmallDesktopMediaMatched) {
+        this._removeMaxHeightFromChildList();
       } else if (this._DOM.itemExpandCheckbox.checked) {
-        this._openChildList();
+        this._addMaxHeightToChildList();
       }
     },
     handleWindowClick: (event: MouseEvent) => {
@@ -109,17 +88,48 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
 
       if (navBarExpandableNavigationItem === null) {
         this._uncheckItemExpandCheckbox();
-        this._collapseChildList();
+        this._removeMaxHeightFromChildList();
       }
     },
   };
+
+  protected static _getSmallDesktopMediaMatching() {
+    return window.matchMedia('(max-width: 992px)').matches;
+  }
+
+  protected _addMaxHeightToChildList() {
+    const childListScrollHeight = this._DOM.nestedLists.reduce(
+      (scrollHeight, nestedList) =>
+        scrollHeight + nestedList.scrollHeight - nestedList.clientHeight,
+      this._DOM.childList.scrollHeight
+    );
+
+    this._DOM.childList.style.maxHeight = `${childListScrollHeight}px`;
+  }
+  protected _removeMaxHeightFromChildList() {
+    this._DOM.childList.style.maxHeight = '';
+
+    return this;
+  }
+  protected _toggleChildListMaxHeight() {
+    if (this._DOM.childList.style.maxHeight !== '') {
+      this._removeMaxHeightFromChildList();
+    } else {
+      this._addMaxHeightToChildList();
+    }
+
+    return this;
+  }
+
+  protected _uncheckItemExpandCheckbox() {
+    this._DOM.itemExpandCheckbox.checked = false;
+  }
 }
 
-const navBarExpandableNavigationItems = navBarNavigationItems.filter((navBarNavigationItem) =>
-  navBarNavigationItem.element.classList.contains('nav-bar__navigation-item_expandable')
-);
+const navBarExpandableNavigationItemModifiers = navBarNavigationItems
+  .filter((navBarNavigationItem) =>
+    navBarNavigationItem.element.classList.contains('nav-bar__navigation-item_expandable')
+  )
+  .map((navBarNavigationItem) => new NavBarExpandableNavigationItemModifier(navBarNavigationItem));
 
-const navBarExpandableNavigationItemModifiers = navBarExpandableNavigationItems.map(
-  (navBarExpandableNavigationItem) =>
-    new NavBarExpandableNavigationItemModifier(navBarExpandableNavigationItem)
-);
+export { navBarExpandableNavigationItemModifiers as default };

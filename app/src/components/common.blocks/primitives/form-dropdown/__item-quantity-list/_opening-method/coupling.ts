@@ -1,14 +1,15 @@
 import { BEMModifier } from '@utils/devTools/scripts/ComponentCreationHelper';
-import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
 
-import itemQuantityLists from '../form-dropdown__item-quantity-list';
+import type { FormDropdownItemQuantityList } from '../form-dropdown__item-quantity-list';
 
-type ItemQuantityList = Unpacked<typeof itemQuantityLists>;
-
-abstract class ItemQuantityListOpeningMethodModifier extends BEMModifier<ItemQuantityList> {
-  constructor(itemQuantityList: ItemQuantityList) {
-    super(itemQuantityList, 'itemQuantityListOpeningMethodModifier');
+abstract class FormDropdownItemQuantityListOpeningMethodModifier extends BEMModifier<
+  FormDropdownItemQuantityList
+> {
+  constructor(formDropdownItemQuantityList: FormDropdownItemQuantityList) {
+    super(formDropdownItemQuantityList, 'formDropdownItemQuantityListOpeningMethodModifier');
   }
 }
 
-export { ItemQuantityListOpeningMethodModifier as default };
+export type { FormDropdownItemQuantityList };
+
+export { FormDropdownItemQuantityListOpeningMethodModifier as default };

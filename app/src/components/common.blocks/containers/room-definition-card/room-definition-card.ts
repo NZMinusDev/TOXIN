@@ -1,13 +1,28 @@
-import { DropdownDatepickerCustomEvents } from '@common.blocks/primitives/form-dropdown/__datepicker/form-dropdown__datepicker';
-import { ItemQuantityListCustomEvents } from '@common.blocks/primitives/form-dropdown/__item-quantity-list/form-dropdown__item-quantity-list';
-import { BEMComponent } from '@utils/devTools/scripts/ComponentCreationHelper';
+import {
+  BEMComponent,
+  HTMLElementWithComponent,
+} from '@utils/devTools/scripts/ComponentCreationHelper';
 import { getDatePeriod, MS_IN_A_DAY } from '@utils/devTools/scripts/DateHelper';
+
+import type {
+  FormDropdownWithItemQuantityListCustomEvents,
+  FormDropdownWithDatepickerCustomEvents,
+  FormDropdownWithItemQuantityList,
+  FormDropdownWithDatepicker,
+  FormDropdownWithItemQuantityListElementWithComponent,
+  FormDropdownWithDatepickerElementWithComponent,
+} from '@common.blocks/primitives/form-dropdown/form-dropdown';
+import '@library.blocks/primitives/form-dropdown/__item-quantity-list/form-dropdown__item-quantity-list';
+import '@common.blocks/primitives/form-dropdown/__datepicker/form-dropdown__datepicker';
+import '@common.blocks/primitives/form-dropdown/__item-quantity-list/form-dropdown__item-quantity-list';
+import '@common.blocks/primitives/form-dropdown/form-dropdown';
 
 type RoomDefinitionCardElement = HTMLFormElement;
 
 type RoomDefinitionCardDOM = {
   dayPayment: HTMLHeadingElement;
   arrivalDateDropdown: HTMLDivElement;
+  guestsDropdown: HTMLDivElement;
   totalDayPaymentSentence: HTMLSpanElement;
   totalDayPaymentAmount: HTMLSpanElement;
   servicesPaymentAmount: HTMLSpanElement;
@@ -15,13 +30,26 @@ type RoomDefinitionCardDOM = {
   totalPaymentAmount: HTMLSpanElement;
 };
 
-type RoomDefinitionCardDatasetOptions = {
+type RoomDefinitionCardSubComponents = {
+  arrivalDateDropdown: FormDropdownWithDatepicker;
+  guestsDropdown: FormDropdownWithItemQuantityList;
+};
+
+type RoomDefinitionCardHTMLOptions = {
   dayPaymentRate: number;
   servicesPaymentRate: number;
   additionalServicesPaymentRate: number;
 };
+type RoomDefinitionCardState = {
+  days: number;
+};
+type RoomDefinitionCardContext = {
+  currency: string;
+};
 
-type RoomDefinitionCardCustomEvents = ItemQuantityListCustomEvents & DropdownDatepickerCustomEvents;
+type RoomDefinitionCardCustomEvents =
+  | FormDropdownWithItemQuantityListCustomEvents
+  | FormDropdownWithDatepickerCustomEvents;
 
 class RoomDefinitionCard extends BEMComponent<
   RoomDefinitionCardElement,
@@ -29,19 +57,30 @@ class RoomDefinitionCard extends BEMComponent<
 > {
   protected readonly _DOM: Readonly<RoomDefinitionCardDOM>;
 
-  protected _datasetOptions: RoomDefinitionCardDatasetOptions;
+  protected _subComponents: Readonly<RoomDefinitionCardSubComponents>;
 
-  protected _days = 0;
-  protected _currency = '₽';
+  protected readonly _options: RoomDefinitionCardHTMLOptions;
+  protected readonly _state: RoomDefinitionCardState;
+  protected readonly _context: RoomDefinitionCardContext;
 
   constructor(roomDefinitionCardElement: RoomDefinitionCardElement) {
     super(roomDefinitionCardElement);
 
     this._DOM = this._initDOM();
 
-    this._datasetOptions = this._initOptionsFromDataset();
+    this._subComponents = this._initSubComponents();
+
+    this._options = this._initOptionsFromHTML();
+    this._state = this._initState();
+    this._context = this._initContext();
 
     this._bindArrivalDateDropdownListeners();
+  }
+
+  setContext(context: RoomDefinitionCardContext) {
+    Object.entries(context).forEach(([key, value]) => {
+      this._context[key] = value;
+    });
   }
 
   protected _initDOM(): RoomDefinitionCardDOM {
@@ -51,6 +90,9 @@ class RoomDefinitionCard extends BEMComponent<
     const arrivalDateDropdown = this.element.querySelector(
       '.room-definition-card__arrival-date-dropdown'
     ) as RoomDefinitionCardDOM['arrivalDateDropdown'];
+    const guestsDropdown = this.element.querySelector(
+      '.room-definition-card__guests-dropdown'
+    ) as RoomDefinitionCardDOM['guestsDropdown'];
 
     const totalDayPayment = this.element.querySelector(
       '.room-definition-card__total-day-payment'
@@ -75,6 +117,7 @@ class RoomDefinitionCard extends BEMComponent<
     return {
       dayPayment,
       arrivalDateDropdown,
+      guestsDropdown,
       totalDayPaymentSentence,
       totalDayPaymentAmount,
       servicesPaymentAmount,
@@ -83,7 +126,16 @@ class RoomDefinitionCard extends BEMComponent<
     };
   }
 
-  protected _initOptionsFromDataset() {
+  protected _initSubComponents() {
+    const arrivalDateDropdown = (this._DOM.arrivalDateDropdown
+      .firstElementChild as FormDropdownWithDatepickerElementWithComponent).component;
+    const guestsDropdown = (this._DOM.guestsDropdown
+      .firstElementChild as FormDropdownWithItemQuantityListElementWithComponent).component;
+
+    return { arrivalDateDropdown, guestsDropdown };
+  }
+
+  protected _initOptionsFromHTML() {
     const dayPaymentRate = Number(this._DOM.dayPayment.dataset.amount as string);
     const servicesPaymentRate = Number(this._DOM.servicesPaymentAmount.dataset.amount as string);
     const additionalServicesPaymentRate = Number(
@@ -92,9 +144,20 @@ class RoomDefinitionCard extends BEMComponent<
 
     return { dayPaymentRate, servicesPaymentRate, additionalServicesPaymentRate };
   }
+  protected _initState() {
+    const days = this._getDaysFromArrivalDateDropdown();
+
+    return { days };
+  }
+  // eslint-disable-next-line class-methods-use-this
+  protected _initContext() {
+    const currency = '₽';
+
+    return { currency };
+  }
 
   protected _bindArrivalDateDropdownListeners() {
-    this._DOM.arrivalDateDropdown.addEventListener(
+    this._subComponents.arrivalDateDropdown.addEventListener(
       'change',
       this._arrivalDateDropdownEventListenerObject.handleArrivalDateDropdownChange
     );
@@ -104,40 +167,59 @@ class RoomDefinitionCard extends BEMComponent<
   protected _arrivalDateDropdownEventListenerObject = {
     handleArrivalDateDropdownChange: (event: Event) => {
       if (!event.isTrusted) {
-        const ISODatesValue = (event as CustomEvent).detail.value.toString() as string;
-        const datesValue = ISODatesValue.split(',').map((ISODateString) => new Date(ISODateString));
-
-        this._days = getDatePeriod(datesValue[0], datesValue[1]) / MS_IN_A_DAY;
+        this._state.days = this._getDaysFromArrivalDateDropdown();
 
         this._updatePaymentDisplay();
       }
     },
   };
+
+  protected _getDaysFromArrivalDateDropdown() {
+    const [arrivalDate, departureDate] = this._subComponents.arrivalDateDropdown
+      .getExpandableItemElement()
+      .component.get()
+      .map((ISODateString) => new Date(ISODateString));
+
+    return getDatePeriod(arrivalDate, departureDate) / MS_IN_A_DAY;
+  }
+
   protected _updatePaymentDisplay() {
-    const totalDayPaymentAmount = this._datasetOptions.dayPaymentRate * this._days;
+    const totalDayPaymentAmount = this._options.dayPaymentRate * this._state.days;
     const totalPaymentAmount =
       totalDayPaymentAmount +
-      Number(this._datasetOptions.servicesPaymentRate) +
-      Number(this._datasetOptions.additionalServicesPaymentRate);
+      Number(this._options.servicesPaymentRate) +
+      Number(this._options.additionalServicesPaymentRate);
 
-    this._DOM.totalDayPaymentSentence.textContent = `${this._datasetOptions.dayPaymentRate.toLocaleString()}${
-      this._currency
-    } x ${this._days.toLocaleString()} суток`;
+    this._DOM.totalDayPaymentSentence.textContent = `${this._options.dayPaymentRate.toLocaleString()}${
+      this._context.currency
+    } x ${this._state.days.toLocaleString()} суток`;
     this._DOM.totalDayPaymentAmount.textContent = `${totalDayPaymentAmount.toLocaleString()}${
-      this._currency
+      this._context.currency
     }`;
 
     this._DOM.totalPaymentAmount.textContent = `${totalPaymentAmount.toLocaleString()}${
-      this._currency
+      this._context.currency
     }`;
 
     return this;
   }
 }
 
+type RoomDefinitionCardElementWithComponent = HTMLElementWithComponent<
+  RoomDefinitionCardElement,
+  RoomDefinitionCardCustomEvents,
+  RoomDefinitionCard
+>;
+
 const roomDefinitionCards = Array.from(
   document.querySelectorAll('.room-definition-card') as NodeListOf<RoomDefinitionCardElement>,
   (roomDefinitionCardElement) => new RoomDefinitionCard(roomDefinitionCardElement)
 );
 
-export { roomDefinitionCards as default, RoomDefinitionCardCustomEvents };
+export type {
+  RoomDefinitionCardCustomEvents,
+  RoomDefinitionCard,
+  RoomDefinitionCardElementWithComponent,
+};
+
+export { roomDefinitionCards as default };

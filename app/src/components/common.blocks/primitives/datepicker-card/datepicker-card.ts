@@ -15,7 +15,7 @@ import '@library.blocks/primitives/datepicker-card/datepicker-card';
 
 type DatepickerCardElement = HTMLDivElement;
 
-type DatepickerCardStaticDOM = {
+type DatepickerCardDOM = {
   $element: JQuery<DatepickerCardElement>;
   input: HTMLInputElement;
   $altFields?: JQuery<HTMLInputElement>;
@@ -26,22 +26,28 @@ type DatepickerCardGeneratedDOM = {
   applyBtn: HTMLButtonElement;
 };
 
+type DatepickerCardState = {
+  dates: Date[];
+  formattedDates: string;
+};
+
 type DatepickerCardCustomEvents = 'select' | 'change';
 
 class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardCustomEvents> {
-  protected readonly _staticDOM: Readonly<DatepickerCardStaticDOM>;
+  protected readonly _DOM: Readonly<DatepickerCardDOM>;
   protected readonly _generatedDOM: Readonly<DatepickerCardGeneratedDOM>;
 
-  protected _applyControlTemplate = `<div class="datepicker-card__apply-control"><div class="apply-control"><input class="apply-control__clear-btn apply-control__clear-btn_hidden" type="button" value="очистить"><input class="apply-control__apply-btn" type="button" value="применить"></div></div>`;
+  protected readonly _state: DatepickerCardState;
 
-  protected _dates: Date[] = [];
-  protected _formattedDates = '';
+  protected _applyControlTemplate = `<div class="datepicker-card__apply-control"><div class="apply-control"><input class="apply-control__clear-btn apply-control__clear-btn_hidden" type="button" value="очистить"><input class="apply-control__apply-btn" type="button" value="применить"></div></div>`;
 
   constructor(datepickerCardElement: DatepickerCardElement) {
     super(datepickerCardElement);
 
-    this._staticDOM = this._initStaticDOM();
+    this._DOM = this._initDOM();
     this._generatedDOM = this._initLibDatepicker()._initGeneratedDOM();
+
+    this._state = this._initState();
 
     this._bindApplyControlListeners();
 
@@ -49,35 +55,37 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
   }
 
   getDates() {
-    return [...this._dates];
+    return [...this._state.dates];
   }
   getSplitFormattedDates() {
-    return this._formattedDates.split(
-      this._staticDOM.$element.data('datepicker').opts.multipleDatesSeparator
+    return this._state.formattedDates.split(
+      this._DOM.$element.data('datepicker').opts.multipleDatesSeparator
     );
   }
   getDateTimes() {
-    if (
-      this._staticDOM.$element.data('datepicker').opts.range &&
-      this._staticDOM.$altFields === undefined
-    ) {
-      return this._dates.length === 2
-        ? [formatToPeriodDateTime(this._dates[0].toISOString(), this._dates[1].toISOString())]
-        : this._dates.map((date) => date.toISOString());
+    if (this._DOM.$element.data('datepicker').opts.range && this._DOM.$altFields === undefined) {
+      return this._state.dates.length === 2
+        ? [
+            formatToPeriodDateTime(
+              this._state.dates[0].toISOString(),
+              this._state.dates[1].toISOString()
+            ),
+          ]
+        : this._state.dates.map((date) => date.toISOString());
     }
 
-    return this._dates.map((date) => date.toISOString());
+    return this._state.dates.map((date) => date.toISOString());
   }
   getFormattedDate() {
-    return this._formattedDates;
+    return this._state.formattedDates;
   }
   get$altFields() {
-    return this._staticDOM.$altFields;
+    return this._DOM.$altFields;
   }
 
-  protected _initStaticDOM(): DatepickerCardStaticDOM {
+  protected _initDOM(): DatepickerCardDOM {
     const $element = $(this.element);
-    const input = this.element.previousElementSibling as DatepickerCardStaticDOM['input'];
+    const input = this.element.previousElementSibling as DatepickerCardDOM['input'];
     const $altFields =
       this.element.dataset.altFields !== undefined
         ? $<HTMLInputElement>(this.element.dataset.altFields)
@@ -90,11 +98,11 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
     };
   }
   private _initLibDatepicker() {
-    this._staticDOM.$element.datepicker({
+    this._DOM.$element.datepicker({
       prevHtml: `arrow_back`,
       nextHtml: `arrow_forward`,
       dateFormat:
-        Boolean(this.element.dataset.range) && this._staticDOM.$altFields === undefined
+        Boolean(this.element.dataset.range) && this._DOM.$altFields === undefined
           ? 'dd M'
           : 'dd.mm.yyyy',
       minDate: new Date(),
@@ -103,12 +111,12 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
         this._generatedDOM.clearBtn.classList.remove('apply-control__clear-btn_hidden');
 
         if (date !== undefined) {
-          this._dates = Array.isArray(date) ? date : [date];
+          this._state.dates = Array.isArray(date) ? date : [date];
         } else {
-          this._dates = [];
+          this._state.dates = [];
         }
 
-        this._formattedDates = formattedDate;
+        this._state.formattedDates = formattedDate;
 
         this.element.dispatchEvent(new CustomEvent('select', { bubbles: true }));
       },
@@ -117,7 +125,7 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
     return this;
   }
   protected _initGeneratedDOM(): DatepickerCardGeneratedDOM {
-    const $calendar = this._staticDOM.$element.find(
+    const $calendar = this._DOM.$element.find(
       '.datepicker'
     ) as DatepickerCardGeneratedDOM['$calendar'];
 
@@ -138,6 +146,14 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
     };
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  protected _initState() {
+    const dates = [] as DatepickerCardState['dates'];
+    const formattedDates = '' as DatepickerCardState['formattedDates'];
+
+    return { dates, formattedDates };
+  }
+
   protected _bindApplyControlListeners() {
     this._generatedDOM.clearBtn.addEventListener(
       'click',
@@ -152,16 +168,16 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
     return this;
   }
   protected _applyControlEventListenerObject = {
-    handleClearBtnClick: (e: MouseEvent) => {
-      this._staticDOM.$element.data('datepicker').clear();
+    handleClearBtnClick: () => {
+      this._DOM.$element.data('datepicker').clear();
 
       this._generatedDOM.clearBtn.classList.add('apply-control__clear-btn_hidden');
 
       this.element.dispatchEvent(new CustomEvent('change', { bubbles: true }));
     },
-    handleApplyBtnClick: (e: MouseEvent) => {
+    handleApplyBtnClick: () => {
       if (this._verifyApplying()) {
-        const { selectedDates } = this._staticDOM.$element.data('datepicker');
+        const { selectedDates } = this._DOM.$element.data('datepicker');
         const ISOSelectedDates: string[] = selectedDates.map((selectedDate: Date) =>
           selectedDate.toISOString()
         );
@@ -170,46 +186,47 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
       }
     },
   };
-  protected _verifyApplying() {
-    const { selectedDates, opts } = this._staticDOM.$element.data('datepicker');
-    let maxSelected = selectedDates.length;
 
-    if (this._staticDOM.$altFields !== undefined) {
-      maxSelected = this._staticDOM.$altFields.length + 1;
-    } else if (opts.range) {
-      maxSelected = 2;
+  protected _initDisplay() {
+    if (this._DOM.input.value !== '') {
+      const ISODates = this._DOM.input.value.split(',');
+
+      this._DOM.$element
+        .data('datepicker')
+        .selectDate(ISODates.map((ISODate) => new Date(ISODate)));
     }
 
-    return selectedDates.length === maxSelected || selectedDates.length === 0;
+    return this;
   }
+
   protected _changeInputValue(ISODates: string[]) {
-    this._staticDOM.input.value = ISODates.toString();
-    this._staticDOM.$altFields?.each((index, altField) => {
+    this._DOM.input.value = ISODates.toString();
+    this._DOM.$altFields?.each((index, altField) => {
       // eslint-disable-next-line no-param-reassign
       altField.value = ISODates[index + 1];
     });
 
-    this._staticDOM.input.dispatchEvent(new Event('change'));
+    this._DOM.input.dispatchEvent(new Event('change'));
     this.element.dispatchEvent(
       new CustomEvent('change', {
         bubbles: true,
-        detail: { value: this._staticDOM.input.value },
       })
     );
 
     return this;
   }
 
-  protected _initDisplay() {
-    if (this._staticDOM.input.value !== '') {
-      const ISODates = this._staticDOM.input.value.split(',');
+  protected _verifyApplying() {
+    const { selectedDates, opts } = this._DOM.$element.data('datepicker');
+    let maxSelected = selectedDates.length;
 
-      this._staticDOM.$element
-        .data('datepicker')
-        .selectDate(ISODates.map((ISODate) => new Date(ISODate)));
+    if (this._DOM.$altFields !== undefined) {
+      maxSelected = this._DOM.$altFields.length + 1;
+    } else if (opts.range) {
+      maxSelected = 2;
     }
 
-    return this;
+    return selectedDates.length === maxSelected || selectedDates.length === 0;
   }
 }
 

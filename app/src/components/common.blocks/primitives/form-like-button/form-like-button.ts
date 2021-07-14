@@ -1,10 +1,14 @@
-import { BEMComponent } from '@utils/devTools/scripts/ComponentCreationHelper';
+import {
+  BEMComponent,
+  HTMLElementWithComponent,
+} from '@utils/devTools/scripts/ComponentCreationHelper';
 
 type FormLikeButtonElement = HTMLDivElement;
 
-type FormLikeButtonDOM = {
-  button: HTMLInputElement;
-  counter: HTMLSpanElement;
+type FormLikeButtonDOM = { button: HTMLInputElement; counter: HTMLSpanElement };
+
+type FormLikeButtonState = {
+  likes: number;
 };
 
 type FormLikeButtonCustomEvents = '';
@@ -12,15 +16,14 @@ type FormLikeButtonCustomEvents = '';
 class FormLikeButton extends BEMComponent<FormLikeButtonElement, FormLikeButtonCustomEvents> {
   protected readonly _DOM: Readonly<FormLikeButtonDOM>;
 
-  protected _likes: number;
+  protected readonly _state: FormLikeButtonState;
 
   constructor(formLikeButtonElement: FormLikeButtonElement) {
     super(formLikeButtonElement);
 
     this._DOM = this._initDOM();
 
-    const state = this._initState();
-    this._likes = state.likes;
+    this._state = this._initState();
 
     this._bindButtonListeners();
   }
@@ -48,21 +51,29 @@ class FormLikeButton extends BEMComponent<FormLikeButtonElement, FormLikeButtonC
     this._DOM.button.addEventListener('change', this._buttonEventListenerObject.handleButtonChange);
   }
   protected _buttonEventListenerObject = {
-    handleButtonChange: (event: Event) => {
+    handleButtonChange: () => {
       if (this._DOM.button.checked) {
-        this._likes += 1;
+        this._state.likes += 1;
       } else {
-        this._likes -= 1;
+        this._state.likes -= 1;
       }
 
-      this._DOM.counter.textContent = `${this._likes}`;
+      this._DOM.counter.textContent = `${this._state.likes}`;
     },
   };
 }
 
+type FormLikeButtonElementWithComponent = HTMLElementWithComponent<
+  FormLikeButtonElement,
+  FormLikeButtonCustomEvents,
+  FormLikeButton
+>;
+
 const formLikeButtons = Array.from(
-  document.querySelectorAll('.form-like-button') as NodeListOf<FormLikeButtonElement>,
+  document.querySelectorAll<FormLikeButtonElement>('.form-like-button'),
   (formLikeButtonElement) => new FormLikeButton(formLikeButtonElement)
 );
+
+export type { FormLikeButtonCustomEvents, FormLikeButton, FormLikeButtonElementWithComponent };
 
 export { formLikeButtons as default };

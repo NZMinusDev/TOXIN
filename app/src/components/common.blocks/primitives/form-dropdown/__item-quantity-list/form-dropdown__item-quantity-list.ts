@@ -3,26 +3,26 @@ import {
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/ComponentCreationHelper';
 import { has } from '@utils/devTools/scripts/DOMHelper';
-
 import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
-import dropdowns from '../form-dropdown';
 
-type ItemQuantityListElement = HTMLDivElement;
+import formDropdowns from '../form-dropdown';
 
-type ItemQuantityListStaticDOM = {
-  $self: JQuery<ItemQuantityListElement>;
+type FormDropdownItemQuantityListElement = HTMLDivElement;
+
+type FormDropdownItemQuantityListDOM = {
+  $self: JQuery<FormDropdownItemQuantityListElement>;
   listInput: HTMLInputElement;
   selection: HTMLParagraphElement;
   menu: HTMLDivElement;
   optionInputs: HTMLInputElement[];
   menuOptions: HTMLDivElement[];
 };
-type ItemQuantityListGeneratedDOM = {
+type FormDropdownItemQuantityListGeneratedDOM = {
   decrementButtons: HTMLButtonElement[];
   incrementButtons: HTMLButtonElement[];
 };
 
-type ItemQuantityListDatasetOptions = {
+type FormDropdownItemQuantityListHTMLOptions = {
   selection: { placeholder: string };
   menu: { groups: { [groupName: string]: { selectionText: string; textPlural: string } } };
   menuOptions: Map<
@@ -36,42 +36,48 @@ type ItemQuantityListDatasetOptions = {
     }
   >;
 };
+type FormDropdownItemQuantityListState = {
+  totalItems: number;
+  itemsCounter: Map<string, number>;
+  groupsCounter: Map<string, number>;
+};
 
-type ItemQuantityListCustomEvents = 'select' | 'close' | 'change';
+type FormDropdownItemQuantityListCustomEvents = 'select' | 'close' | 'change';
 
-class ItemQuantityList extends BEMComponent<ItemQuantityListElement, ItemQuantityListCustomEvents> {
-  protected readonly _staticDOM: Readonly<ItemQuantityListStaticDOM>;
-  protected readonly _generatedDOM: Readonly<ItemQuantityListGeneratedDOM>;
+class FormDropdownItemQuantityList extends BEMComponent<
+  FormDropdownItemQuantityListElement,
+  FormDropdownItemQuantityListCustomEvents
+> {
+  protected readonly _DOM: Readonly<FormDropdownItemQuantityListDOM>;
+  protected readonly _generatedDOM: Readonly<FormDropdownItemQuantityListGeneratedDOM>;
 
-  private _datasetOptions: ItemQuantityListDatasetOptions;
-  protected _totalItems = -1;
+  protected readonly _options: FormDropdownItemQuantityListHTMLOptions;
+  protected readonly _state: FormDropdownItemQuantityListState;
 
-  protected _itemsCounter = new Map<string, number>();
-  protected _groupsCounter = new Map<string, number>();
+  constructor(formDropdownItemQuantityListElement: FormDropdownItemQuantityListElement) {
+    super(formDropdownItemQuantityListElement);
 
-  constructor(itemQuantityListElement: ItemQuantityListElement) {
-    super(itemQuantityListElement);
+    this._DOM = this._initDOM();
+    this._state = this._initState();
+    this._options = this._initOptionsFromHTML();
+    this._generatedDOM = this._initLibFormDropdownItemQuantityList()._initGeneratedDOM();
 
-    this._staticDOM = this._initStaticDOM();
-    this._datasetOptions = this._initOptionsFromDataset();
-    this._generatedDOM = this._initLibItemQuantityList()._initGeneratedDOM();
-
-    this._bindListeners()._bindCounterBtnListeners();
+    this._bindCounterBtnListeners()._bindListeners();
 
     this._initDisplay();
   }
 
-  getTotalAmount() {
-    return this._totalItems;
+  getTotalItems() {
+    return this._state.totalItems;
   }
   reset() {
-    this._staticDOM.menuOptions.forEach((menuOption, index) => {
-      const menuOptionDataset = this._datasetOptions.menuOptions.get(menuOption) as Unpacked<
-        ItemQuantityListDatasetOptions['menuOptions']
+    this._DOM.menuOptions.forEach((menuOption, index) => {
+      const menuOptionOptions = this._options.menuOptions.get(menuOption) as Unpacked<
+        FormDropdownItemQuantityListHTMLOptions['menuOptions']
       >;
 
-      const currAmount = this._itemsCounter.get(menuOptionDataset.id) as number;
-      const minAmount = menuOptionDataset.minCount as number;
+      const currAmount = this._state.itemsCounter.get(menuOptionOptions.id) as number;
+      const minAmount = menuOptionOptions.minCount as number;
       let amountToDecrement = currAmount - minAmount;
 
       const decrementBtn = this._generatedDOM.decrementButtons[index];
@@ -87,55 +93,44 @@ class ItemQuantityList extends BEMComponent<ItemQuantityListElement, ItemQuantit
   }
 
   open() {
-    if (this.isClosed()) {
-      this.element.classList.add('menu-open');
-    }
+    this.element.classList.add('menu-open');
 
     return this;
   }
   close() {
-    if (!this.isClosed()) {
-      this.element.classList.remove('menu-open');
+    this.element.classList.remove('menu-open');
 
-      this.element.dispatchEvent(new CustomEvent('close', { bubbles: true }));
-    }
+    this.element.dispatchEvent(new CustomEvent('close', { bubbles: true }));
 
     return this;
   }
   toggle() {
-    if (this.isClosed()) {
-      this.open();
-    } else {
+    if (this.element.classList.contains('menu-open')) {
       this.close();
+    } else {
+      this.open();
     }
 
     return this;
   }
-  isClosed() {
-    if (!this.element.classList.contains('menu-open')) {
-      return true;
-    }
 
-    return false;
-  }
-
-  protected _initStaticDOM(): ItemQuantityListStaticDOM {
-    const $self = $(this.element) as ItemQuantityListStaticDOM['$self'];
+  protected _initDOM() {
+    const $self = $(this.element) as FormDropdownItemQuantityListDOM['$self'];
     const listInput = this.element.querySelector(
       '.form-dropdown__list-input'
-    ) as ItemQuantityListStaticDOM['listInput'];
+    ) as FormDropdownItemQuantityListDOM['listInput'];
     const selection = this.element.querySelector(
       '.iqdropdown-selection'
-    ) as ItemQuantityListStaticDOM['selection'];
+    ) as FormDropdownItemQuantityListDOM['selection'];
     const menu = this.element.querySelector(
       '.iqdropdown-menu'
-    ) as ItemQuantityListStaticDOM['menu'];
+    ) as FormDropdownItemQuantityListDOM['menu'];
     const optionInputs = [
       ...menu.querySelectorAll('.form-dropdown__option-input'),
-    ] as ItemQuantityListStaticDOM['optionInputs'];
+    ] as FormDropdownItemQuantityListDOM['optionInputs'];
     const menuOptions = [
       ...menu.querySelectorAll('.iqdropdown-menu-option'),
-    ] as ItemQuantityListStaticDOM['menuOptions'];
+    ] as FormDropdownItemQuantityListDOM['menuOptions'];
 
     return {
       $self,
@@ -146,19 +141,19 @@ class ItemQuantityList extends BEMComponent<ItemQuantityListElement, ItemQuantit
       menuOptions,
     };
   }
-  protected _initOptionsFromDataset(): ItemQuantityListDatasetOptions {
-    const values = this._staticDOM.listInput.value.split(',');
+  protected _initOptionsFromHTML() {
+    const values = this._DOM.listInput.value.split(',');
 
     return {
-      selection: { placeholder: this._staticDOM.selection.dataset.placeholder || '' },
+      selection: { placeholder: this._DOM.selection.dataset.placeholder || '' },
       menu: {
         groups:
-          this._staticDOM.menu.dataset.groups !== undefined
-            ? JSON.parse(this._staticDOM.menu.dataset.groups)
+          this._DOM.menu.dataset.groups !== undefined
+            ? JSON.parse(this._DOM.menu.dataset.groups)
             : '',
       },
       menuOptions: new Map(
-        this._staticDOM.menuOptions.map((menuOption, index) => {
+        this._DOM.menuOptions.map((menuOption, index) => {
           // eslint-disable-next-line no-param-reassign
           menuOption.dataset.defaultcount = values[index] ?? menuOption.dataset.defaultcount;
 
@@ -176,10 +171,10 @@ class ItemQuantityList extends BEMComponent<ItemQuantityListElement, ItemQuantit
       ),
     };
   }
-  private _initLibItemQuantityList() {
-    this._staticDOM.$self.iqDropdown({
+  private _initLibFormDropdownItemQuantityList() {
+    this._DOM.$self.iqDropdown({
       setSelectionText: (itemCount, totalItems) => {
-        this._totalItems = totalItems;
+        this._state.totalItems = totalItems;
         this._updateCounters(itemCount);
 
         return this._generateResultText();
@@ -197,13 +192,13 @@ class ItemQuantityList extends BEMComponent<ItemQuantityListElement, ItemQuantit
 
     return this;
   }
-  protected _initGeneratedDOM(): ItemQuantityListGeneratedDOM {
+  protected _initGeneratedDOM() {
     const decrementButtons = [
-      ...this._staticDOM.menu.querySelectorAll('.button-decrement'),
-    ] as ItemQuantityListGeneratedDOM['decrementButtons'];
+      ...this._DOM.menu.querySelectorAll('.button-decrement'),
+    ] as FormDropdownItemQuantityListGeneratedDOM['decrementButtons'];
     const incrementButtons = [
-      ...this._staticDOM.menu.querySelectorAll('.button-increment'),
-    ] as ItemQuantityListGeneratedDOM['incrementButtons'];
+      ...this._DOM.menu.querySelectorAll('.button-increment'),
+    ] as FormDropdownItemQuantityListGeneratedDOM['incrementButtons'];
 
     return {
       decrementButtons,
@@ -211,85 +206,13 @@ class ItemQuantityList extends BEMComponent<ItemQuantityListElement, ItemQuantit
     };
   }
 
-  protected _bindListeners() {
-    this.element.addEventListener('close', this.onClose);
+  // eslint-disable-next-line class-methods-use-this
+  protected _initState() {
+    const totalItems = -1;
+    const itemsCounter = new Map<string, number>();
+    const groupsCounter = new Map<string, number>();
 
-    return this;
-  }
-  protected onClose = () => {
-    this._changeValueOfInputs();
-  };
-
-  protected _generateResultText() {
-    const { groups } = this._datasetOptions.menu;
-    let result = '';
-
-    if (this._totalItems > 0) {
-      this._groupsCounter.forEach((groupAmount, groupKey) => {
-        if (groupAmount > 0) {
-          if (result !== '') {
-            result += ', ';
-          }
-
-          const appendedText =
-            groupAmount === 1 ? groups[groupKey].selectionText : groups[groupKey].textPlural;
-          result += `${groupAmount} ${appendedText}`;
-        }
-      });
-    } else {
-      result = this._datasetOptions.selection.placeholder;
-    }
-
-    return result;
-  }
-  protected _updateCounters(itemCount: { [itemID: string]: number }) {
-    this._itemsCounter.clear();
-    this._groupsCounter.clear();
-
-    this._staticDOM.menuOptions.forEach((menuOption) => {
-      const menuOptionDataset = this._datasetOptions.menuOptions.get(menuOption) as Unpacked<
-        ItemQuantityListDatasetOptions['menuOptions']
-      >;
-
-      this._itemsCounter.set(menuOptionDataset.id, itemCount[menuOptionDataset.id]);
-      this._groupsCounter.set(
-        menuOptionDataset.group,
-        (this._groupsCounter.get(menuOptionDataset.group) || 0) + itemCount[menuOptionDataset.id]
-      );
-    });
-
-    return this;
-  }
-  protected _changeValueOfInputs() {
-    let accumulator = '';
-    this._staticDOM.menuOptions.forEach((menuOption, index) => {
-      const menuOptionDataset = this._datasetOptions.menuOptions.get(menuOption) as Unpacked<
-        ItemQuantityListDatasetOptions['menuOptions']
-      >;
-
-      const counterAmount = this._itemsCounter.get(menuOptionDataset.id as string);
-      const input = this._staticDOM.optionInputs[index];
-
-      input.value = `${counterAmount}`;
-
-      if (index > 0) {
-        accumulator += ',';
-      }
-
-      accumulator += counterAmount;
-    });
-
-    this._staticDOM.listInput.value = accumulator;
-
-    this._staticDOM.listInput.dispatchEvent(new Event('change'));
-    this.element.dispatchEvent(
-      new CustomEvent('change', {
-        bubbles: true,
-        detail: { value: this._staticDOM.listInput.value },
-      })
-    );
-
-    return this;
+    return { totalItems, itemsCounter, groupsCounter };
   }
 
   protected _bindCounterBtnListeners() {
@@ -311,12 +234,12 @@ class ItemQuantityList extends BEMComponent<ItemQuantityListElement, ItemQuantit
   protected _counterButtonEventListenerObject = {
     handleCounterButtonClick: (clickEvent: MouseEvent) => {
       const targetMenuOption = has(
-        this._staticDOM.menuOptions,
+        this._DOM.menuOptions,
         clickEvent.currentTarget as Unpacked<
-          | ItemQuantityListGeneratedDOM['decrementButtons']
-          | ItemQuantityListGeneratedDOM['incrementButtons']
+          | FormDropdownItemQuantityListGeneratedDOM['decrementButtons']
+          | FormDropdownItemQuantityListGeneratedDOM['incrementButtons']
         >
-      ) as Unpacked<ItemQuantityListStaticDOM['menuOptions']>;
+      ) as Unpacked<FormDropdownItemQuantityListDOM['menuOptions']>;
 
       this._updateCounterButtonDisplay(targetMenuOption);
 
@@ -324,26 +247,115 @@ class ItemQuantityList extends BEMComponent<ItemQuantityListElement, ItemQuantit
     },
   };
 
-  protected _updateCounterButtonDisplay(
-    targetMenuOption: Unpacked<ItemQuantityListStaticDOM['menuOptions']>
-  ) {
-    const targetMenuOptionDataset = this._datasetOptions.menuOptions.get(
-      targetMenuOption
-    ) as Unpacked<ItemQuantityListDatasetOptions['menuOptions']>;
+  protected _bindListeners() {
+    this.element.addEventListener('close', this.onClose);
 
-    const menuOptionIndex = this._staticDOM.menuOptions.indexOf(targetMenuOption);
+    return this;
+  }
+  protected onClose = () => {
+    this._changeValueOfInputs();
+  };
+
+  protected _initDisplay() {
+    this._DOM.menuOptions.forEach((menuOption) => {
+      this._updateCounterButtonDisplay(menuOption);
+    });
+
+    return this;
+  }
+
+  protected _generateResultText() {
+    const { groups } = this._options.menu;
+    let result = '';
+
+    if (this._state.totalItems > 0) {
+      this._state.groupsCounter.forEach((groupAmount, groupKey) => {
+        if (groupAmount > 0) {
+          if (result !== '') {
+            result += ', ';
+          }
+
+          const appendedText =
+            groupAmount === 1 ? groups[groupKey].selectionText : groups[groupKey].textPlural;
+          result += `${groupAmount} ${appendedText}`;
+        }
+      });
+    } else {
+      result = this._options.selection.placeholder;
+    }
+
+    return result;
+  }
+  protected _updateCounters(itemCount: { [itemID: string]: number }) {
+    this._state.itemsCounter.clear();
+    this._state.groupsCounter.clear();
+
+    this._DOM.menuOptions.forEach((menuOption) => {
+      const menuOptionOptions = this._options.menuOptions.get(menuOption) as Unpacked<
+        FormDropdownItemQuantityListHTMLOptions['menuOptions']
+      >;
+
+      this._state.itemsCounter.set(menuOptionOptions.id, itemCount[menuOptionOptions.id]);
+      this._state.groupsCounter.set(
+        menuOptionOptions.group,
+        (this._state.groupsCounter.get(menuOptionOptions.group) || 0) +
+          itemCount[menuOptionOptions.id]
+      );
+    });
+
+    return this;
+  }
+  protected _changeValueOfInputs() {
+    let accumulator = '';
+    this._DOM.menuOptions.forEach((menuOption, index) => {
+      const menuOptionOptions = this._options.menuOptions.get(menuOption) as Unpacked<
+        FormDropdownItemQuantityListHTMLOptions['menuOptions']
+      >;
+
+      const counterAmount = this._state.itemsCounter.get(menuOptionOptions.id as string);
+      const input = this._DOM.optionInputs[index];
+
+      input.value = `${counterAmount}`;
+
+      if (index > 0) {
+        accumulator += ',';
+      }
+
+      accumulator += counterAmount;
+    });
+
+    this._DOM.listInput.value = accumulator;
+
+    this._DOM.listInput.dispatchEvent(new Event('change'));
+    this.element.dispatchEvent(
+      new CustomEvent('change', {
+        bubbles: true,
+        detail: { value: this._DOM.listInput.value },
+      })
+    );
+
+    return this;
+  }
+  protected _updateCounterButtonDisplay(
+    targetMenuOption: Unpacked<FormDropdownItemQuantityListDOM['menuOptions']>
+  ) {
+    const targetMenuOptionOptions = this._options.menuOptions.get(targetMenuOption) as Unpacked<
+      FormDropdownItemQuantityListHTMLOptions['menuOptions']
+    >;
+
+    const menuOptionIndex = this._DOM.menuOptions.indexOf(targetMenuOption);
     const decrementBtn = this._generatedDOM.decrementButtons[menuOptionIndex];
     const incrementBtn = this._generatedDOM.incrementButtons[menuOptionIndex];
 
-    const counterAmount = this._itemsCounter.get(targetMenuOptionDataset.id);
+    const counterAmount = this._state.itemsCounter.get(targetMenuOptionOptions.id);
 
-    if (targetMenuOptionDataset.minCount === counterAmount) {
+    if (targetMenuOptionOptions.minCount === counterAmount) {
       decrementBtn.classList.add('iqdropdown__counter_isDisabled');
     } else {
       decrementBtn.classList.remove('iqdropdown__counter_isDisabled');
     }
 
-    if (targetMenuOptionDataset.maxCount === counterAmount) {
+    if (targetMenuOptionOptions.maxCount === counterAmount) {
       incrementBtn.classList.add('iqdropdown__counter_isDisabled');
     } else {
       incrementBtn.classList.remove('iqdropdown__counter_isDisabled');
@@ -351,39 +363,31 @@ class ItemQuantityList extends BEMComponent<ItemQuantityListElement, ItemQuantit
 
     return this;
   }
-
-  protected _initDisplay() {
-    this._staticDOM.menuOptions.forEach((menuOption) => {
-      this._updateCounterButtonDisplay(menuOption);
-    });
-
-    return this;
-  }
 }
 
-type ItemQuantityListElementWithComponent = HTMLElementWithComponent<
-  ItemQuantityListElement,
-  ItemQuantityListCustomEvents,
-  ItemQuantityList
+type FormDropdownItemQuantityListElementWithComponent = HTMLElementWithComponent<
+  FormDropdownItemQuantityListElement,
+  FormDropdownItemQuantityListCustomEvents,
+  FormDropdownItemQuantityList
 >;
 
-const dropdownsWithItemQuantityList = dropdowns.filter((dropdown) =>
+const formDropdownsWithItemQuantityList = formDropdowns.filter((dropdown) =>
   dropdown.element.querySelector('.form-dropdown__item-quantity-list')
 );
 
-const itemQuantityLists = dropdownsWithItemQuantityList.map(
+const formDropdownItemQuantityLists = formDropdownsWithItemQuantityList.map(
   (dropdown) =>
-    new ItemQuantityList(
+    new FormDropdownItemQuantityList(
       dropdown.element.querySelector(
         '.form-dropdown__item-quantity-list'
-      ) as ItemQuantityListElement
+      ) as FormDropdownItemQuantityListElement
     )
 );
 
 export type {
-  ItemQuantityListCustomEvents,
-  ItemQuantityList,
-  ItemQuantityListElementWithComponent,
+  FormDropdownItemQuantityListCustomEvents,
+  FormDropdownItemQuantityList,
+  FormDropdownItemQuantityListElementWithComponent,
 };
 
-export { itemQuantityLists as default };
+export { formDropdownItemQuantityLists as default };

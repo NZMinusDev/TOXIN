@@ -2,50 +2,64 @@ import {
   BEMComponent,
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/ComponentCreationHelper';
-
-import datepickerCards, {
+import type {
   DatepickerCardCustomEvents,
   DatepickerCard,
+  DatepickerCardElementWithComponent,
 } from '@common.blocks/primitives/datepicker-card/datepicker-card';
+import '@common.blocks/primitives/datepicker-card/datepicker-card';
 
-import dropdowns, { DropdownElementWithComponent } from '../form-dropdown';
+import formDropdowns from '../form-dropdown';
 
-type DropdownDatepickerElement = HTMLDivElement;
+type FormDropdownDatepickerElement = HTMLDivElement;
 
-type DropdownDatepickerDOM = {
+type FormDropdownDatepickerDOM = {
   selection: HTMLParagraphElement;
   input: HTMLInputElement;
+  datepickerCard?: DatepickerCardElementWithComponent;
 };
 
-type DropdownDatepickerDatasetOptions = { placeholder: string };
+type FormDropdownDatepickerSubComponents = {
+  datepickerCard?: DatepickerCard;
+};
 
-type DropdownDatepickerCustomEvents = DatepickerCardCustomEvents;
+type FormDropdownDatepickerState = {
+  dates?: string[];
+};
 
-class DropdownDatepicker extends BEMComponent<
-  DropdownDatepickerElement,
-  DropdownDatepickerCustomEvents
+type FormDropdownDatepickerHTMLOptions = { placeholder: string };
+
+type FormDropdownDatepickerCustomEvents = DatepickerCardCustomEvents;
+
+class FormDropdownDatepicker extends BEMComponent<
+  FormDropdownDatepickerElement,
+  FormDropdownDatepickerCustomEvents
 > {
-  protected readonly _DOM: Readonly<DropdownDatepickerDOM>;
+  protected readonly _DOM: Readonly<FormDropdownDatepickerDOM>;
 
-  protected _datasetOptions: DropdownDatepickerDatasetOptions;
+  protected readonly _subComponents: Readonly<FormDropdownDatepickerSubComponents>;
 
-  protected _datepickerCard: DatepickerCard | undefined;
+  protected readonly _options: FormDropdownDatepickerHTMLOptions;
+  protected readonly _state: FormDropdownDatepickerState;
 
-  constructor(dropdownDatepickerElement: DropdownDatepickerElement) {
-    super(dropdownDatepickerElement);
+  constructor(formFormDropdownDatepickerElement: FormDropdownDatepickerElement) {
+    super(formFormDropdownDatepickerElement);
 
     this._DOM = this._initDOM();
 
-    this._datasetOptions = this._initOptionsFromDataset();
+    this._subComponents = this._initSubComponents();
 
-    const subComponents = this._initSubComponents();
-    this._datepickerCard = subComponents._datepickerCard;
+    this._options = this._initOptionsFromHTML();
+    this._state = this._initState();
 
     this._bindListeners()._bindAltFieldsListeners();
 
     this._initDisplay();
   }
 
+  get() {
+    return this._state.dates === undefined ? [] : [...this._state.dates];
+  }
   show() {
     this.element.classList.remove('form-dropdown__datepicker_hidden');
 
@@ -57,30 +71,42 @@ class DropdownDatepicker extends BEMComponent<
     return this;
   }
 
-  protected _initDOM(): DropdownDatepickerDOM {
-    const selection = this.element.nextElementSibling as DropdownDatepickerDOM['selection'];
+  protected _initDOM(): FormDropdownDatepickerDOM {
+    const selection = this.element.nextElementSibling as FormDropdownDatepickerDOM['selection'];
     const input = this.element.querySelector(
       '.form-dropdown__datepicker-input'
-    ) as DropdownDatepickerDOM['input'];
+    ) as FormDropdownDatepickerDOM['input'];
+    const datepickerCard =
+      this.element.querySelector('.datepicker-card') === null
+        ? undefined
+        : (this.element.querySelector(
+            '.datepicker-card'
+          ) as FormDropdownDatepickerDOM['datepickerCard']);
 
     return {
       selection,
       input,
-    };
-  }
-
-  protected _initOptionsFromDataset(): DropdownDatepickerDatasetOptions {
-    return {
-      placeholder: this._DOM.selection.dataset.placeholder || '',
+      datepickerCard,
     };
   }
 
   protected _initSubComponents() {
-    const _datepickerCard = datepickerCards.find((datepickerCard) =>
-      this.element.contains(datepickerCard.element)
-    ) as DatepickerCard;
+    const datepickerCard = this._DOM.datepickerCard?.component;
 
-    return { _datepickerCard };
+    return { datepickerCard };
+  }
+
+  protected _initOptionsFromHTML() {
+    const placeholder = this._DOM.selection.dataset.placeholder || '';
+
+    return {
+      placeholder,
+    };
+  }
+  protected _initState() {
+    const dates = this._getDatesFromDatepickerCard();
+
+    return { dates };
   }
 
   protected _bindListeners() {
@@ -89,80 +115,21 @@ class DropdownDatepicker extends BEMComponent<
 
     return this;
   }
-  protected onOpen = (e: Event) => {
+  protected onOpen = () => {
     this.show();
   };
-  protected onChange = (e: Event) => {
+  protected onChange = () => {
     this._changeValue();
 
     this.hide();
   };
 
-  protected _changeValue() {
-    if (this._datepickerCard !== undefined) {
-      const $altFields = this._datepickerCard.get$altFields();
-
-      const dates = this._datepickerCard.getDates().map((date) => date.toISOString());
-      const dateTimes = this._datepickerCard.getDateTimes();
-
-      if ($altFields !== undefined) {
-        const formattedDates = this._datepickerCard.getSplitFormattedDates();
-
-        this._DOM.input.value = dates[0] || '';
-        this._DOM.selection.innerHTML =
-          dateTimes[0] !== ''
-            ? `<time datetime="${dateTimes[0]}">${
-                formattedDates[0] || this._datasetOptions.placeholder
-              }</time>`
-            : this._datasetOptions.placeholder;
-
-        this._changeAltFieldsValues(dateTimes, formattedDates);
-      } else {
-        const formattedDate = this._datepickerCard.getFormattedDate();
-
-        this._DOM.input.value = dates.toString();
-        this._DOM.selection.innerHTML =
-          dateTimes.toString() !== ''
-            ? `<time datetime="${dateTimes.toString()}">${
-                formattedDate || this._datasetOptions.placeholder
-              }</time>`
-            : this._datasetOptions.placeholder;
-      }
-    }
-
-    return this;
-  }
-  protected _changeAltFieldsValues(dateTimes: string[], formattedDates: string[]) {
-    const $altFields = this._datepickerCard?.get$altFields();
-
-    $altFields?.each((index, inputElement) => {
-      const dateIndex = index + 1;
-      const dateTime = dateTimes[dateIndex];
-      const selection = inputElement
-        .closest('.form-dropdown')
-        ?.querySelector('.form-dropdown__selection-text') as DropdownDatepickerDOM['selection'];
-      const altFieldPlaceholder = selection.dataset.placeholder || '';
-
-      // eslint-disable-next-line no-param-reassign
-      inputElement.value = dateTime || '';
-      // eslint-disable-next-line no-param-reassign
-      selection.innerHTML =
-        dateTime !== ''
-          ? `<time datetime="${dateTime}">${
-              formattedDates[dateIndex] || altFieldPlaceholder
-            }</time>`
-          : altFieldPlaceholder;
-    });
-
-    return this;
-  }
-
   protected _bindAltFieldsListeners() {
-    const $altFields = this._datepickerCard?.get$altFields();
+    const $altFields = this._subComponents.datepickerCard?.get$altFields();
 
     if ($altFields !== undefined) {
       $altFields.each((index, input) => {
-        const altDropdown = input.closest('.form-dropdown') as DropdownElementWithComponent;
+        const altDropdown = input.closest('.form-dropdown') as HTMLDivElement;
 
         altDropdown.addEventListener('open', this._altFieldEventListenerObject.handleAltFieldOpen);
       });
@@ -179,31 +146,96 @@ class DropdownDatepicker extends BEMComponent<
 
     return this;
   }
+
+  protected _getDatesFromDatepickerCard() {
+    return this._subComponents.datepickerCard?.getDates().map((date) => date.toISOString());
+  }
+  protected _changeValue() {
+    if (this._subComponents.datepickerCard !== undefined) {
+      const $altFields = this._subComponents.datepickerCard.get$altFields();
+
+      this._state.dates = this._getDatesFromDatepickerCard();
+      const dateTimes = this._subComponents.datepickerCard.getDateTimes();
+
+      if ($altFields !== undefined) {
+        const formattedDates = this._subComponents.datepickerCard.getSplitFormattedDates();
+
+        this._DOM.input.value = this._state.dates ? this._state.dates[0] : '';
+        this._DOM.selection.innerHTML =
+          dateTimes[0] !== ''
+            ? `<time datetime="${dateTimes[0]}">${
+                formattedDates[0] || this._options.placeholder
+              }</time>`
+            : this._options.placeholder;
+
+        this._changeAltFieldsValues(dateTimes, formattedDates);
+      } else {
+        const formattedDate = this._subComponents.datepickerCard.getFormattedDate();
+
+        this._changeRangedValue(dateTimes, formattedDate);
+      }
+    }
+
+    return this;
+  }
+  protected _changeRangedValue(dateTimes: string[], formattedDate: string) {
+    this._DOM.input.value = this._state.dates ? this._state.dates.toString() : '';
+    this._DOM.selection.innerHTML =
+      dateTimes.toString() !== ''
+        ? `<time datetime="${dateTimes.toString()}">${
+            formattedDate || this._options.placeholder
+          }</time>`
+        : this._options.placeholder;
+  }
+  protected _changeAltFieldsValues(dateTimes: string[], formattedDates: string[]) {
+    const $altFields = this._subComponents.datepickerCard?.get$altFields();
+
+    $altFields?.each((index, inputElement) => {
+      const dateIndex = index + 1;
+      const dateTime = dateTimes[dateIndex];
+      const selection = inputElement
+        .closest('.form-dropdown')
+        ?.querySelector('.form-dropdown__selection-text') as FormDropdownDatepickerDOM['selection'];
+      const altFieldPlaceholder = selection.dataset.placeholder || '';
+
+      // eslint-disable-next-line no-param-reassign
+      inputElement.value = dateTime || '';
+      // eslint-disable-next-line no-param-reassign
+      selection.innerHTML =
+        dateTime !== ''
+          ? `<time datetime="${dateTime}">${
+              formattedDates[dateIndex] || altFieldPlaceholder
+            }</time>`
+          : altFieldPlaceholder;
+    });
+
+    return this;
+  }
 }
 
-type DropdownDatepickerElementWithComponent = HTMLElementWithComponent<
-  DropdownDatepickerElement,
-  DropdownDatepickerCustomEvents,
-  DropdownDatepicker
+type FormDropdownDatepickerElementWithComponent = HTMLElementWithComponent<
+  FormDropdownDatepickerElement,
+  FormDropdownDatepickerCustomEvents,
+  FormDropdownDatepicker
 >;
 
-const dropdownsWithDatepicker = dropdowns.filter((dropdown) =>
+const formDropdownsWithDatepicker = formDropdowns.filter((dropdown) =>
   dropdown.element.querySelector('.form-dropdown__datepicker')
 );
 
-const dropdownDatepickers = dropdownsWithDatepicker.map(
+const formFormDropdownDatepickers = formDropdownsWithDatepicker.map(
   (dropdownWithDatepicker) =>
-    new DropdownDatepicker(
+    new FormDropdownDatepicker(
       dropdownWithDatepicker.element.querySelector(
         '.form-dropdown__datepicker'
-      ) as DropdownDatepickerElement
+      ) as FormDropdownDatepickerElement
     )
 );
 
 export type {
-  DropdownDatepickerCustomEvents,
-  DropdownDatepicker,
-  DropdownDatepickerElementWithComponent,
+  FormDropdownDatepickerCustomEvents,
+  FormDropdownDatepicker,
+  FormDropdownDatepickerElementWithComponent,
 };
 
-export { dropdownDatepickers as default };
+export { formFormDropdownDatepickers as default };

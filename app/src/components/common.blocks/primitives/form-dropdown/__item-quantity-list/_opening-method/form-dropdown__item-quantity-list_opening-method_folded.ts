@@ -1,30 +1,14 @@
-import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
+import FormDropdownItemQuantityListOpeningMethodModifier, {
+  FormDropdownItemQuantityList,
+} from './coupling';
+import formDropdownItemQuantityLists from '../form-dropdown__item-quantity-list';
 
-import ItemQuantityListOpeningMethodModifier from './coupling';
-import itemQuantityLists from '../form-dropdown__item-quantity-list';
+class FormDropdownItemQuantityListFoldedOpeningMethodModifier extends FormDropdownItemQuantityListOpeningMethodModifier {
+  constructor(formDropdownItemQuantityList: FormDropdownItemQuantityList) {
+    super(formDropdownItemQuantityList);
 
-type ItemQuantityList = Unpacked<typeof itemQuantityLists>;
-
-class ItemQuantityListFoldedOpeningMethodModifier extends ItemQuantityListOpeningMethodModifier {
-  constructor(itemQuantityList: ItemQuantityList) {
-    super(itemQuantityList);
-
-    this._bindComponentListeners()._bindWindowListeners();
+    this._bindWindowListeners()._bindComponentListeners();
   }
-
-  protected _bindComponentListeners() {
-    this.component.element.addEventListener(
-      'open',
-      this._componentEventListenerObject.handleComponentOpen
-    );
-
-    return this;
-  }
-  protected _componentEventListenerObject = {
-    handleComponentOpen: () => {
-      this.component.open();
-    },
-  };
 
   protected _bindWindowListeners() {
     window.addEventListener('click', this._windowEventListenerObject.handleWindowClick);
@@ -41,14 +25,28 @@ class ItemQuantityListFoldedOpeningMethodModifier extends ItemQuantityListOpenin
       }
     },
   };
+
+  protected _bindComponentListeners() {
+    this.component.addEventListener('open', this._componentEventListenerObject.handleComponentOpen);
+
+    return this;
+  }
+  protected _componentEventListenerObject = {
+    handleComponentOpen: () => {
+      this.component.open();
+    },
+  };
 }
 
-const itemQuantityListWithFoldedOpeningMethod = itemQuantityLists.filter((itemQuantityList) =>
-  itemQuantityList.element.classList.contains(
-    'form-dropdown__item-quantity-list_opening-method_folded'
+const formDropdownItemQuantityListFoldedOpeningMethodModifiers = formDropdownItemQuantityLists
+  .filter((formDropdownItemQuantityList) =>
+    formDropdownItemQuantityList.element.classList.contains(
+      'form-dropdown__item-quantity-list_opening-method_folded'
+    )
   )
-);
+  .map(
+    (formDropdownItemQuantityList) =>
+      new FormDropdownItemQuantityListFoldedOpeningMethodModifier(formDropdownItemQuantityList)
+  );
 
-const itemQuantityListFoldedOpeningMethodModifier = itemQuantityListWithFoldedOpeningMethod.map(
-  (itemQuantityList) => new ItemQuantityListFoldedOpeningMethodModifier(itemQuantityList)
-);
+export { formDropdownItemQuantityListFoldedOpeningMethodModifiers as default };

@@ -1,27 +1,29 @@
 import noUiSlider from '@library.blocks/primitives/form-range-slider/form-range-slider';
-import { BEMComponent } from '@utils/devTools/scripts/ComponentCreationHelper';
+import {
+  BEMComponent,
+  HTMLElementWithComponent,
+} from '@utils/devTools/scripts/ComponentCreationHelper';
 
-type RangeSliderElement = HTMLDivElement;
+type FormRangeSliderElement = HTMLDivElement;
 
 interface HTMLDivElementWithSlider extends HTMLDivElement {
   // eslint-disable-next-line no-use-before-define
   noUiSlider: noUiSlider;
 }
-
-type RangeSliderDOM = {
+type FormRangeSliderDOM = {
   slider: HTMLDivElementWithSlider;
   result: HTMLOutputElement;
   inputFrom: HTMLInputElement;
   inputTo: HTMLInputElement;
 };
 
-type RangeSliderCustomEvents = 'change';
+type FormRangeSliderCustomEvents = 'change';
 
-class RangeSlider extends BEMComponent<RangeSliderElement, RangeSliderCustomEvents> {
-  protected readonly _DOM: Readonly<RangeSliderDOM>;
+class FormRangeSlider extends BEMComponent<FormRangeSliderElement, FormRangeSliderCustomEvents> {
+  protected readonly _DOM: Readonly<FormRangeSliderDOM>;
 
-  constructor(rangeSliderElement: RangeSliderElement) {
-    super(rangeSliderElement);
+  constructor(formRangeSliderElement: FormRangeSliderElement) {
+    super(formRangeSliderElement);
 
     this._DOM = this._initDOM();
     this._initLibRangeSlider();
@@ -29,19 +31,19 @@ class RangeSlider extends BEMComponent<RangeSliderElement, RangeSliderCustomEven
     this._bindSliderListeners();
   }
 
-  protected _initDOM(): RangeSliderDOM {
+  protected _initDOM() {
     const slider = this.element.querySelector(
       '.form-range-slider__slider'
-    ) as RangeSliderDOM['slider'];
+    ) as FormRangeSliderDOM['slider'];
     const result = this.element.querySelector(
       '.form-range-slider__result'
-    ) as RangeSliderDOM['result'];
+    ) as FormRangeSliderDOM['result'];
     const inputFrom = this.element.querySelector(
       `[name=${result.name}-0]`
-    ) as RangeSliderDOM['inputFrom'];
+    ) as FormRangeSliderDOM['inputFrom'];
     const inputTo = this.element.querySelector(
       `[name=${result.name}-1]`
-    ) as RangeSliderDOM['inputTo'];
+    ) as FormRangeSliderDOM['inputTo'];
 
     return { slider, result, inputFrom, inputTo };
   }
@@ -92,9 +94,17 @@ class RangeSlider extends BEMComponent<RangeSliderElement, RangeSliderCustomEven
   };
 }
 
-const rangeSliders = Array.from(
-  document.querySelectorAll('.form-range-slider') as NodeListOf<HTMLDivElement>,
-  (rangeSliderElement) => new RangeSlider(rangeSliderElement)
+type FormRangeSliderElementWithComponent = HTMLElementWithComponent<
+  FormRangeSliderElement,
+  FormRangeSliderCustomEvents,
+  FormRangeSlider
+>;
+
+const formRangeSliders = Array.from(
+  document.querySelectorAll<FormRangeSliderElement>('.form-range-slider'),
+  (formRangeSliderElement) => new FormRangeSlider(formRangeSliderElement)
 );
 
-export { rangeSliders as default, RangeSliderCustomEvents };
+export type { FormRangeSliderCustomEvents, FormRangeSlider, FormRangeSliderElementWithComponent };
+
+export { formRangeSliders as default };

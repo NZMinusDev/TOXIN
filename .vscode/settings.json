@@ -50,6 +50,7 @@
   "git.suggestSmartCommit": false,
   "gitlens.views.repositories.branches.layout": "list",
   "cSpell.words": [
+    "Datepickers",
     "Espree",
     "Flexbugs",
     "Incrementation",
@@ -100,7 +101,7 @@
     "@thematic": "${folder}/app/src/components/thematic/",
     "@experiments": "${folder}/app/src/components/experimental/",
     "@assets": "${folder}/app/src/assets/",
-    "@utils": "${folder}/app/src/utils/",
+    "@utils": "${folder}/app/src/utils/"
   },
   "path-autocomplete.triggerOutsideStrings": true,
   "path-autocomplete.enableFolderTrailingSlash": true,

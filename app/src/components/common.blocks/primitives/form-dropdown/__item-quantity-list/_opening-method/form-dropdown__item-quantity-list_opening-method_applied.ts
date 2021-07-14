@@ -1,63 +1,40 @@
-import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
+import FormDropdownItemQuantityListOpeningTypeModifier, {
+  FormDropdownItemQuantityList,
+} from './coupling';
+import formDropdownItemQuantityLists from '../form-dropdown__item-quantity-list';
 
-import ItemQuantityListOpeningMethodModifier from './coupling';
-import itemQuantityLists from '../form-dropdown__item-quantity-list';
-
-type ItemQuantityListApplyOpeningMethodDOM = {
+type FormDropdownItemQuantityListAppliedOpeningTypeModifierDOM = {
   clearBtn: HTMLButtonElement;
   applyBtn: HTMLButtonElement;
 };
 
-type ItemQuantityList = Unpacked<typeof itemQuantityLists>;
+class FormDropdownItemQuantityListAppliedOpeningTypeModifier extends FormDropdownItemQuantityListOpeningTypeModifier {
+  protected readonly _DOM: Readonly<FormDropdownItemQuantityListAppliedOpeningTypeModifierDOM>;
 
-class ItemQuantityListApplyOpeningMethodModifier extends ItemQuantityListOpeningMethodModifier {
-  protected readonly _DOM: Readonly<ItemQuantityListApplyOpeningMethodDOM>;
-
-  constructor(itemQuantityList: ItemQuantityList) {
-    super(itemQuantityList);
+  constructor(formDropdownItemQuantityList: FormDropdownItemQuantityList) {
+    super(formDropdownItemQuantityList);
 
     this._DOM = this._initDOM();
 
-    this._bindComponentListeners()._bindClearBtnListeners()._bindApplyBtnListeners();
+    this._bindClearBtnListeners()._bindApplyBtnListeners()._bindComponentListeners();
 
     this._initDisplay();
   }
 
-  protected _initDOM(): ItemQuantityListApplyOpeningMethodDOM {
+  protected _initDOM() {
     const applyControl = this.component.element.querySelector('.apply-control') as HTMLDivElement;
     const clearBtn = applyControl.querySelector(
       '.apply-control__clear-btn'
-    ) as ItemQuantityListApplyOpeningMethodDOM['clearBtn'];
+    ) as FormDropdownItemQuantityListAppliedOpeningTypeModifierDOM['clearBtn'];
     const applyBtn = applyControl.querySelector(
       '.apply-control__apply-btn'
-    ) as ItemQuantityListApplyOpeningMethodDOM['applyBtn'];
+    ) as FormDropdownItemQuantityListAppliedOpeningTypeModifierDOM['applyBtn'];
 
     return {
       clearBtn,
       applyBtn,
     };
   }
-
-  protected _bindComponentListeners() {
-    this.component.element.addEventListener(
-      'open',
-      this._componentEventListenerObject.handleComponentOpen
-    );
-    this.component.element.addEventListener(
-      'select',
-      this._componentEventListenerObject.handleComponentSelect
-    );
-
-    return this;
-  }
-  protected _componentEventListenerObject = {
-    handleComponentOpen: () => {
-      this.component.open();
-    },
-    handleComponentSelect: () => {
-      this._updateClearBtnDisplay();
-    },
-  };
 
   protected _bindClearBtnListeners() {
     this._DOM.clearBtn.addEventListener(
@@ -74,18 +51,6 @@ class ItemQuantityListApplyOpeningMethodModifier extends ItemQuantityListOpening
     },
   };
 
-  protected _updateClearBtnDisplay() {
-    const total = this.component.getTotalAmount();
-
-    if (total === 0) {
-      this._DOM.clearBtn.classList.add('apply-control__clear-btn_hidden');
-    } else {
-      this._DOM.clearBtn.classList.remove('apply-control__clear-btn_hidden');
-    }
-
-    return this;
-  }
-
   protected _bindApplyBtnListeners() {
     this._DOM.applyBtn.addEventListener(
       'click',
@@ -100,19 +65,52 @@ class ItemQuantityListApplyOpeningMethodModifier extends ItemQuantityListOpening
     },
   };
 
+  protected _bindComponentListeners() {
+    this.component.addEventListener('open', this._componentEventListenerObject.handleComponentOpen);
+    this.component.addEventListener(
+      'select',
+      this._componentEventListenerObject.handleComponentSelect
+    );
+
+    return this;
+  }
+  protected _componentEventListenerObject = {
+    handleComponentOpen: () => {
+      this.component.open();
+    },
+    handleComponentSelect: () => {
+      this._updateClearBtnDisplay();
+    },
+  };
+
   protected _initDisplay() {
     this._updateClearBtnDisplay();
 
     return this;
   }
+
+  protected _updateClearBtnDisplay() {
+    const total = this.component.getTotalItems();
+
+    if (total === 0) {
+      this._DOM.clearBtn.classList.add('apply-control__clear-btn_hidden');
+    } else {
+      this._DOM.clearBtn.classList.remove('apply-control__clear-btn_hidden');
+    }
+
+    return this;
+  }
 }
 
-const itemQuantityListWithApplyOpeningMethod = itemQuantityLists.filter((itemQuantityList) =>
-  itemQuantityList.element.classList.contains(
-    'form-dropdown__item-quantity-list_opening-method_applied'
+const formDropdownItemQuantityListAppliedOpeningTypeModifiers = formDropdownItemQuantityLists
+  .filter((formDropdownItemQuantityList) =>
+    formDropdownItemQuantityList.element.classList.contains(
+      'form-dropdown__item-quantity-list_opening-method_applied'
+    )
   )
-);
+  .map(
+    (formDropdownItemQuantityList) =>
+      new FormDropdownItemQuantityListAppliedOpeningTypeModifier(formDropdownItemQuantityList)
+  );
 
-const itemQuantityListApplyOpeningMethodModifier = itemQuantityListWithApplyOpeningMethod.map(
-  (itemQuantityList) => new ItemQuantityListApplyOpeningMethodModifier(itemQuantityList)
-);
+export { formDropdownItemQuantityListAppliedOpeningTypeModifiers as default };

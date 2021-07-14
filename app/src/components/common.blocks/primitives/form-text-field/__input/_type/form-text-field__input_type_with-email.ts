@@ -8,8 +8,6 @@ class FormTextFieldInputWithEmailTypeModifier extends FormTextFieldInputTypeModi
     super(formTextFieldInput);
 
     this._initInputMask();
-
-    this._bindFormTextFieldInputListeners();
   }
 
   protected _initInputMask() {
@@ -17,11 +15,6 @@ class FormTextFieldInputWithEmailTypeModifier extends FormTextFieldInputTypeModi
 
     return this;
   }
-
-  protected _bindFormTextFieldInputListeners() {
-    return this;
-  }
-  protected _formTextFieldInputEventListenerObject = {};
 }
 
 const formTextFieldInputWithEmailTypeModifiers = formTextFieldInputs

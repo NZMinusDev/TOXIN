@@ -2,58 +2,58 @@ import {
   BEMComponent,
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/ComponentCreationHelper';
-
 import {
-  ItemQuantityListCustomEvents,
-  ItemQuantityList,
-  ItemQuantityListElementWithComponent,
+  FormDropdownItemQuantityListCustomEvents,
+  FormDropdownItemQuantityListElementWithComponent,
 } from './__item-quantity-list/form-dropdown__item-quantity-list';
 import {
-  DropdownDatepickerCustomEvents,
-  DropdownDatepicker,
-  DropdownDatepickerElementWithComponent,
+  FormDropdownDatepickerCustomEvents,
+  FormDropdownDatepickerElementWithComponent,
 } from './__datepicker/form-dropdown__datepicker';
 
-type DropdownElement = HTMLDivElement;
+type FormDropdownElement = HTMLDivElement;
 
-type ExpandableItemElement =
-  | ItemQuantityListElementWithComponent
-  | DropdownDatepickerElementWithComponent;
-type DropdownDOM = {
+type ExpandableItemElementWithComponent =
+  | FormDropdownItemQuantityListElementWithComponent
+  | FormDropdownDatepickerElementWithComponent;
+type FormDropdownDOM = {
   expandButton: HTMLButtonElement;
-  expandableItem: ExpandableItemElement;
+  expandableItem: ExpandableItemElementWithComponent;
 };
 
-type ExpandableItemComponent = ItemQuantityList | DropdownDatepicker;
+type FormDropdownCustomEvents = 'open';
+type FormDropdownWithItemQuantityListCustomEvents =
+  | FormDropdownCustomEvents
+  | FormDropdownItemQuantityListCustomEvents;
+type FormDropdownWithDatepickerCustomEvents =
+  | FormDropdownCustomEvents
+  | FormDropdownDatepickerCustomEvents;
 
-type DropdownCustomEvents = 'open';
-type ExpandableItemComponentCustomEvents =
-  | ItemQuantityListCustomEvents
-  | DropdownDatepickerCustomEvents;
+class FormDropdown<
+  TExpandableItemElementWithComponent extends ExpandableItemElementWithComponent,
+  TCustomEvents extends
+    | FormDropdownWithItemQuantityListCustomEvents
+    | FormDropdownWithDatepickerCustomEvents
+> extends BEMComponent<FormDropdownElement, FormDropdownCustomEvents | TCustomEvents> {
+  protected readonly _DOM: Readonly<FormDropdownDOM>;
 
-class Dropdown<
-  TExpandableItemComponent extends ExpandableItemComponent,
-  TCustomEvents extends ExpandableItemComponentCustomEvents
-> extends BEMComponent<DropdownElement, DropdownCustomEvents | TCustomEvents> {
-  protected readonly _DOM: Readonly<DropdownDOM>;
-
-  constructor(dropdownElement: DropdownElement) {
-    super(dropdownElement);
+  constructor(formDropdownElement: FormDropdownElement) {
+    super(formDropdownElement);
 
     this._DOM = this._initDOM();
 
     this._bindExpandButtonListeners();
   }
 
-  getExpandableItemComponent() {
-    return this._DOM.expandableItem.component as TExpandableItemComponent;
+  getExpandableItemElement() {
+    return this._DOM.expandableItem as TExpandableItemElementWithComponent;
   }
 
-  protected _initDOM(): DropdownDOM {
+  protected _initDOM() {
     const expandButton = this.element.querySelector(
       '.form-dropdown__expand-btn'
-    ) as DropdownDOM['expandButton'];
-    const expandableItem = expandButton.nextElementSibling as DropdownDOM['expandableItem'];
+    ) as FormDropdownDOM['expandButton'];
+    const expandableItem = expandButton.nextElementSibling as FormDropdownDOM['expandableItem'];
 
     return {
       expandButton,
@@ -76,25 +76,41 @@ class Dropdown<
   };
 }
 
-type DropdownWithItemQuantityList = Dropdown<ItemQuantityList, ItemQuantityListCustomEvents>;
-type DropdownWithDatepicker = Dropdown<DropdownDatepicker, DropdownDatepickerCustomEvents>;
-
-type DropdownElementWithComponent = HTMLElementWithComponent<
-  DropdownElement,
-  DropdownCustomEvents,
-  Dropdown<ExpandableItemComponent, ExpandableItemComponentCustomEvents>
+type FormDropdownWithItemQuantityList = FormDropdown<
+  FormDropdownItemQuantityListElementWithComponent,
+  FormDropdownWithItemQuantityListCustomEvents
+>;
+type FormDropdownWithDatepicker = FormDropdown<
+  FormDropdownDatepickerElementWithComponent,
+  FormDropdownWithDatepickerCustomEvents
 >;
 
-const dropdowns = Array.from(
-  document.querySelectorAll('.form-dropdown') as NodeListOf<HTMLDivElement>,
-  (dropdownElement) => new Dropdown(dropdownElement)
+type FormDropdownWithItemQuantityListElementWithComponent = HTMLElementWithComponent<
+  FormDropdownElement,
+  FormDropdownWithItemQuantityListCustomEvents,
+  FormDropdown<
+    FormDropdownItemQuantityListElementWithComponent,
+    FormDropdownWithItemQuantityListCustomEvents
+  >
+>;
+type FormDropdownWithDatepickerElementWithComponent = HTMLElementWithComponent<
+  FormDropdownElement,
+  FormDropdownWithDatepickerCustomEvents,
+  FormDropdown<FormDropdownDatepickerElementWithComponent, FormDropdownWithDatepickerCustomEvents>
+>;
+
+const formDropdowns = Array.from(
+  document.querySelectorAll('.form-dropdown') as NodeListOf<FormDropdownElement>,
+  (formDropdownElement) => new FormDropdown(formDropdownElement)
 );
 
 export type {
-  DropdownCustomEvents,
-  DropdownWithItemQuantityList,
-  DropdownWithDatepicker,
-  DropdownElementWithComponent,
+  FormDropdownWithItemQuantityListCustomEvents,
+  FormDropdownWithDatepickerCustomEvents,
+  FormDropdownWithItemQuantityList,
+  FormDropdownWithDatepicker,
+  FormDropdownWithItemQuantityListElementWithComponent,
+  FormDropdownWithDatepickerElementWithComponent,
 };
 
-export { dropdowns as default };
+export { formDropdowns as default };
