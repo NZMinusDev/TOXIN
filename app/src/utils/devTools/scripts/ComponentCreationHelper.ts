@@ -355,8 +355,8 @@ abstract class BEMComponent<
     this.element.component = this;
   }
 
-  addEventListener<K extends keyof HTMLElementEventMap & TComponentCustomEvents>(
-    type: K,
+  addEventListener<TEventType extends keyof HTMLElementEventMap | TComponentCustomEvents | string>(
+    type: TEventType,
     listener: EventListenerOrEventListenerObject,
     options?: boolean | AddEventListenerOptions
   ) {
