@@ -45,7 +45,7 @@
     "prefix": "bem:am",
     "scope": "typescript",
     "body": [
-      "import { BEMModifier } from '@utils/devTools/scripts/ComponentCreationHelper';\n\nimport { ${1:ModifiedComponentName} } from '..${4:/file-of-modified-component}';\n\nabstract class ${1:ModifiedComponentName}${5:ModificatorName}Modifier extends BEMModifier<${1:ModifiedComponentName}> {\n  constructor(${2:modifiedComponentInstance}: ${1:ModifiedComponentName}) {\n    super(${2:modifiedComponentInstance}, '${2:modifiedComponentName}${5:ModificatorName}Modifier');\n  }\n}\n\nexport { ${1:ModifiedComponentName}${5:ModificatorName}Modifier as default, ${1:ModifiedComponentName} };"
+      "import { BEMModifier } from '@utils/devTools/scripts/ComponentCreationHelper';\n\nimport type { ${1:ModifiedComponentName} } from '..${4:/file-of-modified-component}';\n\nabstract class ${1:ModifiedComponentName}${5:ModificatorName}Modifier extends BEMModifier<${1:ModifiedComponentName}> {\n  constructor(${2:modifiedComponentInstance}: ${1:ModifiedComponentName}) {\n    super(${2:modifiedComponentInstance}, '${2:modifiedComponentName}${5:ModificatorName}Modifier');\n  }\n}\n\nexport type { ${1:ModifiedComponentName} };\n\nexport { ${1:ModifiedComponentName}${5:ModificatorName}Modifier as default };"
     ],
     "description": "Template of BEM abstract modifier defination"
   },
