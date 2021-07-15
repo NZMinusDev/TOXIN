@@ -437,7 +437,7 @@ abstract class CancelableBEMModifier<
     this.component[modifierName] = this;
   }
 
-  protected abstract cancel(): this;
+  abstract cancel(): this;
 }
 
 /**
