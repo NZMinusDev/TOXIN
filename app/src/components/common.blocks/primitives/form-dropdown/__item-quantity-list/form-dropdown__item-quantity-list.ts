@@ -10,7 +10,7 @@ import formDropdowns, { ExpandableItemCustomEvents } from '../form-dropdown';
 type FormDropdownItemQuantityListElement = HTMLDivElement;
 
 type FormDropdownItemQuantityListDOM = {
-  $self: JQuery<FormDropdownItemQuantityListElement>;
+  $element: JQuery<FormDropdownItemQuantityListElement>;
   listInput: HTMLInputElement;
   selection: HTMLParagraphElement;
   menu: HTMLDivElement;
@@ -122,7 +122,7 @@ class FormDropdownItemQuantityList extends BEMComponent<
   }
 
   protected _initDOM() {
-    const $self = $(this.element) as FormDropdownItemQuantityListDOM['$self'];
+    const $element = $(this.element) as FormDropdownItemQuantityListDOM['$element'];
     const listInput = this.element.querySelector(
       '.js-form-dropdown__list-input'
     ) as FormDropdownItemQuantityListDOM['listInput'];
@@ -140,7 +140,7 @@ class FormDropdownItemQuantityList extends BEMComponent<
     ] as FormDropdownItemQuantityListDOM['menuOptions'];
 
     return {
-      $self,
+      $element,
       listInput,
       selection,
       menu,
@@ -179,7 +179,7 @@ class FormDropdownItemQuantityList extends BEMComponent<
     };
   }
   private _initLibFormDropdownItemQuantityList() {
-    this._DOM.$self.iqDropdown({
+    this._DOM.$element.iqDropdown({
       setSelectionText: (itemCount, totalItems) => {
         this._state.totalItems = totalItems;
         this._updateCounters(itemCount);
@@ -195,7 +195,7 @@ class FormDropdownItemQuantityList extends BEMComponent<
     });
 
     // disable menu toggling by lib
-    this._DOM.$self.off('click');
+    this._DOM.$element.off('click');
 
     return this;
   }
