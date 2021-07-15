@@ -41,7 +41,7 @@ type RoomDefinitionCardHTMLOptions = {
   additionalServicesPaymentRate: number;
 };
 type RoomDefinitionCardState = {
-  days: number;
+  dailyRange: number;
 };
 type RoomDefinitionCardContext = {
   currency: string;
@@ -144,9 +144,9 @@ class RoomDefinitionCard extends BEMComponent<
     return { dayPaymentRate, servicesPaymentRate, additionalServicesPaymentRate };
   }
   protected _initState() {
-    const days = this._getDaysFromArrivalDateDropdown();
+    const dailyRange = this._getDailyRange();
 
-    return { days };
+    return { dailyRange };
   }
   // eslint-disable-next-line class-methods-use-this
   protected _initContext() {
@@ -166,14 +166,14 @@ class RoomDefinitionCard extends BEMComponent<
   protected _arrivalDateDropdownEventListenerObject = {
     handleArrivalDateDropdownChange: (event: Event) => {
       if (!event.isTrusted) {
-        this._state.days = this._getDaysFromArrivalDateDropdown();
+        this._state.dailyRange = this._getDailyRange();
 
         this._updatePaymentDisplay();
       }
     },
   };
 
-  protected _getDaysFromArrivalDateDropdown() {
+  protected _getDailyRange() {
     const [arrivalDate, departureDate] = this._subComponents.arrivalDateDropdown
       .getExpandableItemElement()
       .component.get()
@@ -183,7 +183,7 @@ class RoomDefinitionCard extends BEMComponent<
   }
 
   protected _updatePaymentDisplay() {
-    const totalDayPaymentAmount = this._options.dayPaymentRate * this._state.days;
+    const totalDayPaymentAmount = this._options.dayPaymentRate * this._state.dailyRange;
     const totalPaymentAmount =
       totalDayPaymentAmount +
       Number(this._options.servicesPaymentRate) +
@@ -191,7 +191,7 @@ class RoomDefinitionCard extends BEMComponent<
 
     this._DOM.totalDayPaymentSentence.textContent = `${this._options.dayPaymentRate.toLocaleString()}${
       this._context.currency
-    } x ${this._state.days.toLocaleString()} суток`;
+    } x ${this._state.dailyRange.toLocaleString()} суток`;
     this._DOM.totalDayPaymentAmount.textContent = `${totalDayPaymentAmount.toLocaleString()}${
       this._context.currency
     }`;

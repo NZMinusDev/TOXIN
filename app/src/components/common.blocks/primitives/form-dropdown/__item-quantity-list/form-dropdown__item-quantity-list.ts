@@ -84,7 +84,7 @@ class FormDropdownItemQuantityList extends BEMComponent<
       >;
 
       const currAmount = this._state.itemsCounter.get(menuOptionOptions.id) as number;
-      const minAmount = menuOptionOptions.minCount as number;
+      const minAmount = menuOptionOptions.minCount;
       let amountToDecrement = currAmount - minAmount;
 
       const decrementBtn = this._generatedDOM.decrementButtons[index];
@@ -319,16 +319,16 @@ class FormDropdownItemQuantityList extends BEMComponent<
         FormDropdownItemQuantityListHTMLOptions['menuOptions']
       >;
 
-      const counterAmount = this._state.itemsCounter.get(menuOptionOptions.id as string);
+      const itemAmount = this._state.itemsCounter.get(menuOptionOptions.id);
       const input = this._DOM.optionInputs[index];
 
-      input.value = `${counterAmount}`;
+      input.value = `${itemAmount}`;
 
       if (index > 0) {
         accumulator += ',';
       }
 
-      accumulator += counterAmount;
+      accumulator += itemAmount;
     });
 
     this._DOM.listInput.value = accumulator;
@@ -349,15 +349,15 @@ class FormDropdownItemQuantityList extends BEMComponent<
     const decrementBtn = this._generatedDOM.decrementButtons[menuOptionIndex];
     const incrementBtn = this._generatedDOM.incrementButtons[menuOptionIndex];
 
-    const counterAmount = this._state.itemsCounter.get(targetMenuOptionOptions.id);
+    const itemAmount = this._state.itemsCounter.get(targetMenuOptionOptions.id);
 
-    if (targetMenuOptionOptions.minCount === counterAmount) {
+    if (targetMenuOptionOptions.minCount === itemAmount) {
       decrementBtn.classList.add('iqdropdown__counter_isDisabled');
     } else {
       decrementBtn.classList.remove('iqdropdown__counter_isDisabled');
     }
 
-    if (targetMenuOptionOptions.maxCount === counterAmount) {
+    if (targetMenuOptionOptions.maxCount === itemAmount) {
       incrementBtn.classList.add('iqdropdown__counter_isDisabled');
     } else {
       incrementBtn.classList.remove('iqdropdown__counter_isDisabled');

@@ -160,12 +160,15 @@ class FormDropdownDatepicker extends BEMComponent<
 
       if ($altFields !== undefined) {
         const formattedDates = this._subComponents.datepickerCard.getSplitFormattedDates();
+        const [theFirstDate] = this._state.dates as string[];
+        const [theFirstDatetime] = dateTimes;
+        const [theFirstFormattedDate] = formattedDates;
 
-        this._DOM.input.value = this._state.dates ? this._state.dates[0] : '';
+        this._DOM.input.value = this._state.dates ? theFirstDate : '';
         this._DOM.selection.innerHTML =
-          dateTimes[0] !== ''
-            ? `<time datetime="${dateTimes[0]}">${
-                formattedDates[0] || this._options.placeholder
+          theFirstDatetime !== ''
+            ? `<time datetime="${theFirstDatetime}">${
+                theFirstFormattedDate || this._options.placeholder
               }</time>`
             : this._options.placeholder;
 
@@ -197,17 +200,15 @@ class FormDropdownDatepicker extends BEMComponent<
       const selection = inputElement
         .closest('.form-dropdown')
         ?.querySelector('.form-dropdown__selection-text') as FormDropdownDatepickerDOM['selection'];
-      const altFieldPlaceholder = selection.dataset.placeholder || '';
+      const placeholder = selection.dataset.placeholder || '';
 
       // eslint-disable-next-line no-param-reassign
       inputElement.value = dateTime || '';
       // eslint-disable-next-line no-param-reassign
       selection.innerHTML =
         dateTime !== ''
-          ? `<time datetime="${dateTime}">${
-              formattedDates[dateIndex] || altFieldPlaceholder
-            }</time>`
-          : altFieldPlaceholder;
+          ? `<time datetime="${dateTime}">${formattedDates[dateIndex] || placeholder}</time>`
+          : placeholder;
     });
 
     return this;

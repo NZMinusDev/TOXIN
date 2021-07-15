@@ -68,14 +68,10 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
   }
   getDateTimes() {
     if (this._DOM.$element.data('datepicker').opts.range && this._DOM.$altFields === undefined) {
-      return this._state.dates.length === 2
-        ? [
-            formatToPeriodDateTime(
-              this._state.dates[0].toISOString(),
-              this._state.dates[1].toISOString()
-            ),
-          ]
-        : this._state.dates.map((date) => date.toISOString());
+      const [theSmallestDate] = this._state.dates;
+      const theLargestDate = this._state.dates[this._state.dates.length - 1];
+
+      return [formatToPeriodDateTime(theSmallestDate.toISOString(), theLargestDate.toISOString())];
     }
 
     return this._state.dates.map((date) => date.toISOString());

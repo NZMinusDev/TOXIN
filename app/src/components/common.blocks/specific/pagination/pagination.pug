@@ -68,15 +68,15 @@ mixin pagination({ addressingMethod = 'href', hrefPrefix = '?page=', total = 100
             = 'arrow_back'
       //- Show all the pagination elements if there are less than 6 pages total
       if pages < 6
-        - for (let p = 1; p <= pages; p++)
+        - for (let page = 1; page <= pages; page++)
         li.pagination__item(
-          class=activePage === p ? 'pagination__item_active' : undefined,
-          title=activePage === p ? 'текущая страница' : `на страницу ${p}`
+          class=activePage === page ? 'pagination__item_active' : undefined,
+          title=activePage === page ? 'текущая страница' : `на страницу ${page}`
         )
           if addressingMethod === 'href'
-            a.pagination__link(href=paginationHrefs[p - 1])= p
+            a.pagination__link(href=paginationHrefs[page - 1])= page
           else
-            = p
+            = page
       //- Use '...' to collapse pages outside of a certain range
       else
         //- Show the very first page followed by a '...' at the beginning of the pagination section (after the Previous button)
@@ -93,15 +93,15 @@ mixin pagination({ addressingMethod = 'href', hrefPrefix = '?page=', total = 100
               else
                 = '...'
         //- Output the indexes for pages that fall inside the range of pageCutLow and pageCutHigh
-        - for (let p = pageCutLow; p <= pageCutHigh; p++)
+        - for (let page = pageCutLow; page <= pageCutHigh; page++)
           li.pagination__item(
-            class=activePage === p ? 'pagination__item_active' : undefined,
-            title=activePage === p ? 'текущая страница' : `на страницу ${p}`
+            class=activePage === page ? 'pagination__item_active' : undefined,
+            title=activePage === page ? 'текущая страница' : `на страницу ${page}`
           )
             if addressingMethod === 'href'
-              a.pagination__link(href=paginationHrefs[p - 1])= p
+              a.pagination__link(href=paginationHrefs[page - 1])= page
             else
-              = p
+              = page
         //- Show the very last page preceded by a '...' at the end of the pagination section (before the Next button)
         if activePage < pages - 1
           if activePage < pages - 2

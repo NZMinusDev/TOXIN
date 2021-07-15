@@ -98,13 +98,13 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
   }
 
   protected _addMaxHeightToChildList() {
-    const childListScrollHeight = this._DOM.nestedLists.reduce(
+    const fullScrollHeight = this._DOM.nestedLists.reduce(
       (scrollHeight, nestedList) =>
         scrollHeight + nestedList.scrollHeight - nestedList.clientHeight,
       this._DOM.childList.scrollHeight
     );
 
-    this._DOM.childList.style.maxHeight = `${childListScrollHeight}px`;
+    this._DOM.childList.style.maxHeight = `${fullScrollHeight}px`;
   }
   protected _removeMaxHeightFromChildList() {
     this._DOM.childList.style.maxHeight = '';

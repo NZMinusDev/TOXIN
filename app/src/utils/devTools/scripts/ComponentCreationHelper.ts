@@ -6,8 +6,11 @@ import defaultsDeep from 'lodash-es/defaultsDeep';
  */
 // eslint-disable-next-line func-style
 function handleEvent(event: Event) {
+  const [theFirstLetterOfEventType] = event.type;
+  const theRestLettersOfEventType = event.type.slice(1);
+
   // mousedown -> onMousedown
-  const handlerName = `_on${event.type[0].toUpperCase()}${event.type.slice(1)}`;
+  const handlerName = `_on${theFirstLetterOfEventType.toUpperCase()}${theRestLettersOfEventType}`;
 
   if (this[handlerName] !== undefined) {
     this[handlerName](event);
@@ -111,8 +114,11 @@ class EventManagerMixin<TEvents extends string> {
   }
 
   handleEvent(event: Event) {
+    const [theFirstLetterOfEventType] = event.type;
+    const theRestLettersOfEventType = event.type.slice(1);
+
     // mousedown -> onMousedown
-    const methodName = `_on${event.type[0].toUpperCase()}${event.type.slice(1)}`;
+    const methodName = `_on${theFirstLetterOfEventType.toUpperCase()}${theRestLettersOfEventType}`;
 
     if (this[methodName] !== undefined) {
       this[methodName](event);
@@ -232,7 +238,11 @@ abstract class MVPView<
     const options = {} as Record<string, unknown>;
 
     this._theOrderOfIteratingThroughTheOptions.forEach((optionKey) => {
-      const getOptionMethodName = `get${optionKey[0].toUpperCase() + optionKey.slice(1)}Option`;
+      const [theFirstLetterOfOptionKey] = optionKey;
+      const theRestLettersOfOptionKey = optionKey.slice(1);
+      const getOptionMethodName = `get${
+        theFirstLetterOfOptionKey.toUpperCase() + theRestLettersOfOptionKey
+      }Option`;
 
       if (this[getOptionMethodName] !== undefined) {
         options[optionKey] = this[getOptionMethodName]();
@@ -256,7 +266,11 @@ abstract class MVPView<
           )
       )
       .forEach(([optionKey, optionValue]) => {
-        const setOptionMethodName = `set${optionKey[0].toUpperCase() + optionKey.slice(1)}Option`;
+        const [theFirstLetterOfOptionKey] = optionKey;
+        const theRestLettersOfOptionKey = optionKey.slice(1);
+        const setOptionMethodName = `set${
+          theFirstLetterOfOptionKey.toUpperCase() + theRestLettersOfOptionKey
+        }Option`;
         const valueToPass = options === undefined ? undefined : optionValue;
 
         if (this[setOptionMethodName] !== undefined) {
@@ -285,7 +299,11 @@ abstract class MVPView<
           this._theOrderOfIteratingThroughTheState.indexOf(b as Extract<keyof TState, string>)
       )
       .forEach(([stateKey, stateValue]) => {
-        const setStateMethodName = `_set${stateKey[0].toUpperCase() + stateKey.slice(1)}State`;
+        const [theFirstLetterOfStateKey] = stateKey;
+        const theRestLettersOfStateKey = stateKey.slice(1);
+        const setStateMethodName = `_set${
+          theFirstLetterOfStateKey.toUpperCase() + theRestLettersOfStateKey
+        }State`;
         const valueToPass = state === undefined ? undefined : stateValue;
 
         if (this[setStateMethodName] !== undefined) {
@@ -299,8 +317,12 @@ abstract class MVPView<
   }
 
   protected _fixOptions() {
-    this._theOrderOfIteratingThroughTheOptions.forEach((option) => {
-      const fixOptionMethodName = `_fix${option[0].toUpperCase() + option.slice(1)}Option`;
+    this._theOrderOfIteratingThroughTheOptions.forEach((optionKey) => {
+      const [theFirstLetterOfOptionKey] = optionKey;
+      const theRestLettersOfOptionKey = optionKey.slice(1);
+      const fixOptionMethodName = `_fix${
+        theFirstLetterOfOptionKey.toUpperCase() + theRestLettersOfOptionKey
+      }Option`;
 
       if (this[fixOptionMethodName] !== undefined) {
         this[fixOptionMethodName]();
@@ -311,8 +333,12 @@ abstract class MVPView<
   }
 
   protected _fixState() {
-    this._theOrderOfIteratingThroughTheState.forEach((state) => {
-      const fixStateMethodName = `_fix${state[0].toUpperCase() + state.slice(1)}State`;
+    this._theOrderOfIteratingThroughTheState.forEach((stateKey) => {
+      const [theFirstLetterOfStateKey] = stateKey;
+      const theRestLettersOfStateKey = stateKey.slice(1);
+      const fixStateMethodName = `_fix${
+        theFirstLetterOfStateKey.toUpperCase() + theRestLettersOfStateKey
+      }State`;
 
       if (this[fixStateMethodName] !== undefined) {
         this[fixStateMethodName]();

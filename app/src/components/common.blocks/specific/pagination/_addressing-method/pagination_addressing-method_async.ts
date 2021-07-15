@@ -156,16 +156,16 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
   }
   protected _insertAllPaginationItems(list: DocumentFragment) {
     // eslint-disable-next-line no-loops/no-loops
-    for (let p = 1; p <= this._options.pages; p += 1) {
-      const itemIsActiveClass = this._state.activePage === p ? 'pagination__item_active' : '';
-      const title = this._state.activePage === p ? 'текущая страница' : `на страницу ${p}`;
+    for (let page = 1; page <= this._options.pages; page += 1) {
+      const itemActiveClass = this._state.activePage === page ? 'pagination__item_active' : '';
+      const title = this._state.activePage === page ? 'текущая страница' : `на страницу ${page}`;
 
       list.append(
         PaginationAsyncAddressingMethodModifier._createPaginationItem(
-          p,
-          `${p}`,
+          page,
+          `${page}`,
           this._paginationItemEventListenerObject.handlePaginationItemClick,
-          ['pagination__item', itemIsActiveClass].filter((element) => element !== ''),
+          ['pagination__item', itemActiveClass].filter((element) => element !== ''),
           { title }
         )
       );
@@ -219,16 +219,16 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
     }
 
     // eslint-disable-next-line no-loops/no-loops
-    for (let p = pageCutLow; p <= pageCutHigh; p += 1) {
-      const itemIsActiveClass = this._state.activePage === p ? 'pagination__item_active' : '';
-      const title = this._state.activePage === p ? 'текущая страница' : `на страницу ${p}`;
+    for (let page = pageCutLow; page <= pageCutHigh; page += 1) {
+      const itemActiveClass = this._state.activePage === page ? 'pagination__item_active' : '';
+      const title = this._state.activePage === page ? 'текущая страница' : `на страницу ${page}`;
 
       list.append(
         PaginationAsyncAddressingMethodModifier._createPaginationItem(
-          p,
-          `${p}`,
+          page,
+          `${page}`,
           this._paginationItemEventListenerObject.handlePaginationItemClick,
-          ['pagination__item', itemIsActiveClass].filter((element) => element !== ''),
+          ['pagination__item', itemActiveClass].filter((element) => element !== ''),
           { title }
         )
       );
