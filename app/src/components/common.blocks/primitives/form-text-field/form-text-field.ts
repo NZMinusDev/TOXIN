@@ -22,7 +22,7 @@ type FormTextFieldElementWithComponent = HTMLElementWithComponent<
 >;
 
 const formTextFields = Array.from(
-  document.querySelectorAll<FormTextFieldElement>('.form-text-field'),
+  document.querySelectorAll<FormTextFieldElement>('.js-form-text-field'),
   (formTextFieldElement) => new FormTextField(formTextFieldElement)
 );
 

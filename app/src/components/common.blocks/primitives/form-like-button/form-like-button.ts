@@ -31,10 +31,10 @@ class FormLikeButton extends BEMComponent<FormLikeButtonElement, FormLikeButtonC
 
   protected _initDOM() {
     const button = this.element.querySelector(
-      '.form-like-button__button'
+      '.js-form-like-button__button'
     ) as FormLikeButtonDOM['button'];
     const counter = this.element.querySelector(
-      '.form-like-button__counter'
+      '.js-form-like-button__counter'
     ) as FormLikeButtonDOM['counter'];
 
     return { button, counter };
@@ -71,7 +71,7 @@ type FormLikeButtonElementWithComponent = HTMLElementWithComponent<
 >;
 
 const formLikeButtons = Array.from(
-  document.querySelectorAll<FormLikeButtonElement>('.form-like-button'),
+  document.querySelectorAll<FormLikeButtonElement>('.js-form-like-button'),
   (formLikeButtonElement) => new FormLikeButton(formLikeButtonElement)
 );
 

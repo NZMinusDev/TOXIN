@@ -75,13 +75,13 @@ class FormDropdownDatepicker extends BEMComponent<
   protected _initDOM(): FormDropdownDatepickerDOM {
     const selection = this.element.nextElementSibling as FormDropdownDatepickerDOM['selection'];
     const input = this.element.querySelector(
-      '.form-dropdown__datepicker-input'
+      '.js-form-dropdown__datepicker-input'
     ) as FormDropdownDatepickerDOM['input'];
     const datepickerCard =
-      this.element.querySelector('.datepicker-card') === null
+      this.element.querySelector('.js-datepicker-card') === null
         ? undefined
         : (this.element.querySelector(
-            '.datepicker-card'
+            '.js-datepicker-card'
           ) as FormDropdownDatepickerDOM['datepickerCard']);
 
     return {
@@ -130,7 +130,7 @@ class FormDropdownDatepicker extends BEMComponent<
 
     if ($altFields !== undefined) {
       $altFields.each((index, input) => {
-        const altDropdown = input.closest('.form-dropdown') as HTMLDivElement;
+        const altDropdown = input.closest('.js-form-dropdown') as HTMLDivElement;
 
         altDropdown.addEventListener('open', this._altFieldEventListenerObject.handleAltFieldOpen);
       });
@@ -198,8 +198,10 @@ class FormDropdownDatepicker extends BEMComponent<
       const dateIndex = index + 1;
       const dateTime = dateTimes[dateIndex];
       const selection = inputElement
-        .closest('.form-dropdown')
-        ?.querySelector('.form-dropdown__selection-text') as FormDropdownDatepickerDOM['selection'];
+        .closest('.js-form-dropdown')
+        ?.querySelector(
+          '.js-form-dropdown__selection-text'
+        ) as FormDropdownDatepickerDOM['selection'];
       const placeholder = selection.dataset.placeholder || '';
 
       // eslint-disable-next-line no-param-reassign
@@ -221,18 +223,16 @@ type FormDropdownDatepickerElementWithComponent = HTMLElementWithComponent<
   FormDropdownDatepicker
 >;
 
-const formDropdownsWithDatepicker = formDropdowns.filter((dropdown) =>
-  dropdown.element.querySelector('.form-dropdown__datepicker')
-);
-
-const formFormDropdownDatepickers = formDropdownsWithDatepicker.map(
-  (dropdownWithDatepicker) =>
-    new FormDropdownDatepicker(
-      dropdownWithDatepicker.element.querySelector(
-        '.form-dropdown__datepicker'
-      ) as FormDropdownDatepickerElement
+const formFormDropdownDatepickers = formDropdowns
+  .map((formDropdown) =>
+    Array.from(
+      formDropdown.element.querySelectorAll<FormDropdownDatepickerElement>(
+        '.js-form-dropdown__datepicker'
+      ),
+      (formDropdownDatepickerElement) => new FormDropdownDatepicker(formDropdownDatepickerElement)
     )
-);
+  )
+  .flat();
 
 export type {
   FormDropdownDatepickerCustomEvents,

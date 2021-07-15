@@ -25,7 +25,7 @@ type FormExpandableCheckboxListElementWithComponent = HTMLElementWithComponent<
 >;
 
 const formExpandableCheckboxLists = Array.from(
-  document.querySelectorAll<FormExpandableCheckboxListElement>('.form-expandable-checkbox-list'),
+  document.querySelectorAll<FormExpandableCheckboxListElement>('.js-form-expandable-checkbox-list'),
   (formExpandableCheckboxListElement) =>
     new FormExpandableCheckboxList(formExpandableCheckboxListElement)
 );

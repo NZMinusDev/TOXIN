@@ -18,13 +18,13 @@ include ./__datepicker/form-dropdown__datepicker.pug
   isFilter?: boolean - if true, input change event will reload page with chosen value(get method)
   Tip: mixin also uses 'and attributes'(&attributes)
 mixin form-dropdown(type, { heading = '', description = '', headingMarginBottom = '', name = 'dropdown', placeholder = '', range = false, selectedDates = '', altFields = undefined, isAltField = false, openingMethod = 'folded', groups = {}, list = {}, isFilter = false } = {})
-  .form-dropdown&attributes(attributes)
+  .form-dropdown.js-form-dropdown&attributes(attributes)
     if heading
       +heading(heading, { description, marginBottom: headingMarginBottom, isLabel: true })(
         for=name
       )
     .form-field
-      button.form-dropdown__expand-btn(id=name, type="button")
+      button.form-dropdown__expand-btn.js-form-dropdown__expand-btn(id=name, type="button")
         +icon({ content: 'expand_more', width: 'large' })
       case type
         when 'date'

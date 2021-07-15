@@ -10,11 +10,11 @@ include ~@common.blocks/primitives/heading/heading.pug
   isFilter?: boolean - if true, input change event will reload page with chosen value(get method), default is false
   Tip: mixin also uses 'and attributes'(&attributes)
 mixin form-range-slider({ name = 'range-slider', range = { min: -100, max: 100 }, start = [0, 0], step = undefined, heading = { h3: 'range slider' }, description = '', isFilter = false } = {})
-  .form-range-slider&attributes(attributes)
+  .form-range-slider.js-form-range-slider&attributes(attributes)
     .form-range-slider__label
       +heading(heading, { marginBottom: 'none' })
     each val, index in start
-      input.form-range-slider__input(
+      input.form-range-slider__input.js-form-range-slider__input(
         name=`${name}-${index}`,
         type="range",
         min=range.min,
@@ -23,7 +23,7 @@ mixin form-range-slider({ name = 'range-slider', range = { min: -100, max: 100 }
         step=step,
         data-is-filter=isFilter
       )
-    output.form-range-slider__result(name=name)
-    .form-range-slider__slider
+    output.form-range-slider__result.js-form-range-slider__result(name=name)
+    .form-range-slider__slider.js-form-range-slider__slider
     if description
       p.form-range-slider__description= description

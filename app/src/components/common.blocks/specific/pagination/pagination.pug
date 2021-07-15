@@ -51,14 +51,14 @@ mixin pagination({ addressingMethod = 'href', hrefPrefix = '?page=', total = 100
         .fill('')
         .map((value, index) => `${hrefPrefix}${index}`);
     }
-  nav.pagination(
-    class=addressingMethod === 'async' ? 'pagination_addressing-method_async' : undefined,
+  nav.pagination.js-pagination(
+    class=addressingMethod === 'async' ? ['pagination_addressing-method_async', 'js-pagination_addressing-method_async'] : undefined,
     data-page=addressingMethod === 'async' ? activePage : undefined,
     data-displayed=addressingMethod === 'async' ? displayed : undefined,
     data-total=addressingMethod === 'async' ? total : undefined,
     data-text=addressingMethod === 'async' ? text : undefined
   )&attributes(attributes)
-    ul.pagination__list
+    ul.pagination__list.js-pagination__list
       //- Show the Previous button only if you are on a page other than the first
       if activePage > 1
         li.pagination__item.pagination__item_previous(title="на предыдущую страницу")
@@ -123,4 +123,4 @@ mixin pagination({ addressingMethod = 'href', hrefPrefix = '?page=', total = 100
           else
             = 'arrow_forward'
     //- counter
-    p.pagination__counter= counterText
+    p.pagination__counter.js-pagination__counter= counterText

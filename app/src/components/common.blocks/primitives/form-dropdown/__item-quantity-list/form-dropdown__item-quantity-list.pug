@@ -18,19 +18,24 @@ mixin form-dropdown__item-quantity-list({ name = 'iqList', placeholder = 'placeh
       total += value.default;
       counter++;
     });
-  .iqdropdown.form-dropdown__item-quantity-list(
-    class=`form-dropdown__item-quantity-list_opening-method_${openingMethod}`
+  .iqdropdown.form-dropdown__item-quantity-list.js-form-dropdown__item-quantity-list(
+    class=[`form-dropdown__item-quantity-list_opening-method_${openingMethod}`, `js-form-dropdown__item-quantity-list_opening-method_${openingMethod}`]
   )&attributes(attributes)
-    input.form-dropdown__list-input(name=name, type="hidden", value=total, data-is-filter=isFilter)
-    p.iqdropdown-selection(data-placeholder=placeholder)
-    .iqdropdown-menu(data-groups=groups)
+    input.form-dropdown__list-input.js-form-dropdown__list-input(
+      name=name,
+      type="hidden",
+      value=total,
+      data-is-filter=isFilter
+    )
+    p.iqdropdown-selection.js-iqdropdown-selection(data-placeholder=placeholder)
+    .iqdropdown-menu.js-iqdropdown-menu(data-groups=groups)
       each limits, itemTitle in list
-        input.form-dropdown__option-input(
+        input.form-dropdown__option-input.js-form-dropdown__option-input(
           type="hidden",
           name=`${name}-${itemTitle}`,
           value=limits.default
         )
-        .iqdropdown-menu-option(
+        .iqdropdown-menu-option.js-iqdropdown-menu-option(
           data-id=itemTitle,
           data-defaultcount=`${limits.default}`,
           data-mincount=`${limits.min}`,

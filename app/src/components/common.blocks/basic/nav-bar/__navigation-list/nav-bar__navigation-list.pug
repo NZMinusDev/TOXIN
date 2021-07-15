@@ -26,20 +26,23 @@ mixin nav-bar__navigation-list(items, active)
     };
 
     bubbleActiveStatus(items, active);   
-  ul.nav-bar__navigation-list
+  ul.nav-bar__navigation-list.js-nav-bar__navigation-list
     each itemSettings, itemName in items
       if itemSettings.items
-        li.nav-bar__navigation-item.nav-bar__navigation-item_expandable(
+        li.nav-bar__navigation-item.js-nav-bar__navigation-item.nav-bar__navigation-item_expandable.js-nav-bar__navigation-item_expandable(
           class=[itemSettings.active ? 'nav-bar__navigation-item_active' : undefined]
         )
           - const checkboxID = Date.now() + Math.random();
-          input.nav-bar__navigation-item-dropdown-checkbox(id=checkboxID, type="checkbox")
+          input.nav-bar__navigation-item-dropdown-checkbox.js-nav-bar__navigation-item-dropdown-checkbox(
+            id=checkboxID,
+            type="checkbox"
+          )
           label.nav-bar__navigation-item-dropdown-label(for=checkboxID, tabindex="0")= itemName
             span.nav-bar__expand-icon
               +icon({content: 'expand_more', width: 'medium'})
           +nav-bar__navigation-list(itemSettings.items)
       else
-        li.nav-bar__navigation-item(
+        li.nav-bar__navigation-item.js-nav-bar__navigation-item(
           class=itemSettings.active ? 'nav-bar__navigation-item_active' : undefined
         )
           a(href=itemSettings.href)= itemName

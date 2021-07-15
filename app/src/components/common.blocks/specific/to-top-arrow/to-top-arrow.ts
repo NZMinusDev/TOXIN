@@ -42,7 +42,9 @@ type ToTopArrowElementWithComponent = HTMLElementWithComponent<
   ToTopArrow
 >;
 
-const toTopArrows = [new ToTopArrow(document.querySelector('.to-top-arrow') as ToTopArrowElement)];
+const toTopArrows = [
+  new ToTopArrow(document.querySelector('.js-to-top-arrow') as ToTopArrowElement),
+];
 
 export type { ToTopArrowCustomEvents, ToTopArrow, ToTopArrowElementWithComponent };
 

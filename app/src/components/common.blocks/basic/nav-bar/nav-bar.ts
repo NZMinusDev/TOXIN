@@ -22,7 +22,7 @@ type NavBarElementWithComponent = HTMLElementWithComponent<
 >;
 
 const navBars = Array.from(
-  document.querySelectorAll('.nav-bar') as NodeListOf<NavBarElement>,
+  document.querySelectorAll('.js-nav-bar') as NodeListOf<NavBarElement>,
   (navBarElement) => new NavBar(navBarElement)
 );
 

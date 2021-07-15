@@ -80,7 +80,7 @@ type FormExpandableCheckboxListExpanderInputElementWithComponent = HTMLElementWi
 const formExpandableCheckboxListExpanderInputs = formExpandableCheckboxLists
   .map((parentBlockInstance) => {
     const formExpandableCheckboxListExpanderInputElement = parentBlockInstance.element.querySelector(
-      '.form-expandable-checkbox-list__expander-input'
+      '.js-form-expandable-checkbox-list__expander-input'
     );
 
     if (formExpandableCheckboxListExpanderInputElement !== null) {

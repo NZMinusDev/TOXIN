@@ -29,7 +29,7 @@ type NavBarNavigationItemElementWithComponent = HTMLElementWithComponent<
 const navBarNavigationItems = navBars
   .map((navBar) =>
     Array.from(
-      navBar.element.querySelectorAll<NavBarNavigationItemElement>('.nav-bar__navigation-item'),
+      navBar.element.querySelectorAll<NavBarNavigationItemElement>('.js-nav-bar__navigation-item'),
       (navBarNavigationItemElement) => new NavBarNavigationItem(navBarNavigationItemElement)
     )
   )

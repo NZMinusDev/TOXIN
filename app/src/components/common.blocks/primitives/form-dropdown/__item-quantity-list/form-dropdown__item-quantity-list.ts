@@ -124,19 +124,19 @@ class FormDropdownItemQuantityList extends BEMComponent<
   protected _initDOM() {
     const $self = $(this.element) as FormDropdownItemQuantityListDOM['$self'];
     const listInput = this.element.querySelector(
-      '.form-dropdown__list-input'
+      '.js-form-dropdown__list-input'
     ) as FormDropdownItemQuantityListDOM['listInput'];
     const selection = this.element.querySelector(
-      '.iqdropdown-selection'
+      '.js-iqdropdown-selection'
     ) as FormDropdownItemQuantityListDOM['selection'];
     const menu = this.element.querySelector(
-      '.iqdropdown-menu'
+      '.js-iqdropdown-menu'
     ) as FormDropdownItemQuantityListDOM['menu'];
     const optionInputs = [
-      ...menu.querySelectorAll('.form-dropdown__option-input'),
+      ...menu.querySelectorAll('.js-form-dropdown__option-input'),
     ] as FormDropdownItemQuantityListDOM['optionInputs'];
     const menuOptions = [
-      ...menu.querySelectorAll('.iqdropdown-menu-option'),
+      ...menu.querySelectorAll('.js-iqdropdown-menu-option'),
     ] as FormDropdownItemQuantityListDOM['menuOptions'];
 
     return {
@@ -373,18 +373,17 @@ type FormDropdownItemQuantityListElementWithComponent = HTMLElementWithComponent
   FormDropdownItemQuantityList
 >;
 
-const formDropdownsWithItemQuantityList = formDropdowns.filter((dropdown) =>
-  dropdown.element.querySelector('.form-dropdown__item-quantity-list')
-);
-
-const formDropdownItemQuantityLists = formDropdownsWithItemQuantityList.map(
-  (dropdown) =>
-    new FormDropdownItemQuantityList(
-      dropdown.element.querySelector(
-        '.form-dropdown__item-quantity-list'
-      ) as FormDropdownItemQuantityListElement
+const formDropdownItemQuantityLists = formDropdowns
+  .map((formDropdown) =>
+    Array.from(
+      formDropdown.element.querySelectorAll<FormDropdownItemQuantityListElement>(
+        '.js-form-dropdown__item-quantity-list'
+      ),
+      (formDropdownItemQuantityListElement) =>
+        new FormDropdownItemQuantityList(formDropdownItemQuantityListElement)
     )
-);
+  )
+  .flat();
 
 export type {
   FormDropdownItemQuantityListCustomEvents,

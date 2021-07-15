@@ -45,7 +45,7 @@ const formTextFieldInputs = formTextFields
   .map((formTextField) => {
     const formTextFieldInputElement = formTextField.element.querySelector<
       FormTextFieldInputElement
-    >('.form-text-field__input');
+    >('.js-form-text-field__input');
 
     if (formTextFieldInputElement !== null) {
       return new FormTextFieldInput(formTextFieldInputElement);

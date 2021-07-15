@@ -24,7 +24,7 @@ class FormTextFieldInputWithDateTypeModifier extends FormTextFieldInputTypeModif
 
 const formTextFieldInputWithDateTypeModifiers = formTextFieldInputs
   .filter((formTextFieldInput) =>
-    formTextFieldInput.element.classList.contains('form-text-field__input_type_with-date')
+    formTextFieldInput.element.classList.contains('js-form-text-field__input_type_with-date')
   )
   .map((formTextFieldInput) => new FormTextFieldInputWithDateTypeModifier(formTextFieldInput));
 

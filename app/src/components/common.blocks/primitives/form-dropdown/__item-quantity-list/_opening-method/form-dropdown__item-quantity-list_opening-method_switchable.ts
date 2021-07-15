@@ -28,7 +28,7 @@ class FormDropdownItemQuantityListSwitchableOpeningMethodModifier extends FormDr
 const formDropdownItemQuantityListSwitchableOpeningMethodModifiers = formDropdownItemQuantityLists
   .filter((formDropdownItemQuantityList) =>
     formDropdownItemQuantityList.element.classList.contains(
-      'form-dropdown__item-quantity-list_opening-method_switchable'
+      'js-form-dropdown__item-quantity-list_opening-method_switchable'
     )
   )
   .map(

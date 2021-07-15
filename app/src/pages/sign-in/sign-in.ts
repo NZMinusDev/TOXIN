@@ -2,7 +2,7 @@ import './sign-in.pug';
 import './sign-in.scss';
 
 const cardContainerElements = [
-  ...document.querySelectorAll('.sign-in-layout__card'),
+  ...document.querySelectorAll('.js-sign-in-layout__card'),
 ] as HTMLDivElement[];
 
 const handleCardSwitchBtnClick = (event: MouseEvent) => {

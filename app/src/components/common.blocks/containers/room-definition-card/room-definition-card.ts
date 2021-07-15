@@ -84,33 +84,33 @@ class RoomDefinitionCard extends BEMComponent<
 
   protected _initDOM(): RoomDefinitionCardDOM {
     const dayPayment = this.element.querySelector(
-      '.room-definition-card__day-payment'
+      '.js-room-definition-card__day-payment'
     ) as RoomDefinitionCardDOM['dayPayment'];
     const arrivalDateDropdown = this.element.querySelector(
-      '.room-definition-card__arrival-date-dropdown'
+      '.js-room-definition-card__arrival-date-dropdown'
     ) as RoomDefinitionCardDOM['arrivalDateDropdown'];
     const guestsDropdown = this.element.querySelector(
-      '.room-definition-card__guests-dropdown'
+      '.js-room-definition-card__guests-dropdown'
     ) as RoomDefinitionCardDOM['guestsDropdown'];
 
     const totalDayPayment = this.element.querySelector(
-      '.room-definition-card__total-day-payment'
+      '.js-room-definition-card__total-day-payment'
     ) as HTMLParagraphElement;
     const totalDayPaymentSentence = totalDayPayment.querySelector(
-      '.room-definition-card__payment-sentence'
+      '.js-room-definition-card__payment-sentence'
     ) as RoomDefinitionCardDOM['totalDayPaymentSentence'];
     const totalDayPaymentAmount = totalDayPayment.querySelector(
-      '.room-definition-card__payment-amount'
+      '.js-room-definition-card__payment-amount'
     ) as RoomDefinitionCardDOM['totalDayPaymentAmount'];
 
     const servicesPaymentAmount = this.element.querySelector(
-      '.room-definition-card__services-payment .room-definition-card__payment-amount'
+      '.js-room-definition-card__services-payment .js-room-definition-card__payment-amount'
     ) as RoomDefinitionCardDOM['servicesPaymentAmount'];
     const additionalServicesPaymentAmount = this.element.querySelector(
-      '.room-definition-card__additional-services-payment .room-definition-card__payment-amount'
+      '.js-room-definition-card__additional-services-payment .js-room-definition-card__payment-amount'
     ) as RoomDefinitionCardDOM['additionalServicesPaymentAmount'];
     const totalPaymentAmount = this.element.querySelector(
-      '.room-definition-card__total-payment-amount'
+      '.js-room-definition-card__total-payment-amount'
     ) as RoomDefinitionCardDOM['totalPaymentAmount'];
 
     return {
@@ -211,7 +211,7 @@ type RoomDefinitionCardElementWithComponent = HTMLElementWithComponent<
 >;
 
 const roomDefinitionCards = Array.from(
-  document.querySelectorAll('.room-definition-card') as NodeListOf<RoomDefinitionCardElement>,
+  document.querySelectorAll('.js-room-definition-card') as NodeListOf<RoomDefinitionCardElement>,
   (roomDefinitionCardElement) => new RoomDefinitionCard(roomDefinitionCardElement)
 );
 

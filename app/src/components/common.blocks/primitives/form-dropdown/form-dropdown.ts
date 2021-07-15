@@ -55,7 +55,7 @@ class FormDropdown<
 
   protected _initDOM() {
     const expandButton = this.element.querySelector(
-      '.form-dropdown__expand-btn'
+      '.js-form-dropdown__expand-btn'
     ) as FormDropdownDOM['expandButton'];
     const expandableItem = expandButton.nextElementSibling as FormDropdownDOM['expandableItem'];
 
@@ -104,7 +104,7 @@ type FormDropdownWithDatepickerElementWithComponent = HTMLElementWithComponent<
 >;
 
 const formDropdowns = Array.from(
-  document.querySelectorAll('.form-dropdown') as NodeListOf<FormDropdownElement>,
+  document.querySelectorAll('.js-form-dropdown') as NodeListOf<FormDropdownElement>,
   (formDropdownElement) => new FormDropdown(formDropdownElement)
 );
 

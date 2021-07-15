@@ -29,10 +29,10 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
 
   protected _initDOM() {
     const itemExpandCheckbox = this.component.element.querySelector(
-      '.nav-bar__navigation-item-dropdown-checkbox'
+      '.js-nav-bar__navigation-item-dropdown-checkbox'
     ) as NavBarExpandableNavigationItemModifierDOM['itemExpandCheckbox'];
 
-    const listSelector = '.nav-bar__navigation-list';
+    const listSelector = '.js-nav-bar__navigation-list';
     const childList = this.component.element.querySelector(
       listSelector
     ) as NavBarExpandableNavigationItemModifierDOM['childList'];
@@ -84,7 +84,9 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
     },
     handleWindowClick: (event: MouseEvent) => {
       const target = event.target as HTMLElement;
-      const navBarExpandableNavigationItem = target.closest('.nav-bar__navigation-item_expandable');
+      const navBarExpandableNavigationItem = target.closest(
+        '.js-nav-bar__navigation-item_expandable'
+      );
 
       if (navBarExpandableNavigationItem === null) {
         this._uncheckItemExpandCheckbox();
@@ -128,7 +130,7 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
 
 const navBarExpandableNavigationItemModifiers = navBarNavigationItems
   .filter((navBarNavigationItem) =>
-    navBarNavigationItem.element.classList.contains('nav-bar__navigation-item_expandable')
+    navBarNavigationItem.element.classList.contains('js-nav-bar__navigation-item_expandable')
   )
   .map((navBarNavigationItem) => new NavBarExpandableNavigationItemModifier(navBarNavigationItem));
 

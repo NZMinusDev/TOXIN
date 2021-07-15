@@ -19,7 +19,7 @@ class FormTextFieldInputWithEmailTypeModifier extends FormTextFieldInputTypeModi
 
 const formTextFieldInputWithEmailTypeModifiers = formTextFieldInputs
   .filter((formTextFieldInput) =>
-    formTextFieldInput.element.classList.contains('form-text-field__input_type_with-email')
+    formTextFieldInput.element.classList.contains('js-form-text-field__input_type_with-email')
   )
   .map((formTextFieldInput) => new FormTextFieldInputWithEmailTypeModifier(formTextFieldInput));
 

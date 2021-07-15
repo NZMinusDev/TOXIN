@@ -43,7 +43,7 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
 
   protected readonly _state: DatepickerCardState;
 
-  protected _applyControlTemplate = `<div class="datepicker-card__apply-control"><div class="apply-control"><input class="apply-control__clear-btn apply-control__clear-btn_hidden" type="button" value="очистить"><input class="apply-control__apply-btn" type="button" value="применить"></div></div>`;
+  protected _applyControlTemplate = `<div class="datepicker-card__apply-control"><div class="apply-control js-apply-control"><input class="apply-control__clear-btn js-apply-control__clear-btn apply-control__clear-btn_hidden" type="button" value="очистить"><input class="apply-control__apply-btn js-apply-control__apply-btn" type="button" value="применить"></div></div>`;
 
   constructor(datepickerCardElement: DatepickerCardElement) {
     super(datepickerCardElement);
@@ -131,12 +131,12 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
 
     $calendar.get(0).insertAdjacentHTML('beforeend', this._applyControlTemplate);
 
-    const applyControl = this.element.querySelector('.apply-control') as HTMLDivElement;
+    const applyControl = this.element.querySelector('.js-apply-control') as HTMLDivElement;
     const clearBtn = applyControl.querySelector(
-      '.apply-control__clear-btn'
+      '.js-apply-control__clear-btn'
     ) as DatepickerCardGeneratedDOM['clearBtn'];
     const applyBtn = applyControl.querySelector(
-      '.apply-control__apply-btn'
+      '.js-apply-control__apply-btn'
     ) as DatepickerCardGeneratedDOM['applyBtn'];
 
     return {
@@ -237,7 +237,7 @@ type DatepickerCardElementWithComponent = HTMLElementWithComponent<
 >;
 
 const datepickerCards = Array.from(
-  document.querySelectorAll('.datepicker-card') as NodeListOf<DatepickerCardElement>,
+  document.querySelectorAll('.js-datepicker-card') as NodeListOf<DatepickerCardElement>,
   (datepickerCardElement) => new DatepickerCard(datepickerCardElement)
 );
 

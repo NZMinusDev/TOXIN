@@ -22,12 +22,14 @@ class FormDropdownItemQuantityListAppliedOpeningTypeModifier extends FormDropdow
   }
 
   protected _initDOM() {
-    const applyControl = this.component.element.querySelector('.apply-control') as HTMLDivElement;
+    const applyControl = this.component.element.querySelector(
+      '.js-apply-control'
+    ) as HTMLDivElement;
     const clearBtn = applyControl.querySelector(
-      '.apply-control__clear-btn'
+      '.js-apply-control__clear-btn'
     ) as FormDropdownItemQuantityListAppliedOpeningTypeModifierDOM['clearBtn'];
     const applyBtn = applyControl.querySelector(
-      '.apply-control__apply-btn'
+      '.js-apply-control__apply-btn'
     ) as FormDropdownItemQuantityListAppliedOpeningTypeModifierDOM['applyBtn'];
 
     return {
@@ -108,7 +110,7 @@ class FormDropdownItemQuantityListAppliedOpeningTypeModifier extends FormDropdow
 const formDropdownItemQuantityListAppliedOpeningTypeModifiers = formDropdownItemQuantityLists
   .filter((formDropdownItemQuantityList) =>
     formDropdownItemQuantityList.element.classList.contains(
-      'form-dropdown__item-quantity-list_opening-method_applied'
+      'js-form-dropdown__item-quantity-list_opening-method_applied'
     )
   )
   .map(

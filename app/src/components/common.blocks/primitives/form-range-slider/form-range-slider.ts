@@ -35,17 +35,14 @@ class FormRangeSlider extends BEMComponent<FormRangeSliderElement, FormRangeSlid
 
   protected _initDOM() {
     const slider = this.element.querySelector(
-      '.form-range-slider__slider'
+      '.js-form-range-slider__slider'
     ) as FormRangeSliderDOM['slider'];
     const result = this.element.querySelector(
-      '.form-range-slider__result'
+      '.js-form-range-slider__result'
     ) as FormRangeSliderDOM['result'];
-    const inputFrom = this.element.querySelector(
-      `[name=${result.name}-0]`
-    ) as FormRangeSliderDOM['inputFrom'];
-    const inputTo = this.element.querySelector(
-      `[name=${result.name}-1]`
-    ) as FormRangeSliderDOM['inputTo'];
+    const [inputFrom, inputTo] = this.element.querySelectorAll<
+      FormRangeSliderDOM['inputFrom'] | FormRangeSliderDOM['inputTo']
+    >('.js-form-range-slider__input');
 
     return { slider, result, inputFrom, inputTo };
   }
@@ -105,7 +102,7 @@ type FormRangeSliderElementWithComponent = HTMLElementWithComponent<
 >;
 
 const formRangeSliders = Array.from(
-  document.querySelectorAll<FormRangeSliderElement>('.form-range-slider'),
+  document.querySelectorAll<FormRangeSliderElement>('.js-form-range-slider'),
   (formRangeSliderElement) => new FormRangeSlider(formRangeSliderElement)
 );
 

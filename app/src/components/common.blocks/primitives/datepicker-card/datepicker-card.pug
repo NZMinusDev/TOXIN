@@ -7,7 +7,7 @@
   Tip: mixin also uses 'and attributes'(&attributes)
 mixin datepicker-card({ name = 'datepicker-card', selectedDates = '', range = false, altFields = undefined, isFilter = false } = {})
   input(type="hidden", name=name, value=selectedDates, data-is-filter=isFilter)
-  .datepicker-here.datepicker-card(
+  .datepicker-here.datepicker-card.js-datepicker-card(
     data-range=range ? `${range}` : undefined,
     data-multiple-dates-separator=" - ",
     data-alt-fields=altFields

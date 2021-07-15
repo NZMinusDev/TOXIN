@@ -27,8 +27,10 @@ class Pagination extends BEMComponent<PaginationElement, PaginationCustomEvents>
   }
 
   protected _initDOM(): PaginationDOM {
-    const list = this.element.querySelector('.pagination__list') as PaginationDOM['list'];
-    const counter = this.element.querySelector('.pagination__counter') as PaginationDOM['counter'];
+    const list = this.element.querySelector('.js-pagination__list') as PaginationDOM['list'];
+    const counter = this.element.querySelector(
+      '.js-pagination__counter'
+    ) as PaginationDOM['counter'];
 
     return { list, counter };
   }
@@ -46,7 +48,7 @@ type PaginationWithAsyncAddressingMethodModifierElementWithComponent = HTMLEleme
 >;
 
 const paginations = Array.from(
-  document.querySelectorAll('.pagination') as NodeListOf<PaginationElement>,
+  document.querySelectorAll('.js-pagination') as NodeListOf<PaginationElement>,
   (paginationElement) => new Pagination(paginationElement)
 );
 

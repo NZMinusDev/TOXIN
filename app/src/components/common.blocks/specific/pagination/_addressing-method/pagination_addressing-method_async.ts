@@ -288,7 +288,7 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
 
 const paginationAsyncAddressingMethodModifiers = paginations
   .filter((pagination) =>
-    pagination.element.classList.contains('pagination_addressing-method_async')
+    pagination.element.classList.contains('js-pagination_addressing-method_async')
   )
   .map((pagination) => new PaginationAsyncAddressingMethodModifier(pagination));
 
