@@ -31,7 +31,9 @@ mixin form-dropdown__datepicker({ name = 'datepicker', range = false, selectedDa
     } else {
       dateTime = selectedDates || undefined;
     }
-  p.form-dropdown__selection-text.js-form-dropdown__selection-text(data-placeholder=dataPlaceholder)
+  p.form-dropdown__selection-text.js-form-dropdown__selection-text(
+    data-placeholder=dataPlaceholder
+  )
     if dateTime
       time(datetime=dateTime)= dateTime
     else

@@ -5,11 +5,6 @@
   Tip: mixin also uses 'and attributes'(&attributes)
 mixin form-toggle({ name = 'toggle', label = '', checked = false } = {})
   .form-toggle&attributes(attributes)
-    input.form-toggle__button(
-      id=name,
-      type="checkbox",
-      name=name,
-      checked=checked
-    )
+    input.form-toggle__button(id=name, type="checkbox", name=name, checked=checked)
     if label
       label.form-toggle__label(for=name)= label

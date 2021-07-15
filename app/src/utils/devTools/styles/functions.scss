@@ -1,7 +1,6 @@
 @use 'sass:list';
 @use 'sass:string';
 
- 
 /// Adjustable size depending on the user's device, if you need upper or lower border for fixed value - use this function in @media (max-width/min-width) in your project and point out the same $pcSize for default value
 /// @param { number } $pcSize [10] - size in larger(your template width) state
 /// @param { number } $mobSize [5] - size in smaller(page width 320px) state
@@ -37,17 +36,19 @@
 }
 
 /// Returns the last index of $substring in $string, or null if $string doesn’t contain $substring
-/// @param { string } $string 
+/// @param { string } $string
 /// @param { string } $substring
 @function str-last-index($string, $substring) {
   $index: null;
   $length: str-length($string);
-  
+
   @for $n from $length through 1 {
     $index: str-index(str-slice($string, $n, $length), $substring);
-    @if $index { @return $index + $n - 1; }
+    @if $index {
+      @return $index + $n - 1;
+    }
   }
-  
+
   @return $index;
 }
 

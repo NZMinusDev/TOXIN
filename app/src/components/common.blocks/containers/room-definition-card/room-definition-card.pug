@@ -34,7 +34,11 @@ mixin room-definition-card({ action = '/mock.js', name = 'room-definition-card',
     const servicesSaleSentence = `Сбор за услуги: скидка ${servicesSale.toLocaleString()}${currency}`;
 
     const totalPaymentAmount = totalDayPaymentAmount + servicesPayment + additionalServicesPayment;
-  form.card-base.room-definition-card.js-room-definition-card(name=name, action=action, method=method)&attributes(attributes)
+  form.card-base.room-definition-card.js-room-definition-card(
+    name=name,
+    action=action,
+    method=method
+  )&attributes(attributes)
     .room-definition-card__room-title
       h1.room-definition-card__room-number= roomNumberSentence
       h3.room-definition-card__room-grade= roomGrade
