@@ -16,12 +16,12 @@ class ToTopArrow extends BEMComponent<ToTopArrowElement, ToTopArrowCustomEvents>
   }
 
   protected _bindWindowListeners() {
-    window.addEventListener('scroll', this._windowEventListenerObject.onScroll);
+    window.addEventListener('scroll', this._windowEventListenerObject.handleWindowScroll);
 
     return this;
   }
   protected _windowEventListenerObject = {
-    onScroll: () => {
+    handleWindowScroll: () => {
       this.element.hidden = window.pageYOffset < document.documentElement.clientHeight;
     },
   };

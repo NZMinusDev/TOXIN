@@ -58,7 +58,7 @@ class FormExpandableCheckboxListExpanderInput extends BEMComponent<
 
     return this;
   }
-  onChange = () => {
+  protected onChange = () => {
     this.toggleList();
   };
 
