@@ -1,0 +1,1 @@
+html{height:100%;font-family:Times New Roman,Times,serif;font-size:calc(18px + 6*(100vw - 320px)/1120);color:#000;background-color:#fff}.main-layout{min-height:100%;display:grid;grid:"header" auto "main" 1fr "footer" auto/auto}.index__main{padding:.5em}
