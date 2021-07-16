@@ -1,4 +1,8 @@
 .form-dropdown__item-quantity-list {
+  .iqdropdown-selection {
+    color: rgba(var(--color__dark-shade), 0.75);
+  }
+
   &.menu-open {
     .iqdropdown-menu {
       border: var(--border-hover);
