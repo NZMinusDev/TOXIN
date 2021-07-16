@@ -8,7 +8,7 @@ type LibAirDatepicker = {
   altFieldDateFormat?: string;
   minDate?: Date;
   toggleSelected?: boolean;
-  onSelect?: (formattedDate: string, date: Date | Array<Date>, inst) => void;
+  onSelect?: (formattedDate: string, date: Date | Array<Date> | '', inst) => void;
 };
 
 interface JQuery {

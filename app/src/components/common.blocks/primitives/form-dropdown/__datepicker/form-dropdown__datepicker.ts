@@ -164,11 +164,11 @@ class FormDropdownDatepicker extends BEMComponent<
         const [theFirstDatetime] = dateTimes;
         const [theFirstFormattedDate] = formattedDates;
 
-        this._DOM.input.value = this._state.dates ? theFirstDate : '';
+        this._DOM.input.value = theFirstDate ?? '';
         this._DOM.selection.innerHTML =
-          theFirstDatetime !== ''
+          theFirstDatetime !== undefined
             ? `<time datetime="${theFirstDatetime}">${
-                theFirstFormattedDate || this._options.placeholder
+                theFirstFormattedDate ?? this._options.placeholder
               }</time>`
             : this._options.placeholder;
 

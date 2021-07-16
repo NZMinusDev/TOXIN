@@ -179,6 +179,10 @@ class RoomDefinitionCard extends BEMComponent<
       .component.get()
       .map((ISODateString) => new Date(ISODateString));
 
+    if (arrivalDate === undefined || departureDate === undefined) {
+      return 0;
+    }
+
     return getDatePeriod(arrivalDate, departureDate) / MS_IN_A_DAY;
   }
 

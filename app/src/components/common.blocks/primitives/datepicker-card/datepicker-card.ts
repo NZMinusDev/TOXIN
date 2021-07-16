@@ -67,7 +67,11 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
     );
   }
   getDateTimes() {
-    if (this._DOM.$element.data('datepicker').opts.range && this._DOM.$altFields === undefined) {
+    const isSelfRanged =
+      this._DOM.$element.data('datepicker').opts.range && this._DOM.$altFields === undefined;
+    const isDatesDefined = this._state.dates.length > 0;
+
+    if (isSelfRanged && isDatesDefined) {
       const [theSmallestDate] = this._state.dates;
       const theLargestDate = this._state.dates[this._state.dates.length - 1];
 
@@ -107,10 +111,10 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
           : 'dd.mm.yyyy',
       minDate: new Date(),
       toggleSelected: false,
-      onSelect: (formattedDate: string, date: Date | Array<Date>) => {
+      onSelect: (formattedDate: string, date: Date | Array<Date> | '') => {
         this._generatedDOM.clearBtn.classList.remove('apply-control__clear-btn_hidden');
 
-        if (date !== undefined) {
+        if (date !== '') {
           this._state.dates = Array.isArray(date) ? date : [date];
         } else {
           this._state.dates = [];
@@ -172,8 +176,6 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
       this._DOM.$element.data('datepicker').clear();
 
       this._generatedDOM.clearBtn.classList.add('apply-control__clear-btn_hidden');
-
-      this.element.dispatchEvent(new CustomEvent('change', { bubbles: true }));
     },
     handleApplyBtnClick: () => {
       if (this._isApplyingAllowed()) {
