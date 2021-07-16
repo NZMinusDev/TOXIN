@@ -200,25 +200,33 @@ const webpackPlugins = () => {
         },
       ],
     }),
+  ];
 
-    // FIXME: this plugin keeps compillation from end, doesn't know why
-    new WebpackImagesResizer(listOfSourceImages320, {
-      // 4:3 - QVGA
-      width: designWidth > 320 ? `${(320 / designWidth) * 100}%` : '100%',
-    }),
-    new WebpackImagesResizer(listOfSourceImages640, {
-      // 16:9 - nHD
-      width: designWidth > 640 ? `${(640 / designWidth) * 100}%` : '100%',
-    }),
-    new WebpackImagesResizer(listOfSourceImages960, {
-      // 16:9 - qHD
-      width: designWidth > 960 ? `${(960 / designWidth) * 100}%` : '100%',
-    }),
-    new WebpackImagesResizer(listOfSourceImages1920, {
-      // 16:9 - Full HD
-      width: designWidth > 1920 ? `${(1920 / designWidth) * 100}%` : '100%',
-    }),
+  if (process.env.ImagesResizer === 'true') {
+    plugins.push(
+      // eslint-disable-next-line lines-around-comment
+      // FIXME: this plugin keeps compilation from end, doesn't know why
+      new WebpackImagesResizer(listOfSourceImages320, {
+        // 4:3 - QVGA
+        width: designWidth > 320 ? `${(320 / designWidth) * 100}%` : '100%',
+      }),
+      new WebpackImagesResizer(listOfSourceImages640, {
+        // 16:9 - nHD
+        width: designWidth > 640 ? `${(640 / designWidth) * 100}%` : '100%',
+      }),
+      new WebpackImagesResizer(listOfSourceImages960, {
+        // 16:9 - qHD
+        width: designWidth > 960 ? `${(960 / designWidth) * 100}%` : '100%',
+      }),
+      new WebpackImagesResizer(listOfSourceImages1920, {
+        // 16:9 - Full HD
+        width: designWidth > 1920 ? `${(1920 / designWidth) * 100}%` : '100%',
+      })
+    );
+  }
 
+  plugins.push(
+    // eslint-disable-next-line lines-around-comment
     // images are converted to WEBP
     new ImageMinimizerPlugin({
       // Enable file caching and set path to cache directory
@@ -267,8 +275,8 @@ const webpackPlugins = () => {
           ],
         ],
       },
-    }),
-  ];
+    })
+  );
 
   if (process.env.MEASURE === 'true') {
     // writes data in stats.json as plain text, shouldn't be in dev mod)
