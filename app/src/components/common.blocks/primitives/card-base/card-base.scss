@@ -1,6 +1,5 @@
 .card-base {
-  width: fit-content;
-  height: fit-content;
+  max-width: 380px / 14px * 1em;
   display: grid;
   align-items: center;
   padding: 30px / 14px * 1em;
