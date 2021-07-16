@@ -35,8 +35,8 @@ mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscriptio
           p.footer__description Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»
           section.footer__navigation
             input#footer-navigation-checkbox.footer__list-checkbox(type="checkbox") 
-            h3.footer__list-label
-              label(for="footer-navigation-checkbox", tabindex="0") Навигация
+            h3.footer__list-label-heading
+              label.footer__list-label(for="footer-navigation-checkbox", tabindex="0") Навигация
             ul.footer__list
               li.footer__list-item
                 a.footer__link(href="/mock.html") О нас
@@ -48,8 +48,8 @@ mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscriptio
                 a.footer__link(href="/mock.html") Услуги
           section.footer__about-us-section
             input#footer-about-checkbox.footer__list-checkbox(type="checkbox")
-            h3.footer__list-label
-              label(for="footer-about-checkbox", tabindex="0") О нас
+            h3.footer__list-label-heading
+              label.footer__list-label(for="footer-about-checkbox", tabindex="0") О нас
             ul.footer__list
               li.footer__list-item
                 a.footer__link(href="/mock.html") О сервисе
@@ -61,8 +61,8 @@ mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscriptio
                 a.footer__link(href="/mock.html") Инвесторы
           section.footer__support
             input#footer-support-checkbox.footer__list-checkbox(type="checkbox")
-            h3.footer__list-label
-              label(for="footer-support-checkbox", tabindex="0") Служба поддержки
+            h3.footer__list-label-heading
+              label.footer__list-label(for="footer-support-checkbox", tabindex="0") Служба поддержки
             ul.footer__list
               li.footer__list-item
                 a.footer__link(href="/mock.html") Соглашения
@@ -72,8 +72,8 @@ mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscriptio
                 a.footer__link(href="/mock.html") Связь с нами
           section.footer__subscription
             input#footer-subscription-checkbox.footer__list-checkbox(type="checkbox")
-            h3.footer__list-label
-              label(for="footer-subscription-checkbox", tabindex="0") Подписка
+            h3.footer__list-label-heading
+              label.footer__list-label(for="footer-subscription-checkbox", tabindex="0") Подписка
             ul.footer__list
               li.footer__list-item
                 p.footer__description
