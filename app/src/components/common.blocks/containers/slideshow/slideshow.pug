@@ -6,7 +6,7 @@ include ~@common.blocks/primitives/picture/picture.pug
   paths: string[] - paths for images
   Tip: mixin also uses 'and attributes'(&attributes)
 mixin slideshow({ name = 'slideshow', paths = [] } = {})
-  .slideshow&attributes(attributes)
+  .slideshow.js-slideshow&attributes(attributes)
     -
       let pictureID;
       let labelID = `${name}-${(paths.length - 1)}`;
@@ -34,7 +34,7 @@ mixin slideshow({ name = 'slideshow', paths = [] } = {})
       )
         span.slideshow__switcher-icon
           +icon({ content: 'expand_more' })
-      .slideshow__picture
+      .slideshow__picture.js-slideshow__picture
         +picture(path, `Изображение ${index + 1}`, { size: 'contain' })
       - labelID = pictureID;
     label.slideshow__switcher(for=pictureID, title=`К изображению №${paths.length}`)
