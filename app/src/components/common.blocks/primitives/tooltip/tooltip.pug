@@ -1,0 +1,5 @@
+//- 
+  content: string - text of tooltip
+  Tip: mixin also uses 'and attributes'(&attributes)
+mixin tooltip(content)
+  span.tooltip(data-content=content, tabindex="0")&attributes(attributes) i

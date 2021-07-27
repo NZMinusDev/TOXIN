@@ -22,7 +22,7 @@ block content
         +picture(htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888_2.jpg').default : undefined, 'Фотография номера № 2', { size: 'contain' })
       .room-details-layout__small-img-2
         +picture(htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888_3.jpg').default : undefined, 'Фотография номера № 3', { size: 'contain' })
-    .room-details-layout__content.content-container
+    .room-details-layout__content
       section.room-details-layout__info
         .room-details-layout__data
           +form-bullet-list({ heading: { h2: 'Сведения о номере' }, listStyle: 'material-icon', items: { Комфорт: { icon: 'insert_emoticon', description: 'Шумопоглощающие стены' }, Удобство: { icon: 'location_city', description: 'Окно в каждой из спален' }, Уют: { icon: 'whatshot', description: 'Номер оснащен камином' } } })

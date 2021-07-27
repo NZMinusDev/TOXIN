@@ -1,0 +1,7 @@
+include ~@common.blocks/primitives/logo/logo.pug
+//- 
+  Tip: mixin also uses 'and attributes'(&attributes)
+mixin ui-kit-header
+  header.ui-kit-header&attributes(attributes)
+    .ui-kit-header__logo
+      +logo({ color: 'gray' })

@@ -1,6 +1,6 @@
 extends ~@layouts/basic/main-layout/main-layout.pug
 
+include ~@common.blocks/basic/ui-kit-header/ui-kit-header.pug
+
 block header
-  header.ui-kit-header
-    .ui-kit-header__logo
-      .logo.logo_color_gray
+  +ui-kit-header

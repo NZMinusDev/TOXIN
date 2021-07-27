@@ -1,6 +1,7 @@
 .registration-card {
   $mediumGap: 20px / 14px * 1em;
   $largeGap: 30px / 14px * 1em;
+  display: grid;
   grid:
     'title title'
     '. .' #{$mediumGap}

@@ -1,3 +1,4 @@
+include ~@common.blocks/primitives/logo/logo.pug
 include ~@common.blocks/primitives/form-text-field/form-text-field.pug
 include ~@common.blocks/primitives/icon/icon.pug
 
@@ -15,8 +16,7 @@ mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscriptio
     when 'creative'
       footer.footer.footer_type_creative&attributes(attributes)
         section.footer__logo
-          .logo.logo_color_primary-gradient
-          span.logo__title toxin
+          +logo({ color: 'primary-gradient', title: 'toxin' })
         p.footer__copyright= copyright
         section.footer__icons
           ul.footer__icons-list
@@ -28,10 +28,9 @@ mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscriptio
                 )
     default
       footer.footer&attributes(attributes)
-        section.footer__widgets.content-container
+        section.footer__widgets
           section.footer__logo
-            .logo.logo_color_primary-gradient
-            span.logo__title toxin
+            +logo({ color: 'primary-gradient', title: 'toxin' })
           p.footer__description Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»
           section.footer__navigation
             input#footer-navigation-checkbox.footer__list-checkbox(type="checkbox") 
@@ -81,7 +80,7 @@ mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscriptio
               li.footer__list-item
                 form(name=name, action=action, method=method) 
                   +form-text-field({ name: 'subscription-form-text-field', type: 'email', materialIcon: 'arrow_forward'})
-        section.footer__copyright-bar.content-container
+        section.footer__copyright-bar
           p.footer__copyright= copyright
           .footer__icons
             ul.footer__icons-list

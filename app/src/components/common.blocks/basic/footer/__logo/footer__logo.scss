@@ -2,11 +2,6 @@
   @media print, screen and (min-width: 0px) {
     grid-area: logo;
     align-self: self-start;
-    display: grid;
-    grid: 'logo title';
-    grid-column-gap: 12.5px / 11.66666666656944px * 1em;
-    align-items: center;
-    justify-content: start;
-    font-size: 11.66666666656944px / 14px * 1em;
+    font-size: 12px / 14px * 1em;
   }
 }

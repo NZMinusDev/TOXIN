@@ -38,14 +38,13 @@
 
 .room-details-layout__content {
   display: grid;
-  padding-top: 70px / 14px * 1em;
-  padding-bottom: 70px / 14px * 1em;
 
   @media print, screen and (min-width: 0px) {
     grid:
       'info'
       'reservation';
     grid-gap: 70px / 14px * 1em;
+    padding: #{70px / 14px * 1em} #{140px / 1440px * 100%};
   }
 
   @media print, screen and (min-width: 1440px) {

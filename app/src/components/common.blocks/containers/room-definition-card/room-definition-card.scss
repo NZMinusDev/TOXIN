@@ -1,6 +1,7 @@
 .room-definition-card {
   $mediumGap: 20px / 14px * 1em;
   $largeGap: 30px / 14px * 1em;
+  display: grid;
   grid:
     'room-title day-payment'
     '. .' #{$mediumGap}

@@ -4,8 +4,8 @@
     grid: 'colors' 'type';
     grid-row-gap: 1em;
     place-items: center;
-    padding-top: 67px / 1440px * 100%;
-    padding-bottom: 145px / 1440px * 100%;
+    padding: #{67px / 1440px * 100%} #{191px / 1440px * 100%} #{145px / 1440px * 100%} #{150px / 1440px *
+      100%};
   }
 
   @media print, screen and (min-width: 992px) {

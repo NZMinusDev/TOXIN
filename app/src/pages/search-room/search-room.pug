@@ -14,7 +14,7 @@ block append variables
     description = 'Страница поиска по номерам в макете сайта TOXIN';
 
 block content
-  .search-room-layout.content-container
+  .search-room-layout
     aside.search-room-layout__filter
       .search-room-layout__dates-of-stay-dropdown
         +form-dropdown('date', { heading: { h3: 'Даты пребывания в отеле' }, name: 'dates-of-stay', range: true, selectedDates: '2019-08-19, 2019-08-23', isFilter: true })

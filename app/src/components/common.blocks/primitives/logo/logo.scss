@@ -1,39 +1,7 @@
-$designSize: 48px;
-$basicSize: $designSize / 14px * 1em;
-$borderWidth: 3px;
-
 .logo {
-  display: inline-flex;
-  justify-content: center;
+  display: grid;
+  grid: 'logo title';
+  grid-column-gap: 12.5px / 11.66666666656944px * 1em;
   align-items: center;
-  width: $basicSize;
-  height: $basicSize;
-  border-radius: 100%;
-  background: transparent;
-  border: $borderWidth solid black;
-
-  $left-curve-size: (14.12px - $borderWidth) / $designSize * 100%;
-  &:before {
-    content: '';
-    width: calc(#{$borderWidth} + #{$left-curve-size});
-    height: calc(#{$borderWidth} + #{$left-curve-size});
-    margin-top: 3px / $designSize * 100%;
-    margin-left: 2px / $designSize * 100%;
-    border-top: $borderWidth solid black;
-    border-right: $borderWidth solid black;
-    border-top-right-radius: 100%;
-  }
-
-  $right-curve-width: (10.94px - $borderWidth) / $designSize * 100%;
-  $right-curve-height: (7.09px - $borderWidth) / $designSize * 100%;
-  &:after {
-    content: '';
-    width: calc(#{$borderWidth} + #{$right-curve-width});
-    height: calc(#{$borderWidth} + #{$right-curve-height});
-    margin-left: 2px / $designSize * 100%;
-    margin-bottom: 3px / $designSize * 100%;
-    border-top: $borderWidth solid black;
-    border-left: $borderWidth solid black;
-    border-top-left-radius: 100%;
-  }
+  justify-content: start;
 }

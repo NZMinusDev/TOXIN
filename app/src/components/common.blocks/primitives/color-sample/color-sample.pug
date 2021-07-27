@@ -1,0 +1,10 @@
+//- 
+  colorName: string - name of color sample like 'Green' or 'Purple'
+  colorValue: string - value of color sample like '#bc9cff'
+  tagOfName?: string - tag of name content
+  Tip: mixin also uses 'and attributes'(&attributes)
+mixin color-sample(colorName, colorValue, { tagOfName = 'h2' } = {})
+  article.color-sample(title="образец цвета")&attributes(attributes)
+    .color-sample__sample
+    #{tagOfName}.color-sample__name= colorName
+      span.color-sample__value= colorValue

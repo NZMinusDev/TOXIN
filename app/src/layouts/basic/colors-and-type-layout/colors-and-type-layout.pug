@@ -1,5 +1,8 @@
 extends ~@layouts/basic/ui-kit-layout/ui-kit-layout.pug
 
+include ~@common.blocks/primitives/color-sample/color-sample.pug
+include ~@common.blocks/primitives/type-sample/type-sample.pug
+
 block append variables
   -
     title = 'Цвета и шрифт';
@@ -17,18 +20,14 @@ block append variables
       },
     };
 block content
-  main.ui-kit-container.colors-and-type-layout
+  main.colors-and-type-layout
     section.colors-and-type-layout__colors
-      each color, colorDescription in colorValues
-        article.color-sample(title="образец цвета")
-          .color-sample__sample
-          h2.color-sample__name= colorDescription
-            span.color-sample__value= color
+      each colorValue, colorName in colorValues
+        +color-sample(colorName, colorValue)
     section.colors-and-type-layout__type
       each content, tagItem in typeValues
-        - var tag = content.tag;
-        article.type-sample(title="образец текста")
-          if !content.tag
-            - tag = tagItem.toLowerCase();
-          #{tag}.type-sample__tag= tagItem
-          #{tag}.type-sample__sample= content.title
+        -
+          const tag = tagItem;
+          const title = content.title;
+          const htmlTag = content.tag || tagItem.toLowerCase();
+        +type-sample(tag, title, { htmlTag })

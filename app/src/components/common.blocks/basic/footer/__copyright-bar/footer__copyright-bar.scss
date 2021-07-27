@@ -4,8 +4,7 @@
     display: grid;
     grid: 'copyright' 'icons';
     justify-content: center;
-    padding-top: 24px / 14px * 1em;
-    padding-bottom: 16px / 14px * 1em;
+    padding: #{24px / 14px * 1em} #{140px / 1440px * 100%} #{16px / 14px * 1em} #{140px / 1440px * 100%};
   }
 
   @media print, screen and (min-width: 992px) {

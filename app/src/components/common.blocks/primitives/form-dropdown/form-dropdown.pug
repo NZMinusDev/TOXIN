@@ -1,4 +1,5 @@
 include ~@common.blocks/primitives/heading/heading.pug
+include ~@common.blocks/primitives/form-field/form-field.pug
 include ~@common.blocks/primitives/icon/icon.pug
 
 include ./__item-quantity-list/form-dropdown__item-quantity-list.pug
@@ -23,7 +24,7 @@ mixin form-dropdown(type, { heading = '', description = '', headingMarginBottom 
       +heading(heading, { description, marginBottom: headingMarginBottom, isLabel: true })(
         for=name
       )
-    .form-field
+    +form-field
       button.form-dropdown__expand-btn.js-form-dropdown__expand-btn(id=name, type="button")
         +icon({ content: 'expand_more', width: 'large' })
       case type

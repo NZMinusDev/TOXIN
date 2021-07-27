@@ -1,3 +1,4 @@
+include ~@common.blocks/primitives/card-text/card-text.pug
 include ~@common.blocks/containers/slideshow/slideshow.pug
 include ~@common.blocks/containers/form-rate-button/form-rate-button.pug
 
@@ -15,11 +16,11 @@ mixin room-card({ href = '/mock.html', roomNumber = -1, roomGrade = '', paymentA
     const currency = '₽';
 
     const roomNumberSentence = `№ ${roomNumber.toLocaleString()}`;
-    const paymentAmountSentence = `${paymentAmount.toLocaleString()}${currency}<span class="card-base__text card-base__text_size_small"> в сутки</span>`;
-    const commentsAmountSentence = `${commentsAmount.toLocaleString()}<span class="card-base__text"> Отзывов</span>`;
+    const paymentAmountSentence = `${paymentAmount.toLocaleString()}${currency}`;
+    const commentsAmountSentence = `${commentsAmount.toLocaleString()}`;
 
     const uniqueNamePostfix = Math.random();
-  figure.card-base.room-card&attributes(attributes)
+  figure.room-card&attributes(attributes)
     .room-card__slideshow
       +slideshow({ name: `${href}-slideshow-${uniqueNamePostfix}`, paths })
     figcaption.room-card__room-data
@@ -28,8 +29,12 @@ mixin room-card({ href = '/mock.html', roomNumber = -1, roomGrade = '', paymentA
           h2.room-card__room-number= roomNumberSentence
           if roomGrade
             h3.room-card__room-grade= roomGrade
-        h3.room-card__day-payment!= paymentAmountSentence
+        h3.room-card__day-payment
+          = paymentAmountSentence
+          +card-text(' в сутки', { size: 'small' })
       .room-card__data-row
         .room-card__room-rating
-          +form-rate-button({ name: `${href}-rating-${uniqueNamePostfix}`, rate, disabled: true, interaction: 'rejected' })
-        h3.room-card__room-comments!= commentsAmountSentence
+          +form-rate-button({ name: `${href}-rating-${uniqueNamePostfix}`, rate, disabled: true,interaction: 'rejected' })
+        h3.room-card__room-comments
+          = commentsAmountSentence
+          +card-text(' Отзывов')

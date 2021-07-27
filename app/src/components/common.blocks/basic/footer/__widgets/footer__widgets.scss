@@ -8,8 +8,7 @@
     grid: 'logo' 'description' 'navigation' 'about-us-section' 'support' 'subscription';
     grid-row-gap: 16px / 14px * 1em;
     justify-items: center;
-    padding-top: 100px / 14px * 1em;
-    padding-bottom: 100px / 14px * 1em;
+    padding: #{100px / 14px * 1em} #{140px / 1440px * 100%};
   }
 
   @media print, screen and (min-width: 992px) {
