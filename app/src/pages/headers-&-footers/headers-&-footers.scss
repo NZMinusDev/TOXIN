@@ -1,3 +1,13 @@
 body {
   background-color: rgb(229, 229, 229);
 }
+
+.headers-footers-layout {
+  @media print, screen and (min-width: 0px) {
+    display: grid;
+    justify-items: center;
+    grid-row-gap: 39px / 14px * 1em;
+    padding-top: 62px / 1440px * 100%;
+    padding-bottom: 140px / 1440px * 100%;
+  }
+}

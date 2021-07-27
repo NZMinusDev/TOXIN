@@ -1,6 +1,249 @@
 @use '@thematic/main-theme.blocks/gradients.scss';
 
+.form-elements-layout {
+  @media print, screen and (min-width: 0px) {
+    display: grid;
+    grid-row-gap: 42px / 14px * 1em;
+    width: 75%;
+    margin: auto;
+    justify-content: center;
+  }
+
+  @media print, screen and (min-width: 1200px) {
+    grid:
+      'text-field-default . checkbox-buttons . range-slider' #{84px / 14px * 1em}
+      'text-field-hover . checkbox-buttons . button-fill' #{84px / 14px * 1em}
+      'dropdown . radio-buttons . button-empty' #{84px / 14px * 1em}
+      'masked-text-field . toggle . button-icon-link' #{62px / 14px * 1em}
+      'masked-text-field . toggle . button-long' #{44px / 14px * 1em}
+      'date-dropdown . like-button . pagination' #{84px / 14px * 1em}
+      'filter-date-dropdown . rate-button . pagination' #{110px / 14px * 1em}
+      'subscription-text-field . . . .' #{84px / 14px * 1em}
+      '. . . . .' #{96px / 14px * 1em}
+      'dropdown-default-plural . dropdown-expanded-apply . dropdown-expanded-clear-apply' #{64px / 14px * 1em}
+      'dropdown-expanded-plural . dropdown-expanded-apply . dropdown-expanded-clear-apply' #{181.56px / 14px * 1em}
+      '. . . . .' #{50px / 14px * 1em}
+      'expandable-checkbox-list . rich-checkbox-buttons . bullet-list' #{272px / 14px * 1em}
+      '. . . . .' #{100px / 14px * 1em}
+      'logo-comfort . comment comment comment' #{152px / 14px * 1em} / #{320px / 14px * 1em} #{126px / 14px * 1em} #{320px / 14px * 1em} #{72px / 14px * 1em} #{320px / 14px * 1em};
+    padding: #{65px / 1440px * 100%} #{141px / 1440px * 100%} #{147px / 1440px * 100%} #{141px / 1440px *
+      100%};
+    grid-row-gap: initial;
+    width: initial;
+    margin: initial;
+  }
+}
+
+.form-elements-layout__text-field-default {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: text-field-default;
+  }
+}
+.form-elements-layout__text-field-hover {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: text-field-hover;
+  }
+}
+.form-elements-layout__dropdown {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: dropdown;
+  }
+}
+.form-elements-layout__masked-text-field {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: masked-text-field;
+    margin-top: 3px / 320px * 100%;
+  }
+}
+.form-elements-layout__date-dropdown {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: date-dropdown;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px / 14px * 1em;
+    margin-top: 2px;
+  }
+}
+.form-elements-layout__filter-date-dropdown {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: filter-date-dropdown;
+    margin-top: 22px / 320px * 100%;
+    margin-right: 54px / 320px * 100%;
+  }
+}
+.form-elements-layout__subscription-text-field {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: subscription-text-field;
+    width: 267px / 14px * 1em;
+    padding-top: 18px / 14px * 1em;
+  }
+}
+.form-elements-layout__checkbox-buttons {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: checkbox-buttons;
+    width: 222px / 320px * 100%;
+  }
+}
+.form-elements-layout__radio-buttons {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: radio-buttons;
+    margin-top: 2px;
+  }
+}
+.form-elements-layout__toggle {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: toggle;
+    display: grid;
+    margin-top: 9px / 14px * 1em;
+  }
+}
+.form-elements-layout__like-button {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: like-button;
+    display: grid;
+    grid: 'label label' 'btn-checked btn-unchecked';
+    gap: 10px / 14px * 1em;
+    place-content: end start;
+  }
+}
+.form-elements-layout__like-button-label {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: label;
+  }
+}
+.form-elements-layout__rate-button {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: rate-button;
+    display: grid;
+    grid-template-columns: #{140px / 14px * 1em} 1fr;
+    place-content: end start;
+    place-items: end start;
+    margin-bottom: 14px / 320px * 100%;
+  }
+}
+.form-elements-layout__range-slider {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: range-slider;
+    margin-right: 54px / 320px * 100%;
+  }
+}
+.form-elements-layout__button-fill {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: button-fill;
+    display: grid;
+    grid:
+      'heading heading' auto
+      'button button' 1fr / #{99px / 14px * 1em} 1fr;
+    grid-row-gap: 15px / 14px * 1em;
+    grid-column-gap: 19px / 14px * 1em;
+    place-items: start;
+    margin-top: 5px / 320px * 100%;
+  }
+}
+.form-elements-layout__button-fill-heading {
+  @media print, screen and (min-width: 0px) {
+    grid-area: heading;
+  }
+}
+.form-elements-layout__button-empty {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: button-empty;
+    display: grid;
+    grid-template-columns: #{99px / 14px * 1em} 1fr;
+    grid-column-gap: 20px / 14px * 1em;
+    place-items: start;
+    margin-top: 24px / 320px * 100%;
+  }
+}
+.form-elements-layout__button-icon-link {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: button-icon-link;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-column-gap: 22px / 14px * 1em;
+    place-items: start;
+    margin-top: 16px / 320px * 100%;
+  }
+}
+.form-elements-layout__button-long {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: button-long;
+    margin-bottom: 2px;
+  }
+}
+.form-elements-layout__pagination {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: pagination;
+    margin-top: 40px / 320px * 100%;
+    margin-right: 79px / 320px * 100%;
+  }
+}
+.form-elements-layout__dropdown-default-plural {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: dropdown-default-plural;
+    margin-right: 54px / 320px * 100%;
+    margin-top: 1px / 320px * 100%;
+  }
+}
+.form-elements-layout__dropdown-expanded-plural {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: dropdown-expanded-plural;
+    margin-top: 21px / 320px * 100%;
+    margin-right: 54px / 320px * 100%;
+  }
+}
+.form-elements-layout__dropdown-expanded-apply {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: dropdown-expanded-apply;
+    margin-top: 2px / 320px * 100%;
+  }
+}
+.form-elements-layout__dropdown-expanded-clear-apply {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: dropdown-expanded-clear-apply;
+    margin-top: 2px / 320px * 100%;
+  }
+}
+.form-elements-layout__expandable-checkbox-list {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: expandable-checkbox-list;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-row-gap: 24px / 14px * 1em;
+    padding-top: 20px / 320px * 100%;
+    padding-right: 54px / 320px * 100%;
+  }
+}
+.form-elements-layout__rich-checkbox-buttons {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: rich-checkbox-buttons;
+    width: 266px / 320px * 100%;
+    margin-top: 26px / 320px * 100%;
+  }
+}
+.form-elements-layout__bullet-list {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: bullet-list;
+    width: 292px / 320px * 100%;
+    margin-top: 26px / 320px * 100%;
+  }
+}
+.form-elements-layout__logo-comfort {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: logo-comfort;
+    padding-top: 20px / 320px * 100%;
+    padding-right: 40px / 320px * 100%;
+  }
+}
+.form-elements-layout__comment {
+  @media print, screen and (min-width: 1200px) {
+    grid-area: comment;
+    margin-top: 30px / 711px * 100%;
+  }
+}
+
 /* Styles just for demonstration in ui-kit, not fof production use*/
+// emulate focus
 .form-elements-layout__dropdown-expanded-plural .form-field {
   border: var(--border-hover);
   color: rgba(var(--color__dark-shade), 0.75);
@@ -14,6 +257,7 @@
   color: rgba(var(--color__dark-shade), 0.75);
 }
 
+// emulate hover
 .button_appearance_filled:nth-of-type(2) {
   background: gradients.primary(0.5);
 }
