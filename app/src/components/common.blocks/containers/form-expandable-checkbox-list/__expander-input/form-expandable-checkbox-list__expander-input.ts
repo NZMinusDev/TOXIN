@@ -3,7 +3,7 @@ import {
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/ComponentCreationHelper';
 
-import formExpandableCheckboxLists from '../form-expandable-checkbox-list';
+import formExpandableCheckboxListElements from '../form-expandable-checkbox-list-elements';
 
 type FormExpandableCheckboxListExpanderInputElement = HTMLInputElement;
 
@@ -12,7 +12,7 @@ type FormExpandableCheckboxListExpanderInputDOM = {
 };
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-type FormExpandableCheckboxListExpanderInputCustomEvents = {};
+type FormExpandableCheckboxListExpanderInputCustomEvents = { change: {} };
 
 class FormExpandableCheckboxListExpanderInput extends BEMComponent<
   FormExpandableCheckboxListExpanderInputElement,
@@ -58,7 +58,7 @@ class FormExpandableCheckboxListExpanderInput extends BEMComponent<
 
     return this;
   }
-  protected onChange = () => {
+  protected onChange = (event: Event) => {
     this.toggleList();
   };
 
@@ -77,23 +77,18 @@ type FormExpandableCheckboxListExpanderInputElementWithComponent = HTMLElementWi
   FormExpandableCheckboxListExpanderInput
 >;
 
-const formExpandableCheckboxListExpanderInputs = formExpandableCheckboxLists
-  .map((parentBlockInstance) => {
-    const formExpandableCheckboxListExpanderInputElement = parentBlockInstance.element.querySelector(
+const formExpandableCheckboxListExpanderInputs = Array.from(
+  formExpandableCheckboxListElements,
+  (formExpandableCheckboxListElement) => {
+    const formExpandableCheckboxListExpanderInputElement = formExpandableCheckboxListElement.querySelector(
       '.js-form-expandable-checkbox-list__expander-input'
     );
 
-    if (formExpandableCheckboxListExpanderInputElement !== null) {
-      return new FormExpandableCheckboxListExpanderInput(
-        formExpandableCheckboxListExpanderInputElement as FormExpandableCheckboxListExpanderInputElement
-      );
-    }
-
-    return null;
-  })
-  .filter(
-    (formExpandableCheckboxListExpanderInput) => formExpandableCheckboxListExpanderInput !== null
-  );
+    return new FormExpandableCheckboxListExpanderInput(
+      formExpandableCheckboxListExpanderInputElement as FormExpandableCheckboxListExpanderInputElement
+    );
+  }
+);
 
 export type {
   FormExpandableCheckboxListExpanderInputCustomEvents,

@@ -18,7 +18,7 @@ mixin form-expandable-checkbox-list({ heading = 'expandable-checkbox-list', butt
         for=expanderID,
         tabindex="0"
       )&attributes(attributes)
-        span.form-expandable-checkbox-list__expand-icon
+        span.form-expandable-checkbox-list__expand-icon.js-form-expandable-checkbox-list__expand-icon
           +icon({ content: 'expand_more', width: 'large' })
     input.form-expandable-checkbox-list__expander-input.js-form-expandable-checkbox-list__expander-input(
       id=expanderID,
