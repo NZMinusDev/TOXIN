@@ -10,7 +10,8 @@ import type {
 } from '@common.blocks/primitives/datepicker-card/datepicker-card';
 import '@common.blocks/primitives/datepicker-card/datepicker-card';
 
-import formDropdowns, { ExpandableItemCustomEvents } from '../form-dropdown';
+import formDropdownElements from '../form-dropdown-elements';
+import { ExpandableItemCustomEvents } from '../form-dropdown';
 
 type FormDropdownDatepickerElement = HTMLDivElement;
 
@@ -223,16 +224,14 @@ type FormDropdownDatepickerElementWithComponent = HTMLElementWithComponent<
   FormDropdownDatepicker
 >;
 
-const formFormDropdownDatepickers = formDropdowns
-  .map((formDropdown) =>
-    Array.from(
-      formDropdown.element.querySelectorAll<FormDropdownDatepickerElement>(
-        '.js-form-dropdown__datepicker'
-      ),
-      (formDropdownDatepickerElement) => new FormDropdownDatepicker(formDropdownDatepickerElement)
-    )
+const formFormDropdownDatepickers = Array.from(formDropdownElements, (formDropdownElement) =>
+  Array.from(
+    formDropdownElement.querySelectorAll<FormDropdownDatepickerElement>(
+      '.js-form-dropdown__datepicker'
+    ),
+    (formDropdownDatepickerElement) => new FormDropdownDatepicker(formDropdownDatepickerElement)
   )
-  .flat();
+).flat();
 
 export type {
   FormDropdownDatepickerCustomEvents,

@@ -3,7 +3,7 @@ import {
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/ComponentCreationHelper';
 
-type ToTopArrowElement = HTMLDivElement;
+import toTopArrowElements, { ToTopArrowElement } from './to-top-arrow-elements';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type ToTopArrowCustomEvents = {};
@@ -42,9 +42,10 @@ type ToTopArrowElementWithComponent = HTMLElementWithComponent<
   ToTopArrow
 >;
 
-const toTopArrows = [
-  new ToTopArrow(document.querySelector('.js-to-top-arrow') as ToTopArrowElement),
-];
+const toTopArrows = Array.from(
+  toTopArrowElements,
+  (toTopArrowElement) => new ToTopArrow(toTopArrowElement)
+);
 
 export type { ToTopArrowCustomEvents, ToTopArrow, ToTopArrowElementWithComponent };
 

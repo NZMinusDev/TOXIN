@@ -3,7 +3,7 @@ import {
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/ComponentCreationHelper';
 
-type FormLikeButtonElement = HTMLDivElement;
+import formLikeButtonElements, { FormLikeButtonElement } from './form-like-button-elements';
 
 type FormLikeButtonDOM = { button: HTMLInputElement; counter: HTMLSpanElement };
 
@@ -71,7 +71,7 @@ type FormLikeButtonElementWithComponent = HTMLElementWithComponent<
 >;
 
 const formLikeButtons = Array.from(
-  document.querySelectorAll<FormLikeButtonElement>('.js-form-like-button'),
+  formLikeButtonElements,
   (formLikeButtonElement) => new FormLikeButton(formLikeButtonElement)
 );
 

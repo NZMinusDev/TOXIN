@@ -17,7 +17,9 @@ import '@common.blocks/primitives/form-dropdown/__datepicker/form-dropdown__date
 import '@common.blocks/primitives/form-dropdown/__item-quantity-list/form-dropdown__item-quantity-list';
 import '@common.blocks/primitives/form-dropdown/form-dropdown';
 
-type RoomDefinitionCardElement = HTMLFormElement;
+import roomDefinitionCardElements, {
+  RoomDefinitionCardElement,
+} from './room-definition-card-elements';
 
 type RoomDefinitionCardDOM = {
   dayPayment: HTMLHeadingElement;
@@ -215,7 +217,7 @@ type RoomDefinitionCardElementWithComponent = HTMLElementWithComponent<
 >;
 
 const roomDefinitionCards = Array.from(
-  document.querySelectorAll('.js-room-definition-card') as NodeListOf<RoomDefinitionCardElement>,
+  roomDefinitionCardElements,
   (roomDefinitionCardElement) => new RoomDefinitionCard(roomDefinitionCardElement)
 );
 

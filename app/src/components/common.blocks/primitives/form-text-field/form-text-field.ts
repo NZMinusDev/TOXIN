@@ -3,7 +3,7 @@ import {
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/ComponentCreationHelper';
 
-type FormTextFieldElement = HTMLDivElement;
+import formTextFieldElements, { FormTextFieldElement } from './form-text-field-elements';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type FormTextFieldCustomEvents = {};
@@ -22,7 +22,7 @@ type FormTextFieldElementWithComponent = HTMLElementWithComponent<
 >;
 
 const formTextFields = Array.from(
-  document.querySelectorAll<FormTextFieldElement>('.js-form-text-field'),
+  formTextFieldElements,
   (formTextFieldElement) => new FormTextField(formTextFieldElement)
 );
 

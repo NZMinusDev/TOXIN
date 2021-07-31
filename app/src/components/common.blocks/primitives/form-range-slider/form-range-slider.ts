@@ -5,7 +5,7 @@ import {
 
 import noUiSlider from '@library.blocks/primitives/form-range-slider/form-range-slider';
 
-type FormRangeSliderElement = HTMLDivElement;
+import formRangeSliderElements, { FormRangeSliderElement } from './form-range-slider-elements';
 
 interface HTMLDivElementWithSlider extends HTMLDivElement {
   // eslint-disable-next-line no-use-before-define
@@ -102,7 +102,7 @@ type FormRangeSliderElementWithComponent = HTMLElementWithComponent<
 >;
 
 const formRangeSliders = Array.from(
-  document.querySelectorAll<FormRangeSliderElement>('.js-form-range-slider'),
+  formRangeSliderElements,
   (formRangeSliderElement) => new FormRangeSlider(formRangeSliderElement)
 );
 

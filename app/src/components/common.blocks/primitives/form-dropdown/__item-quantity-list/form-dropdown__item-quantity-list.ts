@@ -5,7 +5,8 @@ import {
 import { has } from '@utils/devTools/scripts/DOMHelper';
 import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
 
-import formDropdowns, { ExpandableItemCustomEvents } from '../form-dropdown';
+import formDropdownElements from '../form-dropdown-elements';
+import { ExpandableItemCustomEvents } from '../form-dropdown';
 
 type FormDropdownItemQuantityListElement = HTMLDivElement;
 
@@ -373,17 +374,15 @@ type FormDropdownItemQuantityListElementWithComponent = HTMLElementWithComponent
   FormDropdownItemQuantityList
 >;
 
-const formDropdownItemQuantityLists = formDropdowns
-  .map((formDropdown) =>
-    Array.from(
-      formDropdown.element.querySelectorAll<FormDropdownItemQuantityListElement>(
-        '.js-form-dropdown__item-quantity-list'
-      ),
-      (formDropdownItemQuantityListElement) =>
-        new FormDropdownItemQuantityList(formDropdownItemQuantityListElement)
-    )
+const formDropdownItemQuantityLists = Array.from(formDropdownElements, (formDropdownElement) =>
+  Array.from(
+    formDropdownElement.querySelectorAll<FormDropdownItemQuantityListElement>(
+      '.js-form-dropdown__item-quantity-list'
+    ),
+    (formDropdownItemQuantityListElement) =>
+      new FormDropdownItemQuantityList(formDropdownItemQuantityListElement)
   )
-  .flat();
+).flat();
 
 export type {
   FormDropdownItemQuantityListCustomEvents,

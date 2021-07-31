@@ -12,7 +12,7 @@ import {
   FormDropdownDatepickerElementWithComponent,
 } from './__datepicker/form-dropdown__datepicker';
 
-type FormDropdownElement = HTMLDivElement;
+import formDropdownElements, { FormDropdownElement } from './form-dropdown-elements';
 
 type ExpandableItemElementWithComponent =
   | FormDropdownItemQuantityListElementWithComponent
@@ -104,7 +104,7 @@ type FormDropdownWithDatepickerElementWithComponent = HTMLElementWithComponent<
 >;
 
 const formDropdowns = Array.from(
-  document.querySelectorAll('.js-form-dropdown') as NodeListOf<FormDropdownElement>,
+  formDropdownElements,
   (formDropdownElement) => new FormDropdown(formDropdownElement)
 );
 

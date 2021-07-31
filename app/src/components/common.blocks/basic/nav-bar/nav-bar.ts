@@ -3,7 +3,7 @@ import {
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/ComponentCreationHelper';
 
-type NavBarElement = HTMLElement;
+import navBarElements, { NavBarElement } from './nav-bar-elements';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type NavBarCustomEvents = {};
@@ -21,10 +21,7 @@ type NavBarElementWithComponent = HTMLElementWithComponent<
   NavBar
 >;
 
-const navBars = Array.from(
-  document.querySelectorAll('.js-nav-bar') as NodeListOf<NavBarElement>,
-  (navBarElement) => new NavBar(navBarElement)
-);
+const navBars = Array.from(navBarElements, (navBarElement) => new NavBar(navBarElement));
 
 export type { NavBarCustomEvents, NavBar, NavBarElementWithComponent };
 

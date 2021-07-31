@@ -3,7 +3,7 @@ import {
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/ComponentCreationHelper';
 
-import slideshows from '../slideshow';
+import slideshowElements from '../slideshow-elements';
 
 type SlideshowPictureElement = HTMLDivElement;
 
@@ -39,14 +39,12 @@ type SlideshowPictureElementWithComponent = HTMLElementWithComponent<
   SlideshowPicture
 >;
 
-const slideshowPictures = slideshows
-  .map((slideshow) =>
-    Array.from(
-      slideshow.element.querySelectorAll<SlideshowPictureElement>('.js-slideshow__picture'),
-      (slideshowPictureElement) => new SlideshowPicture(slideshowPictureElement)
-    )
+const slideshowPictures = Array.from(slideshowElements, (slideshowElement) =>
+  Array.from(
+    slideshowElement.querySelectorAll<SlideshowPictureElement>('.js-slideshow__picture'),
+    (slideshowPictureElement) => new SlideshowPicture(slideshowPictureElement)
   )
-  .flat();
+).flat();
 
 export type {
   SlideshowPictureCustomEvents,

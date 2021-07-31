@@ -3,7 +3,7 @@ import {
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/ComponentCreationHelper';
 
-type SlideshowElement = HTMLDivElement;
+import slideshowElements, { SlideshowElement } from './slideshow-elements';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type SlideshowCustomEvents = {};
@@ -22,7 +22,7 @@ type SlideshowElementWithComponent = HTMLElementWithComponent<
 >;
 
 const slideshows = Array.from(
-  document.querySelectorAll<SlideshowElement>('.js-slideshow'),
+  slideshowElements,
   (slideshowElement) => new Slideshow(slideshowElement)
 );
 

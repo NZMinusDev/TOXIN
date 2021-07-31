@@ -3,7 +3,7 @@ import {
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/ComponentCreationHelper';
 
-import navBars from '../nav-bar';
+import navBarElements from '../nav-bar-elements';
 
 type NavBarNavigationItemElement = HTMLLIElement;
 
@@ -26,14 +26,12 @@ type NavBarNavigationItemElementWithComponent = HTMLElementWithComponent<
   NavBarNavigationItem
 >;
 
-const navBarNavigationItems = navBars
-  .map((navBar) =>
-    Array.from(
-      navBar.element.querySelectorAll<NavBarNavigationItemElement>('.js-nav-bar__navigation-item'),
-      (navBarNavigationItemElement) => new NavBarNavigationItem(navBarNavigationItemElement)
-    )
+const navBarNavigationItems = Array.from(navBarElements, (navBarElement) =>
+  Array.from(
+    navBarElement.querySelectorAll<NavBarNavigationItemElement>('.js-nav-bar__navigation-item'),
+    (navBarNavigationItemElement) => new NavBarNavigationItem(navBarNavigationItemElement)
   )
-  .flat();
+).flat();
 
 export type {
   NavBarNavigationItemCustomEvents,

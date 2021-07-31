@@ -4,8 +4,7 @@ import {
 } from '@utils/devTools/scripts/ComponentCreationHelper';
 
 import { PaginationAsyncAddressingMethodModifierCustomEvents } from './_addressing-method/pagination_addressing-method_async';
-
-type PaginationElement = HTMLElement;
+import paginationElements, { PaginationElement } from './pagination-elements';
 
 type PaginationDOM = {
   list: HTMLUListElement;
@@ -48,7 +47,7 @@ type PaginationWithAsyncAddressingMethodModifierElementWithComponent = HTMLEleme
 >;
 
 const paginations = Array.from(
-  document.querySelectorAll('.js-pagination') as NodeListOf<PaginationElement>,
+  paginationElements,
   (paginationElement) => new Pagination(paginationElement)
 );
 

@@ -79,15 +79,12 @@ type FormExpandableCheckboxListExpanderInputElementWithComponent = HTMLElementWi
 
 const formExpandableCheckboxListExpanderInputs = Array.from(
   formExpandableCheckboxListElements,
-  (formExpandableCheckboxListElement) => {
-    const formExpandableCheckboxListExpanderInputElement = formExpandableCheckboxListElement.querySelector(
-      '.js-form-expandable-checkbox-list__expander-input'
-    );
-
-    return new FormExpandableCheckboxListExpanderInput(
-      formExpandableCheckboxListExpanderInputElement as FormExpandableCheckboxListExpanderInputElement
-    );
-  }
+  (formExpandableCheckboxListElement) =>
+    new FormExpandableCheckboxListExpanderInput(
+      formExpandableCheckboxListElement.querySelector(
+        '.js-form-expandable-checkbox-list__expander-input'
+      ) as FormExpandableCheckboxListExpanderInputElement
+    )
 );
 
 export type {

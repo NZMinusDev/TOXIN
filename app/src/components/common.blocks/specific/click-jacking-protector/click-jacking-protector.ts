@@ -3,7 +3,9 @@ import {
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/ComponentCreationHelper';
 
-type ClickJackingProtectorElement = HTMLDivElement;
+import clickJackingProtectorElements, {
+  ClickJackingProtectorElement,
+} from './click-jacking-protector-elements';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type ClickJackingProtectorCustomEvents = {};
@@ -34,7 +36,7 @@ type ClickJackingProtectorElementWithComponent = HTMLElementWithComponent<
 >;
 
 const clickJackingProtectors = Array.from(
-  document.querySelectorAll<ClickJackingProtectorElement>('.js-click-jacking-protector'),
+  clickJackingProtectorElements,
   (clickJackingProtectorElement) => new ClickJackingProtector(clickJackingProtectorElement)
 );
 

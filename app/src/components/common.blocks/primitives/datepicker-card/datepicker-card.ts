@@ -7,7 +7,7 @@ import { formatToPeriodDateTime } from '@utils/devTools/scripts/DateHelper';
 import '@common.blocks/primitives/apply-control/apply-control.scss';
 import '@library.blocks/primitives/datepicker-card/datepicker-card';
 
-type DatepickerCardElement = HTMLDivElement;
+import datepickerCardElements, { DatepickerCardElement } from './datepicker-card-elements';
 
 type DatepickerCardDOM = {
   $element: JQuery<DatepickerCardElement>;
@@ -234,7 +234,7 @@ type DatepickerCardElementWithComponent = HTMLElementWithComponent<
 >;
 
 const datepickerCards = Array.from(
-  document.querySelectorAll('.js-datepicker-card') as NodeListOf<DatepickerCardElement>,
+  datepickerCardElements,
   (datepickerCardElement) => new DatepickerCard(datepickerCardElement)
 );
 

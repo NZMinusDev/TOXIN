@@ -3,7 +3,7 @@ import {
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/ComponentCreationHelper';
 
-import formTextFields from '../form-text-field';
+import formTextFieldElements from '../form-text-field-elements';
 
 type FormTextFieldInputElement = HTMLInputElement;
 
@@ -41,19 +41,13 @@ type FormTextFieldInputElementWithComponent = HTMLElementWithComponent<
   FormTextFieldInput
 >;
 
-const formTextFieldInputs = formTextFields
-  .map((formTextField) => {
-    const formTextFieldInputElement = formTextField.element.querySelector<
-      FormTextFieldInputElement
-    >('.js-form-text-field__input');
-
-    if (formTextFieldInputElement !== null) {
-      return new FormTextFieldInput(formTextFieldInputElement);
-    }
-
-    return null;
-  })
-  .filter((formTextFieldInput) => formTextFieldInput !== null) as FormTextFieldInput[];
+const formTextFieldInputs = Array.from(
+  formTextFieldElements,
+  (formTextFieldElement) =>
+    new FormTextFieldInput(
+      formTextFieldElement.querySelector('.js-form-text-field__input') as FormTextFieldInputElement
+    )
+);
 
 export type {
   FormTextFieldInputCustomEvents,
