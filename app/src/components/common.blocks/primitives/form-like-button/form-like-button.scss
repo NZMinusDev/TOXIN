@@ -1,5 +1,51 @@
+@use '@utils/devTools/styles/mixins.scss';
+
 .form-like-button {
   display: inline-block;
   position: relative;
   line-height: 0;
+
+  &__button {
+    appearance: none;
+    width: 40px / 14px * 1em;
+    height: 20px / 14px * 1em;
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px black;
+    border-radius: 25% / 50%;
+    cursor: pointer;
+
+    &:checked {
+      &:before {
+        content: '\e87d';
+      }
+    }
+
+    &:before {
+      content: '\e87e';
+      width: 50%;
+      height: 1em;
+      font-size: 10px / 14px * 1em;
+      line-height: 1em;
+      text-align: center;
+      font-family: 'Material Icons';
+      color: black;
+    }
+  }
+
+  &__counter {
+    width: 3ex;
+    height: 1em;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 10px / 14px * 1em;
+    line-height: 1em;
+    @include mixins.ellipsisText;
+    pointer-events: none;
+  }
 }

@@ -1,3 +1,55 @@
-.form-dropdown .form-field:focus-within {
-  border-radius: var(--border-radius-size) var(--border-radius-size) 0 0;
+.form-dropdown {
+  .form-field {
+    &:focus-within {
+      border-radius: var(--border-radius-size) var(--border-radius-size) 0 0;
+    }
+  }
+
+  &__expand-btn {
+    color: rgba(var(--color__dark-shade), 0.5);
+
+    &:hover,
+    &:focus-within {
+      color: inherit;
+    }
+  }
+
+  &__item-quantity-list {
+    /* lib redefinition */
+    .iqdropdown-selection {
+      color: rgba(var(--color__dark-shade), 0.75);
+    }
+    &.menu-open {
+      .iqdropdown-menu {
+        border: var(--border-hover);
+        border-radius: 0 0 var(--border-radius-size) var(--border-radius-size);
+
+        button.button-decrement,
+        button.button-increment {
+          border: var(--border-hover);
+
+          &.iqdropdown__counter_isDisabled {
+            border: var(--border);
+          }
+
+          &:before {
+            color: rgba(var(--color__dark-shade), 0.5);
+          }
+        }
+        .counter {
+          font: var(--font__h3);
+          color: rgba(var(--color__dark-shade), 1);
+        }
+      }
+
+      .iqdropdown-item {
+        font: var(--font__h3);
+        color: rgba(var(--color__dark-shade), 1);
+      }
+    }
+  }
+
+  &__selection-text {
+    color: rgba(var(--color__dark-shade), 0.75);
+  }
 }

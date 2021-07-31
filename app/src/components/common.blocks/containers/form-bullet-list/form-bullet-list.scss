@@ -3,4 +3,74 @@
   grid:
     'heading' auto
     'list' 1fr /1fr;
+
+  &_list-style_with-material-icon {
+    .form-bullet-list__list {
+      grid-row-gap: 20px / 14px * 1em;
+    }
+
+    .form-bullet-list__item {
+      grid:
+        'icon label' auto
+        'icon description' auto / auto 1fr;
+      font-weight: 700;
+
+      &:not(:last-child) {
+        padding-bottom: 20px / 14px * 1em;
+        border-bottom: 1px solid black;
+      }
+
+      &:before {
+        content: attr(data-icon);
+        width: initial;
+        height: initial;
+        grid-area: icon;
+        align-self: center;
+        font-family: 'Material Icons';
+        font-size: 48px / 14px * 1em;
+        line-height: 1em;
+        background: transparent;
+      }
+
+      .form-bullet-list__description {
+        grid-area: description;
+        font-weight: 400;
+      }
+    }
+  }
+
+  &__heading {
+    grid-area: heading;
+  }
+
+  &__list {
+    grid-area: list;
+    display: grid;
+    grid-row-gap: 10px / 14px * 1em;
+
+    &_row-gap_none {
+      grid-row-gap: initial;
+    }
+  }
+
+  &__item {
+    display: grid;
+    grid: 'icon content';
+    grid-column-gap: 10px / 14px * 1em;
+    justify-content: start;
+    align-items: baseline;
+
+    &:before {
+      content: '';
+      display: inline-block;
+      width: 10px / 14px * 1em;
+      height: 10px / 14px * 1em;
+      background: rgba(0, 0, 0, 1);
+      border-radius: 100%;
+    }
+
+    &_text-indent_small {
+      grid-column-gap: 5px / 14px * 1em;
+    }
+  }
 }

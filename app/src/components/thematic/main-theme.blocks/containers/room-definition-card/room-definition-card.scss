@@ -1,0 +1,9 @@
+.room-definition-card {
+  &__room-grade {
+    color: rgba(var(--color__primary), 1);
+  }
+
+  &__day-payment {
+    color: rgba(var(--color__dark-shade), 0.5);
+  }
+}

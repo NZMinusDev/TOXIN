@@ -14,4 +14,48 @@
     'link-btn link-btn'
     '. .' #{$largeGap}
     'switcher switcher' / auto 1fr;
+
+  &__title {
+    grid-area: title;
+  }
+
+  &__name-fieldset {
+    grid-area: name-fieldset;
+    display: grid;
+    grid-row-gap: 10px / 14px * 1em;
+  }
+
+  &__birthday-field {
+    grid-area: birthday-field;
+    margin-top: 6px / 14px * 1em;
+  }
+
+  &__login-fieldset {
+    grid-area: login-fieldset;
+    display: grid;
+    grid-row-gap: 10px / 14px * 1em;
+  }
+
+  &__link-btn {
+    grid-area: link-btn;
+    margin-top: 6px / 14px * 1em;
+    display: grid;
+  }
+
+  &__switcher {
+    grid-area: switcher;
+    display: grid;
+    grid: 'caption-of-redirect-to-entering switch-btn';
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__caption-of-redirect-to-entering {
+    grid-area: caption-of-redirect-to-entering;
+  }
+
+  &__switch-btn {
+    grid-area: switch-btn;
+    justify-self: end;
+  }
 }

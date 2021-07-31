@@ -4,13 +4,8 @@ import {
 } from '@utils/devTools/scripts/ComponentCreationHelper';
 import { formatToPeriodDateTime } from '@utils/devTools/scripts/DateHelper';
 
-import '@common.blocks/primitives/apply-control/__clear-btn/_hidden/apply-control__clear-btn_hidden.scss';
-import '@common.blocks/primitives/apply-control/__clear-btn/apply-control__clear-btn.scss';
-import '@common.blocks/primitives/apply-control/__apply-btn/apply-control__apply-btn.scss';
 import '@common.blocks/primitives/apply-control/apply-control.scss';
 import '@library.blocks/primitives/datepicker-card/datepicker-card';
-
-import './__apply-control/datepicker-card__apply-control.scss';
 
 type DatepickerCardElement = HTMLDivElement;
 

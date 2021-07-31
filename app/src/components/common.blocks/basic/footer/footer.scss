@@ -6,4 +6,215 @@
     display: grid;
     grid: 'widgets' 'copyright-bar';
   }
+
+  &_type_creative {
+    @media print, screen and (min-width: 0px) {
+      width: 768px / 1440px * 100%;
+      padding: #{120px / 1440px * 100%} #{104px / 1440px * 100%} #{116px / 1440px * 100%} #{104px / 1440px *
+        100%};
+      grid:
+        'logo'
+        'copyright'
+        'icons';
+      grid-row-gap: 20px / 14px * 1em;
+      justify-items: center;
+    }
+  }
+
+  &__widgets {
+    border: solid black;
+    border-width: 1px 0;
+
+    @media print, screen and (min-width: 0px) {
+      grid-area: widgets;
+      display: grid;
+      grid: 'logo' 'description' 'navigation' 'about-us-section' 'support' 'subscription';
+      grid-row-gap: 16px / 14px * 1em;
+      justify-items: center;
+      padding: #{100px / 14px * 1em} #{140px / 1440px * 100%};
+    }
+
+    @media print, screen and (min-width: 992px) {
+      $padding: 140px;
+      $descriptionWidth: 260px / (1440px - $padding * 2) * 100%;
+      $navigationGapWidth: 40px / (1440px - $padding * 2) * 100%;
+      $aboutGapWidth: 57px / (1440px - $padding * 2) * 100%;
+      $supportGapWidth: 92px / (1440px - $padding * 2) * 100%;
+      $subscriptionGapWidth: 54px / (1440px - $padding * 2) * 100%;
+      grid:
+        'logo . navigation . about-us-section . support . subscription' auto
+        'description . navigation . about-us-section . support . subscription' 1fr / #{$descriptionWidth} #{$navigationGapWidth} auto #{$aboutGapWidth} auto #{$supportGapWidth} auto #{$subscriptionGapWidth} auto;
+      justify-items: start;
+    }
+  }
+
+  &__logo {
+    @media print, screen and (min-width: 0px) {
+      grid-area: logo;
+      align-self: self-start;
+      font-size: 12px / 14px * 1em;
+    }
+  }
+
+  &__description {
+    @media print, screen and (min-width: 0px) {
+      grid-area: description;
+    }
+  }
+
+  &__navigation {
+    @media print, screen and (min-width: 0px) {
+      grid-area: navigation;
+    }
+  }
+
+  &__list-checkbox {
+    @media print, screen and (min-width: 0px) {
+      display: none;
+
+      & ~ .footer__list {
+        display: none;
+      }
+
+      &:checked {
+        & + .footer__list-label {
+          &:after {
+            content: '\e5ce';
+          }
+        }
+
+        & ~ .footer__list {
+          display: grid;
+        }
+      }
+    }
+
+    @media print, screen and (min-width: 992px) {
+      & ~ .footer__list {
+        display: grid;
+      }
+
+      &:checked {
+        & + .footer__list-label {
+          &:after {
+            content: '';
+          }
+        }
+      }
+    }
+  }
+
+  &__list-label-heading {
+    @media print, screen and (min-width: 0px) {
+      display: flex;
+      justify-content: center;
+    }
+
+    @media print, screen and (min-width: 992px) {
+      justify-content: flex-start;
+      margin-top: 4px;
+    }
+  }
+
+  &__list-label {
+    @media print, screen and (min-width: 0px) {
+      display: inline-flex;
+      cursor: pointer;
+
+      &:after {
+        content: '\e5cf';
+        font-family: 'Material Icons';
+        font-size: 2em;
+        color: inherit;
+      }
+    }
+
+    @media print, screen and (min-width: 992px) {
+      cursor: auto;
+
+      &:after {
+        display: none;
+      }
+    }
+  }
+
+  &__list {
+    @media print, screen and (min-width: 0px) {
+      display: grid;
+      grid-row-gap: 21px / 14px * 1em;
+      text-align: center;
+      margin-top: 20px / 14px * 1em;
+    }
+
+    @media print, screen and (min-width: 992px) {
+      text-align: left;
+    }
+  }
+
+  &__list-item {
+    @media print, screen and (min-width: 0px) {
+      width: 100%;
+      line-height: 18px / 14px * 1em;
+    }
+  }
+
+  &__about-us-section {
+    @media print, screen and (min-width: 0px) {
+      grid-area: about-us-section;
+    }
+  }
+
+  &__support {
+    @media print, screen and (min-width: 0px) {
+      grid-area: support;
+    }
+  }
+
+  &__subscription {
+    @media print, screen and (min-width: 0px) {
+      grid-area: subscription;
+    }
+  }
+
+  &__copyright-bar {
+    @media print, screen and (min-width: 0px) {
+      grid-area: copyright-bar;
+      display: grid;
+      grid: 'copyright' 'icons';
+      justify-content: center;
+      padding: #{24px / 14px * 1em} #{140px / 1440px * 100%} #{16px / 14px * 1em} #{140px / 1440px *
+        100%};
+    }
+
+    @media print, screen and (min-width: 992px) {
+      grid: 'copyright icons';
+      justify-content: space-between;
+    }
+  }
+
+  &__copyright {
+    @media print, screen and (min-width: 0px) {
+      grid-area: copyright;
+    }
+  }
+
+  &__icons {
+    @media print, screen and (min-width: 0px) {
+      width: 100%;
+      grid-area: icons;
+    }
+  }
+
+  &__icons-list {
+    @media print, screen and (min-width: 0px) {
+      display: grid;
+      grid-auto-flow: column;
+      grid-column-gap: 20px / 14px * 1em;
+      justify-content: center;
+    }
+  }
+
+  &__description-aligner {
+    line-height: 24px / 14px * 1em;
+  }
 }

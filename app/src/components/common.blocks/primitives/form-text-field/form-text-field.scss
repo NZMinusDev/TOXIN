@@ -1,3 +1,10 @@
 .form-text-field {
   width: 100%;
+
+  &__input {
+    width: 100%;
+    text-indent: inherit;
+    color: inherit;
+    outline: none;
+  }
 }

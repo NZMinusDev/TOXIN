@@ -5,4 +5,62 @@
     'slideshow'
     'room-data';
   background-color: white;
+
+  &__slideshow {
+    grid-area: slideshow;
+  }
+
+  &__room-data {
+    grid-area: room-data;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    padding: #{20px / 14px * 1em} #{16px / 14px * 1em} #{12px / 14px * 1em} #{20px / 14px * 1em};
+  }
+
+  &__data-row {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-column-gap: 1em;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px / 14px * 1em;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid black;
+    }
+  }
+
+  &__room-title {
+    align-self: baseline;
+    display: flex;
+    align-items: center;
+  }
+
+  &__room-number {
+    line-height: 24px / 19px * 1em;
+
+    &:first-letter {
+      font-size: 14px / 19px * 1em;
+    }
+  }
+
+  &__room-grade {
+    display: inline;
+    margin-left: 5px / 14px * 1em;
+  }
+
+  &__day-payment {
+    align-self: baseline;
+    font-size: 1em;
+  }
+
+  &__room-rating {
+    margin-top: 5px / 14px * 1em;
+  }
+
+  &__room-comments {
+    margin-top: 0.5em;
+    margin-right: 4px / 14px * 1em;
+    font-size: 1em;
+  }
 }

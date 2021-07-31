@@ -5,13 +5,12 @@
   display: grid;
   justify-content: center;
   align-items: center;
-
   @include mixins.backgroundAutoCarousel(
     '@assets/pictures/images/backgrounds/rooms/room-4.jpg'
       '@assets/pictures/images/backgrounds/rooms/room-3.jpg'
   );
-}
 
-.sign-in-layout__card_hidden {
-  display: none;
+  &__card_hidden {
+    display: none;
+  }
 }

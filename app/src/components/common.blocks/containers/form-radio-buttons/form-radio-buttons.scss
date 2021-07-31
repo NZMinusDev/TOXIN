@@ -1,0 +1,40 @@
+.form-radio-buttons {
+  &__fieldset {
+    width: fit-content;
+    display: grid;
+    grid: auto / auto auto;
+    gap: 20px / 14px * 1em;
+  }
+
+  &__item {
+    display: inline-grid;
+    grid-template-columns: auto 1fr;
+    place-items: center start;
+  }
+
+  &__button-item {
+    appearance: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px / 14px * 1em;
+    height: 20px / 14px * 1em;
+    margin-right: 10px / 14px * 1em;
+    border: 1px solid black;
+    border-radius: 100%;
+    cursor: pointer;
+
+    &:checked:before {
+      opacity: 1;
+    }
+
+    &:before {
+      content: '';
+      width: 60%;
+      height: 60%;
+      background: black;
+      border-radius: 100%;
+      opacity: 0;
+    }
+  }
+}

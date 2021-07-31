@@ -1,0 +1,35 @@
+@use '@thematic/main-theme.blocks/gradients.scss';
+
+.logo {
+  &__picture {
+    &_color_gray {
+      &,
+      &:before,
+      &:after {
+        border-color: rgba(var(--color__dark-shade), 0.25);
+      }
+    }
+    &_color_primary-gradient {
+      &,
+      &:before,
+      &:after {
+        border-color: transparent;
+      }
+
+      &,
+      &:before {
+        background: linear-gradient(180deg, white, white) padding-box,
+          gradients.primary(1) border-box;
+      }
+
+      &:after {
+        background: linear-gradient(180deg, white, white) padding-box,
+          gradients.secondary(1) border-box;
+      }
+    }
+  }
+
+  &__title {
+    color: rgba(var(--color__dark-shade), 1);
+  }
+}

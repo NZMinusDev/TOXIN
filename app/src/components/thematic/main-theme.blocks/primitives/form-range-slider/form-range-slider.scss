@@ -1,0 +1,22 @@
+@use '@thematic/main-theme.blocks/gradients.scss';
+
+.form-range-slider {
+  &__result {
+    color: rgba(var(--color__dark-shade), 0.5);
+  }
+
+  &__slider {
+     /* lib redefinition */
+    &.noUi-target {
+      border: var(--border);
+    }
+    .noUi-connect,
+    &.noUi-horizontal .noUi-handle {
+      background: gradients.secondary(1);
+    }
+  }
+
+  &__description {
+    color: rgba(var(--color__dark-shade), 0.5);
+  }
+}

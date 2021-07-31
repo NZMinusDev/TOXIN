@@ -1,3 +1,5 @@
+@use '@utils/devTools/styles/mixins.scss';
+
 .donut-chart {
   display: grid;
   $chartWidth: #{120px / 14px * 1em};
@@ -5,4 +7,88 @@
     'heading heading'
     'chart bullet-list' 1fr / #{$chartWidth} 1fr;
   grid-column-gap: #{30px / 14px * 1em};
+
+  &__heading {
+    grid-area: heading;
+  }
+
+  &__chart {
+    grid-area: chart;
+
+    $donutSize: 120px / 14px * 1em;
+    width: $donutSize;
+    height: $donutSize;
+    position: relative;
+    border-radius: 50%;
+  }
+
+  &__slice {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    border: 4px solid transparent;
+    border-radius: 50%;
+    transform: scale(-1, 1);
+
+    &:nth-of-type(1) {
+      background: linear-gradient(180deg, white, white) padding-box,
+        conic-gradient(
+            transparent 0deg var(--start),
+            #ffe39c var(--start),
+            #ffba9c var(--end),
+            transparent var(--end)
+          )
+          border-box;
+    }
+    &:nth-of-type(2) {
+      background: linear-gradient(180deg, white, white) padding-box,
+        conic-gradient(
+            transparent 0deg var(--start),
+            #6fcf97 var(--start),
+            #66d2ea var(--end),
+            transparent var(--end)
+          )
+          border-box;
+    }
+    &:nth-of-type(3) {
+      background: linear-gradient(180deg, white, white) padding-box,
+        conic-gradient(
+            transparent 0deg var(--start),
+            #bc9cff var(--start),
+            #8ba4f9 var(--end),
+            transparent var(--end)
+          )
+          border-box;
+    }
+    &:nth-of-type(4) {
+      background: linear-gradient(180deg, white, white) padding-box,
+        conic-gradient(
+            transparent 0deg var(--start),
+            #919191 var(--start),
+            #3d4975 var(--end),
+            transparent var(--end)
+          )
+          border-box;
+    }
+    &:nth-of-type(5) {
+      background: linear-gradient(180deg, white, white) padding-box,
+        conic-gradient(
+            transparent 0deg var(--start),
+            #ff0000 var(--start),
+            #460000 var(--end),
+            transparent var(--end)
+          )
+          border-box;
+    }
+  }
+
+  &__counter {
+    width: 80%;
+    @include mixins.centerAbsPosition;
+  }
+
+  &__bullet-list {
+    grid-area: bullet-list;
+    align-self: end;
+  }
 }

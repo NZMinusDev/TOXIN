@@ -1,0 +1,64 @@
+.form-checkbox-buttons {
+  &_type_detailed {
+    .form-checkbox-buttons__item {
+      grid-template-areas:
+        'button-item label-item'
+        '. description';
+    }
+
+    .form-checkbox-buttons__label-item {
+      font-weight: 700;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-row-gap: 10px / 14px * 1em;
+  }
+
+  &__item {
+    display: grid;
+    grid: 'button-item label-item' auto / auto 1fr;
+    grid-column-gap: 10px / 14px * 1em;
+  }
+
+  &__button-item {
+    grid-area: button-item;
+    appearance: none;
+    width: 20px / 14px * 1em;
+    height: 20px / 14px * 1em;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    cursor: pointer;
+
+    &:checked:before {
+      opacity: 1;
+    }
+
+    &:before {
+      $border-width: 2px;
+      content: '';
+      width: calc(#{$border-width} + 20%);
+      height: calc(#{$border-width} + 30%);
+      border-bottom: $border-width solid black;
+      border-right: $border-width solid black;
+      opacity: 0;
+      transform: rotate(45deg);
+    }
+  }
+
+  &__label-item {
+    grid-area: label-item;
+    line-height: 20px / 14px * 1em;
+  }
+
+  &__description {
+    grid-area: description;
+    display: block;
+    margin-top: 7px / 14px * 1em;
+    font-size: 12px / 14px * 1em;
+    line-height: 14px / 12px * 1em;
+  }
+}

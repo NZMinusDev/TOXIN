@@ -1,3 +1,63 @@
 .form-rate-button {
   line-height: 0;
+
+  &__rating {
+    display: inline;
+    font-size: 24px / 14px * 1em;
+    line-height: 1em;
+
+    &:disabled {
+      pointer-events: none;
+
+      .form-rate-button__icon {
+        cursor: initial;
+      }
+    }
+  }
+
+  &__button-item {
+    display: none;
+
+    // selected: filled star
+    &:checked {
+      & ~ .form-rate-button__icon:before {
+        content: '\e838';
+      }
+
+      & + .form-rate-button__icon:hover:before,
+      & + .form-rate-button__icon:hover ~ .form-rate-button__icon:before,
+      & ~ .form-rate-button__icon:hover:before,
+      & ~ .form-rate-button__icon:hover ~ .form-rate-button__icon:before {
+        content: '\e838';
+      }
+    }
+  }
+
+  &__icon {
+    float: right;
+    width: 1em;
+    height: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+
+    &:hover {
+      //after selected by hover: filled
+      &:before,
+      & ~ .form-rate-button__icon:before {
+        content: '\e838';
+      }
+
+      //before selected by hover: filled
+      & ~ .form-rate-button__button-item:checked ~ .form-rate-button__icon:before {
+        content: '\e838';
+      }
+    }
+
+    // default: star_border
+    &:before {
+      font-family: 'Material Icons';
+      content: '\e83a';
+    }
+  }
 }

@@ -10,4 +10,33 @@
     'guests-dropdown guests-dropdown'
     '. .' #{$largeGap}
     'submit-btn submit-btn';
+
+  &__title {
+    grid-area: title;
+  }
+
+  &__datepicker-fieldset {
+    grid-area: datepicker;
+  }
+
+  &__datepicker {
+    display: grid;
+    grid: 'arrival-date-dropdown . departure-date-dropdown' auto / 1fr #{20px / 14px * 1em} 1fr;
+  }
+
+  &__arrival-date-dropdown {
+    grid-area: arrival-date-dropdown;
+  }
+
+  &__departure-date-dropdown {
+    grid-area: departure-date-dropdown;
+  }
+
+  &__guests-dropdown {
+    grid-area: guests-dropdown;
+  }
+
+  &__submit-btn {
+    grid-area: submit-btn;
+  }
 }

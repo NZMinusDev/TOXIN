@@ -14,4 +14,92 @@
     'total-payment total-payment'
     '. .' #{$mediumGap}
     'submit-btn submit-btn' / 1fr 1fr;
+
+  &__room-title {
+    grid-area: room-title;
+    place-self: start;
+  }
+
+  &__room-number {
+    display: inline-block;
+
+    &:first-letter {
+      font-size: 14px / 24px * 1em;
+      line-height: 17.5px / 24px * 1em;
+    }
+  }
+
+  &__room-grade {
+    display: inline;
+    margin-left: 5px / 14px * 1em;
+  }
+
+  &__day-payment {
+    grid-area: day-payment;
+    place-self: end;
+    font-size: 1em;
+    line-height: 24px / 14px * 1em;
+  }
+
+  &__datepicker-fieldset {
+    grid-area: datepicker-fieldset;
+  }
+
+  &__datepicker {
+    display: grid;
+    grid: 'arrival-date-dropdown . departure-date-dropdown' auto / 1fr #{20px / 14px * 1em} 1fr;
+  }
+
+  &__arrival-date-dropdown {
+    grid-area: arrival-date-dropdown;
+  }
+
+  &__departure-date-dropdown {
+    grid-area: departure-date-dropdown;
+  }
+
+  &__guests-dropdown {
+    grid-area: guests-dropdown;
+  }
+
+  &__payment-rates {
+    grid-area: payment-rates;
+    display: grid;
+    grid-template-columns: auto;
+    grid-row-gap: 10px / 14px * 1em;
+  }
+
+  &__payment-item {
+    display: grid;
+    grid-template-columns: #{215px / 319px * 100%} auto;
+    justify-content: space-between;
+
+    &_col-template_with-tooltip {
+      grid-template-columns: #{215px / 319px * 100%} 1fr auto;
+    }
+  }
+
+  &__payment-sentence {
+    line-height: 18px / 14px * 1em;
+  }
+
+  &__payment-tooltip {
+    margin-left: 5px / 14px * 1em;
+  }
+
+  &__total-payment {
+    grid-area: total-payment;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-column-gap: 5px / 19px * 1em;
+    align-items: baseline;
+  }
+
+  &__text-separator {
+    border-bottom: 1px dashed black;
+  }
+
+  &__submit-btn {
+    grid-area: submit-btn;
+  }
 }

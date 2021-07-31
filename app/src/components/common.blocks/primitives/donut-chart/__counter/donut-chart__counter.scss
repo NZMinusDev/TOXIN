@@ -1,6 +1,0 @@
-@use '@utils/devTools/styles/mixins.scss';
-
-.donut-chart__counter {
-  width: 80%;
-  @include mixins.centerAbsPosition;
-}

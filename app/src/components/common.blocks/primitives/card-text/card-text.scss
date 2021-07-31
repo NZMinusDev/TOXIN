@@ -1,4 +1,8 @@
 .card-text {
   font-weight: normal;
   text-transform: initial;
+
+  &_size_small {
+    font-size: 12px / 14px * 1em;
+  }
 }

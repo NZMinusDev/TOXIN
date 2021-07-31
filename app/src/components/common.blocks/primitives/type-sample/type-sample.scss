@@ -2,4 +2,14 @@
   display: grid;
   grid: 'tag sample' / auto 1fr;
   grid-column-gap: 30px / 14px * 1em;
+
+  &__tag {
+    grid-area: tag;
+    width: 40px;
+    text-align: right;
+  }
+
+  &__sample {
+    grid-area: sample;
+  }
 }

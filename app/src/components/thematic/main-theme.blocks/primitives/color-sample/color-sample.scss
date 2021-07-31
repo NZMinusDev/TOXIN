@@ -1,0 +1,19 @@
+.color-sample {
+  $themeColors: (
+    'color__dark-shade_100': rgba(var(--color__dark-shade), 1),
+    'color__dark-shade_75': rgba(var(--color__dark-shade), 0.75),
+    'color__dark-shade_50': rgba(var(--color__dark-shade), 0.5),
+    'color__dark-shade_25': rgba(var(--color__dark-shade), 0.25),
+    'color__dark-shade_5': rgba(var(--color__dark-shade), 0.05),
+    'color__primary_100': rgba(var(--color__primary), 1),
+    'color__secondary_100': rgba(var(--color__secondary), 1),
+  );
+
+  $counter: 1;
+  @each $color-name, $color-value in $themeColors {
+    &:nth-child(#{$counter}) > &__sample {
+      background-color: map-get($themeColors, $color-name);
+    }
+    $counter: $counter + 1;
+  }
+}

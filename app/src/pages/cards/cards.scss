@@ -30,40 +30,46 @@ body {
     padding-top: 72px / 1440px * 100%;
     padding-bottom: 140px / 1440px * 100%;
   }
-}
 
-.cards-layout__pick-room {
-  @media print, screen and (min-width: 1440px) {
-    grid-area: pick-room;
+  &__pick-room {
+    @media print, screen and (min-width: 1440px) {
+      grid-area: pick-room;
+    }
   }
-}
-.cards-layout__room-definition {
-  @media print, screen and (min-width: 1440px) {
-    grid-area: room-definition;
+
+  &__room-definition {
+    @media print, screen and (min-width: 1440px) {
+      grid-area: room-definition;
+    }
   }
-}
-.cards-layout__calendar {
-  @media print, screen and (min-width: 1440px) {
-    grid-area: calendar;
+
+  &__calendar {
+    @media print, screen and (min-width: 1440px) {
+      grid-area: calendar;
+    }
   }
-}
-.cards-layout__registration {
-  @media print, screen and (min-width: 1440px) {
-    grid-area: registration;
+
+  &__registration {
+    @media print, screen and (min-width: 1440px) {
+      grid-area: registration;
+    }
   }
-}
-.cards-layout__entering {
-  @media print, screen and (min-width: 1440px) {
-    grid-area: entering;
+
+  &__entering {
+    @media print, screen and (min-width: 1440px) {
+      grid-area: entering;
+    }
   }
-}
-.cards-layout__luxury-room-card {
-  @media print, screen and (min-width: 1440px) {
-    grid-area: luxury-room-card;
+
+  &__luxury-room-card {
+    @media print, screen and (min-width: 1440px) {
+      grid-area: luxury-room-card;
+    }
   }
-}
-.cards-layout__common-room-card {
-  @media print, screen and (min-width: 1440px) {
-    grid-area: common-room-card;
+
+  &__common-room-card {
+    @media print, screen and (min-width: 1440px) {
+      grid-area: common-room-card;
+    }
   }
 }

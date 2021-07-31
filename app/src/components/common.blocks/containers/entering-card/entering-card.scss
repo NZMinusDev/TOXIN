@@ -9,4 +9,31 @@
     'caption-of-redirect-to-registration switch-btn';
   gap: 10px / 14px * 1em;
   align-items: center;
+
+  &__title {
+    grid-area: title;
+  }
+
+  &__email-field {
+    grid-area: email-field;
+    margin-top: 10px / 14px * 1em;
+  }
+
+  &__password-field {
+    grid-area: password-field;
+  }
+
+  &__link-btn {
+    grid-area: link-btn;
+    margin-top: 10px / 14px * 1em;
+  }
+
+  &__caption-of-redirect-to-registration {
+    grid-area: caption-of-redirect-to-registration;
+  }
+
+  &__switch-btn {
+    grid-area: switch-btn;
+    justify-self: end;
+  }
 }

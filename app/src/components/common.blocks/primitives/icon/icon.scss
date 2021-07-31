@@ -16,4 +16,15 @@
   word-wrap: normal;
   white-space: nowrap;
   direction: ltr;
+
+  &_width_medium {
+    width: 24px / 24px * 1em;
+  }
+  &_width_large {
+    width: 44px / 24px * 1em;
+  }
+
+  &_height_font {
+    height: initial;
+  }
 }

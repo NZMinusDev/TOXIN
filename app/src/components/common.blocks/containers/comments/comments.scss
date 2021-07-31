@@ -3,4 +3,49 @@
   grid:
     'heading counter'
     'items items' / 1fr auto;
+
+  &__heading {
+    grid-area: heading;
+  }
+
+  &__counter {
+    grid-area: counter;
+  }
+
+  &__items {
+    grid-area: items;
+    display: grid;
+    grid-row-gap: 22px / 14px * 1em;
+  }
+
+  &__item {
+    display: grid;
+    grid:
+      'icon source'
+      'like content' / auto 1fr;
+    gap: 10px / 14px * 1em;
+  }
+
+  &__icon-item {
+    grid-area: icon;
+    width: 48px / 14px * 1em;
+    border: 2px solid white;
+    border-radius: 100%;
+  }
+
+  &__source-item {
+    grid-area: source;
+  }
+
+  &__name-item {
+    grid-area: name;
+    line-height: inherit;
+    font-size: inherit;
+    text-transform: none;
+  }
+
+  &__like-button-item {
+    grid-area: like;
+    justify-self: center;
+  }
 }

@@ -1,0 +1,23 @@
+.footer {
+  &_type_creative {
+    box-shadow: 0px #{10px / 14px * 1em} #{20px / 14px * 1em} 0px
+      rgba(var(--color__dark-shade), 0.05);
+  }
+
+  &__description {
+    color: rgba(var(--color__dark-shade), 0.75);
+  }
+
+  &__widgets {
+    border-color: rgba(var(--color__dark-shade), 0.1);
+  }
+
+  &__list {
+    color: rgba(var(--color__dark-shade), 0.5);
+  }
+
+  &__copyright-bar {
+    box-shadow: 0px #{10px / 14px * 1em} #{20px / 14px * 1em} 0px
+      rgba(var(--color__dark-shade), 0.05);
+  }
+}

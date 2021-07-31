@@ -1,4 +1,18 @@
 .apply-control {
   display: flex;
   justify-content: space-between;
+
+  &__clear-btn {
+    cursor: pointer;
+    text-transform: uppercase;
+
+    &_hidden {
+      visibility: hidden;
+    }
+  }
+
+  &__apply-btn {
+    cursor: pointer;
+    text-transform: uppercase;
+  }
 }
