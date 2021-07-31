@@ -1,0 +1,12 @@
+.form-expandable-checkbox-list {
+  &__title {
+    &:hover {
+      .form-expandable-checkbox-list__expand-icon {
+        color: rgba(var(--color__dark-shade), 0.75);
+      }
+    }
+  }
+  &__expand-icon {
+    color: rgba(var(--color__dark-shade), 0.5);
+  }
+}
