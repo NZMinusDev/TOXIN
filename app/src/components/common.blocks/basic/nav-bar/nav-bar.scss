@@ -43,29 +43,6 @@
     }
   }
 
-  &__login {
-    grid-area: login;
-
-    &_status_confirmed {
-      &:before {
-        content: '';
-      }
-
-      @media print, screen and (min-width: 992px) {
-        &:before {
-          border-left: 1px solid black;
-          margin-right: 20px / 14px * 1em;
-        }
-      }
-    }
-    &_status_unconfirmed {
-      display: grid;
-      grid-auto-flow: column;
-      grid-column-gap: 20px / 14px * 1em;
-      align-content: center;
-    }
-  }
-
   &__navigation-item {
     @media print, screen and (min-width: 0px) {
       text-align: center;
@@ -155,5 +132,28 @@
   &__expand-icon {
     line-height: 1em;
     vertical-align: middle;
+  }
+
+  &__login {
+    grid-area: login;
+
+    &_status_confirmed {
+      &:before {
+        content: '';
+      }
+
+      @media print, screen and (min-width: 992px) {
+        &:before {
+          border-left: 1px solid black;
+          margin-right: 20px / 14px * 1em;
+        }
+      }
+    }
+    &_status_unconfirmed {
+      display: grid;
+      grid-auto-flow: column;
+      grid-column-gap: 20px / 14px * 1em;
+      align-content: center;
+    }
   }
 }
