@@ -46,6 +46,7 @@
   &__navigation-item {
     @media print, screen and (min-width: 0px) {
       text-align: center;
+      font-weight: normal;
     }
 
     @media print, screen and (min-width: 992px) {
