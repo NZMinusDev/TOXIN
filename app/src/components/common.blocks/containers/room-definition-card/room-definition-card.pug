@@ -56,23 +56,26 @@ mixin room-definition-card({ action = '/mock.js', name = 'room-definition-card',
       .room-definition-card__guests-dropdown.js-room-definition-card__guests-dropdown
         +form-dropdown('item-quantity', { heading: { h3: 'Гости' }, name: `${name}-guests`, placeholder: 'Сколько гостей', openingMethod: 'applied', groups: guestsGroups, list: guestsList })
       .room-definition-card__payment-rates
-        p.room-definition-card__payment-item.room-definition-card__total-day-payment.js-room-definition-card__total-day-payment
-          span.room-definition-card__payment-sentence.js-room-definition-card__payment-sentence= totalDayPaymentSentence
-          span.room-definition-card__payment-amount.js-room-definition-card__payment-amount= totalDayPaymentAmountSentence
-        p.room-definition-card__payment-item.room-definition-card__services-payment.js-room-definition-card__services-payment.room-definition-card__payment-item_col-template_with-tooltip
-          span.room-definition-card__payment-sentence= servicesSaleSentence
-          span.room-definition-card__payment-tooltip
-            +tooltip('Подсказка к сборам за услуги')
-          span.room-definition-card__payment-amount.js-room-definition-card__payment-amount(
-            data-amount=servicesPayment
-          )= `${servicesPayment.toLocaleString()}${currency}`
-        p.room-definition-card__payment-item.room-definition-card__additional-services-payment.js-room-definition-card__additional-services-payment.room-definition-card__payment-item_col-template_with-tooltip
-          span.room-definition-card__payment-sentence Сбор за дополнительные услуги
-          span.room-definition-card__payment-tooltip
-            +tooltip('Подсказка к сборам за дополнительные услуги')
-          span.room-definition-card__payment-amount.js-room-definition-card__payment-amount(
-            data-amount=additionalServicesPayment
-          )= `${additionalServicesPayment.toLocaleString()}${currency}`
+        p.room-definition-card__total-day-payment.js-room-definition-card__total-day-payment
+          span.room-definition-card__payment-item
+            span.room-definition-card__payment-sentence.js-room-definition-card__payment-sentence= totalDayPaymentSentence
+            span.room-definition-card__payment-amount.js-room-definition-card__payment-amount= totalDayPaymentAmountSentence
+        p.room-definition-card__services-payment.js-room-definition-card__services-payment    
+          span.room-definition-card__payment-item.room-definition-card__payment-item_col-template_with-tooltip
+            span.room-definition-card__payment-sentence= servicesSaleSentence
+            span.room-definition-card__payment-tooltip
+              +tooltip('Подсказка к сборам за услуги')
+            span.room-definition-card__payment-amount.js-room-definition-card__payment-amount(
+              data-amount=servicesPayment
+            )= `${servicesPayment.toLocaleString()}${currency}`
+        p.room-definition-card__additional-services-payment.js-room-definition-card__additional-services-payment
+          span.room-definition-card__payment-item.room-definition-card__payment-item_col-template_with-tooltip
+            span.room-definition-card__payment-sentence Сбор за дополнительные услуги
+            span.room-definition-card__payment-tooltip
+              +tooltip('Подсказка к сборам за дополнительные услуги')
+            span.room-definition-card__payment-amount.js-room-definition-card__payment-amount(
+              data-amount=additionalServicesPayment
+            )= `${additionalServicesPayment.toLocaleString()}${currency}`
       h2.room-definition-card__payment-item.room-definition-card__total-payment
         span Итого
         span.room-definition-card__text-separator
