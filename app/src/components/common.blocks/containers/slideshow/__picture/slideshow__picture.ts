@@ -2,7 +2,6 @@ import {
   BEMComponent,
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/ComponentCreationHelper';
-import '@utils/devTools/styles/preload-stop-transition.scss';
 
 import slideshows from '../slideshow';
 
@@ -27,9 +26,9 @@ class SlideshowPicture extends BEMComponent<SlideshowPictureElement, SlideshowPi
   protected _addPreloadStopTransition() {
     const transitionDuration = 2000;
 
-    this.element.classList.add('preload-stop-transition');
+    this.element.classList.add('slideshow__picture_transition_none');
     setTimeout(() => {
-      this.element.classList.remove('preload-stop-transition');
+      this.element.classList.remove('slideshow__picture_transition_none');
     }, transitionDuration);
   }
 }
