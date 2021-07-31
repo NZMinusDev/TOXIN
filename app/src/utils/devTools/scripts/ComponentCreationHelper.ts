@@ -361,11 +361,10 @@ interface MVPModel<State> {
   whenStateIsChanged(callback: (state: Required<State>) => void): this;
 }
 
-interface CustomEventListener<TEventDetail extends Record<string, unknown>> extends EventListener {
+interface CustomEventListener<TEventDetail extends Record<string, unknown>> {
   (event: CustomEvent<TEventDetail>): void;
 }
-interface CustomEventListenerObject<TEventDetail extends Record<string, unknown>>
-  extends EventListenerObject {
+interface CustomEventListenerObject<TEventDetail extends Record<string, unknown>> {
   handleEvent(event: CustomEvent<TEventDetail>): void;
   [key: string]: unknown;
 }
@@ -400,7 +399,11 @@ abstract class BEMComponent<
     listener: CustomEventListenerOrCustomEventListenerObject<TCustomEvents[TCustomEventType]>,
     options?: boolean | AddEventListenerOptions
   ) {
-    this.element.addEventListener(type as string, listener, options);
+    this.element.addEventListener(
+      type as string,
+      listener as EventListenerOrEventListenerObject,
+      options
+    );
   }
 }
 
