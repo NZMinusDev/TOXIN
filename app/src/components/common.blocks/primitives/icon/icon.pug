@@ -8,11 +8,7 @@
   Tip: mixin also uses 'and attributes'(&attributes)
 mixin icon({ tag = 'i', fontFamily = 'material', content = 'sentiment_satisfied', width = '', height = 'stretchable', color = '' } = {})
   -
-    const fontFamilyLibClassDecoder = {
-      'material': 'material-icons',
-      'branded': 'fab',
-    };
-    const fontFamilyClass = fontFamilyLibClassDecoder[fontFamily];
+    const fontFamilyClass = `icon_font-family_${fontFamily}`;
 
     const widthClass = width ? `icon_width_${width}` : undefined;
     const heightClass = height !== 'stretchable' ? `icon_height_${height}` : undefined;
