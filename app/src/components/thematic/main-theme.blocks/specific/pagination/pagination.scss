@@ -1,6 +1,6 @@
 @use '@thematic/main-theme.blocks/gradients.scss';
 
-.pagination{
+.pagination {
   &__item {
     color: rgba(var(--color__dark-shade), 0.5);
 
@@ -18,6 +18,5 @@
       color: rgba(255, 255, 255, 1);
       background: gradients.secondary(1);
     }
-    
   }
 }

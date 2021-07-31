@@ -6,7 +6,7 @@
 
   &_appearance_filled {
     background: gradients.primary(1);
-  
+
     &:hover {
       background: gradients.primary(0.5);
     }
@@ -14,21 +14,22 @@
   &_appearance_bordered {
     color: rgba(var(--color__primary), 1);
     background: linear-gradient(180deg, white, white) padding-box, gradients.primary(1) border-box;
-  
+
     &:hover {
-      background: linear-gradient(180deg, white, white) padding-box, gradients.primary(0.5) border-box;
+      background: linear-gradient(180deg, white, white) padding-box,
+        gradients.primary(0.5) border-box;
     }
   }
   &_appearance_like-a-icon-link {
     color: rgba(var(--color__primary), 1);
-  
+
     &:hover {
       color: rgba(var(--color__dark-shade), 0.5);
     }
   }
   &_appearance_like-a-link {
     background: gradients.primary(1);
-  
+
     &:hover {
       background: gradients.primary(0.5);
     }
