@@ -1,17 +1,5 @@
 .form-toggle {
-  &__button {
-    border: var(--border);
-
-    &:checked {
-      border-color: rgba(var(--color__primary), 1);
-
-      &:before {
-        background-color: rgba(var(--color__primary), 1);
-      }
-    }
-
-    &:before {
-      background-color: rgba(var(--color__dark-shade), 0.25);
-    }
-  }
+  --main-color: var(--color__dark-shade);
+  --main-active-color: var(--color__primary);
+  --additional-active-color: var(--color__primary_additional);
 }

@@ -16,13 +16,13 @@ mixin registration-card({ action = '/mock.js', name = 'registration-card', metho
       fieldset.registration-card__name-fieldset
         +form-text-field({ name: `${name}-name`, placeholder: 'Имя' })
         +form-text-field({ name: `${name}-surname`, placeholder: 'Фамилия' })
-        +form-radio-buttons({ buttons: { male: { label: 'Мужчина', checked: true }, female: { label: 'Женщина' } } })
+        +form-radio-buttons({ buttons: { male: { label: 'Мужчина', checked: true }, female: { label: 'Женщина' } }, SVGGradient: true })
       .registration-card__birthday-field
         +form-text-field({ heading: { h3: 'Дата рождения' }, name: `${name}-birthday`, type: 'date' })
       fieldset.registration-card__login-fieldset
         +form-text-field({ heading: { h3: 'Данные для входа в сервис' }, name: `${name}-email`, type: 'email' })
         +form-text-field({ name: `${name}-password`, type: 'password' })
-        +form-toggle({ name: `${name}-special-offers`, label: 'Получать спецпредложения' })
+        +form-toggle({ SVGGradient: true, name: `${name}-special-offers`, label: 'Получать спецпредложения' })
       .registration-card__link-btn
         +button({ appearance: 'like-a-link' })(
           type="submit",

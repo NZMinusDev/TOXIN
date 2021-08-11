@@ -1,0 +1,13 @@
+//- 
+  id: string - id of <linearGradient>
+  type: 'linear' - type of svg gradient
+    when 'linear'
+      rotateAngle?: number - rotate from default SVG gradient value (from left to right)
+  colors: { var: "--css-var-name", offset: number }[] - colors inside gradient, "--css-var-name" should use rgba syntax value: r, g, b, alpha
+  Tip: mixin also uses 'and attributes'(&attributes)
+mixin svg-gradient(id, type, colors, { rotateAngle = 90 } = {})
+  case type
+    when 'linear'
+      linearGradient(id=id, gradientTransform=`rotate(${rotateAngle} 0.5 0.5)`)&attributes(attributes)
+        each color in colors
+          stop(stop-color=`rgba(var(${color.var}))`, offset=`${color.offset}`)

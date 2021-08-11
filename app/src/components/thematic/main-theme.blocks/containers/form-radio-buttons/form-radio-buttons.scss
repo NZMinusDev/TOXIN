@@ -1,19 +1,15 @@
 @use '@thematic/main-theme.blocks/gradients.scss';
 
 .form-radio-buttons {
+  --main-color: var(--color__dark-shade);
+  --main-active-color: var(--color__primary);
+  --additional-active-color: var(--color__primary_additional);
+
   &__button-item {
-    border: var(--border);
-
     &:checked {
-      border-color: rgba(var(--color__primary), 1);
-
-      & + .form-radio-buttons__label-item {
+      & ~ .form-radio-buttons__label-item {
         color: inherit;
       }
-    }
-
-    &:before {
-      background-image: gradients.primary(1);
     }
   }
 

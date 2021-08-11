@@ -42,10 +42,10 @@ block content
       .form-elements-layout__checkbox-buttons
         +form-checkbox-buttons({ heading: { h3: 'checkbox buttons' }, buttons: { 'is-smoking': { label: 'Можно курить' }, 'is-with-pets': { label: 'Можно с питомцами', checked: true }, 'is-guests': { label: 'Можно пригласить гостей (до 10 человек)', checked: true } } })
       .form-elements-layout__radio-buttons
-        +form-radio-buttons({ heading: { h3: 'radio buttons' }, buttons: { 'is-male': { label: 'Мужчина', checked: true }, 'is-female': { label: 'Женщина' } } })
+        +form-radio-buttons({ heading: { h3: 'radio buttons' }, buttons: { 'is-male': { label: 'Мужчина', checked: true }, 'is-female': { label: 'Женщина' } }, SVGGradient: true })
       .form-elements-layout__toggle
         +heading({ h3: 'toggle' }) 
-        +form-toggle({ name: 'special-offer-1', label: 'Получать спецпредложения', checked: true })
+        +form-toggle({ SVGGradient: true, name: 'special-offer-1', label: 'Получать спецпредложения', checked: true })
         +form-toggle({ name: 'special-offer-2', label: 'Получать спецпредложения' })
       .form-elements-layout__like-button
         .form-elements-layout__like-button-label

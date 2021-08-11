@@ -1,4 +1,8 @@
 .form-radio-buttons {
+  --main-color: gray;
+  --main-active-color: black;
+  --additional-active-color: silver;
+
   &__fieldset {
     width: fit-content;
     display: grid;
@@ -10,31 +14,43 @@
     display: inline-grid;
     grid-template-columns: auto 1fr;
     place-items: center start;
+    position: relative;
+  }
+
+  &__button-item,
+  &__button-icon-item {
+    width: 20px / 14px * 1em;
+    height: 20px / 14px * 1em;
   }
 
   &__button-item {
     appearance: none;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 20px / 14px * 1em;
-    height: 20px / 14px * 1em;
     margin-right: 10px / 14px * 1em;
-    border: 1px solid black;
-    border-radius: 100%;
+    border-radius: 50%;
     cursor: pointer;
 
-    &:checked:before {
-      opacity: 1;
+    &:checked {
+      & + .form-radio-buttons__button-icon-item {
+        & .form-radio-buttons__button-icon-ring {
+          stroke: rgba(var(--main-active-color), 1);
+        }
+        & .form-radio-buttons__button-icon-circle {
+          opacity: 1;
+        }
+      }
     }
+  }
 
-    &:before {
-      content: '';
-      width: 60%;
-      height: 60%;
-      background: black;
-      border-radius: 100%;
-      opacity: 0;
-    }
+  &__button-icon-item {
+    position: absolute;
+    pointer-events: none;
+  }
+  &__button-icon-ring {
+    stroke: rgba(var(--main-color), 0.25);
+    fill: white;
+  }
+  &__button-icon-circle {
+    fill: var(--SVG-gradient-ID);
+    opacity: 0;
   }
 }
