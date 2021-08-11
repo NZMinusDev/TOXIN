@@ -131,8 +131,9 @@
   }
 
   &__expand-icon {
+    vertical-align: top;
+    display: inline-flex;
     line-height: 1em;
-    vertical-align: middle;
   }
 
   &__login {
