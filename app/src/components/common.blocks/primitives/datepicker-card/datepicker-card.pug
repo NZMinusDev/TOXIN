@@ -6,9 +6,15 @@
   isFilter?: boolean - if true, change event will reload page with chosen value(get method)
   Tip: mixin also uses 'and attributes'(&attributes)
 mixin datepicker-card({ name = 'datepicker-card', selectedDates = '', range = false, altFields = undefined, isFilter = false } = {})
-  input(type="hidden", name=name, value=selectedDates, data-is-filter=isFilter)
-  .datepicker-here.datepicker-card.js-datepicker-card(
-    data-range=range ? `${range}` : undefined,
-    data-multiple-dates-separator=" - ",
-    data-alt-fields=altFields
-  )&attributes(attributes)
+  .datepicker-card.js-datepicker-card&attributes(attributes)
+    input.datepicker-card__input.js-datepicker-card__input(
+      type="hidden",
+      name=name,
+      value=selectedDates,
+      data-is-filter=isFilter
+    )
+    .datepicker-here.js-datepicker-here(
+      data-range=range ? `${range}` : undefined,
+      data-multiple-dates-separator=" - ",
+      data-alt-fields=altFields
+    )

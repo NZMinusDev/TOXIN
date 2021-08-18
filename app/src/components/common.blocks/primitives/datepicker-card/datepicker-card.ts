@@ -9,8 +9,9 @@ import '@library.blocks/primitives/datepicker-card/datepicker-card';
 
 import datepickerCardElements, { DatepickerCardElement } from './datepicker-card-elements';
 
+type LibElement = HTMLDivElement;
 type DatepickerCardDOM = {
-  $element: JQuery<DatepickerCardElement>;
+  $libElement: JQuery<LibElement>;
   input: HTMLInputElement;
   $altFields?: JQuery<HTMLInputElement>;
 };
@@ -58,12 +59,12 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
   }
   getSplitFormattedDates() {
     return this._state.formattedDates.split(
-      this._DOM.$element.data('datepicker').opts.multipleDatesSeparator
+      this._DOM.$libElement.data('datepicker').opts.multipleDatesSeparator
     );
   }
   getDateTimes() {
     const isSelfRanged =
-      this._DOM.$element.data('datepicker').opts.range && this._DOM.$altFields === undefined;
+      this._DOM.$libElement.data('datepicker').opts.range && this._DOM.$altFields === undefined;
     const isDatesDefined = this._state.dates.length > 0;
 
     if (isSelfRanged && isDatesDefined) {
@@ -83,25 +84,28 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
   }
 
   protected _initDOM(): DatepickerCardDOM {
-    const $element = $(this.element);
-    const input = this.element.previousElementSibling as DatepickerCardDOM['input'];
+    const libElement = this.element.querySelector('.js-datepicker-here') as LibElement;
+    const $libElement = $(libElement);
+    const input = this.element.querySelector(
+      '.js-datepicker-card__input'
+    ) as DatepickerCardDOM['input'];
     const $altFields =
-      this.element.dataset.altFields !== undefined
-        ? $<HTMLInputElement>(this.element.dataset.altFields)
+      $libElement.data('altFields') !== undefined
+        ? $<HTMLInputElement>($libElement.data('altFields'))
         : undefined;
 
     return {
-      $element,
+      $libElement,
       input,
       $altFields,
     };
   }
   private _initLibDatepicker() {
-    this._DOM.$element.datepicker({
+    this._DOM.$libElement.datepicker({
       prevHtml: `arrow_back`,
       nextHtml: `arrow_forward`,
       dateFormat:
-        Boolean(this.element.dataset.range) && this._DOM.$altFields === undefined
+        Boolean(this._DOM.$libElement.data('range')) && this._DOM.$altFields === undefined
           ? 'dd M'
           : 'dd.mm.yyyy',
       minDate: new Date(),
@@ -124,7 +128,7 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
     return this;
   }
   protected _initGeneratedDOM(): DatepickerCardGeneratedDOM {
-    const $calendar = this._DOM.$element.find(
+    const $calendar = this._DOM.$libElement.find(
       '.datepicker'
     ) as DatepickerCardGeneratedDOM['$calendar'];
 
@@ -168,13 +172,13 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
   }
   protected _applyControlEventListenerObject = {
     handleClearBtnClick: () => {
-      this._DOM.$element.data('datepicker').clear();
+      this._DOM.$libElement.data('datepicker').clear();
 
       this._generatedDOM.clearBtn.classList.add('apply-control__clear-btn_hidden');
     },
     handleApplyBtnClick: () => {
       if (this._isApplyingAllowed()) {
-        const { selectedDates } = this._DOM.$element.data('datepicker');
+        const { selectedDates } = this._DOM.$libElement.data('datepicker');
         const ISOSelectedDates: string[] = selectedDates.map((selectedDate: Date) =>
           selectedDate.toISOString()
         );
@@ -188,7 +192,7 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
     if (this._DOM.input.value !== '') {
       const ISODates = this._DOM.input.value.split(',');
 
-      this._DOM.$element
+      this._DOM.$libElement
         .data('datepicker')
         .selectDate(ISODates.map((ISODate) => new Date(ISODate)));
     }
@@ -214,7 +218,7 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
   }
 
   protected _isApplyingAllowed() {
-    const { selectedDates, opts } = this._DOM.$element.data('datepicker');
+    const { selectedDates, opts } = this._DOM.$libElement.data('datepicker');
     let maxSelected = selectedDates.length;
 
     if (this._DOM.$altFields !== undefined) {

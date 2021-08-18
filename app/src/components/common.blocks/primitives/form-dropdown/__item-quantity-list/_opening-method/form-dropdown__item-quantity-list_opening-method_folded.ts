@@ -20,10 +20,7 @@ class FormDropdownItemQuantityListFoldedOpeningMethodModifier extends FormDropdo
       const target = event.target as HTMLElement;
       const dropdownElement = this.component.element.closest('.js-form-dropdown') as HTMLElement;
 
-      if (
-        !dropdownElement.contains(target) &&
-        this.component.element.classList.contains('menu-open')
-      ) {
+      if (!dropdownElement.contains(target) && this.component.isOpen()) {
         this.component.close();
       }
     },

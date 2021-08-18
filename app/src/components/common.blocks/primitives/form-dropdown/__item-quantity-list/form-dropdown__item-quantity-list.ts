@@ -9,9 +9,10 @@ import formDropdownElements from '../form-dropdown-elements';
 import { ExpandableItemCustomEvents } from '../form-dropdown';
 
 type FormDropdownItemQuantityListElement = HTMLDivElement;
+type LibElement = HTMLDivElement;
 
 type FormDropdownItemQuantityListDOM = {
-  $element: JQuery<FormDropdownItemQuantityListElement>;
+  $libElement: JQuery<LibElement>;
   listInput: HTMLInputElement;
   selection: HTMLParagraphElement;
   menu: HTMLDivElement;
@@ -101,19 +102,19 @@ class FormDropdownItemQuantityList extends BEMComponent<
   }
 
   open() {
-    this.element.classList.add('menu-open');
+    this._DOM.$libElement.addClass('menu-open');
 
     return this;
   }
   close() {
-    this.element.classList.remove('menu-open');
+    this._DOM.$libElement.removeClass('menu-open');
 
     this.element.dispatchEvent(new CustomEvent('close', { bubbles: true }));
 
     return this;
   }
   toggle() {
-    if (this.element.classList.contains('menu-open')) {
+    if (this.isOpen()) {
       this.close();
     } else {
       this.open();
@@ -121,9 +122,13 @@ class FormDropdownItemQuantityList extends BEMComponent<
 
     return this;
   }
+  isOpen() {
+    return this._DOM.$libElement.hasClass('menu-open');
+  }
 
   protected _initDOM() {
-    const $element = $(this.element) as FormDropdownItemQuantityListDOM['$element'];
+    const libElement = this.element.querySelector('.js-iqdropdown') as LibElement;
+    const $libElement = $(libElement) as FormDropdownItemQuantityListDOM['$libElement'];
     const listInput = this.element.querySelector(
       '.js-form-dropdown__list-input'
     ) as FormDropdownItemQuantityListDOM['listInput'];
@@ -141,7 +146,7 @@ class FormDropdownItemQuantityList extends BEMComponent<
     ] as FormDropdownItemQuantityListDOM['menuOptions'];
 
     return {
-      $element,
+      $libElement,
       listInput,
       selection,
       menu,
@@ -180,7 +185,7 @@ class FormDropdownItemQuantityList extends BEMComponent<
     };
   }
   private _initLibFormDropdownItemQuantityList() {
-    this._DOM.$element.iqDropdown({
+    this._DOM.$libElement.iqDropdown({
       setSelectionText: (itemCount, totalItems) => {
         this._state.totalItems = totalItems;
         this._updateCounters(itemCount);
@@ -196,7 +201,7 @@ class FormDropdownItemQuantityList extends BEMComponent<
     });
 
     // disable menu toggling by lib
-    this._DOM.$element.off('click');
+    this._DOM.$libElement.off('click');
 
     return this;
   }

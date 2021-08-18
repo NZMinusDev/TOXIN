@@ -16,10 +16,7 @@
 
   &__item-quantity-list {
     /* lib redefinition */
-    .iqdropdown-selection {
-      color: rgba(var(--color__dark-shade), 0.75);
-    }
-    &.menu-open {
+    .iqdropdown.menu-open {
       .iqdropdown-menu {
         border: var(--border-hover);
         border-radius: 0 0 var(--border-radius-size) var(--border-radius-size);
@@ -46,6 +43,9 @@
         font: var(--font__h3);
         color: rgba(var(--color__dark-shade), 1);
       }
+    }
+    .iqdropdown-selection {
+      color: rgba(var(--color__dark-shade), 0.75);
     }
   }
 

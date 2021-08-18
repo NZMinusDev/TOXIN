@@ -76,8 +76,8 @@ mixin room-definition-card({ action = '/mock.js', name = 'room-definition-card',
             span.room-definition-card__payment-amount.js-room-definition-card__payment-amount(
               data-amount=additionalServicesPayment
             )= `${additionalServicesPayment.toLocaleString()}${currency}`
-      h2.room-definition-card__payment-item.room-definition-card__total-payment
-        span Итого
+      h2.room-definition-card__total-payment
+        span.room-definition-card__total-payment-sentence Итого
         span.room-definition-card__text-separator
         span.room-definition-card__total-payment-amount.js-room-definition-card__total-payment-amount= `${totalPaymentAmount.toLocaleString()}${currency}`
       .room-definition-card__submit-btn
