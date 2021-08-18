@@ -129,13 +129,12 @@ module.exports = {
     'import/resolver': {
       alias: {
         map: [
-          ['@layouts', './app/src/layouts'],
-          ['@library.blocks', './app/src/components/library.blocks'],
+          ['@layouts', './app/src/layouts/'],
+          ['@library.blocks', './app/src/components/library.blocks/'],
           ['@common.blocks', './app/src/components/common.blocks/'],
-          ['@thematic', './app/src/components/thematic'],
-          ['@experimental', './app/src/components/experimental'],
-          ['@utils', './app/src/utils/'],
+          ['@themes', './app/src/themes/'],
           ['@assets', './app/src/assets/'],
+          ['@utils', './app/src/utils/'],
         ],
         extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
       },

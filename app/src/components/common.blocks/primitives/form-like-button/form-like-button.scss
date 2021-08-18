@@ -1,4 +1,6 @@
 @use '@utils/devTools/styles/mixins.scss';
+@use '@utils/devTools/styles/functions.scss';
+@use '@themes/main/gradients.scss';
 
 .form-like-button {
   display: inline-block;
@@ -16,7 +18,23 @@
     border-radius: 25% / 50%;
     cursor: pointer;
 
+    @media print, screen and (color) {
+      border: var(--border);
+    }
+
     &:checked {
+      @media print, screen and (color) {
+        background: linear-gradient(180deg, white, white) padding-box,
+          gradients.primary(1) border-box;
+      }
+
+      &:before,
+      & + .form-like-button__counter {
+        @media print, screen and (color) {
+          color: rgba(var(--color__primary), 1);
+        }
+      }
+
       &:before {
         content: '\e87d';
       }
@@ -31,6 +49,10 @@
       text-align: center;
       font-family: 'Material Icons';
       color: black;
+
+      @media print, screen and (color) {
+        color: rgba(var(--color__dark-shade), 0.25);
+      }
     }
   }
 
@@ -47,5 +69,9 @@
     line-height: 1em;
     @include mixins.ellipsisText;
     pointer-events: none;
+
+    @media print, screen and (color) {
+      color: rgba(var(--color__dark-shade), 0.25);
+    }
   }
 }

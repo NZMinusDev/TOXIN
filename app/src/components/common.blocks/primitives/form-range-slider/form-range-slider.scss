@@ -1,3 +1,5 @@
+@use '@themes/main/gradients.scss';
+
 .form-range-slider {
   display: grid;
   grid:
@@ -18,11 +20,14 @@
 
   &__result {
     grid-area: result;
-
     text-align: right;
     font-size: 12px/14px * 1em;
     line-height: 15px/24px * 1em;
     text-transform: uppercase;
+
+    @media print, screen and (color) {
+      color: rgba(var(--color__dark-shade), 0.5);
+    }
   }
 
   &__slider {
@@ -55,12 +60,26 @@
     &.noUi-target {
       border-radius: 3px;
     }
+    .noUi-connect,
+    &.noUi-horizontal .noUi-handle {
+      @media print, screen and (color) {
+        background: gradients.secondary(1);
+      }
+    }
+    &.noUi-target {
+      @media print, screen and (color) {
+        border: var(--border);
+      }
+    }
   }
 
   &__description {
     grid-area: description;
-
     font-size: 12px / 14px * 1em;
     line-height: 14px / 12px * 1em;
+
+    @media print, screen and (color) {
+      color: rgba(var(--color__dark-shade), 0.5);
+    }
   }
 }

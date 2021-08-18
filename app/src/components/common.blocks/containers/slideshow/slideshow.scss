@@ -82,6 +82,10 @@
     opacity: 0;
     transition: opacity 2s ease-out;
 
+    @media print, screen and (color) {
+      border-radius: var(--border-radius-size) var(--border-radius-size) 0 0;
+    }
+
     &_transition_none {
       transition: none;
     }

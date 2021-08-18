@@ -10,6 +10,12 @@
   place-items: center start;
   position: relative;
 
+  @media print, screen and (color) {
+    --main-color: var(--color__dark-shade);
+    --main-active-color: var(--color__primary);
+    --additional-active-color: var(--color__primary_additional);
+  }
+
   &__button,
   &__button-icon {
     width: 40px / 14px * 1em;

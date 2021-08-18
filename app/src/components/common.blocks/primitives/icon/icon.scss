@@ -1,5 +1,7 @@
+@use '@utils/devTools/styles/mixins.scss';
 @use '@utils/devTools/styles/functions.scss';
 @use '@utils/devTools/styles/vendor-fonts-mixins.scss';
+@use '@themes/main/gradients.scss';
 
 .icon {
   height: 100%;
@@ -28,5 +30,11 @@
 
   &_height_font {
     height: initial;
+  }
+
+  &_color_primary-gradient {
+    @media print, screen and (color) {
+      @include mixins.gradientFont(gradients.primary(1));
+    }
   }
 }

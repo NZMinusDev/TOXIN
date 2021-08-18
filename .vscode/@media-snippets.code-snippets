@@ -1,6 +1,6 @@
 {
-  /* 
-   * Place your snippets here. 
+  /*
+   * Place your snippets here.
    * Each snippet is defined under a snippet name and has a scope, prefix, body and description.
    * Add comma separated ids of the languages where the snippet is applicable in the scope field.
    * If scope is left empty or omitted, the snippet gets applied to all languages. The prefix is what is used to trigger the snippet and the body will be expanded and inserted.
@@ -38,5 +38,11 @@
     "scope": "css,scss,sass",
     "body": ["@media print, screen and (min-width: 1200px) {", "\t$0", "}"],
     "description": "large-desktop media query snippet for css and scss files"
+  },
+  "color media query snippet for css and scss files": {
+    "prefix": "@c",
+    "scope": "css,scss,sass",
+    "body": ["@media print, screen and (color) {", "\t$0", "}"],
+    "description": "color media query snippet for css and scss files"
   }
 }

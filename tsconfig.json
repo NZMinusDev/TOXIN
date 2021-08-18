@@ -16,8 +16,7 @@
     "paths": {
       "@library.blocks/*": ["components/library.blocks/*"],
       "@common.blocks/*": ["components/common.blocks/*"],
-      "@thematic/*": ["components/thematic/*"],
-      "@experiments/*": ["components/experimental/*"],
+      "@themes/*": ["themes/*"],
       "@assets/*": ["assets/*"],
       "@utils/*": ["utils/*"]
     },

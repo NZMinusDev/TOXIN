@@ -93,17 +93,15 @@ git subtree push --prefix app/dist origin gh-pages
 │       │   │   │───primitives // buttons, check boxes, links, ...
 │       │   │   └───specific // not repetitive, but too voluminous to remain in the main block file, for example: feedback form
 |       |   |
-│       │   ├───experimental // shouldn't be in production
-│       │   │   └───experiment-1.blocks
 │       │   ├───library.blocks // vendors
-│       │   └───thematic // here we add the theme directories that differ in the number of colors used, if just the colors change -> css use variables
-│       │       └───main-theme.blocks // main project's theme
 │       │
 │       ├───figma // design source
 │       │
 │       ├───layouts // reused layouts
 │       │
 │       ├───pages // templates (webpack entry points)
+│       │
+│       ├───themes // our themes(borders, colors, fonts, etc)
 │       │
 │       └───utils // a place where useful pieces lie
 │           ├───devTools // custom helpers
@@ -123,9 +121,7 @@ For each page only the necessary styles and scripts are loaded from all levels o
 
 You can see additional explanation [here](https://en.bem.info/methodology/redefinition-levels/).
 
-The order of redefinition levels is as follows: layouts -> library -> common -> thematic* -> experimental*.
-
-_\* - inside the directories, there are additional folders for each individual redefinition sublevel. To connect them, you need to modify webpack.config_.
+The order of redefinition levels is as follows: layouts -> library -> common.
 
 ### Some tips about code practice
 

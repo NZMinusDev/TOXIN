@@ -7,10 +7,21 @@
   display: flex;
   color: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: var(--border-radius-size);
+
+  @media print, screen and (color) {
+    color: rgba(var(--color__dark-shade), 0.25);
+    border: var(--border);
+  }
 
   &:hover,
   &:focus-within {
     color: rgba(0, 0, 0, 1);
     border-color: rgba(0, 0, 0, 1);
+
+    @media print, screen and (color) {
+      color: rgba(var(--color__dark-shade), 0.75);
+      border: var(--border-hover);
+    }
   }
 }

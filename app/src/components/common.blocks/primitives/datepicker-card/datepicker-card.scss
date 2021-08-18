@@ -1,3 +1,5 @@
+@use '@themes/main/gradients.scss';
+
 .datepicker-card {
   /* lib redefinition */
   .datepicker-inline {
@@ -8,6 +10,12 @@
     width: initial;
     font: inherit;
     padding: 20px / 14px * 1em;
+    border-radius: var(--border-radius-size);
+
+    @media print, screen and (color) {
+      border: var(--border);
+      box-shadow: 0px #{10px / 14px * 1em} #{20px / 14px * 1em} rgba(var(--color__dark-shade), 0.05);
+    }
   }
 
   .datepicker--nav,
@@ -19,18 +27,33 @@
     border-bottom: 0;
     min-height: initial;
   }
-  .datepicker--nav-title i {
-    color: inherit;
+  .datepicker--nav-title {
+    @media print, screen and (color) {
+      font: var(--font__h2);
+      color: rgba(var(--color__dark-shade), 1);
+    }
+
+    i {
+      color: inherit;
+    }
   }
   .datepicker--nav-action {
     width: initial;
     border-radius: 0;
     font-family: 'Material Icons';
     font-size: 24px / 14px * 1em;
+
+    @media print, screen and (color) {
+      color: rgba(var(--color__primary), 1);
+    }
   }
 
   .datepicker--content {
     margin-top: 30px / 14px * 1em;
+
+    @media print, screen and (color) {
+      font: var(--font__h3);
+    }
   }
   .datepicker--days-names {
     margin: 0;
@@ -39,22 +62,90 @@
   .datepicker--day-name {
     height: 40px / 12px * 1em;
     font: inherit;
+    text-transform: none;
+  }
+  .datepicker--day-name {
+    @media print, screen and (color) {
+      color: rgba(var(--color__primary), 1);
+    }
   }
   .datepicker--cell {
+    @media print, screen and (color) {
+      color: rgba(var(--color__dark-shade), 0.5);
+    }
+
+    &.-other-month-,
+    &.-other-decade-,
+    &.-disabled- {
+      @media print, screen and (color) {
+        color: rgba(var(--color__dark-shade), 0.25);
+      }
+    }
+
+    &.-current-,
+    &.-selected-,
+    &.-selected-.-focus-,
+    &.-selected-.-current- {
+      border-radius: 100%;
+
+      @media print, screen and (color) {
+        color: white;
+      }
+    }
+    &.-current- {
+      @media print, screen and (color) {
+        background: gradients.secondary(1);
+      }
+    }
+    &.-selected-,
+    &.-selected-.-focus-,
+    &.-selected-.-current- {
+      @media print, screen and (color) {
+        background: gradients.primary(1);
+      }
+    }
+    &.-in-range-,
+    &.-current-.-in-range- {
+      @media print, screen and (color) {
+        color: rgba(var(--color__dark-shade), 0.5);
+        background: gradients.primary(0.25);
+      }
+    }
+    &.-current-.-in-range- {
+      border-radius: 0;
+    }
+    &.-range-from-,
+    &.-range-to- {
+      border: 0;
+      border-radius: 100%;
+
+      @media print, screen and (color) {
+        background: gradients.primary(1);
+      }
+    }
     &.-range-from-:before,
     &.-range-to-:before {
       content: '';
+      width: 50%;
       position: absolute;
-      z-index: -1;
       top: 0;
       bottom: 0;
-      width: 50%;
+      z-index: -1;
+
+      @media print, screen and (color) {
+        background: gradients.primary(0.25);
+      }
     }
     &.-range-from-:before {
       right: 0;
     }
     &.-range-to-:before {
       left: 0;
+    }
+    &.-range-from-.-range-to-:before {
+      @media print, screen and (color) {
+        background: transparent;
+      }
     }
   }
 

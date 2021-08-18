@@ -4,7 +4,12 @@
   grid:
     'slideshow'
     'room-data';
+  border-radius: var(--border-radius-size);
   background-color: white;
+
+  @media print, screen and (color) {
+    box-shadow: 0px #{10px / 14px * 1em} #{20px / 14px * 1em} rgba(var(--color__dark-shade), 0.05);
+  }
 
   &__slideshow {
     grid-area: slideshow;
@@ -47,11 +52,19 @@
   &__room-grade {
     display: inline;
     margin-left: 5px / 14px * 1em;
+
+    @media print, screen and (color) {
+      color: rgba(var(--color__primary), 1);
+    }
   }
 
   &__day-payment {
     align-self: baseline;
     font-size: 1em;
+
+    @media print, screen and (color) {
+      color: rgba(var(--color__dark-shade), 0.5);
+    }
   }
 
   &__room-rating {
@@ -62,5 +75,9 @@
     margin-top: 0.5em;
     margin-right: 4px / 14px * 1em;
     font-size: 1em;
+
+    @media print, screen and (color) {
+      color: rgba(var(--color__dark-shade), 0.5);
+    }
   }
 }

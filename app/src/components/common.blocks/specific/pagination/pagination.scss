@@ -1,3 +1,5 @@
+@use '@themes/main/gradients.scss';
+
 .pagination {
   &__list {
     display: flex;
@@ -14,6 +16,10 @@
     cursor: pointer;
     user-select: none;
 
+    @media print, screen and (color) {
+      color: rgba(var(--color__dark-shade), 0.5);
+    }
+
     &_previous {
       width: 40px / 24px * 1em;
       height: 40px / 24px * 1em;
@@ -22,12 +28,22 @@
       color: white;
       background-color: rgba(0, 0, 0, 1);
       border-radius: 100%;
+
+      @media print, screen and (color) {
+        color: rgba(255, 255, 255, 1);
+        background: gradients.secondary(1);
+      }
     }
 
     &_active {
       border-radius: 100%;
       background-color: rgba(169, 169, 169, 1);
       color: white;
+
+      @media print, screen and (color) {
+        color: rgba(255, 255, 255, 1);
+        background: gradients.primary(1);
+      }
     }
 
     &_next {
@@ -38,6 +54,11 @@
       color: white;
       background-color: rgba(0, 0, 0, 1);
       border-radius: 100%;
+
+      @media print, screen and (color) {
+        color: rgba(255, 255, 255, 1);
+        background: gradients.secondary(1);
+      }
     }
   }
 

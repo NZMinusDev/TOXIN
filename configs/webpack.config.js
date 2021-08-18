@@ -7,7 +7,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const DartSASS = require('sass');
 const fibers = require('fibers');
-const WrapperPlugin = require('wrapper-webpack-plugin');
 const DoIUse = require('doiuse');
 const PostcssFlexbugsFixes = require('postcss-flexbugs-fixes');
 const Autoprefixer = require('autoprefixer');
@@ -34,21 +33,14 @@ const PATHS = {
 // FIXME: change it depending on your design template for proper scaling images
 const designWidth = 1440;
 
-const redefinitionLevels = [
-  'layouts',
-  'components/library.blocks',
-  'components/common.blocks',
-  'components/thematic/main-theme.blocks',
-  'components/experimental/experiment-1.blocks',
-];
+const redefinitionLevels = ['layouts', 'components/library.blocks', 'components/common.blocks'];
 const componentGroups = ['basic', 'containers', 'primitives', 'specific'];
 
 const sharedAliases = {
   '@layouts': path.resolve(PATHS.src_absolute, './layouts/'),
   '@library.blocks': path.resolve(PATHS.src_absolute, './components/library.blocks/'),
   '@common.blocks': path.resolve(PATHS.src_absolute, './components/common.blocks/'),
-  '@thematic': path.resolve(PATHS.src_absolute, './components/thematic/'),
-  '@experiments': path.resolve(PATHS.src_absolute, './components/experimental/'),
+  '@themes': path.resolve(PATHS.src_absolute, './themes/'),
   '@assets': path.resolve(PATHS.src_absolute, './assets/'),
   '@utils': path.resolve(PATHS.src_absolute, './utils/'),
 };
@@ -86,7 +78,7 @@ class ResultOfTemplatesProcessing {
         '@babel/polyfill',
         './utils/global/global.decl.ts',
         `./pages/${shortNameOfTemplate}/${shortNameOfTemplate}.ts`,
-        './components/thematic/main-theme.blocks/main-theme.scss',
+        './themes/main/index.scss',
       ];
 
       this.HTMLWebpackPlugins.push(
@@ -161,7 +153,6 @@ listOfSourceImages320 = listOfSourceImagesMapping(listOfSourceImages320, '320');
 /**
  * HTMLWebpackPlugin - create html of pages with plug in scripts.
  * MiniCssExtractPlugin - extract css into separate files.
- * WrapperPlugin - wrap output css depending on RegExp.
  * ProvidePlugin - Automatically load modules instead of having to import or require them everywhere.
  * CopyWebpackPlugin - copy ico files
  * ImageMinimizerPlugin - Plugin and Loader for webpack to optimize (compress) all images. Make sure ImageMinimizerPlugin place after any plugins that add images or other assets which you want to optimized.
@@ -179,11 +170,6 @@ const webpackPlugins = () => {
     new MiniCssExtractPlugin({
       filename: hashedFileName(isDev ? 'styles/[name]/[name]' : 'styles/[id]/style', 'css'),
       ignoreOrder: true,
-    }),
-    new WrapperPlugin({
-      test: /.*thematic.*\.css$/,
-      header: '@media print, screen and (color) {',
-      footer: '}',
     }),
 
     new ProvidePlugin({
@@ -468,35 +454,30 @@ const optimization = () => {
       cacheGroups: {
         global: {
           test: /.*\\utils\\global\\.*/,
-          priority: 7,
+          priority: 6,
           enforce: true,
         },
         vendors: {
           test: /[\\/]node_modules[\\/]/,
 
           // The optimization will prefer the cache group with a higher priority
-          priority: 6,
+          priority: 5,
 
           // always create chunks (ignore: minSize, maxAsyncRequests, ... )
           enforce: true,
         },
         lib: {
           test: /.*\\library.blocks\\.*/,
-          priority: 5,
+          priority: 4,
           enforce: true,
         },
         common: {
           test: /.*\\common.blocks\\.*/,
-          priority: 4,
-          enforce: true,
-        },
-        thematic: {
-          test: /.*\\thematic\\.*\.blocks.*/,
           priority: 3,
           enforce: true,
         },
-        experiments: {
-          test: /.*\\experimental\\.*\.blocks.*/,
+        themes: {
+          test: /.*\\themes\\.*/,
           priority: 2,
           enforce: true,
         },

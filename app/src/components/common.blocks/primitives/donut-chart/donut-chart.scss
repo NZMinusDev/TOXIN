@@ -49,6 +49,17 @@
             transparent var(--end)
           )
           border-box;
+
+      @media print, screen and (color) {
+        background: linear-gradient(180deg, white, white) padding-box,
+          conic-gradient(
+              transparent 0deg var(--start),
+              rgba(var(--color__secondary), 1) var(--start),
+              rgba(var(--color__secondary_additional), 1) var(--end),
+              transparent var(--end)
+            )
+            border-box;
+      }
     }
     &:nth-of-type(3) {
       background: linear-gradient(180deg, white, white) padding-box,
@@ -59,6 +70,17 @@
             transparent var(--end)
           )
           border-box;
+
+      @media print, screen and (color) {
+        background: linear-gradient(180deg, white, white) padding-box,
+          conic-gradient(
+              transparent 0deg var(--start),
+              rgba(var(--color__primary), 1) var(--start),
+              rgba(var(--color__primary_additional), 1) var(--end),
+              transparent var(--end)
+            )
+            border-box;
+      }
     }
     &:nth-of-type(4) {
       background: linear-gradient(180deg, white, white) padding-box,
@@ -85,6 +107,15 @@
   &__counter {
     width: 80%;
     @include mixins.centerAbsPosition;
+
+    @media print, screen and (color) {
+      color: rgba(var(--color__primary), 1);
+    }
+  }
+
+  &__data-amount,
+  &__data-name {
+    color: inherit;
   }
 
   &__bullet-list {

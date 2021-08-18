@@ -32,6 +32,10 @@
   &__room-grade {
     display: inline;
     margin-left: 5px / 14px * 1em;
+
+    @media print, screen and (color) {
+      color: rgba(var(--color__primary), 1);
+    }
   }
 
   &__day-payment {
@@ -39,6 +43,10 @@
     place-self: end;
     font-size: 1em;
     line-height: 24px / 14px * 1em;
+
+    @media print, screen and (color) {
+      color: rgba(var(--color__dark-shade), 0.5);
+    }
   }
 
   &__datepicker-fieldset {

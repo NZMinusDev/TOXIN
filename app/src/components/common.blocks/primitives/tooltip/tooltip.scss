@@ -13,6 +13,11 @@
   background-color: transparent;
   cursor: pointer;
 
+  @media print, screen and (color) {
+    color: rgba(var(--color__dark-shade), 0.25);
+    border: var(--border);
+  }
+
   //Tooltip text container
   &:before {
     content: attr(data-content);

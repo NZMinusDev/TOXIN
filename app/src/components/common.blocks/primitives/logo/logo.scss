@@ -1,4 +1,5 @@
 @use '@utils/devTools/styles/mixins.scss';
+@use '@themes/main/gradients.scss';
 
 @include mixins.importFont('Toxin Logo Font', './__title/fonts/toxin-logo-font.ttf');
 
@@ -47,6 +48,40 @@
       border-left: $borderWidth solid black;
       border-top-left-radius: 100%;
     }
+
+    &_color_gray {
+      &,
+      &:before,
+      &:after {
+        @media print, screen and (color) {
+          border-color: rgba(var(--color__dark-shade), 0.25);
+        }
+      }
+    }
+    &_color_primary-gradient {
+      &,
+      &:before,
+      &:after {
+        @media print, screen and (color) {
+          border-color: transparent;
+        }
+      }
+
+      &,
+      &:before {
+        @media print, screen and (color) {
+          background: linear-gradient(180deg, white, white) padding-box,
+            gradients.primary(1) border-box;
+        }
+      }
+
+      &:after {
+        @media print, screen and (color) {
+          background: linear-gradient(180deg, white, white) padding-box,
+            gradients.secondary(1) border-box;
+        }
+      }
+    }
   }
 
   &__title {
@@ -54,5 +89,9 @@
     font-size: 1em;
     letter-spacing: 2px;
     text-transform: uppercase;
+
+    @media print, screen and (color) {
+      color: rgba(var(--color__dark-shade), 1);
+    }
   }
 }

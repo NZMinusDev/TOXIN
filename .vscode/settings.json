@@ -130,8 +130,7 @@
     "@layouts": "${folder}/app/src/layouts",
     "@library.blocks": "${folder}/app/src/components/library.blocks/",
     "@common.blocks": "${folder}/app/src//components/common.blocks/",
-    "@thematic": "${folder}/app/src/components/thematic/",
-    "@experiments": "${folder}/app/src/components/experimental/",
+    "@themes": "${folder}/app/src/themes/",
     "@assets": "${folder}/app/src/assets/",
     "@utils": "${folder}/app/src/utils/"
   },
