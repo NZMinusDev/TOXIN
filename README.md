@@ -129,6 +129,7 @@ The order of redefinition levels is as follows: layouts -> library -> common.
 
 ```scss
 width: 100px / 14px * 1em; // means translating of 100px design size to em value, where 14px is size of font for this selector
+
 /*
 the goal is to achieve liquidness, see the formula of fluid font: ./app/src/utils/devTools/styles/mixins.scss
 - main advantages: it has browsers' support, the size is always proportional to the neighboring content, the size is fluid
@@ -153,17 +154,18 @@ the goal is to achieve liquidness, see the formula of fluid font: ./app/src/util
    12. [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker).
    13. [TODO Highlight](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight).
    14. [Quokka.js](https://marketplace.visualstudio.com/items?itemName=WallabyJs.quokka-vscode).
-   15. [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
-   16. [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode).
-   17. [Image preview](https://marketplace.visualstudio.com/items?itemName=kisstkondoros.vscode-gutter-preview).
-   18. [VSCode Map Preview](https://marketplace.visualstudio.com/items?itemName=jumpinjackie.vscode-map-preview).
-   19. [SVG](https://marketplace.visualstudio.com/items?itemName=jock.svg).
-   20. [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint).
-   21. [Sort Lines by Selection](https://marketplace.visualstudio.com/items?itemName=earshinov.sort-lines-by-selection).
-   22. [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer).
-   23. [Import Cost](https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost).
-   24. [JavaScript (ES6) code snippets](https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets).
-   25. [Webpack Snippets](https://marketplace.visualstudio.com/items?itemName=gogocrow.webpack-snippets).
+   15. [stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint).
+   16. [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
+   17. [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode).
+   18. [Image preview](https://marketplace.visualstudio.com/items?itemName=kisstkondoros.vscode-gutter-preview).
+   19. [VSCode Map Preview](https://marketplace.visualstudio.com/items?itemName=jumpinjackie.vscode-map-preview).
+   20. [SVG](https://marketplace.visualstudio.com/items?itemName=jock.svg).
+   21. [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint).
+   22. [Sort Lines by Selection](https://marketplace.visualstudio.com/items?itemName=earshinov.sort-lines-by-selection).
+   23. [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer).
+   24. [Import Cost](https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost).
+   25. [JavaScript (ES6) code snippets](https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets).
+   26. [Webpack Snippets](https://marketplace.visualstudio.com/items?itemName=gogocrow.webpack-snippets).
 3. Preprocessors which speed up work:
    1. [Pug](https://pugjs.org/api/getting-started.html).
    2. [SCSS](https://sass-lang.com/).
@@ -183,13 +185,14 @@ the goal is to achieve liquidness, see the formula of fluid font: ./app/src/util
    10. If the source code is changed, the user device will know about it and download only the latest version of the project (provided by hashing the output files).
    11. It should work the same on different platforms.
 
-5. [ESLinter](https://eslint.org/) based on [Airbnb standarts](https://github.com/airbnb/javascript) integrated with prettier and typescript which protects your knee from :gun: and your life from wasting :clock2:.
-6. Pre-installed libraries:
+5. [stylelint](https://stylelint.io/) based on [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard) with [stylelint-order](https://github.com/hudochenkov/stylelint-order) and [stylelint-scss](https://github.com/kristerkari/stylelint-scss).
+6. [ESLinter](https://eslint.org/) based on [Airbnb standarts](https://github.com/airbnb/javascript) integrated with prettier and typescript which protects your knee from :gun: and your life from wasting :clock2:.
+7. Pre-installed libraries:
    1. [fontawesome-free](https://fontawesome.com/) and [material-design-icons](https://github.com/google/material-design-icons).
    2. [JQuery](https://jquery.com/).
    3. [lodash-es](https://lodash.com/) to supplement the js standard. Tip: you should use only import of lodash-es(moreover, when importing, only care about the readability and strictness of the code, and not the optimization of the weight) instead of common lodash because ES6+ module syntax is supported by terser for optimization.
    4. [inputmask](https://github.com/RobinHerbots/Inputmask) for form validation.
-7. Custom Tools:
+8. Custom Tools:
    1. [Basic layouts](./app/src/layouts/);
    2. pug, scss, ts [shortcuts](./app/src/utils/devTools/);
    3. [pug](<(./.vscode/template-snippets.code-snippets)>) and [scss](<(./.vscode/@media-snippets.code-snippets)>) snippets, [ts](<(./.vscode/script-snippets.code-snippets)>);
