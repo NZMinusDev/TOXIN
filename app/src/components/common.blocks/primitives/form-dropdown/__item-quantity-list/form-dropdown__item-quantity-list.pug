@@ -4,7 +4,7 @@ include ~@common.blocks/primitives/apply-control/apply-control.pug
   name?: string - name of component hidden input
   placeholder?: string - text of placeholder
   openingMethod?: 'switchable' | 'folded' | 'applied'
-  groups: { ['group-name': string]: { selectionText: string, textPlural: string } }, example: { guests: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } }
+  groups: { ['group-name': string]: { one: string, two: string, five: string } }, example: { guests: { one: 'гость', two: 'гостя', five: 'гостей' }, младенцы: { one: 'младенец', two: 'младенца', five: 'младенцев' } }
   list: { ['item-title': string]: { default: number, min: number, max: number, group?: 'group-name-2' } }, example:{ взрослые: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0} }; - if group is unset the itemName will be used instead
   isFilter?: boolean - if true, input change event will reload page with chosen value(get method)
   Tip: https://github.com/reservamos/item-quantity-dropdown

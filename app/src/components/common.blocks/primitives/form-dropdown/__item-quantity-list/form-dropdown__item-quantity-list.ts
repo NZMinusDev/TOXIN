@@ -1,3 +1,5 @@
+import { pluralize } from 'numeralize-ru';
+
 import {
   BEMComponent,
   HTMLElementWithComponent,
@@ -26,7 +28,7 @@ type FormDropdownItemQuantityListGeneratedDOM = {
 
 type FormDropdownItemQuantityListHTMLOptions = {
   selection: { placeholder: string };
-  menu: { groups: { [groupName: string]: { selectionText: string; textPlural: string } } };
+  menu: { groups: { [groupName: string]: { one: string; two: string; five: string } } };
   menuOptions: Map<
     HTMLDivElement,
     {
@@ -288,8 +290,14 @@ class FormDropdownItemQuantityList extends BEMComponent<
             result += ', ';
           }
 
-          const appendedText =
-            groupAmount === 1 ? groups[groupKey].selectionText : groups[groupKey].textPlural;
+          // pluralize
+          const appendedText = pluralize(
+            groupAmount,
+            groups[groupKey].one,
+            groups[groupKey].two,
+            groups[groupKey].five
+          );
+
           result += `${groupAmount} ${appendedText}`;
         }
       });

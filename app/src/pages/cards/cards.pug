@@ -19,7 +19,7 @@ block content
     .cards-layout__pick-room
       +pick-room-card
     .cards-layout__room-definition
-      +room-definition-card({ roomNumber: 888, roomGrade: 'Люкс', paymentAmount: 9990, selectedDates: '2019-08-19,2019-08-23', guestsGroups: { гости: { selectionText: 'гость', textPlural: 'гостя' }, младенцы: { selectionText: 'младенец', textPlural: 'младенцев' } }, guestsList: { взрослые: { default: 2, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 1, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0 } }, servicesPayment: 2179, servicesSale: 2179, additionalServicesPayment: 300 })
+      +room-definition-card({ roomNumber: 888, roomGrade: 'Люкс', paymentAmount: 9990, selectedDates: '2019-08-19,2019-08-23', guestsGroups: { гости: { one: 'гость', two: 'гостя', five: 'гостей' }, младенцы: { one: 'младенец', two: 'младенца', five: 'младенцев' } }, guestsList: { взрослые: { default: 2, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 1, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0 } }, servicesPayment: 2179, servicesSale: 2179, additionalServicesPayment: 300 })
     .cards-layout__calendar
       -
         const datepickerCardSelectedDates = `${new Date(
