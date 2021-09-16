@@ -16,7 +16,9 @@ mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscriptio
     when 'creative'
       footer.footer.footer_type_creative&attributes(attributes)
         section.footer__logo
-          +logo({ color: 'primary-gradient', title: 'toxin' })
+          +logo({ tag: 'a', color: 'primary-gradient', title: 'toxin' })(
+            href="/landing-page.html"
+          )
         p.footer__copyright= copyright
         section.footer__icons
           ul.footer__icons-list
@@ -30,7 +32,9 @@ mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscriptio
       footer.footer&attributes(attributes)
         section.footer__widgets
           section.footer__logo
-            +logo({ color: 'primary-gradient', title: 'toxin' })
+            +logo({ tag: 'a', color: 'primary-gradient', title: 'toxin' })(
+              href="/landing-page.html"
+            )
           p.footer__description Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»
           section.footer__navigation
             input#footer-navigation-checkbox.footer__list-checkbox(type="checkbox") 
