@@ -4,8 +4,6 @@
   text-align: start;
 
   &__title {
-    cursor: pointer;
-
     &:hover {
       .form-expandable-checkbox-list__expand-icon {
         @media print, screen and (color) {
