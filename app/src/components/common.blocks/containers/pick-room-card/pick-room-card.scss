@@ -1,14 +1,15 @@
 .pick-room-card {
-  $mediumGap: 20px / 14px * 1em;
-  $largeGap: 30px / 14px * 1em;
+  $medium-gap: 20px / 14px * 1em;
+  $large-gap: 30px / 14px * 1em;
+
   display: grid;
   grid:
     'title title'
-    '. .' #{$mediumGap}
+    '. .' #{$medium-gap}
     'datepicker datepicker'
-    '. .' #{$mediumGap}
+    '. .' #{$medium-gap}
     'guests-dropdown guests-dropdown'
-    '. .' #{$largeGap}
+    '. .' #{$large-gap}
     'submit-btn submit-btn';
 
   &__title {

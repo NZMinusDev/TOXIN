@@ -1,9 +1,9 @@
 @use '@utils/devTools/styles/mixins.scss';
 
 .landing-page-layout {
-  min-height: 830px / 14px * 1em;
   position: relative;
-  @include mixins.backgroundAutoCarousel(
+  min-height: 830px / 14px * 1em;
+  @include mixins.background-auto-carousel(
     '@assets/pictures/images/backgrounds/rooms/room-1.jpg'
       '@assets/pictures/images/backgrounds/rooms/room-2.jpg'
       '@assets/pictures/images/backgrounds/rooms/room-3.jpg'
@@ -14,25 +14,25 @@
     position: absolute;
   }
   &__pick-room {
+    top: 70px / 14px * 1em;
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
     width: fit-content;
     height: fit-content;
-    top: 70px / 14px * 1em;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
 
     @media (min-width: 768px) {
-      left: 140px/1440px * 100%;
       right: initial;
-      margin-left: initial;
+      left: 140px/1440px * 100%;
       margin-right: initial;
+      margin-left: initial;
     }
   }
   &__welcome-text {
-    width: 297px / 14px * 1em;
-    bottom: 20px / 14px * 1em;
     right: 134px / 1440px * 100%;
+    bottom: 20px / 14px * 1em;
+    width: 297px / 14px * 1em;
     text-align: right;
     word-break: normal;
   }

@@ -5,15 +5,15 @@
   word-break: break-all;
 }
 a {
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
   cursor: pointer;
 }
 button {
+  padding: 0;
+  border-width: 0;
   background-color: transparent;
   color: inherit;
-  border-width: 0;
-  padding: 0;
   cursor: pointer;
 }
 figure {
@@ -23,13 +23,13 @@ img {
   display: block;
 }
 label {
-  user-select: none;
   cursor: inherit;
+  user-select: none;
 }
 input {
-  border: 0;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  border: 0;
   background-color: inherit;
 }
 input[type='text'] {
@@ -54,8 +54,8 @@ h4,
 h5,
 h6 {
   margin: 0;
-  font-size: inherit;
   font-weight: inherit;
+  font-size: inherit;
 }
 p {
   margin: 0;
@@ -64,8 +64,8 @@ cite {
   font-style: normal;
 }
 fieldset {
-  border-width: 0;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  border-width: 0;
   line-height: initial;
 }

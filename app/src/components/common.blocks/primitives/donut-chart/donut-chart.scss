@@ -1,11 +1,12 @@
 @use '@utils/devTools/styles/mixins.scss';
 
 .donut-chart {
+  $chart-width: #{120px / 14px * 1em};
+
   display: grid;
-  $chartWidth: #{120px / 14px * 1em};
   grid:
     'heading heading'
-    'chart bullet-list' 1fr / #{$chartWidth} 1fr;
+    'chart bullet-list' 1fr / #{$chart-width} 1fr;
   grid-column-gap: #{30px / 14px * 1em};
 
   &__heading {
@@ -13,19 +14,19 @@
   }
 
   &__chart {
-    grid-area: chart;
+    $donut-size: 120px / 14px * 1em;
 
-    $donutSize: 120px / 14px * 1em;
-    width: $donutSize;
-    height: $donutSize;
     position: relative;
+    width: $donut-size;
+    height: $donut-size;
     border-radius: 50%;
+    grid-area: chart;
   }
 
   &__slice {
-    height: 100%;
-    width: 100%;
     position: absolute;
+    width: 100%;
+    height: 100%;
     border: 4px solid transparent;
     border-radius: 50%;
     transform: scale(-1, 1);
@@ -96,7 +97,7 @@
       background: linear-gradient(180deg, white, white) padding-box,
         conic-gradient(
             transparent 0deg var(--start),
-            #ff0000 var(--start),
+            #f00 var(--start),
             #460000 var(--end),
             transparent var(--end)
           )
@@ -106,11 +107,11 @@
 
   &__counter {
     width: 80%;
-    @include mixins.centerAbsPosition;
 
     @media print, screen and (color) {
       color: rgba(var(--color__primary), 1);
     }
+    @include mixins.center-abs-position();
   }
 
   &__data-amount,
@@ -119,7 +120,7 @@
   }
 
   &__bullet-list {
-    grid-area: bullet-list;
     align-self: end;
+    grid-area: bullet-list;
   }
 }

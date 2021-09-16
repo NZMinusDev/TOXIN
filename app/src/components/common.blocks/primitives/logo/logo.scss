@@ -1,58 +1,58 @@
 @use '@utils/devTools/styles/mixins.scss';
 @use '@themes/main/gradients.scss';
 
-@include mixins.importFont('Toxin Logo Font', './__title/fonts/toxin-logo-font.ttf');
+@include mixins.import-font('Toxin Logo Font', './__title/fonts/toxin-logo-font.ttf');
 
 .logo {
   display: grid;
-  grid: 'logo title';
-  grid-column-gap: 12.5px / 11.66666666656944px * 1em;
   align-items: center;
   justify-content: start;
+  grid: 'logo title';
+  grid-column-gap: 12.5px / 11.66666666656944px * 1em;
 
   &__picture {
-    $designSize: 48px;
-    $basicSize: $designSize / 14px * 1em;
-    $borderWidth: 3px;
+    $design-size: 48px;
+    $basic-size: $design-size / 14px * 1em;
+    $border-width: 3px;
+
+    $left-curve-size: (14.12px - $border-width) / $design-size * 100%;
+
+    $right-curve-width: (10.94px - $border-width) / $design-size * 100%;
+    $right-curve-height: (7.09px - $border-width) / $design-size * 100%;
 
     display: inline-flex;
-    justify-content: center;
     align-items: center;
-    width: $basicSize;
-    height: $basicSize;
+    justify-content: center;
+    width: $basic-size;
+    height: $basic-size;
+    border: $border-width solid black;
     border-radius: 100%;
     background: transparent;
-    border: $borderWidth solid black;
-
-    $left-curve-size: (14.12px - $borderWidth) / $designSize * 100%;
-    &:before {
-      content: '';
-      width: calc(#{$borderWidth} + #{$left-curve-size});
-      height: calc(#{$borderWidth} + #{$left-curve-size});
-      margin-top: 3px / $designSize * 100%;
-      margin-left: 2px / $designSize * 100%;
-      border-top: $borderWidth solid black;
-      border-right: $borderWidth solid black;
+    &::before {
+      margin-top: 3px / $design-size * 100%;
+      margin-left: 2px / $design-size * 100%;
+      width: calc(#{$border-width} + #{$left-curve-size});
+      height: calc(#{$border-width} + #{$left-curve-size});
+      border-top: $border-width solid black;
+      border-right: $border-width solid black;
       border-top-right-radius: 100%;
-    }
-
-    $right-curve-width: (10.94px - $borderWidth) / $designSize * 100%;
-    $right-curve-height: (7.09px - $borderWidth) / $designSize * 100%;
-    &:after {
       content: '';
-      width: calc(#{$borderWidth} + #{$right-curve-width});
-      height: calc(#{$borderWidth} + #{$right-curve-height});
-      margin-left: 2px / $designSize * 100%;
-      margin-bottom: 3px / $designSize * 100%;
-      border-top: $borderWidth solid black;
-      border-left: $borderWidth solid black;
+    }
+    &::after {
+      margin-bottom: 3px / $design-size * 100%;
+      margin-left: 2px / $design-size * 100%;
+      width: calc(#{$border-width} + #{$right-curve-width});
+      height: calc(#{$border-width} + #{$right-curve-height});
+      border-top: $border-width solid black;
+      border-left: $border-width solid black;
       border-top-left-radius: 100%;
+      content: '';
     }
 
     &_color_gray {
       &,
-      &:before,
-      &:after {
+      &::before,
+      &::after {
         @media print, screen and (color) {
           border-color: rgba(var(--color__dark-shade), 0.25);
         }
@@ -60,22 +60,22 @@
     }
     &_color_primary-gradient {
       &,
-      &:before,
-      &:after {
+      &::before,
+      &::after {
         @media print, screen and (color) {
           border-color: transparent;
         }
       }
 
       &,
-      &:before {
+      &::before {
         @media print, screen and (color) {
           background: linear-gradient(180deg, white, white) padding-box,
             gradients.primary(1) border-box;
         }
       }
 
-      &:after {
+      &::after {
         @media print, screen and (color) {
           background: linear-gradient(180deg, white, white) padding-box,
             gradients.secondary(1) border-box;
@@ -85,10 +85,11 @@
   }
 
   &__title {
-    font-family: 'Toxin Logo Font';
-    font-size: 1em;
-    letter-spacing: 2px;
     text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1em;
+    /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+    font-family: 'Toxin Logo Font';
 
     @media print, screen and (color) {
       color: rgba(var(--color__dark-shade), 1);

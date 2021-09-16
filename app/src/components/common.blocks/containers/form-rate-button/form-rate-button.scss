@@ -23,14 +23,14 @@
 
     // selected: filled star
     &:checked {
-      & ~ .form-rate-button__icon:before {
+      & ~ .form-rate-button__icon::before {
         content: '\e838';
       }
 
-      & + .form-rate-button__icon:hover:before,
-      & + .form-rate-button__icon:hover ~ .form-rate-button__icon:before,
-      & ~ .form-rate-button__icon:hover:before,
-      & ~ .form-rate-button__icon:hover ~ .form-rate-button__icon:before {
+      & + .form-rate-button__icon:hover::before,
+      & + .form-rate-button__icon:hover ~ .form-rate-button__icon::before,
+      & ~ .form-rate-button__icon:hover::before,
+      & ~ .form-rate-button__icon:hover ~ .form-rate-button__icon::before {
         content: '\e838';
       }
     }
@@ -38,32 +38,32 @@
 
   &__icon {
     float: right;
+    overflow: hidden;
     width: 1em;
     height: 1em;
-    overflow: hidden;
     white-space: nowrap;
     cursor: pointer;
 
     &:hover {
       //after selected by hover: filled
-      &:before,
-      & ~ .form-rate-button__icon:before {
+      &::before,
+      & ~ .form-rate-button__icon::before {
         content: '\e838';
       }
 
       //before selected by hover: filled
-      & ~ .form-rate-button__button-item:checked ~ .form-rate-button__icon:before {
+      & ~ .form-rate-button__button-item:checked ~ .form-rate-button__icon::before {
         content: '\e838';
       }
     }
 
     // default: star_border
-    &:before {
-      font-family: 'Material Icons';
+    &::before {
       content: '\e83a';
+      font-family: 'Material Icons';
 
       @media print, screen and (color) {
-        @include mixins.gradientFont(gradients.primary(1));
+        @include mixins.gradient-font(gradients.primary(1));
       }
     }
   }

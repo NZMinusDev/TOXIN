@@ -24,6 +24,8 @@
     "jock.svg",
     "wayou.vscode-todo-highlight",
     "jumpinjackie.vscode-map-preview",
-    "gogocrow.webpack-snippets"
+    "gogocrow.webpack-snippets",
+    "stylelint.vscode-stylelint",
+    "mrmlnc.vscode-scss"
   ]
 }

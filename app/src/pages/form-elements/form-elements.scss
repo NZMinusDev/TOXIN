@@ -1,26 +1,19 @@
 @use '@themes/main/gradients.scss';
 
 .form-elements-layout {
-  // emulate hover
-  .button_appearance_filled:nth-of-type(2) {
-    background: gradients.primary(0.5);
-  }
-  .button_appearance_bordered:nth-of-type(2) {
-    background: linear-gradient(180deg, white, white) padding-box, gradients.primary(0.5) border-box;
-  }
-  .button_appearance_like-a-icon-link:nth-of-type(2) {
-    color: rgba(var(--color__dark-shade), 0.5);
-  }
-
-  @media print, screen and (min-width: 0px) {
+  @media print, screen and (min-width: 0) {
     display: grid;
-    grid-row-gap: 42px / 14px * 1em;
-    width: 75%;
-    margin: auto;
     justify-content: center;
+    margin: auto;
+    width: 75%;
+    grid-row-gap: 42px / 14px * 1em;
   }
 
   @media print, screen and (min-width: 1200px) {
+    margin: initial;
+    padding: #{65px / 1440px * 100%} #{141px / 1440px * 100%} #{147px / 1440px * 100%} #{141px / 1440px *
+      100%};
+    width: initial;
     grid:
       'text-field-default . checkbox-buttons . range-slider' #{84px / 14px * 1em}
       'text-field-hover . checkbox-buttons . button-fill' #{84px / 14px * 1em}
@@ -37,11 +30,7 @@
       'expandable-checkbox-list . rich-checkbox-buttons . bullet-list' #{272px / 14px * 1em}
       '. . . . .' #{100px / 14px * 1em}
       'logo-comfort . comment comment comment' #{152px / 14px * 1em} / #{320px / 14px * 1em} #{126px / 14px * 1em} #{320px / 14px * 1em} #{72px / 14px * 1em} #{320px / 14px * 1em};
-    padding: #{65px / 1440px * 100%} #{141px / 1440px * 100%} #{147px / 1440px * 100%} #{141px / 1440px *
-      100%};
     grid-row-gap: initial;
-    width: initial;
-    margin: initial;
 
     &__text-field-default {
       @media print, screen and (min-width: 1200px) {
@@ -63,63 +52,63 @@
 
     &__masked-text-field {
       @media print, screen and (min-width: 1200px) {
-        grid-area: masked-text-field;
         margin-top: 3px / 320px * 100%;
+        grid-area: masked-text-field;
       }
     }
 
     &__date-dropdown {
       @media print, screen and (min-width: 1200px) {
-        grid-area: date-dropdown;
         display: grid;
+        margin-top: 2px;
+        grid-area: date-dropdown;
         grid-template-columns: 1fr 1fr;
         grid-column-gap: 20px / 14px * 1em;
-        margin-top: 2px;
       }
     }
 
     &__filter-date-dropdown {
       @media print, screen and (min-width: 1200px) {
-        grid-area: filter-date-dropdown;
         margin-top: 22px / 320px * 100%;
         margin-right: 54px / 320px * 100%;
+        grid-area: filter-date-dropdown;
       }
     }
 
     &__subscription-text-field {
       @media print, screen and (min-width: 1200px) {
-        grid-area: subscription-text-field;
-        width: 267px / 14px * 1em;
         padding-top: 18px / 14px * 1em;
+        width: 267px / 14px * 1em;
+        grid-area: subscription-text-field;
       }
     }
 
     &__checkbox-buttons {
       @media print, screen and (min-width: 1200px) {
-        grid-area: checkbox-buttons;
         width: 222px / 320px * 100%;
+        grid-area: checkbox-buttons;
       }
     }
 
     &__radio-buttons {
       @media print, screen and (min-width: 1200px) {
-        grid-area: radio-buttons;
         margin-top: 2px;
+        grid-area: radio-buttons;
       }
     }
 
     &__toggle {
       @media print, screen and (min-width: 1200px) {
-        grid-area: toggle;
         display: grid;
         margin-top: 9px / 14px * 1em;
+        grid-area: toggle;
       }
     }
 
     &__like-button {
       @media print, screen and (min-width: 1200px) {
-        grid-area: like-button;
         display: grid;
+        grid-area: like-button;
         grid: 'label label' 'btn-checked btn-unchecked';
         gap: 10px / 14px * 1em;
         place-content: end start;
@@ -134,92 +123,92 @@
 
     &__rate-button {
       @media print, screen and (min-width: 1200px) {
-        grid-area: rate-button;
         display: grid;
+        margin-bottom: 14px / 320px * 100%;
+        grid-area: rate-button;
         grid-template-columns: #{140px / 14px * 1em} 1fr;
         place-content: end start;
         place-items: end start;
-        margin-bottom: 14px / 320px * 100%;
       }
     }
 
     &__range-slider {
       @media print, screen and (min-width: 1200px) {
-        grid-area: range-slider;
         margin-right: 54px / 320px * 100%;
+        grid-area: range-slider;
       }
     }
 
     &__button-fill {
       @media print, screen and (min-width: 1200px) {
-        grid-area: button-fill;
         display: grid;
+        margin-top: 5px / 320px * 100%;
+        grid-area: button-fill;
         grid:
           'heading heading' auto
           'button button' 1fr / #{99px / 14px * 1em} 1fr;
         grid-row-gap: 15px / 14px * 1em;
         grid-column-gap: 19px / 14px * 1em;
         place-items: start;
-        margin-top: 5px / 320px * 100%;
       }
     }
 
     &__button-fill-heading {
-      @media print, screen and (min-width: 0px) {
+      @media print, screen and (min-width: 0) {
         grid-area: heading;
       }
     }
 
     &__button-empty {
       @media print, screen and (min-width: 1200px) {
-        grid-area: button-empty;
         display: grid;
+        margin-top: 24px / 320px * 100%;
+        grid-area: button-empty;
         grid-template-columns: #{99px / 14px * 1em} 1fr;
         grid-column-gap: 20px / 14px * 1em;
         place-items: start;
-        margin-top: 24px / 320px * 100%;
       }
     }
 
     &__button-icon-link {
       @media print, screen and (min-width: 1200px) {
-        grid-area: button-icon-link;
         display: grid;
+        margin-top: 16px / 320px * 100%;
+        grid-area: button-icon-link;
         grid-template-columns: auto 1fr;
         grid-column-gap: 22px / 14px * 1em;
         place-items: start;
-        margin-top: 16px / 320px * 100%;
       }
     }
 
     &__button-long {
       @media print, screen and (min-width: 1200px) {
-        grid-area: button-long;
         margin-bottom: 2px;
+        grid-area: button-long;
       }
     }
 
     &__pagination {
       @media print, screen and (min-width: 1200px) {
-        grid-area: pagination;
         margin-top: 40px / 320px * 100%;
         margin-right: 79px / 320px * 100%;
+        grid-area: pagination;
       }
     }
 
     &__dropdown-default-plural {
       @media print, screen and (min-width: 1200px) {
-        grid-area: dropdown-default-plural;
-        margin-right: 54px / 320px * 100%;
         margin-top: 1px / 320px * 100%;
+        margin-right: 54px / 320px * 100%;
+        grid-area: dropdown-default-plural;
       }
     }
 
     &__dropdown-expanded-plural {
       @media print, screen and (min-width: 1200px) {
-        grid-area: dropdown-expanded-plural;
         margin-top: 21px / 320px * 100%;
         margin-right: 54px / 320px * 100%;
+        grid-area: dropdown-expanded-plural;
       }
 
       // emulate focus
@@ -231,8 +220,8 @@
 
     &__dropdown-expanded-apply {
       @media print, screen and (min-width: 1200px) {
-        grid-area: dropdown-expanded-apply;
         margin-top: 2px / 320px * 100%;
+        grid-area: dropdown-expanded-apply;
       }
 
       // emulate focus
@@ -244,8 +233,8 @@
 
     &__dropdown-expanded-clear-apply {
       @media print, screen and (min-width: 1200px) {
-        grid-area: dropdown-expanded-clear-apply;
         margin-top: 2px / 320px * 100%;
+        grid-area: dropdown-expanded-clear-apply;
       }
 
       // emulate focus
@@ -257,44 +246,54 @@
 
     &__expandable-checkbox-list {
       @media print, screen and (min-width: 1200px) {
-        grid-area: expandable-checkbox-list;
         display: grid;
-        grid-template-rows: auto 1fr;
-        grid-row-gap: 24px / 14px * 1em;
         padding-top: 20px / 320px * 100%;
         padding-right: 54px / 320px * 100%;
+        grid-area: expandable-checkbox-list;
+        grid-template-rows: auto 1fr;
+        grid-row-gap: 24px / 14px * 1em;
       }
     }
 
     &__rich-checkbox-buttons {
       @media print, screen and (min-width: 1200px) {
-        grid-area: rich-checkbox-buttons;
-        width: 266px / 320px * 100%;
         margin-top: 26px / 320px * 100%;
+        width: 266px / 320px * 100%;
+        grid-area: rich-checkbox-buttons;
       }
     }
 
     &__bullet-list {
       @media print, screen and (min-width: 1200px) {
-        grid-area: bullet-list;
-        width: 292px / 320px * 100%;
         margin-top: 26px / 320px * 100%;
+        width: 292px / 320px * 100%;
+        grid-area: bullet-list;
       }
     }
 
     &__logo-comfort {
       @media print, screen and (min-width: 1200px) {
-        grid-area: logo-comfort;
         padding-top: 20px / 320px * 100%;
         padding-right: 40px / 320px * 100%;
+        grid-area: logo-comfort;
       }
     }
 
     &__comment {
       @media print, screen and (min-width: 1200px) {
-        grid-area: comment;
         margin-top: 30px / 711px * 100%;
+        grid-area: comment;
       }
     }
+  }
+  // emulate hover
+  .button_appearance_filled:nth-of-type(2) {
+    background: gradients.primary(0.5);
+  }
+  .button_appearance_bordered:nth-of-type(2) {
+    background: linear-gradient(180deg, white, white) padding-box, gradients.primary(0.5) border-box;
+  }
+  .button_appearance_like-a-icon-link:nth-of-type(2) {
+    color: rgba(var(--color__dark-shade), 0.5);
   }
 }

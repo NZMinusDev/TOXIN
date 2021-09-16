@@ -1,5 +1,6 @@
 .entering-card {
   display: grid;
+  align-items: center;
   grid:
     'title title'
     'email-field email-field'
@@ -8,15 +9,14 @@
     '. .' #{10px / 14px * 1em}
     'caption-of-redirect-to-registration switch-btn';
   gap: 10px / 14px * 1em;
-  align-items: center;
 
   &__title {
     grid-area: title;
   }
 
   &__email-field {
-    grid-area: email-field;
     margin-top: 10px / 14px * 1em;
+    grid-area: email-field;
   }
 
   &__password-field {
@@ -24,13 +24,13 @@
   }
 
   &__link-btn {
-    grid-area: link-btn;
     margin-top: 10px / 14px * 1em;
+    grid-area: link-btn;
   }
 
   &__caption-of-redirect-to-registration {
-    grid-area: caption-of-redirect-to-registration;
     color: rgba(0, 0, 0, 1);
+    grid-area: caption-of-redirect-to-registration;
   }
 
   &__switch-btn {

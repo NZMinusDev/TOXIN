@@ -12,17 +12,17 @@
   }
 
   &__fieldset {
-    width: fit-content;
     display: grid;
+    width: fit-content;
     grid: auto / auto auto;
     gap: 20px / 14px * 1em;
   }
 
   &__item {
+    position: relative;
     display: inline-grid;
     grid-template-columns: auto 1fr;
     place-items: center start;
-    position: relative;
   }
 
   &__button-item,
@@ -32,10 +32,10 @@
   }
 
   &__button-item {
-    appearance: none;
     margin-right: 10px / 14px * 1em;
     border-radius: 50%;
     cursor: pointer;
+    appearance: none;
 
     &:checked {
       & + .form-radio-buttons__button-icon-item {
@@ -58,12 +58,12 @@
     pointer-events: none;
   }
   &__button-icon-ring {
-    stroke: rgba(var(--main-color), 0.25);
     fill: white;
+    stroke: rgba(var(--main-color), 0.25);
   }
   &__button-icon-circle {
-    fill: var(--SVG-gradient-ID);
     opacity: 0;
+    fill: var(--SVG-gradient-ID);
   }
 
   &__label-item {

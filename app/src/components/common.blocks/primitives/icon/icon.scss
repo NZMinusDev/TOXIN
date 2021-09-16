@@ -4,21 +4,19 @@
 @use '@themes/main/gradients.scss';
 
 .icon {
-  height: 100%;
   display: inline-flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  height: 100%;
   text-align: center;
   text-indent: 0;
-  font-size: functions.getLiquidSize(24, 18);
+  font-size: functions.get-liquid-size(24, 18);
 
   &_font-family_material {
-    @include vendor-fonts-mixins.materialIcon;
-    display: inline-flex;
-    font-size: functions.getLiquidSize(24, 18);
+    @include vendor-fonts-mixins.material-icon(inline-flex, functions.get-liquid-size(24, 18));
   }
   &_font-family_branded {
-    @include vendor-fonts-mixins.fontAwesome;
+    @include vendor-fonts-mixins.font-awesome();
   }
 
   &_width_medium {
@@ -34,7 +32,7 @@
 
   &_color_primary-gradient {
     @media print, screen and (color) {
-      @include mixins.gradientFont(gradients.primary(1));
+      @include mixins.gradient-font(gradients.primary(1));
     }
   }
 }

@@ -1,18 +1,22 @@
-@mixin materialIcon {
-  font-family: 'Material Icons';
+/// Makes material icon
+/// @param {*} $display [inline-block] - display css prop
+/// @param {*} $font-size [24px] - font-size css prop
+@mixin material-icon($display: inline-block, $font-size: 24px) {
+  display: $display;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  letter-spacing: normal;
   font-weight: normal;
   font-style: normal;
-  font-size: 24px; /* Preferred icon size */
-  display: inline-block;
+  font-size: $font-size; /* Preferred icon size */
+  font-family: 'Material Icons';
   line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
   direction: ltr;
 
   /* Support for all WebKit browsers. */
   -webkit-font-smoothing: antialiased;
+
   /* Support for Safari and Chrome. */
   text-rendering: optimizeLegibility;
 
@@ -23,7 +27,7 @@
   font-feature-settings: 'liga';
 }
 
-@mixin fontAwesome {
-  font-family: 'Font Awesome 5 Brands';
+@mixin font-awesome {
   font-weight: 400;
+  font-family: 'Font Awesome 5 Brands';
 }

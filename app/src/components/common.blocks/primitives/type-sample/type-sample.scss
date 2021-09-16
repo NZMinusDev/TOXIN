@@ -4,9 +4,9 @@
   grid-column-gap: 30px / 14px * 1em;
 
   &__tag {
-    grid-area: tag;
     width: 40px;
     text-align: right;
+    grid-area: tag;
 
     @media print, screen and (color) {
       color: rgba(var(--color__dark-shade), 0.25);

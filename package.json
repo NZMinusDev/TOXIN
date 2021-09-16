@@ -31,6 +31,7 @@
     "@types/inputmask": "^5.0.1",
     "@types/jquery": "^3.5.2",
     "@types/lodash-es": "^4.17.4",
+    "@types/stylelint": "^13.13.2",
     "@typescript-eslint/eslint-plugin": "^4.1.0",
     "@typescript-eslint/parser": "^4.1.0",
     "@zerollup/ts-transform-paths": "^1.7.18",
@@ -48,6 +49,13 @@
     "eslint-plugin-sonarjs": "^0.5.0",
     "mkdirp": "^1.0.4",
     "prettier": "^2.1.1",
+    "stylelint": "^13.13.1",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-standard": "^22.0.0",
+    "stylelint-order": "^4.1.0",
+    "stylelint-prettier": "^1.2.0",
+    "stylelint-scss": "^3.21.0",
+    "stylelint-webpack-plugin": "^2.2.2",
     "ttypescript": "^1.5.12",
     "webpack-bundle-analyzer": "^3.8.0",
     "webpack-dev-server": "^3.11.0"
@@ -99,13 +107,11 @@
     "webpack-cli": "^3.3.12",
     "webpack-images-resizer": "^0.1.2"
   },
+  "stylelint": {
+    "extends": "./configs/stylelint.config.js"
+  },
   "eslintConfig": {
     "extends": "./configs/.eslintrc.js"
   },
-  "prettier": {
-    "endOfLine": "auto",
-    "printWidth": 100,
-    "singleQuote": true,
-    "pugSingleQuote": false
-  }
+  "prettier": "./configs/prettier.config.js"
 }
