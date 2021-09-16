@@ -1,11 +1,11 @@
 @use '@utils/devTools/styles/mixins.scss';
 
 .sign-in-layout {
-  height: 684px / 14px * 1em;
   display: grid;
-  justify-content: center;
   align-items: center;
-  @include mixins.backgroundAutoCarousel(
+  justify-content: center;
+  height: 684px / 14px * 1em;
+  @include mixins.background-auto-carousel(
     '@assets/pictures/images/backgrounds/rooms/room-4.jpg'
       '@assets/pictures/images/backgrounds/rooms/room-3.jpg'
   );

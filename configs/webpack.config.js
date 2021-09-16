@@ -8,6 +8,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const DartSASS = require('sass');
 const fibers = require('fibers');
 const DoIUse = require('doiuse');
+const StylelintPlugin = require('stylelint-webpack-plugin');
 const PostcssFlexbugsFixes = require('postcss-flexbugs-fixes');
 const Autoprefixer = require('autoprefixer');
 const PostCSSPresetEnv = require('postcss-preset-env');
@@ -154,6 +155,7 @@ listOfSourceImages320 = listOfSourceImagesMapping(listOfSourceImages320, '320');
  * HTMLWebpackPlugin - create html of pages with plug in scripts.
  * MiniCssExtractPlugin - extract css into separate files.
  * ProvidePlugin - Automatically load modules instead of having to import or require them everywhere.
+ * StylelintPlugin - uses stylelint that helps you avoid errors and enforce conventions in your styles
  * CopyWebpackPlugin - copy ico files
  * ImageMinimizerPlugin - Plugin and Loader for webpack to optimize (compress) all images. Make sure ImageMinimizerPlugin place after any plugins that add images or other assets which you want to optimized.
  * WebpackImagesResizer - resizes images.
@@ -187,6 +189,10 @@ const webpackPlugins = () => {
       ],
     }),
   ];
+
+  if (isDev) {
+    plugins.push(new StylelintPlugin({ fix: true }));
+  }
 
   if (process.env.ImagesResizer === 'true') {
     plugins.push(

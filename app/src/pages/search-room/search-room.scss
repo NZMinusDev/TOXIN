@@ -1,44 +1,45 @@
 .search-room-layout {
   display: grid;
 
-  @media (min-width: 0px) {
+  @media (min-width: 0) {
+    align-items: flex-start;
+    padding: #{30px / 14px * 1em} #{140px / 1440px * 100%} #{70px / 14px * 1em} #{140px / 1440px * 100%};
     grid:
       'filter'
       'title'
       'rooms'
       'pagination';
     grid-column-gap: 60px / (1440px - 140px * 2) * 100%;
-    align-items: flex-start;
-    padding: #{30px / 14px * 1em} #{140px / 1440px * 100%} #{70px / 14px * 1em} #{140px / 1440px * 100%};
   }
 
   @media (min-width: 992px) {
-    $filterWidth: 266px / (1440px - 140px * 2) * 100%;
+    $filter-width: 266px / (1440px - 140px * 2) * 100%;
+
     grid:
       'filter title'
       'filter rooms'
-      '. pagination' / #{$filterWidth} auto;
+      '. pagination' / #{$filter-width} auto;
   }
 
   &__filter {
-    $mediumGap: 20px / 14px * 1em;
-    $largeGap: 30px / 14px * 1em;
+    $medium-gap: 20px / 14px * 1em;
+    $large-gap: 30px / 14px * 1em;
 
-    grid-area: filter;
     display: grid;
+    grid-area: filter;
     grid:
       'dates-of-stay-dropdown'
-      '.' #{$mediumGap}
+      '.' #{$medium-gap}
       'guests-dropdown'
-      '.' #{$largeGap}
+      '.' #{$large-gap}
       'price-range-slider'
-      '.' #{$largeGap}
+      '.' #{$large-gap}
       'checkbox-buttons'
-      '.' #{$largeGap}
+      '.' #{$large-gap}
       'affordable-rich-checkbox-buttons'
-      '.' #{$largeGap}
+      '.' #{$large-gap}
       'facilities-dropdown'
-      '.' #{$largeGap}
+      '.' #{$large-gap}
       'additional-comfort-expandable-checkbox-list';
   }
 
@@ -71,18 +72,18 @@
   }
 
   &__title {
-    grid-area: title;
     margin-bottom: 20.5px / 24px * 1em;
+    grid-area: title;
   }
 
   &__rooms {
-    grid-area: rooms;
     display: grid;
+    grid-area: rooms;
     grid: auto-flow auto / 1fr 1fr 1fr;
     grid-gap: #{20.5px / 14px * 1em} #{12px / 14px * 1em};
     justify-items: center;
 
-    @media (min-width: 0px) {
+    @media (min-width: 0) {
       grid-template-columns: 1fr;
     }
 
@@ -96,7 +97,7 @@
   }
 
   &__pagination {
-    grid-area: pagination;
     margin-top: 41px / 14px * 1em;
+    grid-area: pagination;
   }
 }

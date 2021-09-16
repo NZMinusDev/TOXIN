@@ -1,22 +1,21 @@
 @use '@utils/devTools/styles/mixins.scss';
-@use '@utils/devTools/styles/functions.scss';
 @use '@themes/main/gradients.scss';
 
 .form-like-button {
-  display: inline-block;
   position: relative;
+  display: inline-block;
   line-height: 0;
 
   &__button {
-    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
     width: 40px / 14px * 1em;
     height: 20px / 14px * 1em;
-    display: inline-flex;
-    justify-content: flex-start;
-    align-items: center;
     border: 1px black;
     border-radius: 25% / 50%;
     cursor: pointer;
+    appearance: none;
 
     @media print, screen and (color) {
       border: var(--border);
@@ -28,27 +27,27 @@
           gradients.primary(1) border-box;
       }
 
-      &:before,
+      &::before,
       & + .form-like-button__counter {
         @media print, screen and (color) {
           color: rgba(var(--color__primary), 1);
         }
       }
 
-      &:before {
+      &::before {
         content: '\e87d';
       }
     }
 
-    &:before {
-      content: '\e87e';
+    &::before {
       width: 50%;
       height: 1em;
-      font-size: 10px / 14px * 1em;
-      line-height: 1em;
-      text-align: center;
-      font-family: 'Material Icons';
       color: black;
+      content: '\e87e';
+      text-align: center;
+      font-size: 10px / 14px * 1em;
+      font-family: 'Material Icons';
+      line-height: 1em;
 
       @media print, screen and (color) {
         color: rgba(var(--color__dark-shade), 0.25);
@@ -57,21 +56,21 @@
   }
 
   &__counter {
-    width: 3ex;
-    height: 1em;
     position: absolute;
-    left: 50%;
     top: 0;
     bottom: 0;
+    left: 50%;
     margin-top: auto;
     margin-bottom: auto;
+    width: 3ex;
+    height: 1em;
     font-size: 10px / 14px * 1em;
     line-height: 1em;
-    @include mixins.ellipsisText;
     pointer-events: none;
 
     @media print, screen and (color) {
       color: rgba(var(--color__dark-shade), 0.25);
     }
+    @include mixins.ellipsis-text();
   }
 }

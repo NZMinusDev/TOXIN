@@ -1,38 +1,38 @@
 @use '@utils/devTools/styles/mixins.scss';
 @use '@utils/devTools/styles/functions.scss';
 
-@include mixins.importFont(
+@include mixins.import-font(
   'Quicksand',
   '@assets/fonts/quicksand/quicksand-regular/quicksand-regular.ttf'
 );
-@include mixins.importFont(
+@include mixins.import-font(
   'Quicksand',
   '@assets/fonts/quicksand/quicksand-bold/quicksand-bold.ttf',
   bold
 );
-@include mixins.importFont(
+@include mixins.import-font(
   'Montserrat',
   '@assets/fonts/montserrat/montserrat-regular/montserrat-regular.ttf'
 );
-@include mixins.importFont(
+@include mixins.import-font(
   'Montserrat',
   '@assets/fonts/montserrat/montserrat-bold/montserrat-bold.ttf',
   bold
 );
 
 :root {
-  --font__h1: 700 1rem / #{30px / 24px * 1rem} #{functions.safeFontFamily('Quicksand')};
-  --font__h2: 700 #{19px / 24px * 1rem} / #{23.75px / 24px * 1rem} #{functions.safeFontFamily(
+  --font__h1: 700 1rem / #{30px / 24px * 1rem} #{functions.safe-font-family('Quicksand')};
+  --font__h2: 700 #{19px / 24px * 1rem} / #{23.75px / 24px * 1rem} #{functions.safe-font-family(
       'Quicksand'
     )};
-  --font__h3: 700 #{12px / 24px * 1rem} / #{14.63px / 24px * 1rem} #{functions.safeFontFamily(
+  --font__h3: 700 #{12px / 24px * 1rem} / #{14.63px / 24px * 1rem} #{functions.safe-font-family(
       'Montserrat'
     )};
-  --font__body: 400 #{14px / 24px * 1rem} / 1rem #{functions.safeFontFamily('Montserrat')};
+  --font__body: 400 #{14px / 24px * 1rem} / 1rem #{functions.safe-font-family('Montserrat')};
 }
 
 html {
-  font-size: functions.getLiquidSize(24, 18);
+  font-size: functions.get-liquid-size(24, 18);
 }
 
 h1,
@@ -47,9 +47,9 @@ h2 {
 }
 
 h3 {
+  text-transform: uppercase;
   font: var(--font__h3);
   font-weight: 700;
-  text-transform: uppercase;
 }
 
 body {

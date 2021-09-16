@@ -1,18 +1,19 @@
 .registration-card {
-  $mediumGap: 20px / 14px * 1em;
-  $largeGap: 30px / 14px * 1em;
+  $medium-gap: 20px / 14px * 1em;
+  $large-gap: 30px / 14px * 1em;
+
   display: grid;
   grid:
     'title title'
-    '. .' #{$mediumGap}
+    '. .' #{$medium-gap}
     'name-fieldset name-fieldset'
-    '. .' #{$mediumGap}
+    '. .' #{$medium-gap}
     'birthday-field birthday-field'
-    '. .' #{$mediumGap}
+    '. .' #{$medium-gap}
     'login-fieldset login-fieldset'
-    '. .' #{$mediumGap}
+    '. .' #{$medium-gap}
     'link-btn link-btn'
-    '. .' #{$largeGap}
+    '. .' #{$large-gap}
     'switcher switcher' / auto 1fr;
 
   &__title {
@@ -20,39 +21,39 @@
   }
 
   &__name-fieldset {
-    grid-area: name-fieldset;
     display: grid;
+    grid-area: name-fieldset;
     grid-row-gap: 10px / 14px * 1em;
   }
 
   &__birthday-field {
-    grid-area: birthday-field;
     margin-top: 6px / 14px * 1em;
+    grid-area: birthday-field;
   }
 
   &__login-fieldset {
-    grid-area: login-fieldset;
     display: grid;
+    grid-area: login-fieldset;
     grid-row-gap: 10px / 14px * 1em;
   }
 
   &__link-btn {
-    grid-area: link-btn;
-    margin-top: 6px / 14px * 1em;
     display: grid;
+    margin-top: 6px / 14px * 1em;
+    grid-area: link-btn;
   }
 
   &__switcher {
-    grid-area: switcher;
     display: grid;
-    grid: 'caption-of-redirect-to-entering switch-btn';
     align-items: center;
     justify-content: space-between;
+    grid-area: switcher;
+    grid: 'caption-of-redirect-to-entering switch-btn';
   }
 
   &__caption-of-redirect-to-entering {
-    grid-area: caption-of-redirect-to-entering;
     color: rgba(0, 0, 0, 1);
+    grid-area: caption-of-redirect-to-entering;
   }
 
   &__switch-btn {

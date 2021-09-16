@@ -1,28 +1,29 @@
 .room-details-layout {
   display: grid;
 
-  @media (min-width: 0px) {
+  @media (min-width: 0) {
     grid:
       'demo'
       'content';
   }
 
   &__demo {
-    grid-area: demo;
-    display: grid;
+    $cell-height: 485px / 14px * 1em / 2;
 
-    $cellHeight: 485px / 14px * 1em / 2;
-    @media (min-width: 0px) {
+    display: grid;
+    grid-area: demo;
+    @media (min-width: 0) {
       grid:
-        'big-img' #{$cellHeight * 2}
-        'small-img-1' #{$cellHeight * 2}
-        'small-img-2' #{$cellHeight * 2};
+        'big-img' #{$cell-height * 2}
+        'small-img-1' #{$cell-height * 2}
+        'small-img-2' #{$cell-height * 2};
     }
     @media (min-width: 992px) {
-      $bigImgWidth: 981px / 1440px * 100%;
+      $big-img-width: 981px / 1440px * 100%;
+
       grid:
-        'big-img small-img-1' #{$cellHeight}
-        'big-img small-img-2' #{$cellHeight} / #{$bigImgWidth} 1fr;
+        'big-img small-img-1' #{$cell-height}
+        'big-img small-img-2' #{$cell-height} / #{$big-img-width} 1fr;
     }
   }
 
@@ -41,12 +42,12 @@
   &__content {
     display: grid;
 
-    @media print, screen and (min-width: 0px) {
+    @media print, screen and (min-width: 0) {
+      padding: #{70px / 14px * 1em} #{140px / 1440px * 100%};
       grid:
         'info'
         'reservation';
       grid-gap: 70px / 14px * 1em;
-      padding: #{70px / 14px * 1em} #{140px / 1440px * 100%};
     }
 
     @media print, screen and (min-width: 1440px) {
@@ -55,10 +56,10 @@
   }
 
   &__info {
-    grid-area: info;
     display: grid;
+    grid-area: info;
 
-    @media (min-width: 0px) {
+    @media (min-width: 0) {
       grid:
         'data'
         'impression'
@@ -81,7 +82,7 @@
   &__data {
     grid-area: data;
 
-    @media (min-width: 0px) {
+    @media (min-width: 0) {
       justify-self: center;
     }
     @media (min-width: 768px) {
@@ -92,7 +93,7 @@
   &__impression {
     grid-area: impression;
 
-    @media (min-width: 0px) {
+    @media (min-width: 0) {
       justify-self: center;
     }
     @media (min-width: 1440px) {

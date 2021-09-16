@@ -1,6 +1,6 @@
 .slideshow {
-  padding-top: 150px / 270px * 100%;
   position: relative;
+  padding-top: 150px / 270px * 100%;
 
   &:hover {
     .slideshow__switcher {
@@ -18,15 +18,15 @@
   }
 
   &__radio {
+    position: absolute;
+    right: 0; //redefined in pug template using style attr
+    bottom: 15px / 14px * 1em;
+    z-index: 2;
     width: 7.5px / 14px * 1em;
     height: 7.5px / 14px * 1em;
-    position: absolute;
-    bottom: 15px / 14px * 1em;
-    right: 0; //redefined in pug template using style attr
-    z-index: 2;
-    appearance: none;
     border: 1px solid white;
     border-radius: 100%;
+    appearance: none;
 
     &:checked {
       background-color: white;
@@ -38,8 +38,8 @@
 
       // switcher to next picture
       & ~ .slideshow__switcher ~ .slideshow__switcher ~ .slideshow__switcher {
-        display: inline-flex;
         right: 0;
+        display: inline-flex;
         transform: rotate(180deg);
 
         //another switchers
@@ -50,35 +50,35 @@
 
       // switcher to previous picture
       & + .slideshow__switcher {
-        display: inline-flex;
         left: 0;
+        display: inline-flex;
       }
     }
   }
 
   &__switcher {
-    display: none;
-    align-items: center;
     position: absolute;
     top: 0;
+    z-index: 1;
+    display: none;
+    align-items: center;
     // left/right defined in slideshow__radio
     width: 42px / 270px * 100%;
     height: 100%;
-    z-index: 1;
     cursor: pointer;
   }
 
   &__switcher-icon {
+    color: transparent;
     font-size: 24px / 14px * 1em;
     transform: rotate(90deg);
-    color: transparent;
   }
 
   &__picture {
-    width: 100%;
-    height: 100%;
     position: absolute;
     top: 0;
+    width: 100%;
+    height: 100%;
     opacity: 0;
     transition: opacity 2s ease-out;
 

@@ -1,61 +1,60 @@
 .tooltip {
-  $tooltipIconSize: 20px / 14px * 1em;
-  $tooltipArrowSize: 5px / 14px * 1em;
+  $tooltip-icon-size: 20px / 14px * 1em;
+  $tooltip-arrow-size: 5px / 14px * 1em;
 
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: $tooltipIconSize;
-  height: $tooltipIconSize;
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: $tooltip-icon-size;
+  height: $tooltip-icon-size;
   border: 1px solid black;
   border-radius: 100%;
   background-color: transparent;
   cursor: pointer;
 
   @media print, screen and (color) {
-    color: rgba(var(--color__dark-shade), 0.25);
     border: var(--border);
+    color: rgba(var(--color__dark-shade), 0.25);
   }
 
   //Tooltip text container
-  &:before {
-    content: attr(data-content);
-    top: $tooltipArrowSize + $tooltipIconSize;
+  &::before {
+    top: $tooltip-arrow-size + $tooltip-icon-size;
     padding: 0.5em 1em;
-    color: white;
-    background-color: black;
     border-radius: 4px;
+    background-color: black;
+    color: white;
+    content: attr(data-content);
     word-break: normal;
   }
 
   //Tooltip arrow
-  &:after {
+  &::after {
+    top: $tooltip-icon-size;
+    border-right: $tooltip-arrow-size solid transparent;
+    border-bottom: $tooltip-arrow-size solid black;
+    border-left: $tooltip-arrow-size solid transparent;
     content: '';
-    top: $tooltipIconSize;
-    border-bottom: $tooltipArrowSize solid black;
-    border-right: $tooltipArrowSize solid transparent;
-    border-left: $tooltipArrowSize solid transparent;
   }
 
   //Setting up the transition
-  &:before,
-  &:after {
-    transition: all 0.5s ease; //speed of closing
-    opacity: 0;
-
+  &::before,
+  &::after {
     position: absolute;
-    pointer-events: none;
     z-index: 10;
     text-align: center;
+    opacity: 0;
+    transition: all 0.5s ease; //speed of closing
+    pointer-events: none;
   }
 
   //Triggering the transition
-  &:focus:before,
-  &:focus:after,
-  &:hover:before,
-  &:hover:after {
-    transition: all 0.75s ease; //speed of opening
+  &:focus::before,
+  &:focus::after,
+  &:hover::before,
+  &:hover::after {
     opacity: 1;
+    transition: all 0.75s ease; //speed of opening
   }
 }

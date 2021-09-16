@@ -1,6 +1,6 @@
 .card-text {
-  font-weight: normal;
   text-transform: initial;
+  font-weight: normal;
 
   @media print, screen and (color) {
     color: rgba(var(--color__dark-shade), 0.5);

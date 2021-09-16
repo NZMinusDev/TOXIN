@@ -2,13 +2,13 @@
 
 .form-range-slider {
   display: grid;
+  align-items: baseline;
   grid:
     'label result'
     '. .' 23px / 14px * 1em
     'slider slider'
     '. .' 16px / 14px * 1em
     'description description';
-  align-items: baseline;
 
   &__label {
     grid-area: label;
@@ -19,11 +19,11 @@
   }
 
   &__result {
-    grid-area: result;
     text-align: right;
+    text-transform: uppercase;
     font-size: 12px/14px * 1em;
     line-height: 15px/24px * 1em;
-    text-transform: uppercase;
+    grid-area: result;
 
     @media print, screen and (color) {
       color: rgba(var(--color__dark-shade), 0.5);
@@ -31,16 +31,16 @@
   }
 
   &__slider {
-    grid-area: slider;
     align-self: end;
+    grid-area: slider;
 
     /* lib redefinition */
     .noUi-handle {
       border-radius: 100%;
       box-shadow: initial;
       cursor: pointer;
-      &:after,
-      &:before {
+      &::after,
+      &::before {
         display: none;
       }
     }
@@ -48,11 +48,11 @@
       height: 6px / 14px * 1em;
 
       .noUi-handle {
-        width: 16px / 14px * 1em;
-        height: 16px / 14px * 1em;
         top: -6px / 14px * 1em;
         right: -8px / 14px * 1em;
-        border: 2px solid #ffffff;
+        width: 16px / 14px * 1em;
+        height: 16px / 14px * 1em;
+        border: 2px solid #fff;
         border-radius: 100%;
       }
     }
@@ -74,9 +74,9 @@
   }
 
   &__description {
-    grid-area: description;
     font-size: 12px / 14px * 1em;
     line-height: 14px / 12px * 1em;
+    grid-area: description;
 
     @media print, screen and (color) {
       color: rgba(var(--color__dark-shade), 0.5);

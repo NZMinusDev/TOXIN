@@ -35,16 +35,16 @@
   }
 
   &__button-item {
-    grid-area: button-item;
-    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 20px / 14px * 1em;
     height: 20px / 14px * 1em;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
     border: 1px solid black;
     border-radius: var(--border-radius-size);
     cursor: pointer;
+    grid-area: button-item;
+    appearance: none;
 
     @media print, screen and (color) {
       border: var(--border);
@@ -56,18 +56,19 @@
           gradients.primary(1) border-box;
       }
 
-      &:before {
+      &::before {
         opacity: 1;
       }
     }
 
-    &:before {
+    &::before {
       $border-width: 2px;
-      content: '';
+
       width: calc(#{$border-width} + 20%);
       height: calc(#{$border-width} + 30%);
-      border-bottom: $border-width solid black;
       border-right: $border-width solid black;
+      border-bottom: $border-width solid black;
+      content: '';
       opacity: 0;
       transform: rotate(45deg);
 
@@ -78,8 +79,8 @@
   }
 
   &__label-item {
-    grid-area: label-item;
     line-height: 20px / 14px * 1em;
+    grid-area: label-item;
 
     @media print, screen and (color) {
       color: rgba(var(--color__dark-shade), 0.5);
@@ -87,10 +88,10 @@
   }
 
   &__description {
-    grid-area: description;
     display: block;
     margin-top: 7px / 14px * 1em;
     font-size: 12px / 14px * 1em;
     line-height: 14px / 12px * 1em;
+    grid-area: description;
   }
 }

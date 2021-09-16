@@ -8,14 +8,14 @@
   }
 
   &__expand-btn {
-    width: 100%;
-    height: 100%;
+    z-index: 1;
     display: inline-flex;
     justify-content: flex-end;
-    z-index: 1;
+    width: 100%;
+    height: 100%;
+    outline: none;
     text-align: inherit;
     text-indent: inherit;
-    outline: none;
 
     @media print, screen and (color) {
       color: rgba(var(--color__dark-shade), 0.5);
@@ -29,10 +29,10 @@
 
   &__datepicker {
     position: absolute;
-    left: 0;
     bottom: 0;
-    text-indent: initial;
+    left: 0;
     z-index: 100;
+    text-indent: initial;
     cursor: initial;
 
     /* lib redefinition */
@@ -47,19 +47,19 @@
   }
 
   &__item-quantity-list {
+    position: absolute;
     width: 100%;
     height: 100%;
-    position: absolute;
 
     /* lib redefinition */
     .iqdropdown {
-      height: 100%;
       display: flex;
       padding: 0;
-      text-align: inherit;
-      text-indent: inherit;
+      height: 100%;
       border: 0;
       border-radius: 0;
+      text-align: inherit;
+      text-indent: inherit;
 
       &.menu-open {
         .iqdropdown-menu {
@@ -81,7 +81,7 @@
               }
             }
 
-            &:before {
+            &::before {
               @media print, screen and (color) {
                 color: rgba(var(--color__dark-shade), 0.5);
               }
@@ -89,16 +89,16 @@
           }
           .counter {
             @media print, screen and (color) {
-              font: var(--font__h3);
               color: rgba(var(--color__dark-shade), 1);
+              font: var(--font__h3);
             }
           }
         }
 
         .iqdropdown-item {
           @media print, screen and (color) {
-            font: var(--font__h3);
             color: rgba(var(--color__dark-shade), 1);
+            font: var(--font__h3);
           }
         }
       }
@@ -112,27 +112,27 @@
       width: (15px + 160px) / 266px * 100%;
       color: inherit;
       font: inherit;
-      @include mixins.ellipsisText;
 
       @media print, screen and (color) {
         color: rgba(var(--color__dark-shade), 0.75);
       }
+      @include mixins.ellipsis-text();
 
       // remove lib selection-icon
-      &:after {
+      &::after {
         display: none;
       }
     }
     .iqdropdown-menu {
       top: 44px / 14px * 1em;
       padding: #{6px / 14px * 1em} #{7px / 14px * 1em} #{7px / 14px * 1em} #{15px / 14px * 1em};
-      box-shadow: initial;
       border: 1px solid black;
+      box-shadow: initial;
       transition: none;
     }
     .iqdropdown-menu-option {
-      height: initial;
       padding: 0;
+      height: initial;
       text-indent: 0;
 
       &:not(:first-of-type) {
@@ -140,8 +140,8 @@
       }
     }
     .iqdropdown-content {
-      padding-right: 0;
       margin-right: 1em;
+      padding-right: 0;
     }
     //replace lib buttons' icons
     .icon-decrement,
@@ -154,15 +154,15 @@
 
       button.button-decrement,
       button.button-increment {
-        height: #{30px / 14px * 1em};
         width: #{30px / 14px * 1em};
-        border-radius: 100%;
+        height: #{30px / 14px * 1em};
         border: 1px solid black;
+        border-radius: 100%;
       }
-      button.button-decrement:before {
+      button.button-decrement::before {
         content: '-';
       }
-      button.button-increment:before {
+      button.button-increment::before {
         content: '+';
       }
 
@@ -170,7 +170,7 @@
         display: inline-block;
         width: #{30px / 12px * 1em};
         text-align: center;
-        @include mixins.ellipsisText;
+        @include mixins.ellipsis-text();
       }
     }
   }
@@ -181,15 +181,15 @@
   }
 
   &__selection-text {
-    width: (15px + 103px) / 150px * 100%;
-    height: 100%;
+    position: absolute;
     display: inline-flex;
     align-items: center;
-    position: absolute;
-    @include mixins.ellipsisText;
+    width: (15px + 103px) / 150px * 100%;
+    height: 100%;
 
     @media print, screen and (color) {
       color: rgba(var(--color__dark-shade), 0.75);
     }
+    @include mixins.ellipsis-text();
   }
 }

@@ -1,13 +1,13 @@
 .nav-bar {
   background-color: white;
 
-  @media print, screen and (min-width: 0px) {
-    width: 100%;
+  @media print, screen and (min-width: 0) {
     display: grid;
+    padding: #{15px / 14px * 1em} #{140px / 1440px * 100%};
+    width: 100%;
     grid: 'logo' 'navigation' 'login' auto / auto;
     grid-row-gap: 20px / 14px * 1em;
     justify-items: center;
-    padding: #{15px / 14px * 1em} #{140px / 1440px * 100%};
   }
 
   @media print, screen and (min-width: 992px) {
@@ -17,13 +17,12 @@
   }
 
   @media print, screen and (color) {
-    box-shadow: 0px #{10px / 14px * 1em} #{20px / 14px * 1em} 0px
-      rgba(var(--color__dark-shade), 0.05);
+    box-shadow: 0 #{10px / 14px * 1em} #{20px / 14px * 1em} 0 rgba(var(--color__dark-shade), 0.05);
   }
 
   &__logo {
-    grid-area: logo;
     font-size: 12px / 14px * 1em;
+    grid-area: logo;
   }
 
   &__navigation {
@@ -49,14 +48,14 @@
   }
 
   &__navigation-item {
-    @media print, screen and (min-width: 0px) {
+    @media print, screen and (min-width: 0) {
       text-align: center;
       font-weight: normal;
     }
 
     @media print, screen and (min-width: 992px) {
-      text-align: left;
       margin-right: 20px / 14px * 1em;
+      text-align: left;
 
       &:last-child {
         margin-right: 0;
@@ -68,18 +67,18 @@
     }
 
     *:hover,
-    *:hover:after,
-    *:hover:before,
+    *:hover::after,
+    *:hover::before,
     *:focus-within,
-    *:focus-within:after,
-    *:focus-within:before {
+    *:focus-within::after,
+    *:focus-within::before {
       @media print, screen and (color) {
         color: rgba(var(--color__dark-shade), 0.75);
       }
     }
 
     &_expandable {
-      @media print, screen and (min-width: 0px) {
+      @media print, screen and (min-width: 0) {
         & > .nav-bar__navigation-item-dropdown-checkbox {
           display: none;
 
@@ -87,8 +86,8 @@
             visibility: hidden;
             overflow: hidden;
             max-height: 0;
+            background-color: rgba($color: #fff, $alpha: 0.75);
             transition: max-height 0.2s linear, visibility 0.2s linear;
-            background-color: rgba($color: #ffffff, $alpha: 0.75);
           }
 
           &:checked {
@@ -107,8 +106,8 @@
         position: relative;
 
         .nav-bar__navigation-item {
-          padding-left: 0.5em;
           padding-right: 0.5em;
+          padding-left: 0.5em;
         }
 
         .nav-bar__navigation-list,
@@ -118,10 +117,10 @@
 
         & > .nav-bar__navigation-item-dropdown-checkbox ~ .nav-bar__navigation-list {
           display: flex;
+          visibility: hidden;
           flex-flow: column;
           align-items: flex-start;
           overflow: initial;
-          visibility: hidden;
           opacity: 0;
           transition: opacity 0.2s linear, visibility 0.2s linear;
 
@@ -132,10 +131,10 @@
 
         &:hover > .nav-bar__navigation-item-dropdown-checkbox ~ .nav-bar__navigation-list,
         &:focus-within > .nav-bar__navigation-item-dropdown-checkbox ~ .nav-bar__navigation-list {
+          z-index: 1;
           visibility: visible;
           max-height: fit-content;
           opacity: 1;
-          z-index: 1;
         }
       }
 
@@ -148,8 +147,8 @@
     }
 
     &_active {
-      font-weight: bold;
       color: black;
+      font-weight: bold;
 
       @media print, screen and (color) {
         color: rgba(var(--color__dark-shade), 0.75);
@@ -162,8 +161,8 @@
   }
 
   &__expand-icon {
-    vertical-align: top;
     display: inline-flex;
+    vertical-align: top;
     line-height: 1em;
   }
 
@@ -171,12 +170,12 @@
     grid-area: login;
 
     &_status_confirmed {
-      &:before {
+      &::before {
         content: '';
 
         @media print, screen and (min-width: 992px) {
-          border-left: 1px solid black;
           margin-right: 20px / 14px * 1em;
+          border-left: 1px solid black;
         }
 
         @media print, screen and (color) {
@@ -186,9 +185,9 @@
     }
     &_status_unconfirmed {
       display: grid;
+      align-content: center;
       grid-auto-flow: column;
       grid-column-gap: 20px / 14px * 1em;
-      align-content: center;
     }
   }
 

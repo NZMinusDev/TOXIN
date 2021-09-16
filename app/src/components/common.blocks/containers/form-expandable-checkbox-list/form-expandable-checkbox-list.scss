@@ -36,11 +36,11 @@
   }
 
   &__list {
-    overflow: hidden;
     visibility: hidden;
-    max-height: 0;
-    transition: max-height 0.3s linear, visibility 0.3s linear;
+    overflow: hidden;
     margin-top: 0.5em;
+    max-height: 0;
     text-transform: none;
+    transition: max-height 0.3s linear, visibility 0.3s linear;
   }
 }

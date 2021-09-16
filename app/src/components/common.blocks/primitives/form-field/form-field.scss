@@ -1,27 +1,27 @@
 .form-field {
   position: relative;
-  text-indent: 15px / 14px * 1em;
+  display: flex;
   min-width: 2em;
   min-height: 2em;
   height: 44px / 14px * 1em;
-  display: flex;
-  color: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: var(--border-radius-size);
+  color: rgba(0, 0, 0, 0.5);
+  text-indent: 15px / 14px * 1em;
 
   @media print, screen and (color) {
-    color: rgba(var(--color__dark-shade), 0.25);
     border: var(--border);
+    color: rgba(var(--color__dark-shade), 0.25);
   }
 
   &:hover,
   &:focus-within {
-    color: rgba(0, 0, 0, 1);
     border-color: rgba(0, 0, 0, 1);
+    color: rgba(0, 0, 0, 1);
 
     @media print, screen and (color) {
-      color: rgba(var(--color__dark-shade), 0.75);
       border: var(--border-hover);
+      color: rgba(var(--color__dark-shade), 0.75);
     }
   }
 }
