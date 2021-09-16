@@ -105,7 +105,12 @@
   }
 
   &__text-separator {
+    height: 1em;
     border-bottom: 1px dashed black;
+
+    @media print, screen and (color) {
+      border-bottom-color: rgba($color: var(--color__dark-shade), $alpha: 0.25);
+    }
   }
 
   &__submit-btn {
