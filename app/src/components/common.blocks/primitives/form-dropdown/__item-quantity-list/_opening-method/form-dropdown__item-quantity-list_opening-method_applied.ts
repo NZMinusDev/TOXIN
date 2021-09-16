@@ -16,7 +16,10 @@ class FormDropdownItemQuantityListAppliedOpeningTypeModifier extends FormDropdow
 
     this._DOM = this._initDOM();
 
-    this._bindClearBtnListeners()._bindApplyBtnListeners()._bindComponentListeners();
+    this._bindClearBtnListeners()
+      ._bindApplyBtnListeners()
+      ._bindWindowListeners()
+      ._bindComponentListeners();
 
     this._initDisplay();
   }
@@ -64,6 +67,22 @@ class FormDropdownItemQuantityListAppliedOpeningTypeModifier extends FormDropdow
   protected _applyBtnEventListenerObject = {
     handleApplyBtnClick: () => {
       this.component.close();
+    },
+  };
+
+  protected _bindWindowListeners() {
+    window.addEventListener('click', this._windowEventListenerObject.handleWindowClick);
+
+    return this;
+  }
+  protected _windowEventListenerObject = {
+    handleWindowClick: (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      const dropdownElement = this.component.element.closest('.js-form-dropdown') as HTMLElement;
+
+      if (!dropdownElement.contains(target) && this.component.isOpen()) {
+        this.component.close();
+      }
     },
   };
 
