@@ -132,7 +132,6 @@
   &__list-label {
     @media print, screen and (min-width: 0) {
       display: inline-flex;
-      cursor: pointer;
 
       &::after {
         color: inherit;
@@ -143,7 +142,9 @@
     }
 
     @media print, screen and (min-width: 992px) {
-      cursor: auto;
+      &[for] {
+        cursor: auto;
+      }
 
       &::after {
         display: none;

@@ -26,6 +26,9 @@ label {
   cursor: inherit;
   user-select: none;
 }
+label[for] {
+  cursor: pointer;
+}
 input {
   margin: 0;
   padding: 0;
@@ -34,6 +37,11 @@ input {
 }
 input[type='text'] {
   padding-right: 1em;
+}
+input[type='checkbox'],
+input[type='radio'],
+input[type='button'] {
+  cursor: pointer;
 }
 button,
 input {

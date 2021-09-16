@@ -42,7 +42,6 @@
     height: 20px / 14px * 1em;
     border: 1px solid black;
     border-radius: var(--border-radius-size);
-    cursor: pointer;
     grid-area: button-item;
     appearance: none;
 
@@ -52,8 +51,7 @@
 
     &:checked {
       @media print, screen and (color) {
-        background: linear-gradient(180deg, white, white) padding-box,
-          gradients.primary(1) border-box;
+        border-color: rgba(var(--color__primary), 1);
       }
 
       &::before {
