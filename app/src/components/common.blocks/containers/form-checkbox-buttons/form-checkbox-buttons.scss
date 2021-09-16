@@ -51,8 +51,7 @@
 
     &:checked {
       @media print, screen and (color) {
-        background: linear-gradient(180deg, white, white) padding-box,
-          gradients.primary(1) border-box;
+        border-color: rgba(var(--color__primary), 1);
       }
 
       &::before {
