@@ -75,7 +75,9 @@
               border: var(--border-hover);
             }
 
-            &.iqdropdown__counter_isDisabled {
+            &:disabled {
+              cursor: auto;
+
               @media print, screen and (color) {
                 border: var(--border);
               }

@@ -366,15 +366,15 @@ class FormDropdownItemQuantityList extends BEMComponent<
     const itemAmount = this._state.itemsCounter.get(targetMenuOptionOptions.id);
 
     if (targetMenuOptionOptions.minCount === itemAmount) {
-      decrementBtn.classList.add('iqdropdown__counter_isDisabled');
+      decrementBtn.disabled = true;
     } else {
-      decrementBtn.classList.remove('iqdropdown__counter_isDisabled');
+      decrementBtn.disabled = false;
     }
 
     if (targetMenuOptionOptions.maxCount === itemAmount) {
-      incrementBtn.classList.add('iqdropdown__counter_isDisabled');
+      incrementBtn.disabled = true;
     } else {
-      incrementBtn.classList.remove('iqdropdown__counter_isDisabled');
+      incrementBtn.disabled = false;
     }
 
     return this;
