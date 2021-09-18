@@ -1,0 +1,172 @@
+{
+  "rooms": [
+    {
+      "number": 888,
+      "grade": "Люкс",
+      "payment": 9990,
+      "rate": 5,
+      "comments": 145,
+      "href": "./mock.html",
+      "paths": [
+        "contents/rooms/luxury/888/888.jpg",
+        "contents/rooms/luxury/888/888_2.jpg",
+        "contents/rooms/luxury/888/888_3.jpg",
+        "contents/rooms/common/840/840.jpg"
+      ]
+    },
+    {
+      "number": 840,
+      "grade": "",
+      "payment": 9900,
+      "rate": 4,
+      "comments": 65,
+      "href": "/mock.html",
+      "paths": [
+        "contents/rooms/common/840/840.jpg",
+        "contents/rooms/luxury/888/888.jpg",
+        "contents/rooms/common/840/840.jpg",
+        "contents/rooms/luxury/888/888.jpg"
+      ]
+    },
+    {
+      "number": 980,
+      "grade": "Люкс",
+      "payment": 8500,
+      "rate": 3,
+      "comments": 35,
+      "href": "/mock.html",
+      "paths": [
+        "contents/rooms/luxury/980/980.jpg",
+        "contents/rooms/common/840/840.jpg",
+        "contents/rooms/luxury/888/888.jpg",
+        "contents/rooms/common/840/840.jpg"
+      ]
+    },
+    {
+      "number": 856,
+      "grade": "",
+      "payment": 7300,
+      "rate": 5,
+      "comments": 19,
+      "href": "/mock.html",
+      "paths": [
+        "contents/rooms/common/856/856.jpg",
+        "contents/rooms/luxury/888/888.jpg",
+        "contents/rooms/common/840/840.jpg",
+        "contents/rooms/luxury/888/888.jpg"
+      ]
+    },
+    {
+      "number": 740,
+      "grade": "",
+      "payment": 6000,
+      "rate": 4,
+      "comments": 44,
+      "href": "/mock.html",
+      "paths": [
+        "contents/rooms/common/740/740.jpg",
+        "contents/rooms/luxury/888/888.jpg",
+        "contents/rooms/common/840/840.jpg",
+        "contents/rooms/luxury/888/888.jpg"
+      ]
+    },
+    {
+      "number": 982,
+      "grade": "",
+      "payment": 5800,
+      "rate": 3,
+      "comments": 566,
+      "href": "/mock.html",
+      "paths": [
+        "contents/rooms/common/982/982.jpg",
+        "contents/rooms/luxury/888/888.jpg",
+        "contents/rooms/common/840/840.jpg",
+        "contents/rooms/luxury/888/888.jpg"
+      ]
+    },
+    {
+      "number": 678,
+      "grade": "",
+      "payment": 5500,
+      "rate": 5,
+      "comments": 45,
+      "href": "/mock.html",
+      "paths": [
+        "contents/rooms/common/678/678.jpg",
+        "contents/rooms/luxury/888/888.jpg",
+        "contents/rooms/common/840/840.jpg",
+        "contents/rooms/luxury/888/888.jpg"
+      ]
+    },
+    {
+      "number": 450,
+      "grade": "",
+      "payment": 5300,
+      "rate": 4,
+      "comments": 39,
+      "href": "/mock.html",
+      "paths": [
+        "contents/rooms/common/450/450.jpg",
+        "contents/rooms/luxury/888/888.jpg",
+        "contents/rooms/common/840/840.jpg",
+        "contents/rooms/luxury/888/888.jpg"
+      ]
+    },
+    {
+      "number": 350,
+      "grade": "",
+      "payment": 5000,
+      "rate": 3,
+      "comments": 77,
+      "href": "/mock.html",
+      "paths": [
+        "contents/rooms/common/350/350.jpg",
+        "contents/rooms/luxury/888/888.jpg",
+        "contents/rooms/common/840/840.jpg",
+        "contents/rooms/luxury/888/888.jpg"
+      ]
+    },
+    {
+      "number": 666,
+      "grade": "",
+      "payment": 5000,
+      "rate": 5,
+      "comments": 25,
+      "href": "/mock.html",
+      "paths": [
+        "contents/rooms/common/666/666.jpg",
+        "contents/rooms/luxury/888/888.jpg",
+        "contents/rooms/common/840/840.jpg",
+        "contents/rooms/luxury/888/888.jpg"
+      ]
+    },
+    {
+      "number": 444,
+      "grade": "",
+      "payment": 5000,
+      "rate": 3,
+      "comments": 15,
+      "href": "/mock.html",
+      "paths": [
+        "contents/rooms/common/444/444.jpg",
+        "contents/rooms/luxury/888/888.jpg",
+        "contents/rooms/common/840/840.jpg",
+        "contents/rooms/luxury/888/888.jpg"
+      ]
+    },
+    {
+      "number": 352,
+      "grade": "",
+      "payment": 5000,
+      "rate": 3,
+      "comments": 55,
+      "href": "/mock.html",
+      "paths": [
+        "contents/rooms/common/352/352.jpg",
+        "contents/rooms/luxury/888/888.jpg",
+        "contents/rooms/common/840/840.jpg",
+        "contents/rooms/luxury/888/888.jpg"
+      ]
+    }
+  ]
+}
