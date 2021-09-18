@@ -52,6 +52,7 @@
     "@common.blocks": "${folder}/app/src//components/common.blocks/",
     "@themes": "${folder}/app/src/themes/",
     "@assets": "${folder}/app/src/assets/",
+    "@pages": "${folder}/app/src/pages/",
     "@utils": "${folder}/app/src/utils/"
   },
   "path-autocomplete.triggerOutsideStrings": true,

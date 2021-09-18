@@ -1,17 +1,14 @@
 extends ~@layouts/basic/toxin-main-layout/toxin-main-layout.pug
 
 //- components
-include ~@common.blocks/containers/registration-card/registration-card.pug
 include ~@common.blocks/containers/entering-card/entering-card.pug
 
 block append variables
   -
-    title = 'Регистрация и вход';
-    description = 'Страница регистрации и входа в макете сайта TOXIN';
+    title = 'Вход';
+    description = 'Страница входа в макете сайта TOXIN';
 
 block content
   main.sign-in-layout
-    .sign-in-layout__card.js-sign-in-layout__card.sign-in-layout__card_hidden
-      +registration-card
-    .sign-in-layout__card.js-sign-in-layout__card
+    .sign-in-layout__card
       +entering-card

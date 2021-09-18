@@ -12,19 +12,9 @@ block content
     p.index__description Здесь представлены сверстанные страницы, выбирай любую.
     nav.index__pages-navigation
       ul.index__pages-list
-        li.index__pages-list-item 
-          a(href="./colors-&-type.html") Colors & Type
-        li.index__pages-list-item 
-          a(href="./form-elements.html") Form Elements
-        li.index__pages-list-item 
-          a(href="./cards.html") Cards
-        li.index__pages-list-item 
-          a(href="./headers-&-footers.html") Headers & Footers
-        li.index__pages-list-item 
-          a(href="./landing-page.html") Landing page
-        li.index__pages-list-item 
-          a(href="./search-room.html") Search room
-        li.index__pages-list-item 
-          a(href="./room-details.html") Room details
-        li.index__pages-list-item 
-          a(href="./sign-in.html") Registration and Sign in
+        -
+          const json = htmlWebpackPlugin ? require('@pages/index/index.json') : { pages: [] };
+          const { pages } = json;
+        each page in pages
+          li.index__pages-list-item
+            a(href=page.href)= page.title
