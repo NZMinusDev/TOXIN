@@ -11,7 +11,11 @@ include ~@common.blocks/primitives/icon/icon.pug
   icons?: { glyph: string, title: string, href: string }[] - icons
   copyright?: string - copyright text
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscription', method = 'post', icons = [ { glyph: '&#xf099;', title: 'twitter', href: '/mock.html' }, { glyph: '&#xf082;', title: 'facebook', href: '/mock.html' }, { glyph: '&#xf16d;', title: 'instagram', href: '/mock.html' } ], copyright = 'Copyright © 2018 Toxin отель. Все права зачищены.' } = {})
+mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscription', method = 'post', icons = [], copyright = 'Copyright © 2018 Toxin отель. Все права зачищены.' } = {})
+  -
+    const json = htmlWebpackPlugin ? require('@common.blocks/basic/footer/footer.json') : { navigation: { items:[] }, icons: [{}] };
+    const { navigation } = json;
+    icons = icons.length > 0 ? icons : json.icons;
   case type
     when 'creative'
       footer.footer.footer_type_creative&attributes(attributes)
@@ -36,43 +40,19 @@ mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscriptio
               href="/landing-page.html"
             )
           p.footer__description Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»
-          section.footer__navigation
-            input#footer-navigation-checkbox.footer__list-checkbox(type="checkbox") 
-            h3.footer__list-label-heading
-              label.footer__list-label(for="footer-navigation-checkbox", tabindex="0") Навигация
-            ul.footer__list
-              li.footer__list-item
-                a.footer__link(href="/mock.html") О нас
-              li.footer__list-item
-                a.footer__link(href="/mock.html") Новости
-              li.footer__list-item
-                a.footer__link(href="/mock.html") Служба поддержки
-              li.footer__list-item
-                a.footer__link(href="/mock.html") Услуги
-          section.footer__about-us-section
-            input#footer-about-checkbox.footer__list-checkbox(type="checkbox")
-            h3.footer__list-label-heading
-              label.footer__list-label(for="footer-about-checkbox", tabindex="0") О нас
-            ul.footer__list
-              li.footer__list-item
-                a.footer__link(href="/mock.html") О сервисе
-              li.footer__list-item
-                a.footer__link(href="/mock.html") Наша команда
-              li.footer__list-item
-                a.footer__link(href="/mock.html") Вакансии
-              li.footer__list-item
-                a.footer__link(href="/mock.html") Инвесторы
-          section.footer__support
-            input#footer-support-checkbox.footer__list-checkbox(type="checkbox")
-            h3.footer__list-label-heading
-              label.footer__list-label(for="footer-support-checkbox", tabindex="0") Служба поддержки
-            ul.footer__list
-              li.footer__list-item
-                a.footer__link(href="/mock.html") Соглашения
-              li.footer__list-item
-                a.footer__link(href="/mock.html") Сообщества
-              li.footer__list-item
-                a.footer__link(href="/mock.html") Связь с нами
+          -
+            const getRandID = () => Date.now() + Math.random();
+          each list, index in navigation.items
+            -
+              const id = getRandID();
+            section(class=`footer__menu-${index}`)
+              input.footer__list-checkbox(id=id, type="checkbox")
+              h3.footer__list-label-heading
+                label.footer__list-label(for=id, tabindex="0")= list.heading
+              ul.footer__list
+                each link in list.links
+                  li.footer__list-item
+                    a.footer__link(href=link.href)= link.title
           section.footer__subscription
             input#footer-subscription-checkbox.footer__list-checkbox(type="checkbox")
             h3.footer__list-label-heading

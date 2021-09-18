@@ -33,7 +33,7 @@
       display: grid;
       padding: #{100px / 14px * 1em} #{140px / 1440px * 100%};
       grid-area: widgets;
-      grid: 'logo' 'description' 'navigation' 'about-us-section' 'support' 'subscription';
+      grid: 'logo' 'description' 'menu-0' 'menu-1' 'menu-2' 'subscription';
       grid-row-gap: 16px / 14px * 1em;
       justify-items: center;
     }
@@ -41,14 +41,14 @@
     @media print, screen and (min-width: 992px) {
       $padding: 140px;
       $description-width: 260px / (1440px - $padding * 2) * 100%;
-      $navigation-gap-width: 40px / (1440px - $padding * 2) * 100%;
-      $about-gap-width: 57px / (1440px - $padding * 2) * 100%;
-      $support-gap-width: 92px / (1440px - $padding * 2) * 100%;
+      $menu-0-gap-width: 40px / (1440px - $padding * 2) * 100%;
+      $menu-1-gap-width: 57px / (1440px - $padding * 2) * 100%;
+      $menu-2-gap-width: 92px / (1440px - $padding * 2) * 100%;
       $subscription-gap-width: 54px / (1440px - $padding * 2) * 100%;
 
       grid:
-        'logo . navigation . about-us-section . support . subscription' auto
-        'description . navigation . about-us-section . support . subscription' 1fr / #{$description-width} #{$navigation-gap-width} auto #{$about-gap-width} auto #{$support-gap-width} auto #{$subscription-gap-width} auto;
+        'logo . menu-0 . menu-1 . menu-2 . subscription' auto
+        'description . menu-0 . menu-1 . menu-2 . subscription' 1fr / #{$description-width} #{$menu-0-gap-width} auto #{$menu-1-gap-width} auto #{$menu-2-gap-width} auto #{$subscription-gap-width} auto;
       justify-items: start;
     }
 
@@ -75,9 +75,9 @@
     }
   }
 
-  &__navigation {
+  &__menu-0 {
     @media print, screen and (min-width: 0) {
-      grid-area: navigation;
+      grid-area: menu-0;
     }
   }
 
@@ -176,15 +176,15 @@
     }
   }
 
-  &__about-us-section {
+  &__menu-1 {
     @media print, screen and (min-width: 0) {
-      grid-area: about-us-section;
+      grid-area: menu-1;
     }
   }
 
-  &__support {
+  &__menu-2 {
     @media print, screen and (min-width: 0) {
-      grid-area: support;
+      grid-area: menu-2;
     }
   }
 
