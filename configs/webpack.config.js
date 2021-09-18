@@ -353,6 +353,7 @@ const cssLoaders = (extraLoader) => {
     {
       loader: 'css-loader',
       options: {
+        // eslint-disable-next-line no-unused-vars
         url: (url, resourcePath) => {
           // resourcePath - path to css file
 

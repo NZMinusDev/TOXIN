@@ -112,9 +112,9 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
       this._insertNextButtonPaginationItem(newList);
     }
 
-    // eslint-disable-next-line dot-notation
+    // eslint-disable-next-line @typescript-eslint/dot-notation
     this.component['_DOM'].list.innerHTML = '';
-    // eslint-disable-next-line dot-notation
+    // eslint-disable-next-line @typescript-eslint/dot-notation
     this.component['_DOM'].list.append(newList);
 
     return this;
@@ -276,7 +276,7 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
         : `${this._options.total} `;
     const counterText = `${counterFrom} - ${counterTo} из ${counterTotalText}${this._options.text}`;
 
-    // eslint-disable-next-line dot-notation
+    // eslint-disable-next-line @typescript-eslint/dot-notation
     this.component['_DOM'].counter.textContent = counterText;
 
     return this;

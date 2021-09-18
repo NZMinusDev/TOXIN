@@ -71,6 +71,7 @@ const makeCaching = <
 ): ((...funcArgs: TFunctionArgs[]) => TFunctionReturn) => {
   const cache = new Map();
 
+  // eslint-disable-next-line func-names
   return function (...args) {
     const key = hash(args);
 
@@ -144,6 +145,7 @@ const loadCached = (url: string): Promise<string> => {
  * });
  */
 const makeMemorizable = (memo: number[], formula: (recursionCallback, n: number) => number) => {
+  // eslint-disable-next-line func-names
   const recursionCallback = function (n) {
     let result = memo[n];
 

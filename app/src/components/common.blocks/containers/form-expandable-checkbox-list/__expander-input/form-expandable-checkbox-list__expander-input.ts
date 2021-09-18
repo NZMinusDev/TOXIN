@@ -58,6 +58,7 @@ class FormExpandableCheckboxListExpanderInput extends BEMComponent<
 
     return this;
   }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   protected onChange = (event: Event) => {
     this.toggleList();
   };

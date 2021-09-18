@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "esnext",
+    "target": "ESNext",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "baseUrl": "../",
+    "paths": {
+      "@layouts": ["app/src/layouts"],
+      "@library.blocks/*": ["app/src/components/library.blocks/*"],
+      "@common.blocks/*": ["app/src/components/common.blocks/*"],
+      "@themes/*": ["app/src/themes/*"],
+      "@assets/*": ["app/src/assets/*"],
+      "@utils/*": ["app/src/utils/*"]
+    },
+    "plugins": [
+      {
+        "transform": "@zerollup/ts-transform-paths",
+        "exclude": ["*"]
+      }
+    ]
+  },
+  "include": ["../app/src"],
+  "exclude": ["../app/src/components/library.blocks"]
+}

@@ -204,6 +204,7 @@ const place = (element: HTMLElement, { position = 'absolute' } = {}) => {
  *
  */
 const loadScript = (src: URL) =>
+  // eslint-disable-next-line promise/avoid-new
   new Promise((resolve, reject) => {
     const script = document.createElement('script');
 

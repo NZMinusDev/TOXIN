@@ -2,7 +2,6 @@ import {
   BEMComponent,
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/ComponentCreationHelper';
-
 import noUiSlider from '@library.blocks/primitives/form-range-slider/form-range-slider';
 
 import formRangeSliderElements, { FormRangeSliderElement } from './form-range-slider-elements';

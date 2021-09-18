@@ -1,3 +1,4 @@
+/* eslint-disable promise/avoid-new */
 import { imgToBlob } from './FileHelper';
 
 interface CancellableFetchesOptions {
@@ -16,10 +17,8 @@ interface CancellableFetchesOptions {
 const cancellableFetches = (
   urls: URL[],
   {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
     ourAsyncTask = async () => {},
     ourAsyncTaskArgs = [],
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
     abortCallback = () => {},
   }: CancellableFetchesOptions = {}
 ) => {
@@ -27,6 +26,7 @@ const cancellableFetches = (
 
   const ourJob = new Promise((resolve, reject) => {
     controller.signal.addEventListener('abort', reject);
+    // eslint-disable-next-line promise/catch-or-return
     ourAsyncTask(...ourAsyncTaskArgs).then((taskResult) => resolve(taskResult));
   });
 
@@ -47,6 +47,8 @@ const cancellableFetches = (
       throw err;
     }
   }
+
+  return null;
 };
 
 const getJSON = async (url: URL) => {
@@ -67,7 +69,7 @@ const handleResponseProcess = async (
   url: URL,
   {
     fetchOptions = {},
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
     progressCallback = (receivedLength: number, contentLength: number) => {},
   }: HandleResponseProcessOptions = {}
 ) => {
@@ -85,8 +87,9 @@ const handleResponseProcess = async (
       let receivedLength = 0;
 
       // should be for await..of in the future
-      // eslint-disable-next-line no-loops/no-loops
+      // eslint-disable-next-line no-constant-condition, no-loops/no-loops
       while (true) {
+        // eslint-disable-next-line no-await-in-loop
         const { done, value } = await reader.read();
 
         if (done) {
@@ -114,7 +117,7 @@ const getProgressedJSON = async (
   url: URL,
   {
     fetchOptions = {},
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     progressCallback = (receivedLength: number, contentLength: number) => {},
   }: HandleResponseProcessOptions = {}
 ) => {
@@ -139,7 +142,7 @@ const getBlob = async (url: URL) => {
   const response = await fetch(url.toString());
 
   if (response.ok) {
-    return await response.blob();
+    return response.blob();
   }
 
   throw new Error(`Ошибка HTTP: ${response.status}`);
@@ -152,6 +155,7 @@ const getProgressedBlob = async (
   url: URL,
   {
     fetchOptions = {},
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     progressCallback = (receivedLength: number, contentLength: number) => {},
   }: HandleResponseProcessOptions = {}
 ) => {
@@ -164,8 +168,8 @@ const getProgressedBlob = async (
   return null;
 };
 
-const sendJSON = async (url: URL, valueToStringify: unknown) =>
-  await fetch(url.toString(), {
+const sendJSON = (url: URL, valueToStringify: unknown) =>
+  fetch(url.toString(), {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
@@ -176,6 +180,7 @@ const sendJSON = async (url: URL, valueToStringify: unknown) =>
 const sendProgressedJSON = async (
   url: URL,
   valueToStringify: unknown,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   { progressCallback = (event: ProgressEvent<EventTarget>) => {} } = {}
 ) => {
   const xhr = new XMLHttpRequest();
@@ -184,6 +189,7 @@ const sendProgressedJSON = async (
     progressCallback(event);
   };
 
+  // eslint-disable-next-line no-async-promise-executor, @typescript-eslint/no-unused-vars
   return new Promise(async (resolve, reject) => {
     xhr.onloadend = () => {
       resolve(xhr);
@@ -202,15 +208,16 @@ const sendImg = async (url: URL, img: HTMLImageElement, { name = 'image' } = {})
   const formData = new FormData();
   formData.append(name, blob, img.src);
 
-  return await fetch(url.toString(), {
+  return fetch(url.toString(), {
     method: 'POST',
     body: formData,
   });
 };
 
-const sendProgressedImg = async (
+const sendProgressedImg = (
   url: URL,
   img: HTMLImageElement,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   { progressCallback = (event: ProgressEvent<EventTarget>) => {}, name = 'image' } = {}
 ) => {
   const xhr = new XMLHttpRequest();
@@ -219,7 +226,8 @@ const sendProgressedImg = async (
     progressCallback(event);
   };
 
-  return await new Promise(async (resolve, reject) => {
+  // eslint-disable-next-line no-async-promise-executor, @typescript-eslint/no-unused-vars
+  return new Promise(async (resolve, reject) => {
     xhr.onloadend = () => {
       resolve(xhr);
     };
@@ -245,6 +253,7 @@ const getXMLHttpRequestHeaders = (xhr: XMLHttpRequest) =>
     .split('\r\n')
     .reduce((result: { [index: string]: string }, current) => {
       const [name, value] = current.split(': ');
+      // eslint-disable-next-line no-param-reassign
       result[name] = value;
 
       return result;

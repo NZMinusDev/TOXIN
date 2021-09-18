@@ -62,9 +62,9 @@ const addDragAndDrop = (
   element: HTMLElement,
   {
     droppableSelector = '[data-droppable]',
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     enterDroppable = (currentDroppable: Element) => {},
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     leaveDroppable = (currentDroppable: Element) => {},
   } = {}
 ) => {
@@ -90,7 +90,7 @@ const addDragAndDrop = (
     // потенциальная цель переноса, над которой мы пролетаем прямо сейчас
     let currentDroppable: Element | null = null;
 
-    // eslint-disable-next-line no-shadow
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     const onMouseMove = (event) => {
       moveAt(event.pageX, event.pageY);
 

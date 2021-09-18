@@ -2,7 +2,6 @@ import {
   BEMComponent,
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/ComponentCreationHelper';
-
 import type {
   DatepickerCardCustomEvents,
   DatepickerCard,
@@ -11,7 +10,7 @@ import type {
 import '@common.blocks/primitives/datepicker-card/datepicker-card';
 
 import formDropdownElements from '../form-dropdown-elements';
-import { ExpandableItemCustomEvents } from '../form-dropdown';
+import type { ExpandableItemCustomEvents } from '../form-dropdown';
 
 type FormDropdownDatepickerElement = HTMLDivElement;
 

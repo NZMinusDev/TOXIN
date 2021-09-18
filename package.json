@@ -1,15 +1,10 @@
 {
   "name": "toxin",
   "version": "0.1.0",
-  "description": "Just for educational purpose.",
   "private": true,
-  "scripts": {
-    "start": "rm -r -f app/dist && cross-env NODE_ENV=development MEASURE=false ImagesResizer=true webpack-dev-server --config configs/webpack.config.js --mode development --open",
-    "dev": "cross-env NODE_ENV=development MEASURE=false ImagesResizer=true webpack --config configs/webpack.config.js --mode development",
-    "build": "cross-env NODE_ENV=production MEASURE=true ImagesResizer=true webpack --config configs/webpack.config.js --mode production",
-    "analyze": "mkdirp app/log && cross-env NODE_ENV=production MEASURE=false ImagesResizer=false webpack --config configs/webpack.config.js --mode production --json > app/log/stats.json && webpack-bundle-analyzer app/log/stats.json",
-    "ext": "code --install-extension eamodio.gitlens && code --install-extension ms-vscode.powershell && code --install-extension teabyii.ayu && code --install-extension PKief.material-icon-theme && code --install-extension pranaygp.vscode-css-peek && code --install-extension ecmel.vscode-html-css && code ----install-extension rafikis75.vscode-sassdoc && code --install-extension ionutvmi.path-autocomplete && code --install-extension formulahendry.auto-complete-tag && code --install-extension wmaurer.change-case && code --install-extension CoenraadS.bracket-pair-colorizer && code --install-extension streetsidesoftware.code-spell-checker && code --install-extension wayou.vscode-todo-highlight && code --install-extension wallabyjs.quokka-vscode && code --install-extension dbaeumer.vscode-eslint && code --install-extension esbenp.prettier-vscode && code --install-extension kisstkondoros.vscode-gutter-preview && code --install-extension jumpinjackie.vscode-map-preview && code --install-extension jock.svg && code --install-extension DavidAnson.vscode-markdownlint && code --install-extension earshinov.sort-lines-by-selection && code --install-extension ritwickdey.LiveServer && code --install-extension wix.vscode-import-cost && code --install-extension xabikos.JavaScriptSnippets && code --install-extension gogocrow.webpack-snippets"
-  },
+  "author": "Nikita Zaitsev <developer.n.zaytsev@gmail.com>",
+  "license": "MIT",
+  "description": "Just for educational purpose.",
   "keywords": [
     "frontend",
     "UI",
@@ -24,31 +19,47 @@
     "typescript",
     "webpack"
   ],
-  "author": "Nikita Zaitsev <developer.n.zaytsev@gmail.com>",
-  "license": "MIT",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ],
+  "scripts": {
+    "start": "rm -r -f app/dist && cross-env NODE_ENV=development MEASURE=false ImagesResizer=true webpack-dev-server --config configs/webpack.config.js --mode development --open",
+    "dev": "cross-env NODE_ENV=development MEASURE=false ImagesResizer=true webpack --config configs/webpack.config.js --mode development",
+    "build": "cross-env NODE_ENV=production MEASURE=true ImagesResizer=true webpack --config configs/webpack.config.js --mode production",
+    "analyze": "mkdirp app/log && cross-env NODE_ENV=production MEASURE=false ImagesResizer=false webpack --config configs/webpack.config.js --mode production --json > app/log/stats.json && webpack-bundle-analyzer app/log/stats.json",
+    "lint": "stylelint \"./app/src/**/*.scss\" && eslint ./app/src/ --ext .js,.ts",
+    "lint:fix": "prettier ./app/src/ --ignore-path ./configs/prettier/.prettierignore --ignore-unknown --check --write && stylelint \"./app/src/**/*.scss\" --fix && eslint ./app/src/ --ext .js,.ts --fix"
+  },
+  "stylelint": {
+    "extends": "./configs/stylelint.config.js"
+  },
+  "eslintConfig": {
+    "extends": "./configs/.eslintrc.js"
+  },
+  "prettier": "./configs/prettier/prettier.config.js",
   "devDependencies": {
     "@prettier/plugin-pug": "^1.15.2",
     "@types/inputmask": "^5.0.1",
     "@types/jquery": "^3.5.2",
     "@types/lodash-es": "^4.17.4",
     "@types/stylelint": "^13.13.2",
-    "@typescript-eslint/eslint-plugin": "^4.1.0",
-    "@typescript-eslint/parser": "^4.1.0",
     "@zerollup/ts-transform-paths": "^1.7.18",
     "clean-webpack-plugin": "^3.0.0",
-    "eslint": "^7.23.0",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-config-prettier": "^6.11.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-airbnb-typescript": "^14.0.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-fsd": "^1.0.1",
-    "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-no-loops": "^0.3.0",
     "eslint-plugin-no-use-extend-native": "^0.5.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-sonarjs": "^0.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-sonarjs": "^0.10.0",
     "mkdirp": "^1.0.4",
-    "prettier": "^2.1.1",
+    "prettier": "^2.3.2",
     "stylelint": "^13.13.1",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^22.0.0",
@@ -102,17 +113,10 @@
     "sass-loader": "^10.0.2",
     "speed-measure-webpack-plugin": "^1.3.3",
     "terser-webpack-plugin": "^4.2.0",
-    "typescript": "^4.0.2",
+    "typescript": "^4.4.3",
     "unused-files-webpack-plugin": "^3.4.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-images-resizer": "^0.1.2"
-  },
-  "stylelint": {
-    "extends": "./configs/stylelint.config.js"
-  },
-  "eslintConfig": {
-    "extends": "./configs/.eslintrc.js"
-  },
-  "prettier": "./configs/prettier.config.js"
+  }
 }

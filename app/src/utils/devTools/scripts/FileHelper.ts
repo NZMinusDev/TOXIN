@@ -16,7 +16,7 @@ const createBase64 = async (
   const fileReader = new FileReader();
   fileReader.readAsDataURL(blob);
 
-  // eslint-disable-next-line sonarjs/prefer-immediate-return
+  // eslint-disable-next-line sonarjs/prefer-immediate-return, promise/avoid-new
   const result = await new Promise<string>((resolve) => {
     const onLoad = () => {
       resolve(fileReader.result as string);
@@ -32,7 +32,7 @@ const blobToArrayBuffer = async (blob: Blob) => {
   const fileReader = new FileReader();
   fileReader.readAsArrayBuffer(blob);
 
-  // eslint-disable-next-line sonarjs/prefer-immediate-return
+  // eslint-disable-next-line sonarjs/prefer-immediate-return, promise/avoid-new
   const result = await new Promise<ArrayBuffer>((resolve) => {
     const onLoad = () => {
       resolve(fileReader.result as ArrayBuffer);
@@ -46,7 +46,7 @@ const blobToArrayBuffer = async (blob: Blob) => {
 
 const imgToCanvas = (
   img: HTMLImageElement,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
   imgProcessing = (canvas: HTMLCanvasElement) => {}
 ) => {
   const canvas = document.createElement('canvas');
@@ -63,11 +63,11 @@ const imgToCanvas = (
 
 const imgToBlob = async (
   img: HTMLImageElement,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
   imgProcessing = (canvas: HTMLCanvasElement) => {}
 ) => {
   const canvas = imgToCanvas(img, imgProcessing);
-  // eslint-disable-next-line sonarjs/prefer-immediate-return
+  // eslint-disable-next-line sonarjs/prefer-immediate-return, promise/avoid-new
   const result = await new Promise<Blob>((resolve) =>
     canvas.toBlob(resolve as BlobCallback, 'image/png')
   );

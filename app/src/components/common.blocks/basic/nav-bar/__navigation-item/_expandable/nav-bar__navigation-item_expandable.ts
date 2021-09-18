@@ -45,7 +45,8 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
 
   // eslint-disable-next-line class-methods-use-this
   protected _initState() {
-    const isSmallDesktopMediaMatched = NavBarExpandableNavigationItemModifier._getSmallDesktopMediaMatching();
+    const isSmallDesktopMediaMatched =
+      NavBarExpandableNavigationItemModifier._getSmallDesktopMediaMatching();
 
     return { isSmallDesktopMediaMatched };
   }
@@ -74,7 +75,8 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
   }
   protected _windowEventListenerObject = {
     handleWindowResize: () => {
-      this._state.isSmallDesktopMediaMatched = NavBarExpandableNavigationItemModifier._getSmallDesktopMediaMatching();
+      this._state.isSmallDesktopMediaMatched =
+        NavBarExpandableNavigationItemModifier._getSmallDesktopMediaMatching();
 
       if (!this._state.isSmallDesktopMediaMatched) {
         this._removeMaxHeightFromChildList();

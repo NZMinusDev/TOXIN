@@ -9,7 +9,7 @@ import formTextFieldElements, { FormTextFieldElement } from './form-text-field-e
 type FormTextFieldCustomEvents = {};
 
 class FormTextField extends BEMComponent<FormTextFieldElement, FormTextFieldCustomEvents> {
-  // eslint-disable-next-line no-useless-constructor
+  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
   constructor(formTextFieldElement: FormTextFieldElement) {
     super(formTextFieldElement);
   }

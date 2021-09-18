@@ -8,7 +8,7 @@ import { has } from '@utils/devTools/scripts/DOMHelper';
 import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
 
 import formDropdownElements from '../form-dropdown-elements';
-import { ExpandableItemCustomEvents } from '../form-dropdown';
+import type { ExpandableItemCustomEvents } from '../form-dropdown';
 
 type FormDropdownItemQuantityListElement = HTMLDivElement;
 type LibElement = HTMLDivElement;

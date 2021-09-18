@@ -14,7 +14,7 @@ class NavBarNavigationItem extends BEMComponent<
   NavBarNavigationItemElement,
   NavBarNavigationItemCustomEvents
 > {
-  // eslint-disable-next-line no-useless-constructor
+  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
   constructor(navBarNavigationItemElement: NavBarNavigationItemElement) {
     super(navBarNavigationItemElement);
   }

@@ -11,7 +11,6 @@ import {
   FormDropdownDatepickerCustomEvents,
   FormDropdownDatepickerElementWithComponent,
 } from './__datepicker/form-dropdown__datepicker';
-
 import formDropdownElements, { FormDropdownElement } from './form-dropdown-elements';
 
 type ExpandableItemElementWithComponent =

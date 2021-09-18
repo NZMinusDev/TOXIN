@@ -18,7 +18,8 @@ type FormExpandableCheckboxListDOM = {
 };
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-type FormExpandableCheckboxListCustomEvents = {} & FormExpandableCheckboxListExpanderInputCustomEvents;
+type FormExpandableCheckboxListCustomEvents =
+  {} & FormExpandableCheckboxListExpanderInputCustomEvents;
 
 class FormExpandableCheckboxList extends BEMComponent<
   FormExpandableCheckboxListElement,
@@ -57,6 +58,7 @@ class FormExpandableCheckboxList extends BEMComponent<
   }
   protected _expanderInputEventListenerObject = {
     handleExpanderInputChange: (
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       event: CustomEvent<FormExpandableCheckboxListExpanderInputCustomEvents['change']>
     ) => {
       const icon = this._DOM.expanderIcon.firstElementChild as HTMLElement;

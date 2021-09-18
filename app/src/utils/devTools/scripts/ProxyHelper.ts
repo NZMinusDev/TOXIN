@@ -40,7 +40,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-types
 const makeProxyDictionary = (target: object) =>
   new Proxy(target, {
-    // eslint-disable-next-line no-shadow
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     get(target, phrase) {
       // перехватываем чтение свойства в dictionary
       if (phrase in target) {
@@ -64,7 +64,7 @@ const makeProxyDictionary = (target: object) =>
  */
 const makeProxyInRange = (target: { start: number; end: number }) =>
   new Proxy(target, {
-    // eslint-disable-next-line no-shadow
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     has(target, propertyName) {
       return target[propertyName] >= target.start && target[propertyName] <= target.end;
     },
@@ -93,7 +93,7 @@ const makeProxyInRange = (target: { start: number; end: number }) =>
 // eslint-disable-next-line @typescript-eslint/ban-types
 const makeOOPObject = (target: object) =>
   new Proxy(target, {
-    // eslint-disable-next-line no-shadow
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     get(target, propertyName) {
       if (propertyName.toString().startsWith('_')) {
         // eslint-disable-next-line sonarjs/no-duplicate-string
@@ -105,7 +105,7 @@ const makeOOPObject = (target: object) =>
         return typeof value === 'function' ? value.bind(target) : value;
       }
     },
-    // eslint-disable-next-line no-shadow
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     set(target, propertyName, val: unknown) {
       // intercept the property record
       if (propertyName.toString().startsWith('_')) {
@@ -117,7 +117,7 @@ const makeOOPObject = (target: object) =>
         return true;
       }
     },
-    // eslint-disable-next-line no-shadow
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     deleteProperty(target, propertyName) {
       // intercept property deletion
       if (propertyName.toString().startsWith('_')) {
@@ -129,7 +129,7 @@ const makeOOPObject = (target: object) =>
         return true;
       }
     },
-    // eslint-disable-next-line no-shadow
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     ownKeys(target) {
       // intercept the iteration attempt
       return Object.keys(target).filter((key) => !key.startsWith('_'));

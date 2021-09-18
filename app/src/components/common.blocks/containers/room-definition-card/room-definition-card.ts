@@ -3,7 +3,6 @@ import {
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/ComponentCreationHelper';
 import { getDatePeriod, MS_IN_A_DAY } from '@utils/devTools/scripts/DateHelper';
-
 import type {
   FormDropdownWithItemQuantityListCustomEvents,
   FormDropdownWithDatepickerCustomEvents,
@@ -128,10 +127,14 @@ class RoomDefinitionCard extends BEMComponent<
   }
 
   protected _initSubComponents() {
-    const arrivalDateDropdown = (this._DOM.arrivalDateDropdown
-      .firstElementChild as FormDropdownWithDatepickerElementWithComponent).component;
-    const guestsDropdown = (this._DOM.guestsDropdown
-      .firstElementChild as FormDropdownWithItemQuantityListElementWithComponent).component;
+    const arrivalDateDropdown = (
+      this._DOM.arrivalDateDropdown
+        .firstElementChild as FormDropdownWithDatepickerElementWithComponent
+    ).component;
+    const guestsDropdown = (
+      this._DOM.guestsDropdown
+        .firstElementChild as FormDropdownWithItemQuantityListElementWithComponent
+    ).component;
 
     return { arrivalDateDropdown, guestsDropdown };
   }

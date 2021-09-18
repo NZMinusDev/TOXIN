@@ -9,7 +9,7 @@ import slideshowElements, { SlideshowElement } from './slideshow-elements';
 type SlideshowCustomEvents = {};
 
 class Slideshow extends BEMComponent<SlideshowElement, SlideshowCustomEvents> {
-  // eslint-disable-next-line no-useless-constructor
+  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
   constructor(slideshowElement: SlideshowElement) {
     super(slideshowElement);
   }
