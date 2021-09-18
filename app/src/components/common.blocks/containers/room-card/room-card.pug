@@ -3,38 +3,38 @@ include ~@common.blocks/containers/slideshow/slideshow.pug
 include ~@common.blocks/containers/form-rate-button/form-rate-button.pug
 
 //- 
-  href: string - link to room's page
-  roomNumber: number - number of room
-  roomGrade?: string - grade of room, for example: Люкс
-  paymentAmount: number - daily cost
+  number: number - number of room
+  grade?: string - grade of room, for example: Люкс
+  payment: number - daily cost
   rate: number - initial rating
-  commentsAmount: number - amount of comments about room
+  comments: number - amount of comments about room
+  href: string - link to room's page
   paths: string[] - images' paths
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin room-card({ href = '/mock.html', roomNumber = -1, roomGrade = '', paymentAmount = -1, rate = 0, commentsAmount = -1, paths = [] } = {})
+mixin room-card({ number = -1, grade = '', payment = -1, rate = 0, comments = -1, href = '/mock.html', paths = [] } = {})
   -
     const currency = '₽';
 
-    const roomNumberSentence = `№ ${roomNumber.toLocaleString()}`;
-    const paymentAmountSentence = `${paymentAmount.toLocaleString()}${currency}`;
-    const commentsAmountSentence = `${commentsAmount.toLocaleString()}`;
+    const numberSentence = `№ ${number.toLocaleString()}`;
+    const paymentSentence = `${payment.toLocaleString()}${currency}`;
+    const commentsSentence = `${comments.toLocaleString()}`;
 
-    const uniqueNamePostfix = Math.random();
+    const uniqueNamePostfix = Date.now() + Math.random();
   figure.room-card&attributes(attributes)
     .room-card__slideshow
       +slideshow({ name: `${href}-slideshow-${uniqueNamePostfix}`, paths })
     figcaption.room-card__room-data
       a.room-card__data-row(href=href, title="Подробнее о номере")
         .room-card__room-title
-          h2.room-card__room-number= roomNumberSentence
-          if roomGrade
-            h3.room-card__room-grade= roomGrade
+          h2.room-card__room-number= numberSentence
+          if grade
+            h3.room-card__room-grade= grade
         h3.room-card__day-payment
-          = paymentAmountSentence
+          = paymentSentence
           +card-text(' в сутки', { size: 'small' })
       .room-card__data-row
         .room-card__room-rating
           +form-rate-button({ name: `${href}-rating-${uniqueNamePostfix}`, rate, disabled: true,interaction: 'rejected' })
         h3.room-card__room-comments
-          = commentsAmountSentence
+          = commentsSentence
           +card-text(' Отзывов')
