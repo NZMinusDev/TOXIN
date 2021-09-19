@@ -11,7 +11,7 @@ include ~@common.blocks/containers/form-rate-button/form-rate-button.pug
   href: string - link to room's page
   paths: string[] - images' paths
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin room-card({ number = -1, grade = '', payment = -1, rate = 0, comments = -1, href = '/mock.html', paths = [] } = {})
+mixin room-card({ number = -1, grade = '', payment = -1, rate = 0, comments = -1, href = './mock.html', paths = [] } = {})
   -
     const currency = '₽';
 

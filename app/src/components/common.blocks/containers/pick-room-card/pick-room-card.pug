@@ -8,7 +8,7 @@ include ~@common.blocks/primitives/button/button.pug
   method?: 'get' | 'post' - form method
   datepickerDisabled?: boolean - same as fieldset disabled (disable all dates picking)
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin pick-room-card({ action = '/mock.js', name = 'pick-room-card', method = 'post', datepickerDisabled = false } = {})
+mixin pick-room-card({ action = undefined, name = 'pick-room-card', method = 'post', datepickerDisabled = false } = {})
   +card-base
     form.pick-room-card(name=name, action=action, method=method)&attributes(attributes)
       h1.pick-room-card__title Найдём номера под ваши пожелания

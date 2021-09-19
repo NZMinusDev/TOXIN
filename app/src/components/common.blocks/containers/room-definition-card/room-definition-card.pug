@@ -18,7 +18,7 @@ include ~@common.blocks/primitives/button/button.pug
   servicesSale: number - amount of services sale
   additionalServicesPayment: number - amount of additional services payment
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin room-definition-card({ action = '/mock.js', name = 'room-definition-card', method = 'post', roomNumber = -1, roomGrade = '', paymentAmount = -1, selectedDates = '', guestsGroups = {}, guestsList = {}, servicesPayment = -1, servicesSale = -1, additionalServicesPayment = -1 } = {})
+mixin room-definition-card({ action = undefined, name = 'room-definition-card', method = 'post', roomNumber = -1, roomGrade = '', paymentAmount = -1, selectedDates = '', guestsGroups = {}, guestsList = {}, servicesPayment = -1, servicesSale = -1, additionalServicesPayment = -1 } = {})
   -
     const currency = '₽';
     const msInADay = 24 * 60 * 60 * 1000;

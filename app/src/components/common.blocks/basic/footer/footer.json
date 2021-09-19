@@ -4,34 +4,34 @@
       {
         "heading": "Навигация",
         "links": [
-          { "title": "О нас", "href": "/mock.html" },
-          { "title": "Новости", "href": "/mock.html" },
-          { "title": "Служба поддержки", "href": "/mock.html" },
-          { "title": "Услуги", "href": "/mock.html" }
+          { "title": "О нас", "href": "./mock.html" },
+          { "title": "Новости", "href": "./mock.html" },
+          { "title": "Служба поддержки", "href": "./mock.html" },
+          { "title": "Услуги", "href": "./mock.html" }
         ]
       },
       {
         "heading": "О нас",
         "links": [
-          { "title": "О сервисе", "href": "/mock.html" },
-          { "title": "Наша команда", "href": "/mock.html" },
-          { "title": "Вакансии", "href": "/mock.html" },
-          { "title": "Инвесторы", "href": "/mock.html" }
+          { "title": "О сервисе", "href": "./mock.html" },
+          { "title": "Наша команда", "href": "./mock.html" },
+          { "title": "Вакансии", "href": "./mock.html" },
+          { "title": "Инвесторы", "href": "./mock.html" }
         ]
       },
       {
         "heading": "Служба поддержки",
         "links": [
-          { "title": "Соглашения", "href": "/mock.html" },
-          { "title": "Сообщества", "href": "/mock.html" },
-          { "title": "Связь с нами", "href": "/mock.html" }
+          { "title": "Соглашения", "href": "./mock.html" },
+          { "title": "Сообщества", "href": "./mock.html" },
+          { "title": "Связь с нами", "href": "./mock.html" }
         ]
       }
     ]
   },
   "icons": [
-    { "glyph": "&#xf099;", "title": "twitter", "href": "/mock.html" },
-    { "glyph": "&#xf082;", "title": "facebook", "href": "/mock.html" },
-    { "glyph": "&#xf16d;", "title": "instagram", "href": "/mock.html" }
+    { "glyph": "&#xf099;", "title": "twitter", "href": "./mock.html" },
+    { "glyph": "&#xf082;", "title": "facebook", "href": "./mock.html" },
+    { "glyph": "&#xf16d;", "title": "instagram", "href": "./mock.html" }
   ]
 }

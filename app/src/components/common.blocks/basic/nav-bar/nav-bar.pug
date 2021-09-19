@@ -12,10 +12,10 @@ include ./__navigation-list/nav-bar__navigation-list.pug
   active?: string - key of active item
   Tip: mixin also uses 'and attributes'(&attributes)
 
-mixin nav-bar({ status = 'unconfirmed', personHref = '/mock.html', personName = 'Константин Константинопольский', items = { 'О нас': { href: '/mock.html' }, Услуги: { href: '/mock.html', items: { 'Услуга 1': { href: '/mock.html' }, 'Услуга 2': { href: '/mock.html' }, 'Услуга 3': { href: '/mock.html' }, 'Услуга 4': { href: '/mock.html' }, 'Услуга 5': { href: '/mock.html' }, }, }, Вакансии: { href: '/mock.html' }, Новости: { href: '/mock.html' }, Соглашения: { href: '/mock.html', items: { 'Соглашение 1': { href: '/mock.html' }, 'Соглашение 2': { href: '/mock.html' }, 'Соглашение 3': { href: '/mock.html', items: { 'Соглашение 3-1': { href: '/mock.html', items: { 'Соглашение 3-1-1': { href: '/mock.html' } }, }, 'Соглашение 3-2': { href: '/mock.html' }, }, }, }, }, }, active = undefined } = {})
+mixin nav-bar({ status = 'unconfirmed', personHref = './mock.html', personName = 'Константин Константинопольский', items = { 'О нас': { href: './mock.html' }, Услуги: { href: './mock.html', items: { 'Услуга 1': { href: './mock.html' }, 'Услуга 2': { href: './mock.html' }, 'Услуга 3': { href: './mock.html' }, 'Услуга 4': { href: './mock.html' }, 'Услуга 5': { href: './mock.html' }, }, }, Вакансии: { href: './mock.html' }, Новости: { href: './mock.html' }, Соглашения: { href: './mock.html', items: { 'Соглашение 1': { href: './mock.html' }, 'Соглашение 2': { href: './mock.html' }, 'Соглашение 3': { href: './mock.html', items: { 'Соглашение 3-1': { href: './mock.html', items: { 'Соглашение 3-1-1': { href: './mock.html' } }, }, 'Соглашение 3-2': { href: './mock.html' }, }, }, }, }, }, active = undefined } = {})
   header.nav-bar.js-nav-bar&attributes(attributes)
     section.nav-bar__logo
-      +logo({ tag: 'a', color: 'primary-gradient', title: 'toxin' })(href="/landing-page.html")
+      +logo({ tag: 'a', color: 'primary-gradient', title: 'toxin' })(href="./landing-page.html")
     nav.nav-bar__navigation
       +nav-bar__navigation-list(items, active)
     -
@@ -26,8 +26,8 @@ mixin nav-bar({ status = 'unconfirmed', personHref = '/mock.html', personName = 
           a.nav-bar__person(href=personHref, title="в личный кабинет")= personName
         default
           +button({ tag: 'a', text: 'Войти', appearance: 'bordered', verticalPadding: 'small' })(
-            href="/sign-in.html"
+            href="./sign-in.html"
           )
           +button({ tag: 'a', text: 'Зарегистрироваться', verticalPadding: 'small' })(
-            href="/sign-in.html"
+            href="./sign-in.html"
           )
