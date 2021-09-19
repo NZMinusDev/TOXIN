@@ -10,7 +10,7 @@
     text-transform: uppercase;
 
     @media print, screen and (color) {
-      color: rgba(var(--color__dark-shade), 0.5);
+      color: rgba(var(--color__primary), 1);
     }
 
     &_hidden {

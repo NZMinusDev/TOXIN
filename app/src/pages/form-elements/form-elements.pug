@@ -29,9 +29,9 @@ block content
       .form-elements-layout__text-field-hover
         +form-text-field({ heading: { h3: 'text field' }, description: 'hover / focus', name: 'text', placeholder: 'Text', value: 'This is pretty awesome', autofocus: 'autofocus' })
       .form-elements-layout__dropdown
-        +form-dropdown('item-quantity', { heading: { h3: 'dropdown' }, description: 'default', name: 'guests', placeholder: 'Сколько гостей', openingMethod: 'applied', groups: { гости: { one: 'гость', two: 'гостя', five: 'гостей' }, младенцы: { one: 'младенец', two: 'младенца', five: 'младенцев' } }, list: { взрослые: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0 } } })
+        +form-dropdown('item-quantity', { heading: { h3: 'dropdown' }, name: 'guests', placeholder: 'Сколько гостей', openingMethod: 'applied', groups: { гости: { one: 'гость', two: 'гостя', five: 'гостей' }, младенцы: { one: 'младенец', two: 'младенца', five: 'младенцев' } }, list: { взрослые: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0 } } })
       .form-elements-layout__masked-text-field
-        +form-text-field({ heading: { h3: 'masked text field' }, description: 'default', name: 'masked-form-date', type: 'date' })
+        +form-text-field({ heading: { h3: 'masked text field' }, name: 'masked-form-date', type: 'date' })
       .form-elements-layout__date-dropdown
         +form-dropdown('date', { heading: { h3: 'date dropdown' }, name: 'date-1' })
         +form-dropdown('date', { heading: { h3: 'date dropdown' }, name: 'date-2', selectedDates: '2019-08-19' })
