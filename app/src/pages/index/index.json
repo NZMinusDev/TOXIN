@@ -1,13 +1,13 @@
 {
   "pages": [
-    { "title": "Colors & Type", "href": "/colors-&-type.html" },
-    { "title": "Form Elements", "href": "/form-elements.html" },
-    { "title": "Cards", "href": "/cards.html" },
-    { "title": "Headers & Footers", "href": "/headers-&-footers.html" },
-    { "title": "Landing page", "href": "/landing-page.html" },
-    { "title": "Search room", "href": "/search-room.html" },
-    { "title": "Room details", "href": "/room-details.html" },
-    { "title": "Registration", "href": "/registration.html" },
-    { "title": "Sign in", "href": "/sign-in.html" }
+    { "title": "Colors & Type", "href": "./colors-&-type.html" },
+    { "title": "Form Elements", "href": "./form-elements.html" },
+    { "title": "Cards", "href": "./cards.html" },
+    { "title": "Headers & Footers", "href": "./headers-&-footers.html" },
+    { "title": "Landing page", "href": "./landing-page.html" },
+    { "title": "Search room", "href": "./search-room.html" },
+    { "title": "Room details", "href": "./room-details.html" },
+    { "title": "Registration", "href": "./registration.html" },
+    { "title": "Sign in", "href": "./sign-in.html" }
   ]
 }

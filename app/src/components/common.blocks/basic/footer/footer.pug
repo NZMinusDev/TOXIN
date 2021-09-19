@@ -11,7 +11,7 @@ include ~@common.blocks/primitives/icon/icon.pug
   icons?: { glyph: string, title: string, href: string }[] - icons
   copyright?: string - copyright text
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscription', method = 'post', icons = [], copyright = 'Copyright © 2018 Toxin отель. Все права защищены.' } = {})
+mixin footer({ type = undefined, action = undefined, name = 'footer-subscription', method = 'post', icons = [], copyright = 'Copyright © 2018 Toxin отель. Все права защищены.' } = {})
   -
     const json = htmlWebpackPlugin ? require('@common.blocks/basic/footer/footer.json') : { navigation: { items:[] }, icons: [{}] };
     const { navigation } = json;
@@ -21,7 +21,7 @@ mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscriptio
       footer.footer.footer_type_creative&attributes(attributes)
         section.footer__logo
           +logo({ tag: 'a', color: 'primary-gradient', title: 'toxin' })(
-            href="/landing-page.html"
+            href="./landing-page.html"
           )
         p.footer__copyright= copyright
         section.footer__icons
@@ -37,7 +37,7 @@ mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscriptio
         section.footer__widgets
           section.footer__logo
             +logo({ tag: 'a', color: 'primary-gradient', title: 'toxin' })(
-              href="/landing-page.html"
+              href="./landing-page.html"
             )
           p.footer__description Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»
           -
