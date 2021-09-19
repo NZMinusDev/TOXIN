@@ -10,7 +10,7 @@ include ~@common.blocks/primitives/button/button.pug
   method?: 'get' | 'post' - form method
   redirectPath?: string - path to registration page
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin registration-card({ action = '/mock.js', name = 'registration-card', method = 'post', redirectPath = './sign-in.html' } = {})
+mixin registration-card({ action = '/mock.js', name = 'registration-card', method = 'post', redirectPath = '/sign-in.html' } = {})
   +card-base
     form.registration-card(name=name, action=action, method=method)&attributes(attributes)
       h1.registration-card__title Регистрация аккаунта
