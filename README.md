@@ -11,7 +11,7 @@ This repository exists only for educational purposes. The goal is to write a sit
 ## Demo
 
 ---
-
+[The design is here](https://www.figma.com/file/MumYcKVk9RkKZEG6dR5E3A/).
 [The result is here](https://nzminusdev.github.io/TOXIN/).
 
 ## Contribution
@@ -94,9 +94,7 @@ git subtree push --prefix app/dist origin gh-pages
 │       │   │   │───primitives // buttons, check boxes, links, ...
 │       │   │   └───specific // not repetitive, but too voluminous to remain in the main block file, for example: feedback form
 |       |   |
-│       │   ├───library.blocks // vendors
-│       │
-│       ├───figma // design source
+│       │   └───library.blocks // vendors
 │       │
 │       ├───layouts // reused layouts
 │       │

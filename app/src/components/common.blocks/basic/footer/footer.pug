@@ -11,7 +11,7 @@ include ~@common.blocks/primitives/icon/icon.pug
   icons?: { glyph: string, title: string, href: string }[] - icons
   copyright?: string - copyright text
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscription', method = 'post', icons = [], copyright = 'Copyright © 2018 Toxin отель. Все права зачищены.' } = {})
+mixin footer({ type = undefined, action = '/mock.js', name = 'footer-subscription', method = 'post', icons = [], copyright = 'Copyright © 2018 Toxin отель. Все права защищены.' } = {})
   -
     const json = htmlWebpackPlugin ? require('@common.blocks/basic/footer/footer.json') : { navigation: { items:[] }, icons: [{}] };
     const { navigation } = json;

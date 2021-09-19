@@ -3,14 +3,16 @@ import {
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/ComponentCreationHelper';
 
-import {
+import type {
   FormDropdownItemQuantityListCustomEvents,
   FormDropdownItemQuantityListElementWithComponent,
 } from './__item-quantity-list/form-dropdown__item-quantity-list';
-import {
+import './__item-quantity-list/form-dropdown__item-quantity-list';
+import type {
   FormDropdownDatepickerCustomEvents,
   FormDropdownDatepickerElementWithComponent,
 } from './__datepicker/form-dropdown__datepicker';
+import './__datepicker/form-dropdown__datepicker';
 import formDropdownElements, { FormDropdownElement } from './form-dropdown-elements';
 
 type ExpandableItemElementWithComponent =
@@ -21,15 +23,11 @@ type FormDropdownDOM = {
   expandableItem: ExpandableItemElementWithComponent;
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 type FormDropdownCustomEvents = {};
-// eslint-disable-next-line @typescript-eslint/ban-types
-type ExpandableItemCustomEvents = { open: {} };
+type ExpandableItemCustomEvents = { open: {}; close: {} };
 type FormDropdownWithItemQuantityListCustomEvents = FormDropdownCustomEvents &
-  ExpandableItemCustomEvents &
   FormDropdownItemQuantityListCustomEvents;
 type FormDropdownWithDatepickerCustomEvents = FormDropdownCustomEvents &
-  ExpandableItemCustomEvents &
   FormDropdownDatepickerCustomEvents;
 
 class FormDropdown<
@@ -45,7 +43,7 @@ class FormDropdown<
 
     this._DOM = this._initDOM();
 
-    this._bindExpandButtonListeners();
+    this._bindExpandButtonListeners()._bindExpandableItemListeners();
   }
 
   getExpandableItemElement() {
@@ -74,9 +72,50 @@ class FormDropdown<
   }
   protected _expandButtonEventListenerObject = {
     handleExpandButtonClick: () => {
-      this._DOM.expandableItem.dispatchEvent(new CustomEvent('open', { bubbles: true }));
+      this._open();
+
+      const { expandableItem } = this._DOM;
+      expandableItem.component.open();
     },
   };
+
+  protected _bindExpandableItemListeners() {
+    const { component } = this._DOM.expandableItem;
+
+    component.addCustomEventListener(
+      'open',
+      this._expandableItemEventListenerObject.handleExpandableItemOpen
+    );
+    component.addCustomEventListener(
+      'close',
+      this._expandableItemEventListenerObject.handleExpandableItemClose
+    );
+
+    return this;
+  }
+  protected _expandableItemEventListenerObject = {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    handleExpandableItemOpen: (event: ExpandableItemCustomEvents['open']) => {
+      this._open();
+    },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    handleExpandableItemClose: (event: ExpandableItemCustomEvents['close']) => {
+      this._close();
+    },
+  };
+
+  protected _open() {
+    const { expandButton } = this._DOM;
+
+    expandButton.ariaExpanded = 'true';
+    this.element.classList.add('form-dropdown_opened');
+  }
+  protected _close() {
+    const { expandButton } = this._DOM;
+
+    expandButton.ariaExpanded = 'false';
+    this.element.classList.remove('form-dropdown_opened');
+  }
 }
 
 type FormDropdownWithItemQuantityList = FormDropdown<

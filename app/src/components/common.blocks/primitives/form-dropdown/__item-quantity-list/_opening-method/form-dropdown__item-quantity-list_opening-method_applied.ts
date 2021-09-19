@@ -88,10 +88,6 @@ class FormDropdownItemQuantityListAppliedOpeningTypeModifier extends FormDropdow
 
   protected _bindComponentListeners() {
     this.component.addCustomEventListener(
-      'open',
-      this._componentEventListenerObject.handleComponentOpen
-    );
-    this.component.addCustomEventListener(
       'select',
       this._componentEventListenerObject.handleComponentSelect
     );
@@ -99,9 +95,6 @@ class FormDropdownItemQuantityListAppliedOpeningTypeModifier extends FormDropdow
     return this;
   }
   protected _componentEventListenerObject = {
-    handleComponentOpen: () => {
-      this.component.open();
-    },
     handleComponentSelect: () => {
       this._updateClearBtnDisplay();
     },

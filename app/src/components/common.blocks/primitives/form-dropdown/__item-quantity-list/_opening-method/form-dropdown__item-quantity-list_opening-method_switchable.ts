@@ -4,10 +4,20 @@ import FormDropdownItemQuantityListOpeningMethodModifier, {
 } from './coupling';
 
 class FormDropdownItemQuantityListSwitchableOpeningMethodModifier extends FormDropdownItemQuantityListOpeningMethodModifier {
+  protected _state: { wasOpened: boolean };
+
   constructor(formDropdownItemQuantityList: FormDropdownItemQuantityList) {
     super(formDropdownItemQuantityList);
 
+    this._state = this._initState();
+
     this._bindComponentListeners();
+  }
+
+  protected _initState() {
+    const wasOpened = this.component.isOpen();
+
+    return { wasOpened };
   }
 
   protected _bindComponentListeners() {
@@ -20,7 +30,13 @@ class FormDropdownItemQuantityListSwitchableOpeningMethodModifier extends FormDr
   }
   protected _componentEventListenerObject = {
     handleComponentOpen: () => {
-      this.component.toggle();
+      const { wasOpened } = this._state;
+
+      if (wasOpened) {
+        this.component.close();
+      }
+
+      this._state.wasOpened = this.component.isOpen();
     },
   };
 }

@@ -6,6 +6,7 @@ import {
 } from '@utils/devTools/scripts/ComponentCreationHelper';
 import { has } from '@utils/devTools/scripts/DOMHelper';
 import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
+import '@library.blocks/primitives/form-dropdown/__item-quantity-list/form-dropdown__item-quantity-list';
 
 import formDropdownElements from '../form-dropdown-elements';
 import type { ExpandableItemCustomEvents } from '../form-dropdown';
@@ -47,11 +48,7 @@ type FormDropdownItemQuantityListState = {
 };
 
 type FormDropdownItemQuantityListCustomEvents = {
-  // eslint-disable-next-line @typescript-eslint/ban-types
   select: {};
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  close: {};
-  // eslint-disable-next-line @typescript-eslint/ban-types
   change: {};
 } & ExpandableItemCustomEvents;
 
@@ -105,6 +102,8 @@ class FormDropdownItemQuantityList extends BEMComponent<
 
   open() {
     this._DOM.$libElement.addClass('menu-open');
+
+    this.element.dispatchEvent(new CustomEvent('open', { bubbles: true }));
 
     return this;
   }
@@ -366,15 +365,15 @@ class FormDropdownItemQuantityList extends BEMComponent<
     const itemAmount = this._state.itemsCounter.get(targetMenuOptionOptions.id);
 
     if (targetMenuOptionOptions.minCount === itemAmount) {
-      decrementBtn.classList.add('iqdropdown__counter_isDisabled');
+      decrementBtn.disabled = true;
     } else {
-      decrementBtn.classList.remove('iqdropdown__counter_isDisabled');
+      decrementBtn.disabled = false;
     }
 
     if (targetMenuOptionOptions.maxCount === itemAmount) {
-      incrementBtn.classList.add('iqdropdown__counter_isDisabled');
+      incrementBtn.disabled = true;
     } else {
-      incrementBtn.classList.remove('iqdropdown__counter_isDisabled');
+      incrementBtn.disabled = false;
     }
 
     return this;

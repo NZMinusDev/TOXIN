@@ -43,6 +43,7 @@ const sharedAliases = {
   '@common.blocks': path.resolve(PATHS.src_absolute, './components/common.blocks/'),
   '@themes': path.resolve(PATHS.src_absolute, './themes/'),
   '@assets': path.resolve(PATHS.src_absolute, './assets/'),
+  '@pages': path.resolve(PATHS.src_absolute, './pages/'),
   '@utils': path.resolve(PATHS.src_absolute, './utils/'),
 };
 

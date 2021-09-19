@@ -116,6 +116,7 @@ const config = {
           ['@common.blocks', './app/src/components/common.blocks/'],
           ['@themes', './app/src/themes/'],
           ['@assets', './app/src/assets/'],
+          ['@pages', './app/src/pages/'],
           ['@utils', './app/src/utils/'],
         ],
         extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],

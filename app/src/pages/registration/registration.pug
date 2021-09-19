@@ -1,0 +1,14 @@
+extends ~@layouts/basic/toxin-main-layout/toxin-main-layout.pug
+
+//- components
+include ~@common.blocks/containers/registration-card/registration-card.pug
+
+block append variables
+  -
+    title = 'Регистрация';
+    description = 'Страница регистрации в макете сайта TOXIN';
+
+block content
+  main.registration-layout
+    .registration-layout__card
+      +registration-card
