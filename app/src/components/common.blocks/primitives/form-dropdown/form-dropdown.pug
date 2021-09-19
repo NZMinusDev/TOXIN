@@ -27,7 +27,11 @@ mixin form-dropdown(type, { heading = '', description = '', headingMarginBottom 
         for=name
       )
     +form-field
-      button.form-dropdown__expand-btn.js-form-dropdown__expand-btn(id=name, type="button", aria-expanded="false")
+      button.form-dropdown__expand-btn.js-form-dropdown__expand-btn(
+        id=name,
+        type="button",
+        aria-expanded="false"
+      )
         +icon({ content: 'expand_more', width: 'large' })
       case type
         when 'date'

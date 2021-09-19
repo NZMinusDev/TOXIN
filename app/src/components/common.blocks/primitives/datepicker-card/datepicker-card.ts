@@ -27,9 +27,7 @@ type DatepickerCardState = {
 };
 
 type DatepickerCardCustomEvents = {
-  // eslint-disable-next-line @typescript-eslint/ban-types
   select: {};
-  // eslint-disable-next-line @typescript-eslint/ban-types
   change: {};
 };
 

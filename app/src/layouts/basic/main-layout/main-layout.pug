@@ -16,7 +16,7 @@ doctype html
 html(lang="ru")
   head
     +meta(keywords, description, title)
-    base(href="{{site.baseurl}}")
+    base(href="{{ site.baseurl }}")
     +ico
     //- if process page after added files of BEM entities to bundle by bemdecl-to-fs-loader
     if htmlWebpackPlugin

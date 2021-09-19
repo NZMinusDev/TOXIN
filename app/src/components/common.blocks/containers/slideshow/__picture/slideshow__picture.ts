@@ -7,7 +7,6 @@ import slideshowElements from '../slideshow-elements';
 
 type SlideshowPictureElement = HTMLDivElement;
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 type SlideshowPictureCustomEvents = {};
 
 class SlideshowPicture extends BEMComponent<SlideshowPictureElement, SlideshowPictureCustomEvents> {

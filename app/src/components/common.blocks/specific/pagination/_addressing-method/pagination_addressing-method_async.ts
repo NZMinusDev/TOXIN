@@ -16,7 +16,6 @@ type PaginationAsyncAddressingMethodModifierState = {
   activePage: number;
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 type PaginationAsyncAddressingMethodModifierCustomEvents = { change: {} };
 
 class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethodModifier {

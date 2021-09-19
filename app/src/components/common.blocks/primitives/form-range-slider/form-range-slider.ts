@@ -17,7 +17,6 @@ type FormRangeSliderDOM = {
   inputTo: HTMLInputElement;
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 type FormRangeSliderCustomEvents = { change: {} };
 
 class FormRangeSlider extends BEMComponent<FormRangeSliderElement, FormRangeSliderCustomEvents> {

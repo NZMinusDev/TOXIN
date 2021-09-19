@@ -139,8 +139,7 @@ type RequiredKeys<TObject extends { [key: number]: unknown } | { [key: string]: 
     ? never
     : number extends TKey
     ? never
-    : // eslint-disable-next-line @typescript-eslint/ban-types
-    {} extends Pick<TObject, TKey>
+    : {} extends Pick<TObject, TKey>
     ? never
     : TKey;
 } extends { [_ in keyof TObject]-?: infer TInfer }
@@ -154,8 +153,7 @@ type OptionalKeys<TObject extends Record<string, unknown>> = {
     ? never
     : number extends TKey
     ? never
-    : // eslint-disable-next-line @typescript-eslint/ban-types
-    {} extends Pick<TObject, TKey>
+    : {} extends Pick<TObject, TKey>
     ? TKey
     : never;
 } extends { [_ in keyof TObject]-?: infer TInfer }
