@@ -11,7 +11,6 @@ type PaginationDOM = {
   counter: HTMLParagraphElement;
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 type PaginationCustomEvents = {};
 type PaginationWithAsyncAddressingMethodModifierCustomEvents = PaginationCustomEvents &
   PaginationAsyncAddressingMethodModifierCustomEvents;

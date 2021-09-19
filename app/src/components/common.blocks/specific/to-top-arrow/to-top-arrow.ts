@@ -5,7 +5,6 @@ import {
 
 import toTopArrowElements, { ToTopArrowElement } from './to-top-arrow-elements';
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 type ToTopArrowCustomEvents = {};
 
 class ToTopArrow extends BEMComponent<ToTopArrowElement, ToTopArrowCustomEvents> {

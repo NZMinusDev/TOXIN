@@ -5,7 +5,6 @@ import {
 
 import slideshowElements, { SlideshowElement } from './slideshow-elements';
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 type SlideshowCustomEvents = {};
 
 class Slideshow extends BEMComponent<SlideshowElement, SlideshowCustomEvents> {

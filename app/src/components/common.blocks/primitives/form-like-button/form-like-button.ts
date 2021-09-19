@@ -11,7 +11,6 @@ type FormLikeButtonState = {
   likes: number;
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 type FormLikeButtonCustomEvents = {};
 
 class FormLikeButton extends BEMComponent<FormLikeButtonElement, FormLikeButtonCustomEvents> {

@@ -7,7 +7,6 @@ import clickJackingProtectorElements, {
   ClickJackingProtectorElement,
 } from './click-jacking-protector-elements';
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 type ClickJackingProtectorCustomEvents = {};
 
 class ClickJackingProtector extends BEMComponent<
