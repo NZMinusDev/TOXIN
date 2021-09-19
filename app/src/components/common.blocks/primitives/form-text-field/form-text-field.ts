@@ -5,7 +5,6 @@ import {
 
 import formTextFieldElements, { FormTextFieldElement } from './form-text-field-elements';
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 type FormTextFieldCustomEvents = {};
 
 class FormTextField extends BEMComponent<FormTextFieldElement, FormTextFieldCustomEvents> {

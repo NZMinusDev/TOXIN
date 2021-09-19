@@ -37,7 +37,6 @@
  * alert( dictionary['Hello'] ); // Hola
  * alert( dictionary['Welcome to Proxy']); // Welcome to Proxy
  */
-// eslint-disable-next-line @typescript-eslint/ban-types
 const makeProxyDictionary = (target: object) =>
   new Proxy(target, {
     // eslint-disable-next-line @typescript-eslint/no-shadow
@@ -90,7 +89,6 @@ const makeProxyInRange = (target: { start: number; end: number }) =>
  *   delete user._password; // Error: Access denied
  * } catch(e) { alert(e.message); }
  */
-// eslint-disable-next-line @typescript-eslint/ban-types
 const makeOOPObject = (target: object) =>
   new Proxy(target, {
     // eslint-disable-next-line @typescript-eslint/no-shadow
