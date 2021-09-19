@@ -7,7 +7,7 @@ class FormDropdownItemQuantityListFoldedOpeningMethodModifier extends FormDropdo
   constructor(formDropdownItemQuantityList: FormDropdownItemQuantityList) {
     super(formDropdownItemQuantityList);
 
-    this._bindWindowListeners()._bindComponentListeners();
+    this._bindWindowListeners();
   }
 
   protected _bindWindowListeners() {
@@ -23,20 +23,6 @@ class FormDropdownItemQuantityListFoldedOpeningMethodModifier extends FormDropdo
       if (!dropdownElement.contains(target) && this.component.isOpen()) {
         this.component.close();
       }
-    },
-  };
-
-  protected _bindComponentListeners() {
-    this.component.addCustomEventListener(
-      'open',
-      this._componentEventListenerObject.handleComponentOpen
-    );
-
-    return this;
-  }
-  protected _componentEventListenerObject = {
-    handleComponentOpen: () => {
-      this.component.open();
     },
   };
 }

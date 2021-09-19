@@ -1,9 +1,36 @@
 @use '@utils/devTools/styles/mixins.scss';
 
 .form-dropdown {
-  .form-field {
-    &:focus-within {
-      border-radius: var(--border-radius-size) var(--border-radius-size) 0 0;
+  &_with-date {
+    .form-field {
+      &:hover,
+      &:focus-within {
+        border-color: rgba(0, 0, 0, 0.5);
+        color: rgba(0, 0, 0, 0.5);
+
+        @media print, screen and (color) {
+          border: var(--border);
+          color: rgba(var(--color__dark-shade), 0.25);
+        }
+      }
+    }
+  }
+  &_with-item-quantity {
+    &.form-dropdown_opened {
+      .form-field {
+        border-color: rgba(0, 0, 0, 1);
+        border-radius: var(--border-radius-size) var(--border-radius-size) 0 0;
+        color: rgba(0, 0, 0, 1);
+
+        @media print, screen and (color) {
+          border: var(--border-hover);
+          color: rgba(var(--color__dark-shade), 0.75);
+        }
+      }
+    }
+
+    .form-dropdown__expand-btn {
+      color: inherit;
     }
   }
 
@@ -19,11 +46,6 @@
 
     @media print, screen and (color) {
       color: rgba(var(--color__dark-shade), 0.5);
-    }
-
-    &:hover,
-    &:focus-within {
-      color: inherit;
     }
   }
 

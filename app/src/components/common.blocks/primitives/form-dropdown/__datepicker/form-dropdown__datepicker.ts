@@ -32,6 +32,11 @@ type FormDropdownDatepickerHTMLOptions = { placeholder: string };
 
 type FormDropdownDatepickerCustomEvents = DatepickerCardCustomEvents & ExpandableItemCustomEvents;
 
+const selectors = {
+  dropdown: 'js-form-dropdown',
+  isHidden: 'form-dropdown__datepicker_hidden',
+};
+
 class FormDropdownDatepicker extends BEMComponent<
   FormDropdownDatepickerElement,
   FormDropdownDatepickerCustomEvents
@@ -53,7 +58,7 @@ class FormDropdownDatepicker extends BEMComponent<
     this._options = this._initOptionsFromHTML();
     this._state = this._initState();
 
-    this._bindListeners()._bindAltFieldsListeners();
+    this._bindDatepickerCardListeners()._bindWindowListeners()._bindAltFieldsListeners();
 
     this._initDisplay();
   }
@@ -61,15 +66,22 @@ class FormDropdownDatepicker extends BEMComponent<
   get() {
     return this._state.dates === undefined ? [] : [...this._state.dates];
   }
-  show() {
-    this.element.classList.remove('form-dropdown__datepicker_hidden');
+  open() {
+    this.element.classList.remove(selectors.isHidden);
+
+    this.element.dispatchEvent(new CustomEvent('open', { bubbles: true }));
 
     return this;
   }
-  hide() {
-    this.element.classList.add('form-dropdown__datepicker_hidden');
+  close() {
+    this.element.classList.add(selectors.isHidden);
+
+    this.element.dispatchEvent(new CustomEvent('close', { bubbles: true }));
 
     return this;
+  }
+  isOpened() {
+    return !this.element.classList.contains(selectors.isHidden);
   }
 
   protected _initDOM(): FormDropdownDatepickerDOM {
@@ -110,19 +122,47 @@ class FormDropdownDatepicker extends BEMComponent<
     return { dates };
   }
 
-  protected _bindListeners() {
-    this.element.addEventListener('open', this.onOpen);
-    this.element.addEventListener('change', this.onChange);
+  protected _bindDatepickerCardListeners() {
+    const { datepickerCard } = this._subComponents;
+
+    datepickerCard?.addCustomEventListener(
+      'select',
+      this._datepickerCardEventListenerObject.handleDatepickerCardSelect
+    );
+    datepickerCard?.addCustomEventListener(
+      'change',
+      this._datepickerCardEventListenerObject.handleDatepickerCardChange
+    );
 
     return this;
   }
-  protected onOpen = () => {
-    this.show();
+  protected _datepickerCardEventListenerObject = {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    handleDatepickerCardSelect: (event: CustomEvent<DatepickerCardCustomEvents['select']>) => {
+      this._changeValue();
+    },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    handleDatepickerCardChange: (event: CustomEvent<DatepickerCardCustomEvents['change']>) => {
+      this.close();
+    },
   };
-  protected onChange = () => {
-    this._changeValue();
 
-    this.hide();
+  protected _bindWindowListeners() {
+    window.addEventListener('pointerdown', this._windowEventListenerObject.handleWindowPointerDown);
+
+    return this;
+  }
+  protected _windowEventListenerObject = {
+    // don't use click cause of rerender of cells
+    handleWindowPointerDown: (event: PointerEvent) => {
+      const target = event.target as HTMLElement;
+      const dropdownElement = target.closest(`.${selectors.dropdown}`) as HTMLElement;
+      const clickIsOutside = dropdownElement === null;
+
+      if (clickIsOutside && this.isOpened()) {
+        this.close();
+      }
+    },
   };
 
   protected _bindAltFieldsListeners() {
@@ -130,7 +170,7 @@ class FormDropdownDatepicker extends BEMComponent<
 
     if ($altFields !== undefined) {
       $altFields.each((index, input) => {
-        const altDropdown = input.closest('.js-form-dropdown') as HTMLDivElement;
+        const altDropdown = input.closest(`.${selectors.dropdown}`) as HTMLDivElement;
 
         altDropdown.addEventListener('open', this._altFieldEventListenerObject.handleAltFieldOpen);
       });
@@ -139,7 +179,9 @@ class FormDropdownDatepicker extends BEMComponent<
     return this;
   }
   protected _altFieldEventListenerObject = {
-    handleAltFieldOpen: this.onOpen,
+    handleAltFieldOpen: () => {
+      this.open();
+    },
   };
 
   protected _initDisplay() {
@@ -198,7 +240,7 @@ class FormDropdownDatepicker extends BEMComponent<
       const dateIndex = index + 1;
       const dateTime = dateTimes[dateIndex];
       const selection = inputElement
-        .closest('.js-form-dropdown')
+        .closest(`.${selectors.dropdown}`)
         ?.querySelector(
           '.js-form-dropdown__selection-text'
         ) as FormDropdownDatepickerDOM['selection'];

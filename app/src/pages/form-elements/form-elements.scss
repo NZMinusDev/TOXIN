@@ -210,12 +210,6 @@
         margin-right: 54px / 320px * 100%;
         grid-area: dropdown-expanded-plural;
       }
-
-      // emulate focus
-      .form-field {
-        border: var(--border-hover);
-        color: rgba(var(--color__dark-shade), 0.75);
-      }
     }
 
     &__dropdown-expanded-apply {
@@ -223,24 +217,12 @@
         margin-top: 2px / 320px * 100%;
         grid-area: dropdown-expanded-apply;
       }
-
-      // emulate focus
-      .form-field {
-        border: var(--border-hover);
-        color: rgba(var(--color__dark-shade), 0.75);
-      }
     }
 
     &__dropdown-expanded-clear-apply {
       @media print, screen and (min-width: 1200px) {
         margin-top: 2px / 320px * 100%;
         grid-area: dropdown-expanded-clear-apply;
-      }
-
-      // emulate focus
-      .form-field {
-        border: var(--border-hover);
-        color: rgba(var(--color__dark-shade), 0.75);
       }
     }
 
