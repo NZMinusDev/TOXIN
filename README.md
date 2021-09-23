@@ -186,8 +186,7 @@ the goal is to achieve liquidness, see the formula of fluid font: ./app/src/util
 - Pre-installed libraries:
   - [fontawesome-free](https://fontawesome.com/) and [material-design-icons](https://github.com/google/material-design-icons);
   - [JQuery](https://jquery.com/);
-  - [lodash-es](https://lodash.com/) to supplement the js standard. Tip: you should use only import of lodash-es(moreover, when importing, only care about the readability and strictness of the code, and not the optimization of the weight) instead of common lodash because ES6+ module syntax is supported by terser for optimization;
-  - [inputmask](https://github.com/RobinHerbots/Inputmask) for form validation.
+  - [lodash-es](https://lodash.com/) to supplement the js standard. Tip: you should use only import of lodash-es(moreover, when importing, only care about the readability and strictness of the code, and not the optimization of the weight) instead of common lodash because ES6+ module syntax is supported by terser for optimization.
 - Custom Tools:
   - [Basic layouts](./app/src/layouts/);
   - pug, scss, ts [shortcuts](./app/src/utils/devTools/);
