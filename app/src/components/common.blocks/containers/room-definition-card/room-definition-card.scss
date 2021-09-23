@@ -1,5 +1,5 @@
 .room-definition-card {
-  $medium-gap: 20px / 14px * 1em;
+  $medium-gap: 20.56px / 14px * 1em;
   $large-gap: 30px / 14px * 1em;
 
   display: grid;
@@ -13,7 +13,7 @@
     'payment-rates payment-rates'
     '. .' #{$large-gap}
     'total-payment total-payment'
-    '. .' #{$medium-gap}
+    '. .' #{22px / 14px * 1em}
     'submit-btn submit-btn' / 1fr 1fr;
 
   &__room-title {
@@ -88,7 +88,8 @@
     }
   }
 
-  &__payment-sentence {
+  &__payment-sentence,
+  &__payment-tooltip {
     line-height: 18px / 14px * 1em;
   }
 

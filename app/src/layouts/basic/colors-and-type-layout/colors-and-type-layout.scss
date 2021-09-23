@@ -1,7 +1,7 @@
 .colors-and-type-layout {
   @media print, screen and (min-width: 0) {
     display: grid;
-    padding: #{67px / 1440px * 100%} #{191px / 1440px * 100%} #{145px / 1440px *
+    padding: #{67px / 1440px * 100%} #{158px / 1440px * 100%} #{145px / 1440px *
       100%} #{150px / 1440px * 100%};
     grid: 'colors' 'type';
     grid-row-gap: 1em;
@@ -9,7 +9,7 @@
   }
 
   @media print, screen and (min-width: 992px) {
-    grid: 'colors type' / auto #{407px / 14px * 1em};
+    grid: 'colors type' / auto #{439px / 14px * 1em};
     place-content: normal space-between;
     place-items: normal;
   }
@@ -28,7 +28,7 @@
       display: grid;
       grid-area: type;
       place-content: start;
-      grid-row-gap: 50px / 14px * 1em;
+      grid-row-gap: 52px / 14px * 1em;
     }
   }
 }

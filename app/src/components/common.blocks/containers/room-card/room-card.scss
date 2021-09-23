@@ -21,7 +21,6 @@
     padding: #{20px / 14px * 1em} #{16px / 14px * 1em} #{9px / 14px * 1em} #{20px /
       14px * 1em};
     grid-area: room-data;
-    grid-template-rows: 1fr 1fr;
   }
 
   &__data-row {
@@ -33,7 +32,16 @@
     grid-column-gap: 1em;
 
     &:not(:last-child) {
+      padding-bottom: 8px / 14px * 1em;
       border-bottom: 1px solid black;
+
+      @media print, screen and (color) {
+        border-bottom-color: rgba(var(--color__dark-shade), 0.1);
+      }
+    }
+
+    &:last-child {
+      padding-top: 4px / 14px * 1em;
     }
   }
 

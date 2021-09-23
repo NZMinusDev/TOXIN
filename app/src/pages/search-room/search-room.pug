@@ -23,7 +23,7 @@ block content
       .search-room-layout__price-range-slider
         +form-range-slider({ name: 'price', range: { min: 341, max: 15454 }, start: [5000, 10000], heading: { h3: 'Диапазон цены' }, description: 'Стоимость за сутки пребывания в номере', isFilter: true })
       .search-room-layout__checkbox-buttons
-        +form-checkbox-buttons({ heading: { h3: 'checkbox buttons' }, buttons: { 'is-smoking': { label: 'Можно курить' }, 'is-with-pets': { label: 'Можно с питомцами', checked: true }, 'is-guests': { label: 'Можно пригласить гостей (до 10 человек)', checked: true } }, isFilter: true })
+        +form-checkbox-buttons({ heading: { h3: 'правила дома' }, buttons: { 'is-smoking': { label: 'Можно курить' }, 'is-with-pets': { label: 'Можно с питомцами', checked: true }, 'is-guests': { label: 'Можно пригласить гостей (до 10 человек)', checked: true } }, isFilter: true })
       .search-room-layout__affordable-rich-checkbox-buttons
         +form-checkbox-buttons({ heading: { h3: 'Доступность' }, type: 'detailed', buttons: { 'wide-corridor': { label: 'Широкий коридор', description: 'Ширина коридоров в номере не менее 91 см.' }, 'assistant-for-the-disabled': { label: 'Помощник для инвалидов', description: 'На 1 этаже вас встретит специалист и проводит до номера.' } }, isFilter: true })
       .search-room-layout__facilities-dropdown

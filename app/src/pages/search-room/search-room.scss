@@ -3,7 +3,7 @@
 
   @media (min-width: 0) {
     align-items: flex-start;
-    padding: #{30px / 14px * 1em} #{140px / 1440px * 100%} #{70px / 14px * 1em} #{140px /
+    padding: #{30px / 14px * 1em} #{140px / 1440px * 100%} #{74px / 14px * 1em} #{140px /
       1440px * 100%};
     grid:
       'filter'
@@ -81,7 +81,7 @@
     display: grid;
     grid-area: rooms;
     grid: auto-flow auto / 1fr 1fr 1fr;
-    grid-gap: #{20.5px / 14px * 1em} #{12px / 14px * 1em};
+    grid-gap: #{21px / 14px * 1em} #{12px / 14px * 1em};
     justify-items: center;
 
     @media (min-width: 0) {
