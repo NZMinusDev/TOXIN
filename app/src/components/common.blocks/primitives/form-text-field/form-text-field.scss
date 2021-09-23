@@ -6,5 +6,24 @@
     outline: none;
     color: inherit;
     text-indent: inherit;
+
+    &_type_with-date {
+      cursor: text;
+
+      &::-webkit-datetime-edit-fields-wrapper {
+        text-indent: 0;
+        text-transform: uppercase;
+      }
+
+      &::-webkit-datetime-edit-day-field,
+      &::-webkit-datetime-edit-month-field,
+      &::-webkit-datetime-edit-year-field {
+        padding: 0;
+      }
+
+      &::-webkit-calendar-picker-indicator {
+        display: none;
+      }
+    }
   }
 }
