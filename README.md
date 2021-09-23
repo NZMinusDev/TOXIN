@@ -11,6 +11,7 @@ This repository exists only for educational purposes. The goal is to write a sit
 ## Demo
 
 ---
+
 [The design is here](https://www.figma.com/file/MumYcKVk9RkKZEG6dR5E3A/).
 [The result is here](https://nzminusdev.github.io/TOXIN/).
 

@@ -10,9 +10,8 @@ type GenericFunc<TFuncArgs extends unknown[], TFuncReturn extends unknown> = (
  * type T = GenericConstructor<typeof Class>
  * // type T = new (a: number, b?: string | undefined) => typeof Class
  */
-type GenericConstructor<TCreator extends new (...args: unknown[]) => unknown> = new (
-  ...args: ConstructorParameters<TCreator>
-) => TCreator;
+type GenericConstructor<TCreator extends new (...args: unknown[]) => unknown> =
+  new (...args: ConstructorParameters<TCreator>) => TCreator;
 
 /**
  * @example
@@ -100,7 +99,9 @@ type ArrayPacked<TObject extends Record<string, unknown>> = {
  * //   }
  */
 type FunctionPropertyNames<TObject extends Record<string, unknown>> = {
-  [TKey in keyof TObject]: TObject[TKey] extends (...args: unknown[]) => unknown ? TKey : never;
+  [TKey in keyof TObject]: TObject[TKey] extends (...args: unknown[]) => unknown
+    ? TKey
+    : never;
 }[keyof TObject];
 
 type FunctionProperties<TObject extends Record<string, unknown>> = Pick<
@@ -109,7 +110,9 @@ type FunctionProperties<TObject extends Record<string, unknown>> = Pick<
 >;
 
 type NonFunctionPropertyNames<TObject extends Record<string, unknown>> = {
-  [TKey in keyof TObject]: TObject[TKey] extends (...args: unknown[]) => unknown ? never : TKey;
+  [TKey in keyof TObject]: TObject[TKey] extends (...args: unknown[]) => unknown
+    ? never
+    : TKey;
 }[keyof TObject];
 
 type NonFunctionProperties<TObject extends Record<string, unknown>> = Pick<
@@ -134,7 +137,9 @@ type NonFunctionProperties<TObject extends Record<string, unknown>> = Pick<
  * type SomeTypeIndexKeys = IndexKeyType<SomeType>;
  * // type SomeTypeIndexKeys = string 🙂
  */
-type RequiredKeys<TObject extends { [key: number]: unknown } | { [key: string]: unknown }> = {
+type RequiredKeys<
+  TObject extends { [key: number]: unknown } | { [key: string]: unknown }
+> = {
   [TKey in keyof TObject]-?: string extends TKey
     ? never
     : number extends TKey
@@ -188,7 +193,9 @@ type FilterType<TTuple extends unknown[], TType> = TTuple extends []
   : TTuple;
 
 type RequiredToNeverInTuple<TTuple extends unknown[]> = {
-  [TKey in keyof TTuple]: TTuple[TKey] extends TTuple[RequiredKeys<TTuple>] ? TTuple[TKey] : never;
+  [TKey in keyof TTuple]: TTuple[TKey] extends TTuple[RequiredKeys<TTuple>]
+    ? TTuple[TKey]
+    : never;
 };
 type OptionalToNeverInTuple<TTuple extends unknown[]> = {
   [TKey in keyof TTuple]: RequiredKeys<TTuple> extends never
@@ -229,9 +236,15 @@ type OptionalTupleValues<TTuple extends unknown[]> = FilterType<
  * type T2 =  OptionalValues<SomeType>
  * // { optional?: number | undefined; }
  */
-type RequiredValues<TObject extends Record<string, unknown>> = Pick<TObject, RequiredKeys<TObject>>;
+type RequiredValues<TObject extends Record<string, unknown>> = Pick<
+  TObject,
+  RequiredKeys<TObject>
+>;
 
-type OptionalValues<TObject extends Record<string, unknown>> = Pick<TObject, OptionalKeys<TObject>>;
+type OptionalValues<TObject extends Record<string, unknown>> = Pick<
+  TObject,
+  OptionalKeys<TObject>
+>;
 
 /**
  * @example
@@ -259,7 +272,9 @@ type BoxedArray<TType> = { array: TType[] };
  * type T3 = Boxed<string | number[]>;
  * //   ^ = type T3 = BoxedValue | BoxedArray
  */
-type Boxed<TType> = TType extends unknown[] ? BoxedArray<TType[number]> : BoxedValue<TType>;
+type Boxed<TType> = TType extends unknown[]
+  ? BoxedArray<TType[number]>
+  : BoxedValue<TType>;
 
 export {
   GenericFunc,

@@ -54,9 +54,14 @@ mixin footer({ type = undefined, action = undefined, name = 'footer-subscription
                   li.footer__list-item
                     a.footer__link(href=link.href)= link.title
           section.footer__subscription
-            input#footer-subscription-checkbox.footer__list-checkbox(type="checkbox")
+            input#footer-subscription-checkbox.footer__list-checkbox(
+              type="checkbox"
+            )
             h3.footer__list-label-heading
-              label.footer__list-label(for="footer-subscription-checkbox", tabindex="0") Подписка
+              label.footer__list-label(
+                for="footer-subscription-checkbox",
+                tabindex="0"
+              ) Подписка
             ul.footer__list
               li.footer__list-item
                 p.footer__description

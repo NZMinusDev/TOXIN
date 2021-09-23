@@ -48,8 +48,9 @@ type RoomDefinitionCardContext = {
   currency: string;
 };
 
-type RoomDefinitionCardCustomEvents = FormDropdownWithItemQuantityListCustomEvents &
-  FormDropdownWithDatepickerCustomEvents;
+type RoomDefinitionCardCustomEvents =
+  FormDropdownWithItemQuantityListCustomEvents &
+    FormDropdownWithDatepickerCustomEvents;
 
 class RoomDefinitionCard extends BEMComponent<
   RoomDefinitionCardElement,
@@ -60,7 +61,9 @@ class RoomDefinitionCard extends BEMComponent<
   protected _subComponents: Readonly<RoomDefinitionCardSubComponents>;
 
   protected readonly _options: RoomDefinitionCardHTMLOptions;
+
   protected readonly _state: RoomDefinitionCardState;
+
   protected readonly _context: RoomDefinitionCardContext;
 
   constructor(roomDefinitionCardElement: RoomDefinitionCardElement) {
@@ -140,19 +143,29 @@ class RoomDefinitionCard extends BEMComponent<
   }
 
   protected _initOptionsFromHTML() {
-    const dayPaymentRate = Number(this._DOM.dayPayment.dataset.amount as string);
-    const servicesPaymentRate = Number(this._DOM.servicesPaymentAmount.dataset.amount as string);
+    const dayPaymentRate = Number(
+      this._DOM.dayPayment.dataset.amount as string
+    );
+    const servicesPaymentRate = Number(
+      this._DOM.servicesPaymentAmount.dataset.amount as string
+    );
     const additionalServicesPaymentRate = Number(
       this._DOM.additionalServicesPaymentAmount.dataset.amount as string
     );
 
-    return { dayPaymentRate, servicesPaymentRate, additionalServicesPaymentRate };
+    return {
+      dayPaymentRate,
+      servicesPaymentRate,
+      additionalServicesPaymentRate,
+    };
   }
+
   protected _initState() {
     const dailyRange = this._getDailyRange();
 
     return { dailyRange };
   }
+
   // eslint-disable-next-line class-methods-use-this
   protected _initContext() {
     const currency = '₽';
@@ -163,11 +176,13 @@ class RoomDefinitionCard extends BEMComponent<
   protected _bindArrivalDateDropdownListeners() {
     this._subComponents.arrivalDateDropdown.addCustomEventListener(
       'change',
-      this._arrivalDateDropdownEventListenerObject.handleArrivalDateDropdownChange
+      this._arrivalDateDropdownEventListenerObject
+        .handleArrivalDateDropdownChange
     );
 
     return this;
   }
+
   protected _arrivalDateDropdownEventListenerObject = {
     handleArrivalDateDropdownChange: (event: Event) => {
       if (!event.isTrusted) {
@@ -192,7 +207,8 @@ class RoomDefinitionCard extends BEMComponent<
   }
 
   protected _updatePaymentDisplay() {
-    const totalDayPaymentAmount = this._options.dayPaymentRate * this._state.dailyRange;
+    const totalDayPaymentAmount =
+      this._options.dayPaymentRate * this._state.dailyRange;
     const totalPaymentAmount =
       totalDayPaymentAmount +
       Number(this._options.servicesPaymentRate) +
@@ -221,7 +237,8 @@ type RoomDefinitionCardElementWithComponent = HTMLElementWithComponent<
 
 const roomDefinitionCards = Array.from(
   roomDefinitionCardElements,
-  (roomDefinitionCardElement) => new RoomDefinitionCard(roomDefinitionCardElement)
+  (roomDefinitionCardElement) =>
+    new RoomDefinitionCard(roomDefinitionCardElement)
 );
 
 export type {

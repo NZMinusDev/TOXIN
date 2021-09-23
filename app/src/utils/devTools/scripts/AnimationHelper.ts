@@ -73,7 +73,8 @@ const bounce = (timeFraction: number) => {
 };
 
 const elastic = (x, timeFraction) =>
-  2 ** (10 * (timeFraction - 1)) * Math.cos(((20 * Math.PI * x) / 3) * timeFraction);
+  2 ** (10 * (timeFraction - 1)) *
+  Math.cos(((20 * Math.PI * x) / 3) * timeFraction);
 
 /**
  * Jumping animation of typing text
@@ -109,8 +110,10 @@ const animateTextArea = (textArea: HTMLTextAreaElement) => {
  *
  * let bounceEaseOut = makeEaseOut(bounce);
  */
-const makeEaseOut = (timingFunction: (timeFraction: number) => number) => (timeFraction: number) =>
-  1 - timingFunction(1 - timeFraction);
+const makeEaseOut =
+  (timingFunction: (timeFraction: number) => number) =>
+  (timeFraction: number) =>
+    1 - timingFunction(1 - timeFraction);
 
 /**
  *
@@ -128,7 +131,8 @@ const makeEaseOut = (timingFunction: (timeFraction: number) => number) => (timeF
  * let bounceEaseInOut = makeEaseInOut(bounce);
  */
 const makeEaseInOut =
-  (timingFunction: (timeFraction: number) => number) => (timeFraction: number) => {
+  (timingFunction: (timeFraction: number) => number) =>
+  (timeFraction: number) => {
     if (timeFraction < 0.5) {
       return timingFunction(2 * timeFraction) / 2;
     }

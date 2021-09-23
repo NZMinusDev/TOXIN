@@ -19,7 +19,9 @@ const resolveLongBracketNotation = (
   path: string,
   obj: Record<string, any> = globalThis
 ): unknown | null =>
-  path.split('.').reduce((prev, curr) => (prev !== undefined ? prev[curr] : null), obj);
+  path
+    .split('.')
+    .reduce((prev, curr) => (prev !== undefined ? prev[curr] : null), obj);
 
 /**
  * Recursively iterates iterable properties by deep-first algorithm
@@ -81,8 +83,13 @@ const eachDeep = <TSubject>(
  * @param mapFn - key changer
  * @returns a new object with the keys mapped using mapFn(key)
  */
-const keyMap = (object: Record<string, unknown>, mapFn: (key: string) => string) =>
-  Object.fromEntries(Object.entries(object).map(([key, value]) => [mapFn(key), value]));
+const keyMap = (
+  object: Record<string, unknown>,
+  mapFn: (key: string) => string
+) =>
+  Object.fromEntries(
+    Object.entries(object).map(([key, value]) => [mapFn(key), value])
+  );
 
 /**
  *
@@ -109,9 +116,13 @@ const keyMap = (object: Record<string, unknown>, mapFn: (key: string) => string)
  * // array of a union type: (string | number)[]
  * let modelYear = pluck(taxi, ["model", "year"]);
  */
-const pluck = <TObject extends Record<string, unknown>, TObjectKey extends keyof TObject>(
+const pluck = <
+  TObject extends Record<string, unknown>,
+  TObjectKey extends keyof TObject
+>(
   object: TObject,
   propertyNames: TObjectKey[]
-): TObject[TObjectKey][] => propertyNames.map((propertyName) => object[propertyName]);
+): TObject[TObjectKey][] =>
+  propertyNames.map((propertyName) => object[propertyName]);
 
 export { eachDeep, resolveLongBracketNotation, keyMap, pluck };

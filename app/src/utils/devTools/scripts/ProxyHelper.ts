@@ -65,7 +65,10 @@ const makeProxyInRange = (target: { start: number; end: number }) =>
   new Proxy(target, {
     // eslint-disable-next-line @typescript-eslint/no-shadow
     has(target, propertyName) {
-      return target[propertyName] >= target.start && target[propertyName] <= target.end;
+      return (
+        target[propertyName] >= target.start &&
+        target[propertyName] <= target.end
+      );
     },
   });
 

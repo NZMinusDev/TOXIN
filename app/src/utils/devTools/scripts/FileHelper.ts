@@ -75,4 +75,10 @@ const imgToBlob = async (
   return result;
 };
 
-export { createDataURL, createBase64, blobToArrayBuffer, imgToCanvas, imgToBlob };
+export {
+  createDataURL,
+  createBase64,
+  blobToArrayBuffer,
+  imgToCanvas,
+  imgToBlob,
+};

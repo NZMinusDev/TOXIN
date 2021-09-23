@@ -44,7 +44,9 @@ const formTextFieldInputs = Array.from(
   formTextFieldElements,
   (formTextFieldElement) =>
     new FormTextFieldInput(
-      formTextFieldElement.querySelector('.js-form-text-field__input') as FormTextFieldInputElement
+      formTextFieldElement.querySelector(
+        '.js-form-text-field__input'
+      ) as FormTextFieldInputElement
     )
 );
 

@@ -63,12 +63,24 @@ block content
         +button(type="button", value="click me")
       .form-elements-layout__button-empty
         +button({ appearance: 'bordered' })(type="button", value="click me")
-        +button({ appearance: 'bordered' })(type="button", value="click me")
+        +button({ appearance: 'bordered' })(
+          type="button",
+          value="click me"
+        )
       .form-elements-layout__button-icon-link
-        +button({ appearance: 'like-a-icon-link' })(type="button", value="click me")
-        +button({ appearance: 'like-a-icon-link' })(type="button", value="click me")
+        +button({ appearance: 'like-a-icon-link' })(
+          type="button",
+          value="click me"
+        )
+        +button({ appearance: 'like-a-icon-link' })(
+          type="button",
+          value="click me"
+        )
       .form-elements-layout__button-long
-        +button({ appearance: 'like-a-link' })(type="submit", value="перейти к оплате")
+        +button({ appearance: 'like-a-link' })(
+          type="submit",
+          value="перейти к оплате"
+        )
       .form-elements-layout__pagination
         +heading({ h3: 'pagination' }, { marginBottom: 'large' })
         +pagination({ addressingMethod: 'async', total: 179, text: 'вариантов аренды' })

@@ -12,7 +12,9 @@ mixin button({ tag = 'button', text = '', appearance = 'filled', horizontalPaddi
     const appearanceClass = `button_appearance_${appearance}`;
     const horizontalPaddingClass = horizontalPadding ? `button_horizontal-padding_${horizontalPadding}` : undefined;
     const verticalPaddingClass = verticalPadding ? `button_vertical-padding_${verticalPadding}` : undefined;
-  #{tag}.button(class=[appearanceClass, horizontalPaddingClass, verticalPaddingClass])&attributes(attributes)= text || attributes.value
+  #{tag}.button(
+    class=[appearanceClass, horizontalPaddingClass, verticalPaddingClass]
+  )&attributes(attributes)= text || attributes.value
     if appearance === 'like-a-link'
       span.button__icon.button__icon_position_right
         +icon({ content: 'arrow_forward', width: 'large' })

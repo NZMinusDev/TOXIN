@@ -1,6 +1,8 @@
 import { BEMModifier } from '@utils/devTools/scripts/ComponentCreationHelper';
 
-import navBarNavigationItems, { NavBarNavigationItem } from '../nav-bar__navigation-item';
+import navBarNavigationItems, {
+  NavBarNavigationItem,
+} from '../nav-bar__navigation-item';
 
 type NavBarExpandableNavigationItemModifierDOM = {
   itemExpandCheckbox: HTMLInputElement;
@@ -59,6 +61,7 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
 
     return this;
   }
+
   protected _itemExpandCheckboxEventListenerObject = {
     handleItemExpandCheckboxChange: () => {
       if (this._state.isSmallDesktopMediaMatched) {
@@ -68,11 +71,18 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
   };
 
   protected _bindWindowListeners() {
-    window.addEventListener('resize', this._windowEventListenerObject.handleWindowResize);
-    window.addEventListener('click', this._windowEventListenerObject.handleWindowClick);
+    window.addEventListener(
+      'resize',
+      this._windowEventListenerObject.handleWindowResize
+    );
+    window.addEventListener(
+      'click',
+      this._windowEventListenerObject.handleWindowClick
+    );
 
     return this;
   }
+
   protected _windowEventListenerObject = {
     handleWindowResize: () => {
       this._state.isSmallDesktopMediaMatched =
@@ -110,11 +120,13 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
 
     this._DOM.childList.style.maxHeight = `${fullScrollHeight}px`;
   }
+
   protected _removeMaxHeightFromChildList() {
     this._DOM.childList.style.maxHeight = '';
 
     return this;
   }
+
   protected _toggleChildListMaxHeight() {
     if (this._DOM.childList.style.maxHeight !== '') {
       this._removeMaxHeightFromChildList();
@@ -132,8 +144,13 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
 
 const navBarExpandableNavigationItemModifiers = navBarNavigationItems
   .filter((navBarNavigationItem) =>
-    navBarNavigationItem.element.classList.contains('js-nav-bar__navigation-item_expandable')
+    navBarNavigationItem.element.classList.contains(
+      'js-nav-bar__navigation-item_expandable'
+    )
   )
-  .map((navBarNavigationItem) => new NavBarExpandableNavigationItemModifier(navBarNavigationItem));
+  .map(
+    (navBarNavigationItem) =>
+      new NavBarExpandableNavigationItemModifier(navBarNavigationItem)
+  );
 
 export { navBarExpandableNavigationItemModifiers as default };

@@ -4,7 +4,10 @@ import type { FormDropdownItemQuantityList } from '../form-dropdown__item-quanti
 
 abstract class FormDropdownItemQuantityListOpeningMethodModifier extends BEMModifier<FormDropdownItemQuantityList> {
   constructor(formDropdownItemQuantityList: FormDropdownItemQuantityList) {
-    super(formDropdownItemQuantityList, 'formDropdownItemQuantityListOpeningMethodModifier');
+    super(
+      formDropdownItemQuantityList,
+      'formDropdownItemQuantityListOpeningMethodModifier'
+    );
   }
 }
 

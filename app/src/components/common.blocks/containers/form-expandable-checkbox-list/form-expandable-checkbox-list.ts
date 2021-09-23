@@ -26,7 +26,9 @@ class FormExpandableCheckboxList extends BEMComponent<
 > {
   protected readonly _DOM: Readonly<FormExpandableCheckboxListDOM>;
 
-  constructor(formExpandableCheckboxListElement: FormExpandableCheckboxListElement) {
+  constructor(
+    formExpandableCheckboxListElement: FormExpandableCheckboxListElement
+  ) {
     super(formExpandableCheckboxListElement);
 
     this._DOM = this._initDOM();
@@ -55,14 +57,18 @@ class FormExpandableCheckboxList extends BEMComponent<
 
     return this;
   }
+
   protected _expanderInputEventListenerObject = {
     handleExpanderInputChange: (
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      event: CustomEvent<FormExpandableCheckboxListExpanderInputCustomEvents['change']>
+      event: CustomEvent<
+        FormExpandableCheckboxListExpanderInputCustomEvents['change']
+      >
     ) => {
       const icon = this._DOM.expanderIcon.firstElementChild as HTMLElement;
 
-      icon.textContent = icon.textContent === 'expand_less' ? 'expand_more' : 'expand_less';
+      icon.textContent =
+        icon.textContent === 'expand_less' ? 'expand_more' : 'expand_less';
     },
   };
 }

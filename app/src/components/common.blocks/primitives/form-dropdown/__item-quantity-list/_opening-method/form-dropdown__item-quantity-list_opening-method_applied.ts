@@ -49,6 +49,7 @@ class FormDropdownItemQuantityListAppliedOpeningTypeModifier extends FormDropdow
 
     return this;
   }
+
   protected _clearBtnEventListenerObject = {
     handleClearBtnClick: () => {
       this.component.reset();
@@ -64,6 +65,7 @@ class FormDropdownItemQuantityListAppliedOpeningTypeModifier extends FormDropdow
 
     return this;
   }
+
   protected _applyBtnEventListenerObject = {
     handleApplyBtnClick: () => {
       this.component.close();
@@ -71,14 +73,20 @@ class FormDropdownItemQuantityListAppliedOpeningTypeModifier extends FormDropdow
   };
 
   protected _bindWindowListeners() {
-    window.addEventListener('click', this._windowEventListenerObject.handleWindowClick);
+    window.addEventListener(
+      'click',
+      this._windowEventListenerObject.handleWindowClick
+    );
 
     return this;
   }
+
   protected _windowEventListenerObject = {
     handleWindowClick: (event: MouseEvent) => {
       const target = event.target as HTMLElement;
-      const dropdownElement = this.component.element.closest('.js-form-dropdown') as HTMLElement;
+      const dropdownElement = this.component.element.closest(
+        '.js-form-dropdown'
+      ) as HTMLElement;
 
       if (!dropdownElement.contains(target) && this.component.isOpen()) {
         this.component.close();
@@ -94,6 +102,7 @@ class FormDropdownItemQuantityListAppliedOpeningTypeModifier extends FormDropdow
 
     return this;
   }
+
   protected _componentEventListenerObject = {
     handleComponentSelect: () => {
       this._updateClearBtnDisplay();
@@ -119,15 +128,18 @@ class FormDropdownItemQuantityListAppliedOpeningTypeModifier extends FormDropdow
   }
 }
 
-const formDropdownItemQuantityListAppliedOpeningTypeModifiers = formDropdownItemQuantityLists
-  .filter((formDropdownItemQuantityList) =>
-    formDropdownItemQuantityList.element.classList.contains(
-      'js-form-dropdown__item-quantity-list_opening-method_applied'
+const formDropdownItemQuantityListAppliedOpeningTypeModifiers =
+  formDropdownItemQuantityLists
+    .filter((formDropdownItemQuantityList) =>
+      formDropdownItemQuantityList.element.classList.contains(
+        'js-form-dropdown__item-quantity-list_opening-method_applied'
+      )
     )
-  )
-  .map(
-    (formDropdownItemQuantityList) =>
-      new FormDropdownItemQuantityListAppliedOpeningTypeModifier(formDropdownItemQuantityList)
-  );
+    .map(
+      (formDropdownItemQuantityList) =>
+        new FormDropdownItemQuantityListAppliedOpeningTypeModifier(
+          formDropdownItemQuantityList
+        )
+    );
 
 export { formDropdownItemQuantityListAppliedOpeningTypeModifiers as default };

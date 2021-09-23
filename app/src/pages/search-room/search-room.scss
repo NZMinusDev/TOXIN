@@ -3,7 +3,8 @@
 
   @media (min-width: 0) {
     align-items: flex-start;
-    padding: #{30px / 14px * 1em} #{140px / 1440px * 100%} #{70px / 14px * 1em} #{140px / 1440px * 100%};
+    padding: #{30px / 14px * 1em} #{140px / 1440px * 100%} #{70px / 14px * 1em} #{140px /
+      1440px * 100%};
     grid:
       'filter'
       'title'

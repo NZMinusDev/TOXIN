@@ -17,7 +17,13 @@ mixin entering-card({ action = undefined, name = 'entering-card', method = 'post
       .entering-card__password-field
         +form-text-field({ name: `${name}-password`, type: 'password' })
       .entering-card__link-btn
-        +button({ appearance: 'like-a-link' })(type="submit", value="Войти", tabindex="1")
+        +button({ appearance: 'like-a-link' })(
+          type="submit",
+          value="Войти",
+          tabindex="1"
+        )
       p.entering-card__caption-of-redirect-to-registration Нет аккаунта на Toxin?
       .entering-card__switch-btn
-        +button({ tag: 'a', text: 'Создать', appearance: 'bordered' })(href=redirectPath)
+        +button({ tag: 'a', text: 'Создать', appearance: 'bordered' })(
+          href=redirectPath
+        )

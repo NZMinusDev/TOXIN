@@ -5,7 +5,9 @@
  */
 const parseFileExtension = (fullPath: string) => {
   const filePath = fullPath.substring(0, fullPath.lastIndexOf('.')) || fullPath;
-  const fileExt = fullPath.substring(fullPath.lastIndexOf('.') + 1, fullPath.length) || fullPath;
+  const fileExt =
+    fullPath.substring(fullPath.lastIndexOf('.') + 1, fullPath.length) ||
+    fullPath;
 
   return { filePath, fileExt };
 };
@@ -33,6 +35,13 @@ const collapsingParseFloat = (str: string, precision = 2): number =>
  * @returns amount of digits after the decimal point
  */
 const getPrecision = (number: number) =>
-  number.toString().includes('.') ? number.toString().split('.').pop()!.length : 0;
+  number.toString().includes('.')
+    ? number.toString().split('.').pop()!.length
+    : 0;
 
-export { parseFileExtension, collapsingParseInt, collapsingParseFloat, getPrecision };
+export {
+  parseFileExtension,
+  collapsingParseInt,
+  collapsingParseFloat,
+  getPrecision,
+};

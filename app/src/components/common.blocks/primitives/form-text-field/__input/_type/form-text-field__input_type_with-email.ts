@@ -1,6 +1,8 @@
 import inputMask from 'inputmask';
 
-import formTextFieldInputs, { FormTextFieldInput } from '../form-text-field__input';
+import formTextFieldInputs, {
+  FormTextFieldInput,
+} from '../form-text-field__input';
 import FormTextFieldInputTypeModifier from './coupling';
 
 class FormTextFieldInputWithEmailTypeModifier extends FormTextFieldInputTypeModifier {
@@ -11,7 +13,9 @@ class FormTextFieldInputWithEmailTypeModifier extends FormTextFieldInputTypeModi
   }
 
   protected _initInputMask() {
-    inputMask('email', { autoUnmask: true, showMaskOnHover: false }).mask(this.component.element);
+    inputMask('email', { autoUnmask: true, showMaskOnHover: false }).mask(
+      this.component.element
+    );
 
     return this;
   }
@@ -19,8 +23,13 @@ class FormTextFieldInputWithEmailTypeModifier extends FormTextFieldInputTypeModi
 
 const formTextFieldInputWithEmailTypeModifiers = formTextFieldInputs
   .filter((formTextFieldInput) =>
-    formTextFieldInput.element.classList.contains('js-form-text-field__input_type_with-email')
+    formTextFieldInput.element.classList.contains(
+      'js-form-text-field__input_type_with-email'
+    )
   )
-  .map((formTextFieldInput) => new FormTextFieldInputWithEmailTypeModifier(formTextFieldInput));
+  .map(
+    (formTextFieldInput) =>
+      new FormTextFieldInputWithEmailTypeModifier(formTextFieldInput)
+  );
 
 export { formTextFieldInputWithEmailTypeModifiers as default };

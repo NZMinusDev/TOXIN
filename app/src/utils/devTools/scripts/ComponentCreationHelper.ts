@@ -69,7 +69,10 @@ class EventManagerMixin<TEvents extends string> {
   } = {};
 
   // Subscribe to the event
-  on(eventName: TEvents, eventHandler: ListenerOfIsolatedEventOrListenerObjectOfIsolatedEvent) {
+  on(
+    eventName: TEvents,
+    eventHandler: ListenerOfIsolatedEventOrListenerObjectOfIsolatedEvent
+  ) {
     if (this._eventHandlers[eventName] === undefined) {
       this._eventHandlers[eventName] = [];
     }
@@ -97,7 +100,10 @@ class EventManagerMixin<TEvents extends string> {
   // Generate the event with the specified name and data
   trigger(eventName: TEvents, ...args: unknown[]) {
     // no handlers
-    if (this._eventHandlers === undefined || this._eventHandlers[eventName] === undefined) {
+    if (
+      this._eventHandlers === undefined ||
+      this._eventHandlers[eventName] === undefined
+    ) {
       return this;
     }
 
@@ -170,7 +176,8 @@ const applyMixins = <
       Object.defineProperty(
         derivedConstructor.prototype,
         name,
-        Object.getOwnPropertyDescriptor(baseConstructor.prototype, name) || Object.create(null)
+        Object.getOwnPropertyDescriptor(baseConstructor.prototype, name) ||
+          Object.create(null)
       );
     });
   });
@@ -183,10 +190,18 @@ abstract class MVPView<
   TEvents extends string = ''
 > extends EventManagerMixin<Exclude<TEvents | 'render' | 'remove', ''>> {
   protected _options: TOptionsToGet;
+
   protected _state: TState;
 
-  protected readonly _theOrderOfIteratingThroughTheOptions: Extract<keyof TOptionsToGet, string>[];
-  protected readonly _theOrderOfIteratingThroughTheState: Extract<keyof TState, string>[];
+  protected readonly _theOrderOfIteratingThroughTheOptions: Extract<
+    keyof TOptionsToGet,
+    string
+  >[];
+
+  protected readonly _theOrderOfIteratingThroughTheState: Extract<
+    keyof TState,
+    string
+  >[];
 
   constructor(
     DEFAULT_OPTIONS: TOptionsToGet,
@@ -197,7 +212,10 @@ abstract class MVPView<
       theOrderOfIteratingThroughTheOptions = [],
       theOrderOfIteratingThroughTheState = [],
     }: {
-      theOrderOfIteratingThroughTheOptions?: Extract<keyof TOptionsToGet, string>[];
+      theOrderOfIteratingThroughTheOptions?: Extract<
+        keyof TOptionsToGet,
+        string
+      >[];
       theOrderOfIteratingThroughTheState?: Extract<keyof TState, string>[];
     }
   ) {
@@ -295,8 +313,12 @@ abstract class MVPView<
     Object.entries(keyOfStateToForEach)
       .sort(
         ([a], [b]) =>
-          this._theOrderOfIteratingThroughTheState.indexOf(a as Extract<keyof TState, string>) -
-          this._theOrderOfIteratingThroughTheState.indexOf(b as Extract<keyof TState, string>)
+          this._theOrderOfIteratingThroughTheState.indexOf(
+            a as Extract<keyof TState, string>
+          ) -
+          this._theOrderOfIteratingThroughTheState.indexOf(
+            b as Extract<keyof TState, string>
+          )
       )
       .forEach(([stateKey, stateValue]) => {
         const [theFirstLetterOfStateKey] = stateKey;
@@ -364,13 +386,15 @@ interface MVPModel<State> {
 interface CustomEventListener<TEventDetail extends Record<string, unknown>> {
   (event: CustomEvent<TEventDetail>): void;
 }
-interface CustomEventListenerObject<TEventDetail extends Record<string, unknown>> {
+interface CustomEventListenerObject<
+  TEventDetail extends Record<string, unknown>
+> {
   handleEvent(event: CustomEvent<TEventDetail>): void;
   [key: string]: unknown;
 }
-type CustomEventListenerOrCustomEventListenerObject<TEventDetail extends Record<string, unknown>> =
-  | CustomEventListener<TEventDetail>
-  | CustomEventListenerObject<TEventDetail>;
+type CustomEventListenerOrCustomEventListenerObject<
+  TEventDetail extends Record<string, unknown>
+> = CustomEventListener<TEventDetail> | CustomEventListenerObject<TEventDetail>;
 
 type HTMLElementWithComponent<
   THTMLElement extends HTMLElement,
@@ -390,13 +414,19 @@ abstract class BEMComponent<
   readonly element: HTMLElementWithComponent<THTMLElement, TCustomEvents, this>;
 
   constructor(element: THTMLElement) {
-    this.element = element as HTMLElementWithComponent<THTMLElement, TCustomEvents, this>;
+    this.element = element as HTMLElementWithComponent<
+      THTMLElement,
+      TCustomEvents,
+      this
+    >;
     this.element.component = this;
   }
 
   addCustomEventListener<TCustomEventType extends keyof TCustomEvents>(
     type: TCustomEventType,
-    listener: CustomEventListenerOrCustomEventListenerObject<TCustomEvents[TCustomEventType]>,
+    listener: CustomEventListenerOrCustomEventListenerObject<
+      TCustomEvents[TCustomEventType]
+    >,
     options?: boolean | AddEventListenerOptions
   ) {
     this.element.addEventListener(
@@ -411,7 +441,10 @@ abstract class BEMComponent<
  * BEM modifier class
  */
 abstract class BEMModifier<
-  TBEMComponent extends BEMComponent<HTMLElement, Record<string, Record<string, unknown>>>
+  TBEMComponent extends BEMComponent<
+    HTMLElement,
+    Record<string, Record<string, unknown>>
+  >
 > {
   protected component: TBEMComponent;
 
@@ -426,7 +459,10 @@ abstract class BEMModifier<
  *  Switchable BEM modifier class
  */
 abstract class CancelableBEMModifier<
-  TBEMComponent extends BEMComponent<HTMLElement, Record<string, Record<string, unknown>>>
+  TBEMComponent extends BEMComponent<
+    HTMLElement,
+    Record<string, Record<string, unknown>>
+  >
 > {
   protected component: TBEMComponent;
 
@@ -450,7 +486,11 @@ abstract class CancelableBEMModifier<
  * @param descendantSelector - necessary descendant
  * @returns result of checking
  */
-const checkDelegatingEvents = (event: Event, parent: HTMLElement, descendantSelector: string) => {
+const checkDelegatingEvents = (
+  event: Event,
+  parent: HTMLElement,
+  descendantSelector: string
+) => {
   const descendant = (event.target as HTMLElement).closest(descendantSelector);
 
   if (descendant === null && !parent.contains(descendant)) {

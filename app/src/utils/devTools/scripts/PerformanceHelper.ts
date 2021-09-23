@@ -144,7 +144,10 @@ const loadCached = (url: string): Promise<string> => {
  *   return n * recur(n - 1);
  * });
  */
-const makeMemorizable = (memo: number[], formula: (recursionCallback, n: number) => number) => {
+const makeMemorizable = (
+  memo: number[],
+  formula: (recursionCallback, n: number) => number
+) => {
   // eslint-disable-next-line func-names
   const recursionCallback = function (n) {
     let result = memo[n];

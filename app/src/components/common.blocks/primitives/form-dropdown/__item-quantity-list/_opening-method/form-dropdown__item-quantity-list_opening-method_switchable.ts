@@ -28,6 +28,7 @@ class FormDropdownItemQuantityListSwitchableOpeningMethodModifier extends FormDr
 
     return this;
   }
+
   protected _componentEventListenerObject = {
     handleComponentOpen: () => {
       const { wasOpened } = this._state;
@@ -41,15 +42,18 @@ class FormDropdownItemQuantityListSwitchableOpeningMethodModifier extends FormDr
   };
 }
 
-const formDropdownItemQuantityListSwitchableOpeningMethodModifiers = formDropdownItemQuantityLists
-  .filter((formDropdownItemQuantityList) =>
-    formDropdownItemQuantityList.element.classList.contains(
-      'js-form-dropdown__item-quantity-list_opening-method_switchable'
+const formDropdownItemQuantityListSwitchableOpeningMethodModifiers =
+  formDropdownItemQuantityLists
+    .filter((formDropdownItemQuantityList) =>
+      formDropdownItemQuantityList.element.classList.contains(
+        'js-form-dropdown__item-quantity-list_opening-method_switchable'
+      )
     )
-  )
-  .map(
-    (formDropdownItemQuantityList) =>
-      new FormDropdownItemQuantityListSwitchableOpeningMethodModifier(formDropdownItemQuantityList)
-  );
+    .map(
+      (formDropdownItemQuantityList) =>
+        new FormDropdownItemQuantityListSwitchableOpeningMethodModifier(
+          formDropdownItemQuantityList
+        )
+    );
 
 export { formDropdownItemQuantityListSwitchableOpeningMethodModifiers as default };

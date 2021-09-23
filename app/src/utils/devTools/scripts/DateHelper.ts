@@ -9,7 +9,8 @@ const MS_IN_A_DAY = 24 * MS_IN_A_HOUR;
  * @param date2 - large date
  * @returns milliseconds
  */
-const getDatePeriod = (date1: Date, date2: Date) => date2.getTime() - date1.getTime();
+const getDatePeriod = (date1: Date, date2: Date) =>
+  date2.getTime() - date1.getTime();
 
 /**
  * Converts iso date string to period datetime attribute of html <time> tag

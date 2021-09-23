@@ -9,8 +9,8 @@
 
   &_type_creative {
     @media print, screen and (min-width: 0) {
-      padding: #{120px / 1440px * 100%} #{104px / 1440px * 100%} #{116px / 1440px * 100%} #{104px / 1440px *
-        100%};
+      padding: #{120px / 1440px * 100%} #{104px / 1440px * 100%} #{116px /
+        1440px * 100%} #{104px / 1440px * 100%};
       width: 768px / 1440px * 100%;
       grid:
         'logo'
@@ -21,7 +21,8 @@
     }
 
     @media print, screen and (color) {
-      box-shadow: 0 #{10px / 14px * 1em} #{20px / 14px * 1em} 0 rgba(var(--color__dark-shade), 0.05);
+      box-shadow: 0 #{10px / 14px * 1em} #{20px / 14px * 1em} 0
+        rgba(var(--color__dark-shade), 0.05);
     }
   }
 
@@ -198,8 +199,8 @@
     @media print, screen and (min-width: 0) {
       display: grid;
       justify-content: center;
-      padding: #{24px / 14px * 1em} #{140px / 1440px * 100%} #{16px / 14px * 1em} #{140px / 1440px *
-        100%};
+      padding: #{24px / 14px * 1em} #{140px / 1440px * 100%} #{16px / 14px * 1em}
+        #{140px / 1440px * 100%};
       grid-area: copyright-bar;
       grid: 'copyright' 'icons';
     }
@@ -210,7 +211,8 @@
     }
 
     @media print, screen and (color) {
-      box-shadow: 0 #{10px / 14px * 1em} #{20px / 14px * 1em} 0 rgba(var(--color__dark-shade), 0.05);
+      box-shadow: 0 #{10px / 14px * 1em} #{20px / 14px * 1em} 0
+        rgba(var(--color__dark-shade), 0.05);
     }
   }
 

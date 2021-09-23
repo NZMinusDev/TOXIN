@@ -34,9 +34,11 @@ class FormExpandableCheckboxListExpanderInput extends BEMComponent<
   openList() {
     this._DOM.expandableList.style.maxHeight = `${this._DOM.expandableList.scrollHeight}px`;
   }
+
   closeList() {
     this._DOM.expandableList.style.maxHeight = '';
   }
+
   toggleList() {
     if (this.element.checked) {
       this.openList();
@@ -57,6 +59,7 @@ class FormExpandableCheckboxListExpanderInput extends BEMComponent<
 
     return this;
   }
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   protected onChange = (event: Event) => {
     this.toggleList();
@@ -71,11 +74,12 @@ class FormExpandableCheckboxListExpanderInput extends BEMComponent<
   }
 }
 
-type FormExpandableCheckboxListExpanderInputElementWithComponent = HTMLElementWithComponent<
-  FormExpandableCheckboxListExpanderInputElement,
-  FormExpandableCheckboxListExpanderInputCustomEvents,
-  FormExpandableCheckboxListExpanderInput
->;
+type FormExpandableCheckboxListExpanderInputElementWithComponent =
+  HTMLElementWithComponent<
+    FormExpandableCheckboxListExpanderInputElement,
+    FormExpandableCheckboxListExpanderInputCustomEvents,
+    FormExpandableCheckboxListExpanderInput
+  >;
 
 const formExpandableCheckboxListExpanderInputs = Array.from(
   formExpandableCheckboxListElements,

@@ -12,10 +12,13 @@ type PaginationDOM = {
 };
 
 type PaginationCustomEvents = {};
-type PaginationWithAsyncAddressingMethodModifierCustomEvents = PaginationCustomEvents &
-  PaginationAsyncAddressingMethodModifierCustomEvents;
+type PaginationWithAsyncAddressingMethodModifierCustomEvents =
+  PaginationCustomEvents & PaginationAsyncAddressingMethodModifierCustomEvents;
 
-class Pagination extends BEMComponent<PaginationElement, PaginationCustomEvents> {
+class Pagination extends BEMComponent<
+  PaginationElement,
+  PaginationCustomEvents
+> {
   protected readonly _DOM: Readonly<PaginationDOM>;
 
   constructor(paginationElement: PaginationElement) {
@@ -25,7 +28,9 @@ class Pagination extends BEMComponent<PaginationElement, PaginationCustomEvents>
   }
 
   protected _initDOM(): PaginationDOM {
-    const list = this.element.querySelector('.js-pagination__list') as PaginationDOM['list'];
+    const list = this.element.querySelector(
+      '.js-pagination__list'
+    ) as PaginationDOM['list'];
     const counter = this.element.querySelector(
       '.js-pagination__counter'
     ) as PaginationDOM['counter'];
@@ -39,11 +44,12 @@ type PaginationElementWithComponent = HTMLElementWithComponent<
   PaginationCustomEvents,
   Pagination
 >;
-type PaginationWithAsyncAddressingMethodModifierElementWithComponent = HTMLElementWithComponent<
-  PaginationElement,
-  PaginationWithAsyncAddressingMethodModifierCustomEvents,
-  Pagination
->;
+type PaginationWithAsyncAddressingMethodModifierElementWithComponent =
+  HTMLElementWithComponent<
+    PaginationElement,
+    PaginationWithAsyncAddressingMethodModifierCustomEvents,
+    Pagination
+  >;
 
 const paginations = Array.from(
   paginationElements,

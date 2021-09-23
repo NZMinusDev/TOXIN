@@ -16,7 +16,10 @@ const addGoodMouseOver = (
 
     const target = (event.target as HTMLElement).closest(childSelector);
 
-    if (target === null || !(event.currentTarget as HTMLElement).contains(target)) {
+    if (
+      target === null ||
+      !(event.currentTarget as HTMLElement).contains(target)
+    ) {
       return;
     }
 

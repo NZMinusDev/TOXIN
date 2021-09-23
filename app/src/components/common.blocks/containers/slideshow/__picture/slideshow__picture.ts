@@ -9,7 +9,10 @@ type SlideshowPictureElement = HTMLDivElement;
 
 type SlideshowPictureCustomEvents = {};
 
-class SlideshowPicture extends BEMComponent<SlideshowPictureElement, SlideshowPictureCustomEvents> {
+class SlideshowPicture extends BEMComponent<
+  SlideshowPictureElement,
+  SlideshowPictureCustomEvents
+> {
   constructor(slideshowPictureElement: SlideshowPictureElement) {
     super(slideshowPictureElement);
 
@@ -40,7 +43,9 @@ type SlideshowPictureElementWithComponent = HTMLElementWithComponent<
 
 const slideshowPictures = Array.from(slideshowElements, (slideshowElement) =>
   Array.from(
-    slideshowElement.querySelectorAll<SlideshowPictureElement>('.js-slideshow__picture'),
+    slideshowElement.querySelectorAll<SlideshowPictureElement>(
+      '.js-slideshow__picture'
+    ),
     (slideshowPictureElement) => new SlideshowPicture(slideshowPictureElement)
   )
 ).flat();

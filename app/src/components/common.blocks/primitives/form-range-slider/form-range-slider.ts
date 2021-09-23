@@ -4,7 +4,9 @@ import {
 } from '@utils/devTools/scripts/ComponentCreationHelper';
 import noUiSlider from '@library.blocks/primitives/form-range-slider/form-range-slider';
 
-import formRangeSliderElements, { FormRangeSliderElement } from './form-range-slider-elements';
+import formRangeSliderElements, {
+  FormRangeSliderElement,
+} from './form-range-slider-elements';
 
 interface HTMLDivElementWithSlider extends HTMLDivElement {
   // eslint-disable-next-line no-use-before-define
@@ -19,7 +21,10 @@ type FormRangeSliderDOM = {
 
 type FormRangeSliderCustomEvents = { change: {} };
 
-class FormRangeSlider extends BEMComponent<FormRangeSliderElement, FormRangeSliderCustomEvents> {
+class FormRangeSlider extends BEMComponent<
+  FormRangeSliderElement,
+  FormRangeSliderCustomEvents
+> {
   protected readonly _DOM: Readonly<FormRangeSliderDOM>;
 
   constructor(formRangeSliderElement: FormRangeSliderElement) {
@@ -44,10 +49,14 @@ class FormRangeSlider extends BEMComponent<FormRangeSliderElement, FormRangeSlid
 
     return { slider, result, inputFrom, inputTo };
   }
+
   protected _initLibRangeSlider() {
     noUiSlider.create(this._DOM.slider, {
       start: [this._DOM.inputFrom.value, this._DOM.inputTo.value],
-      range: { min: Number(this._DOM.inputFrom.min), max: Number(this._DOM.inputFrom.max) },
+      range: {
+        min: Number(this._DOM.inputFrom.min),
+        max: Number(this._DOM.inputFrom.max),
+      },
       connect: true,
     });
 
@@ -55,34 +64,45 @@ class FormRangeSlider extends BEMComponent<FormRangeSliderElement, FormRangeSlid
   }
 
   protected _bindSliderListeners() {
-    this._DOM.slider.noUiSlider.on('update', this._sliderEventListenerObject.handleSliderUpdate);
-    this._DOM.slider.noUiSlider.on('change', this._sliderEventListenerObject.handleSliderChange);
+    this._DOM.slider.noUiSlider.on(
+      'update',
+      this._sliderEventListenerObject.handleSliderUpdate
+    );
+    this._DOM.slider.noUiSlider.on(
+      'change',
+      this._sliderEventListenerObject.handleSliderChange
+    );
 
     return this;
   }
+
   protected _sliderEventListenerObject = {
     handleSliderUpdate: (values: Array<string>) => {
       const [valueFrom, valueTo] = values;
 
       this._DOM.inputFrom.value = valueFrom;
       this._DOM.inputTo.value = valueTo;
-      this._DOM.result.value = `${parseInt(valueFrom, 10).toLocaleString()}₽ - ${parseInt(
-        valueTo,
+      this._DOM.result.value = `${parseInt(
+        valueFrom,
         10
-      ).toLocaleString()}₽`;
+      ).toLocaleString()}₽ - ${parseInt(valueTo, 10).toLocaleString()}₽`;
     },
 
     handleSliderChange: (values: Array<string>, handle: number) => {
       switch (handle) {
         case 0: {
           this._DOM.inputFrom.dispatchEvent(new Event('change'));
-          this.element.dispatchEvent(new CustomEvent('change', { bubbles: true }));
+          this.element.dispatchEvent(
+            new CustomEvent('change', { bubbles: true })
+          );
 
           break;
         }
         case 1: {
           this._DOM.inputTo.dispatchEvent(new Event('change'));
-          this.element.dispatchEvent(new CustomEvent('change', { bubbles: true }));
+          this.element.dispatchEvent(
+            new CustomEvent('change', { bubbles: true })
+          );
 
           break;
         }
@@ -104,6 +124,10 @@ const formRangeSliders = Array.from(
   (formRangeSliderElement) => new FormRangeSlider(formRangeSliderElement)
 );
 
-export type { FormRangeSliderCustomEvents, FormRangeSlider, FormRangeSliderElementWithComponent };
+export type {
+  FormRangeSliderCustomEvents,
+  FormRangeSlider,
+  FormRangeSliderElementWithComponent,
+};
 
 export { formRangeSliders as default };

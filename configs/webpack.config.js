@@ -1,5 +1,9 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const { HashedModuleIdsPlugin, ProvidePlugin, ContextReplacementPlugin } = require('webpack');
+const {
+  HashedModuleIdsPlugin,
+  ProvidePlugin,
+  ContextReplacementPlugin,
+} = require('webpack');
 const path = require('path');
 const fs = require('fs');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
@@ -34,13 +38,23 @@ const PATHS = {
 // FIXME: change it depending on your design template for proper scaling images
 const designWidth = 1440;
 
-const redefinitionLevels = ['layouts', 'components/library.blocks', 'components/common.blocks'];
+const redefinitionLevels = [
+  'layouts',
+  'components/library.blocks',
+  'components/common.blocks',
+];
 const componentGroups = ['basic', 'containers', 'primitives', 'specific'];
 
 const sharedAliases = {
   '@layouts': path.resolve(PATHS.src_absolute, './layouts/'),
-  '@library.blocks': path.resolve(PATHS.src_absolute, './components/library.blocks/'),
-  '@common.blocks': path.resolve(PATHS.src_absolute, './components/common.blocks/'),
+  '@library.blocks': path.resolve(
+    PATHS.src_absolute,
+    './components/library.blocks/'
+  ),
+  '@common.blocks': path.resolve(
+    PATHS.src_absolute,
+    './components/common.blocks/'
+  ),
   '@themes': path.resolve(PATHS.src_absolute, './themes/'),
   '@assets': path.resolve(PATHS.src_absolute, './assets/'),
   '@pages': path.resolve(PATHS.src_absolute, './pages/'),
@@ -53,20 +67,25 @@ const sharedAliases = {
  * @param { string } ext - extension of output bundle files such as js/webp/png
  * @returns { string } - hashed name in production mode and nohashed in another case
  */
-const hashedFileName = (name, ext) => (isDev ? `${name}.${ext}` : `${name}.[hash].${ext}`);
+const hashedFileName = (name, ext) =>
+  isDev ? `${name}.${ext}` : `${name}.[hash].${ext}`;
 
 /**
  * loop pages folder and create stuff depending on names of pages.
  */
 class ResultOfTemplatesProcessing {
   constructor() {
-    const foldersOfPages = fs.readdirSync(path.resolve(PATHS.src_absolute, './pages/'));
+    const foldersOfPages = fs.readdirSync(
+      path.resolve(PATHS.src_absolute, './pages/')
+    );
 
     // get all pug templates from each page folder
     const namesOfTemplates = [].concat(
       ...foldersOfPages.map((folder) =>
         fs
-          .readdirSync(`${path.resolve(PATHS.src_absolute, './pages/')}\\${folder}\\`)
+          .readdirSync(
+            `${path.resolve(PATHS.src_absolute, './pages/')}\\${folder}\\`
+          )
           .filter((filename) => filename.endsWith(`.pug`))
       )
     );
@@ -113,7 +132,11 @@ const getFilesDeep = (dir, excludedExt, _files) => {
   files.forEach((val, i) => {
     const name = path.resolve(dir, files[i]);
 
-    if (excludedExt.includes(name.substring(name.lastIndexOf('.') + 1, name.length) || name))
+    if (
+      excludedExt.includes(
+        name.substring(name.lastIndexOf('.') + 1, name.length) || name
+      )
+    )
       return;
 
     if (fs.statSync(name).isDirectory()) {
@@ -144,12 +167,22 @@ const listOfSourceImagesMapping = (list, suffix, base = PATHS.src_absolute) =>
     };
   });
 
-let listOfSourceImages320 = getFilesDeep(path.resolve(PATHS.src_absolute, './assets/pictures'), [
-  'svg',
-]);
-const listOfSourceImages640 = listOfSourceImagesMapping(listOfSourceImages320, '640');
-const listOfSourceImages960 = listOfSourceImagesMapping(listOfSourceImages320, '960');
-const listOfSourceImages1920 = listOfSourceImagesMapping(listOfSourceImages320, '1920');
+let listOfSourceImages320 = getFilesDeep(
+  path.resolve(PATHS.src_absolute, './assets/pictures'),
+  ['svg']
+);
+const listOfSourceImages640 = listOfSourceImagesMapping(
+  listOfSourceImages320,
+  '640'
+);
+const listOfSourceImages960 = listOfSourceImagesMapping(
+  listOfSourceImages320,
+  '960'
+);
+const listOfSourceImages1920 = listOfSourceImagesMapping(
+  listOfSourceImages320,
+  '1920'
+);
 listOfSourceImages320 = listOfSourceImagesMapping(listOfSourceImages320, '320');
 
 /**
@@ -171,7 +204,10 @@ const webpackPlugins = () => {
   const plugins = [
     ...resultOfTemplatesProcessing.HTMLWebpackPlugins,
     new MiniCssExtractPlugin({
-      filename: hashedFileName(isDev ? 'styles/[name]/[name]' : 'styles/[id]/style', 'css'),
+      filename: hashedFileName(
+        isDev ? 'styles/[name]/[name]' : 'styles/[id]/style',
+        'css'
+      ),
       ignoreOrder: true,
     }),
 
@@ -298,7 +334,9 @@ const webpackPlugins = () => {
  * Loaders contraction for templates.
  * @param { string[] } includedFilesExtensions - extensions for including into bundles from components' resources; example: ["scss", "ts"].
  */
-const templatesLoaders = (includedFilesExtensions = ['css', 'js', 'scss', 'ts']) => {
+const templatesLoaders = (
+  includedFilesExtensions = ['css', 'js', 'scss', 'ts']
+) => {
   const bemDeclLevels = [];
   redefinitionLevels.forEach((level) => {
     componentGroups.forEach((group) => {
@@ -507,7 +545,10 @@ const optimization = () => {
 
   if (isProd) {
     // minify css and js
-    config.minimizer = [new OptimizeCssAssetWebpackPlugin(), new TerserWebpackPlugin()];
+    config.minimizer = [
+      new OptimizeCssAssetWebpackPlugin(),
+      new TerserWebpackPlugin(),
+    ];
   }
 
   return config;
@@ -517,7 +558,9 @@ const optimization = () => {
  * measures speed of each plugin in bundling
  * writes data in stats.json as plain text, shouldn't be in dev mod
  */
-const smp = new SpeedMeasurePlugin({ disable: process.env.MEASURE === 'false' });
+const smp = new SpeedMeasurePlugin({
+  disable: process.env.MEASURE === 'false',
+});
 module.exports = smp.wrap({
   // The base directory, an absolute path, for resolving entry points and loaders
   context: PATHS.src_absolute,
@@ -528,7 +571,10 @@ module.exports = smp.wrap({
 
   // Where to put bundles for every entry point
   output: {
-    filename: hashedFileName(isDev ? 'bundles/[name]/[name]' : 'bundles/[id]/script', 'js'),
+    filename: hashedFileName(
+      isDev ? 'bundles/[name]/[name]' : 'bundles/[id]/script',
+      'js'
+    ),
     path: PATHS.dist_absolute,
   },
   resolve: {

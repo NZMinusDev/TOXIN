@@ -61,7 +61,9 @@ mixin pagination({ addressingMethod = 'href', hrefPrefix = '?page=', total = 100
     ul.pagination__list.js-pagination__list
       //- Show the Previous button only if you are on a page other than the first
       if activePage > 1
-        li.pagination__item.pagination__item_previous(title="на предыдущую страницу")
+        li.pagination__item.pagination__item_previous(
+          title="на предыдущую страницу"
+        )
           if addressingMethod === 'href'
             a.pagination__link(href=paginationHrefs[activePage - 2])= 'arrow_back'
           else
@@ -91,7 +93,9 @@ mixin pagination({ addressingMethod = 'href', hrefPrefix = '?page=', total = 100
             else
               = 1
           if activePage > 3
-            li.pagination__item.pagination__item_out-of-range(title=`на страницу ${2}`)
+            li.pagination__item.pagination__item_out-of-range(
+              title=`на страницу ${2}`
+            )
               if addressingMethod === 'href'
                 a(href=paginationHrefs[1])= '...'
               else
@@ -113,7 +117,9 @@ mixin pagination({ addressingMethod = 'href', hrefPrefix = '?page=', total = 100
         //- Show the very last page preceded by a '...' at the end of the pagination section (before the Next button)
         if activePage < pages - 1
           if activePage < pages - 2
-            li.pagination__item.pagination__item_out-of-range(title=`на страницу ${pages - 1}`)
+            li.pagination__item.pagination__item_out-of-range(
+              title=`на страницу ${pages - 1}`
+            )
               if addressingMethod === 'href'
                 a.pagination__link(href=paginationHrefs[pages - 2])= '...'
               else
@@ -125,7 +131,9 @@ mixin pagination({ addressingMethod = 'href', hrefPrefix = '?page=', total = 100
               = pages
       //- Show the Next button only if you are on a page other than the last
       if activePage < pages
-        li.pagination__item.pagination__item_next(title="на следующую страницу")
+        li.pagination__item.pagination__item_next(
+          title="на следующую страницу"
+        )
           if addressingMethod === 'href'
             a.pagination__link(href=paginationHrefs[activePage])= 'arrow_forward'
           else

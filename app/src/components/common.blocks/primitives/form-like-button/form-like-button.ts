@@ -3,7 +3,9 @@ import {
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/ComponentCreationHelper';
 
-import formLikeButtonElements, { FormLikeButtonElement } from './form-like-button-elements';
+import formLikeButtonElements, {
+  FormLikeButtonElement,
+} from './form-like-button-elements';
 
 type FormLikeButtonDOM = { button: HTMLInputElement; counter: HTMLSpanElement };
 
@@ -13,7 +15,10 @@ type FormLikeButtonState = {
 
 type FormLikeButtonCustomEvents = {};
 
-class FormLikeButton extends BEMComponent<FormLikeButtonElement, FormLikeButtonCustomEvents> {
+class FormLikeButton extends BEMComponent<
+  FormLikeButtonElement,
+  FormLikeButtonCustomEvents
+> {
   protected readonly _DOM: Readonly<FormLikeButtonDOM>;
 
   protected readonly _state: FormLikeButtonState;
@@ -48,8 +53,12 @@ class FormLikeButton extends BEMComponent<FormLikeButtonElement, FormLikeButtonC
   }
 
   protected _bindButtonListeners() {
-    this._DOM.button.addEventListener('change', this._buttonEventListenerObject.handleButtonChange);
+    this._DOM.button.addEventListener(
+      'change',
+      this._buttonEventListenerObject.handleButtonChange
+    );
   }
+
   protected _buttonEventListenerObject = {
     handleButtonChange: () => {
       if (this._DOM.button.checked) {
@@ -74,6 +83,10 @@ const formLikeButtons = Array.from(
   (formLikeButtonElement) => new FormLikeButton(formLikeButtonElement)
 );
 
-export type { FormLikeButtonCustomEvents, FormLikeButton, FormLikeButtonElementWithComponent };
+export type {
+  FormLikeButtonCustomEvents,
+  FormLikeButton,
+  FormLikeButtonElementWithComponent,
+};
 
 export { formLikeButtons as default };

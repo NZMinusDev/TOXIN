@@ -37,7 +37,8 @@
     grid-area: icon;
 
     @media print, screen and (color) {
-      box-shadow: 0 #{10px / 14px * 1em} #{20px / 14px * 1em} 0 rgba(var(--color__dark-shade), 0.1);
+      box-shadow: 0 #{10px / 14px * 1em} #{20px / 14px * 1em} 0
+        rgba(var(--color__dark-shade), 0.1);
     }
   }
 

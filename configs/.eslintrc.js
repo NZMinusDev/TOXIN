@@ -21,13 +21,16 @@ const config = {
     // FIXME: if you know how to make it works with chaining calls of several methods use['error', { allowAfterThis: true }]
     'no-underscore-dangle': 'off',
 
-    'lines-between-class-members': 'off',
-
     // https://github.com/fullstack-development/front-end-best-practices/blob/master/JS/README.md#1.17
     'import/order': [
       'error',
       {
-        groups: [['builtin', 'external'], 'internal', ['parent', 'sibling'], 'index'],
+        groups: [
+          ['builtin', 'external'],
+          'internal',
+          ['parent', 'sibling'],
+          'index',
+        ],
         'newlines-between': 'always',
       },
     ],
@@ -48,7 +51,10 @@ const config = {
     'default-param-last': ['error'],
 
     // https://github.com/airbnb/javascript#arrows--use-them
-    'prefer-arrow-callback': ['error', { allowNamedFunctions: false, allowUnboundThis: false }],
+    'prefer-arrow-callback': [
+      'error',
+      { allowNamedFunctions: false, allowUnboundThis: false },
+    ],
 
     // https://github.com/airbnb/javascript#arrows--implicit-return
     'arrow-body-style': ['error', 'as-needed'],
@@ -138,7 +144,6 @@ const config = {
       ],
 
       rules: {
-        '@typescript-eslint/lines-between-class-members': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
       },
     },

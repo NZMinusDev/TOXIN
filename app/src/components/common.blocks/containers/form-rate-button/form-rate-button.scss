@@ -51,7 +51,9 @@
       }
 
       //before selected by hover: filled
-      & ~ .form-rate-button__button-item:checked ~ .form-rate-button__icon::before {
+      &
+        ~ .form-rate-button__button-item:checked
+        ~ .form-rate-button__icon::before {
         content: '\e838';
       }
     }

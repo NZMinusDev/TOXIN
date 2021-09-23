@@ -1,7 +1,10 @@
 @use '@utils/devTools/styles/mixins.scss';
 @use '@themes/main/gradients.scss';
 
-@include mixins.import-font('Toxin Logo Font', './__title/fonts/toxin-logo-font.ttf');
+@include mixins.import-font(
+  'Toxin Logo Font',
+  './__title/fonts/toxin-logo-font.ttf'
+);
 
 .logo {
   display: grid;

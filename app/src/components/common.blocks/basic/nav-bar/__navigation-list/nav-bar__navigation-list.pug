@@ -37,7 +37,10 @@ mixin nav-bar__navigation-list(items, active)
             id=checkboxID,
             type="checkbox"
           )
-          label.nav-bar__navigation-item-dropdown-label(for=checkboxID, tabindex="0")= itemName
+          label.nav-bar__navigation-item-dropdown-label(
+            for=checkboxID,
+            tabindex="0"
+          )= itemName
             span.nav-bar__expand-icon
               +icon({content: 'expand_more', width: 'medium'})
           +nav-bar__navigation-list(itemSettings.items)

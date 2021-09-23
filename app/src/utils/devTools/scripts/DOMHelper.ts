@@ -19,7 +19,9 @@ const hasAll = (
   let isHas: Element[] = [];
 
   if (typeof contained === 'string') {
-    isHas = copiedElements.filter((element) => element.querySelector(contained));
+    isHas = copiedElements.filter((element) =>
+      element.querySelector(contained)
+    );
   } else {
     isHas = copiedElements.filter((element) => element.contains(contained));
   }
@@ -155,9 +157,13 @@ const getCoordinatesOfAbsoluteElement = (element: HTMLElement) => {
 
   return {
     top: DOMRect.top + window.pageYOffset,
-    right: document.documentElement.clientWidth - DOMRect.right + window.pageYOffset,
+    right:
+      document.documentElement.clientWidth - DOMRect.right + window.pageYOffset,
     left: DOMRect.left + window.pageXOffset,
-    bottom: document.documentElement.clientHeight - DOMRect.bottom + window.pageXOffset,
+    bottom:
+      document.documentElement.clientHeight -
+      DOMRect.bottom +
+      window.pageXOffset,
   };
 };
 

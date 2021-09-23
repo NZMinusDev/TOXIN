@@ -28,7 +28,9 @@ mixin form-dropdown__item-quantity-list({ name = 'iqList', placeholder = 'placeh
       data-is-filter=isFilter
     )
     .iqdropdown.js-iqdropdown
-      p.iqdropdown-selection.js-iqdropdown-selection(data-placeholder=placeholder)
+      p.iqdropdown-selection.js-iqdropdown-selection(
+        data-placeholder=placeholder
+      )
       .iqdropdown-menu.js-iqdropdown-menu(data-groups=groups)
         each limits, itemTitle in list
           input.form-dropdown__option-input.js-form-dropdown__option-input(

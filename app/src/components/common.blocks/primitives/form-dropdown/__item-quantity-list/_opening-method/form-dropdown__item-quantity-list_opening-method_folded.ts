@@ -11,14 +11,20 @@ class FormDropdownItemQuantityListFoldedOpeningMethodModifier extends FormDropdo
   }
 
   protected _bindWindowListeners() {
-    window.addEventListener('click', this._windowEventListenerObject.handleWindowClick);
+    window.addEventListener(
+      'click',
+      this._windowEventListenerObject.handleWindowClick
+    );
 
     return this;
   }
+
   protected _windowEventListenerObject = {
     handleWindowClick: (event: MouseEvent) => {
       const target = event.target as HTMLElement;
-      const dropdownElement = this.component.element.closest('.js-form-dropdown') as HTMLElement;
+      const dropdownElement = this.component.element.closest(
+        '.js-form-dropdown'
+      ) as HTMLElement;
 
       if (!dropdownElement.contains(target) && this.component.isOpen()) {
         this.component.close();
@@ -27,15 +33,18 @@ class FormDropdownItemQuantityListFoldedOpeningMethodModifier extends FormDropdo
   };
 }
 
-const formDropdownItemQuantityListFoldedOpeningMethodModifiers = formDropdownItemQuantityLists
-  .filter((formDropdownItemQuantityList) =>
-    formDropdownItemQuantityList.element.classList.contains(
-      'js-form-dropdown__item-quantity-list_opening-method_folded'
+const formDropdownItemQuantityListFoldedOpeningMethodModifiers =
+  formDropdownItemQuantityLists
+    .filter((formDropdownItemQuantityList) =>
+      formDropdownItemQuantityList.element.classList.contains(
+        'js-form-dropdown__item-quantity-list_opening-method_folded'
+      )
     )
-  )
-  .map(
-    (formDropdownItemQuantityList) =>
-      new FormDropdownItemQuantityListFoldedOpeningMethodModifier(formDropdownItemQuantityList)
-  );
+    .map(
+      (formDropdownItemQuantityList) =>
+        new FormDropdownItemQuantityListFoldedOpeningMethodModifier(
+          formDropdownItemQuantityList
+        )
+    );
 
 export { formDropdownItemQuantityListFoldedOpeningMethodModifiers as default };

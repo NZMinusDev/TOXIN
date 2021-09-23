@@ -20,7 +20,10 @@ type NavBarElementWithComponent = HTMLElementWithComponent<
   NavBar
 >;
 
-const navBars = Array.from(navBarElements, (navBarElement) => new NavBar(navBarElement));
+const navBars = Array.from(
+  navBarElements,
+  (navBarElement) => new NavBar(navBarElement)
+);
 
 export type { NavBarCustomEvents, NavBar, NavBarElementWithComponent };
 

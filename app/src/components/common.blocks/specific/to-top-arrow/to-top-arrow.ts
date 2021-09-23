@@ -7,7 +7,10 @@ import toTopArrowElements, { ToTopArrowElement } from './to-top-arrow-elements';
 
 type ToTopArrowCustomEvents = {};
 
-class ToTopArrow extends BEMComponent<ToTopArrowElement, ToTopArrowCustomEvents> {
+class ToTopArrow extends BEMComponent<
+  ToTopArrowElement,
+  ToTopArrowCustomEvents
+> {
   constructor(toTopArrowElement: ToTopArrowElement) {
     super(toTopArrowElement);
 
@@ -15,13 +18,18 @@ class ToTopArrow extends BEMComponent<ToTopArrowElement, ToTopArrowCustomEvents>
   }
 
   protected _bindWindowListeners() {
-    window.addEventListener('scroll', this._windowEventListenerObject.handleWindowScroll);
+    window.addEventListener(
+      'scroll',
+      this._windowEventListenerObject.handleWindowScroll
+    );
 
     return this;
   }
+
   protected _windowEventListenerObject = {
     handleWindowScroll: () => {
-      this.element.hidden = window.pageYOffset < document.documentElement.clientHeight;
+      this.element.hidden =
+        window.pageYOffset < document.documentElement.clientHeight;
     },
   };
 
@@ -30,6 +38,7 @@ class ToTopArrow extends BEMComponent<ToTopArrowElement, ToTopArrowCustomEvents>
 
     return this;
   }
+
   onClick = () => {
     window.scrollTo(window.pageXOffset, 0);
   };
@@ -46,6 +55,10 @@ const toTopArrows = Array.from(
   (toTopArrowElement) => new ToTopArrow(toTopArrowElement)
 );
 
-export type { ToTopArrowCustomEvents, ToTopArrow, ToTopArrowElementWithComponent };
+export type {
+  ToTopArrowCustomEvents,
+  ToTopArrow,
+  ToTopArrowElementWithComponent,
+};
 
 export { toTopArrows as default };

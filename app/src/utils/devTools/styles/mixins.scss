@@ -46,7 +46,8 @@
       url($file-path + '.eot?#iefix') format('embedded-opentype'),
       //Modern Browsers
       url($file-path + '.woff2') format('woff2'),
-      url($file-path + '.woff') format('woff'), url($file-path + '.otf') format('opentype'),
+      url($file-path + '.woff') format('woff'),
+      url($file-path + '.otf') format('opentype'),
       // Safari, Android, iOS
       url($file-path + '.ttf') format('truetype'),
       // Legacy iOS
@@ -91,13 +92,17 @@
     }
     /* stylelint-disable-next-line order/order */
     $urls: $urls + url($path);
-    $urls-320: $urls-320 + url(functions.resolve-unresolved-asset-path($path, '-320.' + $file-ext));
-    $urls-640: $urls-640 + url(functions.resolve-unresolved-asset-path($path, '-640.' + $file-ext));
-    $urls-960: $urls-960 + url(functions.resolve-unresolved-asset-path($path, '-960.' + $file-ext));
+    $urls-320: $urls-320 +
+      url(functions.resolve-unresolved-asset-path($path, '-320.' + $file-ext));
+    $urls-640: $urls-640 +
+      url(functions.resolve-unresolved-asset-path($path, '-640.' + $file-ext));
+    $urls-960: $urls-960 +
+      url(functions.resolve-unresolved-asset-path($path, '-960.' + $file-ext));
     $urls-1920: $urls-1920 +
       url(functions.resolve-unresolved-asset-path($path, '-1920.' + $file-ext));
 
-    $webp-urls: $webp-urls + url(functions.resolve-unresolved-asset-path($path, '.webp'));
+    $webp-urls: $webp-urls +
+      url(functions.resolve-unresolved-asset-path($path, '.webp'));
     $webp-urls-320: $webp-urls-320 +
       url(functions.resolve-unresolved-asset-path($path, '-320.webp'));
     $webp-urls-640: $webp-urls-640 +
@@ -154,7 +159,10 @@
 
   @supports (
     background-image:
-      url(functions.resolve-unresolved-asset-path(list.nth($images-paths, 1), '.webp'))
+      url(functions.resolve-unresolved-asset-path(
+        list.nth($images-paths, 1),
+        '.webp'
+      ))
   ) {
     @media print, screen and (min-width: 0) {
       @include _change-image-key-frames($images-paths, 320, 'webp');

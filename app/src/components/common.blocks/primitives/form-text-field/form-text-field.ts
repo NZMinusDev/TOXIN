@@ -3,11 +3,16 @@ import {
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/ComponentCreationHelper';
 
-import formTextFieldElements, { FormTextFieldElement } from './form-text-field-elements';
+import formTextFieldElements, {
+  FormTextFieldElement,
+} from './form-text-field-elements';
 
 type FormTextFieldCustomEvents = {};
 
-class FormTextField extends BEMComponent<FormTextFieldElement, FormTextFieldCustomEvents> {
+class FormTextField extends BEMComponent<
+  FormTextFieldElement,
+  FormTextFieldCustomEvents
+> {
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor
   constructor(formTextFieldElement: FormTextFieldElement) {
     super(formTextFieldElement);
@@ -25,6 +30,10 @@ const formTextFields = Array.from(
   (formTextFieldElement) => new FormTextField(formTextFieldElement)
 );
 
-export type { FormTextFieldCustomEvents, FormTextField, FormTextFieldElementWithComponent };
+export type {
+  FormTextFieldCustomEvents,
+  FormTextField,
+  FormTextFieldElementWithComponent,
+};
 
 export { formTextFields as default };

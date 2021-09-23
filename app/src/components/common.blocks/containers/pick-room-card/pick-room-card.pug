@@ -21,4 +21,7 @@ mixin pick-room-card({ action = undefined, name = 'pick-room-card', method = 'po
       .pick-room-card__guests-dropdown
         +form-dropdown('item-quantity', { heading: { h3: 'Гости' }, name: `${name}-guests`, placeholder: 'Сколько гостей', openingMethod: 'applied', groups: { гости: { one: 'гость', two: 'гостя', five: 'гостей' }, младенцы: { one: 'младенец', two: 'младенца', five:'младенцев' } }, list: { взрослые: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 0, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0 } } })
       .pick-room-card__submit-btn
-        +button({ appearance: 'like-a-link' })(type="submit", value="Подобрать номер")
+        +button({ appearance: 'like-a-link' })(
+          type="submit",
+          value="Подобрать номер"
+        )

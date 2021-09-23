@@ -121,7 +121,10 @@ const getProgressedJSON = async (
     progressCallback = (receivedLength: number, contentLength: number) => {},
   }: HandleResponseProcessOptions = {}
 ) => {
-  const result = await handleResponseProcess(url, { fetchOptions, progressCallback });
+  const result = await handleResponseProcess(url, {
+    fetchOptions,
+    progressCallback,
+  });
 
   if (result !== null) {
     const chunksAll = new Uint8Array(result.receivedLength);
@@ -159,7 +162,10 @@ const getProgressedBlob = async (
     progressCallback = (receivedLength: number, contentLength: number) => {},
   }: HandleResponseProcessOptions = {}
 ) => {
-  const result = await handleResponseProcess(url, { fetchOptions, progressCallback });
+  const result = await handleResponseProcess(url, {
+    fetchOptions,
+    progressCallback,
+  });
 
   if (result !== null) {
     return new Blob(result.chunks);
@@ -202,7 +208,11 @@ const sendProgressedJSON = async (
   });
 };
 
-const sendImg = async (url: URL, img: HTMLImageElement, { name = 'image' } = {}) => {
+const sendImg = async (
+  url: URL,
+  img: HTMLImageElement,
+  { name = 'image' } = {}
+) => {
   const blob = await imgToBlob(img);
 
   const formData = new FormData();
@@ -217,8 +227,11 @@ const sendImg = async (url: URL, img: HTMLImageElement, { name = 'image' } = {})
 const sendProgressedImg = (
   url: URL,
   img: HTMLImageElement,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  { progressCallback = (event: ProgressEvent<EventTarget>) => {}, name = 'image' } = {}
+  {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    progressCallback = (event: ProgressEvent<EventTarget>) => {},
+    name = 'image',
+  } = {}
 ) => {
   const xhr = new XMLHttpRequest();
 

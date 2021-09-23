@@ -13,7 +13,10 @@
   font-size: functions.get-liquid-size(24, 18);
 
   &_font-family_material {
-    @include vendor-fonts-mixins.material-icon(inline-flex, functions.get-liquid-size(24, 18));
+    @include vendor-fonts-mixins.material-icon(
+      inline-flex,
+      functions.get-liquid-size(24, 18)
+    );
   }
   &_font-family_branded {
     @include vendor-fonts-mixins.font-awesome();

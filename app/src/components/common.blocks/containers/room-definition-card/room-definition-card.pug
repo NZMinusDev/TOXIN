@@ -38,7 +38,11 @@ mixin room-definition-card({ action = undefined, name = 'room-definition-card', 
 
     const totalPaymentAmount = totalDayPaymentAmount + servicesPayment + additionalServicesPayment;
   +card-base
-    form.room-definition-card.js-room-definition-card(name=name, action=action, method=method)&attributes(attributes)
+    form.room-definition-card.js-room-definition-card(
+      name=name,
+      action=action,
+      method=method
+    )&attributes(attributes)
       .room-definition-card__room-title
         h1.room-definition-card__room-number= roomNumberSentence
         h3.room-definition-card__room-grade= roomGrade
@@ -81,4 +85,7 @@ mixin room-definition-card({ action = undefined, name = 'room-definition-card', 
         span.room-definition-card__text-separator
         span.room-definition-card__total-payment-amount.js-room-definition-card__total-payment-amount= `${totalPaymentAmount.toLocaleString()}${currency}`
       .room-definition-card__submit-btn
-        +button({ appearance: 'like-a-link' })(type="submit", value="Забронировать")
+        +button({ appearance: 'like-a-link' })(
+          type="submit",
+          value="Забронировать"
+        )

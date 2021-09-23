@@ -14,7 +14,8 @@
 
     @media print, screen and (color) {
       border: var(--border);
-      box-shadow: 0 #{10px / 14px * 1em} #{20px / 14px * 1em} rgba(var(--color__dark-shade), 0.05);
+      box-shadow: 0 #{10px / 14px * 1em} #{20px / 14px * 1em}
+        rgba(var(--color__dark-shade), 0.05);
     }
   }
 

@@ -20,6 +20,7 @@ type PaginationAsyncAddressingMethodModifierCustomEvents = { change: {} };
 
 class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethodModifier {
   protected readonly _options: PaginationAsyncAddressingMethodModifierHTMLOptions;
+
   protected readonly _state: PaginationAsyncAddressingMethodModifierState;
 
   constructor(pagination: Pagination) {
@@ -37,13 +38,17 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
 
   protected _initOptionsFromHTML() {
     const page = parseInt(this.component.element.dataset.page as string, 10);
-    const displayed = parseInt(this.component.element.dataset.displayed as string, 10);
+    const displayed = parseInt(
+      this.component.element.dataset.displayed as string,
+      10
+    );
     const total = parseInt(this.component.element.dataset.total as string, 10);
     const pages = Math.ceil(total / displayed);
     const text = this.component.element.dataset.text as string;
 
     return { page, displayed, total, pages, text };
   }
+
   protected _initState() {
     const activePage = this._options.page;
 
@@ -56,7 +61,9 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
 
       this._state.activePage = paginationItem.pageNumber;
       this._renderPaginationItems()._renderPaginationCounter();
-      this.component.element.dispatchEvent(new CustomEvent('change', { bubbles: true }));
+      this.component.element.dispatchEvent(
+        new CustomEvent('change', { bubbles: true })
+      );
     },
   };
 
@@ -118,6 +125,7 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
 
     return this;
   }
+
   protected static _createPaginationItem(
     pageNumber: number,
     innerText: string,
@@ -137,6 +145,7 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
 
     return item;
   }
+
   protected _insertPreviousButtonPaginationItem(list: DocumentFragment) {
     list.append(
       PaginationAsyncAddressingMethodModifier._createPaginationItem(
@@ -150,18 +159,25 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
 
     return this;
   }
+
   protected _insertAllPaginationItems(list: DocumentFragment) {
     // eslint-disable-next-line no-loops/no-loops
     for (let page = 1; page <= this._options.pages; page += 1) {
-      const itemActiveClass = this._state.activePage === page ? 'pagination__item_active' : '';
-      const title = this._state.activePage === page ? 'текущая страница' : `на страницу ${page}`;
+      const itemActiveClass =
+        this._state.activePage === page ? 'pagination__item_active' : '';
+      const title =
+        this._state.activePage === page
+          ? 'текущая страница'
+          : `на страницу ${page}`;
 
       list.append(
         PaginationAsyncAddressingMethodModifier._createPaginationItem(
           page,
           `${page}`,
           this._paginationItemEventListenerObject.handlePaginationItemClick,
-          ['pagination__item', itemActiveClass].filter((element) => element !== ''),
+          ['pagination__item', itemActiveClass].filter(
+            (element) => element !== ''
+          ),
           { title }
         )
       );
@@ -169,6 +185,7 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
 
     return this;
   }
+
   protected _insertTheFirstPagePaginationItem(list: DocumentFragment) {
     list.append(
       PaginationAsyncAddressingMethodModifier._createPaginationItem(
@@ -182,7 +199,11 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
 
     return this;
   }
-  protected _insertSeparatorPaginationItem(list: DocumentFragment, pageNumber: number) {
+
+  protected _insertSeparatorPaginationItem(
+    list: DocumentFragment,
+    pageNumber: number
+  ) {
     const title = `на страницу ${pageNumber}`;
 
     list.append(
@@ -197,7 +218,10 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
 
     return this;
   }
-  protected _insertPaginationItemsBeforeTheLastSeparator(list: DocumentFragment) {
+
+  protected _insertPaginationItemsBeforeTheLastSeparator(
+    list: DocumentFragment
+  ) {
     // - Determine how many pages to show after the current page index
     let pageCutLow = this._state.activePage - 1;
 
@@ -216,15 +240,21 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
 
     // eslint-disable-next-line no-loops/no-loops
     for (let page = pageCutLow; page <= pageCutHigh; page += 1) {
-      const itemActiveClass = this._state.activePage === page ? 'pagination__item_active' : '';
-      const title = this._state.activePage === page ? 'текущая страница' : `на страницу ${page}`;
+      const itemActiveClass =
+        this._state.activePage === page ? 'pagination__item_active' : '';
+      const title =
+        this._state.activePage === page
+          ? 'текущая страница'
+          : `на страницу ${page}`;
 
       list.append(
         PaginationAsyncAddressingMethodModifier._createPaginationItem(
           page,
           `${page}`,
           this._paginationItemEventListenerObject.handlePaginationItemClick,
-          ['pagination__item', itemActiveClass].filter((element) => element !== ''),
+          ['pagination__item', itemActiveClass].filter(
+            (element) => element !== ''
+          ),
           { title }
         )
       );
@@ -232,6 +262,7 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
 
     return this;
   }
+
   protected _insertTheLastPagePaginationItem(list: DocumentFragment) {
     list.append(
       PaginationAsyncAddressingMethodModifier._createPaginationItem(
@@ -245,6 +276,7 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
 
     return this;
   }
+
   protected _insertNextButtonPaginationItem(list: DocumentFragment) {
     list.append(
       PaginationAsyncAddressingMethodModifier._createPaginationItem(
@@ -260,7 +292,8 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
   }
 
   protected _renderPaginationCounter() {
-    const counterFrom = (this._state.activePage - 1) * this._options.displayed + 1;
+    const counterFrom =
+      (this._state.activePage - 1) * this._options.displayed + 1;
     const counterTo =
       this._state.activePage * this._options.displayed > this._options.total
         ? this._options.total
@@ -271,7 +304,10 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
 
     const counterTotalText =
       counterTotalDigits > counterToDigits
-        ? `${Math.floor(this._options.total / 10 ** counterToDigits) * 10 ** counterToDigits}+ `
+        ? `${
+            Math.floor(this._options.total / 10 ** counterToDigits) *
+            10 ** counterToDigits
+          }+ `
         : `${this._options.total} `;
     const counterText = `${counterFrom} - ${counterTo} из ${counterTotalText}${this._options.text}`;
 
@@ -284,7 +320,9 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
 
 const paginationAsyncAddressingMethodModifiers = paginations
   .filter((pagination) =>
-    pagination.element.classList.contains('js-pagination_addressing-method_async')
+    pagination.element.classList.contains(
+      'js-pagination_addressing-method_async'
+    )
   )
   .map((pagination) => new PaginationAsyncAddressingMethodModifier(pagination));
 

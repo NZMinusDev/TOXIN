@@ -7,7 +7,9 @@ import { formatToPeriodDateTime } from '@utils/devTools/scripts/DateHelper';
 import '@common.blocks/primitives/apply-control/apply-control.scss';
 import '@library.blocks/primitives/datepicker-card/datepicker-card';
 
-import datepickerCardElements, { DatepickerCardElement } from './datepicker-card-elements';
+import datepickerCardElements, {
+  DatepickerCardElement,
+} from './datepicker-card-elements';
 
 type LibElement = HTMLDivElement;
 type DatepickerCardDOM = {
@@ -31,8 +33,12 @@ type DatepickerCardCustomEvents = {
   change: {};
 };
 
-class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardCustomEvents> {
+class DatepickerCard extends BEMComponent<
+  DatepickerCardElement,
+  DatepickerCardCustomEvents
+> {
   protected readonly _DOM: Readonly<DatepickerCardDOM>;
+
   protected readonly _generatedDOM: Readonly<DatepickerCardGeneratedDOM>;
 
   protected readonly _state: DatepickerCardState;
@@ -55,34 +61,46 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
   getDates() {
     return [...this._state.dates];
   }
+
   getSplitFormattedDates() {
     return this._state.formattedDates.split(
       this._DOM.$libElement.data('datepicker').opts.multipleDatesSeparator
     );
   }
+
   getDateTimes() {
     const isSelfRanged =
-      this._DOM.$libElement.data('datepicker').opts.range && this._DOM.$altFields === undefined;
+      this._DOM.$libElement.data('datepicker').opts.range &&
+      this._DOM.$altFields === undefined;
     const isDatesDefined = this._state.dates.length > 0;
 
     if (isSelfRanged && isDatesDefined) {
       const [theSmallestDate] = this._state.dates;
       const theLargestDate = this._state.dates[this._state.dates.length - 1];
 
-      return [formatToPeriodDateTime(theSmallestDate.toISOString(), theLargestDate.toISOString())];
+      return [
+        formatToPeriodDateTime(
+          theSmallestDate.toISOString(),
+          theLargestDate.toISOString()
+        ),
+      ];
     }
 
     return this._state.dates.map((date) => date.toISOString());
   }
+
   getFormattedDate() {
     return this._state.formattedDates;
   }
+
   get$altFields() {
     return this._DOM.$altFields;
   }
 
   protected _initDOM(): DatepickerCardDOM {
-    const libElement = this.element.querySelector('.js-datepicker-here') as LibElement;
+    const libElement = this.element.querySelector(
+      '.js-datepicker-here'
+    ) as LibElement;
     const $libElement = $(libElement);
     const input = this.element.querySelector(
       '.js-datepicker-card__input'
@@ -98,18 +116,22 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
       $altFields,
     };
   }
+
   private _initLibDatepicker() {
     this._DOM.$libElement.datepicker({
       prevHtml: `arrow_back`,
       nextHtml: `arrow_forward`,
       dateFormat:
-        Boolean(this._DOM.$libElement.data('range')) && this._DOM.$altFields === undefined
+        Boolean(this._DOM.$libElement.data('range')) &&
+        this._DOM.$altFields === undefined
           ? 'dd M'
           : 'dd.mm.yyyy',
       minDate: new Date(),
       toggleSelected: false,
       onSelect: (formattedDate: string, date: Date | Array<Date> | '') => {
-        this._generatedDOM.clearBtn.classList.remove('apply-control__clear-btn_hidden');
+        this._generatedDOM.clearBtn.classList.remove(
+          'apply-control__clear-btn_hidden'
+        );
 
         if (date !== '') {
           this._state.dates = Array.isArray(date) ? date : [date];
@@ -119,20 +141,27 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
 
         this._state.formattedDates = formattedDate;
 
-        this.element.dispatchEvent(new CustomEvent('select', { bubbles: true }));
+        this.element.dispatchEvent(
+          new CustomEvent('select', { bubbles: true })
+        );
       },
     });
 
     return this;
   }
+
   protected _initGeneratedDOM(): DatepickerCardGeneratedDOM {
     const $calendar = this._DOM.$libElement.find(
       '.datepicker'
     ) as DatepickerCardGeneratedDOM['$calendar'];
 
-    $calendar.get(0).insertAdjacentHTML('beforeend', this._applyControlTemplate);
+    $calendar
+      .get(0)
+      .insertAdjacentHTML('beforeend', this._applyControlTemplate);
 
-    const applyControl = this.element.querySelector('.js-apply-control') as HTMLDivElement;
+    const applyControl = this.element.querySelector(
+      '.js-apply-control'
+    ) as HTMLDivElement;
     const clearBtn = applyControl.querySelector(
       '.js-apply-control__clear-btn'
     ) as DatepickerCardGeneratedDOM['clearBtn'];
@@ -168,17 +197,20 @@ class DatepickerCard extends BEMComponent<DatepickerCardElement, DatepickerCardC
 
     return this;
   }
+
   protected _applyControlEventListenerObject = {
     handleClearBtnClick: () => {
       this._DOM.$libElement.data('datepicker').clear();
 
-      this._generatedDOM.clearBtn.classList.add('apply-control__clear-btn_hidden');
+      this._generatedDOM.clearBtn.classList.add(
+        'apply-control__clear-btn_hidden'
+      );
     },
     handleApplyBtnClick: () => {
       if (this._isApplyingAllowed()) {
         const { selectedDates } = this._DOM.$libElement.data('datepicker');
-        const ISOSelectedDates: string[] = selectedDates.map((selectedDate: Date) =>
-          selectedDate.toISOString()
+        const ISOSelectedDates: string[] = selectedDates.map(
+          (selectedDate: Date) => selectedDate.toISOString()
         );
 
         this._changeInputValue(ISOSelectedDates);
@@ -240,6 +272,10 @@ const datepickerCards = Array.from(
   (datepickerCardElement) => new DatepickerCard(datepickerCardElement)
 );
 
-export type { DatepickerCardCustomEvents, DatepickerCard, DatepickerCardElementWithComponent };
+export type {
+  DatepickerCardCustomEvents,
+  DatepickerCard,
+  DatepickerCardElementWithComponent,
+};
 
 export { datepickerCards as default };

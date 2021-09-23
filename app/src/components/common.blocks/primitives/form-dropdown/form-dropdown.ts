@@ -13,7 +13,9 @@ import type {
   FormDropdownDatepickerElementWithComponent,
 } from './__datepicker/form-dropdown__datepicker';
 import './__datepicker/form-dropdown__datepicker';
-import formDropdownElements, { FormDropdownElement } from './form-dropdown-elements';
+import formDropdownElements, {
+  FormDropdownElement,
+} from './form-dropdown-elements';
 
 type ExpandableItemElementWithComponent =
   | FormDropdownItemQuantityListElementWithComponent
@@ -54,7 +56,8 @@ class FormDropdown<
     const expandButton = this.element.querySelector(
       '.js-form-dropdown__expand-btn'
     ) as FormDropdownDOM['expandButton'];
-    const expandableItem = expandButton.nextElementSibling as FormDropdownDOM['expandableItem'];
+    const expandableItem =
+      expandButton.nextElementSibling as FormDropdownDOM['expandableItem'];
 
     return {
       expandButton,
@@ -70,6 +73,7 @@ class FormDropdown<
 
     return this;
   }
+
   protected _expandButtonEventListenerObject = {
     handleExpandButtonClick: () => {
       this._open();
@@ -93,6 +97,7 @@ class FormDropdown<
 
     return this;
   }
+
   protected _expandableItemEventListenerObject = {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     handleExpandableItemOpen: (event: ExpandableItemCustomEvents['open']) => {
@@ -110,6 +115,7 @@ class FormDropdown<
     expandButton.ariaExpanded = 'true';
     this.element.classList.add('form-dropdown_opened');
   }
+
   protected _close() {
     const { expandButton } = this._DOM;
 
@@ -127,18 +133,22 @@ type FormDropdownWithDatepicker = FormDropdown<
   FormDropdownWithDatepickerCustomEvents
 >;
 
-type FormDropdownWithItemQuantityListElementWithComponent = HTMLElementWithComponent<
-  FormDropdownElement,
-  FormDropdownWithItemQuantityListCustomEvents,
-  FormDropdown<
-    FormDropdownItemQuantityListElementWithComponent,
-    FormDropdownWithItemQuantityListCustomEvents
-  >
->;
+type FormDropdownWithItemQuantityListElementWithComponent =
+  HTMLElementWithComponent<
+    FormDropdownElement,
+    FormDropdownWithItemQuantityListCustomEvents,
+    FormDropdown<
+      FormDropdownItemQuantityListElementWithComponent,
+      FormDropdownWithItemQuantityListCustomEvents
+    >
+  >;
 type FormDropdownWithDatepickerElementWithComponent = HTMLElementWithComponent<
   FormDropdownElement,
   FormDropdownWithDatepickerCustomEvents,
-  FormDropdown<FormDropdownDatepickerElementWithComponent, FormDropdownWithDatepickerCustomEvents>
+  FormDropdown<
+    FormDropdownDatepickerElementWithComponent,
+    FormDropdownWithDatepickerCustomEvents
+  >
 >;
 
 const formDropdowns = Array.from(

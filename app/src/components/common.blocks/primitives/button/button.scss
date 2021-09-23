@@ -39,18 +39,29 @@
     padding-right: calc(#{$x-padding} - #{$border-width});
     padding-left: calc(#{$x-padding} - #{$border-width});
     border: #{$border-width} solid transparent;
-    background: linear-gradient(180deg, rgba(169, 169, 169, 1), rgba(169, 169, 169, 1)) padding-box,
+    background: linear-gradient(
+          180deg,
+          rgba(169, 169, 169, 1),
+          rgba(169, 169, 169, 1)
+        )
+        padding-box,
       linear-gradient(180deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1)) border-box;
 
     @media print, screen and (color) {
-      background: linear-gradient(180deg, white, white) padding-box, gradients.primary(1) border-box;
+      background: linear-gradient(180deg, white, white) padding-box,
+        gradients.primary(1) border-box;
       color: rgba(var(--color__primary), 1);
     }
 
     &:hover {
-      background: linear-gradient(180deg, rgba(169, 169, 169, 0.5), rgba(169, 169, 169, 0.5))
+      background: linear-gradient(
+            180deg,
+            rgba(169, 169, 169, 0.5),
+            rgba(169, 169, 169, 0.5)
+          )
           padding-box,
-        linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) border-box;
+        linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))
+          border-box;
 
       @media print, screen and (color) {
         background: linear-gradient(180deg, white, white) padding-box,
