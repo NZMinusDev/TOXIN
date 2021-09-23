@@ -21,7 +21,6 @@ const OptimizeCssAssetWebpackPlugin = require('optimize-css-assets-webpack-plugi
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
-const WebpackImagesResizer = require('webpack-images-resizer');
 const { UnusedFilesWebpackPlugin } = require('unused-files-webpack-plugin');
 const { DuplicatesPlugin } = require('inspectpack/plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
@@ -34,9 +33,6 @@ const PATHS = {
   src_absolute: path.resolve(__dirname, '../app/src/'),
   dist_absolute: path.resolve(__dirname, '../app/dist/'),
 };
-
-// FIXME: change it depending on your design template for proper scaling images
-const designWidth = 1440;
 
 const redefinitionLevels = [
   'layouts',
@@ -118,81 +114,12 @@ class ResultOfTemplatesProcessing {
 const resultOfTemplatesProcessing = new ResultOfTemplatesProcessing();
 
 /**
- * Get all inner files in directory
- * @param { string } dir path to dir
- * @param { string[] } excludedExt extensions to exclude
- * @param { string[] } _files private param of files path for recursion
- * @return { string[] } array of files' paths
- */
-const getFilesDeep = (dir, excludedExt, _files) => {
-  // eslint-disable-next-line no-param-reassign
-  _files = _files || [];
-  const files = fs.readdirSync(dir);
-
-  files.forEach((val, i) => {
-    const name = path.resolve(dir, files[i]);
-
-    if (
-      excludedExt.includes(
-        name.substring(name.lastIndexOf('.') + 1, name.length) || name
-      )
-    )
-      return;
-
-    if (fs.statSync(name).isDirectory()) {
-      getFilesDeep(name, excludedExt, _files);
-    } else {
-      _files.push(name);
-    }
-  });
-
-  return _files;
-};
-
-/**
- * Map list for append suffix to each element
- * @param { string[] } list absolute paths of images
- * @param { string } suffix suffix of files in list to append
- * @param { string } base - path to base src folder when located folder of images
- * @returns { {src:string,dest:String}[] } WebpackImagesResizer 'list' option
- */
-const listOfSourceImagesMapping = (list, suffix, base = PATHS.src_absolute) =>
-  list.map((filePath) => {
-    const relativeFromDistFullPath = filePath.slice(base.length);
-    const [relativeFromDistPath, fileExt] = relativeFromDistFullPath.split('.');
-
-    return {
-      src: filePath,
-      dest: `${relativeFromDistPath}-${suffix}.${fileExt}`,
-    };
-  });
-
-let listOfSourceImages320 = getFilesDeep(
-  path.resolve(PATHS.src_absolute, './assets/pictures'),
-  ['svg']
-);
-const listOfSourceImages640 = listOfSourceImagesMapping(
-  listOfSourceImages320,
-  '640'
-);
-const listOfSourceImages960 = listOfSourceImagesMapping(
-  listOfSourceImages320,
-  '960'
-);
-const listOfSourceImages1920 = listOfSourceImagesMapping(
-  listOfSourceImages320,
-  '1920'
-);
-listOfSourceImages320 = listOfSourceImagesMapping(listOfSourceImages320, '320');
-
-/**
  * HTMLWebpackPlugin - create html of pages with plug in scripts.
  * MiniCssExtractPlugin - extract css into separate files.
  * ProvidePlugin - Automatically load modules instead of having to import or require them everywhere.
  * StylelintPlugin - uses stylelint that helps you avoid errors and enforce conventions in your styles
  * CopyWebpackPlugin - copy ico files
  * ImageMinimizerPlugin - Plugin and Loader for webpack to optimize (compress) all images. Make sure ImageMinimizerPlugin place after any plugins that add images or other assets which you want to optimized.
- * WebpackImagesResizer - resizes images.
  * CircularDependencyPlugin - scan bundles to alert about circular dependencies.
  * DuplicatesPlugin - scan bundles to alert about duplicate resources from node_modules.
  * UnusedFilesWebpackPlugin - scan bundles to alert about UnusedFiles.
@@ -229,29 +156,6 @@ const webpackPlugins = () => {
 
   if (isDev) {
     plugins.push(new StylelintPlugin({ fix: true }));
-  }
-
-  if (process.env.ImagesResizer === 'true') {
-    plugins.push(
-      // eslint-disable-next-line lines-around-comment
-      // FIXME: this plugin keeps compilation from end, doesn't know why
-      new WebpackImagesResizer(listOfSourceImages320, {
-        // 4:3 - QVGA
-        width: designWidth > 320 ? `${(320 / designWidth) * 100}%` : '100%',
-      }),
-      new WebpackImagesResizer(listOfSourceImages640, {
-        // 16:9 - nHD
-        width: designWidth > 640 ? `${(640 / designWidth) * 100}%` : '100%',
-      }),
-      new WebpackImagesResizer(listOfSourceImages960, {
-        // 16:9 - qHD
-        width: designWidth > 960 ? `${(960 / designWidth) * 100}%` : '100%',
-      }),
-      new WebpackImagesResizer(listOfSourceImages1920, {
-        // 16:9 - Full HD
-        width: designWidth > 1920 ? `${(1920 / designWidth) * 100}%` : '100%',
-      })
-    );
   }
 
   plugins.push(

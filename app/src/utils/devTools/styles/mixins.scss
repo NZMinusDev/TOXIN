@@ -55,7 +55,7 @@
   }
 }
 
-/// Adds generated in runtime smaller resolution and optimized versions of images
+/// Adds generated in runtime optimized versions of images
 /// @param {*} $property - css property for images
 /// @param { string string ... } $images-paths - list of images' paths
 /// @param {*} $values... - additional values for $property
@@ -63,15 +63,7 @@
 /// @todo in the future should be refactored with https://developer.mozilla.org/ru/docs/orphaned/Web/CSS/image-set()
 @mixin optimized-images($property, $images-paths, $values...) {
   $urls: '';
-  $urls-320: '';
-  $urls-640: '';
-  $urls-960: '';
-  $urls-1920: '';
   $webp-urls: '';
-  $webp-urls-320: '';
-  $webp-urls-640: '';
-  $webp-urls-960: '';
-  $webp-urls-1920: '';
   $index: 0;
   @each $path in $images-paths {
     $parsed-path: functions.parse-path($path);
@@ -80,67 +72,18 @@
 
     @if $index != 0 {
       $urls: $urls + ',';
-      $urls-320: $urls-320 + ',';
-      $urls-640: $urls-640 + ',';
-      $urls-960: $urls-960 + ',';
-      $urls-1920: $urls-1920 + ',';
       $webp-urls: $webp-urls + ',';
-      $webp-urls-320: $webp-urls-320 + ',';
-      $webp-urls-640: $webp-urls-640 + ',';
-      $webp-urls-960: $webp-urls-960 + ',';
-      $webp-urls-1920: $webp-urls-1920 + ',';
     }
+
     /* stylelint-disable-next-line order/order */
     $urls: $urls + url($path);
-    $urls-320: $urls-320 +
-      url(functions.resolve-unresolved-asset-path($path, '-320.' + $file-ext));
-    $urls-640: $urls-640 +
-      url(functions.resolve-unresolved-asset-path($path, '-640.' + $file-ext));
-    $urls-960: $urls-960 +
-      url(functions.resolve-unresolved-asset-path($path, '-960.' + $file-ext));
-    $urls-1920: $urls-1920 +
-      url(functions.resolve-unresolved-asset-path($path, '-1920.' + $file-ext));
-
     $webp-urls: $webp-urls +
       url(functions.resolve-unresolved-asset-path($path, '.webp'));
-    $webp-urls-320: $webp-urls-320 +
-      url(functions.resolve-unresolved-asset-path($path, '-320.webp'));
-    $webp-urls-640: $webp-urls-640 +
-      url(functions.resolve-unresolved-asset-path($path, '-640.webp'));
-    $webp-urls-960: $webp-urls-960 +
-      url(functions.resolve-unresolved-asset-path($path, '-960.webp'));
-    $webp-urls-1920: $webp-urls-1920 +
-      url(functions.resolve-unresolved-asset-path($path, '-1920.webp'));
 
     $index: $index + 1;
   }
-  @supports (background-image: #{$webp-urls}) {
-    @media print, screen and (min-width: 0) {
-      #{$property}: #{$webp-urls-320} $values;
-    }
-    @media print, screen and (min-width: 600px) {
-      #{$property}: #{$webp-urls-640} $values;
-    }
-    @media print, screen and (min-width: 960px) {
-      #{$property}: #{$webp-urls-960} $values;
-    }
-    @media print, screen and (min-width: 1200px) {
-      #{$property}: #{$webp-urls-1920} $values;
-    }
-  }
 
-  @media print, screen and (min-width: 0) {
-    #{$property}: #{$urls-320} $values;
-  }
-  @media print, screen and (min-width: 600px) {
-    #{$property}: #{$urls-640} $values;
-  }
-  @media print, screen and (min-width: 960px) {
-    #{$property}: #{$urls-960} $values;
-  }
-  @media print, screen and (min-width: 1200px) {
-    #{$property}: #{$urls-1920} $values;
-  }
+  #{$property}: #{$webp-urls} $values;
 }
 
 /// Carousel with rotating images
@@ -157,46 +100,14 @@
     $background-images: $background-images + url($path);
   }
 
-  @supports (
-    background-image:
-      url(functions.resolve-unresolved-asset-path(
-        list.nth($images-paths, 1),
-        '.webp'
-      ))
-  ) {
-    @media print, screen and (min-width: 0) {
-      @include _change-image-key-frames($images-paths, 320, 'webp');
-    }
-    @media print, screen and (min-width: 600px) {
-      @include _change-image-key-frames($images-paths, 640, 'webp');
-    }
-    @media print, screen and (min-width: 960px) {
-      @include _change-image-key-frames($images-paths, 960, 'webp');
-    }
-    @media print, screen and (min-width: 1200px) {
-      @include _change-image-key-frames($images-paths, 1920, 'webp');
-    }
-  }
-
   background: white no-repeat fixed;
   background-size: cover;
   animation: change-image #{list.length($images-paths) * 6s} linear infinite;
 
-  @media print, screen and (min-width: 0) {
-    @include _change-image-key-frames($images-paths, 320);
-  }
-  @media print, screen and (min-width: 600px) {
-    @include _change-image-key-frames($images-paths, 640);
-  }
-  @media print, screen and (min-width: 960px) {
-    @include _change-image-key-frames($images-paths, 960);
-  }
-  @media print, screen and (min-width: 1200px) {
-    @include _change-image-key-frames($images-paths, 1920);
-  }
   @include optimized-images(background-image, $images-paths);
+  @include _change-image-key-frames($images-paths, 'webp');
 }
-@mixin _change-image-key-frames($images-paths, $size-postfix, $new-ext: '') {
+@mixin _change-image-key-frames($images-paths, $new-ext: '') {
   @keyframes change-image {
     $index: 0;
     @each $path in $images-paths {
@@ -210,12 +121,12 @@
         @if $new-ext == '' {
           background-image: url(functions.resolve-unresolved-asset-path(
             $path,
-            '-#{$size-postfix}.#{$file-ext}'
+            '.#{$file-ext}'
           ));
         } @else {
           background-image: url(functions.resolve-unresolved-asset-path(
             $path,
-            '-#{$size-postfix}.#{$new-ext}'
+            '.#{$new-ext}'
           ));
         }
       }
@@ -231,12 +142,12 @@
       @if $new-ext == '' {
         background-image: url(functions.resolve-unresolved-asset-path(
           list.nth($images-paths, 1),
-          '-#{$size-postfix}.#{$file-ext}'
+          '.#{$file-ext}'
         ));
       } @else {
         background-image: url(functions.resolve-unresolved-asset-path(
           list.nth($images-paths, 1),
-          '-#{$size-postfix}.#{$new-ext}'
+          '.#{$new-ext}'
         ));
       }
     }

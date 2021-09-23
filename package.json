@@ -25,10 +25,10 @@
     "not op_mini all"
   ],
   "scripts": {
-    "start": "rm -r -f app/dist && cross-env NODE_ENV=development MEASURE=false ImagesResizer=true webpack-dev-server --config configs/webpack.config.js --mode development --open",
-    "dev": "cross-env NODE_ENV=development MEASURE=false ImagesResizer=true webpack --config configs/webpack.config.js --mode development",
-    "build": "cross-env NODE_ENV=production MEASURE=true ImagesResizer=true webpack --config configs/webpack.config.js --mode production",
-    "analyze": "mkdirp app/log && cross-env NODE_ENV=production MEASURE=false ImagesResizer=false webpack --config configs/webpack.config.js --mode production --json > app/log/stats.json && webpack-bundle-analyzer app/log/stats.json",
+    "start": "rm -r -f app/dist && cross-env NODE_ENV=development MEASURE=false webpack-dev-server --config configs/webpack.config.js --mode development --open",
+    "dev": "cross-env NODE_ENV=development MEASURE=false webpack --config configs/webpack.config.js --mode development",
+    "build": "cross-env NODE_ENV=production MEASURE=true webpack --config configs/webpack.config.js --mode production",
+    "analyze": "mkdirp app/log && cross-env NODE_ENV=production MEASURE=false webpack --config configs/webpack.config.js --mode production --json > app/log/stats.json && webpack-bundle-analyzer app/log/stats.json",
     "lint": "stylelint \"./app/src/**/*.scss\" && eslint ./app/src/ --ext .js,.ts",
     "lint:fix": "prettier ./app/src/ --ignore-path ./configs/prettier/.prettierignore --ignore-unknown --check --write && stylelint \"./app/src/**/*.scss\" --fix && eslint ./app/src/ --ext .js,.ts --fix"
   },
@@ -115,7 +115,6 @@
     "typescript": "^4.4.3",
     "unused-files-webpack-plugin": "^3.4.0",
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12",
-    "webpack-images-resizer": "^0.1.2"
+    "webpack-cli": "^3.3.12"
   }
 }
