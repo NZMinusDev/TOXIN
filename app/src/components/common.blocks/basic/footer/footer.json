@@ -30,8 +30,16 @@
     ]
   },
   "icons": [
-    { "glyph": "&#xf099;", "title": "twitter", "href": "./mock.html" },
-    { "glyph": "&#xf082;", "title": "facebook", "href": "./mock.html" },
-    { "glyph": "&#xf16d;", "title": "instagram", "href": "./mock.html" }
+    { "glyph": "&#xf099;", "title": "twitter", "href": "https://twitter.com/" },
+    {
+      "glyph": "&#xf082;",
+      "title": "facebook",
+      "href": "https://www.facebook.com/"
+    },
+    {
+      "glyph": "&#xf16d;",
+      "title": "instagram",
+      "href": "https://www.instagram.com/?hl=ru"
+    }
   ]
 }
