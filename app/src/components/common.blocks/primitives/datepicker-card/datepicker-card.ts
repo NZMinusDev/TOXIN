@@ -207,14 +207,12 @@ class DatepickerCard extends BEMComponent<
       );
     },
     handleApplyBtnClick: () => {
-      if (this._isApplyingAllowed()) {
-        const { selectedDates } = this._DOM.$libElement.data('datepicker');
-        const ISOSelectedDates: string[] = selectedDates.map(
-          (selectedDate: Date) => selectedDate.toISOString()
-        );
+      const { selectedDates } = this._DOM.$libElement.data('datepicker');
+      const ISOSelectedDates: string[] = selectedDates.map(
+        (selectedDate: Date) => selectedDate.toISOString()
+      );
 
-        this._changeInputValue(ISOSelectedDates);
-      }
+      this._changeInputValue(ISOSelectedDates);
     },
   };
 
@@ -245,19 +243,6 @@ class DatepickerCard extends BEMComponent<
     );
 
     return this;
-  }
-
-  protected _isApplyingAllowed() {
-    const { selectedDates, opts } = this._DOM.$libElement.data('datepicker');
-    let maxSelected = selectedDates.length;
-
-    if (this._DOM.$altFields !== undefined) {
-      maxSelected = this._DOM.$altFields.length + 1;
-    } else if (opts.range) {
-      maxSelected = 2;
-    }
-
-    return selectedDates.length === maxSelected || selectedDates.length === 0;
   }
 }
 
