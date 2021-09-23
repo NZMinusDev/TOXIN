@@ -1,25 +1,11 @@
 @use '@utils/devTools/styles/mixins.scss';
 
 .form-dropdown {
-  &_with-date {
-    .form-field {
+  &_with-item-quantity {
+    .form-dropdown__field {
       &:hover,
       &:focus-within {
-        border-color: rgba(0, 0, 0, 0.5);
-        color: rgba(0, 0, 0, 0.5);
-
-        @media print, screen and (color) {
-          border: var(--border);
-          color: rgba(var(--color__dark-shade), 0.25);
-        }
-      }
-    }
-  }
-  &_with-item-quantity {
-    &.form-dropdown_opened {
-      .form-field {
         border-color: rgba(0, 0, 0, 1);
-        border-radius: var(--border-radius-size) var(--border-radius-size) 0 0;
         color: rgba(0, 0, 0, 1);
 
         @media print, screen and (color) {
@@ -31,6 +17,36 @@
 
     .form-dropdown__expand-btn {
       color: inherit;
+    }
+
+    &.form-dropdown_opened {
+      .form-dropdown__field {
+        border-color: rgba(0, 0, 0, 1);
+        border-radius: var(--border-radius-size) var(--border-radius-size) 0 0;
+        color: rgba(0, 0, 0, 1);
+
+        @media print, screen and (color) {
+          border: var(--border-hover);
+          color: rgba(var(--color__dark-shade), 0.75);
+        }
+      }
+    }
+  }
+
+  &__field {
+    position: relative;
+    display: flex;
+    min-width: 2em;
+    min-height: 2em;
+    height: 44px / 14px * 1em;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: var(--border-radius-size);
+    color: rgba(0, 0, 0, 0.5);
+    text-indent: 15px / 14px * 1em;
+
+    @media print, screen and (color) {
+      border: var(--border);
+      color: rgba(var(--color__dark-shade), 0.25);
     }
   }
 

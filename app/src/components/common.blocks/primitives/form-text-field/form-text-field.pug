@@ -1,5 +1,4 @@
 include ~@common.blocks/primitives/heading/heading.pug
-include ~@common.blocks/primitives/form-field/form-field.pug
 include ~@common.blocks/primitives/icon/icon.pug
 
 //-
@@ -50,7 +49,7 @@ mixin form-text-field({ heading = '', description = '', headingMarginBottom = ''
       +heading(heading, { description, marginBottom: headingMarginBottom, isLabel: true })(
         for=name
       )
-    +form-field
+    .form-text-field__field
       input.form-text-field__input.js-form-text-field__input(
         class=[...typeClasses],
         data-is-filter=isFilter,
