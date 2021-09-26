@@ -10,12 +10,12 @@ block append variables
     description = 'Цвета и шрифт, используемые в макете при верстке';
     let colors = htmlWebpackPlugin ? require('@layouts/basic/colors-and-type-layout/colors.json') : { Red: '#ff0000' };
     let type = htmlWebpackPlugin
-      ? require("@layouts/basic/colors-and-type-layout/type.json")
+      ? require('@layouts/basic/colors-and-type-layout/type.json')
       : {
           Body: {
-            tag: "p",
+            tag: 'p',
             title:
-              "This is the body text which is used for most of the design, like paragraphs, lists, etc",
+              'This is the body text which is used for most of the design, like paragraphs, lists, etc',
           },
         };
 block content

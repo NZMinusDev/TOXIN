@@ -6,11 +6,11 @@ block append variables
     description = 'Цвета и шрифты, используемые в макете сайта TOXIN';
     colors = htmlWebpackPlugin ? require('@pages/colors-&-type/colors.json') : { Red: '#ff0000' };
     type = htmlWebpackPlugin
-      ? require("@pages/colors-&-type/type.json")
+      ? require('@pages/colors-&-type/type.json')
       : {
           Body: {
-            tag: "p",
+            tag: 'p',
             title:
-              "This is the body text which is used for most of the design, like paragraphs, lists, etc",
+              'This is the body text which is used for most of the design, like paragraphs, lists, etc',
           },
         };
