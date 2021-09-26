@@ -16,32 +16,36 @@ include ~@common.blocks/primitives/icon/icon.pug
 mixin form-text-field({ heading = '', description = '', headingMarginBottom = '', name = 'text-field', type = 'text', placeholder = '', value = '', autofocus = false, materialIcon = '', isFilter = false } = {})
   -
     //- allowed inputmode:  'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url',
+    //- allowed types for placeholder attribute: 'email', 'number', 'password', 'search', 'tel', 'text', 'url'
 
     const attributesOfType = {
       text: {
         inputType: 'text',
         inputmode: 'text',
         placeholderOfType: '',
+        withPlaceholder: true,
       },
       email: {
         inputType: 'email',
         inputmode: 'email',
         placeholderOfType: 'Email',
+        withPlaceholder: true,
       },
       password: {
         inputType: 'password',
         inputmode: 'text',
         placeholderOfType: 'Пароль',
+        withPlaceholder: true,
       },
       date: {
         inputType: 'date',
         inputmode: 'numeric',
         placeholderOfType: 'ДД.ММ.ГГГГ',
+        withPlaceholder: false,
       }
     }
 
-    const { inputType, inputmode, placeholderOfType } = attributesOfType[type];
-    const customPlaceholderIsAllowed = inputType === 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url';
+    const { inputType, inputmode, placeholderOfType, withPlaceholder } = attributesOfType[type];
 
     const typeClasses = type ? [`form-text-field__input_type_with-${type}`,`js-form-text-field__input_type_with-${type}`] : undefined;
   .form-text-field.js-form-text-field&attributes(attributes)
@@ -57,7 +61,7 @@ mixin form-text-field({ heading = '', description = '', headingMarginBottom = ''
         inputmode=inputmode,
         name=name,
         id=name,
-        placeholder=customPlaceholderIsAllowed ? placeholderOfType || placeholder : undefined,
+        placeholder=withPlaceholder ? placeholder || placeholderOfType : undefined,
         value=value,
         autofocus=autofocus
       )
