@@ -2,7 +2,7 @@
 
 .landing-page-layout {
   position: relative;
-  min-height: 830px / 14px * 1em;
+  min-height: 829px / 14px * 1em;
   @include mixins.background-auto-carousel(
     '@assets/pictures/images/backgrounds/rooms/room-1.jpg'
       '@assets/pictures/images/backgrounds/rooms/room-2.jpg'

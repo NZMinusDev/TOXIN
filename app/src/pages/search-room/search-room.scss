@@ -3,7 +3,7 @@
 
   @media (min-width: 0) {
     align-items: flex-start;
-    padding: #{30px / 14px * 1em} #{140px / 1440px * 100%} #{74px / 14px * 1em} #{140px /
+    padding: #{30px / 14px * 1em} #{140px / 1440px * 100%} #{71px / 14px * 1em} #{140px /
       1440px * 100%};
     grid:
       'filter'
@@ -23,24 +23,21 @@
   }
 
   &__filter {
-    $medium-gap: 20px / 14px * 1em;
-    $large-gap: 30px / 14px * 1em;
-
     display: grid;
     grid-area: filter;
     grid:
       'dates-of-stay-dropdown'
-      '.' #{$medium-gap}
+      '.' #{22px / 14px * 1em}
       'guests-dropdown'
-      '.' #{$large-gap}
+      '.' #{32px / 14px * 1em}
       'price-range-slider'
-      '.' #{$large-gap}
+      '.' #{29px / 14px * 1em}
       'checkbox-buttons'
-      '.' #{$large-gap}
+      '.' #{29px / 14px * 1em}
       'affordable-rich-checkbox-buttons'
-      '.' #{$large-gap}
+      '.' #{30px / 14px * 1em}
       'facilities-dropdown'
-      '.' #{23px / 14px * 1em}
+      '.' #{25px / 14px * 1em}
       'additional-comfort-expandable-checkbox-list';
   }
 
@@ -99,6 +96,7 @@
 
   &__pagination {
     margin-top: 41px / 14px * 1em;
+    margin-right: 14px / 14px * 1em;
     grid-area: pagination;
   }
 }
