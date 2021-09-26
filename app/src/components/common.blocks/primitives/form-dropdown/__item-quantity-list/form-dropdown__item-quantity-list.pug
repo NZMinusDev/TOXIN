@@ -16,7 +16,7 @@ mixin form-dropdown__item-quantity-list({ name = 'iqList', placeholder = 'placeh
     Object.values(list).forEach((value) => {
       if (counter > 0) total += ',';
       total += value.default;
-      counter++;
+      counter += 1;
     });
   .form-dropdown__item-quantity-list.js-form-dropdown__item-quantity-list(
     class=[`form-dropdown__item-quantity-list_opening-method_${openingMethod}`, `js-form-dropdown__item-quantity-list_opening-method_${openingMethod}`]

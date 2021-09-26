@@ -45,7 +45,7 @@ mixin footer({ type = undefined, action = undefined, name = 'footer-subscription
           each menu, heading in menus
             -
               const id = getRandID();
-              index++;
+              index += 1;
             section(class=`footer__menu-${index}`)
               input.footer__list-checkbox(id=id, type="checkbox")
               h3.footer__list-label-heading

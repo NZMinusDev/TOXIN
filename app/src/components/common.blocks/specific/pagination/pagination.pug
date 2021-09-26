@@ -82,7 +82,7 @@ mixin pagination({ addressingMethod = 'href', hrefPrefix = '?page=', total = 100
             else
               = page
           -
-            page++;
+            page += 1;
       //- Use '...' to collapse pages outside of a certain range
       else
         //- Show the very first page followed by a '...' at the beginning of the pagination section (after the Previous button)
@@ -113,7 +113,7 @@ mixin pagination({ addressingMethod = 'href', hrefPrefix = '?page=', total = 100
             else
               = page
           -
-            page++;
+            page += 1;
         //- Show the very last page preceded by a '...' at the end of the pagination section (before the Next button)
         if activePage < pages - 1
           if activePage < pages - 2
