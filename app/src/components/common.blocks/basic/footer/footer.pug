@@ -27,7 +27,9 @@ mixin footer({ type = undefined, action = undefined, name = 'footer-subscription
               li.footer__icons-list-item
                 +icon({ tag: 'a', fontFamily: 'branded', content: icon.glyph, width: 'medium', height: 'font', color: 'primary-gradient' })(
                   href=icon.href,
-                  title=title
+                  title=title,
+                  target="_blank",
+                  rel="noopener noreferrer"
                 )
     default
       footer.footer&attributes(attributes)
@@ -76,5 +78,7 @@ mixin footer({ type = undefined, action = undefined, name = 'footer-subscription
                 li.footer__icons-list-item
                   +icon({ tag: 'a', fontFamily: 'branded', content: icon.glyph, width: 'medium', height: 'font', color: 'primary-gradient' })(
                     href=icon.href,
-                    title=title
+                    title=title,
+                    target="_blank",
+                    rel="noopener noreferrer"
                   )
