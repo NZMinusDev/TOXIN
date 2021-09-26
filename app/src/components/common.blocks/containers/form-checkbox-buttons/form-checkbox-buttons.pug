@@ -34,5 +34,5 @@ mixin form-checkbox-buttons({ heading = '', headingMarginBottom = 'large', type 
             )
             .form-checkbox-buttons__label-item
               label.form-checkbox-buttons__label(for=key)= btn.label
-            if btn.description
-              p.form-checkbox-buttons__description= btn.description
+                if btn.description
+                  span.form-checkbox-buttons__description= btn.description
