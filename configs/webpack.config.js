@@ -155,7 +155,7 @@ const webpackPlugins = () => {
   ];
 
   if (isDev) {
-    plugins.push(new StylelintPlugin({ fix: true }));
+    plugins.push(new StylelintPlugin({}));
   }
 
   plugins.push(
