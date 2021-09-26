@@ -33,12 +33,11 @@ block content
     h1.search-room-layout__title Номера, которые мы для вас подобрали
     main.search-room-layout__rooms
       -
-        const json = htmlWebpackPlugin
-          ? require("@pages/search-room/search-room.json")
+        const { rooms } = htmlWebpackPlugin
+          ? require("@pages/search-room/rooms.json")
           : {
               rooms: [{ paths: [''] }],
             };
-        const { rooms } = json;
       each room in rooms
         -
           const { number, grade, payment, rate, comments, href, paths } = room;

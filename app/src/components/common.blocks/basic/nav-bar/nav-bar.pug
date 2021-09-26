@@ -8,17 +8,19 @@ include ./__navigation-list/nav-bar__navigation-list.pug
     when 'confirmed'
       personHref: string - href for person account
       personName: string - person name
-  items?: { [textContent: string]: { href: string, items?: [textContent: string]: { href: string, items?: } } } - recursive items of nav-bar list
+  navigation?: { items: { [textContent: string]: { href: string, items?: [textContent: string]: { href: string, items?: } } } } - navigation with recursive items of nav-bar list
   active?: string - key of active item
   Tip: mixin also uses 'and attributes'(&attributes)
 
-mixin nav-bar({ status = 'unconfirmed', personHref = './mock.html', personName = 'Константин Константинопольский', items = { 'О нас': { href: './mock.html' }, Услуги: { href: './mock.html', items: { 'Услуга 1': { href: './mock.html' }, 'Услуга 2': { href: './mock.html' }, 'Услуга 3': { href: './mock.html' }, 'Услуга 4': { href: './mock.html' }, 'Услуга 5': { href: './mock.html' }, }, }, Вакансии: { href: './mock.html' }, Новости: { href: './mock.html' }, Соглашения: { href: './mock.html', items: { 'Соглашение 1': { href: './mock.html' }, 'Соглашение 2': { href: './mock.html' }, 'Соглашение 3': { href: './mock.html', items: { 'Соглашение 3-1': { href: './mock.html', items: { 'Соглашение 3-1-1': { href: './mock.html' } }, }, 'Соглашение 3-2': { href: './mock.html' }, }, }, }, }, }, active = undefined } = {})
+mixin nav-bar({ status = 'unconfirmed', personHref = './mock.html', personName = 'Константин Константинопольский', navigation = htmlWebpackPlugin ? require('@common.blocks/basic/nav-bar/navigation.json') : { items: { item: { items: {} } } }, active = undefined } = {})
   header.nav-bar.js-nav-bar&attributes(attributes)
     section.nav-bar__logo
       +logo({ tag: 'a', color: 'primary-gradient', title: 'toxin' })(
         href="./landing-page.html"
       )
     nav.nav-bar__navigation
+      -
+        const { items } = navigation;
       +nav-bar__navigation-list(items, active)
     -
       const loginStatusClass = `nav-bar__login_status_${status}`;

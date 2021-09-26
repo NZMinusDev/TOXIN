@@ -8,14 +8,11 @@ include ~@common.blocks/primitives/icon/icon.pug
       action: string - action of form with subscription
       name?: string - name of form with subscription
       method?: 'get' | 'post' - method of form with subscription
-  icons?: { glyph: string, title: string, href: string }[] - icons
+      menus?: { [heading: string]: { title: string, href: string }[] }
+  icons?: { [title: string]: { glyph: string, href: string } } - icons
   copyright?: string - copyright text
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin footer({ type = undefined, action = undefined, name = 'footer-subscription', method = 'post', icons = [], copyright = 'Copyright © 2018 Toxin отель. Все права защищены.' } = {})
-  -
-    const json = htmlWebpackPlugin ? require('@common.blocks/basic/footer/footer.json') : { navigation: { items:[] }, icons: [{}] };
-    const { navigation } = json;
-    icons = icons.length > 0 ? icons : json.icons;
+mixin footer({ type = undefined, action = undefined, name = 'footer-subscription', method = 'post', menus = htmlWebpackPlugin ? require('@common.blocks/basic/footer/menus.json') : {}, icons = htmlWebpackPlugin ? require('@common.blocks/basic/footer/icons.json') : { icon: {} }, copyright = 'Copyright © 2018 Toxin отель. Все права защищены.' } = {})
   case type
     when 'creative'
       footer.footer.footer_type_creative&attributes(attributes)
@@ -26,11 +23,11 @@ mixin footer({ type = undefined, action = undefined, name = 'footer-subscription
         p.footer__copyright= copyright
         section.footer__icons
           ul.footer__icons-list
-            each icon in icons
+            each icon, title in icons
               li.footer__icons-list-item
                 +icon({ tag: 'a', fontFamily: 'branded', content: icon.glyph, width: 'medium', height: 'font', color: 'primary-gradient' })(
                   href=icon.href,
-                  title=icon.title
+                  title=title
                 )
     default
       footer.footer&attributes(attributes)
@@ -42,15 +39,17 @@ mixin footer({ type = undefined, action = undefined, name = 'footer-subscription
           p.footer__description Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»
           -
             const getRandID = () => Date.now() + Math.random();
-          each list, index in navigation.items
+            let index = -1;
+          each menu, heading in menus
             -
               const id = getRandID();
+              index++;
             section(class=`footer__menu-${index}`)
               input.footer__list-checkbox(id=id, type="checkbox")
               h3.footer__list-label-heading
-                label.footer__list-label(for=id, tabindex="0")= list.heading
+                label.footer__list-label(for=id, tabindex="0")= heading
               ul.footer__list
-                each link in list.links
+                each link in menu
                   li.footer__list-item
                     a.footer__link(href=link.href)= link.title
           section.footer__subscription
@@ -73,9 +72,9 @@ mixin footer({ type = undefined, action = undefined, name = 'footer-subscription
           p.footer__copyright= copyright
           .footer__icons
             ul.footer__icons-list
-              each icon in icons
+              each icon, title in icons
                 li.footer__icons-list-item
-                  +icon({ tag: 'a', fontFamily: 'branded', content: icon.glyph, width: 'medium',height: 'font', color: 'primary-gradient' })(
+                  +icon({ tag: 'a', fontFamily: 'branded', content: icon.glyph, width: 'medium', height: 'font', color: 'primary-gradient' })(
                     href=icon.href,
-                    title=icon.title
+                    title=title
                   )
