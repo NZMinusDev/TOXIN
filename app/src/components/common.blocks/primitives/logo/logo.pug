@@ -1,11 +1,12 @@
 //- 
+  tag?: string - tag of logo
   color?: 'gray' | 'primary-gradient' - color of logo picture
   title?: string - title of logo
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin logo({ tag = 'div', color = '', title = '' } = {})
+mixin logo({ tag = 'div', color = undefined, title = '' } = {})
   -
-    const colorClass = color === '' ? null : `logo__picture_color_${color}`;
+    const colorClass = color && `logo__picture_color_${color}`;
   #{tag}.logo&attributes(attributes)
-    .logo__picture(class=[sizeClass, colorClass])
+    .logo__picture(class=[colorClass])
     if title !== ''
       span.logo__title= title

@@ -106,9 +106,8 @@ class DatepickerCard extends BEMComponent<
       '.js-datepicker-card__input'
     ) as DatepickerCardDOM['input'];
     const $altFields =
-      $libElement.data('altFields') !== undefined
-        ? $<HTMLInputElement>($libElement.data('altFields'))
-        : undefined;
+      $libElement.data('altFields') &&
+      $<HTMLInputElement>($libElement.data('altFields'));
 
     return {
       $libElement,

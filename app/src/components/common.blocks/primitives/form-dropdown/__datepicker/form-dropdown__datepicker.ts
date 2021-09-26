@@ -17,7 +17,7 @@ type FormDropdownDatepickerElement = HTMLDivElement;
 type FormDropdownDatepickerDOM = {
   selection: HTMLParagraphElement;
   input: HTMLInputElement;
-  datepickerCard?: DatepickerCardElementWithComponent;
+  datepickerCard: DatepickerCardElementWithComponent | null;
 };
 
 type FormDropdownDatepickerSubComponents = {
@@ -99,12 +99,9 @@ class FormDropdownDatepicker extends BEMComponent<
     const input = this.element.querySelector(
       '.js-form-dropdown__datepicker-input'
     ) as FormDropdownDatepickerDOM['input'];
-    const datepickerCard =
-      this.element.querySelector('.js-datepicker-card') === null
-        ? undefined
-        : (this.element.querySelector(
-            '.js-datepicker-card'
-          ) as FormDropdownDatepickerDOM['datepickerCard']);
+    const datepickerCard = this.element.querySelector(
+      '.js-datepicker-card'
+    ) as FormDropdownDatepickerDOM['datepickerCard'];
 
     return {
       selection,

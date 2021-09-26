@@ -12,7 +12,7 @@
   "embed image": {
     "prefix": "ip",
     "scope": "html,jade",
-    "body": ["htmlWebpackPlugin ? require('$1').default : undefined$0"],
+    "body": ["htmlWebpackPlugin && require('$1').default$0"],
     "description": "embed image snippet for html and pug files"
   }
 }

@@ -47,7 +47,7 @@ mixin form-text-field({ heading = '', description = '', headingMarginBottom = ''
 
     const { inputType, inputmode, placeholderOfType, withPlaceholder } = attributesOfType[type];
 
-    const typeClasses = type ? [`form-text-field__input_type_with-${type}`,`js-form-text-field__input_type_with-${type}`] : undefined;
+    const typeClass = `form-text-field__input_type_with-${type}`;
   .form-text-field.js-form-text-field&attributes(attributes)
     if heading
       +heading(heading, { description, marginBottom: headingMarginBottom, isLabel: true })(
@@ -55,7 +55,7 @@ mixin form-text-field({ heading = '', description = '', headingMarginBottom = ''
       )
     .form-text-field__field
       input.form-text-field__input.js-form-text-field__input(
-        class=[...typeClasses],
+        class=[typeClass],
         data-is-filter=isFilter,
         type=inputType,
         inputmode=inputmode,

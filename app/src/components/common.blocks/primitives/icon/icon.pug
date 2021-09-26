@@ -3,14 +3,14 @@
   fontFamily?: 'material' | 'branded'(Font Awesome 5 Brands) - font-family of icon
   content?: string - unicode code or alias of icon
   width?: 'medium'(1em) | 'large'(1.83em) - width of icon
-  height?: 'stretchable' | 'font' 
+  height?: 'font' 
   color?: 'primary-gradient' - color of icon
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin icon({ tag = 'i', fontFamily = 'material', content = 'sentiment_satisfied', width = '', height = 'stretchable', color = '' } = {})
+mixin icon({ tag = 'i', fontFamily = 'material', content = 'sentiment_satisfied', width = undefined, height = undefined, color = undefined } = {})
   -
     const fontFamilyClass = `icon_font-family_${fontFamily}`;
 
-    const widthClass = width ? `icon_width_${width}` : undefined;
-    const heightClass = height !== 'stretchable' ? `icon_height_${height}` : undefined;
-    const colorClass = color ? `icon_color_${color}` : undefined;
+    const widthClass = width && `icon_width_${width}`;
+    const heightClass = height && `icon_height_${height}`;
+    const colorClass = color && `icon_color_${color}`;
   #{tag}.icon(class=[fontFamilyClass, widthClass, heightClass, colorClass])&attributes(attributes)!= content

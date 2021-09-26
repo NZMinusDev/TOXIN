@@ -105,4 +105,4 @@ block content
         const msPerDay = 1000 * 60 * 60 * 24;
         const commentDate = `${new Date(Date.now() + msPerDay * 5).toISOString()}`;
       .form-elements-layout__comment
-        +comments({ items: { 'comment-1': { personName: 'Мурад Сарафанов', iconPath: htmlWebpackPlugin ? require('@assets/pictures/contents/personas/1/1.jpg').default : undefined, date: commentDate, dateText: '5 дней назад', content: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.', likeButtonCounter: 12, isLikeButtonChecked: 'checked' } } })
+        +comments({ items: { 'comment-1': { personName: 'Мурад Сарафанов', iconPath: htmlWebpackPlugin && require('@assets/pictures/contents/personas/1/1.jpg').default, date: commentDate, dateText: '5 дней назад', content: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.', likeButtonCounter: 12, isLikeButtonChecked: 'checked' } } })

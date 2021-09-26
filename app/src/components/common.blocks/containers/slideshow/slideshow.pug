@@ -30,7 +30,7 @@ mixin slideshow({ name = 'slideshow', paths = [] } = {})
       )
       label.slideshow__switcher(
         for=labelID,
-        title=`К изображению №${index === 0 ? paths.length : index}`
+        title=`К изображению №${index || paths.length}`
       )
         span.slideshow__switcher-icon
           +icon({ content: 'expand_more' })

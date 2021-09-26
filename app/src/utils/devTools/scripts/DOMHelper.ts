@@ -14,19 +14,21 @@ const has = (
 const hasAll = (
   elements: NodeListOf<Element> | HTMLCollection | Element[],
   contained: string | Element
-): Element[] | undefined => {
+) => {
   const copiedElements = [...elements];
-  let isHas: Element[] = [];
+  let descendants: Element[] = [];
 
   if (typeof contained === 'string') {
-    isHas = copiedElements.filter((element) =>
+    descendants = copiedElements.filter((element) =>
       element.querySelector(contained)
     );
   } else {
-    isHas = copiedElements.filter((element) => element.contains(contained));
+    descendants = copiedElements.filter((element) =>
+      element.contains(contained)
+    );
   }
 
-  return isHas.length > 0 ? isHas : undefined;
+  return descendants;
 };
 
 /** Cross-browsers document.documentElement.scrollHeight/scrollWidth */

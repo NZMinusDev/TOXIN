@@ -5,11 +5,11 @@
     labelJustifyContent?: 'spread'(space-between) - justify-content of label inside heading
   marginBottom?: 'medium'(1em) | 'large'(1.33em) | 'extra-large'(1.67em) | 'none' - bottom margin
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin heading(heading, { description = '', isLabel = false, labelJustifyContent = '', marginBottom = '' } = {})
+mixin heading(heading, { description = '', isLabel = false, labelJustifyContent = undefined, marginBottom = undefined } = {})
   -
     const headingTag = Object.keys(heading)[0];
-    const labelJustifyContentClass = labelJustifyContent ? `heading__label_justify-content_${labelJustifyContent}` : undefined;
-    const marginBottomCLass = marginBottom ? `heading_margin-bottom_${marginBottom}` : undefined;
+    const labelJustifyContentClass = labelJustifyContent &&`heading__label_justify-content_${labelJustifyContent}`;
+    const marginBottomCLass = marginBottom && `heading_margin-bottom_${marginBottom}`;
   if isLabel
     #{headingTag}.heading(class=[marginBottomCLass])
       label.heading__label(class=[labelJustifyContentClass])&attributes(attributes)= heading[headingTag]

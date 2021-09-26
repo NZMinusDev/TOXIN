@@ -2,9 +2,9 @@
   path: string - relative(in dist) path to img
   alt: string - img alt attr
   title?: string - title attribute
-  size?: 'rectangle' | 'contain' - size of picture
+  size?: 'contain' - size of picture
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin picture(path, alt, { title = undefined, size = 'rectangle' } = {})
+mixin picture(path, alt, { title = undefined, size = undefined } = {})
   -
     if(!path){
       path = '';
@@ -12,15 +12,15 @@ mixin picture(path, alt, { title = undefined, size = 'rectangle' } = {})
     const filePath = path.substring(0, path.lastIndexOf('.')) || path;
     const fileExt = path.substring(path.lastIndexOf('.') + 1, path.length) || path;
 
-    const sizeClass = size === 'rectangle' ? undefined : `picture_size_${size}`;
+    const sizeClass = size && `picture_size_${size}`;
   picture.picture(class=[sizeClass])&attributes(attributes)
     source(
       type="image/webp",
-      srcset=htmlWebpackPlugin ? require('@assets/pictures/images/placeholders/lazy-loading-placeholder.svg').default : undefined,
+      srcset=htmlWebpackPlugin && require('@assets/pictures/images/placeholders/lazy-loading-placeholder.svg').default,
       data-srcset=`${filePath}.webp 1x`
     )
     img.picture__img(
-      src=htmlWebpackPlugin ? require('@assets/pictures/images/placeholders/lazy-loading-placeholder.svg').default : undefined,
+      src=htmlWebpackPlugin && require('@assets/pictures/images/placeholders/lazy-loading-placeholder.svg').default,
       alt=alt,
       title=title,
       data-src=path

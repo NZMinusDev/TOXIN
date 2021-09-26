@@ -17,11 +17,11 @@ block content
   main.room-details-layout
     .room-details-layout__demo
       .room-details-layout__big-img
-        +picture(htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888.jpg').default : undefined, 'Фотография номера № 1', { size: 'contain' })
+        +picture(htmlWebpackPlugin && require('@assets/pictures/contents/rooms/luxury/888/888.jpg').default, 'Фотография номера № 1', { size: 'contain' })
       .room-details-layout__small-img-1
-        +picture(htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888_2.jpg').default : undefined, 'Фотография номера № 2', { size: 'contain' })
+        +picture(htmlWebpackPlugin && require('@assets/pictures/contents/rooms/luxury/888/888_2.jpg').default, 'Фотография номера № 2', { size: 'contain' })
       .room-details-layout__small-img-2
-        +picture(htmlWebpackPlugin ? require('@assets/pictures/contents/rooms/luxury/888/888_3.jpg').default : undefined, 'Фотография номера № 3', { size: 'contain' })
+        +picture(htmlWebpackPlugin && require('@assets/pictures/contents/rooms/luxury/888/888_3.jpg').default, 'Фотография номера № 3', { size: 'contain' })
     .room-details-layout__content
       section.room-details-layout__info
         .room-details-layout__data
@@ -33,7 +33,7 @@ block content
           const fiveDaysAgo = new Date(Date.now() - msPerDay * 5).toISOString();
           const sevenDaysAgo = new Date(Date.now() - msPerDay * 7).toISOString();
         .room-details-layout__comments
-          +comments({ heading: { h2: 'Отзывы посетителей номера' }, headingMarginBottom: 'medium', counter: true, items: { 'comment-1': { personName: 'Мурад Сарафанов', iconPath: htmlWebpackPlugin ? require('@assets/pictures/contents/personas/1/1.jpg').default : undefined, date: fiveDaysAgo, dateText: '5 дней назад', content: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.', likeButtonCounter: 12, isLikeButtonChecked: 'checked' }, 'comment-2': { personName: 'Патрисия Стёклышкова', iconPath: htmlWebpackPlugin ? require('@assets/pictures/contents/personas/2/2.jpg').default : undefined, date: sevenDaysAgo, dateText: 'Неделю назад', content: 'Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент', likeButtonCounter: 2 } } })
+          +comments({ heading: { h2: 'Отзывы посетителей номера' }, headingMarginBottom: 'medium', counter: true, items: { 'comment-1': { personName: 'Мурад Сарафанов', iconPath: htmlWebpackPlugin && require('@assets/pictures/contents/personas/1/1.jpg').default, date: fiveDaysAgo, dateText: '5 дней назад', content: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.', likeButtonCounter: 12, isLikeButtonChecked: 'checked' }, 'comment-2': { personName: 'Патрисия Стёклышкова', iconPath: htmlWebpackPlugin && require('@assets/pictures/contents/personas/2/2.jpg').default, date: sevenDaysAgo, dateText: 'Неделю назад', content: 'Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент', likeButtonCounter: 2 } } })
         .room-details-layout__rules
           .room-details-layout__rules-heading
             +heading({ h2: 'Правила' }, { marginBottom: 'medium' })

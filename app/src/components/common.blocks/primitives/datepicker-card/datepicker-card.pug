@@ -14,7 +14,7 @@ mixin datepicker-card({ name = 'datepicker-card', selectedDates = '', range = fa
       data-is-filter=isFilter
     )
     .datepicker-here.js-datepicker-here(
-      data-range=range ? `${range}` : undefined,
+      data-range=range && `${range}`,
       data-multiple-dates-separator=" - ",
       data-alt-fields=altFields
     )

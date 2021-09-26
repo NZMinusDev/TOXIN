@@ -32,11 +32,11 @@ mixin donut-chart({ heading = '', headingMarginBottom = 'medium', items = {}, da
         let startVal = 0;
         let endVal = 0;
       each ratio in chartsRatio
-        - endVal += ratio !== 0 ? ratio * round : 0;
+        - endVal += ratio && ratio * round;
         .donut-chart__slice(
           style=`--start:${startVal + gapDegree / 2}deg; --end:${endVal - gapDegree / 2}deg;`
         )
-        - startVal += ratio !== 0 ? ratio * round : 0;
+        - startVal += ratio && ratio * round;
       .donut-chart__counter
         h1.donut-chart__data-amount= total
         h3.donut-chart__data-name= dataName

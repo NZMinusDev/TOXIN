@@ -271,7 +271,7 @@ abstract class MVPView<
   }
 
   setOptions(options?: TOptionsToSet) {
-    const optionsToForEach = options === undefined ? this._options : options;
+    const optionsToForEach = options ?? this._options;
 
     Object.entries(optionsToForEach)
       .sort(
@@ -289,7 +289,7 @@ abstract class MVPView<
         const setOptionMethodName = `set${
           theFirstLetterOfOptionKey.toUpperCase() + theRestLettersOfOptionKey
         }Option`;
-        const valueToPass = options === undefined ? undefined : optionValue;
+        const valueToPass = options && optionValue;
 
         if (this[setOptionMethodName] !== undefined) {
           this[setOptionMethodName](valueToPass);
@@ -308,7 +308,7 @@ abstract class MVPView<
   }
 
   protected _setState(state?: Partial<TState>) {
-    const keyOfStateToForEach = state === undefined ? this._state : state;
+    const keyOfStateToForEach = state ?? this._state;
 
     Object.entries(keyOfStateToForEach)
       .sort(
@@ -326,7 +326,7 @@ abstract class MVPView<
         const setStateMethodName = `_set${
           theFirstLetterOfStateKey.toUpperCase() + theRestLettersOfStateKey
         }State`;
-        const valueToPass = state === undefined ? undefined : stateValue;
+        const valueToPass = state && stateValue;
 
         if (this[setStateMethodName] !== undefined) {
           this[setStateMethodName](valueToPass);
