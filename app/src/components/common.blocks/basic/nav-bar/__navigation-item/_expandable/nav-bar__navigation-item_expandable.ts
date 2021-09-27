@@ -1,4 +1,4 @@
-import { BEMModifier } from '@utils/devTools/scripts/ComponentCreationHelper';
+import BEMModifier from '@utils/devTools/scripts/view/BEM/BEMModifier';
 
 import navBarNavigationItems, {
   NavBarNavigationItem,
@@ -24,7 +24,7 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
 
     this._DOM = this._initDOM();
 
-    this._state = this._initState();
+    this._state = NavBarExpandableNavigationItemModifier._initState();
 
     this._bindItemExpandCheckboxListeners()._bindWindowListeners();
   }
@@ -45,8 +45,7 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
     return { itemExpandCheckbox, childList, nestedLists };
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  protected _initState() {
+  protected static _initState() {
     const isSmallDesktopMediaMatched =
       NavBarExpandableNavigationItemModifier._getSmallDesktopMediaMatching();
 

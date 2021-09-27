@@ -1,7 +1,6 @@
-import {
-  BEMComponent,
+import BEMComponent, {
   HTMLElementWithComponent,
-} from '@utils/devTools/scripts/ComponentCreationHelper';
+} from '@utils/devTools/scripts/view/BEM/BEMComponent';
 
 import type {
   FormDropdownItemQuantityListCustomEvents,
@@ -99,12 +98,10 @@ class FormDropdown<
   }
 
   protected _expandableItemEventListenerObject = {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    handleExpandableItemOpen: (event: ExpandableItemCustomEvents['open']) => {
+    handleExpandableItemOpen: () => {
       this._open();
     },
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    handleExpandableItemClose: (event: ExpandableItemCustomEvents['close']) => {
+    handleExpandableItemClose: () => {
       this._close();
     },
   };

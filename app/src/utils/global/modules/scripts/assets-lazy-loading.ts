@@ -13,32 +13,32 @@ const isVisible = (elem: HTMLElement) => {
 
 const showVisible = () => {
   [...images].forEach((img) => {
-    const realSrc = img.dataset.src;
+    const imgRef = img;
+
+    const realSrc = imgRef.dataset.src;
 
     if (realSrc === undefined || realSrc === '') {
       return;
     }
 
-    if (isVisible(img)) {
-      // eslint-disable-next-line no-param-reassign
-      img.src = realSrc;
-      // eslint-disable-next-line no-param-reassign
-      img.dataset.src = '';
+    if (isVisible(imgRef)) {
+      imgRef.src = realSrc;
+      imgRef.dataset.src = '';
     }
   });
 
   [...sources].forEach((source) => {
-    const realSrcset = source.dataset.srcset;
+    const sourceRef = source;
+
+    const realSrcset = sourceRef.dataset.srcset;
 
     if (realSrcset === undefined || realSrcset === '') {
       return;
     }
 
-    if (isVisible(source)) {
-      // eslint-disable-next-line no-param-reassign
-      source.srcset = realSrcset;
-      // eslint-disable-next-line no-param-reassign
-      source.dataset.srcset = '';
+    if (isVisible(sourceRef)) {
+      sourceRef.srcset = realSrcset;
+      sourceRef.dataset.srcset = '';
     }
   });
 };

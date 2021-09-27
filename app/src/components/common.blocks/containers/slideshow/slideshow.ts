@@ -1,18 +1,12 @@
-import {
-  BEMComponent,
+import BEMComponent, {
   HTMLElementWithComponent,
-} from '@utils/devTools/scripts/ComponentCreationHelper';
+} from '@utils/devTools/scripts/view/BEM/BEMComponent';
 
 import slideshowElements, { SlideshowElement } from './slideshow-elements';
 
 type SlideshowCustomEvents = {};
 
-class Slideshow extends BEMComponent<SlideshowElement, SlideshowCustomEvents> {
-  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
-  constructor(slideshowElement: SlideshowElement) {
-    super(slideshowElement);
-  }
-}
+class Slideshow extends BEMComponent<SlideshowElement, SlideshowCustomEvents> {}
 
 type SlideshowElementWithComponent = HTMLElementWithComponent<
   SlideshowElement,

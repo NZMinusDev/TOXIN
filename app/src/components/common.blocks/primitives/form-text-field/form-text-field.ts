@@ -1,7 +1,6 @@
-import {
-  BEMComponent,
+import BEMComponent, {
   HTMLElementWithComponent,
-} from '@utils/devTools/scripts/ComponentCreationHelper';
+} from '@utils/devTools/scripts/view/BEM/BEMComponent';
 
 import formTextFieldElements, {
   FormTextFieldElement,
@@ -12,12 +11,7 @@ type FormTextFieldCustomEvents = {};
 class FormTextField extends BEMComponent<
   FormTextFieldElement,
   FormTextFieldCustomEvents
-> {
-  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
-  constructor(formTextFieldElement: FormTextFieldElement) {
-    super(formTextFieldElement);
-  }
-}
+> {}
 
 type FormTextFieldElementWithComponent = HTMLElementWithComponent<
   FormTextFieldElement,

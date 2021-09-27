@@ -1,7 +1,6 @@
-import {
-  BEMComponent,
+import BEMComponent, {
   HTMLElementWithComponent,
-} from '@utils/devTools/scripts/ComponentCreationHelper';
+} from '@utils/devTools/scripts/view/BEM/BEMComponent';
 import type {
   DatepickerCardCustomEvents,
   DatepickerCard,
@@ -146,16 +145,10 @@ class FormDropdownDatepicker extends BEMComponent<
   }
 
   protected _datepickerCardEventListenerObject = {
-    handleDatepickerCardSelect: (
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      event: CustomEvent<DatepickerCardCustomEvents['select']>
-    ) => {
+    handleDatepickerCardSelect: () => {
       this._changeValue();
     },
-    handleDatepickerCardChange: (
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      event: CustomEvent<DatepickerCardCustomEvents['change']>
-    ) => {
+    handleDatepickerCardChange: () => {
       this.close();
     },
   };
@@ -273,19 +266,19 @@ class FormDropdownDatepicker extends BEMComponent<
   ) {
     const $altFields = this._subComponents.datepickerCard?.get$altFields();
 
-    $altFields?.each((index, inputElement) => {
+    $altFields?.each((index, altField) => {
+      const altFieldRef = altField;
       const dateIndex = index + 1;
       const dateTime = dateTimes[dateIndex];
-      const selection = inputElement
+      const selection = altFieldRef
         .closest(`.${selectors.dropdown}`)
         ?.querySelector(
           '.js-form-dropdown__selection-text'
         ) as FormDropdownDatepickerDOM['selection'];
       const placeholder = selection.dataset.placeholder || '';
 
-      // eslint-disable-next-line no-param-reassign
-      inputElement.value = dateTime || '';
-      // eslint-disable-next-line no-param-reassign
+      altFieldRef.value = dateTime || '';
+
       selection.innerHTML =
         dateTime !== ''
           ? `<time datetime="${dateTime}">${

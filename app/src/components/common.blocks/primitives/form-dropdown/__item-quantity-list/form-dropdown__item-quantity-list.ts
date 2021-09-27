@@ -1,9 +1,8 @@
 import { pluralize } from 'numeralize-ru';
 
-import {
-  BEMComponent,
+import BEMComponent, {
   HTMLElementWithComponent,
-} from '@utils/devTools/scripts/ComponentCreationHelper';
+} from '@utils/devTools/scripts/view/BEM/BEMComponent';
 import { has } from '@utils/devTools/scripts/DOMHelper';
 import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
 import '@library.blocks/primitives/form-dropdown/__item-quantity-list/form-dropdown__item-quantity-list';
@@ -72,7 +71,7 @@ class FormDropdownItemQuantityList extends BEMComponent<
     super(formDropdownItemQuantityListElement);
 
     this._DOM = this._initDOM();
-    this._state = this._initState();
+    this._state = FormDropdownItemQuantityList._initState();
     this._options = this._initOptionsFromHTML();
     this._generatedDOM =
       this._initLibFormDropdownItemQuantityList()._initGeneratedDOM();
@@ -100,7 +99,6 @@ class FormDropdownItemQuantityList extends BEMComponent<
 
       const decrementBtn = this._generatedDOM.decrementButtons[index];
 
-      // eslint-disable-next-line no-loops/no-loops
       while (amountToDecrement !== 0) {
         decrementBtn.dispatchEvent(new Event('click'));
         amountToDecrement -= 1;
@@ -186,8 +184,8 @@ class FormDropdownItemQuantityList extends BEMComponent<
       },
       menuOptions: new Map(
         this._DOM.menuOptions.map((menuOption, index) => {
-          // eslint-disable-next-line no-param-reassign
-          menuOption.dataset.defaultcount =
+          const menuOptionRef = menuOption;
+          menuOptionRef.dataset.defaultcount =
             values[index] ?? menuOption.dataset.defaultcount;
 
           return [
@@ -241,8 +239,7 @@ class FormDropdownItemQuantityList extends BEMComponent<
     };
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  protected _initState() {
+  protected static _initState() {
     const totalItems = -1;
     const itemsCounter = new Map<string, number>();
     const groupsCounter = new Map<string, number>();

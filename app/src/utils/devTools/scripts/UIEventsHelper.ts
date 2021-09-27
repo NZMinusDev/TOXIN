@@ -4,8 +4,10 @@
 const addGoodMouseOver = (
   parent: HTMLElement,
   childSelector: string,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  { onmouseoverCallBack = () => {}, onmouseoutCallBack = () => {} } = {}
+  {
+    onmouseoverCallBack,
+    onmouseoutCallBack,
+  }: { onmouseoverCallBack?: () => void; onmouseoutCallBack?: () => void } = {}
 ) => {
   let currentElem: Element | null = null;
 
@@ -25,7 +27,7 @@ const addGoodMouseOver = (
 
     currentElem = target;
 
-    onmouseoverCallBack();
+    onmouseoverCallBack?.();
   };
 
   const onMouseOut = (event: MouseEvent) => {
@@ -35,7 +37,6 @@ const addGoodMouseOver = (
 
     let { relatedTarget } = event;
 
-    // eslint-disable-next-line no-loops/no-loops
     while (relatedTarget) {
       if (relatedTarget === currentElem) {
         return;
@@ -46,7 +47,7 @@ const addGoodMouseOver = (
 
     currentElem = null;
 
-    onmouseoutCallBack();
+    onmouseoutCallBack?.();
   };
 
   parent.addEventListener('mouseover', onMouseOver);
@@ -65,27 +66,27 @@ const addDragAndDrop = (
   element: HTMLElement,
   {
     droppableSelector = '[data-droppable]',
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    enterDroppable = (currentDroppable: Element) => {},
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    leaveDroppable = (currentDroppable: Element) => {},
+    enterDroppable,
+    leaveDroppable,
+  }: {
+    droppableSelector?: string;
+    enterDroppable?: (currentDroppable: Element) => void;
+    leaveDroppable?: (currentDroppable: Element) => void;
   } = {}
 ) => {
-  const onMouseDown = (event) => {
-    const shiftX = event.clientX - element.getBoundingClientRect().left;
-    const shiftY = event.clientY - element.getBoundingClientRect().top;
+  const elementRef = element;
 
-    // eslint-disable-next-line no-param-reassign
-    element.style.position = 'absolute';
-    // eslint-disable-next-line no-param-reassign
-    element.style.zIndex = '1000';
-    document.body.append(element);
+  const onMouseDown = (event) => {
+    const shiftX = event.clientX - elementRef.getBoundingClientRect().left;
+    const shiftY = event.clientY - elementRef.getBoundingClientRect().top;
+
+    elementRef.style.position = 'absolute';
+    elementRef.style.zIndex = '1000';
+    document.body.append(elementRef);
 
     const moveAt = (pageX, pageY) => {
-      // eslint-disable-next-line no-param-reassign
-      element.style.left = `${pageX - shiftX}px`;
-      // eslint-disable-next-line no-param-reassign
-      element.style.top = `${pageY - shiftY}px`;
+      elementRef.style.left = `${pageX - shiftX}px`;
+      elementRef.style.top = `${pageY - shiftY}px`;
     };
 
     moveAt(event.pageX, event.pageY);
@@ -93,15 +94,15 @@ const addDragAndDrop = (
     // потенциальная цель переноса, над которой мы пролетаем прямо сейчас
     let currentDroppable: Element | null = null;
 
-    // eslint-disable-next-line @typescript-eslint/no-shadow
-    const onMouseMove = (event) => {
-      moveAt(event.pageX, event.pageY);
+    const onMouseMove = (mouseMoveEvent) => {
+      moveAt(mouseMoveEvent.pageX, mouseMoveEvent.pageY);
 
-      // eslint-disable-next-line no-param-reassign
-      element.hidden = true;
-      const elemBelow = document.elementFromPoint(event.clientX, event.clientY);
-      // eslint-disable-next-line no-param-reassign
-      element.hidden = false;
+      elementRef.hidden = true;
+      const elemBelow = document.elementFromPoint(
+        mouseMoveEvent.clientX,
+        mouseMoveEvent.clientY
+      );
+      elementRef.hidden = false;
 
       if (elemBelow === null) {
         return;
@@ -111,34 +112,33 @@ const addDragAndDrop = (
 
       if (currentDroppable !== droppableBelow) {
         if (currentDroppable !== null) {
-          leaveDroppable(currentDroppable);
+          leaveDroppable?.(currentDroppable);
         }
 
         currentDroppable = droppableBelow;
 
         if (currentDroppable !== null) {
-          enterDroppable(currentDroppable);
+          enterDroppable?.(currentDroppable);
         }
       }
     };
 
     const onMouseUp = () => {
       document.removeEventListener('mousemove', onMouseMove);
-      element.removeEventListener('mouseup', onMouseUp);
+      elementRef.removeEventListener('mouseup', onMouseUp);
     };
 
     document.addEventListener('mousemove', onMouseMove);
-    element.addEventListener('mouseup', onMouseUp);
+    elementRef.addEventListener('mouseup', onMouseUp);
   };
 
-  element.addEventListener('mousedown', onMouseDown);
+  elementRef.addEventListener('mousedown', onMouseDown);
 
   const onDragStart = () => false;
 
-  element.addEventListener('dragstart', onDragStart);
+  elementRef.addEventListener('dragstart', onDragStart);
 
-  // eslint-disable-next-line no-param-reassign
-  element.style.touchAction = 'none';
+  elementRef.style.touchAction = 'none';
 };
 
 export { addGoodMouseOver, addDragAndDrop };

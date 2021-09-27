@@ -60,11 +60,10 @@ const getWindowSizes = () => ({
 const isHidden = (elem: HTMLElement) => !elem.offsetWidth && !elem.offsetHeight;
 
 const setFullHeight = (element: HTMLElement) => {
-  // eslint-disable-next-line no-param-reassign
-  element.style.height = `${element.scrollHeight}px`;
+  const elementRef = element;
+  elementRef.style.height = `${element.scrollHeight}px`;
 };
 
-// eslint-disable-next-line no-shadow
 enum Direction {
   Up = 'Up',
   Down = 'Down',
@@ -80,20 +79,19 @@ const scrollTo = (
   pageX: number | Direction.Left | Direction.Right,
   pageY: number | Direction.Up | Direction.Down
 ) => {
+  const elementRef = element;
+
   if (typeof pageX === 'number') {
-    // eslint-disable-next-line no-param-reassign
-    element.scrollLeft = pageX;
+    elementRef.scrollLeft = pageX;
   } else {
     switch (pageX) {
       case Direction.Left: {
-        // eslint-disable-next-line no-param-reassign
-        element.scrollLeft = 0;
+        elementRef.scrollLeft = 0;
 
         break;
       }
       case Direction.Right: {
-        // eslint-disable-next-line no-param-reassign
-        element.scrollLeft = Infinity;
+        elementRef.scrollLeft = Infinity;
 
         break;
       }
@@ -103,19 +101,16 @@ const scrollTo = (
   }
 
   if (typeof pageY === 'number') {
-    // eslint-disable-next-line no-param-reassign
-    element.scrollTop = pageY;
+    elementRef.scrollTop = pageY;
   } else {
     switch (pageY) {
       case Direction.Up: {
-        // eslint-disable-next-line no-param-reassign
-        element.scrollTop = 0;
+        elementRef.scrollTop = 0;
 
         break;
       }
       case Direction.Down: {
-        // eslint-disable-next-line no-param-reassign
-        element.scrollTop = Infinity;
+        elementRef.scrollTop = Infinity;
 
         break;
       }
@@ -129,24 +124,23 @@ const scrollTo = (
  * Cross-browsers(be aware of https://bugs.webkit.org/show_bug.cgi?id=5991 and use document.body instead of document.documentElement for old browsers only) scrollBy
  */
 const scrollBy = (element: HTMLElement, x: number, y: number) => {
-  // eslint-disable-next-line no-param-reassign
-  element.scrollLeft += x;
-  // eslint-disable-next-line no-param-reassign
-  element.scrollTop += y;
+  const elementRef = element;
+
+  elementRef.scrollLeft += x;
+  elementRef.scrollTop += y;
 };
 
 const freezeScroll = (element: HTMLElement, { shouldFreeze = true } = {}) => {
+  const elementRef = element;
+
   if (shouldFreeze) {
     const clientWidthBeforeFreeze = element.clientWidth;
-    // eslint-disable-next-line no-param-reassign
-    element.style.overflow = 'hidden';
+    elementRef.style.overflow = 'hidden';
 
     // vanished scrollbar size
-    // eslint-disable-next-line no-param-reassign
-    element.style.padding += element.clientWidth - clientWidthBeforeFreeze;
+    elementRef.style.padding += element.clientWidth - clientWidthBeforeFreeze;
   } else {
-    // eslint-disable-next-line no-param-reassign
-    element.style.overflow = '';
+    elementRef.style.overflow = '';
   }
 };
 
@@ -170,18 +164,17 @@ const getCoordinatesOfAbsoluteElement = (element: HTMLElement) => {
 };
 
 const place = (element: HTMLElement, { position = 'absolute' } = {}) => {
-  // eslint-disable-next-line no-param-reassign
-  element.style.position = position;
+  const elementRef = element;
+
+  elementRef.style.position = position;
 
   const coords =
     position === 'absolute'
       ? getCoordinatesOfAbsoluteElement(element)
       : element.getBoundingClientRect();
 
-  // eslint-disable-next-line no-param-reassign
-  element.style.left = `${coords.left}px`;
-  // eslint-disable-next-line no-param-reassign
-  element.style.top = `${coords.bottom}px`;
+  elementRef.style.left = `${coords.left}px`;
+  elementRef.style.top = `${coords.bottom}px`;
 };
 
 /**
@@ -212,7 +205,6 @@ const place = (element: HTMLElement, { position = 'absolute' } = {}) => {
  *
  */
 const loadScript = (src: URL) =>
-  // eslint-disable-next-line promise/avoid-new
   new Promise((resolve, reject) => {
     const script = document.createElement('script');
 

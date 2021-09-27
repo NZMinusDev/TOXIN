@@ -6,14 +6,16 @@ const fixLength = <TArray extends unknown[]>(
   desiredLength: number,
   filler: TArray[number]
 ) => {
-  if (arr.length !== desiredLength) {
-    const previousLength = arr.length;
+  const copy = [...arr];
+  const previousLength = copy.length;
 
-    // eslint-disable-next-line no-param-reassign
-    arr.length = desiredLength;
-    // eslint-disable-next-line no-param-reassign
-    arr = arr.fill(filler, previousLength);
+  copy.length = desiredLength;
+
+  if (previousLength < desiredLength) {
+    return copy.fill(filler, previousLength);
   }
+
+  return copy;
 };
 
 /**

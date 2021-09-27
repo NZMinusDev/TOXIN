@@ -42,7 +42,6 @@ interface noUiSlider {
       unencoded: number[],
       tap: boolean,
       positions: number[],
-      // eslint-disable-next-line no-shadow
       noUiSlider: noUiSlider
     ) => void
   );

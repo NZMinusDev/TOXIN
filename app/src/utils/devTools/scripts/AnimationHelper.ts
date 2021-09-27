@@ -62,14 +62,15 @@ const shotFromABow = (x: number, timeFraction: number) =>
   timeFraction ** 2 * ((x + 1) * timeFraction - x);
 
 const bounce = (timeFraction: number) => {
-  // eslint-disable-next-line no-loops/no-loops, no-constant-condition
-  for (let a = 0, b = 1; 1; a += b, b /= 2) {
-    if (timeFraction >= (7 - 4 * a) / 11) {
-      return -(((11 - 6 * a - 11 * timeFraction) / 4) ** 2) + b ** 2;
-    }
+  let a = 0;
+  let b = 1;
+
+  while (timeFraction < (7 - 4 * a) / 11) {
+    a += b;
+    b /= 2;
   }
 
-  return timeFraction;
+  return -(((11 - 6 * a - 11 * timeFraction) / 4) ** 2) + b ** 2;
 };
 
 const elastic = (x, timeFraction) =>
@@ -80,15 +81,15 @@ const elastic = (x, timeFraction) =>
  * Jumping animation of typing text
  */
 const animateTextArea = (textArea: HTMLTextAreaElement) => {
-  const text = textArea.value;
+  const textAreaRef = textArea;
+  const text = textAreaRef.value;
   const to = text.length;
   const from = 0;
 
   animate(
     (progress) => {
       const result = (to - from) * progress + from;
-      // eslint-disable-next-line no-param-reassign
-      textArea.value = text.substr(0, Math.ceil(result));
+      textAreaRef.value = text.substr(0, Math.ceil(result));
     },
     5000,
     { timing: bounce }

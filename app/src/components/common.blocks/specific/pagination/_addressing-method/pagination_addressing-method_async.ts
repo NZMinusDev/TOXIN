@@ -118,9 +118,7 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
       this._insertNextButtonPaginationItem(newList);
     }
 
-    // eslint-disable-next-line @typescript-eslint/dot-notation
     this.component['_DOM'].list.innerHTML = '';
-    // eslint-disable-next-line @typescript-eslint/dot-notation
     this.component['_DOM'].list.append(newList);
 
     return this;
@@ -161,7 +159,6 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
   }
 
   protected _insertAllPaginationItems(list: DocumentFragment) {
-    // eslint-disable-next-line no-loops/no-loops
     for (let page = 1; page <= this._options.pages; page += 1) {
       const itemActiveClass =
         this._state.activePage === page ? 'pagination__item_active' : '';
@@ -238,7 +235,6 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
       pageCutHigh = this._options.pages;
     }
 
-    // eslint-disable-next-line no-loops/no-loops
     for (let page = pageCutLow; page <= pageCutHigh; page += 1) {
       const itemActiveClass =
         this._state.activePage === page ? 'pagination__item_active' : '';
@@ -311,7 +307,6 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
         : `${this._options.total} `;
     const counterText = `${counterFrom} - ${counterTo} из ${counterTotalText}${this._options.text}`;
 
-    // eslint-disable-next-line @typescript-eslint/dot-notation
     this.component['_DOM'].counter.textContent = counterText;
 
     return this;

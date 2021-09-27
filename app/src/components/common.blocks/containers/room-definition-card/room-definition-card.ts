@@ -1,7 +1,6 @@
-import {
-  BEMComponent,
+import BEMComponent, {
   HTMLElementWithComponent,
-} from '@utils/devTools/scripts/ComponentCreationHelper';
+} from '@utils/devTools/scripts/view/BEM/BEMComponent';
 import { getDatePeriod, MS_IN_A_DAY } from '@utils/devTools/scripts/DateHelper';
 import type {
   FormDropdownWithItemQuantityListCustomEvents,
@@ -75,7 +74,7 @@ class RoomDefinitionCard extends BEMComponent<
 
     this._options = this._initOptionsFromHTML();
     this._state = this._initState();
-    this._context = this._initContext();
+    this._context = RoomDefinitionCard._initContext();
 
     this._bindArrivalDateDropdownListeners();
   }
@@ -166,8 +165,7 @@ class RoomDefinitionCard extends BEMComponent<
     return { dailyRange };
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  protected _initContext() {
+  protected static _initContext() {
     const currency = '₽';
 
     return { currency };

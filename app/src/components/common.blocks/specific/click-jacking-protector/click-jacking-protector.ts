@@ -1,7 +1,6 @@
-import {
-  BEMComponent,
+import BEMComponent, {
   HTMLElementWithComponent,
-} from '@utils/devTools/scripts/ComponentCreationHelper';
+} from '@utils/devTools/scripts/view/BEM/BEMComponent';
 
 import clickJackingProtectorElements, {
   ClickJackingProtectorElement,
@@ -20,7 +19,7 @@ class ClickJackingProtector extends BEMComponent<
   }
 
   protected _initDisplay() {
-    if (window.top.document.domain === document.domain) {
+    if (window.top?.document.domain === document.domain) {
       this.element.remove();
     }
 

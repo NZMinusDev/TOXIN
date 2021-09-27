@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const {
   HashedModuleIdsPlugin,
   ProvidePlugin,
@@ -296,10 +295,7 @@ const cssLoaders = (extraLoader) => {
     {
       loader: 'css-loader',
       options: {
-        // eslint-disable-next-line no-unused-vars
-        url: (url, resourcePath) => {
-          // resourcePath - path to css file
-
+        url: (url) => {
           const isResized =
             url.includes('-320.') ||
             url.includes('-640.') ||

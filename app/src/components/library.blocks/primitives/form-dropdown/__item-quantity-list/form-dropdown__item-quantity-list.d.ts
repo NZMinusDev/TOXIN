@@ -1,5 +1,4 @@
 type LibItemQuantityListOptions = {
-  // eslint-disable-next-line lines-around-comment
   // max total items
   maxItems?: number;
 
@@ -33,7 +32,6 @@ type LibItemQuantityListOptions = {
   beforeIncrement?: (id: string, itemCount: { [itemID: string]: number }) => boolean;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface JQuery {
   iqDropdown: (options: LibItemQuantityListOptions) => JQuery<HTMLElement>;
 }

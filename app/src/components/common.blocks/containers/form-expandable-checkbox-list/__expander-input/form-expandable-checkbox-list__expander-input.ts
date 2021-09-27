@@ -1,7 +1,6 @@
-import {
-  BEMComponent,
+import BEMComponent, {
   HTMLElementWithComponent,
-} from '@utils/devTools/scripts/ComponentCreationHelper';
+} from '@utils/devTools/scripts/view/BEM/BEMComponent';
 
 import formExpandableCheckboxListElements from '../form-expandable-checkbox-list-elements';
 
@@ -60,8 +59,7 @@ class FormExpandableCheckboxListExpanderInput extends BEMComponent<
     return this;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  protected onChange = (event: Event) => {
+  protected onChange = () => {
     this.toggleList();
   };
 

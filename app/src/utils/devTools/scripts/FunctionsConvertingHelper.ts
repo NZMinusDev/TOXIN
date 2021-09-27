@@ -20,8 +20,7 @@ const makeCurry = (func: (...args: unknown[]) => unknown) =>
       return func.apply(this, args);
     }
 
-    // eslint-disable-next-line func-names
-    return function (...args2: unknown[]) {
+    return function curriedWithConcat(...args2: unknown[]) {
       return curried.apply(this, args.concat(args2));
     };
   };
@@ -44,8 +43,7 @@ const cloneFunction = <TFuncArgs extends unknown[], TFuncReturn>(
 ) => {
   const that = func;
 
-  // eslint-disable-next-line func-names
-  const temp = function (...args: TFuncArgs) {
+  const temp = function temp(...args: TFuncArgs) {
     return that.apply(func, args);
   };
 

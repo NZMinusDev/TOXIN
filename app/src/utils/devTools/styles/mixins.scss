@@ -1,3 +1,4 @@
+/* stylelint-disable order/order */
 @use 'sass:list';
 @use 'sass:string';
 
@@ -75,7 +76,6 @@
       $webp-urls: $webp-urls + ',';
     }
 
-    /* stylelint-disable-next-line order/order */
     $urls: $urls + url($path);
     $webp-urls: $webp-urls +
       url(functions.resolve-unresolved-asset-path($path, '.webp'));
@@ -95,7 +95,7 @@
     @if $index != 0 {
       $background-images: $background-images + ',';
     }
-    /* stylelint-disable-next-line order/order */
+
     $index: $index + 1;
     $background-images: $background-images + url($path);
   }
@@ -131,7 +131,6 @@
         }
       }
 
-      /* stylelint-disable-next-line order/order */
       $index: $index + 1;
     }
     100% {

@@ -1,7 +1,6 @@
-import {
-  BEMComponent,
+import BEMComponent, {
   HTMLElementWithComponent,
-} from '@utils/devTools/scripts/ComponentCreationHelper';
+} from '@utils/devTools/scripts/view/BEM/BEMComponent';
 import noUiSlider from '@library.blocks/primitives/form-range-slider/form-range-slider';
 
 import formRangeSliderElements, {
@@ -9,7 +8,6 @@ import formRangeSliderElements, {
 } from './form-range-slider-elements';
 
 interface HTMLDivElementWithSlider extends HTMLDivElement {
-  // eslint-disable-next-line no-use-before-define
   noUiSlider: noUiSlider;
 }
 type FormRangeSliderDOM = {

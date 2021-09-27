@@ -1,7 +1,6 @@
-import {
-  BEMComponent,
+import BEMComponent, {
   HTMLElementWithComponent,
-} from '@utils/devTools/scripts/ComponentCreationHelper';
+} from '@utils/devTools/scripts/view/BEM/BEMComponent';
 
 import type {
   FormExpandableCheckboxListExpanderInputCustomEvents,
@@ -59,12 +58,7 @@ class FormExpandableCheckboxList extends BEMComponent<
   }
 
   protected _expanderInputEventListenerObject = {
-    handleExpanderInputChange: (
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      event: CustomEvent<
-        FormExpandableCheckboxListExpanderInputCustomEvents['change']
-      >
-    ) => {
+    handleExpanderInputChange: () => {
       const icon = this._DOM.expanderIcon.firstElementChild as HTMLElement;
 
       icon.textContent =

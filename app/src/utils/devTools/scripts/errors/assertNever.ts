@@ -1,21 +1,3 @@
-/* eslint-disable max-classes-per-file */
-class MyError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = this.constructor.name;
-  }
-}
-
-class ErrorWrapper extends Error {
-  public cause: Error;
-
-  constructor(message: string, cause: Error) {
-    super(message);
-    this.cause = cause;
-    this.name = 'ReadError';
-  }
-}
-
 /**
  *
  * @example
@@ -63,4 +45,4 @@ const assertNever = (valueToCheck: never): never => {
   throw new Error(`Unexpected object: ${valueToCheck}`);
 };
 
-export { MyError, ErrorWrapper, assertNever };
+export { assertNever as default };

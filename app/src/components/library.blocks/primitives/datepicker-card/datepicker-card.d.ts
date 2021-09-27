@@ -3,7 +3,6 @@ type LibAirDatepicker = {
   prevHtml?: string;
   nextHtml?: string;
   dateFormat?: string;
-  // eslint-disable-next-line no-use-before-define
   altField?: string | JQuery<HTMLElement>;
   altFieldDateFormat?: string;
   minDate?: Date;

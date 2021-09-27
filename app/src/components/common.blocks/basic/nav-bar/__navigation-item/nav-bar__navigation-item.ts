@@ -1,7 +1,6 @@
-import {
-  BEMComponent,
+import BEMComponent, {
   HTMLElementWithComponent,
-} from '@utils/devTools/scripts/ComponentCreationHelper';
+} from '@utils/devTools/scripts/view/BEM/BEMComponent';
 
 import navBarElements from '../nav-bar-elements';
 
@@ -12,12 +11,7 @@ type NavBarNavigationItemCustomEvents = {};
 class NavBarNavigationItem extends BEMComponent<
   NavBarNavigationItemElement,
   NavBarNavigationItemCustomEvents
-> {
-  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
-  constructor(navBarNavigationItemElement: NavBarNavigationItemElement) {
-    super(navBarNavigationItemElement);
-  }
-}
+> {}
 
 type NavBarNavigationItemElementWithComponent = HTMLElementWithComponent<
   NavBarNavigationItemElement,

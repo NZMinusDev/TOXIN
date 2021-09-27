@@ -3,14 +3,16 @@ const fs = require('fs');
 
 /**
  * Get all inner files in directory
- * @param { string } dir path to dir
- * @param { string[] } excludedExt extensions to exclude
- * @param { string[] } _files private param of files path for recursion
- * @return { string[] } array of files' paths
+ * @param dir path to dir
+ * @param excludedExt extensions to exclude
+ * @param _files private param of files path for recursion
+ * @return array of files' paths
  */
-const getFilesDeep = (dir, excludedExt, _files) => {
-  // eslint-disable-next-line no-param-reassign
-  _files = _files || [];
+const getFilesDeep = (
+  dir: string,
+  excludedExt: string[],
+  _files: string[] = []
+) => {
   const files = fs.readdirSync(dir);
 
   files.forEach((val, i) => {
@@ -33,5 +35,4 @@ const getFilesDeep = (dir, excludedExt, _files) => {
   return _files;
 };
 
-// eslint-disable-next-line import/prefer-default-export
 export { getFilesDeep };

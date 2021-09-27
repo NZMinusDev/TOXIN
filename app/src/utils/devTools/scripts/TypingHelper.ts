@@ -37,17 +37,13 @@ type GenericConstructor<TCreator extends new (...args: unknown[]) => unknown> =
  */
 type Unpacked<TType> = TType extends (infer TUnpacked)[]
   ? TUnpacked
-  : // eslint-disable-next-line no-shadow
-  TType extends (...args: unknown[]) => infer TUnpacked
+  : TType extends (...args: unknown[]) => infer TUnpacked
   ? TUnpacked
-  : // eslint-disable-next-line no-shadow
-  TType extends Promise<infer TUnpacked>
+  : TType extends Promise<infer TUnpacked>
   ? TUnpacked
-  : // eslint-disable-next-line no-shadow
-  TType extends Map<unknown, infer TUnpacked>
+  : TType extends Map<unknown, infer TUnpacked>
   ? TUnpacked
-  : // eslint-disable-next-line no-shadow
-  TType extends NodeListOf<infer TUnpacked>
+  : TType extends NodeListOf<infer TUnpacked>
   ? TUnpacked
   : TType;
 

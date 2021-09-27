@@ -1,4 +1,4 @@
-import { BEMModifier } from '@utils/devTools/scripts/ComponentCreationHelper';
+import BEMModifier from '@utils/devTools/scripts/view/BEM/BEMModifier';
 
 import type { FormDropdownItemQuantityList } from '../form-dropdown__item-quantity-list';
 

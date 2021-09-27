@@ -1,7 +1,6 @@
-import {
-  BEMComponent,
+import BEMComponent, {
   HTMLElementWithComponent,
-} from '@utils/devTools/scripts/ComponentCreationHelper';
+} from '@utils/devTools/scripts/view/BEM/BEMComponent';
 import { formatToPeriodDateTime } from '@utils/devTools/scripts/DateHelper';
 
 import '@common.blocks/primitives/apply-control/apply-control.scss';
@@ -51,7 +50,7 @@ class DatepickerCard extends BEMComponent<
     this._DOM = this._initDOM();
     this._generatedDOM = this._initLibDatepicker()._initGeneratedDOM();
 
-    this._state = this._initState();
+    this._state = DatepickerCard._initState();
 
     this._bindApplyControlListeners();
 
@@ -175,8 +174,7 @@ class DatepickerCard extends BEMComponent<
     };
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  protected _initState() {
+  protected static _initState() {
     const dates = [] as DatepickerCardState['dates'];
     const formattedDates = '' as DatepickerCardState['formattedDates'];
 
@@ -230,8 +228,8 @@ class DatepickerCard extends BEMComponent<
   protected _changeInputValue(ISODates: string[]) {
     this._DOM.input.value = ISODates.toString();
     this._DOM.$altFields?.each((index, altField) => {
-      // eslint-disable-next-line no-param-reassign
-      altField.value = ISODates[index + 1];
+      const altFieldRef = altField;
+      altFieldRef.value = ISODates[index + 1];
     });
 
     this._DOM.input.dispatchEvent(new Event('change'));

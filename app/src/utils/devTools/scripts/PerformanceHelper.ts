@@ -28,7 +28,6 @@ const bench = <TArgs extends unknown, TReturn extends unknown>(
 ) => {
   const start = performance.now();
 
-  // eslint-disable-next-line no-loops/no-loops
   for (let i = 0; i < iterations; i += 1) benchMarkingFunction(...funcArgs);
 
   return performance.now() - start;
@@ -71,8 +70,7 @@ const makeCaching = <
 ): ((...funcArgs: TFunctionArgs[]) => TFunctionReturn) => {
   const cache = new Map();
 
-  // eslint-disable-next-line func-names
-  return function (...args) {
+  return function doCashed(...args) {
     const key = hash(args);
 
     if (cache.has(key)) {
@@ -148,20 +146,18 @@ const makeMemorizable = (
   memo: number[],
   formula: (recursionCallback, n: number) => number
 ) => {
-  // eslint-disable-next-line func-names
-  const recursionCallback = function (n) {
+  return function recursionCallback(n) {
     let result = memo[n];
 
     if (typeof result !== 'number') {
       result = formula(recursionCallback, n);
-      // eslint-disable-next-line no-param-reassign
-      memo[n] = result;
+
+      const memoRef = memo;
+      memoRef[n] = result;
     }
 
     return result;
   };
-
-  return recursionCallback;
 };
 
 export { BenchOptions, bench, makeCaching, loadCached, makeMemorizable };
