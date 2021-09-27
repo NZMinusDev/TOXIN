@@ -48,13 +48,8 @@ Script-names:
 - **build** - build minify bundles and place it into [dist](./app/dist) directory;
 - **analyze** - visualize size of webpack output files with an interactive zoomable treemap using webpack-bundle-analyzer;
 - **lint** - lint styles and scripts, show result;
-- **lint:fix** - use prettier for all known files, lint styles and scripts, auto fix files with errors if it is possible, show result.
-
-Deploy
-
-```bash
-git subtree push --prefix app/dist origin gh-pages
-```
+- **lint:fix** - use prettier for all known files, lint styles and scripts, auto fix files with errors if it is possible, show result;
+- **deploy** - pushes [dist](./app/dist/) to origin/gh-pages, be sure you have git is installed globally and checkout for local gh-pages branch with committed build.
 
 ### Project tree
 
