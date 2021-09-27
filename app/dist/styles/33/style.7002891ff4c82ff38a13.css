@@ -1,1 +1,0 @@
-html{height:100%;background-color:#fff;color:#000;font-size:calc(18px + 6*(100vw - 320px)/1120);font-family:Times New Roman,Times,serif}.main-layout{display:grid;min-height:100%;grid:"header" auto "main" 1fr "footer" auto/auto}.index__main{padding:.5em}

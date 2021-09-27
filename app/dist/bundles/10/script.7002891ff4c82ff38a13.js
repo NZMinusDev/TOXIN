@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[10],{XTekLfrt:function(n,w,o){}}]);
