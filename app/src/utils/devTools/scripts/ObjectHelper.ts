@@ -55,13 +55,12 @@ const eachDeep = <TSubject>(
   fn: ({
     value,
     key,
-    // eslint-disable-next-line @typescript-eslint/no-shadow
-    subject,
+    subjectRef,
     path,
   }: {
     value: unknown;
     key: string;
-    subject: TSubject;
+    subjectRef: TSubject;
     path: string;
   }) => void,
   path?: string
@@ -69,7 +68,7 @@ const eachDeep = <TSubject>(
   Object.entries(subject).forEach(([key, value]) => {
     const deepPath = path !== undefined ? `${path}.${key}` : key;
 
-    fn({ value, key, subject, path: deepPath });
+    fn({ value, key, subjectRef: subject, path: deepPath });
 
     if (isPlainObject(value) || Array.isArray(value)) {
       eachDeep(value, fn, deepPath);

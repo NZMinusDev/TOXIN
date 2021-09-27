@@ -1,7 +1,3 @@
-/* eslint-disable no-alert */
-const onUnHandledRejectionHandler = (event) => {
-  alert(event.promise);
-  alert(event.reason);
-};
+const onUnHandledRejectionHandler = () => {};
 
 window.addEventListener('unhandledrejection', onUnHandledRejectionHandler);
