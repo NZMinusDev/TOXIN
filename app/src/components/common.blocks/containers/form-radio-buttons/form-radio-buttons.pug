@@ -9,26 +9,21 @@ include ~@common.blocks/primitives/svg-gradient/svg-gradient.pug
       label: string,
       checked?: boolean
   }}
-  SVGGradient?: boolean | string - add own SVGGradient or id of created on page SVGGradient, tip: don't use this component twice on one page with `SVGGradient: true`(because id must be unique)
   name?: string - name of group
   disabled?: boolean - same as fieldset disabled (disable all buttons)
   isFilter?: boolean - if true, change event will reload page with chosen value(get method)
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin form-radio-buttons({ heading = '', headingMarginBottom = 'large', name = 'radio', buttons = {}, SVGGradient = false, disabled = false, isFilter = false } = {})
+mixin form-radio-buttons({ heading = '', headingMarginBottom = 'large', name = 'radio', buttons = {}, disabled = false, isFilter = false } = {})
   .form-radio-buttons&attributes(attributes)
     if heading
       .form-radio-buttons__heading
         +heading(heading, { marginBottom: headingMarginBottom })
     fieldset.form-radio-buttons__fieldset(disabled=disabled)
       -
-        let SVGGradientID;
-        let index = 0;
+        const { nanoid } = require('nanoid/non-secure');
 
-        if(typeof SVGGradient === 'boolean') {
-          SVGGradientID = 'form-radio-buttons__button-icon-circle-linear-gradient';
-        } else {
-          SVGGradientID = SVGGradient;
-        }
+        const SVGGradientID = `id-${nanoid()}`;
+        let index = 0;
       each btn, key in buttons
         .form-radio-buttons__item
           input.form-radio-buttons__button-item(
@@ -58,11 +53,11 @@ mixin form-radio-buttons({ heading = '', headingMarginBottom = 'large', name = '
               height="12",
               rx="6"
             )
-            if SVGGradient === true && index === 0
+            if index === 0
               defs
                 -
                   const buttonIconCircleGradientColors = [{ var: '--main-active-color', offset: 0 }, { var: '--additional-active-color', offset: 1 }];
-                +svg-gradient(`${SVGGradientID}`, 'linear', buttonIconCircleGradientColors)
+                +svg-gradient(SVGGradientID, 'linear', buttonIconCircleGradientColors)
             -
               index += 1;
           label.form-radio-buttons__label-item(for=key)= btn.label

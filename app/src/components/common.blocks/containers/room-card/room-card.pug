@@ -13,13 +13,15 @@ include ~@common.blocks/containers/form-rate-button/form-rate-button.pug
   Tip: mixin also uses 'and attributes'(&attributes)
 mixin room-card({ number = -1, grade = '', payment = -1, rate = 0, comments = -1, href = './mock.html', paths = [] } = {})
   -
+    const { nanoid } = require('nanoid/non-secure');
+
     const currency = '₽';
 
     const numberSentence = `№ ${number.toLocaleString()}`;
     const paymentSentence = `${payment.toLocaleString()}${currency}`;
     const commentsSentence = `${comments.toLocaleString()}`;
 
-    const uniqueNamePostfix = Date.now() + Math.random();
+    const uniqueNamePostfix = `id-${nanoid()}`;
   figure.room-card&attributes(attributes)
     .room-card__slideshow
       +slideshow({ name: `${href}-slideshow-${uniqueNamePostfix}`, paths })

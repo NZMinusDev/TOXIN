@@ -40,11 +40,12 @@ mixin footer({ type = undefined, action = undefined, name = 'footer-subscription
             )
           p.footer__description Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»
           -
-            const getRandID = () => Date.now() + Math.random();
+            const { nanoid } = require('nanoid/non-secure');
+
             let index = -1;
           each menu, heading in menus
             -
-              const id = getRandID();
+              const id = `id-${nanoid()}`;
               index += 1;
             section(class=`footer__menu-${index}`)
               input.footer__list-checkbox(id=id, type="checkbox")

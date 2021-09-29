@@ -1,22 +1,17 @@
 include ~@common.blocks/primitives/svg-gradient/svg-gradient.pug
 
 //-
-  SVGGradient?: boolean | string - add own SVGGradient or id of created on page SVGGradient, tip: don't use this component twice on one page with `SVGGradient: true`(because id must be unique)
   name?: string - name of toggle button
   label?: string - text of label
   checked?: boolean - same as input checked
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin form-toggle({ SVGGradient = false, shouldAddNewSVGGradient = false, name = 'toggle', label = '', checked = false } = {})
+mixin form-toggle({ name = 'toggle', label = '', checked = false } = {})
   .form-toggle&attributes(attributes)
     input.form-toggle__button(id=name, type="checkbox", name=name, checked=checked)
     -
-      let SVGGradientID;
+      const { nanoid } = require('nanoid/non-secure');
 
-      if(typeof SVGGradient === 'boolean') {
-        SVGGradientID = 'form-toggle__button-icon-circle-linear-gradient';
-      } else {
-        SVGGradientID = SVGGradient;
-      }
+      const SVGGradientID = `id-${nanoid()}`;
     svg.form-toggle__button-icon(
       viewBox="0 0 40 20",
       xmlns="http://www.w3.org/2000/svg",
@@ -37,10 +32,9 @@ mixin form-toggle({ SVGGradient = false, shouldAddNewSVGGradient = false, name =
         height="12",
         rx="6"
       )
-      if SVGGradient === true
-        defs
-          -
-            const buttonIconCircleGradientColors = [{ var: '--main-active-color', offset: 0 }, { var: '--additional-active-color', offset: 1 }];
-          +svg-gradient(`${SVGGradientID}`, 'linear', buttonIconCircleGradientColors)
+      defs
+        -
+          const buttonIconCircleGradientColors = [{ var: '--main-active-color', offset: 0 }, { var: '--additional-active-color', offset: 1 }];
+        +svg-gradient(SVGGradientID, 'linear', buttonIconCircleGradientColors)
     if label
       label.form-toggle__label(for=name)= label

@@ -100,6 +100,7 @@
     "lodash-es": "^4.17.15",
     "material-design-icons": "^3.0.1",
     "mini-css-extract-plugin": "^0.11.2",
+    "nanoid": "^3.1.28",
     "numeralize-ru": "^1.0.1",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
     "postcss-flexbugs-fixes": "^4.2.1",

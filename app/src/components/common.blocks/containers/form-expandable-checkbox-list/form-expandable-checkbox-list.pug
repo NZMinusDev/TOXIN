@@ -11,8 +11,9 @@ include ~@common.blocks/containers/form-checkbox-buttons/form-checkbox-buttons.p
 mixin form-expandable-checkbox-list({ heading = 'expandable-checkbox-list', buttons = {}, checked = false, disabled = false, isFilter = false } = {})
   .form-expandable-checkbox-list.js-form-expandable-checkbox-list
     -
-      const expanderID =
-        Object.keys(buttons).reduce((acc, current) => acc + current) + Math.random();
+      const { nanoid } = require('nanoid/non-secure');
+      
+      const expanderID = `id-${nanoid()}`;
     .form-expandable-checkbox-list__title
       +heading(heading, { isLabel: true, labelJustifyContent: 'spread' })(
         for=expanderID,
