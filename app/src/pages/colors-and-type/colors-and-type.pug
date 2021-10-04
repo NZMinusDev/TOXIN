@@ -7,10 +7,10 @@ block append variables
   -
     title = 'Цвета и шрифт';
     keywords = 'UI-kit, цвета, шрифт';
-    description = 'Цвета и шрифт, используемые в макете при верстке';
-    let colors = htmlWebpackPlugin ? require('@layouts/basic/colors-and-type-layout/colors.json') : { Red: '#ff0000' };
-    let type = htmlWebpackPlugin
-      ? require('@layouts/basic/colors-and-type-layout/type.json')
+    description = 'Цвета и шрифты, используемые в макете сайта TOXIN';
+    const colors = htmlWebpackPlugin ? require('@pages/colors-and-type/colors.json') : { Red: '#ff0000' };
+    const type = htmlWebpackPlugin
+      ? require('@pages/colors-and-type/type.json')
       : {
           Body: {
             tag: 'p',
