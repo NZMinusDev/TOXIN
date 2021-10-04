@@ -197,11 +197,15 @@ class DatepickerCard extends BEMComponent<
 
   protected _applyControlEventListenerObject = {
     handleClearBtnClick: () => {
-      this._DOM.$libElement.data('datepicker').clear();
+      const datepicker = this._DOM.$libElement.data('datepicker');
+
+      datepicker.clear();
 
       this._generatedDOM.clearBtn.classList.add(
         'apply-control__clear-btn_hidden'
       );
+
+      this.element.dispatchEvent(new CustomEvent('select', { bubbles: true }));
     },
     handleApplyBtnClick: () => {
       const { selectedDates } = this._DOM.$libElement.data('datepicker');

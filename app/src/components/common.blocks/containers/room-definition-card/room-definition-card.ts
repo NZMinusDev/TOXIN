@@ -79,12 +79,6 @@ class RoomDefinitionCard extends BEMComponent<
     this._bindArrivalDateDropdownListeners();
   }
 
-  setContext(context: RoomDefinitionCardContext) {
-    Object.entries(context).forEach(([key, value]) => {
-      this._context[key] = value;
-    });
-  }
-
   protected _initDOM(): RoomDefinitionCardDOM {
     const dayPayment = this.element.querySelector(
       '.js-room-definition-card__day-payment'
