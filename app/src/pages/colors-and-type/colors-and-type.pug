@@ -24,9 +24,17 @@ block content
       each colorValue, colorName in colors
         +color-sample(colorName, colorValue)
     section.colors-and-type-layout__type
+      -
+        const length = Object.keys(type).length;
+        const theLastIndex = length - 1;
+        let index = 0;
       each content, tagItem in type
         -
           const tag = tagItem;
           const title = content.title;
           const htmlTag = content.tag || tagItem.toLowerCase();
-        +type-sample(tag, title, { htmlTag })
+          const width = index === theLastIndex ? 'small' : undefined;
+          
+          index +=1;
+        .colors-and-type-layout__type-item  
+          +type-sample(tag, title, { htmlTag, width })

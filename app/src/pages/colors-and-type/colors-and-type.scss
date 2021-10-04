@@ -28,7 +28,16 @@
       display: grid;
       grid-area: type;
       place-content: start;
-      grid-row-gap: 52px / 14px * 1em;
+    }
+  }
+
+  &__type-item {
+    &:not(:first-child) {
+      margin-top: 52px / 14px * 1em;
+    }
+
+    &:nth-last-child(1) {
+      margin-top: 48px / 14px * 1em;
     }
   }
 }

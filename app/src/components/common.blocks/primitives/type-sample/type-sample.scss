@@ -6,6 +6,7 @@
   &__tag {
     width: 40px;
     text-align: right;
+    font-weight: normal;
     grid-area: tag;
 
     @media print, screen and (color) {
@@ -15,5 +16,9 @@
 
   &__sample {
     grid-area: sample;
+
+    &_width_small {
+      width: 312px;
+    }
   }
 }

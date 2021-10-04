@@ -2,8 +2,11 @@
   tag: string - tag name text
   title: string - example of a text explaining the use cases
   htmlTag?: string - tag of text
+  width?: 'small'
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin type-sample(tag, title, { htmlTag = '' } = {})
+mixin type-sample(tag, title, { htmlTag = '', width = '' } = {})
+  -
+    const widthClass = width && `type-sample__sample_width_${width}`;
   article.type-sample(title="образец текста")&attributes(attributes)
     #{htmlTag || tag}.type-sample__tag= tag
-    #{htmlTag || tag}.type-sample__sample= title
+    #{htmlTag || tag}.type-sample__sample(class=[widthClass])= title
