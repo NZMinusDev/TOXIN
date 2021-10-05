@@ -68,6 +68,16 @@
           gradients.primary(0.5) border-box;
       }
     }
+
+    &.button_horizontal-padding_large {
+      padding-right: calc(#{26px / 12px * 1em} - #{$border-width});
+      padding-left: calc(#{26px / 12px * 1em} - #{$border-width});
+    }
+
+    &.button_vertical-padding_small {
+      padding-top: calc(#{9px / 12px * 1em} - #{$border-width});
+      padding-bottom: calc(#{10px / 12px * 1em} - #{$border-width});
+    }
   }
   &_appearance_like-a-icon-link {
     padding: initial;
@@ -110,14 +120,16 @@
     }
   }
 
+  // also it should be redefined in &_appearance_bordered
   &_horizontal-padding_large {
     padding-right: 26px / 12px * 1em;
     padding-left: 26px / 12px * 1em;
   }
 
+  // also it should be redefined in &_appearance_bordered
   &_vertical-padding_small {
     padding-top: 9px / 12px * 1em;
-    padding-bottom: 9px / 12px * 1em;
+    padding-bottom: 10px / 12px * 1em;
   }
 
   &__icon {

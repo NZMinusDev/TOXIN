@@ -165,7 +165,7 @@
     }
     .iqdropdown-menu {
       top: 44px / 14px * 1em;
-      padding: #{6px / 14px * 1em} #{7px / 14px * 1em} #{7px / 14px * 1em} #{15px /
+      padding: #{6px / 14px * 1em} #{6px / 14px * 1em} #{6px / 14px * 1em} #{14px /
         14px * 1em};
       border: 1px solid black;
       box-shadow: initial;
@@ -209,7 +209,7 @@
 
       .counter {
         display: inline-block;
-        width: #{30px / 12px * 1em};
+        width: #{32px / 12px * 1em};
         text-align: center;
         @include mixins.ellipsis-text();
       }

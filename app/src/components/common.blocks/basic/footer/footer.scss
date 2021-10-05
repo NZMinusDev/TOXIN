@@ -37,11 +37,11 @@
 
     @media print, screen and (min-width: 0) {
       display: grid;
-      padding: #{100px / 14px * 1em} #{140px / 1440px * 100%} #{98px / 14px *
+      padding: #{100px / 14px * 1em} #{140px / 1440px * 100%} #{100px / 14px *
         1em};
       grid-area: widgets;
       grid: 'logo' 'description' 'menu-0' 'menu-1' 'menu-2' 'subscription';
-      grid-row-gap: 16px / 14px * 1em;
+      grid-row-gap: 17px / 14px * 1em;
       justify-items: center;
     }
 
@@ -49,9 +49,9 @@
       $padding: 140px;
       $description-width: 260px / (1440px - $padding * 2) * 100%;
       $menu-0-gap-width: 40px / (1440px - $padding * 2) * 100%;
-      $menu-1-gap-width: 57px / (1440px - $padding * 2) * 100%;
-      $menu-2-gap-width: 92px / (1440px - $padding * 2) * 100%;
-      $subscription-gap-width: 54px / (1440px - $padding * 2) * 100%;
+      $menu-1-gap-width: 58px / (1440px - $padding * 2) * 100%;
+      $menu-2-gap-width: 93px / (1440px - $padding * 2) * 100%;
+      $subscription-gap-width: 51px / (1440px - $padding * 2) * 100%;
 
       grid:
         'logo . menu-0 . menu-1 . menu-2 . subscription' auto
@@ -67,7 +67,7 @@
   &__logo {
     @media print, screen and (min-width: 0) {
       align-self: self-start;
-      font-size: 12px / 14px * 1em;
+      font-size: 11.67px / 14px * 1em;
       grid-area: logo;
     }
   }
@@ -162,9 +162,9 @@
   &__list {
     @media print, screen and (min-width: 0) {
       display: grid;
-      margin-top: 20px / 14px * 1em;
+      margin-top: 21px / 14px * 1em;
       text-align: center;
-      grid-row-gap: 21px / 14px * 1em;
+      grid-row-gap: 20px / 14px * 1em;
     }
 
     @media print, screen and (min-width: 992px) {
@@ -245,6 +245,8 @@
   }
 
   &__description-aligner {
-    line-height: 24px / 14px * 1em;
+    display: inline-block;
+    margin-bottom: 4px / 14px * 1em;
+    line-height: 22px / 14px * 1em;
   }
 }

@@ -21,13 +21,13 @@
 );
 
 :root {
-  --font__h1: 700 1rem / #{29.26px / 24px * 1rem} #{functions.safe-font-family(
+  --font__h1: 700 1rem / #{29.5px / 24px * 1rem} #{functions.safe-font-family(
       'Montserrat'
     )};
-  --font__h2: 700 #{19px / 24px * 1rem} / #{23.16px / 24px * 1rem} #{functions.safe-font-family(
+  --font__h2: 700 #{19px / 24px * 1rem} / #{23.5px / 24px * 1rem} #{functions.safe-font-family(
       'Montserrat'
     )};
-  --font__h3: 700 #{12px / 24px * 1rem} / #{14.63px / 24px * 1rem} #{functions.safe-font-family(
+  --font__h3: 700 #{12px / 24px * 1rem} / #{15px / 24px * 1rem} #{functions.safe-font-family(
       'Montserrat'
     )};
   --font__body: 400 #{14px / 24px * 1rem} / 1rem #{functions.safe-font-family(

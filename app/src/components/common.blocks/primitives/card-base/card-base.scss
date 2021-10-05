@@ -1,6 +1,6 @@
 .card-base {
-  padding: 30px / 14px * 1em;
-  padding-top: 40px / 14px * 1em;
+  padding: #{39px / 14px * 1em} #{29px / 14px * 1em} #{30px / 14px * 1em} #{29px /
+    14px * 1em};
   max-width: 380px / 14px * 1em;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: var(--border-radius-size);

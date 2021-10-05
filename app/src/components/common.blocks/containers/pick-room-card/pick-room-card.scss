@@ -2,11 +2,11 @@
   display: grid;
   grid:
     'title title'
-    '. .' #{23px / 14px * 1em}
+    '. .' #{22px / 14px * 1em}
     'datepicker datepicker'
-    '. .' #{21px / 14px * 1em}
+    '. .' #{20px / 14px * 1em}
     'guests-dropdown guests-dropdown'
-    '. .' #{32px / 14px * 1em}
+    '. .' #{31px / 14px * 1em}
     'submit-btn submit-btn';
 
   &__title {
