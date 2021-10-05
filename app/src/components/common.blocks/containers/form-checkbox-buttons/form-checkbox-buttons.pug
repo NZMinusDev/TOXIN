@@ -9,6 +9,7 @@ include ~@common.blocks/primitives/heading/heading.pug
       label: string,
       description?: string, // additional for 'detailed' type
       checked?: boolean
+      width?: 'small'(192px) | 'medium'(203px) | 'large'(230px) // size of text
     }
   }
   disabled?: boolean - same as fieldset disabled (disable all buttons)
@@ -24,15 +25,19 @@ mixin form-checkbox-buttons({ heading = '', headingMarginBottom = 'large', type 
     fieldset.form-checkbox-buttons__fieldset(disabled=disabled)
       ul.form-checkbox-buttons__list
         each btn, key in buttons
+          -
+            const { label, description, checked, width } = btn;
+            const widthClass = width &&
+              `form-checkbox-buttons__label-item_width_${width}`;
           li.form-checkbox-buttons__item
             input.form-checkbox-buttons__button-item(
               id=key,
               type="checkbox",
               name=key,
               data-is-filter=isFilter,
-              checked=btn.checked
+              checked=checked
             )
-            .form-checkbox-buttons__label-item
-              label.form-checkbox-buttons__label(for=key)= btn.label
-                if btn.description
-                  span.form-checkbox-buttons__description= btn.description
+            .form-checkbox-buttons__label-item(class=[widthClass])
+              label.form-checkbox-buttons__label(for=key)= label
+                if description
+                  span.form-checkbox-buttons__description= description

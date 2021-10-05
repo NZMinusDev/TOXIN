@@ -27,17 +27,17 @@
     grid-area: filter;
     grid:
       'dates-of-stay-dropdown'
-      '.' #{22px / 14px * 1em}
+      '.' #{21px / 14px * 1em}
       'guests-dropdown'
-      '.' #{32px / 14px * 1em}
+      '.' #{31px / 14px * 1em}
       'price-range-slider'
-      '.' #{29px / 14px * 1em}
-      'checkbox-buttons'
-      '.' #{29px / 14px * 1em}
-      'affordable-rich-checkbox-buttons'
       '.' #{30px / 14px * 1em}
+      'checkbox-buttons'
+      '.' #{28px / 14px * 1em}
+      'affordable-rich-checkbox-buttons'
+      '.' #{28px / 14px * 1em}
       'facilities-dropdown'
-      '.' #{25px / 14px * 1em}
+      '.' #{24px / 14px * 1em}
       'additional-comfort-expandable-checkbox-list';
   }
 
@@ -70,7 +70,7 @@
   }
 
   &__title {
-    margin-bottom: 20.5px / 24px * 1em;
+    margin-bottom: 21px / 24px * 1em;
     grid-area: title;
   }
 
@@ -78,7 +78,7 @@
     display: grid;
     grid-area: rooms;
     grid: auto-flow auto / 1fr 1fr 1fr;
-    grid-gap: #{21px / 14px * 1em} #{12px / 14px * 1em};
+    grid-gap: #{20px / 14px * 1em} #{12px / 14px * 1em};
     justify-items: center;
 
     @media (min-width: 0) {

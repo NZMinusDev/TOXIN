@@ -137,7 +137,7 @@ class DatepickerCard extends BEMComponent<
           this._state.dates = [];
         }
 
-        this._state.formattedDates = formattedDate;
+        this._state.formattedDates = formattedDate.toLocaleLowerCase();
 
         this.element.dispatchEvent(
           new CustomEvent('select', { bubbles: true })

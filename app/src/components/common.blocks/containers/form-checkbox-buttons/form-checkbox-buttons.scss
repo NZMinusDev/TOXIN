@@ -83,11 +83,21 @@
     @media print, screen and (color) {
       color: rgba(var(--color__dark-shade), 0.5);
     }
+
+    &_width_small {
+      max-width: 192px / 14px * 1em;
+    }
+    &_width_medium {
+      max-width: 203px / 14px * 1em;
+    }
+    &_width_large {
+      max-width: 230px / 14px * 1em;
+    }
   }
 
   &__description {
     display: block;
-    margin-top: 5px / 14px * 1em;
+    margin-top: 6px / 14px * 1em;
     font-weight: 400;
     font-size: 12px / 14px * 1em;
     line-height: 14px / 12px * 1em;
