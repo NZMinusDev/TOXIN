@@ -36,8 +36,8 @@
   &_appearance_bordered {
     $border-width: 2px;
 
-    padding-right: calc(#{$x-padding} - #{$border-width});
-    padding-left: calc(#{$x-padding} - #{$border-width});
+    padding: calc(#{$y-padding} - #{$border-width})
+      calc(#{$x-padding} - #{$border-width});
     border: #{$border-width} solid transparent;
     background: linear-gradient(
           180deg,
