@@ -40,12 +40,14 @@
 
     &__text-field-hover {
       @media print, screen and (min-width: 1200px) {
+        padding-top: 1px;
         grid-area: text-field-hover;
       }
     }
 
     &__dropdown {
       @media print, screen and (min-width: 1200px) {
+        padding-top: 1px;
         grid-area: dropdown;
       }
     }
@@ -77,7 +79,7 @@
 
     &__subscription-text-field {
       @media print, screen and (min-width: 1200px) {
-        padding-top: 18px / 14px * 1em;
+        padding-top: 17px / 14px * 1em;
         width: 267px / 14px * 1em;
         grid-area: subscription-text-field;
       }
@@ -85,6 +87,7 @@
 
     &__checkbox-buttons {
       @media print, screen and (min-width: 1200px) {
+        padding-top: 1px;
         width: 222px / 320px * 100%;
         grid-area: checkbox-buttons;
       }
@@ -162,7 +165,7 @@
     &__button-empty {
       @media print, screen and (min-width: 1200px) {
         display: grid;
-        margin-top: 24px / 320px * 100%;
+        margin-top: 26px / 320px * 100%;
         grid-area: button-empty;
         grid-template-columns: #{99px / 14px * 1em} 1fr;
         grid-column-gap: 20px / 14px * 1em;
@@ -214,14 +217,14 @@
 
     &__dropdown-expanded-apply {
       @media print, screen and (min-width: 1200px) {
-        margin-top: 2px / 320px * 100%;
+        margin-top: 1px / 320px * 100%;
         grid-area: dropdown-expanded-apply;
       }
     }
 
     &__dropdown-expanded-clear-apply {
       @media print, screen and (min-width: 1200px) {
-        margin-top: 2px / 320px * 100%;
+        margin-top: 1px / 320px * 100%;
         grid-area: dropdown-expanded-clear-apply;
       }
     }
@@ -247,7 +250,8 @@
 
     &__bullet-list {
       @media print, screen and (min-width: 1200px) {
-        margin-top: 26px / 320px * 100%;
+        padding-top: 26px / 320px * 100%;
+        padding-right: 30px / 320px * 100%;
         width: 292px / 320px * 100%;
         grid-area: bullet-list;
       }
