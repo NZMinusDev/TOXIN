@@ -1,21 +1,24 @@
 .entering-card {
   display: grid;
   align-items: center;
+  margin-top: 3px;
+  margin-bottom: 2px;
   grid:
     'title title'
+    '. .' #{19px / 14px * 1em}
     'email-field email-field'
-    'password-field password-field'
-    'link-btn link-btn'
     '. .' #{10px / 14px * 1em}
+    'password-field password-field'
+    '. .' #{20px / 14px * 1em}
+    'link-btn link-btn'
+    '. .' #{31px / 14px * 1em}
     'caption-of-redirect-to-registration switch-btn';
-  gap: 10px / 14px * 1em;
 
   &__title {
     grid-area: title;
   }
 
   &__email-field {
-    margin-top: 10px / 14px * 1em;
     grid-area: email-field;
   }
 
@@ -24,7 +27,6 @@
   }
 
   &__link-btn {
-    margin-top: 10px / 14px * 1em;
     grid-area: link-btn;
   }
 
