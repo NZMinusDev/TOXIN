@@ -13,7 +13,7 @@
     'payment-rates payment-rates'
     '. .' #{$large-gap}
     'total-payment total-payment'
-    '. .' #{22px / 14px * 1em}
+    '. .' #{20px / 14px * 1em}
     'submit-btn submit-btn' / 1fr 1fr;
 
   &__room-title {
@@ -41,7 +41,7 @@
 
   &__day-payment {
     font-size: 1em;
-    line-height: 24px / 14px * 1em;
+    line-height: 18px / 14px * 1em;
     grid-area: day-payment;
     place-self: end;
 
@@ -75,7 +75,12 @@
     display: grid;
     grid-area: payment-rates;
     grid-template-columns: auto;
-    grid-row-gap: 10px / 14px * 1em;
+    grid-row-gap: 15px / 14px * 1em;
+  }
+
+  &__payment-item,
+  &__payment-tooltip {
+    line-height: 18px / 14px * 1em;
   }
 
   &__payment-item {
@@ -86,11 +91,6 @@
     &_col-template_with-tooltip {
       grid-template-columns: #{215px / 319px * 100%} 1fr auto;
     }
-  }
-
-  &__payment-sentence,
-  &__payment-tooltip {
-    line-height: 18px / 14px * 1em;
   }
 
   &__payment-tooltip {

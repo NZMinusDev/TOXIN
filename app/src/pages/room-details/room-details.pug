@@ -36,10 +36,11 @@ block content
           +comments({ heading: { h2: 'Отзывы посетителей номера' }, headingMarginBottom: 'medium', counter: true, items: { 'comment-1': { personName: 'Мурад Сарафанов', iconPath: htmlWebpackPlugin && require('@assets/pictures/contents/personas/1/1.jpg').default, date: fiveDaysAgo, dateText: '5 дней назад', content: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.', likeButtonCounter: 12, isLikeButtonChecked: 'checked' }, 'comment-2': { personName: 'Патрисия Стёклышкова', iconPath: htmlWebpackPlugin && require('@assets/pictures/contents/personas/2/2.jpg').default, date: sevenDaysAgo, dateText: 'Неделю назад', content: 'Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент', likeButtonCounter: 2 } } })
         .room-details-layout__rules
           .room-details-layout__rules-heading
-            +heading({ h2: 'Правила' }, { marginBottom: 'medium' })
+            +heading({ h2: 'Правила' }, { marginBottom: 'none' })
           +form-bullet-list({ items: ['Нельзя с питомцами', 'Без вечеринок и мероприятий', 'Время прибытия — после 13:00, а выезд до 12:00'] })
         .room-details-layout__alert
-          +heading({ h2: 'Отмена' }, { marginBottom: 'medium' }) 
+          .room-details-layout__alert-heading
+            +heading({ h2: 'Отмена' }, { marginBottom: 'none' }) 
           p.room-details-layout__alert-content Бесплатная отмена в течение 48 ч. После этого при отмене не позднее чем за 5 дн. до прибытия вы получите полный возврат за вычетом сбора за услуги.
       section.room-details-layout__reservation
-        +room-definition-card({ roomNumber: 888, roomGrade: 'Люкс', paymentAmount: 9990, selectedDates: '2019-08-19,2019-08-23', guestsGroups: { гости: { one: 'гость', two: 'гостя' , five: 'гостей' }, младенцы: { one: 'младенец', two: 'младенца', five: 'младенцев' } }, guestsList: { взрослые: { default: 2, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 1, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 1, min: 0, max: 1 / 0 } }, servicesPayment: 2179, servicesSale: 2179, additionalServicesPayment: 300 })
+        +room-definition-card({ roomNumber: 888, roomGrade: 'Люкс', paymentAmount: 9990, selectedDates: '2019-08-19,2019-08-23', guestsGroups: { гости: { one: 'гость', two: 'гостя' , five: 'гостей' }, младенцы: { one: 'младенец', two: 'младенца', five: 'младенцев' } }, guestsList: { взрослые: { default: 2, min: 0, max: 1 / 0, group: 'гости' }, дети: { default: 1, min: 0, max: 1 / 0, group: 'гости' }, младенцы: { default: 0, min: 0, max: 1 / 0 } }, servicesPayment: 2179, servicesSale: 2179, additionalServicesPayment: 300 })

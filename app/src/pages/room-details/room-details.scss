@@ -43,7 +43,7 @@
     display: grid;
 
     @media print, screen and (min-width: 0) {
-      padding: #{70px / 14px * 1em} #{140px / 1440px * 100%} #{72px / 14px * 1em};
+      padding: #{70px / 14px * 1em} #{140px / 1440px * 100%} #{71px / 14px * 1em};
       grid:
         'info'
         'reservation';
@@ -73,8 +73,8 @@
         'data . impression'
         '. . .' #{35px / 14px * 1em}
         'comments comments comments'
-        '. . .' #{35px / 14px * 1em}
-        'rules . alert' / #{291px / 14px * 1em} #{70px / 14px * 1em} auto;
+        '. . .' #{34px / 14px * 1em}
+        'rules . alert' / #{260px / 14px * 1em} #{101px / 14px * 1em} auto;
       grid-row-gap: initial;
     }
   }
@@ -110,11 +110,20 @@
   }
 
   &__rules-heading {
+    margin-bottom: 17px;
     text-indent: 20px / 14px * 1em;
   }
 
   &__alert {
     grid-area: alert;
+  }
+
+  &__alert-heading {
+    margin-bottom: 17px;
+  }
+
+  &__alert-content {
+    max-width: 328px / 14px * 1em;
   }
 
   &__reservation {
