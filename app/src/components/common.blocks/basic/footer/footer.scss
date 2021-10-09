@@ -55,7 +55,7 @@
 
       grid:
         'logo . menu-0 . menu-1 . menu-2 . subscription' auto
-        'description . menu-0 . menu-1 . menu-2 . subscription' 1fr / #{$description-width} #{$menu-0-gap-width} auto #{$menu-1-gap-width} auto #{$menu-2-gap-width} auto #{$subscription-gap-width} auto;
+        'description . menu-0 . menu-1 . menu-2 . subscription' 1fr / #{$description-width} #{$menu-0-gap-width} auto #{$menu-1-gap-width} auto #{$menu-2-gap-width} auto #{$subscription-gap-width} #{260px / 14px * 1em};
       justify-items: start;
     }
 

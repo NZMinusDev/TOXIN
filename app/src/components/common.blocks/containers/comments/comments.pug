@@ -4,7 +4,6 @@ include ~@common.blocks/primitives/form-like-button/form-like-button.pug
 
 //-
   heading?: see mixin heading
-  headingMarginBottom?: marginBottom in mixin heading
   counter?: boolean
   items: {
     ['like-btn-name': string]: {
@@ -19,11 +18,11 @@ include ~@common.blocks/primitives/form-like-button/form-like-button.pug
   }
   Tip: mixin also uses 'and attributes'(&attributes)
 
-mixin comments({ heading = '', headingMarginBottom = 'large', counter = false, items = {}} = {})
+mixin comments({ heading = '', counter = false, items = {}} = {})
   .comments&attributes(attributes)
     if heading
       .comments__heading
-        +heading(heading, { marginBottom: headingMarginBottom })
+        +heading(heading, { marginBottom: 'none' })
     if counter
       span.comments__counter= `${Object.keys(items).length.toLocaleString()} отзыва`
     .comments__items
