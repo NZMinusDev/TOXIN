@@ -19,7 +19,7 @@ mixin form-rate-button({ heading = '', headingMarginBottom = 'large', name = 'ra
       while counter > 0
         -
           const currentID = `${name}-${counter}`;
-          const checked = counter === rate ? 'checked' : undefined;
+          const checked = counter === rate;
         input.form-rate-button__button-item(
           id=currentID,
           type="radio",

@@ -28,6 +28,8 @@ mixin form-text-field({ heading = '', description = '', headingMarginBottom = ''
         for=name
       )
     .form-text-field__field
+      -
+        const placeholderText = placeholder || placeholderOfType;
       input.form-text-field__input.js-form-text-field__input(
         class=[typeClass],
         data-is-filter=isFilter,
@@ -35,7 +37,7 @@ mixin form-text-field({ heading = '', description = '', headingMarginBottom = ''
         inputmode=inputmode,
         name=name,
         id=name,
-        placeholder=withPlaceholder ? placeholder || placeholderOfType : undefined,
+        placeholder=withPlaceholder && placeholderText,
         value=value,
         autofocus=autofocus
       )

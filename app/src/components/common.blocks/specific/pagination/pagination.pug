@@ -52,11 +52,11 @@ mixin pagination({ addressingMethod = 'href', hrefPrefix = '?page=', total = 100
         .map((value, index) => `${hrefPrefix}${index}`);
     }
   nav.pagination.js-pagination(
-    class=addressingMethod === 'async' ? ['pagination_addressing-method_async', 'js-pagination_addressing-method_async'] : undefined,
-    data-page=addressingMethod === 'async' ? activePage : undefined,
-    data-displayed=addressingMethod === 'async' ? displayed : undefined,
-    data-total=addressingMethod === 'async' ? total : undefined,
-    data-text=addressingMethod === 'async' ? text : undefined
+    class=addressingMethod === 'async' && ['pagination_addressing-method_async', 'js-pagination_addressing-method_async'],
+    data-page=addressingMethod === 'async' && activePage,
+    data-displayed=addressingMethod === 'async' && displayed,
+    data-total=addressingMethod === 'async' && total,
+    data-text=addressingMethod === 'async' && text
   )&attributes(attributes)
     ul.pagination__list.js-pagination__list
       //- Show the Previous button only if you are on a page other than the first
@@ -74,7 +74,7 @@ mixin pagination({ addressingMethod = 'href', hrefPrefix = '?page=', total = 100
           let page = 1;
         while page <= pages
           li.pagination__item(
-            class=activePage === page ? 'pagination__item_active' : undefined,
+            class=activePage === page && 'pagination__item_active',
             title=activePage === page ? 'текущая страница' : `на страницу ${page}`
           )
             if addressingMethod === 'href'
@@ -105,7 +105,7 @@ mixin pagination({ addressingMethod = 'href', hrefPrefix = '?page=', total = 100
           let page = pageCutLow;
         while page <= pageCutHigh
           li.pagination__item(
-            class=activePage === page ? 'pagination__item_active' : undefined,
+            class=activePage === page && 'pagination__item_active',
             title=activePage === page ? 'текущая страница' : `на страницу ${page}`
           )
             if addressingMethod === 'href'

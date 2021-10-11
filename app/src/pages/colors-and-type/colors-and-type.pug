@@ -33,7 +33,7 @@ block content
           const tag = tagItem;
           const title = content.title;
           const htmlTag = content.tag || tagItem.toLowerCase();
-          const width = index === theLastIndex ? 'small' : undefined;
+          const width = index === theLastIndex && 'small';
           
           index +=1;
         .colors-and-type-layout__type-item  
