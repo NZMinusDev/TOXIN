@@ -12,7 +12,7 @@ mixin form-expandable-checkbox-list({ heading = 'expandable-checkbox-list', butt
   .form-expandable-checkbox-list.js-form-expandable-checkbox-list
     -
       const { nanoid } = require('nanoid/non-secure');
-      
+
       const expanderID = `id-${nanoid()}`;
     .form-expandable-checkbox-list__title
       +heading(heading, { isLabel: true, labelJustifyContent: 'spread' })(
@@ -20,7 +20,7 @@ mixin form-expandable-checkbox-list({ heading = 'expandable-checkbox-list', butt
         tabindex="0"
       )&attributes(attributes)
         span.form-expandable-checkbox-list__expand-icon.js-form-expandable-checkbox-list__expand-icon
-          +icon({ content: 'expand_more', width: 'large' })
+          +icon({ content: checked ? 'expand_less' : 'expand_more', width: 'large' })
     input.form-expandable-checkbox-list__expander-input.js-form-expandable-checkbox-list__expander-input(
       id=expanderID,
       type="checkbox",
