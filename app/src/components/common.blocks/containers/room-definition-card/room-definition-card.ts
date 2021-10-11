@@ -167,21 +167,19 @@ class RoomDefinitionCard extends BEMComponent<
 
   protected _bindArrivalDateDropdownListeners() {
     this._subComponents.arrivalDateDropdown.addCustomEventListener(
-      'change',
+      'close',
       this._arrivalDateDropdownEventListenerObject
-        .handleArrivalDateDropdownChange
+        .handleArrivalDateDropdownClose
     );
 
     return this;
   }
 
   protected _arrivalDateDropdownEventListenerObject = {
-    handleArrivalDateDropdownChange: (event: Event) => {
-      if (!event.isTrusted) {
-        this._state.dailyRange = this._getDailyRange();
+    handleArrivalDateDropdownClose: () => {
+      this._state.dailyRange = this._getDailyRange();
 
-        this._updatePaymentDisplay();
-      }
+      this._updatePaymentDisplay();
     },
   };
 
