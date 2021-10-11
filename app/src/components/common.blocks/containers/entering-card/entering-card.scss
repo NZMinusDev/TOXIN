@@ -1,20 +1,21 @@
 .entering-card {
   display: grid;
   align-items: center;
-  margin-top: 3px;
-  margin-bottom: 2px;
+  margin-top: 2px;
+  margin-bottom: 1px;
   grid:
     'title title'
-    '. .' #{19px / 14px * 1em}
+    '. .' #{22px / 14px * 1em}
     'email-field email-field'
     '. .' #{10px / 14px * 1em}
     'password-field password-field'
     '. .' #{20px / 14px * 1em}
     'link-btn link-btn'
-    '. .' #{31px / 14px * 1em}
+    '. .' #{30px / 14px * 1em}
     'caption-of-redirect-to-registration switch-btn';
 
   &__title {
+    line-height: 26px / 24px * 1em;
     grid-area: title;
   }
 

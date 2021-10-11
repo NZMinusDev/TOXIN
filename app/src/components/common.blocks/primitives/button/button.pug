@@ -4,8 +4,8 @@ include ~@common.blocks/primitives/icon/icon.pug
   tag?: 'button' | 'a'
   text: string - inner text of button
   appearance?: 'filled' | 'bordered' | 'like-a-icon-link' | 'like-a-link'
-  horizontalPadding?: 'large'(2.17em)
-  verticalPadding?: 'small'(0.75em)
+  horizontalPadding?: 'medium'(18px 19px) | 'large'(26px)
+  verticalPadding?: 'small'(9px 19px)
   Tip: mixin also uses 'and attributes'(&attributes)
 mixin button({ tag = 'button', text = '', appearance = 'filled', horizontalPadding = undefined, verticalPadding = undefined } = {})
   -

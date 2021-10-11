@@ -24,6 +24,6 @@ mixin entering-card({ action = undefined, name = 'entering-card', method = 'post
         )
       p.entering-card__caption-of-redirect-to-registration Нет аккаунта на Toxin?
       .entering-card__switch-btn
-        +button({ tag: 'a', text: 'Создать', appearance: 'bordered' })(
+        +button({ tag: 'a', text: 'Создать', appearance: 'bordered', horizontalPadding: 'medium' })(
           href=redirectPath
         )

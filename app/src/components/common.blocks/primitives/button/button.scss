@@ -1,15 +1,16 @@
 @use '@themes/main/gradients.scss';
 
 .button {
-  $y-padding: 14px / 12px * 1em;
+  $top-padding: 14px / 12px * 1em;
+  $bottom-padding: 15px / 12px * 1em;
   $x-padding: 20px / 12px * 1em;
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: $y-padding $x-padding;
+  padding: $top-padding $x-padding $bottom-padding;
   min-width: 2em;
-  border-radius: #{(2 * $y-padding + 1em) / 2} / 50%;
+  border-radius: 22px;
   text-transform: uppercase;
   white-space: nowrap;
 
@@ -36,8 +37,9 @@
   &_appearance_bordered {
     $border-width: 2px;
 
-    padding: calc(#{$y-padding} - #{$border-width})
-      calc(#{$x-padding} - #{$border-width});
+    padding: calc(#{$top-padding} - #{$border-width})
+      calc(#{$x-padding} - #{$border-width})
+      calc(#{$bottom-padding} - #{$border-width});
     border: #{$border-width} solid transparent;
     background: linear-gradient(
           180deg,
@@ -69,6 +71,10 @@
       }
     }
 
+    &.button_horizontal-padding_medium {
+      padding-right: calc(#{19px / 12px * 1em} - #{$border-width});
+      padding-left: calc(#{18px / 12px * 1em} - #{$border-width});
+    }
     &.button_horizontal-padding_large {
       padding-right: calc(#{26px / 12px * 1em} - #{$border-width});
       padding-left: calc(#{26px / 12px * 1em} - #{$border-width});
@@ -121,6 +127,10 @@
   }
 
   // also it should be redefined in &_appearance_bordered
+  &_horizontal-padding_medium {
+    padding-right: 19px / 12px * 1em;
+    padding-left: 18px / 12px * 1em;
+  }
   &_horizontal-padding_large {
     padding-right: 26px / 12px * 1em;
     padding-left: 26px / 12px * 1em;

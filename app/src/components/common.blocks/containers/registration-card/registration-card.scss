@@ -1,7 +1,4 @@
 .registration-card {
-  $medium-gap: 20px / 14px * 1em;
-  $large-gap: 30px / 14px * 1em;
-
   display: grid;
   grid:
     'title title'
@@ -9,11 +6,11 @@
     'name-fieldset name-fieldset'
     '. .' #{18px / 14px * 1em}
     'birthday-field birthday-field'
-    '. .' #{$medium-gap}
+    '. .' #{20px / 14px * 1em}
     'login-fieldset login-fieldset'
-    '. .' #{$medium-gap}
+    '. .' #{19px / 14px * 1em}
     'link-btn link-btn'
-    '. .' #{$large-gap}
+    '. .' #{29px / 14px * 1em}
     'switcher switcher' / auto 1fr;
 
   &__title {
