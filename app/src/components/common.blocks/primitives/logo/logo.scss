@@ -28,26 +28,26 @@
     justify-content: center;
     width: $basic-size;
     height: $basic-size;
-    border: $border-width solid black;
+    border: #{$border-width / 14px * 1em} solid black;
     border-radius: 100%;
     background: transparent;
     &::before {
       margin-top: 3px / $design-size * 100%;
       margin-left: 2px / $design-size * 100%;
-      width: calc(#{$border-width} + #{$left-curve-size});
-      height: calc(#{$border-width} + #{$left-curve-size});
-      border-top: $border-width solid black;
-      border-right: $border-width solid black;
+      width: calc(#{$border-width / 14px * 1em} + #{$left-curve-size});
+      height: calc(#{$border-width / 14px * 1em} + #{$left-curve-size});
+      border-top: #{$border-width / 14px * 1em} solid black;
+      border-right: #{$border-width / 14px * 1em} solid black;
       border-top-right-radius: 100%;
       content: '';
     }
     &::after {
       margin-bottom: 3px / $design-size * 100%;
       margin-left: 2px / $design-size * 100%;
-      width: calc(#{$border-width} + #{$right-curve-width});
-      height: calc(#{$border-width} + #{$right-curve-height});
-      border-top: $border-width solid black;
-      border-left: $border-width solid black;
+      width: calc(#{$border-width / 14px * 1em} + #{$right-curve-width});
+      height: calc(#{$border-width / 14px * 1em} + #{$right-curve-height});
+      border-top: #{$border-width / 14px * 1em} solid black;
+      border-left: #{$border-width / 14px * 1em} solid black;
       border-top-left-radius: 100%;
       content: '';
     }
