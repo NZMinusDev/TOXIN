@@ -20,6 +20,11 @@
     display: inline-flex;
     align-items: center;
 
+    &_interactive {
+      cursor: pointer;
+      user-select: none;
+    }
+
     &_justify-content_spread {
       justify-content: space-between;
       width: 100%;

@@ -139,6 +139,8 @@
   &__list-label {
     @media print, screen and (min-width: 0) {
       display: inline-flex;
+      cursor: pointer;
+      user-select: none;
 
       &::after {
         color: inherit;
@@ -149,9 +151,8 @@
     }
 
     @media print, screen and (min-width: 992px) {
-      &[for] {
-        cursor: auto;
-      }
+      cursor: auto;
+      user-select: auto;
 
       &::after {
         display: none;

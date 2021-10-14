@@ -66,6 +66,9 @@
   }
 
   &__label-item {
+    cursor: pointer;
+    user-select: none;
+
     @media print, screen and (color) {
       color: rgba(var(--color__dark-shade), 0.5);
     }

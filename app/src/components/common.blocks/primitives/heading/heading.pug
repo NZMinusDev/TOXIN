@@ -8,11 +8,12 @@
 mixin heading(heading, { description = '', isLabel = false, labelJustifyContent = undefined, marginBottom = undefined } = {})
   -
     const headingTag = Object.keys(heading)[0];
+    const interactiveLabelClass = attributes.for && `heading__label_interactive`;
     const labelJustifyContentClass = labelJustifyContent &&`heading__label_justify-content_${labelJustifyContent}`;
     const marginBottomCLass = marginBottom && `heading_margin-bottom_${marginBottom}`;
   if isLabel
     #{headingTag}.heading(class=[marginBottomCLass])
-      label.heading__label(class=[labelJustifyContentClass])&attributes(attributes)= heading[headingTag]
+      label.heading__label(class=[interactiveLabelClass,labelJustifyContentClass])&attributes(attributes)= heading[headingTag]
         block
       if description
         label.heading__description= description

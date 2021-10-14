@@ -95,6 +95,11 @@
     }
   }
 
+  &__label {
+    cursor: pointer;
+    user-select: none;
+  }
+
   &__description {
     display: block;
     margin-top: 6px / 14px * 1em;
