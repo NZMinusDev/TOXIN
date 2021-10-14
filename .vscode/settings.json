@@ -64,7 +64,7 @@
   "path-autocomplete.enableFolderTrailingSlash": true,
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "cSpell.language": "en,ru",
-  "cSpell.ignoreWords": ["import", "import normalize", "normalize"],
+  "cSpell.ignoreWords": ["import"],
   "cSpell.words": [
     "ГГГГ",
     "Патрисия",

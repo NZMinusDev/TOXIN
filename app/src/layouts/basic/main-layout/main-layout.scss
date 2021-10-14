@@ -5,7 +5,11 @@ html {
   background-color: white;
   color: black;
   font-size: functions.get-liquid-size(24, 18);
-  font-family: 'Times New Roman', Times, serif;
+  font-family: functions.safe-font-family(null);
+}
+
+body {
+  margin: 0;
 }
 
 .main-layout {

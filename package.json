@@ -105,7 +105,6 @@
     "optimize-css-assets-webpack-plugin": "^5.0.4",
     "postcss-flexbugs-fixes": "^4.2.1",
     "postcss-loader": "^4.0.1",
-    "postcss-normalize": "^9.0.0",
     "postcss-preset-env": "^6.7.0",
     "pug": "^2.0.4",
     "pug-loader": "^2.4.0",

@@ -166,8 +166,7 @@ the goal is to achieve liquidness, see the formula of fluid font: ./app/src/util
   - [typescript](https://www.typescriptlang.org/).
 - [webpack](https://v4.webpack.js.org/concepts/) which kill your headaches:
   - [Pages](./app/src/pages/) only need to be created, and the collector can determine the entry points on its own. Scripts and styles connect to the page themselves, and the order of connection is always correct. Resources used by multiple pages are loaded only 1 time;
-  - connect images and use auxiliary modules directly in the [templates](./app/src/pages/cards/cards.pug);
-  - the normalization of the initial styles through [normalize.css](https://necolas.github.io/normalize.css/) for each page based on the browsers specified as supported;
+  - connect images and use auxiliary modules directly in the [templates](./app/src/pages/cards/cards.pug)
   - no need to remember a bunch of css prefixes and what properties are supported thanks to [postCSS preset env](https://github.com/csstools/postcss-preset-env) and [autoprefixer](https://www.npmjs.com/package/autoprefixer);
   - [modern javascript, today](https://babeljs.io/);
   - compression of images, scripts, styles, html in production mode. Note: each image will also have a\*_. webp_ \* clone, which further reduces the final size;

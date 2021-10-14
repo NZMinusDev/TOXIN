@@ -7,7 +7,6 @@
 └───modules
     ├───css
     │       fonts.ts // preinstalled fonts
-    │       normalize.css // [normalization](https://necolas.github.io/normalize.css/) of browsers' styles in depends of browserslist in package.json
     │       reset.local.css // resetting of the most infuriating styles
     │
     └───scripts

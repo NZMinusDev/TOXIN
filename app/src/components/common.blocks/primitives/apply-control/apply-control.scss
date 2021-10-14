@@ -6,6 +6,11 @@
     font: var(--font__h3);
   }
 
+  &__clear-btn,
+  &__apply-btn {
+    font: inherit;
+  }
+
   &__clear-btn {
     text-transform: uppercase;
 

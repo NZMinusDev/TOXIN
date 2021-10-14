@@ -15,7 +15,6 @@ const StylelintPlugin = require('stylelint-webpack-plugin');
 const PostcssFlexbugsFixes = require('postcss-flexbugs-fixes');
 const Autoprefixer = require('autoprefixer');
 const PostCSSPresetEnv = require('postcss-preset-env');
-const PostCSSNormalize = require('postcss-normalize');
 const OptimizeCssAssetWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -272,7 +271,7 @@ const templatesLoaders = (
 };
 
 /**
- * Loaders contraction that loads autoprefixed normalize css with converting modern CSS into something most browsers can understand.
+ * Loaders contraction that loads autoprefixed css with converting modern CSS into something most browsers can understand.
  * DoIUse - alerts for unsupported css features, depending on browserslist.
  * PostcssFlexbugsFixes - fix some flex bugs in old browsers.
  * @param { object } extra_loader - loader with options for css preprocessor.
@@ -320,7 +319,6 @@ const cssLoaders = (extraLoader) => {
             PostcssFlexbugsFixes(),
             Autoprefixer(),
             PostCSSPresetEnv(),
-            PostCSSNormalize(),
           ],
         },
       },

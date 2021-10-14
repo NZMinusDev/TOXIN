@@ -13,10 +13,10 @@
   border-radius: 22px;
   text-transform: uppercase;
   white-space: nowrap;
+  font: var(--font__h3);
 
   @media print, screen and (color) {
     color: white;
-    font: var(--font__h3);
   }
 
   &_appearance_filled {
