@@ -97,7 +97,7 @@ mixin pagination({ addressingMethod = 'href', hrefPrefix = '?page=', total = 100
               title=`на страницу ${2}`
             )
               if addressingMethod === 'href'
-                a(href=paginationHrefs[1])= '...'
+                a.pagination__link(href=paginationHrefs[1])= '...'
               else
                 = '...'
         //- Output the indexes for pages that fall inside the range of pageCutLow and pageCutHigh

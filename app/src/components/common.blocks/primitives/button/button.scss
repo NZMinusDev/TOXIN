@@ -19,6 +19,11 @@
     color: white;
   }
 
+  &_tag_the-a {
+    text-decoration: none;
+    cursor: pointer;
+  }
+
   &_appearance_filled {
     background: rgba(169, 169, 169, 1);
 

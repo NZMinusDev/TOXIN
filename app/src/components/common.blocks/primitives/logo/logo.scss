@@ -13,6 +13,12 @@
   grid: 'logo title';
   grid-column-gap: 12.5px / 11.66666666656944px * 1em;
 
+  &_tag_the-a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
   &__picture {
     $design-size: 48px;
     $basic-size: $design-size / 14px * 1em;

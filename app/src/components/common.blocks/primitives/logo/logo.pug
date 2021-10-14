@@ -5,8 +5,9 @@
   Tip: mixin also uses 'and attributes'(&attributes)
 mixin logo({ tag = 'div', color = undefined, title = '' } = {})
   -
+    const tagClass = `logo_tag_the-${tag}`;
     const colorClass = color && `logo__picture_color_${color}`;
-  #{tag}.logo&attributes(attributes)
+  #{tag}.logo(class=[tagClass])&attributes(attributes)
     .logo__picture(class=[colorClass])
     if title !== ''
       span.logo__title= title

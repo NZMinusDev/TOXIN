@@ -51,4 +51,4 @@ mixin nav-bar__navigation-list(items, active)
         li.nav-bar__navigation-item.js-nav-bar__navigation-item(
           class=itemSettings.active && 'nav-bar__navigation-item_active'
         )
-          a(href=itemSettings.href)= itemName
+          a.nav-bar__link(href=itemSettings.href)= itemName

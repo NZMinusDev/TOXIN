@@ -1,3 +1,11 @@
-.index__main {
-  padding: 0.5em;
+.index {
+  &__main {
+    padding: 0.5em;
+  }
+
+  &__link {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
 }

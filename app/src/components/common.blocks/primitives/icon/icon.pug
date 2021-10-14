@@ -8,9 +8,11 @@
   Tip: mixin also uses 'and attributes'(&attributes)
 mixin icon({ tag = 'i', fontFamily = 'material', content = 'sentiment_satisfied', width = undefined, height = undefined, color = undefined } = {})
   -
+    const tagClass = `icon_tag_the-${tag}`
+
     const fontFamilyClass = `icon_font-family_${fontFamily}`;
 
     const widthClass = width && `icon_width_${width}`;
     const heightClass = height && `icon_height_${height}`;
     const colorClass = color && `icon_color_${color}`;
-  #{tag}.icon(class=[fontFamilyClass, widthClass, heightClass, colorClass])&attributes(attributes)!= content
+  #{tag}.icon(class=[tagClass, fontFamilyClass, widthClass, heightClass, colorClass])&attributes(attributes)!= content

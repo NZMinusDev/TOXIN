@@ -10,6 +10,13 @@ html {
 
 body {
   margin: 0;
+  word-break: break-word;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 .main-layout {

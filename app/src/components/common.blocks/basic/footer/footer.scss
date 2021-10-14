@@ -183,6 +183,12 @@
     }
   }
 
+  &__link {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
   &__menu-1 {
     @media print, screen and (min-width: 0) {
       grid-area: menu-1;

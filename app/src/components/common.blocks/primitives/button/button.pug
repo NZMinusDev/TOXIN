@@ -9,11 +9,12 @@ include ~@common.blocks/primitives/icon/icon.pug
   Tip: mixin also uses 'and attributes'(&attributes)
 mixin button({ tag = 'button', text = '', appearance = 'filled', horizontalPadding = undefined, verticalPadding = undefined } = {})
   -
+    const tagClass = `button_tag_the-${tag}`;
     const appearanceClass = `button_appearance_${appearance}`;
     const horizontalPaddingClass = horizontalPadding &&`button_horizontal-padding_${horizontalPadding}`;
     const verticalPaddingClass = verticalPadding && `button_vertical-padding_${verticalPadding}`;
   #{tag}.button(
-    class=[appearanceClass, horizontalPaddingClass, verticalPaddingClass]
+    class=[tagClass, appearanceClass, horizontalPaddingClass, verticalPaddingClass]
   )&attributes(attributes)= text || attributes.value
     if appearance === 'like-a-link'
       span.button__icon.button__icon_position_right

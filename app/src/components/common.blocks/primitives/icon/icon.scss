@@ -12,6 +12,12 @@
   text-indent: 0;
   font-size: functions.get-liquid-size(24, 18);
 
+  &_tag_the-a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
   &_font-family_material {
     @include vendor-fonts-mixins.material-icon(
       inline-flex,
