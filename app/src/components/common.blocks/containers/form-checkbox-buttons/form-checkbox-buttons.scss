@@ -25,6 +25,9 @@
 
   &__list {
     display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
     grid-row-gap: 10px / 14px * 1em;
   }
 

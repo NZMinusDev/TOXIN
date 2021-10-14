@@ -161,6 +161,10 @@
   }
 
   &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
     @media print, screen and (min-width: 0) {
       display: grid;
       margin-top: 21px / 14px * 1em;
@@ -243,6 +247,10 @@
   }
 
   &__icons-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
     @media print, screen and (min-width: 0) {
       display: grid;
       justify-content: center;

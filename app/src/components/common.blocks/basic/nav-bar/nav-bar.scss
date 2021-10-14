@@ -41,6 +41,10 @@
   }
 
   &__navigation-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
     @media print, screen and (min-width: 992px) {
       display: inline-flex;
       flex-flow: row wrap;
