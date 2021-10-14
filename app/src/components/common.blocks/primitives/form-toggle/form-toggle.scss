@@ -23,7 +23,10 @@
   }
 
   &__button {
+    margin: 0;
     border-radius: 25% / 50%;
+    font: inherit;
+    cursor: pointer;
     appearance: none;
 
     &:checked {

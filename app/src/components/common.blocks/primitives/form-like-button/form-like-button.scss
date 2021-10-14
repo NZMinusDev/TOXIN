@@ -9,10 +9,13 @@
     display: inline-flex;
     align-items: center;
     justify-content: flex-start;
+    margin: 0;
     width: 40px / 14px * 1em;
     height: 20px / 14px * 1em;
     border: 1px black;
     border-radius: 25% / 50%;
+    font: inherit;
+    cursor: pointer;
     appearance: none;
 
     @media print, screen and (color) {

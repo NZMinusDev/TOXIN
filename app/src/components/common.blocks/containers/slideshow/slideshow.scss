@@ -22,10 +22,13 @@
     right: 0; //redefined in pug template using style attr
     bottom: 15px / 14px * 1em;
     z-index: 2;
+    margin: 0;
     width: 7.5px / 14px * 1em;
     height: 7.5px / 14px * 1em;
     border: 1px solid white;
     border-radius: 100%;
+    font: inherit;
+    cursor: pointer;
     appearance: none;
 
     &:checked {

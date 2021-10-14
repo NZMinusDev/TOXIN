@@ -8,7 +8,11 @@
 
   &__clear-btn,
   &__apply-btn {
+    padding: 0;
+    border: 0;
+    background-color: inherit;
     font: inherit;
+    cursor: pointer;
   }
 
   &__clear-btn {

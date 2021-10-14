@@ -32,8 +32,11 @@
   }
 
   &__button-item {
+    margin: 0;
     margin-right: 10px / 14px * 1em;
     border-radius: 50%;
+    font: inherit;
+    cursor: pointer;
     appearance: none;
 
     &:checked {

@@ -63,6 +63,7 @@
     color: inherit;
     text-align: inherit;
     text-indent: inherit;
+    font: inherit;
     cursor: pointer;
 
     @media print, screen and (color) {
@@ -114,6 +115,8 @@
 
           button.button-decrement,
           button.button-increment {
+            font: inherit;
+
             @media print, screen and (color) {
               border: var(--border-hover);
             }

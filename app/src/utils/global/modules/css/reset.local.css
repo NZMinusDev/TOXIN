@@ -1,22 +1,3 @@
-input {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background-color: inherit;
-}
-input[type='text'] {
-  padding-right: 1em;
-}
-input[type='checkbox'],
-input[type='radio'],
-input[type='button'] {
-  cursor: pointer;
-}
-button,
-input {
-  font: inherit;
-}
-
 ul,
 ol,
 dd {
