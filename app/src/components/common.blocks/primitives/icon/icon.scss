@@ -17,6 +17,13 @@
     text-decoration: none;
     cursor: pointer;
   }
+  &_tag_the-button {
+    padding: 0;
+    border-width: 0;
+    background-color: transparent;
+    color: inherit;
+    cursor: pointer;
+  }
 
   &_font-family_material {
     @include vendor-fonts-mixins.material-icon(

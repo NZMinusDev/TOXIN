@@ -11,16 +11,18 @@
   padding: $top-padding $x-padding $bottom-padding;
   min-width: 2em;
   border-radius: 22px;
+  color: white;
   text-transform: uppercase;
   white-space: nowrap;
   font: var(--font__h3);
 
-  @media print, screen and (color) {
-    color: white;
-  }
-
   &_tag_the-a {
     text-decoration: none;
+    cursor: pointer;
+  }
+  &_tag_the-button {
+    border-width: 0;
+    background-color: transparent;
     cursor: pointer;
   }
 
