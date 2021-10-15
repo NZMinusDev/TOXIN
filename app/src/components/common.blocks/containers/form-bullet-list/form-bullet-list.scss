@@ -44,7 +44,6 @@
       }
 
       .form-bullet-list__description {
-        font-weight: 400;
         grid-area: description;
       }
     }
@@ -129,5 +128,10 @@
         }
       }
     }
+  }
+
+  &__description {
+    margin: 0;
+    font-weight: 400;
   }
 }

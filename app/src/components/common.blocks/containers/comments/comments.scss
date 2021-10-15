@@ -51,6 +51,14 @@
     grid-area: name;
   }
 
+  &__date-item {
+    margin: 0;
+  }
+
+  &__content-item {
+    margin: 0;
+  }
+
   &__like-button-item {
     grid-area: like;
     justify-self: center;

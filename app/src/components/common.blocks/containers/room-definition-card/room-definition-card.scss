@@ -72,6 +72,12 @@
     grid-row-gap: 15px / 14px * 1em;
   }
 
+  &__total-day-payment,
+  &__services-payment,
+  &__additional-services-payment {
+    margin: 0;
+  }
+
   &__payment-item,
   &__payment-tooltip {
     line-height: 18px / 14px * 1em;
