@@ -13,7 +13,7 @@ include ~@common.blocks/primitives/svg-gradient/svg-gradient.pug
   disabled?: boolean - same as fieldset disabled (disable all buttons)
   isFilter?: boolean - if true, change event will reload page with chosen value(get method)
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin form-radio-buttons({ heading = '', headingMarginBottom = 'large', name = 'radio', buttons = {}, disabled = false, isFilter = false } = {})
+mixin form-radio-buttons({ heading = undefined, headingMarginBottom = 'large', name = 'radio', buttons = {}, disabled = false, isFilter = false } = {})
   .form-radio-buttons&attributes(attributes)
     if heading
       .form-radio-buttons__heading

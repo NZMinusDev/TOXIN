@@ -8,14 +8,14 @@ include ~@common.blocks/containers/form-checkbox-buttons/form-checkbox-buttons.p
   disabled?: see mixin form-checkbox-buttons
   isFilter?: see mixin form-checkbox-buttons
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin form-expandable-checkbox-list({ heading = 'expandable-checkbox-list', buttons = {}, checked = false, disabled = false, isFilter = false } = {})
+mixin form-expandable-checkbox-list({ heading = { h3: 'expandable-checkbox-list' }, buttons = {}, checked = false, disabled = false, isFilter = false } = {})
   .form-expandable-checkbox-list.js-form-expandable-checkbox-list
     -
       const { nanoid } = require('nanoid/non-secure');
 
       const expanderID = `id-${nanoid()}`;
     .form-expandable-checkbox-list__title
-      +heading(heading, { isLabel: true, labelJustifyContent: 'spread' })(
+      +heading(heading, { isLabel: true, labelJustifyContent: 'spread', marginBottom: 'small' })(
         for=expanderID,
         tabindex="0"
       )&attributes(attributes)

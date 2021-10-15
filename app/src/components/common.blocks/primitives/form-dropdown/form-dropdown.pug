@@ -17,7 +17,7 @@ include ./__datepicker/form-dropdown__datepicker.pug
   placeholder?: string - text of placeholder
   isFilter?: boolean - if true, input change event will reload page with chosen value(get method)
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin form-dropdown(type, { heading = '', description = '', headingMarginBottom = '', name = 'dropdown', placeholder = '', range = false, selectedDates = '', altFields = undefined, isAltField = false, openingMethod = 'folded', groups = {}, list = {}, isFilter = false } = {})
+mixin form-dropdown(type, { heading = undefined, description = '', headingMarginBottom = 'small', name = 'dropdown', placeholder = '', range = false, selectedDates = '', altFields = undefined, isAltField = false, openingMethod = 'folded', groups = {}, list = {}, isFilter = false } = {})
   -
     const withExpandableItemClass = `form-dropdown_with-${type}`;
   .form-dropdown.js-form-dropdown(class=withExpandableItemClass)&attributes(attributes)

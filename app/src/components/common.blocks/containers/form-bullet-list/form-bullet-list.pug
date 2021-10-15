@@ -8,7 +8,7 @@ include ~@common.blocks/primitives/heading/heading.pug
   listColor?: 'main-theme' - color of list icons
   items: string[] | { [text: string]: { icon: 'material icon name', description: string } } - items of list
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin form-bullet-list({ heading = '', rowGap = undefined, textIndent = undefined, listStyle = undefined, listColor = undefined, items = {} } = {})
+mixin form-bullet-list({ heading = undefined, rowGap = undefined, textIndent = undefined, listStyle = undefined, listColor = undefined, items = {} } = {})
   -
     const rowGapClass = rowGap && `form-bullet-list__list_row-gap_${rowGap}`;  
     const textIndentClass = textIndent && `form-bullet-list__item_text-indent_${textIndent}`;  
@@ -17,7 +17,7 @@ mixin form-bullet-list({ heading = '', rowGap = undefined, textIndent = undefine
   .form-bullet-list(class=listStyleClass)&attributes(attributes)
     if heading
       .form-bullet-list__heading
-        +heading(heading, { marginBottom: 'none' })
+        +heading(heading)
     ul.form-bullet-list__list(class=[rowGapClass])
       each item, key in items
         case listStyle

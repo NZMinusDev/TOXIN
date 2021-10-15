@@ -15,7 +15,7 @@ include ~@common.blocks/primitives/heading/heading.pug
   disabled?: boolean - same as fieldset disabled (disable all buttons)
   isFilter?: boolean - if true, change event will reload page with chosen value(get method)
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin form-checkbox-buttons({ heading = '', headingMarginBottom = 'large', type = undefined, buttons = {}, disabled = false, isFilter = false } = {})
+mixin form-checkbox-buttons({ heading = undefined, headingMarginBottom = 'large', type = undefined, buttons = {}, disabled = false, isFilter = false } = {})
   -
     const typeClass = type && `form-checkbox-buttons_type_${type}`;
   .form-checkbox-buttons(class=typeClass)&attributes(attributes)

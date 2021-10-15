@@ -44,12 +44,12 @@ block content
       .form-elements-layout__radio-buttons
         +form-radio-buttons({ heading: { h3: 'radio buttons' }, buttons: { 'is-male': { label: 'Мужчина', checked: true }, 'is-female': { label: 'Женщина' } } })
       .form-elements-layout__toggle
-        +heading({ h3: 'toggle' }) 
+        +heading({ h3: 'toggle' }, { marginBottom: 'small' }) 
         +form-toggle({ name: 'special-offer-1', label: 'Получать спецпредложения', checked: true })
         +form-toggle({ name: 'special-offer-2', label: 'Получать спецпредложения' })
       .form-elements-layout__like-button
         .form-elements-layout__like-button-label
-          +heading({ h3: 'like button' })
+          +heading({ h3: 'like button' }, { marginBottom: 'small' })
         +form-like-button({ name: 'likes-1', counter: '2' })
         +form-like-button({ name: 'likes-2', counter: '12', checked: true })
       .form-elements-layout__rate-button

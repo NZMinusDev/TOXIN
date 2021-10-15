@@ -9,7 +9,7 @@ include ~@common.blocks/primitives/heading/heading.pug
   titles?: string[] - stars titles(hints)
   disabled?: boolean - same as fieldset disabled (disable all buttons)
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin form-rate-button({ heading = '', headingMarginBottom = 'large', name = 'rate', rate = 3, length = 5, titles = ['очень плохо', 'плохо', 'нормально', 'хорошо', 'очень хорошо'], disabled = false } = {})
+mixin form-rate-button({ heading = undefined, headingMarginBottom = 'large', name = 'rate', rate = 3, length = 5, titles = ['очень плохо', 'плохо', 'нормально', 'хорошо', 'очень хорошо'], disabled = false } = {})
   .form-rate-button&attributes(attributes)
     -
       let counter = length;

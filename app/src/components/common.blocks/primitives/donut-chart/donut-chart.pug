@@ -7,7 +7,7 @@ include ~@common.blocks/containers/form-bullet-list/form-bullet-list.pug
   dataName?: string - name of data content
   list?: boolean - append list with designations
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin donut-chart({ heading = '', items = {}, dataName = 'data', list = false } = {})
+mixin donut-chart({ heading = undefined, items = {}, dataName = 'data', list = false } = {})
   -
     let total = 0;
     Object.values(items).forEach((value) => {
@@ -23,7 +23,7 @@ mixin donut-chart({ heading = '', items = {}, dataName = 'data', list = false } 
   .donut-chart&attributes(attributes)
     .donut-chart__heading
       if heading
-        +heading(heading, { marginBottom: 'none' })
+        +heading(heading)
     .donut-chart__chart
       -
         const round = 360;

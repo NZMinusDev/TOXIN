@@ -12,7 +12,7 @@ include ~@common.blocks/primitives/heading/heading.pug
 mixin form-range-slider({ name = 'range-slider', range = { min: -100, max: 100 }, start = [0, 0], step = undefined, heading = { h3: 'range slider' }, description = '', isFilter = false } = {})
   .form-range-slider.js-form-range-slider&attributes(attributes)
     .form-range-slider__label
-      +heading(heading, { marginBottom: 'none' })
+      +heading(heading)
     each val, index in start
       input.form-range-slider__input.js-form-range-slider__input(
         name=`${name}-${index}`,
