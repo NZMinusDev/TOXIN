@@ -13,7 +13,11 @@
 
   &__fieldset {
     display: grid;
+    margin: 0;
+    padding: 0;
     width: fit-content;
+    border-width: 0;
+    line-height: initial;
     grid: auto / auto auto;
     gap: 20px / 14px * 1em;
   }

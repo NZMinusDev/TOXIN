@@ -1,4 +1,3 @@
-import './modules/css/reset.local.css';
 import './modules/css/fonts';
 
 import './modules/scripts/input';

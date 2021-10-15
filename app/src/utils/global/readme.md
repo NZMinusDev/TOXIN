@@ -7,7 +7,6 @@
 └───modules
     ├───css
     │       fonts.ts // preinstalled fonts
-    │       reset.local.css // resetting of the most infuriating styles
     │
     └───scripts
             assets-lazy-loading.ts // adds placeholder for images/sources outside of view

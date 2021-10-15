@@ -17,6 +17,14 @@
     grid-area: title;
   }
 
+  &__name-fieldset,
+  &__login-fieldset {
+    margin: 0;
+    padding: 0;
+    border-width: 0;
+    line-height: initial;
+  }
+
   &__name-fieldset {
     display: grid;
     grid-area: name-fieldset;
