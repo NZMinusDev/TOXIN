@@ -12,12 +12,14 @@
 
     display: grid;
     grid-area: demo;
+
     @media (min-width: 0) {
       grid:
         'big-img' #{$cell-height * 2}
         'small-img-1' #{$cell-height * 2}
         'small-img-2' #{$cell-height * 2};
     }
+
     @media (min-width: 992px) {
       $big-img-width: 981px / 1440px * 100%;
 
@@ -68,6 +70,7 @@
         'alert';
       grid-row-gap: 1em;
     }
+
     @media (min-width: 768px) {
       grid:
         'data . impression'
@@ -85,6 +88,7 @@
     @media (min-width: 0) {
       justify-self: center;
     }
+
     @media (min-width: 768px) {
       justify-self: left;
     }
@@ -96,6 +100,7 @@
     @media (min-width: 0) {
       justify-self: center;
     }
+
     @media (min-width: 1440px) {
       justify-self: left;
     }

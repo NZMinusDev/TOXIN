@@ -26,11 +26,15 @@ mixin heading(heading, { display = '', textTransform = '', fontSize = '', lineHe
     const labelJustifyContentClass = labelJustifyContent &&`heading__label_justify-content_${labelJustifyContent}`;
     const marginBottomCLass = marginBottom && `heading_margin-bottom_${marginBottom}`;
   if isLabel
-    #{headingTag}.heading(class=[displayClass, textTransformClass, fontSizeClass, lineHeightClass, theFirstLetterSizeClass, colorClass, justifyContentClass, marginBottomCLass])
+    #{headingTag}.heading(
+      class=[displayClass, textTransformClass, fontSizeClass, lineHeightClass, theFirstLetterSizeClass, colorClass, justifyContentClass, marginBottomCLass]
+    )
       label.heading__label(class=[interactiveLabelClass, labelJustifyContentClass])&attributes(attributes)= heading[headingTag]
         block
       if description
         label.heading__description= description
   else
-    #{headingTag}.heading(class=[displayClass, textTransformClass, fontSizeClass, lineHeightClass, theFirstLetterSizeClass, colorClass, justifyContentClass, marginBottomCLass])= heading[headingTag]
+    #{headingTag}.heading(
+      class=[displayClass, textTransformClass, fontSizeClass, lineHeightClass, theFirstLetterSizeClass, colorClass, justifyContentClass, marginBottomCLass]
+    )= heading[headingTag]
       block

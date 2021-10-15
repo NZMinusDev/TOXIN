@@ -15,4 +15,6 @@ mixin icon({ tag = 'i', fontFamily = 'material', content = 'sentiment_satisfied'
     const widthClass = width && `icon_width_${width}`;
     const heightClass = height && `icon_height_${height}`;
     const colorClass = color && `icon_color_${color}`;
-  #{tag}.icon(class=[tagClass, fontFamilyClass, widthClass, heightClass, colorClass])&attributes(attributes)!= content
+  #{tag}.icon(
+    class=[tagClass, fontFamilyClass, widthClass, heightClass, colorClass]
+  )&attributes(attributes)!= content
