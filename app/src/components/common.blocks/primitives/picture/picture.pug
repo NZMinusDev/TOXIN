@@ -13,13 +13,13 @@ mixin picture(path, alt, { title = undefined, size = undefined } = {})
     const fileExt = path.substring(path.lastIndexOf('.') + 1, path.length) || path;
 
     const sizeClass = size && `picture_size_${size}`;
-  picture.picture(class=[sizeClass])&attributes(attributes)
-    source(
+  picture.picture.js-picture(class=[sizeClass])&attributes(attributes)
+    source.picture__source.js-picture__source(
       type="image/webp",
       srcset=htmlWebpackPlugin && require('@assets/pictures/images/placeholders/lazy-loading-placeholder.svg').default,
       data-srcset=`${filePath}.webp 1x`
     )
-    img.picture__img(
+    img.picture__img.js-picture__img(
       src=htmlWebpackPlugin && require('@assets/pictures/images/placeholders/lazy-loading-placeholder.svg').default,
       alt=alt,
       title=title,

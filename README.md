@@ -185,7 +185,6 @@ the goal is to achieve liquidness, see the formula of fluid font: ./app/src/util
   - [Basic layouts](./app/src/layouts/);
   - pug, scss, ts [shortcuts](./app/src/utils/devTools/);
   - [pug](<(./.vscode/template-snippets.code-snippets)>) and [scss](<(./.vscode/@media-snippets.code-snippets)>) snippets, [ts](<(./.vscode/script-snippets.code-snippets)>);
-  - [placeholder](./app/src/assets/pictures/images/placeholders/lazy-loading-placeholder.svg) for unloaded img (img [would be loaded](./app/src/utils/global/modules/scripts/assets-lazy-loading.ts) by user's scroll);
   - [to-top-arrow](./app/src/components/common.blocks/specific/to-top-arrow/) component;
   - [click-jacking-protector](./app/src/components/common.blocks/specific/click-jacking-protector/) for each page(you can configure it in [template](./app/src/layouts/basic/main-layout/main-layout.pug));
   - [global error catcher](./app/src/utils/global/modules/scripts/unhandledrejection.ts) for unhandled errors.

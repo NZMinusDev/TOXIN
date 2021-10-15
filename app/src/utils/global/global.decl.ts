@@ -2,5 +2,4 @@ import './modules/css/fonts';
 
 import './modules/scripts/input';
 import './modules/scripts/keyboardAccessibility';
-import './modules/scripts/assets-lazy-loading';
 import './modules/scripts/unhandledrejection';
