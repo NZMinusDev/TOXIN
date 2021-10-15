@@ -1,6 +1,7 @@
 extends ~@layouts/basic/toxin-main-layout/toxin-main-layout.pug
 
 //- components
+include ~@common.blocks/primitives/heading/heading.pug
 include ~@common.blocks/primitives/form-dropdown/form-dropdown.pug
 include ~@common.blocks/primitives/form-range-slider/form-range-slider.pug
 include ~@common.blocks/containers/form-checkbox-buttons/form-checkbox-buttons.pug
@@ -30,7 +31,8 @@ block content
         +form-dropdown('item-quantity', { heading: { h3: 'Удобства номера' }, name: 'facilities', groups: { спальни: { one: 'спальня', two: 'спальни', five: 'спален' }, кровати: { one: 'кровать', two: 'кровати', five: 'кроватей' }, 'ванные комнаты': { one: 'ванная комната', two: 'ванные комнаты', five: 'ванных комнат' } }, list: { спальни: { default: 2, min: 1, max: 3 }, кровати: { default: 2, min: 1, max: 3 }, 'ванные комнаты': { default: 0, min: 0, max: 2 } }, isFilter: true })
       .search-room-layout__additional-comfort-expandable-checkbox-list
         +form-expandable-checkbox-list({ heading: { h3: 'Дополнительные удобства' }, buttons: { breakfast: { label: 'Завтрак' }, desk: { label: 'Письменный стол', checked: true }, 'feeding-chair': { label: 'Стол для кормления', checked: true }, cot: { label: 'Кроватка', checked: true }, 'tv-1': { label: 'Телевизор' }, 'shampoo-1': { label: 'Шампунь' }, 'tv-2': { label: 'Телевизор' }, 'shampoo-2': { label: 'Шампунь' } }, isFilter: true })
-    h1.search-room-layout__title Номера, которые мы для вас подобрали
+    .search-room-layout__title
+      +heading({ h1: 'Номера, которые мы для вас подобрали' })
     main.search-room-layout__rooms
       -
         const { rooms } = htmlWebpackPlugin

@@ -125,6 +125,8 @@
   }
 
   &__list-label-heading {
+    margin: 0;
+
     @media print, screen and (min-width: 0) {
       display: flex;
       justify-content: center;

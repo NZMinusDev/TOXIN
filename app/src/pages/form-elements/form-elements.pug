@@ -58,7 +58,8 @@ block content
       .form-elements-layout__range-slider
         +form-range-slider({ name: 'price', range: { min: 341, max: 15454 }, start: [5000, 10000] })
       .form-elements-layout__button-fill
-        h3.form-elements-layout__button-fill-heading buttons
+        .form-elements-layout__button-fill-heading
+          +heading({ h3: 'buttons' })
         +button(type="button", value="click me")
         +button(type="button", value="click me")
       .form-elements-layout__button-empty

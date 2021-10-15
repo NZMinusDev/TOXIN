@@ -1,4 +1,5 @@
 include ~@common.blocks/primitives/card-base/card-base.pug
+include ~@common.blocks/primitives/heading/heading.pug
 include ~@common.blocks/primitives/form-text-field/form-text-field.pug
 include ~@common.blocks/primitives/form-toggle/form-toggle.pug
 include ~@common.blocks/containers/form-radio-buttons/form-radio-buttons.pug
@@ -13,7 +14,8 @@ include ~@common.blocks/primitives/button/button.pug
 mixin registration-card({ action = undefined, name = 'registration-card', method = 'post', redirectPath = './sign-in.html' } = {})
   +card-base
     form.registration-card(name=name, action=action, method=method)&attributes(attributes)
-      h1.registration-card__title Регистрация аккаунта
+      .registration-card__title 
+        +heading({ h1: 'Регистрация аккаунта' })
       fieldset.registration-card__name-fieldset
         +form-text-field({ name: `${name}-name`, placeholder: 'Имя' })
         +form-text-field({ name: `${name}-surname`, placeholder: 'Фамилия' })

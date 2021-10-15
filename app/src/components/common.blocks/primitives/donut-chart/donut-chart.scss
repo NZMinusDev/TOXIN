@@ -112,12 +112,8 @@
     @media print, screen and (color) {
       color: rgba(var(--color__primary), 1);
     }
-    @include mixins.center-abs-position();
-  }
 
-  &__data-amount,
-  &__data-name {
-    color: inherit;
+    @include mixins.center-abs-position();
   }
 
   &__bullet-list {

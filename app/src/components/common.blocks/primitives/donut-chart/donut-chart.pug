@@ -37,8 +37,10 @@ mixin donut-chart({ heading = undefined, items = {}, dataName = 'data', list = f
         )
         - startVal += ratio && ratio * round;
       .donut-chart__counter
-        h1.donut-chart__data-amount= total
-        h3.donut-chart__data-name= dataName
+        .donut-chart__data-amount
+          +heading({ h1: total }, { color: 'inherit', justifyContent: 'center' })
+        .donut-chart__data-name
+          +heading({ h3: dataName }, { color: 'inherit', justifyContent: 'center' })
     if list
       .donut-chart__bullet-list
         +form-bullet-list({ rowGap: 'none', textIndent: 'small', listColor: 'main-theme', items: bulletItems })

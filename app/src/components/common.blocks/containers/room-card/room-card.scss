@@ -1,5 +1,6 @@
 .room-card {
   display: grid;
+  margin: 0;
   width: 270px / 14px * 1em;
   border-radius: var(--border-radius-size);
   background-color: white;
@@ -54,15 +55,9 @@
 
   &__room-number {
     line-height: 17.5px / 19px * 1em;
-
-    &::first-letter {
-      font-size: 14px / 19px * 1em;
-    }
   }
 
   &__room-grade {
-    display: inline;
-    align-self: flex-end;
     margin-left: 7px / 14px * 1em;
 
     @media print, screen and (color) {
@@ -72,7 +67,6 @@
 
   &__day-payment {
     align-self: baseline;
-    font-size: 1em;
 
     @media print, screen and (color) {
       color: rgba(var(--color__dark-shade), 0.5);
@@ -86,7 +80,6 @@
   &__room-comments {
     margin-top: 0.5em;
     margin-right: 4px / 14px * 1em;
-    font-size: 1em;
 
     @media print, screen and (color) {
       color: rgba(var(--color__dark-shade), 0.5);

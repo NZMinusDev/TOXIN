@@ -1,3 +1,4 @@
+include ~@common.blocks/primitives/heading/heading.pug
 include ~@common.blocks/primitives/card-text/card-text.pug
 include ~@common.blocks/containers/slideshow/slideshow.pug
 include ~@common.blocks/containers/form-rate-button/form-rate-button.pug
@@ -28,15 +29,17 @@ mixin room-card({ number = -1, grade = '', payment = -1, rate = 0, comments = -1
     figcaption.room-card__room-data
       a.room-card__data-row(href=href, title="Подробнее о номере")
         .room-card__room-title
-          h2.room-card__room-number= numberSentence
+          .room-card__room-number
+            +heading({ h2: numberSentence }, { lineHeight: 'inherit', theFirstLetterSize: 'small' })
           if grade
-            h3.room-card__room-grade= grade
-        h3.room-card__day-payment
-          = paymentSentence
-          +card-text(' в сутки', { size: 'small' })
+            .room-card__room-grade
+              +heading({ h3: grade }, { color: 'inherit' })
+        .room-card__day-payment
+          +heading({ h3: paymentSentence }, { display: 'block', fontSize: 'inherit', color: 'inherit' })
+            +card-text(' в сутки', { size: 'small' })
       .room-card__data-row
         .room-card__room-rating
           +form-rate-button({ name: `${href}-rating-${uniqueNamePostfix}`, rate, disabled: true,interaction: 'rejected' })
-        h3.room-card__room-comments
-          = commentsSentence
-          +card-text(' Отзывов')
+        .room-card__room-comments
+          +heading({ h3: commentsSentence }, { display: 'block', fontSize: 'inherit', color: 'inherit' })
+            +card-text(' Отзывов')

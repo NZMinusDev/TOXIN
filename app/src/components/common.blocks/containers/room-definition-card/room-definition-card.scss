@@ -23,15 +23,10 @@
 
   &__room-number {
     display: inline-block;
-
-    &::first-letter {
-      font-size: 14px / 24px * 1em;
-      line-height: 17.5px / 24px * 1em;
-    }
   }
 
   &__room-grade {
-    display: inline;
+    display: inline-block;
     margin-left: 5px / 14px * 1em;
 
     @media print, screen and (color) {
@@ -40,7 +35,6 @@
   }
 
   &__day-payment {
-    font-size: 1em;
     line-height: 18px / 14px * 1em;
     grid-area: day-payment;
     place-self: end;
@@ -100,6 +94,7 @@
   &__total-payment {
     display: grid;
     align-items: baseline;
+    margin: 0;
     grid-area: total-payment;
     grid-template-columns: auto 1fr auto;
     grid-column-gap: 5px / 19px * 1em;

@@ -1,4 +1,5 @@
 include ~@common.blocks/primitives/card-base/card-base.pug
+include ~@common.blocks/primitives/heading/heading.pug
 include ~@common.blocks/primitives/form-text-field/form-text-field.pug
 include ~@common.blocks/primitives/button/button.pug
 
@@ -11,7 +12,8 @@ include ~@common.blocks/primitives/button/button.pug
 mixin entering-card({ action = undefined, name = 'entering-card', method = 'post', redirectPath = './registration.html' } = {})
   +card-base
     form.entering-card(name=name, action=action, method=method)&attributes(attributes)
-      h1.entering-card__title Войти
+      .entering-card__title
+        +heading({ h1: 'Войти' }, { lineHeight: 'inherit' })
       .entering-card__email-field
         +form-text-field({ name: `${name}-email`, type: 'email' })
       .entering-card__password-field

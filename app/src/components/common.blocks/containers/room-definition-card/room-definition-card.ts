@@ -20,7 +20,7 @@ import roomDefinitionCardElements, {
 } from './room-definition-card-elements';
 
 type RoomDefinitionCardDOM = {
-  dayPayment: HTMLHeadingElement;
+  dayPayment: HTMLDivElement;
   arrivalDateDropdown: HTMLDivElement;
   guestsDropdown: HTMLDivElement;
   totalDayPaymentSentence: HTMLSpanElement;

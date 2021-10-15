@@ -1,4 +1,5 @@
 extends ~@layouts/basic/main-layout/main-layout.pug
+include ~@common.blocks/primitives/heading/heading.pug
 
 block append variables
   -
@@ -8,7 +9,8 @@ block append variables
 block header
 block content
   main.index__main
-    h1.index__heading Добро пожаловать на страницу навигации
+    .index__heading
+      +heading({ h1: 'Добро пожаловать на страницу навигации' })
     p.index__description Здесь представлены сверстанные страницы, выбирай любую.
     nav.index__pages-navigation
       ul.index__pages-list

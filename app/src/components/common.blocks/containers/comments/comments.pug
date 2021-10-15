@@ -31,7 +31,8 @@ mixin comments({ heading = undefined, counter = false, items = {}} = {})
           .comments__icon-item
             +picture(item.iconPath, 'Иконка комментирующего')
           .comments__source-item
-            h3.comments__name-item= item.personName
+            .comments__name-item
+              +heading({ h3: item.personName }, { textTransform: 'none', fontSize: 'inherit', lineHeight: 'inherit' })
             p.comments__date-item
               time(datetime=item.date)= item.dateText
           p.comments__content-item= item.content

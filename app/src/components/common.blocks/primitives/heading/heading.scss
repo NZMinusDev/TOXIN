@@ -3,6 +3,49 @@
   justify-content: space-between;
   margin: 0;
 
+  &_display_block {
+    display: block;
+  }
+  &_display_inline-block {
+    display: inline-block;
+  }
+
+  &_text-transform_none {
+    text-transform: none;
+  }
+
+  &_font-size_inherit {
+    font-size: inherit;
+  }
+
+  &_line-height_inherit {
+    line-height: inherit;
+  }
+
+  &_the-first-letter-size_extra-small {
+    display: inline-block;
+
+    &::first-letter {
+      font-size: 14px / 24px * 1em;
+      line-height: 17.5px / 24px * 1em;
+    }
+  }
+  &_the-first-letter-size_small {
+    display: inline-block;
+
+    &::first-letter {
+      font-size: 14px / 19px * 1em;
+    }
+  }
+
+  &_color_inherit {
+    color: inherit;
+  }
+
+  &_justify-content_center {
+    justify-content: center;
+  }
+
   &_margin-bottom_small {
     margin-bottom: 5px / 12px * 1em;
   }

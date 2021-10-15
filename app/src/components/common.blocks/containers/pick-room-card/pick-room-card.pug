@@ -1,4 +1,5 @@
 include ~@common.blocks/primitives/card-base/card-base.pug
+include ~@common.blocks/primitives/heading/heading.pug
 include ~@common.blocks/primitives/form-dropdown/form-dropdown.pug
 include ~@common.blocks/primitives/button/button.pug
 
@@ -11,7 +12,8 @@ include ~@common.blocks/primitives/button/button.pug
 mixin pick-room-card({ action = undefined, name = 'pick-room-card', method = 'post', datepickerDisabled = false } = {})
   +card-base
     form.pick-room-card(name=name, action=action, method=method)&attributes(attributes)
-      h1.pick-room-card__title Найдём номера под ваши пожелания
+      .pick-room-card__title
+        +heading({ h1: 'Найдём номера под ваши пожелания' })
       fieldset.pick-room-card__datepicker-fieldset(disabled=datepickerDisabled)
         .pick-room-card__datepicker
           .pick-room-card__arrival-date-dropdown
