@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use '@utils/devTools/styles/mixins.scss';
 
 .color-sample {
   display: grid;
@@ -37,8 +38,31 @@
 
   &__name {
     margin: 0;
-    line-height: 27.5px / 19px * 1em;
     grid-area: name;
+
+    @media print, screen and (color) {
+      @include mixins.unify-parent('h1') {
+        color: rgba(var(--color__dark-shade), 1);
+      }
+      @include mixins.unify-parent('h2') {
+        color: rgba(var(--color__dark-shade), 1);
+      }
+      @include mixins.unify-parent('h3') {
+        color: rgba(var(--color__dark-shade), 1);
+      }
+    }
+
+    @include mixins.unify-parent('h1') {
+      font: var(--font__h1);
+    }
+    @include mixins.unify-parent('h2') {
+      font: var(--font__h2);
+      line-height: 27.5px / 19px * 1em;
+    }
+    @include mixins.unify-parent('h3') {
+      text-transform: uppercase;
+      font: var(--font__h3);
+    }
   }
 
   &__value {

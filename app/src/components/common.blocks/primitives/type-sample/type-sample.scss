@@ -1,3 +1,5 @@
+@use '@utils/devTools/styles/mixins.scss';
+
 .type-sample {
   display: grid;
   grid: 'tag sample' / auto 1fr;
@@ -7,17 +9,53 @@
     margin: 0;
     width: 40px;
     text-align: right;
-    font-weight: normal;
     grid-area: tag;
 
     @media print, screen and (color) {
       color: rgba(var(--color__dark-shade), 0.25);
+    }
+
+    @include mixins.unify-parent('h1') {
+      font: var(--font__h1);
+      font-weight: 400;
+    }
+    @include mixins.unify-parent('h2') {
+      font: var(--font__h2);
+      font-weight: 400;
+    }
+    @include mixins.unify-parent('h3') {
+      text-transform: uppercase;
+      font: var(--font__h3);
+      font-weight: 400;
     }
   }
 
   &__sample {
     margin: 0;
     grid-area: sample;
+
+    @media print, screen and (color) {
+      @include mixins.unify-parent('h1') {
+        color: rgba(var(--color__dark-shade), 1);
+      }
+      @include mixins.unify-parent('h2') {
+        color: rgba(var(--color__dark-shade), 1);
+      }
+      @include mixins.unify-parent('h3') {
+        color: rgba(var(--color__dark-shade), 1);
+      }
+    }
+
+    @include mixins.unify-parent('h1') {
+      font: var(--font__h1);
+    }
+    @include mixins.unify-parent('h2') {
+      font: var(--font__h2);
+    }
+    @include mixins.unify-parent('h3') {
+      text-transform: uppercase;
+      font: var(--font__h3);
+    }
 
     &_width_small {
       width: 312px;

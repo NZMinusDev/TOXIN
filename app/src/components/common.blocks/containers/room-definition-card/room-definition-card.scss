@@ -105,9 +105,14 @@
     display: grid;
     align-items: baseline;
     margin: 0;
+    font: var(--font__h2);
     grid-area: total-payment;
     grid-template-columns: auto 1fr auto;
     grid-column-gap: 5px / 19px * 1em;
+
+    @media print, screen and (color) {
+      color: rgba(var(--color__dark-shade), 1);
+    }
   }
 
   &__text-separator {

@@ -6,12 +6,6 @@
   --color__secondary_additional: 102, 210, 234;
 }
 
-h1,
-h2,
-h3 {
-  color: rgba(var(--color__dark-shade), 1);
-}
-
 body {
   color: rgba(var(--color__dark-shade), 0.75);
 }

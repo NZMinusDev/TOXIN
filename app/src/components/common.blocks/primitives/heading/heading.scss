@@ -1,7 +1,24 @@
+@use '@utils/devTools/styles/mixins.scss';
+
 .heading {
   display: flex;
   justify-content: space-between;
   margin: 0;
+
+  @media print, screen and (color) {
+    color: rgba(var(--color__dark-shade), 1);
+  }
+
+  @include mixins.unify-parent('h1') {
+    font: var(--font__h1);
+  }
+  @include mixins.unify-parent('h2') {
+    font: var(--font__h2);
+  }
+  @include mixins.unify-parent('h3') {
+    text-transform: uppercase;
+    font: var(--font__h3);
+  }
 
   &_display_block {
     display: block;

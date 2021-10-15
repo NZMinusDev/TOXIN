@@ -144,9 +144,11 @@
         }
 
         .iqdropdown-item {
+          text-transform: uppercase;
+          font: var(--font__h3);
+
           @media print, screen and (color) {
             color: rgba(var(--color__dark-shade), 1);
-            font: var(--font__h3);
           }
         }
       }

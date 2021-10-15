@@ -1,8 +1,22 @@
 /* stylelint-disable order/order */
 @use 'sass:list';
 @use 'sass:string';
+@use 'sass:selector';
 
 @use '@utils/devTools/styles/functions.scss';
+
+/// Write a selector that matches the outer selector and an element selector
+/// @param {*} $child - child selector
+/// @link https://sass-lang.com/documentation/at-rules/at-root
+/// @example
+///   .wrapper .field {
+///     @include unify-parent("input") {} //.wrapper input.field {}
+///   }
+@mixin unify-parent($child) {
+  @at-root #{selector.unify(&, $child)} {
+    @content;
+  }
+}
 
 /// Places item to center using position: absolute
 @mixin center-abs-position {

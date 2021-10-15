@@ -128,6 +128,8 @@
 
   &__list-label-heading {
     margin: 0;
+    text-transform: uppercase;
+    font: var(--font__h3);
 
     @media print, screen and (min-width: 0) {
       display: flex;
@@ -137,6 +139,10 @@
     @media print, screen and (min-width: 992px) {
       justify-content: flex-start;
       margin-top: 4px;
+    }
+
+    @media print, screen and (color) {
+      color: rgba(var(--color__dark-shade), 1);
     }
   }
 

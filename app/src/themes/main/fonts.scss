@@ -2,15 +2,6 @@
 @use '@utils/devTools/styles/functions.scss';
 
 @include mixins.import-font(
-  'Quicksand',
-  '@assets/fonts/quicksand/quicksand-regular/quicksand-regular.ttf'
-);
-@include mixins.import-font(
-  'Quicksand',
-  '@assets/fonts/quicksand/quicksand-bold/quicksand-bold.ttf',
-  bold
-);
-@include mixins.import-font(
   'Montserrat',
   '@assets/fonts/montserrat/montserrat-regular/montserrat-regular.ttf'
 );
@@ -35,28 +26,6 @@
     )};
 }
 
-html {
-  font-size: functions.get-liquid-size(24, 18);
-}
-
-h1,
-h2 {
-  font-weight: 700;
-}
-h1 {
-  font: var(--font__h1);
-}
-h2 {
-  font: var(--font__h2);
-}
-
-h3 {
-  text-transform: uppercase;
-  font: var(--font__h3);
-  font-weight: 700;
-}
-
 body {
   font: var(--font__body);
-  font-weight: 400;
 }
