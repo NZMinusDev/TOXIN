@@ -43,6 +43,7 @@
       & ~ .slideshow__switcher ~ .slideshow__switcher ~ .slideshow__switcher {
         right: 0;
         display: inline-flex;
+        border-bottom-left-radius: var(--border-radius-size);
         transform: rotate(180deg);
 
         //another switchers
@@ -55,6 +56,7 @@
       & + .slideshow__switcher {
         left: 0;
         display: inline-flex;
+        border-top-left-radius: var(--border-radius-size);
       }
     }
   }
