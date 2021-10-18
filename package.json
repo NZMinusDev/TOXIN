@@ -20,9 +20,7 @@
     "webpack"
   ],
   "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not op_mini all"
+    "last 2 Chrome versions"
   ],
   "scripts": {
     "start": "rm -r -f app/dist && cross-env NODE_ENV=development MEASURE=false webpack-dev-server --config configs/webpack.config.js --mode development --open",
