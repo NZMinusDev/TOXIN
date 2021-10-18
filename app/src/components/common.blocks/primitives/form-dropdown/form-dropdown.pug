@@ -12,19 +12,17 @@ include ./__datepicker/form-dropdown__datepicker.pug
       openingMethod?, groups, list -> see mixin form-dropdown__item-quantity-list
   heading?: see mixin heading
   description?: see mixin heading
-  headingMarginBottom?: see marginBottom in mixin heading
   name?: string - name of component hidden input
   placeholder?: string - text of placeholder
   isFilter?: boolean - if true, input change event will reload page with chosen value(get method)
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin form-dropdown(type, { heading = undefined, description = '', headingMarginBottom = 'small', name = 'dropdown', placeholder = '', range = false, selectedDates = '', altFields = undefined, isAltField = false, openingMethod = 'folded', groups = {}, list = {}, isFilter = false } = {})
+mixin form-dropdown(type, { heading = undefined, description = '', name = 'dropdown', placeholder = '', range = false, selectedDates = '', altFields = undefined, isAltField = false, openingMethod = 'folded', groups = {}, list = {}, isFilter = false } = {})
   -
     const withExpandableItemClass = `form-dropdown_with-${type}`;
   .form-dropdown.js-form-dropdown(class=withExpandableItemClass)&attributes(attributes)
     if heading
-      +heading(heading, { description, marginBottom: headingMarginBottom, isLabel: true })(
-        for=name
-      )
+      .form-dropdown__heading
+        +heading(heading, { description, isLabel: true })(for=name)
     .form-dropdown__field
       button.form-dropdown__expand-btn.js-form-dropdown__expand-btn(
         id=name,

@@ -10,9 +10,8 @@
   description?: string - description text
   isLabel?: boolean - if true, add nested label tag and take a block of pug
     labelJustifyContent?: 'spread'(space-between) - justify-content of label inside heading
-  marginBottom?: 'small'(0.4167em) | 'medium'(1em) | 'large'(1.33em) | 'extra-large'(1.67em) - bottom margin
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin heading(heading, { display = '', textTransform = '', fontSize = '', lineHeight = '', theFirstLetterSize = '', color = '', justifyContent = '', description = '', isLabel = false, labelJustifyContent = undefined, marginBottom = undefined } = {})
+mixin heading(heading, { display = '', textTransform = '', fontSize = '', lineHeight = '', theFirstLetterSize = '', color = '', justifyContent = '', description = '', isLabel = false, labelJustifyContent = undefined } = {})
   -
     const headingTag = Object.keys(heading)[0];
     const displayClass = display && `heading_display_${display}`;
@@ -24,10 +23,9 @@ mixin heading(heading, { display = '', textTransform = '', fontSize = '', lineHe
     const justifyContentClass = justifyContent && `heading_justify-content_${justifyContent}`;
     const interactiveLabelClass = attributes.for && `heading__label_interactive`;
     const labelJustifyContentClass = labelJustifyContent &&`heading__label_justify-content_${labelJustifyContent}`;
-    const marginBottomCLass = marginBottom && `heading_margin-bottom_${marginBottom}`;
   if isLabel
     #{headingTag}.heading(
-      class=[displayClass, textTransformClass, fontSizeClass, lineHeightClass, theFirstLetterSizeClass, colorClass, justifyContentClass, marginBottomCLass]
+      class=[displayClass, textTransformClass, fontSizeClass, lineHeightClass, theFirstLetterSizeClass, colorClass, justifyContentClass]
     )
       label.heading__label(class=[interactiveLabelClass, labelJustifyContentClass])&attributes(attributes)= heading[headingTag]
         block
@@ -35,6 +33,6 @@ mixin heading(heading, { display = '', textTransform = '', fontSize = '', lineHe
         label.heading__description= description
   else
     #{headingTag}.heading(
-      class=[displayClass, textTransformClass, fontSizeClass, lineHeightClass, theFirstLetterSizeClass, colorClass, justifyContentClass, marginBottomCLass]
+      class=[displayClass, textTransformClass, fontSizeClass, lineHeightClass, theFirstLetterSizeClass, colorClass, justifyContentClass]
     )= heading[headingTag]
       block

@@ -1,6 +1,10 @@
 .form-text-field {
   width: 100%;
 
+  &__heading {
+    margin-bottom: 5px / 14px * 1em;
+  }
+
   &__field {
     position: relative;
     display: flex;
@@ -34,6 +38,7 @@
     padding: 0 1em 0 0;
     outline: none;
     border: 0;
+    background-color: inherit;
     color: inherit;
     text-indent: inherit;
     font: inherit;

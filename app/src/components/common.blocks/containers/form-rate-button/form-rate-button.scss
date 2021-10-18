@@ -4,6 +4,10 @@
 .form-rate-button {
   line-height: 0;
 
+  &__heading {
+    margin-bottom: 16px / 14px * 1em;
+  }
+
   &__rating {
     display: inline;
     margin: 0;

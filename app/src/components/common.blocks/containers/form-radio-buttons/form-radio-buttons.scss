@@ -11,6 +11,10 @@
     --additional-active-color: var(--color__primary_additional);
   }
 
+  &__heading {
+    margin-bottom: 16px / 14px * 1em;
+  }
+
   &__fieldset {
     display: grid;
     margin: 0;

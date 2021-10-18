@@ -63,19 +63,6 @@
     justify-content: center;
   }
 
-  &_margin-bottom_small {
-    margin-bottom: 5px / 12px * 1em;
-  }
-  &_margin-bottom_medium {
-    margin-bottom: 1em;
-  }
-  &_margin-bottom_large {
-    margin-bottom: 16px / 12px * 1em;
-  }
-  &_margin-bottom_extra-large {
-    margin-bottom: 20px / 12px * 1em;
-  }
-
   &__label {
     display: inline-flex;
     align-items: center;

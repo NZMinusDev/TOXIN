@@ -108,6 +108,10 @@
       }
     }
 
+    &__toggle-heading {
+      margin-bottom: 5px / 14px * 1em;
+    }
+
     &__like-button {
       @media print, screen and (min-width: 1200px) {
         display: grid;
@@ -118,7 +122,9 @@
       }
     }
 
-    &__like-button-label {
+    &__like-button-heading {
+      margin-bottom: 5px / 14px * 1em;
+
       @media print, screen and (min-width: 1200px) {
         grid-area: label;
       }
@@ -197,6 +203,10 @@
         margin-right: 79px / 320px * 100%;
         grid-area: pagination;
       }
+    }
+
+    &__pagination-heading {
+      margin-bottom: 16px / 14px * 1em;
     }
 
     &__dropdown-default-plural {

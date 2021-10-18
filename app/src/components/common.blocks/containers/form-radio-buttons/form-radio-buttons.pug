@@ -3,7 +3,6 @@ include ~@common.blocks/primitives/svg-gradient/svg-gradient.pug
 
 //-
   heading?: see mixin heading
-  headingMarginBottom?: marginBottom in mixin heading
   buttons: {
     [value: string]: {
       label: string,
@@ -13,11 +12,11 @@ include ~@common.blocks/primitives/svg-gradient/svg-gradient.pug
   disabled?: boolean - same as fieldset disabled (disable all buttons)
   isFilter?: boolean - if true, change event will reload page with chosen value(get method)
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin form-radio-buttons({ heading = undefined, headingMarginBottom = 'large', name = 'radio', buttons = {}, disabled = false, isFilter = false } = {})
+mixin form-radio-buttons({ heading = undefined, name = 'radio', buttons = {}, disabled = false, isFilter = false } = {})
   .form-radio-buttons.js-form-radio-buttons&attributes(attributes)
     if heading
       .form-radio-buttons__heading
-        +heading(heading, { marginBottom: headingMarginBottom })
+        +heading(heading)
     fieldset.form-radio-buttons__fieldset.js-form-radio-buttons__fieldset(
       disabled=disabled,
       data-is-filter=isFilter

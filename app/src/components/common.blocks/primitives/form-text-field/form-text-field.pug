@@ -4,7 +4,6 @@ include ~@common.blocks/primitives/icon/icon.pug
 //-
   heading?: see mixin heading
   description?: see mixin heading
-  headingMarginBottom?: see marginBottom in mixin heading
   name?: string - name of input field
   type?: 'text' | 'email' | 'password' | 'date' - type of field for validation 
   placeholder?: string - placeholder text
@@ -13,7 +12,7 @@ include ~@common.blocks/primitives/icon/icon.pug
   materialIcon?: string - material icon name for submit btn in field
   isFilter?: boolean - if true, input change event will reload page with chosen value(get method)
   Tip: mixin also uses 'and attributes'(&attributes)
-mixin form-text-field({ heading = undefined, description = '', headingMarginBottom = 'small', name = 'text-field', type = 'text', placeholder = '', value = '', autofocus = false, materialIcon = '', isFilter = false } = {})
+mixin form-text-field({ heading = undefined, description = '', name = 'text-field', type = 'text', placeholder = '', value = '', autofocus = false, materialIcon = '', isFilter = false } = {})
   -
     //- allowed inputmode:  'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url',
     //- allowed types for placeholder attribute: 'email', 'number', 'password', 'search', 'tel', 'text', 'url'
@@ -24,9 +23,8 @@ mixin form-text-field({ heading = undefined, description = '', headingMarginBott
     const typeClass = `form-text-field__input_type_with-${type}`;
   .form-text-field.js-form-text-field&attributes(attributes)
     if heading
-      +heading(heading, { description, marginBottom: headingMarginBottom, isLabel: true })(
-        for=name
-      )
+      .form-text-field__heading
+        +heading(heading, { description, isLabel: true })(for=name)
     .form-text-field__field
       -
         const placeholderText = placeholder || placeholderOfType;
