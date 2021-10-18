@@ -9,13 +9,13 @@
     color: rgba(var(--color__dark-shade), 1);
   }
 
-  @include mixins.unify-parent('h1') {
+  &_tag_the-h1 {
     font: var(--font__h1);
   }
-  @include mixins.unify-parent('h2') {
+  &_tag_the-h2 {
     font: var(--font__h2);
   }
-  @include mixins.unify-parent('h3') {
+  &_tag_the-h3 {
     text-transform: uppercase;
     font: var(--font__h3);
   }

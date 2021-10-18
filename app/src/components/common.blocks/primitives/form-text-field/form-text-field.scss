@@ -43,6 +43,10 @@
     text-indent: inherit;
     font: inherit;
 
+    &::placeholder {
+      color: inherit;
+    }
+
     &_type_with-date {
       cursor: text;
 

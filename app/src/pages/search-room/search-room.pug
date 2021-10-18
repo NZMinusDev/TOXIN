@@ -48,6 +48,7 @@ block content
           const resolvedPaths = htmlWebpackPlugin ? 
             paths.map((path) => require(`@assets/pictures/${path}`).default)
             : paths;
-        +room-card({ number, grade, payment, rate, comments, href, paths: resolvedPaths })
+        .search-room-layout__room
+          +room-card({ number, grade, payment, rate, comments, href, paths: resolvedPaths })
     .search-room-layout__pagination
       +pagination({ hrefPrefix: '?page=', total: 179, text: 'вариантов аренды' })

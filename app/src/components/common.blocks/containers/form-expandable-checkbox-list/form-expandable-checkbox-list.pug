@@ -14,8 +14,13 @@ mixin form-expandable-checkbox-list({ heading = { h3: 'expandable-checkbox-list'
 
       const headingTag = Object.keys(heading)[0];
       const expanderID = `id-${nanoid()}`;
-    #{headingTag}.form-expandable-checkbox-list__heading
-      label.form-expandable-checkbox-list__heading-label.js-form-expandable-checkbox-list__heading-label(for=expanderID, tabindex="0")
+
+      const headingTagClass = `form-expandable-checkbox-list__heading_tag_the-${headingTag}`;
+    #{headingTag}.form-expandable-checkbox-list__heading(class=[headingTagClass])
+      label.form-expandable-checkbox-list__heading-label.js-form-expandable-checkbox-list__heading-label(
+        for=expanderID,
+        tabindex="0"
+      )
         = heading[headingTag]
         span.form-expandable-checkbox-list__expand-icon.js-form-expandable-checkbox-list__expand-icon
           +icon({ content: checked ? 'expand_less' : 'expand_more', width: 'large' }) 

@@ -14,6 +14,7 @@
 mixin heading(heading, { display = '', textTransform = '', fontSize = '', lineHeight = '', theFirstLetterSize = '', color = '', justifyContent = '', description = '', isLabel = false, labelJustifyContent = undefined } = {})
   -
     const headingTag = Object.keys(heading)[0];
+    const headingTagClass = `heading_tag_the-${headingTag}`;
     const displayClass = display && `heading_display_${display}`;
     const textTransformClass = textTransform && `heading_text-transform_${textTransform}`;
     const fontSizeClass = fontSize && `heading_font-size_${fontSize}`;
@@ -25,7 +26,7 @@ mixin heading(heading, { display = '', textTransform = '', fontSize = '', lineHe
     const labelJustifyContentClass = labelJustifyContent &&`heading__label_justify-content_${labelJustifyContent}`;
   if isLabel
     #{headingTag}.heading(
-      class=[displayClass, textTransformClass, fontSizeClass, lineHeightClass, theFirstLetterSizeClass, colorClass, justifyContentClass]
+      class=[headingTagClass, displayClass, textTransformClass, fontSizeClass, lineHeightClass, theFirstLetterSizeClass, colorClass, justifyContentClass]
     )
       label.heading__label(class=[interactiveLabelClass, labelJustifyContentClass])&attributes(attributes)= heading[headingTag]
         block
@@ -33,6 +34,6 @@ mixin heading(heading, { display = '', textTransform = '', fontSize = '', lineHe
         label.heading__description= description
   else
     #{headingTag}.heading(
-      class=[displayClass, textTransformClass, fontSizeClass, lineHeightClass, theFirstLetterSizeClass, colorClass, justifyContentClass]
+      class=[headingTagClass, displayClass, textTransformClass, fontSizeClass, lineHeightClass, theFirstLetterSizeClass, colorClass, justifyContentClass]
     )= heading[headingTag]
       block

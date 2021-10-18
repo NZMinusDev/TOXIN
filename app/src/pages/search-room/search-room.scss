@@ -3,7 +3,7 @@
 
   @media (min-width: 0) {
     align-items: flex-start;
-    padding: #{30px / 14px * 1em} #{140px / 1440px * 100%} #{72.5px / 14px * 1em}
+    padding: #{30px / 14px * 1em} #{140px / 1440px * 100%} #{71.5px / 14px * 1em}
       #{140px / 1440px * 100%};
     grid:
       'filter'
@@ -70,7 +70,7 @@
   }
 
   &__title {
-    margin-bottom: 22px / 24px * 1em;
+    margin-bottom: 22px / 14px * 1em;
     grid-area: title;
   }
 
@@ -91,6 +91,14 @@
 
     @media (min-width: 1200px) {
       grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  &__room {
+    &:nth-child(7),
+    &:nth-child(8),
+    &:nth-child(9) {
+      margin-top: 1px;
     }
   }
 

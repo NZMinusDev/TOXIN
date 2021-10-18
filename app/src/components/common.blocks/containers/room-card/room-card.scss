@@ -19,7 +19,7 @@
 
   &__room-data {
     display: grid;
-    padding: #{24px / 14px * 1em} #{16px / 14px * 1em} #{9px / 14px * 1em} #{20px /
+    padding: #{25px / 14px * 1em} #{16px / 14px * 1em} #{8px / 14px * 1em} #{20px /
       14px * 1em};
     grid-area: room-data;
   }
@@ -28,13 +28,13 @@
     display: grid;
     align-items: center;
     justify-content: space-between;
-    padding-bottom: 9px / 14px * 1em;
+    padding-bottom: 10px / 14px * 1em;
     text-decoration: none;
     grid-template-columns: auto auto;
     grid-column-gap: 1em;
 
     &:not(:last-child) {
-      padding-bottom: 11px / 14px * 1em;
+      padding-bottom: 12px / 14px * 1em;
       border-bottom: 1px solid black;
 
       @media print, screen and (color) {
@@ -43,7 +43,7 @@
     }
 
     &:last-child {
-      padding-top: 4px / 14px * 1em;
+      padding-top: 2px / 14px * 1em;
     }
   }
 
@@ -54,11 +54,13 @@
   }
 
   &__room-number {
-    line-height: 17.5px / 19px * 1em;
+    line-height: 24px / 20px * 1em;
   }
 
   &__room-grade {
+    align-self: flex-end;
     margin-left: 7px / 14px * 1em;
+    line-height: 15px / 14px * 1em;
 
     @media print, screen and (color) {
       color: rgba(var(--color__primary), 1);
@@ -67,6 +69,7 @@
 
   &__day-payment {
     align-self: baseline;
+    line-height: 20px / 14px * 1em;
 
     @media print, screen and (color) {
       color: rgba(var(--color__dark-shade), 0.5);
