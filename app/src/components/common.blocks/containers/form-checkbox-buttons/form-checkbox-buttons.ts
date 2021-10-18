@@ -2,6 +2,7 @@ import BEMComponent, {
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/view/BEM/BEMComponent';
 import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
+import { addURLValues } from '@utils/devTools/scripts/URLHelper';
 
 import formCheckboxButtonsElements, {
   FormCheckboxButtonsElement,
@@ -12,7 +13,9 @@ type FormCheckboxButtonsDOM = {
   buttonItems: HTMLInputElement[];
 };
 
-type FormCheckboxButtonsHTMLOptions = {};
+type FormCheckboxButtonsHTMLOptions = {
+  isFilter: boolean;
+};
 
 type FormCheckboxButtonsCustomEvents = {};
 
@@ -32,8 +35,6 @@ class FormCheckboxButtons extends BEMComponent<
     this._options = this._initOptionsFromHTML();
 
     this._bindButtonItemsListeners();
-
-    this._initDisplay();
   }
 
   protected _initDOM() {
@@ -48,7 +49,9 @@ class FormCheckboxButtons extends BEMComponent<
   }
 
   protected _initOptionsFromHTML() {
-    return {};
+    const isFilter = this._DOM.fieldset.dataset.isFilter !== undefined;
+
+    return { isFilter };
   }
 
   protected _bindButtonItemsListeners() {
@@ -58,6 +61,10 @@ class FormCheckboxButtons extends BEMComponent<
       buttonItem.addEventListener(
         'keydown',
         this._buttonItemsEventListenerObject.handleButtonItemKeyDown
+      );
+      buttonItem.addEventListener(
+        'change',
+        this._buttonItemsEventListenerObject.handleButtonItemChange
       );
     });
 
@@ -74,11 +81,16 @@ class FormCheckboxButtons extends BEMComponent<
         currentTarget.click();
       }
     },
-  };
+    handleButtonItemChange: (event: Event) => {
+      const currentTarget = event.currentTarget as Unpacked<
+        FormCheckboxButtonsDOM['buttonItems']
+      >;
 
-  protected _initDisplay() {
-    return this;
-  }
+      if (this._options.isFilter) {
+        addURLValues({ name: currentTarget.name, value: currentTarget.value });
+      }
+    },
+  };
 }
 
 type FormCheckboxButtonsElementWithComponent = HTMLElementWithComponent<

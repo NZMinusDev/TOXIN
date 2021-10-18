@@ -14,11 +14,14 @@ include ~@common.blocks/primitives/svg-gradient/svg-gradient.pug
   isFilter?: boolean - if true, change event will reload page with chosen value(get method)
   Tip: mixin also uses 'and attributes'(&attributes)
 mixin form-radio-buttons({ heading = undefined, headingMarginBottom = 'large', name = 'radio', buttons = {}, disabled = false, isFilter = false } = {})
-  .form-radio-buttons&attributes(attributes)
+  .form-radio-buttons.js-form-radio-buttons&attributes(attributes)
     if heading
       .form-radio-buttons__heading
         +heading(heading, { marginBottom: headingMarginBottom })
-    fieldset.form-radio-buttons__fieldset(disabled=disabled)
+    fieldset.form-radio-buttons__fieldset.js-form-radio-buttons__fieldset(
+      disabled=disabled,
+      data-is-filter=isFilter
+    )
       -
         const { nanoid } = require('nanoid/non-secure');
 
@@ -30,7 +33,6 @@ mixin form-radio-buttons({ heading = undefined, headingMarginBottom = 'large', n
             id=key,
             type="radio",
             name=name,
-            data-is-filter=isFilter,
             checked=btn.checked,
             value=key
           )

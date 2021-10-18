@@ -1,12 +1,13 @@
 import BEMComponent, {
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/view/BEM/BEMComponent';
+import { addURLValues } from '@utils/devTools/scripts/URLHelper';
 
 import formTextFieldElements from '../form-text-field-elements';
 
 type FormTextFieldInputElement = HTMLInputElement;
 
-type FormTextFieldInputHTMLOptions = { placeholder: string };
+type FormTextFieldInputHTMLOptions = { placeholder: string; isFilter: boolean };
 
 type FormTextFieldInputCustomEvents = {};
 
@@ -28,8 +29,17 @@ class FormTextFieldInput extends BEMComponent<
 
   protected _initOptionsFromHTML() {
     const { placeholder } = this.element;
+    const isFilter = this.element.dataset.isFilter !== undefined;
 
-    return { placeholder };
+    return { placeholder, isFilter };
+  }
+
+  protected onChange(event: Event) {
+    const currentTarget = event.currentTarget as FormTextFieldInputElement;
+
+    if (this._options.isFilter) {
+      addURLValues({ name: currentTarget.name, value: currentTarget.value });
+    }
   }
 }
 

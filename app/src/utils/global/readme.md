@@ -9,7 +9,6 @@
     │       fonts.ts // preinstalled fonts
     │
     └───scripts
-            input.ts // bonds inputs with URL
             unhandledrejection.ts // top level catcher of errors
 
 ```

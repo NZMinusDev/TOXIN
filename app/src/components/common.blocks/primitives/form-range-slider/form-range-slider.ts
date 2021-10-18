@@ -1,6 +1,8 @@
 import BEMComponent, {
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/view/BEM/BEMComponent';
+import { addURLValues } from '@utils/devTools/scripts/URLHelper';
+import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
 import noUiSlider from '@library.blocks/primitives/form-range-slider/form-range-slider';
 
 import formRangeSliderElements, {
@@ -10,11 +12,15 @@ import formRangeSliderElements, {
 interface HTMLDivElementWithSlider extends HTMLDivElement {
   noUiSlider: noUiSlider;
 }
+
 type FormRangeSliderDOM = {
   slider: HTMLDivElementWithSlider;
   result: HTMLOutputElement;
-  inputFrom: HTMLInputElement;
-  inputTo: HTMLInputElement;
+  inputs: HTMLInputElement[];
+};
+
+type FormRangeSliderHTMLOptions = {
+  isFilter: boolean;
 };
 
 type FormRangeSliderCustomEvents = { change: {} };
@@ -25,13 +31,17 @@ class FormRangeSlider extends BEMComponent<
 > {
   protected readonly _DOM: Readonly<FormRangeSliderDOM>;
 
+  protected readonly _options: FormRangeSliderHTMLOptions;
+
   constructor(formRangeSliderElement: FormRangeSliderElement) {
     super(formRangeSliderElement);
 
     this._DOM = this._initDOM();
     this._initLibRangeSlider();
 
-    this._bindSliderListeners();
+    this._options = this._initOptionsFromHTML();
+
+    this._bindInputsListeners()._bindSliderListeners();
   }
 
   protected _initDOM() {
@@ -41,25 +51,58 @@ class FormRangeSlider extends BEMComponent<
     const result = this.element.querySelector(
       '.js-form-range-slider__result'
     ) as FormRangeSliderDOM['result'];
-    const [inputFrom, inputTo] = this.element.querySelectorAll<
-      FormRangeSliderDOM['inputFrom'] | FormRangeSliderDOM['inputTo']
-    >('.js-form-range-slider__input');
+    const inputs = [
+      ...this.element.querySelectorAll('.js-form-range-slider__input'),
+    ] as FormRangeSliderDOM['inputs'];
 
-    return { slider, result, inputFrom, inputTo };
+    return { slider, result, inputs };
   }
 
   protected _initLibRangeSlider() {
+    const { inputs } = this._DOM;
+
     noUiSlider.create(this._DOM.slider, {
-      start: [this._DOM.inputFrom.value, this._DOM.inputTo.value],
+      start: inputs.map((input) => input.value),
       range: {
-        min: Number(this._DOM.inputFrom.min),
-        max: Number(this._DOM.inputFrom.max),
+        min: Number(inputs[0].min),
+        max: Number(inputs[0].max),
       },
       connect: true,
     });
 
     return this;
   }
+
+  protected _initOptionsFromHTML() {
+    const isFilter = this.element.dataset.isFilter !== undefined;
+
+    return { isFilter };
+  }
+
+  protected _bindInputsListeners() {
+    const { inputs } = this._DOM;
+
+    inputs.forEach((input) => {
+      input.addEventListener(
+        'change',
+        this._inputsEventListenerObject.handleInputChange
+      );
+    });
+
+    return this;
+  }
+
+  protected _inputsEventListenerObject = {
+    handleInputChange: (event: Event) => {
+      const currentTarget = event.currentTarget as Unpacked<
+        FormRangeSliderDOM['inputs']
+      >;
+
+      if (this._options.isFilter) {
+        addURLValues({ name: currentTarget.name, value: currentTarget.value });
+      }
+    },
+  };
 
   protected _bindSliderListeners() {
     this._DOM.slider.noUiSlider.on(
@@ -76,37 +119,24 @@ class FormRangeSlider extends BEMComponent<
 
   protected _sliderEventListenerObject = {
     handleSliderUpdate: (values: Array<string>) => {
-      const [valueFrom, valueTo] = values;
+      const { inputs, result } = this._DOM;
+      const [valueFrom] = values;
+      const valueTo = values[values.length - 1];
 
-      this._DOM.inputFrom.value = valueFrom;
-      this._DOM.inputTo.value = valueTo;
-      this._DOM.result.value = `${parseInt(
-        valueFrom,
+      values.forEach((value, index) => {
+        inputs[index].value = value;
+      });
+
+      result.value = `${parseInt(valueFrom, 10).toLocaleString()}₽ - ${parseInt(
+        valueTo,
         10
-      ).toLocaleString()}₽ - ${parseInt(valueTo, 10).toLocaleString()}₽`;
+      ).toLocaleString()}₽`;
     },
-
     handleSliderChange: (values: Array<string>, handle: number) => {
-      switch (handle) {
-        case 0: {
-          this._DOM.inputFrom.dispatchEvent(new Event('change'));
-          this.element.dispatchEvent(
-            new CustomEvent('change', { bubbles: true })
-          );
+      const { inputs } = this._DOM;
 
-          break;
-        }
-        case 1: {
-          this._DOM.inputTo.dispatchEvent(new Event('change'));
-          this.element.dispatchEvent(
-            new CustomEvent('change', { bubbles: true })
-          );
-
-          break;
-        }
-
-        // no default
-      }
+      inputs[handle].dispatchEvent(new Event('change'));
+      this.element.dispatchEvent(new CustomEvent('change', { bubbles: true }));
     },
   };
 }

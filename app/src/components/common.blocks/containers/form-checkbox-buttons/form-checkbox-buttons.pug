@@ -23,7 +23,8 @@ mixin form-checkbox-buttons({ heading = undefined, headingMarginBottom = 'large'
       .form-checkbox-buttons__heading
         +heading(heading, { marginBottom: headingMarginBottom })
     fieldset.form-checkbox-buttons__fieldset.js-form-checkbox-buttons__fieldset(
-      disabled=disabled
+      disabled=disabled,
+      data-is-filter=isFilter
     )
       ul.form-checkbox-buttons__list
         each btn, key in buttons
@@ -36,7 +37,6 @@ mixin form-checkbox-buttons({ heading = undefined, headingMarginBottom = 'large'
               id=key,
               type="checkbox",
               name=key,
-              data-is-filter=isFilter,
               checked=checked
             )
             .form-checkbox-buttons__label-item(class=[widthClass])

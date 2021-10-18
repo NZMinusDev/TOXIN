@@ -2,6 +2,7 @@ import BEMComponent, {
   HTMLElementWithComponent,
 } from '@utils/devTools/scripts/view/BEM/BEMComponent';
 import { formatToPeriodDateTime } from '@utils/devTools/scripts/DateHelper';
+import { addURLValues } from '@utils/devTools/scripts/URLHelper';
 
 import '@common.blocks/primitives/apply-control/apply-control.scss';
 import '@library.blocks/primitives/datepicker-card/datepicker-card';
@@ -22,6 +23,10 @@ type DatepickerCardGeneratedDOM = {
   applyBtn: HTMLButtonElement;
 };
 
+type DatepickerCardHTMLOptions = {
+  isFilter: boolean;
+};
+
 type DatepickerCardState = {
   dates: Date[];
   formattedDates: string;
@@ -40,6 +45,8 @@ class DatepickerCard extends BEMComponent<
 
   protected readonly _generatedDOM: Readonly<DatepickerCardGeneratedDOM>;
 
+  protected readonly _options: DatepickerCardHTMLOptions;
+
   protected readonly _state: DatepickerCardState;
 
   protected _applyControlTemplate = `<div class="datepicker-card__apply-control"><div class="apply-control js-apply-control"><input class="apply-control__clear-btn js-apply-control__clear-btn apply-control__clear-btn_hidden" type="button" value="очистить"><input class="apply-control__apply-btn js-apply-control__apply-btn" type="button" value="применить"></div></div>`;
@@ -50,9 +57,11 @@ class DatepickerCard extends BEMComponent<
     this._DOM = this._initDOM();
     this._generatedDOM = this._initLibDatepicker()._initGeneratedDOM();
 
+    this._options = this._initOptionsFromHTML();
+
     this._state = DatepickerCard._initState();
 
-    this._bindApplyControlListeners();
+    this._bindInputListeners()._bindApplyControlListeners();
 
     this._initDisplay();
   }
@@ -174,12 +183,39 @@ class DatepickerCard extends BEMComponent<
     };
   }
 
+  protected _initOptionsFromHTML() {
+    const isFilter = this._DOM.input.dataset.isFilter !== undefined;
+
+    return { isFilter };
+  }
+
   protected static _initState() {
     const dates = [] as DatepickerCardState['dates'];
     const formattedDates = '' as DatepickerCardState['formattedDates'];
 
     return { dates, formattedDates };
   }
+
+  protected _bindInputListeners() {
+    const { input } = this._DOM;
+
+    input.addEventListener(
+      'change',
+      this._inputEventListenerObject.handleInputChange
+    );
+
+    return this;
+  }
+
+  protected _inputEventListenerObject = {
+    handleInputChange: (event: Event) => {
+      const currentTarget = event.currentTarget as DatepickerCardDOM['input'];
+
+      if (this._options.isFilter) {
+        addURLValues({ name: currentTarget.name, value: currentTarget.value });
+      }
+    },
+  };
 
   protected _bindApplyControlListeners() {
     this._generatedDOM.clearBtn.addEventListener(

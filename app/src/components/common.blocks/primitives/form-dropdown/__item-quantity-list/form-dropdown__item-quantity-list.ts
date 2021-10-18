@@ -5,6 +5,7 @@ import BEMComponent, {
 } from '@utils/devTools/scripts/view/BEM/BEMComponent';
 import { has } from '@utils/devTools/scripts/DOMHelper';
 import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
+import { addURLValues } from '@utils/devTools/scripts/URLHelper';
 import '@library.blocks/primitives/form-dropdown/__item-quantity-list/form-dropdown__item-quantity-list';
 
 import formDropdownElements from '../form-dropdown-elements';
@@ -41,6 +42,7 @@ type FormDropdownItemQuantityListHTMLOptions = {
       group: string;
     }
   >;
+  isFilter: boolean;
 };
 type FormDropdownItemQuantityListState = {
   totalItems: number;
@@ -76,7 +78,7 @@ class FormDropdownItemQuantityList extends BEMComponent<
     this._generatedDOM =
       this._initLibFormDropdownItemQuantityList()._initGeneratedDOM();
 
-    this._bindCounterBtnListeners()._bindListeners();
+    this._bindListInputListeners()._bindCounterBtnListeners()._bindListeners();
 
     this._initDisplay();
   }
@@ -200,6 +202,7 @@ class FormDropdownItemQuantityList extends BEMComponent<
           ];
         })
       ),
+      isFilter: this._DOM.listInput.dataset.isFilter !== undefined,
     };
   }
 
@@ -246,6 +249,28 @@ class FormDropdownItemQuantityList extends BEMComponent<
 
     return { totalItems, itemsCounter, groupsCounter };
   }
+
+  protected _bindListInputListeners() {
+    const { listInput } = this._DOM;
+
+    listInput.addEventListener(
+      'change',
+      this._listInputEventListenerObject.handleListInputChange
+    );
+
+    return this;
+  }
+
+  protected _listInputEventListenerObject = {
+    handleListInputChange: (event: Event) => {
+      const currentTarget =
+        event.currentTarget as FormDropdownItemQuantityListDOM['listInput'];
+
+      if (this._options.isFilter) {
+        addURLValues({ name: currentTarget.name, value: currentTarget.value });
+      }
+    },
+  };
 
   protected _bindCounterBtnListeners() {
     this._generatedDOM.incrementButtons.forEach((incrementBtn) => {
