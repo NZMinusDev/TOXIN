@@ -6,6 +6,7 @@ import navBarNavigationItems, {
 
 type NavBarExpandableNavigationItemModifierDOM = {
   itemExpandCheckbox: HTMLInputElement;
+  itemExpandCheckboxLabel: HTMLLabelElement;
   childList: HTMLUListElement;
   nestedLists: HTMLUListElement[];
 };
@@ -26,13 +27,17 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
 
     this._state = NavBarExpandableNavigationItemModifier._initState();
 
-    this._bindItemExpandCheckboxListeners()._bindWindowListeners();
+    this._bindItemExpandCheckboxListeners()
+      ._bindItemExpandCheckboxLabelListeners()
+      ._bindWindowListeners();
   }
 
   protected _initDOM() {
     const itemExpandCheckbox = this.component.element.querySelector(
       '.js-nav-bar__navigation-item-dropdown-checkbox'
     ) as NavBarExpandableNavigationItemModifierDOM['itemExpandCheckbox'];
+    const itemExpandCheckboxLabel =
+      itemExpandCheckbox.nextElementSibling as NavBarExpandableNavigationItemModifierDOM['itemExpandCheckboxLabel'];
 
     const listSelector = '.js-nav-bar__navigation-list';
     const childList = this.component.element.querySelector(
@@ -42,7 +47,12 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
       ...this.component.element.querySelectorAll(listSelector),
     ] as NavBarExpandableNavigationItemModifierDOM['nestedLists'];
 
-    return { itemExpandCheckbox, childList, nestedLists };
+    return {
+      itemExpandCheckbox,
+      itemExpandCheckboxLabel,
+      childList,
+      nestedLists,
+    };
   }
 
   protected static _initState() {
@@ -65,6 +75,29 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
     handleItemExpandCheckboxChange: () => {
       if (this._state.isSmallDesktopMediaMatched) {
         this._toggleChildListMaxHeight();
+      }
+    },
+  };
+
+  protected _bindItemExpandCheckboxLabelListeners() {
+    const { itemExpandCheckboxLabel } = this._DOM;
+
+    itemExpandCheckboxLabel.addEventListener(
+      'keydown',
+      this._itemExpandCheckboxLabelEventListenerObject
+        .handleItemExpandCheckboxLabelKeyDown
+    );
+
+    return this;
+  }
+
+  protected _itemExpandCheckboxLabelEventListenerObject = {
+    handleItemExpandCheckboxLabelKeyDown: (event: KeyboardEvent) => {
+      const currentTarget =
+        event.currentTarget as NavBarExpandableNavigationItemModifierDOM['itemExpandCheckboxLabel'];
+
+      if (!event.repeat && event.code === 'Enter') {
+        currentTarget.click();
       }
     },
   };

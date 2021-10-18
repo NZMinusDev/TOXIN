@@ -6,8 +6,13 @@ include ~@common.blocks/primitives/svg-gradient/svg-gradient.pug
   checked?: boolean - same as input checked
   Tip: mixin also uses 'and attributes'(&attributes)
 mixin form-toggle({ name = 'toggle', label = '', checked = false } = {})
-  .form-toggle&attributes(attributes)
-    input.form-toggle__button(id=name, type="checkbox", name=name, checked=checked)
+  .form-toggle.js-form-toggle&attributes(attributes)
+    input.form-toggle__button.js-form-toggle__button(
+      id=name,
+      type="checkbox",
+      name=name,
+      checked=checked
+    )
     -
       const { nanoid } = require('nanoid/non-secure');
 

@@ -52,21 +52,38 @@ class FormLikeButton extends BEMComponent<
   }
 
   protected _bindButtonListeners() {
-    this._DOM.button.addEventListener(
+    const { button } = this._DOM;
+
+    button.addEventListener(
+      'keydown',
+      this._buttonEventListenerObject.handleButtonKeyDown
+    );
+    button.addEventListener(
       'change',
       this._buttonEventListenerObject.handleButtonChange
     );
+
+    return this;
   }
 
   protected _buttonEventListenerObject = {
+    handleButtonKeyDown: (event: KeyboardEvent) => {
+      const currentTarget = event.currentTarget as FormLikeButtonDOM['button'];
+
+      if (!event.repeat && event.code === 'Enter') {
+        currentTarget.click();
+      }
+    },
     handleButtonChange: () => {
-      if (this._DOM.button.checked) {
+      const { button, counter } = this._DOM;
+
+      if (button.checked) {
         this._state.likes += 1;
       } else {
         this._state.likes -= 1;
       }
 
-      this._DOM.counter.textContent = `${this._state.likes}`;
+      counter.textContent = `${this._state.likes}`;
     },
   };
 }

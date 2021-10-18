@@ -1,26 +1,24 @@
-include ~@common.blocks/primitives/heading/heading.pug
 include ~@common.blocks/primitives/icon/icon.pug
 include ~@common.blocks/containers/form-checkbox-buttons/form-checkbox-buttons.pug
 //-
-  heading?: see mixin heading
+  heading?: { [tag: string]: text }, example: { h3: 'awesome heading' }
   buttons: see mixin form-checkbox-buttons
   checked?: boolean - open the list
   disabled?: see mixin form-checkbox-buttons
   isFilter?: see mixin form-checkbox-buttons
   Tip: mixin also uses 'and attributes'(&attributes)
 mixin form-expandable-checkbox-list({ heading = { h3: 'expandable-checkbox-list' }, buttons = {}, checked = false, disabled = false, isFilter = false } = {})
-  .form-expandable-checkbox-list.js-form-expandable-checkbox-list
+  .form-expandable-checkbox-list.js-form-expandable-checkbox-list&attributes(attributes)
     -
       const { nanoid } = require('nanoid/non-secure');
 
+      const headingTag = Object.keys(heading)[0];
       const expanderID = `id-${nanoid()}`;
-    .form-expandable-checkbox-list__title
-      +heading(heading, { isLabel: true, labelJustifyContent: 'spread', marginBottom: 'small' })(
-        for=expanderID,
-        tabindex="0"
-      )&attributes(attributes)
+    #{headingTag}.form-expandable-checkbox-list__heading
+      label.form-expandable-checkbox-list__heading-label.js-form-expandable-checkbox-list__heading-label(for=expanderID, tabindex="0")
+        = heading[headingTag]
         span.form-expandable-checkbox-list__expand-icon.js-form-expandable-checkbox-list__expand-icon
-          +icon({ content: checked ? 'expand_less' : 'expand_more', width: 'large' })
+          +icon({ content: checked ? 'expand_less' : 'expand_more', width: 'large' }) 
     input.form-expandable-checkbox-list__expander-input.js-form-expandable-checkbox-list__expander-input(
       id=expanderID,
       type="checkbox",

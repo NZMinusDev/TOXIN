@@ -15,7 +15,7 @@ include ~@common.blocks/primitives/icon/icon.pug
 mixin footer({ type = undefined, action = undefined, name = 'footer-subscription', method = 'post', menus = htmlWebpackPlugin ? require('@common.blocks/basic/footer/menus.json') : {}, icons = htmlWebpackPlugin ? require('@common.blocks/basic/footer/icons.json') : { icon: {} }, copyright = 'Copyright © 2018 Toxin отель. Все права защищены.' } = {})
   case type
     when 'creative'
-      footer.footer.footer_type_creative&attributes(attributes)
+      footer.footer.js-footer.footer_type_creative&attributes(attributes)
         section.footer__logo
           +logo({ tag: 'a', color: 'primary-gradient', title: 'toxin' })(
             href="./landing-page.html"
@@ -32,7 +32,7 @@ mixin footer({ type = undefined, action = undefined, name = 'footer-subscription
                   rel="noopener noreferrer"
                 )
     default
-      footer.footer&attributes(attributes)
+      footer.footer.js-footer&attributes(attributes)
         section.footer__widgets
           section.footer__logo
             +logo({ tag: 'a', color: 'primary-gradient', title: 'toxin' })(
@@ -50,7 +50,10 @@ mixin footer({ type = undefined, action = undefined, name = 'footer-subscription
             section(class=`footer__menu-${index}`)
               input.footer__list-checkbox(id=id, type="checkbox")
               h3.footer__list-label-heading
-                label.footer__list-label(for=id, tabindex="0")= heading
+                label.footer__list-label.js-footer__list-label(
+                  for=id,
+                  tabindex="0"
+                )= heading
               ul.footer__list
                 each link in menu
                   li.footer__list-item
@@ -60,7 +63,7 @@ mixin footer({ type = undefined, action = undefined, name = 'footer-subscription
               type="checkbox"
             )
             h3.footer__list-label-heading
-              label.footer__list-label(
+              label.footer__list-label.js-footer__list-label(
                 for="footer-subscription-checkbox",
                 tabindex="0"
               ) Подписка

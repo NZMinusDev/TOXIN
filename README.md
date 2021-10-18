@@ -188,7 +188,6 @@ the goal is to achieve liquidness, see the formula of fluid font: ./app/src/util
   - [to-top-arrow](./app/src/components/common.blocks/specific/to-top-arrow/) component;
   - [click-jacking-protector](./app/src/components/common.blocks/specific/click-jacking-protector/) for each page(you can configure it in [template](./app/src/layouts/basic/main-layout/main-layout.pug));
   - [global error catcher](./app/src/utils/global/modules/scripts/unhandledrejection.ts) for unhandled errors.
-  - [keyboard accessibility](./app/src/utils/global/modules/scripts/keyboardAccessibility.ts) for elements that do not support basic keyboard presses.
 
 ## License
 

@@ -12,6 +12,7 @@ import formExpandableCheckboxListElements, {
 } from './form-expandable-checkbox-list-elements';
 
 type FormExpandableCheckboxListDOM = {
+  headingLabel: HTMLLabelElement;
   expanderIcon: HTMLSpanElement;
   expanderInput: FormExpandableCheckboxListExpanderInputElementWithComponent;
 };
@@ -32,24 +33,49 @@ class FormExpandableCheckboxList extends BEMComponent<
 
     this._DOM = this._initDOM();
 
-    this._bindExpanderInputListeners();
+    this._bindHeadingLabelListeners()._bindExpanderInputListeners();
   }
 
   protected _initDOM() {
-    const expanderIcon = this.element.querySelector(
+    const headingLabel = this.element.querySelector(
+      '.js-form-expandable-checkbox-list__heading-label'
+    ) as FormExpandableCheckboxListDOM['headingLabel'];
+    const expanderIcon = headingLabel.querySelector(
       '.js-form-expandable-checkbox-list__expand-icon'
     ) as FormExpandableCheckboxListDOM['expanderIcon'];
-    const expanderInput = this.element.querySelector(
-      '.js-form-expandable-checkbox-list__expander-input'
-    ) as FormExpandableCheckboxListDOM['expanderInput'];
+    const expanderInput =
+      headingLabel.control as FormExpandableCheckboxListDOM['expanderInput'];
 
-    return { expanderIcon, expanderInput };
+    return { headingLabel, expanderIcon, expanderInput };
   }
 
-  protected _bindExpanderInputListeners() {
-    const expanderInput = this._DOM.expanderInput.component;
+  protected _bindHeadingLabelListeners() {
+    const { headingLabel } = this._DOM;
 
-    expanderInput.addCustomEventListener(
+    headingLabel.addEventListener(
+      'keydown',
+      this._headingLabelEventListenerObject.handleHeadingLabelKeyDown
+    );
+
+    return this;
+  }
+
+  protected _headingLabelEventListenerObject = {
+    handleHeadingLabelKeyDown: (event: KeyboardEvent) => {
+      const currentTarget =
+        event.currentTarget as FormExpandableCheckboxListDOM['expanderInput'];
+
+      if (!event.repeat && event.code === 'Enter') {
+        currentTarget.click();
+      }
+    },
+  };
+
+  protected _bindExpanderInputListeners() {
+    const { expanderInput } = this._DOM;
+    const { component } = expanderInput;
+
+    component.addCustomEventListener(
       'change',
       this._expanderInputEventListenerObject.handleExpanderInputChange
     );

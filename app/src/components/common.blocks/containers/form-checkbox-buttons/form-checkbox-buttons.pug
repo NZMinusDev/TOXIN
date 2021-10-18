@@ -18,11 +18,13 @@ include ~@common.blocks/primitives/heading/heading.pug
 mixin form-checkbox-buttons({ heading = undefined, headingMarginBottom = 'large', type = undefined, buttons = {}, disabled = false, isFilter = false } = {})
   -
     const typeClass = type && `form-checkbox-buttons_type_${type}`;
-  .form-checkbox-buttons(class=typeClass)&attributes(attributes)
+  .form-checkbox-buttons.js-form-checkbox-buttons(class=typeClass)&attributes(attributes)
     if heading
       .form-checkbox-buttons__heading
         +heading(heading, { marginBottom: headingMarginBottom })
-    fieldset.form-checkbox-buttons__fieldset(disabled=disabled)
+    fieldset.form-checkbox-buttons__fieldset.js-form-checkbox-buttons__fieldset(
+      disabled=disabled
+    )
       ul.form-checkbox-buttons__list
         each btn, key in buttons
           -
