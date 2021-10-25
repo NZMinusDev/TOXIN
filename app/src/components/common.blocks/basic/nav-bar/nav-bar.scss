@@ -17,7 +17,7 @@
 
   @media print, screen and (color) {
     box-shadow: 0 #{10px / 14px * 1em} #{20px / 14px * 1em} 0
-      rgb(var(--main-common-color) / 5%);
+      rgb(var(--main-common-color) / 0.05);
   }
 
   &__logo {
@@ -65,7 +65,7 @@
     }
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 50%);
+      color: rgb(var(--main-common-color) / 0.5);
     }
 
     *:hover,
@@ -75,7 +75,7 @@
     *:focus-within::after,
     *:focus-within::before {
       @media print, screen and (color) {
-        color: rgb(var(--main-common-color) / 75%);
+        color: rgb(var(--main-common-color) / 0.75);
       }
     }
 
@@ -101,7 +101,7 @@
           flex-flow: column;
           align-items: flex-start;
           overflow: initial;
-          opacity: 0%;
+          opacity: 0;
           transition: opacity 0.2s linear, visibility 0.2s linear;
 
           & > .nav-bar__navigation-item {
@@ -118,7 +118,7 @@
           z-index: 1;
           visibility: visible;
           max-height: fit-content;
-          opacity: 100%;
+          opacity: 1;
         }
       }
 
@@ -129,7 +129,7 @@
           visibility: hidden;
           overflow: hidden;
           max-height: 0;
-          background-color: rgb(255 255 255/ 75%);
+          background-color: rgb(255 255 255/ 0.75);
           transition: max-height 0.2s linear, visibility 0.2s linear;
         }
 
@@ -147,7 +147,7 @@
       .nav-bar__navigation-item-dropdown-checkbox:checked
         + .nav-bar__navigation-item-dropdown-label {
         @media print, screen and (color) {
-          color: rgb(var(--main-common-color) / 75%);
+          color: rgb(var(--main-common-color) / 0.75);
         }
       }
     }
@@ -157,7 +157,7 @@
       font-weight: bold;
 
       @media print, screen and (color) {
-        color: rgb(var(--main-common-color) / 75%);
+        color: rgb(var(--main-common-color) / 0.75);
       }
     }
   }
@@ -192,7 +192,7 @@
         }
 
         @media print, screen and (color) {
-          border-left-color: rgb(var(--main-common-color) / 10%);
+          border-left-color: rgb(var(--main-common-color) / 0.1);
         }
       }
     }
@@ -210,7 +210,7 @@
     cursor: pointer;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 50%);
+      color: rgb(var(--main-common-color) / 0.5);
     }
   }
 }

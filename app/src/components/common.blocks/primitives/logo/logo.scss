@@ -65,7 +65,7 @@
       &::before,
       &::after {
         @media print, screen and (color) {
-          border-color: rgb(var(--main-common-color) / 25%);
+          border-color: rgb(var(--main-common-color) / 0.25);
         }
       }
     }
@@ -104,7 +104,7 @@
     font-family: 'Toxin Logo Font';
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 100%);
+      color: rgb(var(--main-common-color) / 1);
     }
   }
 }

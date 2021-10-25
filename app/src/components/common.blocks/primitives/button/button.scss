@@ -28,14 +28,14 @@
   }
 
   &_appearance_filled {
-    background: rgb(169 169 169 / 100%);
+    background: rgb(169 169 169 / 1);
 
     @media print, screen and (color) {
       background: gradients.primary(1);
     }
 
     &:hover {
-      background: rgb(169 169 169 / 50%);
+      background: rgb(169 169 169 / 0.5);
 
       @media print, screen and (color) {
         background: gradients.primary(0.5);
@@ -52,26 +52,26 @@
     border: #{$border-width} solid transparent;
     background: linear-gradient(
           180deg,
-          rgb(169 169 169 / 100%),
-          rgb(169 169 169 / 100%)
+          rgb(169 169 169 / 1),
+          rgb(169 169 169 / 1)
         )
         padding-box,
-      linear-gradient(180deg, rgb(0 0 0 / 100%), rgb(0 0 0 / 100%)) border-box;
+      linear-gradient(180deg, rgb(0 0 0 / 1), rgb(0 0 0 / 1)) border-box;
 
     @media print, screen and (color) {
       background: linear-gradient(180deg, white, white) padding-box,
         gradients.primary(1) border-box;
-      color: rgb(var(--main-primary-color) / 100%);
+      color: rgb(var(--main-primary-color) / 1);
     }
 
     &:hover {
       background: linear-gradient(
             180deg,
-            rgb(169 169 169 / 50%),
-            rgb(169 169 169 / 50%)
+            rgb(169 169 169 / 0.5),
+            rgb(169 169 169 / 0.5)
           )
           padding-box,
-        linear-gradient(180deg, rgb(0 0 0 / 50%), rgb(0 0 0 / 50%)) border-box;
+        linear-gradient(180deg, rgb(0 0 0 / 0.5), rgb(0 0 0 / 0.5)) border-box;
 
       @media print, screen and (color) {
         background: linear-gradient(180deg, white, white) padding-box,
@@ -100,17 +100,17 @@
     width: initial;
     height: initial;
     border: 0;
-    color: rgb(0 0 0 / 100%);
+    color: rgb(0 0 0 / 1);
 
     @media print, screen and (color) {
-      color: rgb(var(--main-primary-color) / 100%);
+      color: rgb(var(--main-primary-color) / 1);
     }
 
     &:hover {
-      color: rgb(0 0 0 / 50%);
+      color: rgb(0 0 0 / 0.5);
 
       @media print, screen and (color) {
-        color: rgb(var(--main-common-color) / 50%);
+        color: rgb(var(--main-common-color) / 0.5);
       }
     }
   }
@@ -122,14 +122,14 @@
     padding-right: $icon-width + $x-padding;
     padding-left: $icon-width + $x-padding;
     width: 100%;
-    background: rgb(169 169 169 / 100%);
+    background: rgb(169 169 169 / 1);
 
     @media print, screen and (color) {
       background: gradients.primary(1);
     }
 
     &:hover {
-      background: rgb(169 169 169 / 50%);
+      background: rgb(169 169 169 / 0.5);
 
       @media print, screen and (color) {
         background: gradients.primary(0.5);

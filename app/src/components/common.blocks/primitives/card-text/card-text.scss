@@ -3,7 +3,7 @@
   font-weight: normal;
 
   @media print, screen and (color) {
-    color: rgb(var(--main-common-color) / 50%);
+    color: rgb(var(--main-common-color) / 0.5);
   }
 
   &_size_small {

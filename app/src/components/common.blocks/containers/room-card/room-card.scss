@@ -10,7 +10,7 @@
 
   @media print, screen and (color) {
     box-shadow: 0 #{10px / 14px * 1em} #{20px / 14px * 1em}
-      rgb(var(--main-common-color) / 5%);
+      rgb(var(--main-common-color) / 0.05);
   }
 
   &__slideshow {
@@ -38,7 +38,7 @@
       border-bottom: 1px solid black;
 
       @media print, screen and (color) {
-        border-bottom-color: rgb(var(--main-common-color) / 10%);
+        border-bottom-color: rgb(var(--main-common-color) / 0.1);
       }
     }
 
@@ -63,7 +63,7 @@
     line-height: 15px / 14px * 1em;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-primary-color) / 100%);
+      color: rgb(var(--main-primary-color) / 1);
     }
   }
 
@@ -72,7 +72,7 @@
     line-height: 20px / 14px * 1em;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 50%);
+      color: rgb(var(--main-common-color) / 0.5);
     }
   }
 
@@ -85,7 +85,7 @@
     margin-right: 4px / 14px * 1em;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 50%);
+      color: rgb(var(--main-common-color) / 0.5);
     }
   }
 }

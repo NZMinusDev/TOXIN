@@ -12,7 +12,7 @@
     grid-area: tag;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 25%);
+      color: rgb(var(--main-common-color) / 0.25);
     }
 
     @include mixins.unify-parent('h1') {
@@ -36,13 +36,13 @@
 
     @media print, screen and (color) {
       @include mixins.unify-parent('h1') {
-        color: rgb(var(--main-common-color) / 100%);
+        color: rgb(var(--main-common-color) / 1);
       }
       @include mixins.unify-parent('h2') {
-        color: rgb(var(--main-common-color) / 100%);
+        color: rgb(var(--main-common-color) / 1);
       }
       @include mixins.unify-parent('h3') {
-        color: rgb(var(--main-common-color) / 100%);
+        color: rgb(var(--main-common-color) / 1);
       }
     }
 

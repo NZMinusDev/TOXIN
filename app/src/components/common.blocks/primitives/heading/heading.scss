@@ -6,7 +6,7 @@
   margin: 0;
 
   @media print, screen and (color) {
-    color: rgb(var(--main-common-color) / 100%);
+    color: rgb(var(--main-common-color) / 1);
   }
 
   &_tag_the-h1 {
@@ -86,7 +86,7 @@
     font-weight: normal;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 50%);
+      color: rgb(var(--main-common-color) / 0.5);
     }
   }
 }

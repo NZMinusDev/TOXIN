@@ -32,7 +32,7 @@
     &:checked {
       & + .form-toggle__button-icon {
         & .form-toggle__button-icon-border {
-          stroke: rgb(var(--main-active-color) / 100%);
+          stroke: rgb(var(--main-active-color) / 1);
         }
 
         & .form-toggle__button-icon-circle {
@@ -50,12 +50,12 @@
 
   &__button-icon-border {
     fill: white;
-    stroke: rgb(var(--main-color) / 25%);
+    stroke: rgb(var(--main-color) / 0.25);
   }
 
   &__button-icon-circle {
     transition: transform 0.3s cubic-bezier(0.2, 0.85, 0.32, 1.2);
-    fill: rgb(var(--main-color) / 25%);
+    fill: rgb(var(--main-color) / 0.25);
   }
 
   &__label {

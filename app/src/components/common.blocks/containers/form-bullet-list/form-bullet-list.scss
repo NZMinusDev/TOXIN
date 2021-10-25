@@ -23,7 +23,7 @@
         border-bottom: 1px solid black;
 
         @media print, screen and (color) {
-          border-bottom: 1px solid rgb(var(--main-common-color) / 10%);
+          border-bottom: 1px solid rgb(var(--main-common-color) / 0.1);
         }
       }
 
@@ -79,11 +79,11 @@
       width: 10px / 14px * 1em;
       height: 10px / 14px * 1em;
       border-radius: 100%;
-      background: rgb(0 0 0 / 100%);
+      background: rgb(0 0 0 / 1);
       content: '';
 
       @media print, screen and (color) {
-        background: rgb(var(--main-common-color) / 25%);
+        background: rgb(var(--main-common-color) / 0.25);
       }
     }
 

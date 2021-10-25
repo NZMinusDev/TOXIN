@@ -19,7 +19,7 @@
     text-transform: uppercase;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-primary-color) / 100%);
+      color: rgb(var(--main-primary-color) / 1);
     }
 
     &_hidden {
@@ -31,7 +31,7 @@
     text-transform: uppercase;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-primary-color) / 100%);
+      color: rgb(var(--main-primary-color) / 1);
     }
   }
 }

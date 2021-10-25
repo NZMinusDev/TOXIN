@@ -6,6 +6,9 @@ module.exports = {
   extends: ['stylelint-config-standard', 'stylelint-prettier/recommended'],
   plugins: ['stylelint-order'],
   rules: {
+    // when webpack builds values are cut
+    'alpha-value-notation': 'number',
+
     // TODO: should be BEM
     'selector-class-pattern': null,
 

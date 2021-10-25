@@ -5,12 +5,12 @@
     .form-dropdown__field {
       &:hover,
       &:focus-within {
-        border-color: rgb(0 0 0 / 100%);
-        color: rgb(0 0 0 / 100%);
+        border-color: rgb(0 0 0 / 1);
+        color: rgb(0 0 0 / 1);
 
         @media print, screen and (color) {
           border: var(--border-hover);
-          color: rgb(var(--main-common-color) / 75%);
+          color: rgb(var(--main-common-color) / 0.75);
         }
       }
     }
@@ -21,13 +21,13 @@
 
     &.form-dropdown_opened {
       .form-dropdown__field {
-        border-color: rgb(0 0 0 / 100%);
+        border-color: rgb(0 0 0 / 1);
         border-radius: var(--border-radius-size) var(--border-radius-size) 0 0;
-        color: rgb(0 0 0 / 100%);
+        color: rgb(0 0 0 / 1);
 
         @media print, screen and (color) {
           border: var(--border-hover);
-          color: rgb(var(--main-common-color) / 75%);
+          color: rgb(var(--main-common-color) / 0.75);
         }
       }
     }
@@ -43,14 +43,14 @@
     min-width: 2em;
     min-height: 2em;
     height: 44px / 14px * 1em;
-    border: 1px solid rgb(0 0 0 / 50%);
+    border: 1px solid rgb(0 0 0 / 0.5);
     border-radius: var(--border-radius-size);
-    color: rgb(0 0 0 / 50%);
+    color: rgb(0 0 0 / 0.5);
     text-indent: 15px / 14px * 1em;
 
     @media print, screen and (color) {
       border: var(--border);
-      color: rgb(var(--main-common-color) / 25%);
+      color: rgb(var(--main-common-color) / 0.25);
     }
   }
 
@@ -71,7 +71,7 @@
     cursor: pointer;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 50%);
+      color: rgb(var(--main-common-color) / 0.5);
     }
   }
 
@@ -135,14 +135,14 @@
 
             &::before {
               @media print, screen and (color) {
-                color: rgb(var(--main-common-color) / 50%);
+                color: rgb(var(--main-common-color) / 0.5);
               }
             }
           }
 
           .counter {
             @media print, screen and (color) {
-              color: rgb(var(--main-common-color) / 100%);
+              color: rgb(var(--main-common-color) / 1);
               font: var(--h3-font);
             }
           }
@@ -153,7 +153,7 @@
           font: var(--h3-font);
 
           @media print, screen and (color) {
-            color: rgb(var(--main-common-color) / 100%);
+            color: rgb(var(--main-common-color) / 1);
           }
         }
       }
@@ -170,7 +170,7 @@
       font: inherit;
 
       @media print, screen and (color) {
-        color: rgb(var(--main-common-color) / 75%);
+        color: rgb(var(--main-common-color) / 0.75);
       }
       @include mixins.ellipsis-text();
 
@@ -252,7 +252,7 @@
     height: 100%;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 75%);
+      color: rgb(var(--main-common-color) / 0.75);
     }
     @include mixins.ellipsis-text();
   }

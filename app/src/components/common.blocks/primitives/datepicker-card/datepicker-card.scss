@@ -15,7 +15,7 @@
     @media print, screen and (color) {
       border: var(--border);
       box-shadow: 0 #{10px / 14px * 1em} #{20px / 14px * 1em}
-        rgb(var(--main-common-color) / 5%);
+        rgb(var(--main-common-color) / 0.05);
     }
   }
 
@@ -31,7 +31,7 @@
 
   .datepicker--nav-title {
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 100%);
+      color: rgb(var(--main-common-color) / 1);
       font: var(--h2-font);
     }
 
@@ -47,7 +47,7 @@
     font-family: 'Material Icons';
 
     @media print, screen and (color) {
-      color: rgb(var(--main-primary-color) / 100%);
+      color: rgb(var(--main-primary-color) / 1);
     }
   }
 
@@ -72,20 +72,20 @@
 
   .datepicker--day-name {
     @media print, screen and (color) {
-      color: rgb(var(--main-primary-color) / 100%);
+      color: rgb(var(--main-primary-color) / 1);
     }
   }
 
   .datepicker--cell {
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 50%);
+      color: rgb(var(--main-common-color) / 0.5);
     }
 
     &.-other-month-,
     &.-other-decade-,
     &.-disabled- {
       @media print, screen and (color) {
-        color: rgb(var(--main-common-color) / 25%);
+        color: rgb(var(--main-common-color) / 0.25);
       }
     }
 
@@ -118,7 +118,7 @@
     &.-current-.-in-range- {
       @media print, screen and (color) {
         background: gradients.primary(0.25);
-        color: rgb(var(--main-common-color) / 50%);
+        color: rgb(var(--main-common-color) / 0.5);
       }
     }
 

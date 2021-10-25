@@ -50,11 +50,11 @@
     &:checked {
       & + .form-radio-buttons__button-icon-item {
         & .form-radio-buttons__button-icon-ring {
-          stroke: rgb(var(--main-active-color) / 100%);
+          stroke: rgb(var(--main-active-color) / 1);
         }
 
         & .form-radio-buttons__button-icon-circle {
-          opacity: 100%;
+          opacity: 1;
         }
       }
 
@@ -71,11 +71,11 @@
 
   &__button-icon-ring {
     fill: white;
-    stroke: rgb(var(--main-color) / 25%);
+    stroke: rgb(var(--main-color) / 0.25);
   }
 
   &__button-icon-circle {
-    opacity: 0%;
+    opacity: 0;
     fill: var(--SVG-gradient-ID);
   }
 
@@ -84,7 +84,7 @@
     user-select: none;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 50%);
+      color: rgb(var(--main-common-color) / 0.5);
     }
   }
 }

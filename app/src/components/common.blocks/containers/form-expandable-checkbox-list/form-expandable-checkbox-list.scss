@@ -7,13 +7,13 @@
     margin-top: 0;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 100%);
+      color: rgb(var(--main-common-color) / 1);
     }
 
     &:hover {
       .form-expandable-checkbox-list__expand-icon {
         @media print, screen and (color) {
-          color: rgb(var(--main-common-color) / 75%);
+          color: rgb(var(--main-common-color) / 0.75);
         }
       }
     }
@@ -44,7 +44,7 @@
 
   &__expand-icon {
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 50%);
+      color: rgb(var(--main-common-color) / 0.5);
     }
   }
 
