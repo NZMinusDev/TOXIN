@@ -2,7 +2,7 @@
   padding: #{39px / 14px * 1em} #{29px / 14px * 1em} #{30px / 14px * 1em} #{29px /
     14px * 1em};
   max-width: 380px / 14px * 1em;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 1px solid rgb(0 0 0 / 12%);
   border-radius: var(--border-radius-size);
   background-color: white;
 
@@ -11,6 +11,6 @@
   }
 
   @media print, screen and (color) {
-    box-shadow: 0 0 #{25px / 14px * 1em} rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 #{25px / 14px * 1em} rgb(0 0 0 / 20%);
   }
 }

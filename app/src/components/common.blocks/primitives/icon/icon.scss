@@ -17,6 +17,7 @@
     text-decoration: none;
     cursor: pointer;
   }
+
   &_tag_the-button {
     padding: 0;
     border-width: 0;
@@ -31,6 +32,7 @@
       functions.get-liquid-size(24, 18)
     );
   }
+
   &_font-family_branded {
     @include vendor-fonts-mixins.font-awesome();
   }
@@ -38,6 +40,7 @@
   &_width_medium {
     width: 24px / 24px * 1em;
   }
+
   &_width_large {
     width: 44px / 24px * 1em;
   }

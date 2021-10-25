@@ -23,7 +23,7 @@
         border-bottom: 1px solid black;
 
         @media print, screen and (color) {
-          border-bottom: 1px solid rgba(var(--color__dark-shade), 0.1);
+          border-bottom: 1px solid rgb(var(--main-common-color) / 10%);
         }
       }
 
@@ -79,11 +79,11 @@
       width: 10px / 14px * 1em;
       height: 10px / 14px * 1em;
       border-radius: 100%;
-      background: rgba(0, 0, 0, 1);
+      background: rgb(0 0 0 / 100%);
       content: '';
 
       @media print, screen and (color) {
-        background: rgba(var(--color__dark-shade), 0.25);
+        background: rgb(var(--main-common-color) / 25%);
       }
     }
 
@@ -99,6 +99,7 @@
           }
         }
       }
+
       &:nth-child(2) {
         &::before {
           @media print, screen and (color) {
@@ -106,6 +107,7 @@
           }
         }
       }
+
       &:nth-child(3) {
         &::before {
           @media print, screen and (color) {
@@ -113,6 +115,7 @@
           }
         }
       }
+
       &:nth-child(4) {
         &::before {
           @media print, screen and (color) {
@@ -120,6 +123,7 @@
           }
         }
       }
+
       &:nth-child(5) {
         &::before {
           @media print, screen and (color) {

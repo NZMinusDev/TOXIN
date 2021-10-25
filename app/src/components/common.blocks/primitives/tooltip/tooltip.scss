@@ -15,7 +15,7 @@
 
   @media print, screen and (color) {
     border: var(--border);
-    color: rgba(var(--color__dark-shade), 0.25);
+    color: rgb(var(--main-common-color) / 25%);
   }
 
   //Tooltip text container
@@ -44,7 +44,7 @@
     position: absolute;
     z-index: 10;
     text-align: center;
-    opacity: 0;
+    opacity: 0%;
     transition: all 0.5s ease; //speed of closing
     pointer-events: none;
   }
@@ -54,7 +54,7 @@
   &:focus::after,
   &:hover::before,
   &:hover::after {
-    opacity: 1;
+    opacity: 100%;
     transition: all 0.75s ease; //speed of opening
   }
 }

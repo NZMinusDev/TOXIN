@@ -11,7 +11,7 @@
   align-items: center;
   justify-content: start;
   grid: 'logo title';
-  grid-column-gap: 12.5px / 11.66666666656944px * 1em;
+  grid-column-gap: 12.5px / 11.6667px * 1em;
 
   &_tag_the-a {
     color: inherit;
@@ -37,6 +37,7 @@
     border: #{$border-width / 14px * 1em} solid black;
     border-radius: 100%;
     background: transparent;
+
     &::before {
       margin-top: 3px / $design-size * 100%;
       margin-left: 2px / $design-size * 100%;
@@ -47,6 +48,7 @@
       border-top-right-radius: 100%;
       content: '';
     }
+
     &::after {
       margin-bottom: 3px / $design-size * 100%;
       margin-left: 2px / $design-size * 100%;
@@ -63,10 +65,11 @@
       &::before,
       &::after {
         @media print, screen and (color) {
-          border-color: rgba(var(--color__dark-shade), 0.25);
+          border-color: rgb(var(--main-common-color) / 25%);
         }
       }
     }
+
     &_color_primary-gradient {
       &,
       &::before,
@@ -101,7 +104,7 @@
     font-family: 'Toxin Logo Font';
 
     @media print, screen and (color) {
-      color: rgba(var(--color__dark-shade), 1);
+      color: rgb(var(--main-common-color) / 100%);
     }
   }
 }

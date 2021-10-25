@@ -42,6 +42,7 @@
           )
           border-box;
     }
+
     &:nth-of-type(2) {
       background: linear-gradient(180deg, white, white) padding-box,
         conic-gradient(
@@ -56,13 +57,14 @@
         background: linear-gradient(180deg, white, white) padding-box,
           conic-gradient(
               transparent 0deg var(--start),
-              rgba(var(--color__secondary), 1) var(--start),
-              rgba(var(--color__secondary_additional), 1) var(--end),
+              rgb(var(--main-secondary-color) / 100%) var(--start),
+              rgb(var(--light-secondary-color) / 100%) var(--end),
               transparent var(--end)
             )
             border-box;
       }
     }
+
     &:nth-of-type(3) {
       background: linear-gradient(180deg, white, white) padding-box,
         conic-gradient(
@@ -77,13 +79,14 @@
         background: linear-gradient(180deg, white, white) padding-box,
           conic-gradient(
               transparent 0deg var(--start),
-              rgba(var(--color__primary), 1) var(--start),
-              rgba(var(--color__primary_additional), 1) var(--end),
+              rgb(var(--main-primary-color) / 100%) var(--start),
+              rgb(var(--dark-primary-color) / 100%) var(--end),
               transparent var(--end)
             )
             border-box;
       }
     }
+
     &:nth-of-type(4) {
       background: linear-gradient(180deg, white, white) padding-box,
         conic-gradient(
@@ -94,6 +97,7 @@
           )
           border-box;
     }
+
     &:nth-of-type(5) {
       background: linear-gradient(180deg, white, white) padding-box,
         conic-gradient(
@@ -110,7 +114,7 @@
     width: 80%;
 
     @media print, screen and (color) {
-      color: rgba(var(--color__primary), 1);
+      color: rgb(var(--main-primary-color) / 100%);
     }
 
     @include mixins.center-abs-position();

@@ -6,9 +6,9 @@
   --additional-active-color: silver;
 
   @media print, screen and (color) {
-    --main-color: var(--color__dark-shade);
-    --main-active-color: var(--color__primary);
-    --additional-active-color: var(--color__primary_additional);
+    --main-color: var(--main-common-color);
+    --main-active-color: var(--main-primary-color);
+    --additional-active-color: var(--dark-primary-color);
   }
 
   &__heading {
@@ -50,10 +50,11 @@
     &:checked {
       & + .form-radio-buttons__button-icon-item {
         & .form-radio-buttons__button-icon-ring {
-          stroke: rgba(var(--main-active-color), 1);
+          stroke: rgb(var(--main-active-color) / 100%);
         }
+
         & .form-radio-buttons__button-icon-circle {
-          opacity: 1;
+          opacity: 100%;
         }
       }
 
@@ -67,12 +68,14 @@
     position: absolute;
     pointer-events: none;
   }
+
   &__button-icon-ring {
     fill: white;
-    stroke: rgba(var(--main-color), 0.25);
+    stroke: rgb(var(--main-color) / 25%);
   }
+
   &__button-icon-circle {
-    opacity: 0;
+    opacity: 0%;
     fill: var(--SVG-gradient-ID);
   }
 
@@ -81,7 +84,7 @@
     user-select: none;
 
     @media print, screen and (color) {
-      color: rgba(var(--color__dark-shade), 0.5);
+      color: rgb(var(--main-common-color) / 50%);
     }
   }
 }

@@ -30,7 +30,7 @@
     margin-left: 5px / 14px * 1em;
 
     @media print, screen and (color) {
-      color: rgba(var(--color__primary), 1);
+      color: rgb(var(--main-primary-color) / 100%);
     }
   }
 
@@ -40,7 +40,7 @@
     place-self: end;
 
     @media print, screen and (color) {
-      color: rgba(var(--color__dark-shade), 0.5);
+      color: rgb(var(--main-common-color) / 50%);
     }
   }
 
@@ -105,13 +105,13 @@
     display: grid;
     align-items: baseline;
     margin: 0;
-    font: var(--font__h2);
+    font: var(--h2-font);
     grid-area: total-payment;
     grid-template-columns: auto 1fr auto;
     grid-column-gap: 5px / 19px * 1em;
 
     @media print, screen and (color) {
-      color: rgba(var(--color__dark-shade), 1);
+      color: rgb(var(--main-common-color) / 100%);
     }
   }
 
@@ -120,7 +120,7 @@
     border-bottom: 1px dashed black;
 
     @media print, screen and (color) {
-      border-bottom-color: rgba($color: var(--color__dark-shade), $alpha: 0.25);
+      border-bottom-color: rgb(var(--main-common-color) / 25%);
     }
   }
 

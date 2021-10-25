@@ -20,32 +20,32 @@
     place-content: center;
 
     @media print, screen and (color) {
-      color: rgba(var(--color__dark-shade), 0.5);
+      color: rgb(var(--main-common-color) / 50%);
     }
 
     &_previous {
       width: 40px / 24px * 1em;
       height: 40px / 24px * 1em;
       border-radius: 100%;
-      background-color: rgba(0, 0, 0, 1);
+      background-color: rgb(0 0 0 / 100%);
       color: white;
       font-size: 24px / 14px * 1em;
       font-family: 'Material Icons';
 
       @media print, screen and (color) {
         background: gradients.secondary(1);
-        color: rgba(255, 255, 255, 1);
+        color: rgb(255 255 255 / 100%);
       }
     }
 
     &_active {
       border-radius: 100%;
-      background-color: rgba(169, 169, 169, 1);
+      background-color: rgb(169 169 169 / 100%);
       color: white;
 
       @media print, screen and (color) {
         background: gradients.primary(1);
-        color: rgba(255, 255, 255, 1);
+        color: rgb(255 255 255 / 100%);
       }
     }
 
@@ -53,14 +53,14 @@
       width: 40px / 24px * 1em;
       height: 40px / 24px * 1em;
       border-radius: 100%;
-      background-color: rgba(0, 0, 0, 1);
+      background-color: rgb(0 0 0 / 100%);
       color: white;
       font-size: 24px / 14px * 1em;
       font-family: 'Material Icons';
 
       @media print, screen and (color) {
         background: gradients.secondary(1);
-        color: rgba(255, 255, 255, 1);
+        color: rgb(255 255 255 / 100%);
       }
     }
   }

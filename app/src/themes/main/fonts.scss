@@ -12,20 +12,20 @@
 );
 
 :root {
-  --font__h1: 700 1rem / #{29.5px / 24px * 1rem} #{functions.safe-font-family(
+  --h1-font: 700 1rem / #{29.5px / 24px * 1rem} #{functions.safe-font-family(
       'Montserrat'
     )};
-  --font__h2: 700 #{19px / 24px * 1rem} / #{23.5px / 24px * 1rem} #{functions.safe-font-family(
+  --h2-font: 700 #{19px / 24px * 1rem} / #{23.5px / 24px * 1rem} #{functions.safe-font-family(
       'Montserrat'
     )};
-  --font__h3: 700 #{12px / 24px * 1rem} / #{15px / 24px * 1rem} #{functions.safe-font-family(
+  --h3-font: 700 #{12px / 24px * 1rem} / #{15px / 24px * 1rem} #{functions.safe-font-family(
       'Montserrat'
     )};
-  --font__body: 400 #{14px / 24px * 1rem} / 1rem #{functions.safe-font-family(
+  --body-font: 400 #{14px / 24px * 1rem} / 1rem #{functions.safe-font-family(
       'Montserrat'
     )};
 }
 
 body {
-  font: var(--font__body);
+  font: var(--body-font);
 }

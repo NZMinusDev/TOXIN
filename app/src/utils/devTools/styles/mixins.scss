@@ -147,6 +147,7 @@
 
       $index: $index + 1;
     }
+
     100% {
       $parsed-path: functions.parse-path(list.nth($images-paths, 1));
       $file-path: list.nth($parsed-path, 1);

@@ -15,7 +15,7 @@
     @media print, screen and (color) {
       border: var(--border);
       box-shadow: 0 #{10px / 14px * 1em} #{20px / 14px * 1em}
-        rgba(var(--color__dark-shade), 0.05);
+        rgb(var(--main-common-color) / 5%);
     }
   }
 
@@ -28,16 +28,18 @@
     min-height: initial;
     border-bottom: 0;
   }
+
   .datepicker--nav-title {
     @media print, screen and (color) {
-      color: rgba(var(--color__dark-shade), 1);
-      font: var(--font__h2);
+      color: rgb(var(--main-common-color) / 100%);
+      font: var(--h2-font);
     }
 
     i {
       color: inherit;
     }
   }
+
   .datepicker--nav-action {
     width: initial;
     border-radius: 0;
@@ -45,7 +47,7 @@
     font-family: 'Material Icons';
 
     @media print, screen and (color) {
-      color: rgba(var(--color__primary), 1);
+      color: rgb(var(--main-primary-color) / 100%);
     }
   }
 
@@ -53,33 +55,37 @@
     margin-top: 30px / 14px * 1em;
 
     @media print, screen and (color) {
-      font: var(--font__h3);
+      font: var(--h3-font);
     }
   }
+
   .datepicker--days-names {
     margin: 0;
   }
+
   .datepicker--cell,
   .datepicker--day-name {
     height: 40px / 12px * 1em;
     text-transform: none;
     font: inherit;
   }
+
   .datepicker--day-name {
     @media print, screen and (color) {
-      color: rgba(var(--color__primary), 1);
+      color: rgb(var(--main-primary-color) / 100%);
     }
   }
+
   .datepicker--cell {
     @media print, screen and (color) {
-      color: rgba(var(--color__dark-shade), 0.5);
+      color: rgb(var(--main-common-color) / 50%);
     }
 
     &.-other-month-,
     &.-other-decade-,
     &.-disabled- {
       @media print, screen and (color) {
-        color: rgba(var(--color__dark-shade), 0.25);
+        color: rgb(var(--main-common-color) / 25%);
       }
     }
 
@@ -93,11 +99,13 @@
         color: white;
       }
     }
+
     &.-current- {
       @media print, screen and (color) {
         background: gradients.secondary(1);
       }
     }
+
     &.-selected-,
     &.-selected-.-focus-,
     &.-selected-.-current- {
@@ -105,16 +113,19 @@
         background: gradients.primary(1);
       }
     }
+
     &.-in-range-,
     &.-current-.-in-range- {
       @media print, screen and (color) {
         background: gradients.primary(0.25);
-        color: rgba(var(--color__dark-shade), 0.5);
+        color: rgb(var(--main-common-color) / 50%);
       }
     }
+
     &.-current-.-in-range- {
       border-radius: 0;
     }
+
     &.-range-from-,
     &.-range-to- {
       border: 0;
@@ -124,6 +135,7 @@
         background: gradients.primary(1);
       }
     }
+
     &.-range-from-::before,
     &.-range-to-::before {
       position: absolute;
@@ -137,12 +149,15 @@
         background: gradients.primary(0.25);
       }
     }
+
     &.-range-from-::before {
       right: 0;
     }
+
     &.-range-to-::before {
       left: 0;
     }
+
     &.-range-from-.-range-to-::before {
       @media print, screen and (color) {
         background: transparent;

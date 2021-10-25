@@ -13,7 +13,7 @@
     grid-area: counter;
 
     @media print, screen and (color) {
-      color: rgba(var(--color__dark-shade), 0.5);
+      color: rgb(var(--main-common-color) / 50%);
     }
   }
 
@@ -39,7 +39,7 @@
 
     @media print, screen and (color) {
       box-shadow: 0 #{10px / 14px * 1em} #{20px / 14px * 1em} 0
-        rgba(var(--color__dark-shade), 0.1);
+        rgb(var(--main-common-color) / 10%);
     }
   }
 

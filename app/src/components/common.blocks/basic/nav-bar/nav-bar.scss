@@ -18,7 +18,7 @@
 
   @media print, screen and (color) {
     box-shadow: 0 #{10px / 14px * 1em} #{20px / 14px * 1em} 0
-      rgba(var(--color__dark-shade), 0.05);
+      rgb(var(--main-common-color) / 5%);
   }
 
   &__logo {
@@ -68,7 +68,7 @@
     }
 
     @media print, screen and (color) {
-      color: rgba(var(--color__dark-shade), 0.5);
+      color: rgb(var(--main-common-color) / 50%);
     }
 
     *:hover,
@@ -78,7 +78,7 @@
     *:focus-within::after,
     *:focus-within::before {
       @media print, screen and (color) {
-        color: rgba(var(--color__dark-shade), 0.75);
+        color: rgb(var(--main-common-color) / 75%);
       }
     }
 
@@ -91,7 +91,7 @@
             visibility: hidden;
             overflow: hidden;
             max-height: 0;
-            background-color: rgba($color: #fff, $alpha: 0.75);
+            background-color: rgb(255 255 255/ 75%);
             transition: max-height 0.2s linear, visibility 0.2s linear;
           }
 
@@ -130,7 +130,7 @@
           flex-flow: column;
           align-items: flex-start;
           overflow: initial;
-          opacity: 0;
+          opacity: 0%;
           transition: opacity 0.2s linear, visibility 0.2s linear;
 
           & > .nav-bar__navigation-item {
@@ -147,14 +147,14 @@
           z-index: 1;
           visibility: visible;
           max-height: fit-content;
-          opacity: 1;
+          opacity: 100%;
         }
       }
 
       .nav-bar__navigation-item-dropdown-checkbox:checked
         + .nav-bar__navigation-item-dropdown-label {
         @media print, screen and (color) {
-          color: rgba(var(--color__dark-shade), 0.75);
+          color: rgb(var(--main-common-color) / 75%);
         }
       }
     }
@@ -164,7 +164,7 @@
       font-weight: bold;
 
       @media print, screen and (color) {
-        color: rgba(var(--color__dark-shade), 0.75);
+        color: rgb(var(--main-common-color) / 75%);
       }
     }
   }
@@ -199,10 +199,11 @@
         }
 
         @media print, screen and (color) {
-          border-left-color: rgba(var(--color__dark-shade), 0.1);
+          border-left-color: rgb(var(--main-common-color) / 10%);
         }
       }
     }
+
     &_status_unconfirmed {
       display: grid;
       align-items: center;
@@ -216,7 +217,7 @@
     cursor: pointer;
 
     @media print, screen and (color) {
-      color: rgba(var(--color__dark-shade), 0.5);
+      color: rgb(var(--main-common-color) / 50%);
     }
   }
 }

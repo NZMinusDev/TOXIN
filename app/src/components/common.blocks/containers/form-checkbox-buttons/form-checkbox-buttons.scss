@@ -12,13 +12,13 @@
       font-weight: 700;
 
       @media print, screen and (color) {
-        color: rgba(var(--color__dark-shade), 0.75);
+        color: rgb(var(--main-common-color) / 75%);
       }
     }
 
     .form-checkbox-buttons__description {
       @media print, screen and (color) {
-        color: rgba(var(--color__dark-shade), 0.5);
+        color: rgb(var(--main-common-color) / 50%);
       }
     }
   }
@@ -68,11 +68,11 @@
 
     &:checked {
       @media print, screen and (color) {
-        border-color: rgba(var(--color__primary), 1);
+        border-color: rgb(var(--main-primary-color) / 100%);
       }
 
       &::before {
-        opacity: 1;
+        opacity: 100%;
       }
     }
 
@@ -84,7 +84,7 @@
       border-right: $border-width solid black;
       border-bottom: $border-width solid black;
       content: '';
-      opacity: 0;
+      opacity: 0%;
       transform: rotate(45deg);
 
       @media print, screen and (color) {
@@ -98,15 +98,17 @@
     grid-area: label-item;
 
     @media print, screen and (color) {
-      color: rgba(var(--color__dark-shade), 0.5);
+      color: rgb(var(--main-common-color) / 50%);
     }
 
     &_width_small {
       max-width: 192px / 14px * 1em;
     }
+
     &_width_medium {
       max-width: 203px / 14px * 1em;
     }
+
     &_width_large {
       max-width: 230px / 14px * 1em;
     }

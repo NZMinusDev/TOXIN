@@ -14,12 +14,13 @@
   color: white;
   text-transform: uppercase;
   white-space: nowrap;
-  font: var(--font__h3);
+  font: var(--h3-font);
 
   &_tag_the-a {
     text-decoration: none;
     cursor: pointer;
   }
+
   &_tag_the-button {
     border-width: 0;
     background-color: transparent;
@@ -27,20 +28,21 @@
   }
 
   &_appearance_filled {
-    background: rgba(169, 169, 169, 1);
+    background: rgb(169 169 169 / 100%);
 
     @media print, screen and (color) {
       background: gradients.primary(1);
     }
 
     &:hover {
-      background: rgba(169, 169, 169, 0.5);
+      background: rgb(169 169 169 / 50%);
 
       @media print, screen and (color) {
         background: gradients.primary(0.5);
       }
     }
   }
+
   &_appearance_bordered {
     $border-width: 2px;
 
@@ -50,27 +52,26 @@
     border: #{$border-width} solid transparent;
     background: linear-gradient(
           180deg,
-          rgba(169, 169, 169, 1),
-          rgba(169, 169, 169, 1)
+          rgb(169 169 169 / 100%),
+          rgb(169 169 169 / 100%)
         )
         padding-box,
-      linear-gradient(180deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1)) border-box;
+      linear-gradient(180deg, rgb(0 0 0 / 100%), rgb(0 0 0 / 100%)) border-box;
 
     @media print, screen and (color) {
       background: linear-gradient(180deg, white, white) padding-box,
         gradients.primary(1) border-box;
-      color: rgba(var(--color__primary), 1);
+      color: rgb(var(--main-primary-color) / 100%);
     }
 
     &:hover {
       background: linear-gradient(
             180deg,
-            rgba(169, 169, 169, 0.5),
-            rgba(169, 169, 169, 0.5)
+            rgb(169 169 169 / 50%),
+            rgb(169 169 169 / 50%)
           )
           padding-box,
-        linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))
-          border-box;
+        linear-gradient(180deg, rgb(0 0 0 / 50%), rgb(0 0 0 / 50%)) border-box;
 
       @media print, screen and (color) {
         background: linear-gradient(180deg, white, white) padding-box,
@@ -82,6 +83,7 @@
       padding-right: calc(#{19px / 12px * 1em} - #{$border-width});
       padding-left: calc(#{18px / 12px * 1em} - #{$border-width});
     }
+
     &.button_horizontal-padding_large {
       padding-right: calc(#{26px / 12px * 1em} - #{$border-width});
       padding-left: calc(#{26px / 12px * 1em} - #{$border-width});
@@ -92,25 +94,27 @@
       padding-bottom: calc(#{10px / 12px * 1em} - #{$border-width});
     }
   }
+
   &_appearance_like-a-icon-link {
     padding: initial;
     width: initial;
     height: initial;
     border: 0;
-    color: rgba(0, 0, 0, 1);
+    color: rgb(0 0 0 / 100%);
 
     @media print, screen and (color) {
-      color: rgba(var(--color__primary), 1);
+      color: rgb(var(--main-primary-color) / 100%);
     }
 
     &:hover {
-      color: rgba(0, 0, 0, 0.5);
+      color: rgb(0 0 0 / 50%);
 
       @media print, screen and (color) {
-        color: rgba(var(--color__dark-shade), 0.5);
+        color: rgb(var(--main-common-color) / 50%);
       }
     }
   }
+
   &_appearance_like-a-link {
     $icon-width: 44px / 12px * 1em;
 
@@ -118,14 +122,14 @@
     padding-right: $icon-width + $x-padding;
     padding-left: $icon-width + $x-padding;
     width: 100%;
-    background: rgba(169, 169, 169, 1);
+    background: rgb(169 169 169 / 100%);
 
     @media print, screen and (color) {
       background: gradients.primary(1);
     }
 
     &:hover {
-      background: rgba(169, 169, 169, 0.5);
+      background: rgb(169 169 169 / 50%);
 
       @media print, screen and (color) {
         background: gradients.primary(0.5);
@@ -138,6 +142,7 @@
     padding-right: 19px / 12px * 1em;
     padding-left: 18px / 12px * 1em;
   }
+
   &_horizontal-padding_large {
     padding-right: 26px / 12px * 1em;
     padding-left: 26px / 12px * 1em;

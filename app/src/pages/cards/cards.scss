@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(229, 229, 229);
+  background-color: rgb(229 229 229);
 }
 
 .cards-layout {
@@ -27,8 +27,7 @@ body {
       'registration entering .' $gap
       'registration entering common-room-card';
     justify-items: initial;
-    grid-row-gap: initial;
-    grid-column-gap: $gap;
+    gap: 0 $gap;
   }
 
   &__pick-room {

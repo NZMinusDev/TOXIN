@@ -10,7 +10,7 @@
 
   @media print, screen and (color) {
     box-shadow: 0 #{10px / 14px * 1em} #{20px / 14px * 1em}
-      rgba(var(--color__dark-shade), 0.05);
+      rgb(var(--main-common-color) / 5%);
   }
 
   &__slideshow {
@@ -38,7 +38,7 @@
       border-bottom: 1px solid black;
 
       @media print, screen and (color) {
-        border-bottom-color: rgba(var(--color__dark-shade), 0.1);
+        border-bottom-color: rgb(var(--main-common-color) / 10%);
       }
     }
 
@@ -63,7 +63,7 @@
     line-height: 15px / 14px * 1em;
 
     @media print, screen and (color) {
-      color: rgba(var(--color__primary), 1);
+      color: rgb(var(--main-primary-color) / 100%);
     }
   }
 
@@ -72,7 +72,7 @@
     line-height: 20px / 14px * 1em;
 
     @media print, screen and (color) {
-      color: rgba(var(--color__dark-shade), 0.5);
+      color: rgb(var(--main-common-color) / 50%);
     }
   }
 
@@ -85,7 +85,7 @@
     margin-right: 4px / 14px * 1em;
 
     @media print, screen and (color) {
-      color: rgba(var(--color__dark-shade), 0.5);
+      color: rgb(var(--main-common-color) / 50%);
     }
   }
 }

@@ -9,13 +9,13 @@
 
   @media print, screen and (color) {
     $theme-colors: (
-      'color__dark-shade_100': rgba(var(--color__dark-shade), 1),
-      'color__dark-shade_75': rgba(var(--color__dark-shade), 0.75),
-      'color__dark-shade_50': rgba(var(--color__dark-shade), 0.5),
-      'color__dark-shade_25': rgba(var(--color__dark-shade), 0.25),
-      'color__dark-shade_5': rgba(var(--color__dark-shade), 0.05),
-      'color__primary_100': rgba(var(--color__primary), 1),
-      'color__secondary_100': rgba(var(--color__secondary), 1),
+      'color__dark-shade_100': rgb(var(--main-common-color) / 100%),
+      'color__dark-shade_75': rgb(var(--main-common-color) / 75%),
+      'color__dark-shade_50': rgb(var(--main-common-color) / 50%),
+      'color__dark-shade_25': rgb(var(--main-common-color) / 25%),
+      'color__dark-shade_5': rgb(var(--main-common-color) / 5%),
+      'color__primary_100': rgb(var(--main-primary-color) / 100%),
+      'color__secondary_100': rgb(var(--main-secondary-color) / 100%),
     );
 
     $counter: 1;
@@ -42,26 +42,26 @@
 
     @media print, screen and (color) {
       @include mixins.unify-parent('h1') {
-        color: rgba(var(--color__dark-shade), 1);
+        color: rgb(var(--main-common-color) / 100%);
       }
       @include mixins.unify-parent('h2') {
-        color: rgba(var(--color__dark-shade), 1);
+        color: rgb(var(--main-common-color) / 100%);
       }
       @include mixins.unify-parent('h3') {
-        color: rgba(var(--color__dark-shade), 1);
+        color: rgb(var(--main-common-color) / 100%);
       }
     }
 
     @include mixins.unify-parent('h1') {
-      font: var(--font__h1);
+      font: var(--h1-font);
     }
     @include mixins.unify-parent('h2') {
-      font: var(--font__h2);
+      font: var(--h2-font);
       line-height: 27.5px / 19px * 1em;
     }
     @include mixins.unify-parent('h3') {
       text-transform: uppercase;
-      font: var(--font__h3);
+      font: var(--h3-font);
     }
   }
 
