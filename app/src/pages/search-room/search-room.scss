@@ -1,17 +1,14 @@
 .search-room-layout {
   display: grid;
-
-  @media (min-width: 0) {
-    align-items: flex-start;
-    padding: #{30px / 14px * 1em} #{140px / 1440px * 100%} #{71.5px / 14px * 1em}
-      #{140px / 1440px * 100%};
-    grid:
-      'filter'
-      'title'
-      'rooms'
-      'pagination';
-    grid-column-gap: 60px / (1440px - 140px * 2) * 100%;
-  }
+  align-items: flex-start;
+  padding: #{30px / 14px * 1em} #{140px / 1440px * 100%} #{71.5px / 14px * 1em} #{140px /
+    1440px * 100%};
+  grid:
+    'filter'
+    'title'
+    'rooms'
+    'pagination';
+  grid-column-gap: 60px / (1440px - 140px * 2) * 100%;
 
   @media (min-width: 992px) {
     $filter-width: 266px / (1440px - 140px * 2) * 100%;
@@ -80,10 +77,7 @@
     grid: auto-flow auto / 1fr 1fr 1fr;
     grid-gap: #{20px / 14px * 1em} #{12px / 14px * 1em};
     justify-items: center;
-
-    @media (min-width: 0) {
-      grid-template-columns: 1fr;
-    }
+    grid-template-columns: 1fr;
 
     @media (min-width: 600px) {
       grid-template-columns: 1fr 1fr;

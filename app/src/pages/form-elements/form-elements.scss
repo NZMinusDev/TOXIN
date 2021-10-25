@@ -1,13 +1,11 @@
 @use '@themes/main/gradients.scss';
 
 .form-elements-layout {
-  @media print, screen and (min-width: 0) {
-    display: grid;
-    justify-content: center;
-    margin: auto;
-    width: 75%;
-    grid-row-gap: 42px / 14px * 1em;
-  }
+  display: grid;
+  justify-content: center;
+  margin: auto;
+  width: 75%;
+  grid-row-gap: 42px / 14px * 1em;
 
   @media print, screen and (min-width: 1200px) {
     margin: initial;
@@ -162,9 +160,7 @@
     }
 
     &__button-fill-heading {
-      @media print, screen and (min-width: 0) {
-        grid-area: heading;
-      }
+      grid-area: heading;
     }
 
     &__button-empty {

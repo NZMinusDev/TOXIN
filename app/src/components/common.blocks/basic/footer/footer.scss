@@ -1,25 +1,20 @@
 .footer {
+  display: grid;
+  width: 100%;
   background-color: white;
-
-  @media print, screen and (min-width: 0) {
-    display: grid;
-    width: 100%;
-    grid: 'widgets' 'copyright-bar';
-  }
+  grid: 'widgets' 'copyright-bar';
 
   &_type_creative {
-    @media print, screen and (min-width: 0) {
-      padding: #{122px / 1440px * 100%} #{104px / 1440px * 100%} #{116px /
-        1440px * 100%} #{104px / 1440px * 100%};
-      width: 768px / 1440px * 100%;
-      grid:
-        'logo'
-        '.' #{20px / 14px * 1em}
-        'copyright'
-        '.' #{24px / 14px * 1em}
-        'icons';
-      justify-items: center;
-    }
+    padding: #{122px / 1440px * 100%} #{104px / 1440px * 100%} #{116px / 1440px *
+      100%} #{104px / 1440px * 100%};
+    width: 768px / 1440px * 100%;
+    grid:
+      'logo'
+      '.' #{20px / 14px * 1em}
+      'copyright'
+      '.' #{24px / 14px * 1em}
+      'icons';
+    justify-items: center;
 
     @media print, screen and (color) {
       box-shadow: 0 #{10px / 14px * 1em} #{20px / 14px * 1em} 0
@@ -32,18 +27,14 @@
   }
 
   &__widgets {
+    display: grid;
+    padding: #{100px / 14px * 1em} #{140px / 1440px * 100%} #{100px / 14px * 1em};
     border: solid black;
     border-width: 1px 0;
-
-    @media print, screen and (min-width: 0) {
-      display: grid;
-      padding: #{100px / 14px * 1em} #{140px / 1440px * 100%} #{100px / 14px *
-        1em};
-      grid-area: widgets;
-      grid: 'logo' 'description' 'menu-0' 'menu-1' 'menu-2' 'subscription';
-      grid-row-gap: 17px / 14px * 1em;
-      justify-items: center;
-    }
+    grid-area: widgets;
+    grid: 'logo' 'description' 'menu-0' 'menu-1' 'menu-2' 'subscription';
+    grid-row-gap: 17px / 14px * 1em;
+    justify-items: center;
 
     @media print, screen and (min-width: 992px) {
       $padding: 140px;
@@ -65,21 +56,15 @@
   }
 
   &__logo {
+    align-self: self-start;
     width: fit-content;
-
-    @media print, screen and (min-width: 0) {
-      align-self: self-start;
-      font-size: 11.67px / 14px * 1em;
-      grid-area: logo;
-    }
+    font-size: 11.67px / 14px * 1em;
+    grid-area: logo;
   }
 
   &__description {
     margin: 0;
-
-    @media print, screen and (min-width: 0) {
-      grid-area: description;
-    }
+    grid-area: description;
 
     @media print, screen and (color) {
       color: rgb(var(--main-common-color) / 75%);
@@ -87,56 +72,43 @@
   }
 
   &__menu-0 {
-    @media print, screen and (min-width: 0) {
-      grid-area: menu-0;
-    }
+    grid-area: menu-0;
   }
 
   &__list-checkbox {
-    @media print, screen and (min-width: 0) {
+    display: none;
+
+    & ~ .footer__list {
       display: none;
 
-      & ~ .footer__list {
-        display: none;
-      }
-
-      &:checked {
-        & + .footer__list-label {
-          &::after {
-            content: '\e5ce';
-          }
-        }
-
-        & ~ .footer__list {
-          display: grid;
-        }
+      @media print, screen and (min-width: 992px) {
+        display: grid;
       }
     }
 
-    @media print, screen and (min-width: 992px) {
-      & ~ .footer__list {
-        display: grid;
-      }
+    &:checked {
+      & + .footer__list-label {
+        &::after {
+          content: '\e5ce';
 
-      &:checked {
-        & + .footer__list-label {
-          &::after {
+          @media print, screen and (min-width: 992px) {
             content: '';
           }
         }
+      }
+
+      & ~ .footer__list {
+        display: grid;
       }
     }
   }
 
   &__list-label-heading {
+    display: flex;
+    justify-content: center;
     margin: 0;
     text-transform: uppercase;
     font: var(--h3-font);
-
-    @media print, screen and (min-width: 0) {
-      display: flex;
-      justify-content: center;
-    }
 
     @media print, screen and (min-width: 992px) {
       justify-content: flex-start;
@@ -149,40 +121,35 @@
   }
 
   &__list-label {
-    @media print, screen and (min-width: 0) {
-      display: inline-flex;
-      cursor: pointer;
-      user-select: none;
-
-      &::after {
-        color: inherit;
-        content: '\e5cf';
-        font-size: 2em;
-        font-family: 'Material Icons';
-      }
-    }
+    display: inline-flex;
+    cursor: pointer;
+    user-select: none;
 
     @media print, screen and (min-width: 992px) {
       cursor: auto;
       user-select: auto;
+    }
 
-      &::after {
+    &::after {
+      color: inherit;
+      content: '\e5cf';
+      font-size: 2em;
+      font-family: 'Material Icons';
+
+      @media print, screen and (min-width: 992px) {
         display: none;
       }
     }
   }
 
   &__list {
+    display: grid;
     margin: 0;
+    margin-top: 21px / 14px * 1em;
     padding: 0;
     list-style: none;
-
-    @media print, screen and (min-width: 0) {
-      display: grid;
-      margin-top: 21px / 14px * 1em;
-      text-align: center;
-      grid-row-gap: 20px / 14px * 1em;
-    }
+    text-align: center;
+    grid-row-gap: 20px / 14px * 1em;
 
     @media print, screen and (min-width: 992px) {
       text-align: left;
@@ -194,10 +161,8 @@
   }
 
   &__list-item {
-    @media print, screen and (min-width: 0) {
-      width: 100%;
-      line-height: 18px / 14px * 1em;
-    }
+    width: 100%;
+    line-height: 18px / 14px * 1em;
   }
 
   &__link {
@@ -207,32 +172,24 @@
   }
 
   &__menu-1 {
-    @media print, screen and (min-width: 0) {
-      grid-area: menu-1;
-    }
+    grid-area: menu-1;
   }
 
   &__menu-2 {
-    @media print, screen and (min-width: 0) {
-      grid-area: menu-2;
-    }
+    grid-area: menu-2;
   }
 
   &__subscription {
-    @media print, screen and (min-width: 0) {
-      grid-area: subscription;
-    }
+    grid-area: subscription;
   }
 
   &__copyright-bar {
-    @media print, screen and (min-width: 0) {
-      display: grid;
-      justify-content: center;
-      padding: #{23px / 14px * 1em} #{140px / 1440px * 100%} #{19px / 14px * 1em}
-        #{140px / 1440px * 100%};
-      grid-area: copyright-bar;
-      grid: 'copyright' 'icons';
-    }
+    display: grid;
+    justify-content: center;
+    padding: #{23px / 14px * 1em} #{140px / 1440px * 100%} #{19px / 14px * 1em} #{140px /
+      1440px * 100%};
+    grid-area: copyright-bar;
+    grid: 'copyright' 'icons';
 
     @media print, screen and (min-width: 992px) {
       justify-content: space-between;
@@ -247,30 +204,22 @@
 
   &__copyright {
     margin: 0;
-
-    @media print, screen and (min-width: 0) {
-      grid-area: copyright;
-    }
+    grid-area: copyright;
   }
 
   &__icons {
-    @media print, screen and (min-width: 0) {
-      width: 100%;
-      grid-area: icons;
-    }
+    width: 100%;
+    grid-area: icons;
   }
 
   &__icons-list {
+    display: grid;
+    justify-content: center;
     margin: 0;
     padding: 0;
     list-style: none;
-
-    @media print, screen and (min-width: 0) {
-      display: grid;
-      justify-content: center;
-      grid-auto-flow: column;
-      grid-column-gap: 20px / 14px * 1em;
-    }
+    grid-auto-flow: column;
+    grid-column-gap: 20px / 14px * 1em;
   }
 
   &__description-aligner {

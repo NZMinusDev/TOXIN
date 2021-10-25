@@ -9,12 +9,6 @@
    *   $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
    * Placeholders with the same ids are connected.
    */
-  "small mobile media query snippet for css and scss files": {
-    "prefix": "@sm",
-    "scope": "css,scss,sass",
-    "body": ["@media print, screen and (min-width: 0px) {", "\t$0", "}"],
-    "description": "small mobile media query snippet for css and scss files"
-  },
   "large mobile media query snippet for css and scss files": {
     "prefix": "@lm",
     "scope": "css,scss,sass",

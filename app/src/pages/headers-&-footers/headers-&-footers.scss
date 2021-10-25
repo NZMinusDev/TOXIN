@@ -3,11 +3,9 @@ body {
 }
 
 .headers-footers-layout {
-  @media print, screen and (min-width: 0) {
-    display: grid;
-    padding-top: 62px / 1440px * 100%;
-    padding-bottom: 140px / 1440px * 100%;
-    justify-items: center;
-    grid-row-gap: 39px / 14px * 1em;
-  }
+  display: grid;
+  padding-top: 62px / 1440px * 100%;
+  padding-bottom: 140px / 1440px * 100%;
+  justify-items: center;
+  grid-row-gap: 39px / 14px * 1em;
 }

@@ -1,12 +1,10 @@
 .colors-and-type-layout {
-  @media print, screen and (min-width: 0) {
-    display: grid;
-    padding: #{67px / 1440px * 100%} #{158px / 1440px * 100%} #{145px / 1440px *
-      100%} #{150px / 1440px * 100%};
-    grid: 'colors' 'type';
-    grid-row-gap: 1em;
-    place-items: center;
-  }
+  display: grid;
+  padding: #{67px / 1440px * 100%} #{158px / 1440px * 100%} #{145px / 1440px *
+    100%} #{150px / 1440px * 100%};
+  grid: 'colors' 'type';
+  grid-row-gap: 1em;
+  place-items: center;
 
   @media print, screen and (min-width: 992px) {
     grid: 'colors type' / auto #{439px / 14px * 1em};
@@ -15,20 +13,16 @@
   }
 
   &__colors {
-    @media print, screen and (min-width: 0) {
-      display: grid;
-      grid-area: colors;
-      place-content: start;
-      grid-row-gap: 20px / 14px * 1em;
-    }
+    display: grid;
+    grid-area: colors;
+    place-content: start;
+    grid-row-gap: 20px / 14px * 1em;
   }
 
   &__type {
-    @media print, screen and (min-width: 0) {
-      display: grid;
-      grid-area: type;
-      place-content: start;
-    }
+    display: grid;
+    grid-area: type;
+    place-content: start;
   }
 
   &__type-item {

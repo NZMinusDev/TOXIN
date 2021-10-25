@@ -1,14 +1,11 @@
 .nav-bar {
+  display: grid;
+  padding: #{15px / 14px * 1em} #{140px / 1440px * 100%};
+  width: 100%;
   background-color: white;
-
-  @media print, screen and (min-width: 0) {
-    display: grid;
-    padding: #{15px / 14px * 1em} #{140px / 1440px * 100%};
-    width: 100%;
-    grid: 'logo' 'navigation' 'login' auto / auto;
-    grid-row-gap: 20px / 14px * 1em;
-    justify-items: center;
-  }
+  grid: 'logo' 'navigation' 'login' auto / auto;
+  grid-row-gap: 20px / 14px * 1em;
+  justify-items: center;
 
   @media print, screen and (min-width: 992px) {
     grid: 'logo navigation login' 1fr / 1fr auto auto;
@@ -53,10 +50,8 @@
   }
 
   &__navigation-item {
-    @media print, screen and (min-width: 0) {
-      text-align: center;
-      font-weight: normal;
-    }
+    text-align: center;
+    font-weight: normal;
 
     @media print, screen and (min-width: 992px) {
       margin-right: 21px / 14px * 1em;
@@ -83,32 +78,6 @@
     }
 
     &_expandable {
-      @media print, screen and (min-width: 0) {
-        & > .nav-bar__navigation-item-dropdown-checkbox {
-          display: none;
-
-          & ~ .nav-bar__navigation-list {
-            visibility: hidden;
-            overflow: hidden;
-            max-height: 0;
-            background-color: rgb(255 255 255/ 75%);
-            transition: max-height 0.2s linear, visibility 0.2s linear;
-          }
-
-          &:checked {
-            &
-              + .nav-bar__navigation-item-dropdown-label
-              > .nav-bar__expand-icon {
-              transform: rotate(180deg);
-            }
-
-            & ~ .nav-bar__navigation-list {
-              visibility: visible;
-            }
-          }
-        }
-      }
-
       @media print, screen and (min-width: 992px) {
         position: relative;
 
@@ -148,6 +117,28 @@
           visibility: visible;
           max-height: fit-content;
           opacity: 100%;
+        }
+      }
+
+      & > .nav-bar__navigation-item-dropdown-checkbox {
+        display: none;
+
+        & ~ .nav-bar__navigation-list {
+          visibility: hidden;
+          overflow: hidden;
+          max-height: 0;
+          background-color: rgb(255 255 255/ 75%);
+          transition: max-height 0.2s linear, visibility 0.2s linear;
+        }
+
+        &:checked {
+          & + .nav-bar__navigation-item-dropdown-label > .nav-bar__expand-icon {
+            transform: rotate(180deg);
+          }
+
+          & ~ .nav-bar__navigation-list {
+            visibility: visible;
+          }
         }
       }
 

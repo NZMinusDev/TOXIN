@@ -5,14 +5,12 @@ body {
 .cards-layout {
   $gap: 40px / 14px * 1em;
 
-  @media print, screen and (min-width: 0) {
-    display: grid;
-    justify-content: center;
-    padding-right: 140px / 1440px * 100%;
-    padding-left: 140px / 1440px * 100%;
-    justify-items: center;
-    grid-row-gap: $gap;
-  }
+  display: grid;
+  justify-content: center;
+  padding-right: 140px / 1440px * 100%;
+  padding-left: 140px / 1440px * 100%;
+  justify-items: center;
+  grid-row-gap: $gap;
 
   @media print, screen and (min-width: 1440px) {
     justify-content: initial;
