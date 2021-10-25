@@ -1,3 +1,5 @@
+@use '@shared/styles/media.scss';
+
 .room-details-layout {
   display: grid;
   grid:
@@ -14,7 +16,7 @@
       'small-img-1' #{$cell-height * 2}
       'small-img-2' #{$cell-height * 2};
 
-    @media (min-width: 992px) {
+    @media print, screen and (min-width: media.$md) {
       $big-img-width: 981px / 1440px * 100%;
 
       grid:
@@ -43,7 +45,7 @@
       'reservation';
     grid-gap: 70px / 14px * 1em;
 
-    @media print, screen and (min-width: 1440px) {
+    @media print, screen and (min-width: media.$xl) {
       grid: 'info reservation';
     }
   }
@@ -59,7 +61,7 @@
       'alert';
     grid-row-gap: 1em;
 
-    @media (min-width: 768px) {
+    @media print, screen and (min-width: media.$sm) {
       grid:
         'data . impression'
         '. . .' #{35px / 14px * 1em}
@@ -74,7 +76,7 @@
     grid-area: data;
     justify-self: center;
 
-    @media (min-width: 768px) {
+    @media print, screen and (min-width: media.$sm) {
       justify-self: left;
     }
   }
@@ -83,7 +85,7 @@
     grid-area: impression;
     justify-self: center;
 
-    @media (min-width: 1440px) {
+    @media print, screen and (min-width: media.$xl) {
       justify-self: left;
     }
   }

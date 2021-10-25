@@ -59,7 +59,7 @@
     "@themes": "${folder}/app/src/themes/",
     "@assets": "${folder}/app/src/assets/",
     "@pages": "${folder}/app/src/pages/",
-    "@utils": "${folder}/app/src/utils/"
+    "@shared": "${folder}/app/src/shared/"
   },
   "path-autocomplete.triggerOutsideStrings": true,
   "path-autocomplete.enableFolderTrailingSlash": true,

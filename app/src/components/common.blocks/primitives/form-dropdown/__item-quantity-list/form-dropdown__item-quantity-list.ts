@@ -2,10 +2,10 @@ import { pluralize } from 'numeralize-ru';
 
 import BEMComponent, {
   HTMLElementWithComponent,
-} from '@utils/devTools/scripts/view/BEM/BEMComponent';
-import { has } from '@utils/devTools/scripts/DOMHelper';
-import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
-import { addURLValues } from '@utils/devTools/scripts/URLHelper';
+} from '@shared/utils/scripts/view/BEM/BEMComponent';
+import { has } from '@shared/utils/scripts/DOMHelper';
+import { Unpacked } from '@shared/utils/scripts/TypingHelper';
+import { addURLValues } from '@shared/utils/scripts/URLHelper';
 import '@library.blocks/primitives/form-dropdown/__item-quantity-list/form-dropdown__item-quantity-list';
 
 import formDropdownElements from '../form-dropdown-elements';

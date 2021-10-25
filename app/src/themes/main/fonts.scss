@@ -1,5 +1,5 @@
-@use '@utils/devTools/styles/mixins.scss';
-@use '@utils/devTools/styles/functions.scss';
+@use '@shared/utils/styles/mixins.scss';
+@use '@shared/utils/styles/functions.scss';
 
 @include mixins.import-font(
   'Montserrat',

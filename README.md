@@ -96,14 +96,14 @@ Script-names:
 │       │
 │       ├───pages // templates (webpack entry points)
 │       │
-│       ├───themes // our themes(borders, colors, fonts, etc)
+│       ├───shared // shared stuff
+│       │   ├───global // resources for all pages
+│       │   |
+│       │   ├───styles // project's helpers
+│       │   │
+│       │   └───utils // a place where useful pieces lie
 │       │
-│       └───utils // a place where useful pieces lie
-│           ├───devTools // custom helpers
-│           │
-│           ├───global // resources for all pages
-│           |
-│           └───webpack // local webpack instruments, should be extracted to npm modules in the future
+│       └───themes // our themes(borders, colors, fonts, etc)
 |
 ├───configs // project's configs
 │
@@ -126,7 +126,7 @@ The order of redefinition levels is as follows: layouts -> library -> common.
 width: 100px / 14px * 1em; // means translating of 100px design size to em value, where 14px is size of font for this selector
 
 /*
-the goal is to achieve liquidness, see the formula of fluid font: ./app/src/utils/devTools/styles/mixins.scss
+the goal is to achieve liquidness, see the formula of fluid font: ./app/src/utils/styles/mixins.scss
 - main advantages: it has browsers' support, the size is always proportional to the neighboring content, the size is fluid
 */
 ```
@@ -170,7 +170,7 @@ the goal is to achieve liquidness, see the formula of fluid font: ./app/src/util
   - no need to remember a bunch of css prefixes and what properties are supported thanks to [postCSS preset env](https://github.com/csstools/postcss-preset-env) and [autoprefixer](https://www.npmjs.com/package/autoprefixer);
   - [modern javascript, today](https://babeljs.io/);
   - compression of images, scripts, styles, html in production mode. Note: each image will also have a\*_. webp_ \* clone, which further reduces the final size;
-  - there is no need to write relative paths for import when there are [excellent aliases](./configs/webpack.config.js) for the most popular paths in development;
+  - there is no need to write relative paths for import when there are [excellent aliases](./configs/webpack/webpack.config.js) for the most popular paths in development;
   - during development, when changing files, the result is immediately visible without manual reboots and builds;
   - during the build, webpack will notify you if: there are circular dependencies, libraries of different versions are connected, there are unused files, there are css properties that browsers do not support. Displays the speed of source processing at each stage of the build;
   - if the source code is changed, the user device will know about it and download only the latest version of the project (provided by hashing the output files);
@@ -183,7 +183,7 @@ the goal is to achieve liquidness, see the formula of fluid font: ./app/src/util
   - [lodash-es](https://lodash.com/) to supplement the js standard. Tip: you should use only import of lodash-es(moreover, when importing, only care about the readability and strictness of the code, and not the optimization of the weight) instead of common lodash because ES6+ module syntax is supported by terser for optimization.
 - Custom Tools:
   - [Basic layouts](./app/src/layouts/);
-  - pug, scss, ts [shortcuts](./app/src/utils/devTools/);
+  - pug, scss, ts [shortcuts](./app/src/utils/);
   - [pug](<(./.vscode/template-snippets.code-snippets)>) and [scss](<(./.vscode/@media-snippets.code-snippets)>) snippets, [ts](<(./.vscode/script-snippets.code-snippets)>).
 
 ## License

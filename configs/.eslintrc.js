@@ -111,7 +111,7 @@ const config = {
           ['@themes', './app/src/themes/'],
           ['@assets', './app/src/assets/'],
           ['@pages', './app/src/pages/'],
-          ['@utils', './app/src/utils/'],
+          ['@shared', './app/src/shared/'],
         ],
         extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
       },

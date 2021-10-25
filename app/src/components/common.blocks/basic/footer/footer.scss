@@ -1,3 +1,5 @@
+@use '@shared/styles/media.scss';
+
 .footer {
   display: grid;
   width: 100%;
@@ -36,7 +38,7 @@
     grid-row-gap: 17px / 14px * 1em;
     justify-items: center;
 
-    @media print, screen and (min-width: 992px) {
+    @media print, screen and (min-width: media.$md) {
       $padding: 140px;
       $description-width: 260px / (1440px - $padding * 2) * 100%;
       $menu-0-gap-width: 40px / (1440px - $padding * 2) * 100%;
@@ -81,7 +83,7 @@
     & ~ .footer__list {
       display: none;
 
-      @media print, screen and (min-width: 992px) {
+      @media print, screen and (min-width: media.$md) {
         display: grid;
       }
     }
@@ -91,7 +93,7 @@
         &::after {
           content: '\e5ce';
 
-          @media print, screen and (min-width: 992px) {
+          @media print, screen and (min-width: media.$md) {
             content: '';
           }
         }
@@ -110,7 +112,7 @@
     text-transform: uppercase;
     font: var(--h3-font);
 
-    @media print, screen and (min-width: 992px) {
+    @media print, screen and (min-width: media.$md) {
       justify-content: flex-start;
       margin-top: 4px;
     }
@@ -125,7 +127,7 @@
     cursor: pointer;
     user-select: none;
 
-    @media print, screen and (min-width: 992px) {
+    @media print, screen and (min-width: media.$md) {
       cursor: auto;
       user-select: auto;
     }
@@ -136,7 +138,7 @@
       font-size: 2em;
       font-family: 'Material Icons';
 
-      @media print, screen and (min-width: 992px) {
+      @media print, screen and (min-width: media.$md) {
         display: none;
       }
     }
@@ -151,7 +153,7 @@
     text-align: center;
     grid-row-gap: 20px / 14px * 1em;
 
-    @media print, screen and (min-width: 992px) {
+    @media print, screen and (min-width: media.$md) {
       text-align: left;
     }
 
@@ -191,7 +193,7 @@
     grid-area: copyright-bar;
     grid: 'copyright' 'icons';
 
-    @media print, screen and (min-width: 992px) {
+    @media print, screen and (min-width: media.$md) {
       justify-content: space-between;
       grid: 'copyright icons';
     }

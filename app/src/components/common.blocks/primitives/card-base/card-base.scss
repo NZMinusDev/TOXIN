@@ -1,3 +1,5 @@
+@use '@shared/styles/media.scss';
+
 .card-base {
   padding: #{39px / 14px * 1em} #{29px / 14px * 1em} #{30px / 14px * 1em} #{29px /
     14px * 1em};
@@ -6,7 +8,7 @@
   border-radius: var(--border-radius-size);
   background-color: white;
 
-  @media print, screen and (min-width: 600px) {
+  @media print, screen and (min-width: media.$xs) {
     width: 380px / 14px * 1em;
   }
 

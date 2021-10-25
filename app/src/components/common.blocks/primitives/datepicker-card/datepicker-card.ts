@@ -1,8 +1,8 @@
 import BEMComponent, {
   HTMLElementWithComponent,
-} from '@utils/devTools/scripts/view/BEM/BEMComponent';
-import { formatToPeriodDateTime } from '@utils/devTools/scripts/DateHelper';
-import { addURLValues } from '@utils/devTools/scripts/URLHelper';
+} from '@shared/utils/scripts/view/BEM/BEMComponent';
+import { formatToPeriodDateTime } from '@shared/utils/scripts/DateHelper';
+import { addURLValues } from '@shared/utils/scripts/URLHelper';
 
 import '@common.blocks/primitives/apply-control/apply-control.scss';
 import '@library.blocks/primitives/datepicker-card/datepicker-card';

@@ -23,10 +23,10 @@
     "last 2 Chrome versions"
   ],
   "scripts": {
-    "start": "rm -r -f app/dist && cross-env NODE_ENV=development MEASURE=false webpack-dev-server --config configs/webpack.config.js --mode development --open",
-    "dev": "cross-env NODE_ENV=development MEASURE=false webpack --config configs/webpack.config.js --mode development",
-    "build": "cross-env NODE_ENV=production MEASURE=true webpack --config configs/webpack.config.js --mode production",
-    "analyze": "mkdirp app/log && cross-env NODE_ENV=production MEASURE=false webpack --config configs/webpack.config.js --mode production --json > app/log/stats.json && webpack-bundle-analyzer app/log/stats.json",
+    "start": "rm -r -f app/dist && cross-env NODE_ENV=development MEASURE=false webpack-dev-server --config configs/webpack/webpack.config.js --mode development --open",
+    "dev": "cross-env NODE_ENV=development MEASURE=false webpack --config configs/webpack/webpack.config.js --mode development",
+    "build": "cross-env NODE_ENV=production MEASURE=true webpack --config configs/webpack/webpack.config.js --mode production",
+    "analyze": "mkdirp app/log && cross-env NODE_ENV=production MEASURE=false webpack --config configs/webpack/webpack.config.js --mode production --json > app/log/stats.json && webpack-bundle-analyzer app/log/stats.json",
     "lint": "stylelint \"./app/src/**/*.scss\" && eslint ./app/src/ --ext .js,.ts",
     "lint:fix": "prettier ./app/src/ --ignore-path ./configs/prettier/.prettierignore --ignore-unknown --check --write && stylelint \"./app/src/**/*.scss\" --fix && eslint ./app/src/ --ext .js,.ts --fix",
     "deploy": "git subtree push --prefix app/dist origin gh-pages"

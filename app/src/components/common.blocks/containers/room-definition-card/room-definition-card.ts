@@ -1,7 +1,7 @@
 import BEMComponent, {
   HTMLElementWithComponent,
-} from '@utils/devTools/scripts/view/BEM/BEMComponent';
-import { getDatePeriod, MS_IN_A_DAY } from '@utils/devTools/scripts/DateHelper';
+} from '@shared/utils/scripts/view/BEM/BEMComponent';
+import { getDatePeriod, MS_IN_A_DAY } from '@shared/utils/scripts/DateHelper';
 import type {
   FormDropdownWithItemQuantityListCustomEvents,
   FormDropdownWithDatepickerCustomEvents,

@@ -1,3 +1,5 @@
+@use '@shared/styles/media.scss';
+
 .colors-and-type-layout {
   display: grid;
   padding: #{67px / 1440px * 100%} #{158px / 1440px * 100%} #{145px / 1440px *
@@ -6,7 +8,7 @@
   grid-row-gap: 1em;
   place-items: center;
 
-  @media print, screen and (min-width: 992px) {
+  @media print, screen and (min-width: media.$md) {
     grid: 'colors type' / auto #{439px / 14px * 1em};
     place-content: normal space-between;
     place-items: normal;

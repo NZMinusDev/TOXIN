@@ -3,7 +3,7 @@
 @use 'sass:string';
 @use 'sass:selector';
 
-@use '@utils/devTools/styles/functions.scss';
+@use '@shared/utils/styles/functions.scss';
 
 /// Write a selector that matches the outer selector and an element selector
 /// @param {*} $child - child selector
@@ -74,7 +74,7 @@
 /// @param {*} $property - css property for images
 /// @param { string string ... } $images-paths - list of images' paths
 /// @param {*} $values... - additional values for $property
-/// @link ./../../../../../configs/webpack.config.js
+/// @link ./../../../../../configs/webpack/webpack.config.js
 /// @todo in the future should be refactored with https://developer.mozilla.org/ru/docs/orphaned/Web/CSS/image-set()
 @mixin optimized-images($property, $images-paths, $values...) {
   $urls: '';

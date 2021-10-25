@@ -1,7 +1,7 @@
 import BEMComponent, {
   HTMLElementWithComponent,
-} from '@utils/devTools/scripts/view/BEM/BEMComponent';
-import { addURLValues } from '@utils/devTools/scripts/URLHelper';
+} from '@shared/utils/scripts/view/BEM/BEMComponent';
+import { addURLValues } from '@shared/utils/scripts/URLHelper';
 
 import formTextFieldElements from '../form-text-field-elements';
 

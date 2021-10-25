@@ -1,4 +1,4 @@
-import BEMModifier from '@utils/devTools/scripts/view/BEM/BEMModifier';
+import BEMModifier from '@shared/utils/scripts/view/BEM/BEMModifier';
 
 import navBarNavigationItems, {
   NavBarNavigationItem,

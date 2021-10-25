@@ -1,3 +1,5 @@
+@use '@shared/styles/media.scss';
+
 .nav-bar {
   display: grid;
   padding: #{15px / 14px * 1em} #{140px / 1440px * 100%};
@@ -7,7 +9,7 @@
   grid-row-gap: 20px / 14px * 1em;
   justify-items: center;
 
-  @media print, screen and (min-width: 992px) {
+  @media print, screen and (min-width: media.$md) {
     grid: 'logo navigation login' 1fr / 1fr auto auto;
     gap: 0 #{20px / 14px * 1em};
     place-items: center normal;
@@ -26,7 +28,7 @@
   &__navigation {
     grid-area: navigation;
 
-    @media print, screen and (min-width: 992px) {
+    @media print, screen and (min-width: media.$md) {
       &
         > .nav-bar__navigation-list
         > .nav-bar__navigation-item_expandable
@@ -42,7 +44,7 @@
     padding: 0;
     list-style: none;
 
-    @media print, screen and (min-width: 992px) {
+    @media print, screen and (min-width: media.$md) {
       display: inline-flex;
       flex-flow: row wrap;
       align-items: center;
@@ -53,7 +55,7 @@
     text-align: center;
     font-weight: normal;
 
-    @media print, screen and (min-width: 992px) {
+    @media print, screen and (min-width: media.$md) {
       margin-right: 21px / 14px * 1em;
       text-align: left;
 
@@ -78,7 +80,7 @@
     }
 
     &_expandable {
-      @media print, screen and (min-width: 992px) {
+      @media print, screen and (min-width: media.$md) {
         position: relative;
 
         .nav-bar__navigation-item {
@@ -184,7 +186,7 @@
       &::before {
         content: '';
 
-        @media print, screen and (min-width: 992px) {
+        @media print, screen and (min-width: media.$md) {
           margin-right: 20px / 14px * 1em;
           border-left: 1px solid black;
         }

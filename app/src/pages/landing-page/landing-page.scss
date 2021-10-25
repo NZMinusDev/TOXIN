@@ -1,4 +1,5 @@
-@use '@utils/devTools/styles/mixins.scss';
+@use '@shared/utils/styles/mixins.scss';
+@use '@shared/styles/media.scss';
 
 .landing-page-layout {
   position: relative;
@@ -23,7 +24,7 @@
     width: fit-content;
     height: fit-content;
 
-    @media (min-width: 768px) {
+    @media print, screen and (min-width: media.$sm) {
       right: initial;
       left: 140px/1440px * 100%;
       margin-right: initial;

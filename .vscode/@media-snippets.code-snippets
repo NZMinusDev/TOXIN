@@ -10,27 +10,33 @@
    * Placeholders with the same ids are connected.
    */
   "large mobile media query snippet for css and scss files": {
-    "prefix": "@lm",
+    "prefix": "@xs",
     "scope": "css,scss,sass",
-    "body": ["@media print, screen and (min-width: 600px) {", "\t$0", "}"],
+    "body": ["@media print, screen and (min-width: media.$xs) {", "\t$0", "}"],
     "description": "large mobile media query snippet for css and scss files"
   },
   "tablet media query snippet for css and scss files": {
-    "prefix": "@t",
+    "prefix": "@sm",
     "scope": "css,scss,sass",
-    "body": ["@media print, screen and (min-width: 768px) {", "\t$0", "}"],
+    "body": ["@media print, screen and (min-width: media.$sm) {", "\t$0", "}"],
     "description": "tablet media query snippet for css and scss files"
   },
   "small-desktop media query snippet for css and scss files": {
-    "prefix": "@sd",
+    "prefix": "@md",
     "scope": "css,scss,sass",
-    "body": ["@media print, screen and (min-width: 992px) {", "\t$0", "}"],
+    "body": ["@media print, screen and (min-width: media.$md) {", "\t$0", "}"],
     "description": "small-desktop media query snippet for css and scss files"
   },
-  "large-desktop media query snippet for css and scss files": {
-    "prefix": "@ld",
+  "medium-desktop media query snippet for css and scss files": {
+    "prefix": "@lg",
     "scope": "css,scss,sass",
-    "body": ["@media print, screen and (min-width: 1200px) {", "\t$0", "}"],
+    "body": ["@media print, screen and (min-width: media.$lg) {", "\t$0", "}"],
+    "description": "medium-desktop media query snippet for css and scss files"
+  },
+  "large-desktop media query snippet for css and scss files": {
+    "prefix": "@xl",
+    "scope": "css,scss,sass",
+    "body": ["@media print, screen and (min-width: media.$xl) {", "\t$0", "}"],
     "description": "large-desktop media query snippet for css and scss files"
   },
   "color media query snippet for css and scss files": {

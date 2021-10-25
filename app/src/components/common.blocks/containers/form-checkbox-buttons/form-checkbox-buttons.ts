@@ -1,8 +1,8 @@
 import BEMComponent, {
   HTMLElementWithComponent,
-} from '@utils/devTools/scripts/view/BEM/BEMComponent';
-import { Unpacked } from '@utils/devTools/scripts/TypingHelper';
-import { addURLValues } from '@utils/devTools/scripts/URLHelper';
+} from '@shared/utils/scripts/view/BEM/BEMComponent';
+import { Unpacked } from '@shared/utils/scripts/TypingHelper';
+import { addURLValues } from '@shared/utils/scripts/URLHelper';
 
 import formCheckboxButtonsElements, {
   FormCheckboxButtonsElement,

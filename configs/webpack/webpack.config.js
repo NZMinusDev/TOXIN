@@ -28,8 +28,8 @@ const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
 
 const PATHS = {
-  src_absolute: path.resolve(__dirname, '../app/src/'),
-  dist_absolute: path.resolve(__dirname, '../app/dist/'),
+  src_absolute: path.resolve(__dirname, '../../app/src/'),
+  dist_absolute: path.resolve(__dirname, '../../app/dist/'),
 };
 
 const redefinitionLevels = [
@@ -52,7 +52,7 @@ const sharedAliases = {
   '@themes': path.resolve(PATHS.src_absolute, './themes/'),
   '@assets': path.resolve(PATHS.src_absolute, './assets/'),
   '@pages': path.resolve(PATHS.src_absolute, './pages/'),
-  '@utils': path.resolve(PATHS.src_absolute, './utils/'),
+  '@shared': path.resolve(PATHS.src_absolute, './shared/'),
 };
 
 /**
@@ -91,7 +91,7 @@ class ResultOfTemplatesProcessing {
 
       this.entries[shortNameOfTemplate] = [
         '@babel/polyfill',
-        './utils/global/global.decl.ts',
+        './shared/global/global.decl.ts',
         `./pages/${shortNameOfTemplate}/${shortNameOfTemplate}.ts`,
         './themes/main/index.scss',
       ];
@@ -218,7 +218,9 @@ const webpackPlugins = () => {
     new CircularDependencyPlugin(),
     new UnusedFilesWebpackPlugin({
       patterns: ['**/*.scss', '**/*.ts'],
-      globOptions: { ignore: ['node_modules/**/*', 'utils/**/*', '**/*.d.ts'] },
+      globOptions: {
+        ignore: ['node_modules/**/*', 'shared/**/*', '**/*.d.ts'],
+      },
     }),
     new HashedModuleIdsPlugin({
       hashFunction: 'md4',
@@ -261,7 +263,7 @@ const templatesLoaders = (
     },
     {
       // convert template function to html
-      loader: './utils/webpack/loaders/pug-loader.ts',
+      loader: '../../configs/webpack/loaders/pug-loader.ts',
     },
     {
       // convert pug to template function
@@ -397,7 +399,7 @@ const optimization = () => {
       minChunks: 1,
       cacheGroups: {
         global: {
-          test: /.*\\utils\\global\\.*/,
+          test: /.*\\shared\\global\\.*/,
           priority: 6,
           enforce: true,
         },
