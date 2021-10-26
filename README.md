@@ -126,7 +126,7 @@ The order of redefinition levels is as follows: layouts -> library -> common.
 width: 100px / 14px * 1em; // means translating of 100px design size to em value, where 14px is size of font for this selector
 
 /*
-the goal is to achieve liquidness, see the formula of fluid font: ./app/src/utils/styles/mixins.scss
+the goal is to achieve liquidness, see the formula of fluid font: ./app/src/shared/utils/styles/mixins.scss
 - main advantages: it has browsers' support, the size is always proportional to the neighboring content, the size is fluid
 */
 ```
@@ -183,7 +183,7 @@ the goal is to achieve liquidness, see the formula of fluid font: ./app/src/util
   - [lodash-es](https://lodash.com/) to supplement the js standard. Tip: you should use only import of lodash-es(moreover, when importing, only care about the readability and strictness of the code, and not the optimization of the weight) instead of common lodash because ES6+ module syntax is supported by terser for optimization.
 - Custom Tools:
   - [Basic layouts](./app/src/layouts/);
-  - pug, scss, ts [shortcuts](./app/src/utils/);
+  - pug, scss, ts [shortcuts](./app/src/shared/utils/);
   - [pug](<(./.vscode/template-snippets.code-snippets)>) and [scss](<(./.vscode/@media-snippets.code-snippets)>) snippets, [ts](<(./.vscode/script-snippets.code-snippets)>).
 
 ## License
