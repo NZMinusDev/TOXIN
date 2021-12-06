@@ -2,14 +2,15 @@
  * It's shortcut of default handleEvent in EventListenerObject
  */
 // eslint-disable-next-line func-style
-function handleEvent(event: Event) {
-  const [theFirstLetterOfEventType] = event.type;
-  const theRestLettersOfEventType = event.type.slice(1);
+function handleEvent(event: Event, elementName?: string) {
+  const handlerName =
+    elementName === undefined
+      ? `_on${event.type[0].toUpperCase()}${event.type.slice(1)}`
+      : `handle${elementName[0].toUpperCase()}${elementName.slice(
+          1
+        )}${event.type[0].toUpperCase()}${event.type.slice(1)}`;
 
-  // mousedown -> onMousedown
-  const handlerName = `_on${theFirstLetterOfEventType.toUpperCase()}${theRestLettersOfEventType}`;
-
-  if (this[handlerName] !== undefined) {
+  if (this[handlerName]) {
     this[handlerName](event);
   }
 
