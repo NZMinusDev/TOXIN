@@ -1,6 +1,6 @@
 import BEMComponent, {
   HTMLElementWithComponent,
-} from '@shared/utils/scripts/view/BEM/BEMComponent';
+} from '@shared/utils/scripts/components/BEM/BEMComponent';
 
 import toTopArrowElements, { ToTopArrowElement } from './to-top-arrow-elements';
 

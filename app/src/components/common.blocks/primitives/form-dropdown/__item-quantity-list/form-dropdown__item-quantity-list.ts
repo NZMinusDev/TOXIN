@@ -2,7 +2,7 @@ import { pluralize } from 'numeralize-ru';
 
 import BEMComponent, {
   HTMLElementWithComponent,
-} from '@shared/utils/scripts/view/BEM/BEMComponent';
+} from '@shared/utils/scripts/components/BEM/BEMComponent';
 import { has } from '@shared/utils/scripts/DOMHelper';
 import { Unpacked } from '@shared/utils/scripts/TypingHelper';
 import { addURLValues } from '@shared/utils/scripts/URLHelper';
