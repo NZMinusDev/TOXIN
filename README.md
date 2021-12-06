@@ -181,6 +181,10 @@ the goal is to achieve liquidness, see the formula of fluid font: ./app/src/shar
   - [fontawesome-free](https://fontawesome.com/) and [material-design-icons](https://github.com/google/material-design-icons);
   - [JQuery](https://jquery.com/);
   - [lodash-es](https://lodash.com/) to supplement the js standard. Tip: you should use only import of lodash-es(moreover, when importing, only care about the readability and strictness of the code, and not the optimization of the weight) instead of common lodash because ES6+ module syntax is supported by terser for optimization.
+- Vendor's plugins:
+  - [air-datepicker](./app/src/components/library.blocks/primitives/datepicker-card/readme.md);
+  - [item-quantity-list](./app/src/components/library.blocks/primitives/form-dropdown/__item-quantity-list/readme.md);
+  - [noUiSlider](./app/src/components/library.blocks/primitives/form-range-slider/readme.md).
 - Custom Tools:
   - [Basic layouts](./app/src/layouts/);
   - pug, scss, ts [shortcuts](./app/src/shared/utils/);
