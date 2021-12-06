@@ -13,6 +13,8 @@ type GenericFunc<TFuncArgs extends unknown[], TFuncReturn extends unknown> = (
 type GenericConstructor<TCreator extends new (...args: unknown[]) => unknown> =
   new (...args: ConstructorParameters<TCreator>) => TCreator;
 
+type ValueOf<T> = T[keyof T];
+
 /**
  * @example
  * type T0 = Unpacked<string>;
@@ -275,6 +277,7 @@ type Boxed<TType> = TType extends unknown[]
 export {
   GenericFunc,
   GenericConstructor,
+  ValueOf,
   Unpacked,
   ArrayPacked,
   FunctionPropertyNames,
