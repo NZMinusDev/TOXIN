@@ -1,5 +1,3 @@
-import { GenericFunc } from './TypingHelper';
-
 /**
  * Currying of function
  * @param func
@@ -15,12 +13,12 @@ import { GenericFunc } from './TypingHelper';
  *alert( curriedSum(1)(2)(3) ); // 6
  */
 const makeCurry = (func: (...args: unknown[]) => unknown) =>
-  function curried(...args: unknown[]) {
+  function curried<TThis>(this: TThis, ...args: unknown[]) {
     if (args.length >= func.length) {
       return func.apply(this, args);
     }
 
-    return function curriedWithConcat(...args2: unknown[]) {
+    return function curriedWithConcat(this: TThis, ...args2: unknown[]) {
       return curried.apply(this, args.concat(args2));
     };
   };
@@ -38,13 +36,17 @@ const makeCurry = (func: (...args: unknown[]) => unknown) =>
  * console.log(test1(1,1,1) === cloneFunction(test1)(1,1,1)); // true
  * console.log(cloneFunction(test1)(1,1,1)); // 3
  */
-const cloneFunction = <TFuncArgs extends unknown[], TFuncReturn>(
-  func: GenericFunc<TFuncArgs, TFuncReturn>
-) => {
+const cloneFunction = <TFuncArgs extends unknown[], TFuncReturn>(func: {
+  (...args: TFuncArgs): TFuncReturn;
+  [key: string]: unknown;
+}) => {
   const that = func;
 
   const temp = function temp(...args: TFuncArgs) {
     return that.apply(func, args);
+  } as {
+    (...args: TFuncArgs): TFuncReturn;
+    [key: string]: unknown;
   };
 
   Object.keys(func).forEach((key) => {

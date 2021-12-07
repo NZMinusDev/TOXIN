@@ -89,21 +89,22 @@ class FormDropdownItemQuantityList extends BEMComponent<
 
   reset() {
     this._DOM.menuOptions.forEach((menuOption, index) => {
-      const menuOptionOptions = this._options.menuOptions.get(
-        menuOption
-      ) as Unpacked<FormDropdownItemQuantityListHTMLOptions['menuOptions']>;
+      const menuOptionOptions = this._options.menuOptions.get(menuOption);
 
-      const currAmount = this._state.itemsCounter.get(
-        menuOptionOptions.id
-      ) as number;
-      const minAmount = menuOptionOptions.minCount;
-      let amountToDecrement = currAmount - minAmount;
+      if (menuOptionOptions !== undefined) {
+        const currAmount = this._state.itemsCounter.get(menuOptionOptions.id);
 
-      const decrementBtn = this._generatedDOM.decrementButtons[index];
+        if (currAmount !== undefined) {
+          const minAmount = menuOptionOptions.minCount;
+          let amountToDecrement = currAmount - minAmount;
 
-      while (amountToDecrement !== 0) {
-        decrementBtn.dispatchEvent(new Event('click'));
-        amountToDecrement -= 1;
+          const decrementBtn = this._generatedDOM.decrementButtons[index];
+
+          while (amountToDecrement !== 0) {
+            decrementBtn.dispatchEvent(new Event('click'));
+            amountToDecrement -= 1;
+          }
+        }
       }
     });
 
@@ -263,10 +264,9 @@ class FormDropdownItemQuantityList extends BEMComponent<
 
   protected _listInputEventListenerObject = {
     handleListInputChange: (event: Event) => {
-      const currentTarget =
-        event.currentTarget as FormDropdownItemQuantityListDOM['listInput'];
+      const { currentTarget } = event;
 
-      if (this._options.isFilter) {
+      if (currentTarget instanceof HTMLInputElement && this._options.isFilter) {
         addURLValues({ name: currentTarget.name, value: currentTarget.value });
       }
     },
@@ -291,17 +291,19 @@ class FormDropdownItemQuantityList extends BEMComponent<
 
   protected _counterButtonEventListenerObject = {
     handleCounterButtonClick: (clickEvent: MouseEvent) => {
-      const targetMenuOption = has(
-        this._DOM.menuOptions,
-        clickEvent.currentTarget as Unpacked<
-          | FormDropdownItemQuantityListGeneratedDOM['decrementButtons']
-          | FormDropdownItemQuantityListGeneratedDOM['incrementButtons']
-        >
-      ) as Unpacked<FormDropdownItemQuantityListDOM['menuOptions']>;
+      const { currentTarget } = clickEvent;
 
-      this._updateCounterButtonDisplay(targetMenuOption);
+      if (currentTarget instanceof HTMLElement) {
+        const targetMenuOption = has(this._DOM.menuOptions, currentTarget);
 
-      this.element.dispatchEvent(new CustomEvent('select', { bubbles: true }));
+        if (targetMenuOption instanceof HTMLDivElement) {
+          this._updateCounterButtonDisplay(targetMenuOption);
+
+          this.element.dispatchEvent(
+            new CustomEvent('select', { bubbles: true })
+          );
+        }
+      }
     },
   };
 
@@ -357,19 +359,19 @@ class FormDropdownItemQuantityList extends BEMComponent<
     this._state.groupsCounter.clear();
 
     this._DOM.menuOptions.forEach((menuOption) => {
-      const menuOptionOptions = this._options.menuOptions.get(
-        menuOption
-      ) as Unpacked<FormDropdownItemQuantityListHTMLOptions['menuOptions']>;
+      const menuOptionOptions = this._options.menuOptions.get(menuOption);
 
-      this._state.itemsCounter.set(
-        menuOptionOptions.id,
-        itemCount[menuOptionOptions.id]
-      );
-      this._state.groupsCounter.set(
-        menuOptionOptions.group,
-        (this._state.groupsCounter.get(menuOptionOptions.group) || 0) +
+      if (menuOptionOptions !== undefined) {
+        this._state.itemsCounter.set(
+          menuOptionOptions.id,
           itemCount[menuOptionOptions.id]
-      );
+        );
+        this._state.groupsCounter.set(
+          menuOptionOptions.group,
+          (this._state.groupsCounter.get(menuOptionOptions.group) || 0) +
+            itemCount[menuOptionOptions.id]
+        );
+      }
     });
 
     return this;
@@ -378,20 +380,20 @@ class FormDropdownItemQuantityList extends BEMComponent<
   protected _changeValueOfInputs() {
     let accumulator = '';
     this._DOM.menuOptions.forEach((menuOption, index) => {
-      const menuOptionOptions = this._options.menuOptions.get(
-        menuOption
-      ) as Unpacked<FormDropdownItemQuantityListHTMLOptions['menuOptions']>;
+      const menuOptionOptions = this._options.menuOptions.get(menuOption);
 
-      const itemAmount = this._state.itemsCounter.get(menuOptionOptions.id);
-      const input = this._DOM.optionInputs[index];
+      if (menuOptionOptions !== undefined) {
+        const itemAmount = this._state.itemsCounter.get(menuOptionOptions.id);
+        const input = this._DOM.optionInputs[index];
 
-      input.value = `${itemAmount}`;
+        input.value = `${itemAmount}`;
 
-      if (index > 0) {
-        accumulator += ',';
+        if (index > 0) {
+          accumulator += ',';
+        }
+
+        accumulator += itemAmount;
       }
-
-      accumulator += itemAmount;
     });
 
     this._DOM.listInput.value = accumulator;
@@ -405,26 +407,29 @@ class FormDropdownItemQuantityList extends BEMComponent<
   protected _updateCounterButtonDisplay(
     targetMenuOption: Unpacked<FormDropdownItemQuantityListDOM['menuOptions']>
   ) {
-    const targetMenuOptionOptions = this._options.menuOptions.get(
-      targetMenuOption
-    ) as Unpacked<FormDropdownItemQuantityListHTMLOptions['menuOptions']>;
+    const targetMenuOptionOptions =
+      this._options.menuOptions.get(targetMenuOption);
 
-    const menuOptionIndex = this._DOM.menuOptions.indexOf(targetMenuOption);
-    const decrementBtn = this._generatedDOM.decrementButtons[menuOptionIndex];
-    const incrementBtn = this._generatedDOM.incrementButtons[menuOptionIndex];
+    if (targetMenuOptionOptions !== undefined) {
+      const menuOptionIndex = this._DOM.menuOptions.indexOf(targetMenuOption);
+      const decrementBtn = this._generatedDOM.decrementButtons[menuOptionIndex];
+      const incrementBtn = this._generatedDOM.incrementButtons[menuOptionIndex];
 
-    const itemAmount = this._state.itemsCounter.get(targetMenuOptionOptions.id);
+      const itemAmount = this._state.itemsCounter.get(
+        targetMenuOptionOptions.id
+      );
 
-    if (targetMenuOptionOptions.minCount === itemAmount) {
-      decrementBtn.disabled = true;
-    } else {
-      decrementBtn.disabled = false;
-    }
+      if (targetMenuOptionOptions.minCount === itemAmount) {
+        decrementBtn.disabled = true;
+      } else {
+        decrementBtn.disabled = false;
+      }
 
-    if (targetMenuOptionOptions.maxCount === itemAmount) {
-      incrementBtn.disabled = true;
-    } else {
-      incrementBtn.disabled = false;
+      if (targetMenuOptionOptions.maxCount === itemAmount) {
+        incrementBtn.disabled = true;
+      } else {
+        incrementBtn.disabled = false;
+      }
     }
 
     return this;

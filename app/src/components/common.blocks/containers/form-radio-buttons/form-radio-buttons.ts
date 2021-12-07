@@ -2,7 +2,6 @@ import BEMComponent, {
   HTMLElementWithComponent,
 } from '@shared/utils/scripts/components/BEM/BEMComponent';
 import { addURLValues } from '@shared/utils/scripts/URLHelper';
-import { Unpacked } from '@shared/utils/scripts/TypingHelper';
 
 import formRadioButtonsElements, {
   FormRadioButtonsElement,
@@ -69,11 +68,9 @@ class FormRadioButtons extends BEMComponent<
 
   protected _buttonItemsEventListenerObject = {
     handleButtonItemChange: (event: Event) => {
-      const currentTarget = event.currentTarget as Unpacked<
-        FormRadioButtonsDOM['buttonItems']
-      >;
+      const { currentTarget } = event;
 
-      if (this._options.isFilter) {
+      if (currentTarget instanceof HTMLInputElement && this._options.isFilter) {
         addURLValues({ name: currentTarget.name, value: currentTarget.value });
       }
     },

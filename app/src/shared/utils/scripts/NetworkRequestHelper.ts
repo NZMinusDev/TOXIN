@@ -41,10 +41,12 @@ const cancellableFetches = (
 
     return { controller, response };
   } catch (err) {
-    if (err.name === 'AbortError') {
-      abortCallback();
-    } else {
-      throw err;
+    if (err instanceof Error) {
+      if (err.name === 'AbortError') {
+        abortCallback();
+      } else {
+        throw err;
+      }
     }
   }
 
@@ -93,8 +95,10 @@ const handleResponseProcess = async (
           break;
         }
 
-        chunks.push(value as Uint8Array);
-        receivedLength += (value as Uint8Array).length;
+        if (value instanceof Uint8Array) {
+          chunks.push(value);
+          receivedLength += value.length;
+        }
 
         progressCallback?.(receivedLength, contentLength);
       }
@@ -202,9 +206,11 @@ const sendImg = async (
   { name = 'image' } = {}
 ) => {
   const blob = await imgToBlob(img);
-
   const formData = new FormData();
-  formData.append(name, blob, img.src);
+
+  if (blob !== null) {
+    formData.append(name, blob, img.src);
+  }
 
   return fetch(url.toString(), {
     method: 'POST',
@@ -236,9 +242,11 @@ const sendProgressedImg = (
     };
 
     const blob = await imgToBlob(img);
-
     const formData = new FormData();
-    formData.append(name, blob, img.src);
+
+    if (blob !== null) {
+      formData.append(name, blob, img.src);
+    }
 
     xhr.open('POST', url.toString());
     xhr.send(blob);

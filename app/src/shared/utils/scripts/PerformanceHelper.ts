@@ -70,7 +70,7 @@ const makeCaching = <
 ): ((...funcArgs: TFunctionArgs[]) => TFunctionReturn) => {
   const cache = new Map();
 
-  return function doCashed(...args) {
+  return function doCashed<TTHis>(this: TTHis, ...args: TFunctionArgs[]) {
     const key = hash(args);
 
     if (cache.has(key)) {
@@ -144,9 +144,9 @@ const loadCached = (url: string): Promise<string> => {
  */
 const makeMemorizable = (
   memo: number[],
-  formula: (recursionCallback, n: number) => number
+  formula: (recursionCallback: (n: number) => void, n: number) => number
 ) => {
-  return function recursionCallback(n) {
+  return function recursionCallback(n: number) {
     let result = memo[n];
 
     if (typeof result !== 'number') {

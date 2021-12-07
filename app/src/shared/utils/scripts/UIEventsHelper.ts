@@ -16,16 +16,17 @@ const addGoodMouseOver = (
       return;
     }
 
-    const target = (event.target as HTMLElement).closest(childSelector);
+    const { currentTarget, target } = event;
 
-    if (
-      target === null ||
-      !(event.currentTarget as HTMLElement).contains(target)
-    ) {
-      return;
+    if (currentTarget instanceof HTMLElement && target instanceof HTMLElement) {
+      const child = target.closest(childSelector);
+
+      if (child === null || !currentTarget.contains(child)) {
+        return;
+      }
+
+      currentElem = child;
     }
-
-    currentElem = target;
 
     onmouseoverCallBack?.();
   };
@@ -42,7 +43,9 @@ const addGoodMouseOver = (
         return;
       }
 
-      relatedTarget = (relatedTarget as HTMLElement).parentNode;
+      if (relatedTarget instanceof HTMLElement) {
+        relatedTarget = relatedTarget.parentNode;
+      }
     }
 
     currentElem = null;
@@ -76,7 +79,7 @@ const addDragAndDrop = (
 ) => {
   const elementRef = element;
 
-  const onMouseDown = (event) => {
+  const onMouseDown = (event: MouseEvent) => {
     const shiftX = event.clientX - elementRef.getBoundingClientRect().left;
     const shiftY = event.clientY - elementRef.getBoundingClientRect().top;
 
@@ -84,7 +87,7 @@ const addDragAndDrop = (
     elementRef.style.zIndex = '1000';
     document.body.append(elementRef);
 
-    const moveAt = (pageX, pageY) => {
+    const moveAt = (pageX: number, pageY: number) => {
       elementRef.style.left = `${pageX - shiftX}px`;
       elementRef.style.top = `${pageY - shiftY}px`;
     };
@@ -94,7 +97,7 @@ const addDragAndDrop = (
     // потенциальная цель переноса, над которой мы пролетаем прямо сейчас
     let currentDroppable: Element | null = null;
 
-    const onMouseMove = (mouseMoveEvent) => {
+    const onMouseMove = (mouseMoveEvent: MouseEvent) => {
       moveAt(mouseMoveEvent.pageX, mouseMoveEvent.pageY);
 
       elementRef.hidden = true;

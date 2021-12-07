@@ -66,12 +66,14 @@ class EventManagerMixin<TEvents extends IsolatedEvents> {
       TEvents[TEventType]
     >
   ) {
-    if (this._eventHandlers[eventName as string] === undefined) {
-      this._eventHandlers[eventName as string] = [];
-    }
+    if (typeof eventName === 'string') {
+      if (this._eventHandlers[eventName] === undefined) {
+        this._eventHandlers[eventName] = [];
+      }
 
-    if (!this._eventHandlers[eventName as string].includes(eventHandler)) {
-      this._eventHandlers[eventName as string].push(eventHandler);
+      if (!this._eventHandlers[eventName].includes(eventHandler)) {
+        this._eventHandlers[eventName].push(eventHandler);
+      }
     }
 
     return this;
@@ -84,14 +86,15 @@ class EventManagerMixin<TEvents extends IsolatedEvents> {
       TEvents[TEventType]
     >
   ) {
-    const handlers =
-      this._eventHandlers && this._eventHandlers[eventName as string];
+    if (typeof eventName === 'string') {
+      const handlers = this._eventHandlers && this._eventHandlers[eventName];
 
-    if (handlers === undefined) {
-      return this;
+      if (handlers === undefined) {
+        return this;
+      }
+
+      handlers.splice(handlers.indexOf(eventHandler), 1);
     }
-
-    handlers.splice(handlers.indexOf(eventHandler), 1);
 
     return this;
   }
@@ -101,27 +104,32 @@ class EventManagerMixin<TEvents extends IsolatedEvents> {
     eventName: TEventType,
     details: TEvents[TEventType]
   ) {
-    // no handlers
-    if (
-      this._eventHandlers === undefined ||
-      this._eventHandlers[eventName as string] === undefined
-    ) {
-      return this;
-    }
-
-    // calling the handlers
-    this._eventHandlers[eventName as string].forEach((eventHandler) => {
-      if (typeof eventHandler === 'function') {
-        eventHandler.apply(this, [details]);
-      } else {
-        eventHandler.handleEvent(details);
+    if (typeof eventName === 'string') {
+      // no handlers
+      if (
+        this._eventHandlers === undefined ||
+        this._eventHandlers[eventName] === undefined
+      ) {
+        return this;
       }
-    });
+
+      // calling the handlers
+      this._eventHandlers[eventName].forEach((eventHandler) => {
+        if (typeof eventHandler === 'function') {
+          eventHandler.apply(this, [details]);
+        } else {
+          eventHandler.handleEvent(details);
+        }
+      });
+    }
 
     return this;
   }
 
-  handleEvent(event: Event) {
+  handleEvent<TThis extends Record<string, (event: Event) => unknown>>(
+    this: TThis,
+    event: Event
+  ) {
     const [theFirstLetterOfEventType] = event.type;
     const theRestLettersOfEventType = event.type.slice(1);
 

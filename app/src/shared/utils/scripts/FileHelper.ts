@@ -18,7 +18,9 @@ const createBase64 = (
 
   return new Promise<string>((resolve) => {
     const onLoad = () => {
-      resolve(fileReader.result as string);
+      if (typeof fileReader.result === 'string') {
+        resolve(fileReader.result);
+      }
     };
 
     fileReader.addEventListener('load', onLoad);
@@ -31,7 +33,9 @@ const blobToArrayBuffer = (blob: Blob) => {
 
   return new Promise<ArrayBuffer>((resolve) => {
     const onLoad = () => {
-      resolve(fileReader.result as ArrayBuffer);
+      if (fileReader.result instanceof ArrayBuffer) {
+        resolve(fileReader.result);
+      }
     };
 
     fileReader.addEventListener('load', onLoad);
@@ -60,8 +64,8 @@ const imgToBlob = (
 ) => {
   const canvas = imgToCanvas(img, imgProcessing);
 
-  return new Promise<Blob>((resolve) =>
-    canvas.toBlob(resolve as BlobCallback, 'image/png')
+  return new Promise<Blob | null>((resolve) =>
+    canvas.toBlob(resolve, 'image/png')
   );
 };
 

@@ -15,7 +15,7 @@ const getFilesDeep = (
 ) => {
   const files = fs.readdirSync(dir);
 
-  files.forEach((val, i) => {
+  files.forEach((val: string, i: number) => {
     const name = path.resolve(dir, files[i]);
 
     if (

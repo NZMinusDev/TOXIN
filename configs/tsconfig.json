@@ -3,13 +3,9 @@
     "moduleResolution": "node",
     "module": "esnext",
     "target": "ESNext",
+    "strict": true,
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "alwaysStrict": true,
-    "strictNullChecks": true,
-    "strictBindCallApply": true,
-    "strictFunctionTypes": true,
-    "strictPropertyInitialization": true,
     "baseUrl": "../",
     "paths": {
       "@layouts": ["app/src/layouts"],
@@ -27,6 +23,5 @@
       }
     ]
   },
-  "include": ["../app/src", "../configs/webpack/loaders"],
-  "exclude": ["../app/src/components/library.blocks"]
+  "include": ["../app/src", "../configs/webpack/loaders"]
 }

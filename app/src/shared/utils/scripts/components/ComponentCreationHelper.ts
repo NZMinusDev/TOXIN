@@ -2,7 +2,11 @@
  * It's shortcut of default handleEvent in EventListenerObject
  */
 // eslint-disable-next-line func-style
-function handleEvent(event: Event, elementName?: string) {
+function handleEvent<TTHis extends Record<string, (event: Event) => unknown>>(
+  this: TTHis,
+  event: Event,
+  elementName?: string
+) {
   const handlerName =
     elementName === undefined
       ? `_on${event.type[0].toUpperCase()}${event.type.slice(1)}`
@@ -78,10 +82,14 @@ const checkDelegatingEvents = (
   parent: HTMLElement,
   descendantSelector: string
 ) => {
-  const descendant = (event.target as HTMLElement).closest(descendantSelector);
+  const { target } = event;
 
-  if (descendant === null && !parent.contains(descendant)) {
-    return false;
+  if (target instanceof HTMLElement) {
+    const descendant = target.closest(descendantSelector);
+
+    if (descendant === null && !parent.contains(descendant)) {
+      return false;
+    }
   }
 
   return true;

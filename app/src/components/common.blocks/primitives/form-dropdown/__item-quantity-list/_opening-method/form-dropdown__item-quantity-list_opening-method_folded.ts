@@ -21,13 +21,20 @@ class FormDropdownItemQuantityListFoldedOpeningMethodModifier extends FormDropdo
 
   protected _windowEventListenerObject = {
     handleWindowClick: (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      const dropdownElement = this.component.element.closest(
-        '.js-form-dropdown'
-      ) as HTMLElement;
+      const { target } = event;
+      const dropdownElement =
+        this.component.element.closest('.js-form-dropdown');
 
-      if (!dropdownElement.contains(target) && this.component.isOpen()) {
-        this.component.close();
+      const isElementsDefined =
+        target instanceof HTMLElement && dropdownElement !== null;
+
+      if (isElementsDefined) {
+        const shouldClose =
+          !dropdownElement.contains(target) && this.component.isOpen();
+
+        if (shouldClose) {
+          this.component.close();
+        }
       }
     },
   };

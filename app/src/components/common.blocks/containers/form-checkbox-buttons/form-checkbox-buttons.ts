@@ -1,7 +1,6 @@
 import BEMComponent, {
   HTMLElementWithComponent,
 } from '@shared/utils/scripts/components/BEM/BEMComponent';
-import { Unpacked } from '@shared/utils/scripts/TypingHelper';
 import { addURLValues } from '@shared/utils/scripts/URLHelper';
 
 import formCheckboxButtonsElements, {
@@ -73,20 +72,18 @@ class FormCheckboxButtons extends BEMComponent<
 
   protected _buttonItemsEventListenerObject = {
     handleButtonItemKeyDown: (event: KeyboardEvent) => {
-      const currentTarget = event.currentTarget as Unpacked<
-        FormCheckboxButtonsDOM['buttonItems']
-      >;
+      const { currentTarget } = event;
 
-      if (!event.repeat && event.code === 'Enter') {
+      const shouldClick = !event.repeat && event.code === 'Enter';
+
+      if (currentTarget instanceof HTMLElement && shouldClick) {
         currentTarget.click();
       }
     },
     handleButtonItemChange: (event: Event) => {
-      const currentTarget = event.currentTarget as Unpacked<
-        FormCheckboxButtonsDOM['buttonItems']
-      >;
+      const { currentTarget } = event;
 
-      if (this._options.isFilter) {
+      if (currentTarget instanceof HTMLInputElement && this._options.isFilter) {
         addURLValues({ name: currentTarget.name, value: currentTarget.value });
       }
     },

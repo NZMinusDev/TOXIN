@@ -68,9 +68,11 @@ class FormLikeButton extends BEMComponent<
 
   protected _buttonEventListenerObject = {
     handleButtonKeyDown: (event: KeyboardEvent) => {
-      const currentTarget = event.currentTarget as FormLikeButtonDOM['button'];
+      const { currentTarget } = event;
 
-      if (!event.repeat && event.code === 'Enter') {
+      const shouldClick = !event.repeat && event.code === 'Enter';
+
+      if (currentTarget instanceof HTMLElement && shouldClick) {
         currentTarget.click();
       }
     },

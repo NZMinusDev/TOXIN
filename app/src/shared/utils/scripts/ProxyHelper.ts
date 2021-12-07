@@ -37,7 +37,11 @@
  * alert( dictionary['Hello'] ); // Hola
  * alert( dictionary['Welcome to Proxy']); // Welcome to Proxy
  */
-const makeProxyDictionary = (obj: object) =>
+const makeProxyDictionary = <
+  TObj extends Record<string | number | symbol, unknown>
+>(
+  obj: TObj
+) =>
   new Proxy(obj, {
     get(target, phrase) {
       // перехватываем чтение свойства в dictionary
@@ -60,9 +64,16 @@ const makeProxyDictionary = (obj: object) =>
  * alert(5 in range); // true
  * alert(50 in range); // false
  */
-const makeProxyInRange = (obj: { start: number; end: number }) =>
+const makeProxyInRange = <
+  TObj extends Record<string | number | symbol, unknown> & {
+    start: number;
+    end: number;
+  }
+>(
+  obj: TObj
+) =>
   new Proxy(obj, {
-    has(target, propertyName) {
+    has(target, propertyName: keyof TObj) {
       return (
         target[propertyName] >= target.start &&
         target[propertyName] <= target.end
@@ -90,7 +101,9 @@ const makeProxyInRange = (obj: { start: number; end: number }) =>
  *   delete user._password; // Error: Access denied
  * } catch(e) { alert(e.message); }
  */
-const makeOOPObject = (obj: object) => {
+const makeOOPObject = <TObj extends Record<string | number | symbol, unknown>>(
+  obj: TObj
+) => {
   const deniedMessage = 'Отказано в доступе';
 
   return new Proxy(obj, {
@@ -110,7 +123,8 @@ const makeOOPObject = (obj: object) => {
         throw new Error(deniedMessage);
       } else {
         const targetRef = target;
-        targetRef[propertyName] = val;
+        // don't understand why targetRef can't be typed automatically
+        (targetRef as any)[propertyName] = val;
 
         return true;
       }

@@ -1,4 +1,4 @@
-import 'nouislider/distribute/nouislider.min.css';
-import noUiSlider from 'nouislider/distribute/nouislider.min';
+import 'nouislider/dist/nouislider.min.css';
+import noUiSlider, { target } from 'nouislider';
 
-export { noUiSlider as default };
+export { noUiSlider as default, target };

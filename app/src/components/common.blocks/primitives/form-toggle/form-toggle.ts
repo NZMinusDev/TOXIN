@@ -45,9 +45,11 @@ class FormToggle extends BEMComponent<
 
   protected _buttonEventListenerObject = {
     handleInputButtonKeyDown: (event: KeyboardEvent) => {
-      const currentTarget = event.currentTarget as FormToggleDOM['button'];
+      const { currentTarget } = event;
 
-      if (!event.repeat && event.code === 'Enter') {
+      const shouldClick = !event.repeat && event.code === 'Enter';
+
+      if (currentTarget instanceof HTMLInputElement && shouldClick) {
         currentTarget.click();
       }
     },

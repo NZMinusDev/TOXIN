@@ -1,7 +1,6 @@
 import BEMComponent, {
   HTMLElementWithComponent,
 } from '@shared/utils/scripts/components/BEM/BEMComponent';
-import { Unpacked } from '@shared/utils/scripts/TypingHelper';
 
 import footerElements, { FooterElement } from './footer-elements';
 
@@ -45,12 +44,12 @@ class Footer extends BEMComponent<FooterElement, FooterCustomEvents> {
 
   protected _listLabelsEventListenerObject = {
     handleListLabelKeyDown: (event: KeyboardEvent) => {
-      const currentTarget = event.currentTarget as Unpacked<
-        FooterDOM['listLabels']
-      >;
+      const { currentTarget } = event;
 
-      if (!event.repeat && event.code === 'Enter') {
-        currentTarget.click();
+      const shouldClick = !event.repeat && event.code === 'Enter';
+
+      if (currentTarget instanceof HTMLElement && shouldClick) {
+        currentTarget?.click();
       }
     },
   };

@@ -1,7 +1,8 @@
 type RoomDefinitionCardElement = HTMLFormElement;
 
-const roomDefinitionCardElements = document.querySelectorAll(
-  '.js-room-definition-card'
-) as NodeListOf<RoomDefinitionCardElement>;
+const roomDefinitionCardElements =
+  document.querySelectorAll<RoomDefinitionCardElement>(
+    '.js-room-definition-card'
+  );
 
 export { roomDefinitionCardElements as default, RoomDefinitionCardElement };

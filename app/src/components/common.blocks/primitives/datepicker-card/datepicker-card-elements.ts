@@ -1,7 +1,7 @@
 type DatepickerCardElement = HTMLDivElement;
 
-const datepickerCardElements = document.querySelectorAll(
+const datepickerCardElements = document.querySelectorAll<DatepickerCardElement>(
   '.js-datepicker-card'
-) as NodeListOf<DatepickerCardElement>;
+);
 
 export { datepickerCardElements as default, DatepickerCardElement };

@@ -165,14 +165,15 @@ class FormDropdownDatepicker extends BEMComponent<
   protected _windowEventListenerObject = {
     // don't use click cause of rerender of cells
     handleWindowPointerDown: (event: PointerEvent) => {
-      const target = event.target as HTMLElement;
-      const dropdownElement = target.closest(
-        `.${selectors.dropdown}`
-      ) as HTMLElement;
-      const clickIsOutside = dropdownElement === null;
+      const { target } = event;
 
-      if (clickIsOutside && this.isOpened()) {
-        this.close();
+      if (target instanceof HTMLElement) {
+        const dropdownElement = target.closest(`.${selectors.dropdown}`);
+        const clickIsOutside = dropdownElement === null;
+
+        if (clickIsOutside && this.isOpened()) {
+          this.close();
+        }
       }
     },
   };
@@ -182,11 +183,9 @@ class FormDropdownDatepicker extends BEMComponent<
 
     if ($altFields !== undefined) {
       $altFields.each((index, input) => {
-        const altDropdown = input.closest(
-          `.${selectors.dropdown}`
-        ) as HTMLDivElement;
+        const altDropdown = input.closest(`.${selectors.dropdown}`);
 
-        altDropdown.addEventListener(
+        altDropdown?.addEventListener(
           'open',
           this._altFieldEventListenerObject.handleAltFieldOpen
         );
@@ -209,9 +208,11 @@ class FormDropdownDatepicker extends BEMComponent<
   }
 
   protected _getDatesFromDatepickerCard() {
-    return this._subComponents.datepickerCard
-      ?.getDates()
-      .map((date) => date.toISOString());
+    return (
+      this._subComponents.datepickerCard
+        ?.getDates()
+        .map((date) => date.toISOString()) ?? []
+    );
   }
 
   protected _changeValue() {
@@ -224,7 +225,7 @@ class FormDropdownDatepicker extends BEMComponent<
       if ($altFields !== undefined) {
         const formattedDates =
           this._subComponents.datepickerCard.getSplitFormattedDates();
-        const [theFirstDate] = this._state.dates as string[];
+        const [theFirstDate] = this._state.dates;
         const [theFirstDatetime] = dateTimes;
         const [theFirstFormattedDate] = formattedDates;
 

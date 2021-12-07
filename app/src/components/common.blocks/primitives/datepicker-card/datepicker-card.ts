@@ -190,8 +190,8 @@ class DatepickerCard extends BEMComponent<
   }
 
   protected static _initState() {
-    const dates = [] as DatepickerCardState['dates'];
-    const formattedDates = '' as DatepickerCardState['formattedDates'];
+    const dates: DatepickerCardState['dates'] = [];
+    const formattedDates: DatepickerCardState['formattedDates'] = '';
 
     return { dates, formattedDates };
   }
@@ -209,9 +209,9 @@ class DatepickerCard extends BEMComponent<
 
   protected _inputEventListenerObject = {
     handleInputChange: (event: Event) => {
-      const currentTarget = event.currentTarget as DatepickerCardDOM['input'];
+      const { currentTarget } = event;
 
-      if (this._options.isFilter) {
+      if (currentTarget instanceof HTMLInputElement && this._options.isFilter) {
         addURLValues({ name: currentTarget.name, value: currentTarget.value });
       }
     },

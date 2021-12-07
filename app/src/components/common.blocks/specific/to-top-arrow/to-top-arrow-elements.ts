@@ -1,7 +1,6 @@
 type ToTopArrowElement = HTMLDivElement;
 
-const toTopArrowElements = document.querySelectorAll(
-  '.js-to-top-arrow'
-) as NodeListOf<ToTopArrowElement>;
+const toTopArrowElements =
+  document.querySelectorAll<ToTopArrowElement>('.js-to-top-arrow');
 
 export { toTopArrowElements as default, ToTopArrowElement };

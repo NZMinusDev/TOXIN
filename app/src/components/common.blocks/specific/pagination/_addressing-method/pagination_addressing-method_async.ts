@@ -3,6 +3,7 @@ import PaginationAddressingMethodModifier, { Pagination } from './coupling';
 
 interface AsyncPaginationItemElement extends HTMLLIElement {
   pageNumber: number;
+  [key: string]: unknown;
 }
 
 type PaginationAsyncAddressingMethodModifierHTMLOptions = {
@@ -37,14 +38,14 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
   }
 
   protected _initOptionsFromHTML() {
-    const page = parseInt(this.component.element.dataset.page as string, 10);
+    const page = parseInt(this.component.element.dataset.page ?? '', 10);
     const displayed = parseInt(
-      this.component.element.dataset.displayed as string,
+      this.component.element.dataset.displayed ?? '',
       10
     );
-    const total = parseInt(this.component.element.dataset.total as string, 10);
+    const total = parseInt(this.component.element.dataset.total ?? '', 10);
     const pages = Math.ceil(total / displayed);
-    const text = this.component.element.dataset.text as string;
+    const text = this.component.element.dataset.text ?? '';
 
     return { page, displayed, total, pages, text };
   }
@@ -129,7 +130,7 @@ class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethod
     innerText: string,
     linkClickListener: (event: MouseEvent) => void,
     classes: Array<string>,
-    attributes: { [attribute: string]: string } = {}
+    attributes: Partial<AsyncPaginationItemElement> = {}
   ) {
     const item = document.createElement('li') as AsyncPaginationItemElement;
     item.pageNumber = pageNumber;

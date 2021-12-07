@@ -1,7 +1,6 @@
 type FormDropdownElement = HTMLDivElement;
 
-const formDropdownElements = document.querySelectorAll(
-  '.js-form-dropdown'
-) as NodeListOf<FormDropdownElement>;
+const formDropdownElements =
+  document.querySelectorAll<FormDropdownElement>('.js-form-dropdown');
 
 export { formDropdownElements as default, FormDropdownElement };

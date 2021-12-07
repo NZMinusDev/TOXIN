@@ -62,10 +62,11 @@ class FormExpandableCheckboxList extends BEMComponent<
 
   protected _headingLabelEventListenerObject = {
     handleHeadingLabelKeyDown: (event: KeyboardEvent) => {
-      const currentTarget =
-        event.currentTarget as FormExpandableCheckboxListDOM['expanderInput'];
+      const { currentTarget } = event;
 
-      if (!event.repeat && event.code === 'Enter') {
+      const shouldClick = !event.repeat && event.code === 'Enter';
+
+      if (currentTarget instanceof HTMLElement && shouldClick) {
         currentTarget.click();
       }
     },

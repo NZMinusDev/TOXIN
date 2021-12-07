@@ -2,19 +2,16 @@ import BEMComponent, {
   HTMLElementWithComponent,
 } from '@shared/utils/scripts/components/BEM/BEMComponent';
 import { addURLValues } from '@shared/utils/scripts/URLHelper';
-import { Unpacked } from '@shared/utils/scripts/TypingHelper';
-import noUiSlider from '@library.blocks/primitives/form-range-slider/form-range-slider';
+import noUiSlider, {
+  target,
+} from '@library.blocks/primitives/form-range-slider/form-range-slider';
 
 import formRangeSliderElements, {
   FormRangeSliderElement,
 } from './form-range-slider-elements';
 
-interface HTMLDivElementWithSlider extends HTMLDivElement {
-  noUiSlider: noUiSlider;
-}
-
 type FormRangeSliderDOM = {
-  slider: HTMLDivElementWithSlider;
+  slider: target;
   result: HTMLOutputElement;
   inputs: HTMLInputElement[];
 };
@@ -94,22 +91,20 @@ class FormRangeSlider extends BEMComponent<
 
   protected _inputsEventListenerObject = {
     handleInputChange: (event: Event) => {
-      const currentTarget = event.currentTarget as Unpacked<
-        FormRangeSliderDOM['inputs']
-      >;
+      const { currentTarget } = event;
 
-      if (this._options.isFilter) {
+      if (currentTarget instanceof HTMLInputElement && this._options.isFilter) {
         addURLValues({ name: currentTarget.name, value: currentTarget.value });
       }
     },
   };
 
   protected _bindSliderListeners() {
-    this._DOM.slider.noUiSlider.on(
+    this._DOM.slider.noUiSlider?.on(
       'update',
       this._sliderEventListenerObject.handleSliderUpdate
     );
-    this._DOM.slider.noUiSlider.on(
+    this._DOM.slider.noUiSlider?.on(
       'change',
       this._sliderEventListenerObject.handleSliderChange
     );
@@ -118,21 +113,24 @@ class FormRangeSlider extends BEMComponent<
   }
 
   protected _sliderEventListenerObject = {
-    handleSliderUpdate: (values: Array<string>) => {
+    handleSliderUpdate: (values: Array<string | number>) => {
       const { inputs, result } = this._DOM;
       const [valueFrom] = values;
       const valueTo = values[values.length - 1];
 
       values.forEach((value, index) => {
-        inputs[index].value = value;
+        inputs[index].value = value.toString();
       });
 
-      result.value = `${parseInt(valueFrom, 10).toLocaleString()}₽ - ${parseInt(
-        valueTo,
+      result.value = `${parseInt(
+        valueFrom.toString(),
+        10
+      ).toLocaleString()}₽ - ${parseInt(
+        valueTo.toString(),
         10
       ).toLocaleString()}₽`;
     },
-    handleSliderChange: (values: Array<string>, handle: number) => {
+    handleSliderChange: (values: Array<string | number>, handle: number) => {
       const { inputs } = this._DOM;
 
       inputs[handle].dispatchEvent(new Event('change'));

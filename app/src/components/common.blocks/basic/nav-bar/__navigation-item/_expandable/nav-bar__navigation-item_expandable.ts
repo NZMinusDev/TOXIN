@@ -93,10 +93,11 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
 
   protected _itemExpandCheckboxLabelEventListenerObject = {
     handleItemExpandCheckboxLabelKeyDown: (event: KeyboardEvent) => {
-      const currentTarget =
-        event.currentTarget as NavBarExpandableNavigationItemModifierDOM['itemExpandCheckboxLabel'];
+      const { currentTarget } = event;
 
-      if (!event.repeat && event.code === 'Enter') {
+      const shouldClick = !event.repeat && event.code === 'Enter';
+
+      if (currentTarget instanceof HTMLElement && shouldClick) {
         currentTarget.click();
       }
     },
@@ -127,14 +128,17 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
       }
     },
     handleWindowClick: (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      const navBarExpandableNavigationItem = target.closest(
-        '.js-nav-bar__navigation-item_expandable'
-      );
+      const { target } = event;
 
-      if (navBarExpandableNavigationItem === null) {
-        this._uncheckItemExpandCheckbox();
-        this._removeMaxHeightFromChildList();
+      if (target instanceof HTMLElement) {
+        const navBarExpandableNavigationItem = target.closest(
+          '.js-nav-bar__navigation-item_expandable'
+        );
+
+        if (navBarExpandableNavigationItem === null) {
+          this._uncheckItemExpandCheckbox();
+          this._removeMaxHeightFromChildList();
+        }
       }
     },
   };

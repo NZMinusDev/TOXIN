@@ -35,7 +35,7 @@ const animate = (
 ) => {
   const start = performance.now();
 
-  const newAnimate = (time) => {
+  const newAnimate = (time: number) => {
     let timeFraction = (time - start) / duration;
 
     if (timeFraction > 1) {
@@ -73,7 +73,7 @@ const bounce = (timeFraction: number) => {
   return -(((11 - 6 * a - 11 * timeFraction) / 4) ** 2) + b ** 2;
 };
 
-const elastic = (x, timeFraction) =>
+const elastic = (x: number, timeFraction: number) =>
   2 ** (10 * (timeFraction - 1)) *
   Math.cos(((20 * Math.PI * x) / 3) * timeFraction);
 

@@ -1,7 +1,6 @@
 import BEMComponent, {
   HTMLElementWithComponent,
 } from '@shared/utils/scripts/components/BEM/BEMComponent';
-import { Unpacked } from '@shared/utils/scripts/TypingHelper';
 
 import formRateButtonElements, {
   FormRateButtonElement,
@@ -58,11 +57,11 @@ class FormRateButton extends BEMComponent<
 
   protected _iconsEventListenerObject = {
     handleIconKeyDown: (event: KeyboardEvent) => {
-      const currentTarget = event.currentTarget as Unpacked<
-        FormRateButtonDOM['icons']
-      >;
+      const { currentTarget } = event;
 
-      if (!event.repeat && event.code === 'Enter') {
+      const shouldClick = !event.repeat && event.code === 'Enter';
+
+      if (currentTarget instanceof HTMLElement && shouldClick) {
         currentTarget.click();
       }
     },
