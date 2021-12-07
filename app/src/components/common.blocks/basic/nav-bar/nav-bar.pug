@@ -18,20 +18,26 @@ mixin nav-bar({ status = 'unconfirmed', personHref = './mock.html', personName =
       +logo({ tag: 'a', color: 'primary-gradient', title: 'toxin' })(
         href="./landing-page.html"
       )
-    nav.nav-bar__navigation
+    button.nav-bar__burger.js-nav-bar__burger(
+      type="button",
+      aria-expanded="false"
+    )
+      span.nav-bar__burger-line
+    .nav-bar__body.js-nav-bar__body
+      nav.nav-bar__navigation
+        -
+          const { items } = navigation;
+        +nav-bar__navigation-list(items, active)
       -
-        const { items } = navigation;
-      +nav-bar__navigation-list(items, active)
-    -
-      const loginStatusClass = `nav-bar__login_status_${status}`;
-    section.nav-bar__login(class=[loginStatusClass])
-      case status
-        when 'confirmed'
-          a.nav-bar__person(href=personHref, title="в личный кабинет")= personName
-        default
-          +button({ tag: 'a', text: 'Войти', appearance: 'bordered', verticalPadding: 'small' })(
-            href="./sign-in.html"
-          )
-          +button({ tag: 'a', text: 'Зарегистрироваться', verticalPadding: 'small' })(
-            href="./registration.html"
-          )
+        const loginStatusClass = `nav-bar__login_status_${status}`;
+      section.nav-bar__login(class=[loginStatusClass])
+        case status
+          when 'confirmed'
+            a.nav-bar__person(href=personHref, title="в личный кабинет")= personName
+          default
+            +button({ tag: 'a', text: 'Войти', appearance: 'bordered', verticalPadding: 'small' })(
+              href="./sign-in.html"
+            )
+            +button({ tag: 'a', text: 'Зарегистрироваться', verticalPadding: 'small' })(
+              href="./registration.html"
+            )

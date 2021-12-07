@@ -2,17 +2,15 @@
 
 .nav-bar {
   display: grid;
+  align-items: center;
+  justify-content: space-between;
   padding: #{15px / 14px * 1em} #{140px / 1440px * 100%};
   width: 100%;
   background-color: white;
-  grid: 'logo' 'navigation' 'login' auto / auto;
-  grid-row-gap: 20px / 14px * 1em;
-  justify-items: center;
+  grid: 'logo burger';
 
   @media print, screen and (min-width: media.$md) {
-    grid: 'logo navigation login' 1fr / 1fr auto auto;
-    gap: 0 #{20px / 14px * 1em};
-    place-items: center normal;
+    grid: 'logo . body' / 1fr #{20px / 14px * 1em} auto;
   }
 
   @media print, screen and (color) {
@@ -25,7 +23,90 @@
     grid-area: logo;
   }
 
+  &__burger {
+    z-index: 21;
+    display: grid;
+    align-content: space-between;
+    padding: 0;
+    width: 30px / 14px * 1em;
+    height: 18px / 14px * 1em;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    grid-area: burger;
+
+    @media print, screen and (min-width: media.$md) {
+      display: none;
+    }
+
+    &_active {
+      &::before {
+        transform: translate(0, #{9px / 14px * 1em}) rotate(45deg);
+      }
+
+      .nav-bar__burger-line {
+        transform: scale(0);
+      }
+
+      &::after {
+        transform: translate(0, #{-7px / 14px * 1em}) rotate(-45deg);
+      }
+
+      & + .nav-bar__body {
+        transform: translate(0, 0);
+      }
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      transition: transform 0.2s ease;
+    }
+
+    &::before,
+    .nav-bar__burger-line,
+    &::after {
+      width: 100%;
+      height: 2px;
+      background: black;
+      will-change: transform;
+
+      @media print, screen and (color) {
+        background: rgb(var(--main-common-color) / 0.9);
+      }
+    }
+  }
+
+  &__body {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    display: grid;
+    padding: inherit;
+    width: 100%;
+    height: 100vh;
+    background: rgb(255 255 255 / 0.9);
+    transform: translate(0, -100%);
+    grid-area: body;
+    will-change: transform;
+    grid: 'navigation' 1fr 'login';
+
+    @media print, screen and (min-width: media.$md) {
+      position: initial;
+      padding: initial;
+      height: initial;
+      transform: initial;
+      grid: 'navigation . login' / auto #{20px / 14px * 1em} auto;
+    }
+
+    &_transition_active {
+      transition: transform 0.2s ease;
+    }
+  }
+
   &__navigation {
+    align-self: center;
     grid-area: navigation;
 
     @media print, screen and (min-width: media.$md) {
@@ -129,8 +210,11 @@
           visibility: hidden;
           overflow: hidden;
           max-height: 0;
-          background-color: rgb(255 255 255/ 0.75);
           transition: max-height 0.2s linear, visibility 0.2s linear;
+
+          @media print, screen and (min-width: media.$md) {
+            background-color: rgb(255 255 255 / 0.75);
+          }
         }
 
         &:checked {
@@ -180,9 +264,12 @@
   }
 
   &__login {
+    display: grid;
     grid-area: login;
 
     &_status_confirmed {
+      justify-items: center;
+
       &::before {
         content: '';
 
@@ -198,7 +285,6 @@
     }
 
     &_status_unconfirmed {
-      display: grid;
       align-items: center;
       grid-auto-flow: column;
       grid-column-gap: 20px / 14px * 1em;
