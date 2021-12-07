@@ -21,6 +21,8 @@ class FormTextFieldInput extends BEMComponent<
     super(formTextFieldInputElement);
 
     this._options = this._initOptionsFromHTML();
+
+    this._bindListeners();
   }
 
   getOptions() {
@@ -34,13 +36,21 @@ class FormTextFieldInput extends BEMComponent<
     return { placeholder, isFilter };
   }
 
-  protected onChange(event: Event) {
-    const currentTarget = event.currentTarget as FormTextFieldInputElement;
+  protected _bindListeners() {
+    const { element } = this;
 
-    if (this._options.isFilter) {
+    element.addEventListener('change', this.onChange);
+
+    return this;
+  }
+
+  protected onChange = (event: Event) => {
+    const { currentTarget } = event;
+
+    if (currentTarget instanceof HTMLInputElement && this._options.isFilter) {
       addURLValues({ name: currentTarget.name, value: currentTarget.value });
     }
-  }
+  };
 }
 
 type FormTextFieldInputElementWithComponent = HTMLElementWithComponent<
