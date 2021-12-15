@@ -3,9 +3,9 @@ import { pluralize } from 'numeralize-ru';
 import BEMComponent, {
   HTMLElementWithComponent,
 } from '@shared/utils/scripts/components/BEM/BEMComponent';
-import { has } from '@shared/utils/scripts/DOMHelper';
-import { Unpacked } from '@shared/utils/scripts/TypingHelper';
-import { addURLValues } from '@shared/utils/scripts/URLHelper';
+import { has } from '@shared/utils/scripts/DOM';
+import { Unpacked } from '@shared/utils/scripts/types/utility';
+import { addURLValues } from '@shared/utils/scripts/URL';
 import '@library.blocks/primitives/form-dropdown/__item-quantity-list/form-dropdown__item-quantity-list';
 
 import formDropdownElements from '../form-dropdown-elements';

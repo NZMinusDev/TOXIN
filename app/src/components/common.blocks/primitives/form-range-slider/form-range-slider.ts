@@ -1,7 +1,7 @@
 import BEMComponent, {
   HTMLElementWithComponent,
 } from '@shared/utils/scripts/components/BEM/BEMComponent';
-import { addURLValues } from '@shared/utils/scripts/URLHelper';
+import { addURLValues } from '@shared/utils/scripts/URL';
 import noUiSlider, {
   target,
 } from '@library.blocks/primitives/form-range-slider/form-range-slider';

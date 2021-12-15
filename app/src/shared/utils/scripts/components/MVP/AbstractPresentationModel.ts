@@ -1,6 +1,6 @@
 import defaultsDeep from 'lodash-es/defaultsDeep';
 
-import EventManagerMixin from '../EventManagerMixin';
+import EventManagerMixin from '../EventManagerMixin/EventManagerMixin';
 import IFacadeModel from './IFacadeModel';
 
 type AbstractPresentationModelEvents<
