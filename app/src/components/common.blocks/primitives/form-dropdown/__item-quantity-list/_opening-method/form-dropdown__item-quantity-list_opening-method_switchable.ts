@@ -1,9 +1,9 @@
 import formDropdownItemQuantityLists from '../form-dropdown__item-quantity-list';
-import FormDropdownItemQuantityListOpeningMethodModifier, {
+import AbstractFormDropdownItemQuantityListOpeningMethodModifier, {
   FormDropdownItemQuantityList,
-} from './coupling';
+} from './AbstractFormDropdownItemQuantityListOpeningMethodModifier';
 
-class FormDropdownItemQuantityListSwitchableOpeningMethodModifier extends FormDropdownItemQuantityListOpeningMethodModifier {
+class FormDropdownItemQuantityListSwitchableOpeningMethodModifier extends AbstractFormDropdownItemQuantityListOpeningMethodModifier {
   protected _state: { wasOpened: boolean };
 
   constructor(formDropdownItemQuantityList: FormDropdownItemQuantityList) {

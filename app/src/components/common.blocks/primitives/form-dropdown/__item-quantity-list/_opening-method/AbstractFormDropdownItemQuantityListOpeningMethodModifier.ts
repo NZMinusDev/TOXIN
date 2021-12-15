@@ -2,7 +2,7 @@ import BEMModifier from '@shared/utils/scripts/components/BEM/BEMModifier';
 
 import type { FormDropdownItemQuantityList } from '../form-dropdown__item-quantity-list';
 
-abstract class FormDropdownItemQuantityListOpeningMethodModifier extends BEMModifier<FormDropdownItemQuantityList> {
+abstract class AbstractFormDropdownItemQuantityListOpeningMethodModifier extends BEMModifier<FormDropdownItemQuantityList> {
   constructor(formDropdownItemQuantityList: FormDropdownItemQuantityList) {
     super(
       formDropdownItemQuantityList,
@@ -13,4 +13,4 @@ abstract class FormDropdownItemQuantityListOpeningMethodModifier extends BEMModi
 
 export type { FormDropdownItemQuantityList };
 
-export { FormDropdownItemQuantityListOpeningMethodModifier as default };
+export { AbstractFormDropdownItemQuantityListOpeningMethodModifier as default };

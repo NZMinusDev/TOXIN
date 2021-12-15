@@ -1,5 +1,7 @@
 import paginations from '../pagination';
-import PaginationAddressingMethodModifier, { Pagination } from './coupling';
+import AbstractPaginationAddressingMethodModifier, {
+  Pagination,
+} from './AbstractPaginationAddressingMethodModifier';
 
 interface AsyncPaginationItemElement extends HTMLLIElement {
   pageNumber: number;
@@ -19,7 +21,7 @@ type PaginationAsyncAddressingMethodModifierState = {
 
 type PaginationAsyncAddressingMethodModifierCustomEvents = { change: {} };
 
-class PaginationAsyncAddressingMethodModifier extends PaginationAddressingMethodModifier {
+class PaginationAsyncAddressingMethodModifier extends AbstractPaginationAddressingMethodModifier {
   protected readonly _options: PaginationAsyncAddressingMethodModifierHTMLOptions;
 
   protected readonly _state: PaginationAsyncAddressingMethodModifierState;

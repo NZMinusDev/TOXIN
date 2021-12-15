@@ -1,14 +1,14 @@
 import formDropdownItemQuantityLists from '../form-dropdown__item-quantity-list';
-import FormDropdownItemQuantityListOpeningTypeModifier, {
+import AbstractFormDropdownItemQuantityListOpeningMethodModifier, {
   FormDropdownItemQuantityList,
-} from './coupling';
+} from './AbstractFormDropdownItemQuantityListOpeningMethodModifier';
 
 type FormDropdownItemQuantityListAppliedOpeningTypeModifierDOM = {
   clearBtn: HTMLButtonElement;
   applyBtn: HTMLButtonElement;
 };
 
-class FormDropdownItemQuantityListAppliedOpeningTypeModifier extends FormDropdownItemQuantityListOpeningTypeModifier {
+class FormDropdownItemQuantityListAppliedOpeningTypeModifier extends AbstractFormDropdownItemQuantityListOpeningMethodModifier {
   protected readonly _DOM: Readonly<FormDropdownItemQuantityListAppliedOpeningTypeModifierDOM>;
 
   constructor(formDropdownItemQuantityList: FormDropdownItemQuantityList) {

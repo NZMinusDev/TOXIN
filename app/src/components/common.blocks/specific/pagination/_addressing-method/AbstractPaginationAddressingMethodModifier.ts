@@ -2,7 +2,7 @@ import BEMModifier from '@shared/utils/scripts/components/BEM/BEMModifier';
 
 import type { Pagination } from '../pagination';
 
-abstract class PaginationAddressingMethodModifier extends BEMModifier<Pagination> {
+abstract class AbstractPaginationAddressingMethodModifier extends BEMModifier<Pagination> {
   constructor(pagination: Pagination) {
     super(pagination, 'paginationAddressingMethodModifier');
   }
@@ -10,4 +10,4 @@ abstract class PaginationAddressingMethodModifier extends BEMModifier<Pagination
 
 export type { Pagination };
 
-export { PaginationAddressingMethodModifier as default };
+export { AbstractPaginationAddressingMethodModifier as default };
