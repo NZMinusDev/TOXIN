@@ -1,3 +1,5 @@
+@use '@themes' as theme;
+
 .to-top-arrow {
   position: fixed;
   bottom: 1em;
@@ -10,9 +12,9 @@
   height: 2em;
   border: solid 1px;
   border-color: inherit;
-  border-radius: 100%;
+  border-radius: 50%;
   cursor: pointer;
-  transition: all 0.3s ease-out;
+  transition: all theme.get-css-var(transitions, duration, standard) ease-out;
 
   &[hidden] {
     display: none;
@@ -24,12 +26,13 @@
     width: 100%;
     height: 100%;
     content: '▲';
-    transition: transform 0.5s ease-in;
+    transition: transform theme.get-css-var(transitions, duration, complex)
+      ease-in;
   }
 
   &:hover {
-    border-color: lightgreen;
-    color: lightgreen;
+    border-color: rgb(theme.get-css-var(palette, secondary, main));
+    color: rgb(theme.get-css-var(palette, secondary, main));
 
     &::before {
       transform: rotate(360deg);

@@ -1,4 +1,4 @@
-@use '@themes/main/media.scss';
+@use '@themes' as theme;
 
 .footer {
   display: grid;
@@ -19,8 +19,7 @@
     justify-items: center;
 
     @media print, screen and (color) {
-      box-shadow: 0 #{10px / 14px * 1em} #{20px / 14px * 1em} 0
-        rgb(var(--main-common-color) / 0.05);
+      box-shadow: theme.get-css-var(shadows, 1);
     }
 
     .footer__copyright {
@@ -38,7 +37,7 @@
     grid-row-gap: 17px / 14px * 1em;
     justify-items: center;
 
-    @media print, screen and (min-width: media.$md) {
+    @media print, screen and (min-width: theme.get-scss-var(breakpoints, md)) {
       $padding: 140px;
       $description-width: 260px / (1440px - $padding * 2) * 100%;
       $menu-0-gap-width: 40px / (1440px - $padding * 2) * 100%;
@@ -53,7 +52,7 @@
     }
 
     @media print, screen and (color) {
-      border-color: rgb(var(--main-common-color) / 0.1);
+      border-color: rgb(theme.get-css-var(palette, divider));
     }
   }
 
@@ -69,7 +68,7 @@
     grid-area: description;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 0.75);
+      color: rgb(theme.get-css-var(palette, text, secondary));
     }
   }
 
@@ -83,7 +82,8 @@
     & ~ .footer__list {
       display: none;
 
-      @media print, screen and (min-width: media.$md) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, md)) {
         display: grid;
       }
     }
@@ -93,7 +93,8 @@
         &::after {
           content: '\e5ce';
 
-          @media print, screen and (min-width: media.$md) {
+          @media print,
+            screen and (min-width: theme.get-scss-var(breakpoints, md)) {
             content: '';
           }
         }
@@ -110,15 +111,15 @@
     justify-content: center;
     margin: 0;
     text-transform: uppercase;
-    font: var(--h3-font);
+    font: theme.get-css-var(typography, h3);
 
-    @media print, screen and (min-width: media.$md) {
+    @media print, screen and (min-width: theme.get-scss-var(breakpoints, md)) {
       justify-content: flex-start;
       margin-top: 4px;
     }
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 1);
+      color: rgb(theme.get-css-var(palette, text, primary));
     }
   }
 
@@ -127,7 +128,7 @@
     cursor: pointer;
     user-select: none;
 
-    @media print, screen and (min-width: media.$md) {
+    @media print, screen and (min-width: theme.get-scss-var(breakpoints, md)) {
       cursor: auto;
       user-select: auto;
     }
@@ -138,7 +139,8 @@
       font-size: 2em;
       font-family: 'Material Icons';
 
-      @media print, screen and (min-width: media.$md) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, md)) {
         display: none;
       }
     }
@@ -153,12 +155,12 @@
     text-align: center;
     grid-row-gap: 20px / 14px * 1em;
 
-    @media print, screen and (min-width: media.$md) {
+    @media print, screen and (min-width: theme.get-scss-var(breakpoints, md)) {
       text-align: left;
     }
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 0.5);
+      color: rgb(theme.get-css-var(palette, text, caption));
     }
   }
 
@@ -193,14 +195,13 @@
     grid-area: copyright-bar;
     grid: 'copyright' 'icons';
 
-    @media print, screen and (min-width: media.$md) {
+    @media print, screen and (min-width: theme.get-scss-var(breakpoints, md)) {
       justify-content: space-between;
       grid: 'copyright icons';
     }
 
     @media print, screen and (color) {
-      box-shadow: 0 #{10px / 14px * 1em} #{20px / 14px * 1em} 0
-        rgb(var(--main-common-color) / 0.05);
+      box-shadow: theme.get-css-var(shadows, 1);
     }
   }
 

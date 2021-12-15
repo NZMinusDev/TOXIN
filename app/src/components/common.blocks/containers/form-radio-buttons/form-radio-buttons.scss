@@ -1,4 +1,4 @@
-@use '@themes/main/gradients.scss';
+@use '@themes' as theme;
 
 .form-radio-buttons {
   --main-color: gray;
@@ -6,9 +6,9 @@
   --additional-active-color: silver;
 
   @media print, screen and (color) {
-    --main-color: var(--main-common-color);
-    --main-active-color: var(--main-primary-color);
-    --additional-active-color: var(--dark-primary-color);
+    --main-color: #{theme.get-css-var(palette, common, main)};
+    --main-active-color: #{theme.get-css-var(palette, primary, main)};
+    --additional-active-color: #{theme.get-css-var(palette, primary, dark)};
   }
 
   &__heading {
@@ -84,7 +84,7 @@
     user-select: none;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 0.5);
+      color: rgb(theme.get-css-var(palette, text, caption));
     }
   }
 }

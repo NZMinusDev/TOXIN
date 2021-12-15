@@ -1,9 +1,11 @@
+@use '@themes' as theme;
+
 .apply-control {
   display: flex;
   justify-content: space-between;
 
   @media print, screen and (color) {
-    font: var(--h3-font);
+    font: theme.get-css-var(typography, h3);
   }
 
   &__clear-btn,
@@ -19,7 +21,7 @@
     text-transform: uppercase;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-primary-color) / 1);
+      color: rgb(theme.get-css-var(palette, primary, main));
     }
 
     &_hidden {
@@ -31,7 +33,7 @@
     text-transform: uppercase;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-primary-color) / 1);
+      color: rgb(theme.get-css-var(palette, primary, main));
     }
   }
 }

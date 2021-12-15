@@ -1,4 +1,4 @@
-@use '@themes/main/gradients.scss';
+@use '@themes' as theme;
 
 .form-range-slider {
   display: grid;
@@ -26,7 +26,7 @@
     grid-area: result;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 0.5);
+      color: rgb(theme.get-css-var(palette, text, caption));
     }
   }
 
@@ -67,13 +67,13 @@
     .noUi-connect,
     &.noUi-horizontal .noUi-handle {
       @media print, screen and (color) {
-        background: gradients.secondary(1);
+        background: theme.get-css-var(gradients, secondary, main);
       }
     }
 
     &.noUi-target {
       @media print, screen and (color) {
-        border: var(--border);
+        border: theme.get-css-var(border, main);
       }
     }
   }
@@ -85,7 +85,7 @@
     grid-area: description;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 0.5);
+      color: rgb(theme.get-css-var(palette, text, caption));
     }
   }
 }

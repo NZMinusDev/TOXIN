@@ -1,0 +1,8 @@
+@use '../../factory.scss';
+@use './breakpoints.scss';
+
+$theme: factory.create-scss-vars-map(
+  (
+    breakpoints: breakpoints.$breakpoints,
+  )
+);

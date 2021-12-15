@@ -1,3 +1,5 @@
+@use '@themes' as theme;
+
 .form-expandable-checkbox-list {
   display: flex;
   flex-direction: column;
@@ -7,29 +9,29 @@
     margin-top: 0;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 1);
+      color: rgb(theme.get-css-var(palette, text, primary));
     }
 
     &:hover {
       .form-expandable-checkbox-list__expand-icon {
         @media print, screen and (color) {
-          color: rgb(var(--main-common-color) / 0.75);
+          color: rgb(theme.get-css-var(palette, text, secondary));
         }
       }
     }
 
     &_tag_the-h1 {
-      font: var(--h1-font);
+      font: theme.get-css-var(typography, h1);
     }
 
     &_tag_the-h2 {
-      font: var(--h2-font);
+      font: theme.get-css-var(typography, h2);
     }
 
     &_tag_the-h3 {
       margin-bottom: 5px / 12px * 1em;
       text-transform: uppercase;
-      font: var(--h3-font);
+      font: theme.get-css-var(typography, h3);
     }
   }
 
@@ -44,7 +46,7 @@
 
   &__expand-icon {
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 0.5);
+      color: rgb(theme.get-css-var(palette, text, caption));
     }
   }
 
@@ -68,6 +70,8 @@
     margin-top: 0.5em;
     max-height: 0;
     text-transform: none;
-    transition: max-height 0.3s linear, visibility 0.3s linear;
+    transition: max-height theme.get-css-var(transitions, duration, standard)
+        linear,
+      visibility theme.get-css-var(transitions, duration, standard) linear;
   }
 }

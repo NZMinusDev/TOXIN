@@ -1,3 +1,6 @@
+@use '@shared/utils/styles/mixins.scss';
+@use '@themes' as theme;
+
 .form-toggle {
   --main-color: gray;
   --main-active-color: black;
@@ -11,9 +14,9 @@
   place-items: center start;
 
   @media print, screen and (color) {
-    --main-color: var(--main-common-color);
-    --main-active-color: var(--main-primary-color);
-    --additional-active-color: var(--dark-primary-color);
+    --main-color: #{theme.get-css-var(palette, common, main)};
+    --main-active-color: #{theme.get-css-var(palette, primary, main)};
+    --additional-active-color: #{theme.get-css-var(palette, primary, dark)};
   }
 
   &__button,
@@ -54,7 +57,8 @@
   }
 
   &__button-icon-circle {
-    transition: transform 0.3s cubic-bezier(0.2, 0.85, 0.32, 1.2);
+    transition: transform theme.get-css-var(transitions, duration, standard)
+      cubic-bezier(0.2, 0.85, 0.32, 1.2);
     fill: rgb(var(--main-color) / 0.25);
   }
 

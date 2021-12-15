@@ -1,5 +1,7 @@
 @use 'sass:map';
+
 @use '@shared/utils/styles/mixins.scss';
+@use '@themes' as theme;
 
 .color-sample {
   display: grid;
@@ -9,13 +11,14 @@
 
   @media print, screen and (color) {
     $theme-colors: (
-      'color__dark-shade_100': rgb(var(--main-common-color) / 1),
-      'color__dark-shade_75': rgb(var(--main-common-color) / 0.75),
-      'color__dark-shade_50': rgb(var(--main-common-color) / 0.5),
-      'color__dark-shade_25': rgb(var(--main-common-color) / 0.25),
-      'color__dark-shade_5': rgb(var(--main-common-color) / 0.05),
-      'color__primary_100': rgb(var(--main-primary-color) / 1),
-      'color__secondary_100': rgb(var(--main-secondary-color) / 1),
+      'color__dark-shade_100': rgb(theme.get-css-var(palette, text, primary)),
+      'color__dark-shade_75': rgb(theme.get-css-var(palette, text, secondary)),
+      'color__dark-shade_50': rgb(theme.get-css-var(palette, text, caption)),
+      'color__dark-shade_25': rgb(theme.get-css-var(palette, text, placeholder)),
+      'color__dark-shade_5':
+        rgb(theme.get-css-var(palette, common, main) / 0.05),
+      'color__primary_100': rgb(theme.get-css-var(palette, primary, main)),
+      'color__secondary_100': rgb(theme.get-css-var(palette, secondary, main)),
     );
 
     $counter: 1;
@@ -42,26 +45,26 @@
 
     @media print, screen and (color) {
       @include mixins.unify-parent('h1') {
-        color: rgb(var(--main-common-color) / 1);
+        color: rgb(theme.get-css-var(palette, text, primary));
       }
       @include mixins.unify-parent('h2') {
-        color: rgb(var(--main-common-color) / 1);
+        color: rgb(theme.get-css-var(palette, text, primary));
       }
       @include mixins.unify-parent('h3') {
-        color: rgb(var(--main-common-color) / 1);
+        color: rgb(theme.get-css-var(palette, text, primary));
       }
     }
 
     @include mixins.unify-parent('h1') {
-      font: var(--h1-font);
+      font: theme.get-css-var(typography, h1);
     }
     @include mixins.unify-parent('h2') {
-      font: var(--h2-font);
+      font: theme.get-css-var(typography, h2);
       line-height: 27.5px / 19px * 1em;
     }
     @include mixins.unify-parent('h3') {
       text-transform: uppercase;
-      font: var(--h3-font);
+      font: theme.get-css-var(typography, h3);
     }
   }
 

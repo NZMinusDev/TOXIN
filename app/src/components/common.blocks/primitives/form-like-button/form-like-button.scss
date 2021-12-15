@@ -1,4 +1,5 @@
 @use '@shared/utils/styles/mixins.scss';
+@use '@themes' as theme;
 
 .form-like-button {
   position: relative;
@@ -19,23 +20,25 @@
     appearance: none;
 
     @media print, screen and (color) {
-      border: var(--border);
+      border: theme.get-css-var(border, main);
     }
 
     &:checked {
       @media print, screen and (color) {
-        border-color: rgb(var(--main-primary-color) / 1);
-      }
-
-      &::before,
-      & + .form-like-button__counter {
-        @media print, screen and (color) {
-          color: rgb(var(--main-primary-color) / 1);
-        }
+        border-color: rgb(theme.get-css-var(palette, primary, main));
       }
 
       &::before {
         content: '\e87d';
+        @include mixins.gradient-font(
+          theme.get-css-var(gradients, primary, main)
+        );
+      }
+
+      & + .form-like-button__counter {
+        @media print, screen and (color) {
+          color: rgb(theme.get-css-var(palette, primary, main));
+        }
       }
     }
 
@@ -50,7 +53,7 @@
       line-height: 1em;
 
       @media print, screen and (color) {
-        color: rgb(var(--main-common-color) / 0.25);
+        color: rgb(theme.get-css-var(palette, text, placeholder));
       }
     }
   }
@@ -69,7 +72,7 @@
     pointer-events: none;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 0.25);
+      color: rgb(theme.get-css-var(palette, text, placeholder));
     }
     @include mixins.ellipsis-text();
   }

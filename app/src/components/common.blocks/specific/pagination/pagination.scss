@@ -1,4 +1,4 @@
-@use '@themes/main/gradients.scss';
+@use '@themes' as theme;
 
 .pagination {
   &__list {
@@ -20,7 +20,7 @@
     place-content: center;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 0.5);
+      color: rgb(theme.get-css-var(palette, text, caption));
     }
 
     &_previous {
@@ -33,7 +33,7 @@
       font-family: 'Material Icons';
 
       @media print, screen and (color) {
-        background: gradients.secondary(1);
+        background: theme.get-css-var(gradients, secondary, main);
         color: rgb(255 255 255 / 1);
       }
     }
@@ -44,7 +44,7 @@
       color: white;
 
       @media print, screen and (color) {
-        background: gradients.primary(1);
+        background: theme.get-css-var(gradients, primary, main);
         color: rgb(255 255 255 / 1);
       }
     }
@@ -59,7 +59,7 @@
       font-family: 'Material Icons';
 
       @media print, screen and (color) {
-        background: gradients.secondary(1);
+        background: theme.get-css-var(gradients, secondary, main);
         color: rgb(255 255 255 / 1);
       }
     }

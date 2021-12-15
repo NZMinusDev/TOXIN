@@ -1,0 +1,10 @@
+@use '../../factory.scss';
+
+$shadows: (
+  1: 0 #{10px / 14px * 1em} #{20px / 14px * 1em} 0
+    rgb(factory.get-css-var(palette, common, main) / 0.05),
+  2: 0 #{10px / 14px * 1em} #{20px / 14px * 1em}
+    rgb(factory.get-css-var(palette, common, main) / 0.05),
+  3: 0 #{10px / 14px * 1em} #{20px / 14px * 1em} 0
+    rgb(factory.get-css-var(palette, common, main) / 0.1),
+);

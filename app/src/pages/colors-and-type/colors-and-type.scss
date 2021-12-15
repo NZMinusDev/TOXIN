@@ -1,4 +1,4 @@
-@use '@themes/main/media.scss';
+@use '@themes' as theme;
 
 .colors-and-type-layout {
   display: grid;
@@ -8,7 +8,7 @@
   grid-row-gap: 1em;
   place-items: center;
 
-  @media print, screen and (min-width: media.$md) {
+  @media print, screen and (min-width: theme.get-scss-var(breakpoints, md)) {
     grid: 'colors type' / auto #{439px / 14px * 1em};
     place-content: normal space-between;
     place-items: normal;

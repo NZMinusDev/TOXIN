@@ -1,5 +1,5 @@
 @use '@shared/utils/styles/mixins.scss';
-@use '@themes/main/gradients.scss';
+@use '@themes' as theme;
 
 .form-rate-button {
   line-height: 0;
@@ -73,7 +73,9 @@
       font-family: 'Material Icons';
 
       @media print, screen and (color) {
-        @include mixins.gradient-font(gradients.primary(1));
+        @include mixins.gradient-font(
+          theme.get-css-var(gradients, primary, main)
+        );
       }
     }
   }

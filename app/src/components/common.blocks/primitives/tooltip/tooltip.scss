@@ -1,3 +1,5 @@
+@use '@themes' as theme;
+
 .tooltip {
   $tooltip-icon-size: 20px / 14px * 1em;
   $tooltip-arrow-size: 5px / 14px * 1em;
@@ -14,8 +16,8 @@
   cursor: pointer;
 
   @media print, screen and (color) {
-    border: var(--border);
-    color: rgb(var(--main-common-color) / 0.25);
+    border: theme.get-css-var(border, main);
+    color: rgb(theme.get-css-var(palette, text, placeholder));
   }
 
   //Tooltip text container
@@ -45,7 +47,7 @@
     z-index: 10;
     text-align: center;
     opacity: 0;
-    transition: all 0.5s ease; //speed of closing
+    transition: all theme.get-css-var(transitions, duration, standard) ease; //speed of closing
     pointer-events: none;
   }
 
@@ -55,6 +57,6 @@
   &:hover::before,
   &:hover::after {
     opacity: 1;
-    transition: all 0.75s ease; //speed of opening
+    transition: all theme.get-css-var(transitions, duration, complex) ease; //speed of opening
   }
 }

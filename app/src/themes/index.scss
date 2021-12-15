@@ -1,0 +1,11 @@
+@use 'sass:map';
+
+@use './main/scss' as scss;
+@forward './factory.scss' show get-css-var;
+
+/// Getter for scss theme vars
+/// @param { string } $parts...
+/// @see ./main/scss/index.scss
+@function get-scss-var($parts...) {
+  @return map.get(scss.$theme, $parts...);
+}

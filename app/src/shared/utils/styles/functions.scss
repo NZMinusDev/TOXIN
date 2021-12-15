@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use 'sass:list';
 @use 'sass:string';
 
@@ -24,6 +25,17 @@
   );
 
   @return $plugged-font, map-get($map: $spare-font-match, $key: $font), $font;
+}
+
+/// Returns separated by space list with rgba values(if alpha is 1 - deletes this)
+/// @param { color } $hex
+@function get-rgba-values-from-hex($hex) {
+  @if color.opacity($hex) == 1 {
+    @return color.red($hex) color.green($hex) color.blue($hex);
+  } @else {
+    @return (color.red($hex) color.green($hex) color.blue($hex)) /
+      color.opacity($hex);
+  }
 }
 
 /// Resolve path for generated in runtime images: @assets -> ./../../assets & assign new path('.' isn't included)

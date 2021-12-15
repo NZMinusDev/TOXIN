@@ -1,5 +1,5 @@
 @use '@shared/utils/styles/mixins.scss';
-@use '@themes/main/gradients.scss';
+@use '@themes' as theme;
 
 @include mixins.import-font(
   'Toxin Logo Font',
@@ -65,7 +65,7 @@
       &::before,
       &::after {
         @media print, screen and (color) {
-          border-color: rgb(var(--main-common-color) / 0.25);
+          border-color: rgb(theme.get-css-var(palette, common, main) / 0.25);
         }
       }
     }
@@ -83,14 +83,14 @@
       &::before {
         @media print, screen and (color) {
           background: linear-gradient(180deg, white, white) padding-box,
-            gradients.primary(1) border-box;
+            theme.get-css-var(gradients, primary, main) border-box;
         }
       }
 
       &::after {
         @media print, screen and (color) {
           background: linear-gradient(180deg, white, white) padding-box,
-            gradients.secondary(1) border-box;
+            theme.get-css-var(gradients, secondary, main) border-box;
         }
       }
     }
@@ -104,7 +104,7 @@
     font-family: 'Toxin Logo Font';
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 1);
+      color: rgb(theme.get-css-var(palette, text, primary));
     }
   }
 }

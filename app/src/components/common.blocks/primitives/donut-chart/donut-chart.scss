@@ -1,4 +1,5 @@
 @use '@shared/utils/styles/mixins.scss';
+@use '@themes' as theme;
 
 .donut-chart {
   $chart-width: #{120px / 14px * 1em};
@@ -57,8 +58,8 @@
         background: linear-gradient(180deg, white, white) padding-box,
           conic-gradient(
               transparent 0deg var(--start),
-              rgb(var(--main-secondary-color) / 1) var(--start),
-              rgb(var(--light-secondary-color) / 1) var(--end),
+              rgb(theme.get-css-var(palette, secondary, main)) var(--start),
+              rgb(theme.get-css-var(palette, secondary, light)) var(--end),
               transparent var(--end)
             )
             border-box;
@@ -79,8 +80,8 @@
         background: linear-gradient(180deg, white, white) padding-box,
           conic-gradient(
               transparent 0deg var(--start),
-              rgb(var(--main-primary-color) / 1) var(--start),
-              rgb(var(--dark-primary-color) / 1) var(--end),
+              rgb(theme.get-css-var(palette, primary, main)) var(--start),
+              rgb(theme.get-css-var(palette, primary, dark)) var(--end),
               transparent var(--end)
             )
             border-box;
@@ -114,7 +115,7 @@
     width: 80%;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-primary-color) / 1);
+      color: rgb(theme.get-css-var(palette, primary, main));
     }
 
     @include mixins.center-abs-position();

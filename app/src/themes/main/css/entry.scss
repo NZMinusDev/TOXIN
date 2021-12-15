@@ -1,0 +1,35 @@
+@use '@shared/utils/styles/mixins.scss';
+
+@use '../../factory.scss';
+@use './palette.scss';
+@use './typography.scss';
+@use './border.scss';
+@use './gradients.scss';
+@use './shadows.scss';
+
+$theme: (
+  palette: palette.$palette,
+  typography: typography.$typography,
+  border: border.$border,
+  gradients: gradients.$gradients,
+  shadows: shadows.$shadows,
+);
+
+@include mixins.import-font(
+  'Montserrat',
+  '@assets/fonts/montserrat/montserrat-regular/montserrat-regular.ttf'
+);
+@include mixins.import-font(
+  'Montserrat',
+  '@assets/fonts/montserrat/montserrat-bold/montserrat-bold.ttf',
+  bold
+);
+
+:root {
+  @include factory.css-vars($theme);
+}
+
+body {
+  color: rgb(factory.get-css-var(palette, text, secondary));
+  font: factory.get-css-var(typography, body);
+}

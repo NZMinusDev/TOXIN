@@ -1,4 +1,4 @@
-@use '@themes/main/gradients.scss';
+@use '@themes' as theme;
 
 .button {
   $top-padding: 14px / 12px * 1em;
@@ -14,7 +14,7 @@
   color: white;
   text-transform: uppercase;
   white-space: nowrap;
-  font: var(--h3-font);
+  font: theme.get-css-var(typography, h3);
 
   &_tag_the-a {
     text-decoration: none;
@@ -31,14 +31,14 @@
     background: rgb(169 169 169 / 1);
 
     @media print, screen and (color) {
-      background: gradients.primary(1);
+      background: theme.get-css-var(gradients, primary, main);
     }
 
     &:hover {
       background: rgb(169 169 169 / 0.5);
 
       @media print, screen and (color) {
-        background: gradients.primary(0.5);
+        background: theme.get-css-var(gradients, primary, hover);
       }
     }
   }
@@ -60,8 +60,8 @@
 
     @media print, screen and (color) {
       background: linear-gradient(180deg, white, white) padding-box,
-        gradients.primary(1) border-box;
-      color: rgb(var(--main-primary-color) / 1);
+        theme.get-css-var(gradients, primary, main) border-box;
+      color: rgb(theme.get-css-var(palette, primary, main));
     }
 
     &:hover {
@@ -75,7 +75,7 @@
 
       @media print, screen and (color) {
         background: linear-gradient(180deg, white, white) padding-box,
-          gradients.primary(0.5) border-box;
+          theme.get-css-var(gradients, primary, hover) border-box;
       }
     }
 
@@ -103,14 +103,14 @@
     color: rgb(0 0 0 / 1);
 
     @media print, screen and (color) {
-      color: rgb(var(--main-primary-color) / 1);
+      color: rgb(theme.get-css-var(palette, primary, main));
     }
 
     &:hover {
       color: rgb(0 0 0 / 0.5);
 
       @media print, screen and (color) {
-        color: rgb(var(--main-common-color) / 0.5);
+        color: rgb(theme.get-css-var(palette, text, caption));
       }
     }
   }
@@ -125,14 +125,14 @@
     background: rgb(169 169 169 / 1);
 
     @media print, screen and (color) {
-      background: gradients.primary(1);
+      background: theme.get-css-var(gradients, primary, main);
     }
 
     &:hover {
       background: rgb(169 169 169 / 0.5);
 
       @media print, screen and (color) {
-        background: gradients.primary(0.5);
+        background: theme.get-css-var(gradients, primary, hover);
       }
     }
   }

@@ -63,6 +63,7 @@ Script-names:
 │
 ├───.vscode
 |   ├───@media-snippets.code-snippets // css snippets
+|   ├───@scss.code-snippets // additional scss snippets
 │   ├───extensions.json // recommended extensions
 │   ├───script-snippets.code-snippets
 │   ├───settings.json // settings for vscode to ensure compatibility on different machines

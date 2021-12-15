@@ -1,16 +1,17 @@
+@use '@themes' as theme;
+
 .room-card {
   display: grid;
   margin: 0;
   width: 270px / 14px * 1em;
-  border-radius: var(--border-radius-size);
+  border-radius: theme.get-css-var(border, radius);
   background-color: white;
   grid:
     'slideshow'
     'room-data';
 
   @media print, screen and (color) {
-    box-shadow: 0 #{10px / 14px * 1em} #{20px / 14px * 1em}
-      rgb(var(--main-common-color) / 0.05);
+    box-shadow: theme.get-css-var(shadows, 2);
   }
 
   &__slideshow {
@@ -38,7 +39,7 @@
       border-bottom: 1px solid black;
 
       @media print, screen and (color) {
-        border-bottom-color: rgb(var(--main-common-color) / 0.1);
+        border-bottom-color: rgb(theme.get-css-var(palette, divider));
       }
     }
 
@@ -63,7 +64,7 @@
     line-height: 15px / 14px * 1em;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-primary-color) / 1);
+      color: rgb(theme.get-css-var(palette, primary, main));
     }
   }
 
@@ -72,7 +73,7 @@
     line-height: 20px / 14px * 1em;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 0.5);
+      color: rgb(theme.get-css-var(palette, text, caption));
     }
   }
 
@@ -85,7 +86,7 @@
     margin-right: 4px / 14px * 1em;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 0.5);
+      color: rgb(theme.get-css-var(palette, text, caption));
     }
   }
 }

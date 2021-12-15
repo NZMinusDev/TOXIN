@@ -1,9 +1,11 @@
+@use '@themes' as theme;
+
 .card-text {
   text-transform: initial;
   font-weight: normal;
 
   @media print, screen and (color) {
-    color: rgb(var(--main-common-color) / 0.5);
+    color: rgb(theme.get-css-var(palette, text, caption));
   }
 
   &_size_small {

@@ -1,4 +1,4 @@
-@use '@themes/main/media.scss';
+@use '@themes' as theme;
 
 body {
   background-color: rgb(229 229 229);
@@ -14,7 +14,7 @@ body {
   justify-items: center;
   grid-row-gap: $gap;
 
-  @media print, screen and (min-width: media.$xl) {
+  @media print, screen and (min-width: theme.get-scss-var(breakpoints, xl)) {
     justify-content: initial;
     padding-top: 72px / 1440px * 100%;
     padding-bottom: 140px / 1440px * 100%;
@@ -31,43 +31,43 @@ body {
   }
 
   &__pick-room {
-    @media print, screen and (min-width: media.$xl) {
+    @media print, screen and (min-width: theme.get-scss-var(breakpoints, xl)) {
       grid-area: pick-room;
     }
   }
 
   &__room-definition {
-    @media print, screen and (min-width: media.$xl) {
+    @media print, screen and (min-width: theme.get-scss-var(breakpoints, xl)) {
       grid-area: room-definition;
     }
   }
 
   &__calendar {
-    @media print, screen and (min-width: media.$xl) {
+    @media print, screen and (min-width: theme.get-scss-var(breakpoints, xl)) {
       grid-area: calendar;
     }
   }
 
   &__registration {
-    @media print, screen and (min-width: media.$xl) {
+    @media print, screen and (min-width: theme.get-scss-var(breakpoints, xl)) {
       grid-area: registration;
     }
   }
 
   &__entering {
-    @media print, screen and (min-width: media.$xl) {
+    @media print, screen and (min-width: theme.get-scss-var(breakpoints, xl)) {
       grid-area: entering;
     }
   }
 
   &__luxury-room-card {
-    @media print, screen and (min-width: media.$xl) {
+    @media print, screen and (min-width: theme.get-scss-var(breakpoints, xl)) {
       grid-area: luxury-room-card;
     }
   }
 
   &__common-room-card {
-    @media print, screen and (min-width: media.$xl) {
+    @media print, screen and (min-width: theme.get-scss-var(breakpoints, xl)) {
       grid-area: common-room-card;
     }
   }

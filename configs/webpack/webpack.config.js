@@ -93,7 +93,7 @@ class ResultOfTemplatesProcessing {
         '@babel/polyfill',
         './shared/global/global.decl.ts',
         `./pages/${shortNameOfTemplate}/${shortNameOfTemplate}.ts`,
-        './themes/main/index.scss',
+        './themes/entry.scss',
       ];
 
       this.HTMLWebpackPlugins.push(

@@ -1,4 +1,4 @@
-@use '@themes/main/gradients.scss';
+@use '@themes' as theme;
 
 .datepicker-card {
   /* lib redefinition */
@@ -9,13 +9,12 @@
   .datepicker {
     padding: 20px / 14px * 1em;
     width: initial;
-    border-radius: var(--border-radius-size);
+    border-radius: theme.get-css-var(border, radius);
     font: inherit;
 
     @media print, screen and (color) {
-      border: var(--border);
-      box-shadow: 0 #{10px / 14px * 1em} #{20px / 14px * 1em}
-        rgb(var(--main-common-color) / 0.05);
+      border: theme.get-css-var(border, main);
+      box-shadow: theme.get-css-var(shadows, 2);
     }
   }
 
@@ -31,8 +30,8 @@
 
   .datepicker--nav-title {
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 1);
-      font: var(--h2-font);
+      color: rgb(theme.get-css-var(palette, text, primary));
+      font: theme.get-css-var(typography, h2);
     }
 
     i {
@@ -47,7 +46,7 @@
     font-family: 'Material Icons';
 
     @media print, screen and (color) {
-      color: rgb(var(--main-primary-color) / 1);
+      color: rgb(theme.get-css-var(palette, primary, main));
     }
   }
 
@@ -55,7 +54,7 @@
     margin-top: 30px / 14px * 1em;
 
     @media print, screen and (color) {
-      font: var(--h3-font);
+      font: theme.get-css-var(typography, h3);
     }
   }
 
@@ -72,20 +71,20 @@
 
   .datepicker--day-name {
     @media print, screen and (color) {
-      color: rgb(var(--main-primary-color) / 1);
+      color: rgb(theme.get-css-var(palette, primary, main));
     }
   }
 
   .datepicker--cell {
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 0.5);
+      color: rgb(theme.get-css-var(palette, text, caption));
     }
 
     &.-other-month-,
     &.-other-decade-,
     &.-disabled- {
       @media print, screen and (color) {
-        color: rgb(var(--main-common-color) / 0.25);
+        color: rgb(theme.get-css-var(palette, text, placeholder));
       }
     }
 
@@ -102,7 +101,7 @@
 
     &.-current- {
       @media print, screen and (color) {
-        background: gradients.secondary(1);
+        background: theme.get-css-var(gradients, secondary, main);
       }
     }
 
@@ -110,15 +109,15 @@
     &.-selected-.-focus-,
     &.-selected-.-current- {
       @media print, screen and (color) {
-        background: gradients.primary(1);
+        background: theme.get-css-var(gradients, primary, main);
       }
     }
 
     &.-in-range-,
     &.-current-.-in-range- {
       @media print, screen and (color) {
-        background: gradients.primary(0.25);
-        color: rgb(var(--main-common-color) / 0.5);
+        background: theme.get-css-var(gradients, primary, focus);
+        color: rgb(theme.get-css-var(palette, text, caption));
       }
     }
 
@@ -132,7 +131,7 @@
       border-radius: 100%;
 
       @media print, screen and (color) {
-        background: gradients.primary(1);
+        background: theme.get-css-var(gradients, primary, main);
       }
     }
 
@@ -146,7 +145,7 @@
       content: '';
 
       @media print, screen and (color) {
-        background: gradients.primary(0.25);
+        background: theme.get-css-var(gradients, primary, focus);
       }
     }
 

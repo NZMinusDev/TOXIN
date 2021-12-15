@@ -1,4 +1,5 @@
 @use '@shared/utils/styles/mixins.scss';
+@use '@themes' as theme;
 
 .heading {
   display: flex;
@@ -6,20 +7,20 @@
   margin: 0;
 
   @media print, screen and (color) {
-    color: rgb(var(--main-common-color) / 1);
+    color: rgb(theme.get-css-var(palette, text, primary));
   }
 
   &_tag_the-h1 {
-    font: var(--h1-font);
+    font: theme.get-css-var(typography, h1);
   }
 
   &_tag_the-h2 {
-    font: var(--h2-font);
+    font: theme.get-css-var(typography, h2);
   }
 
   &_tag_the-h3 {
     text-transform: uppercase;
-    font: var(--h3-font);
+    font: theme.get-css-var(typography, h3);
   }
 
   &_display_block {
@@ -86,7 +87,7 @@
     font-weight: normal;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 0.5);
+      color: rgb(theme.get-css-var(palette, text, caption));
     }
   }
 }

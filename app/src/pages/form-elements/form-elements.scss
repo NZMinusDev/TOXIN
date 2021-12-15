@@ -1,5 +1,4 @@
-@use '@themes/main/media.scss';
-@use '@themes/main/gradients.scss';
+@use '@themes' as theme;
 
 .form-elements-layout {
   display: grid;
@@ -8,7 +7,7 @@
   width: 75%;
   grid-row-gap: 42px / 14px * 1em;
 
-  @media print, screen and (min-width: media.$lg) {
+  @media print, screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
     margin: initial;
     padding: #{65px / 1440px * 100%} #{141px / 1440px * 100%} #{147px / 1440px *
       100%} #{141px / 1440px * 100%};
@@ -32,34 +31,39 @@
     grid-row-gap: initial;
 
     &__text-field-default {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         grid-area: text-field-default;
       }
     }
 
     &__text-field-hover {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         padding-top: 1px;
         grid-area: text-field-hover;
       }
     }
 
     &__dropdown {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         padding-top: 1px;
         grid-area: dropdown;
       }
     }
 
     &__masked-text-field {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         margin-top: 3px / 320px * 100%;
         grid-area: masked-text-field;
       }
     }
 
     &__date-dropdown {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         display: grid;
         margin-top: 2px;
         grid-area: date-dropdown;
@@ -69,7 +73,8 @@
     }
 
     &__filter-date-dropdown {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         margin-top: 22px / 320px * 100%;
         margin-right: 54px / 320px * 100%;
         grid-area: filter-date-dropdown;
@@ -77,7 +82,8 @@
     }
 
     &__subscription-text-field {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         padding-top: 17px / 14px * 1em;
         width: 267px / 14px * 1em;
         grid-area: subscription-text-field;
@@ -85,7 +91,8 @@
     }
 
     &__checkbox-buttons {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         padding-top: 1px;
         width: 222px / 320px * 100%;
         grid-area: checkbox-buttons;
@@ -93,14 +100,16 @@
     }
 
     &__radio-buttons {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         margin-top: 2px;
         grid-area: radio-buttons;
       }
     }
 
     &__toggle {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         display: grid;
         margin-top: 9px / 14px * 1em;
         grid-area: toggle;
@@ -112,7 +121,8 @@
     }
 
     &__like-button {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         display: grid;
         grid-area: like-button;
         grid: 'label label' 'btn-checked btn-unchecked';
@@ -124,13 +134,15 @@
     &__like-button-heading {
       margin-bottom: 5px / 14px * 1em;
 
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         grid-area: label;
       }
     }
 
     &__rate-button {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         display: grid;
         margin-bottom: 14px / 320px * 100%;
         grid-area: rate-button;
@@ -141,14 +153,16 @@
     }
 
     &__range-slider {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         margin-right: 54px / 320px * 100%;
         grid-area: range-slider;
       }
     }
 
     &__button-fill {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         display: grid;
         margin-top: 5px / 320px * 100%;
         grid-area: button-fill;
@@ -165,7 +179,8 @@
     }
 
     &__button-empty {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         display: grid;
         margin-top: 26px / 320px * 100%;
         grid-area: button-empty;
@@ -176,7 +191,8 @@
     }
 
     &__button-icon-link {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         display: grid;
         margin-top: 16px / 320px * 100%;
         grid-area: button-icon-link;
@@ -187,14 +203,16 @@
     }
 
     &__button-long {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         margin-bottom: 2px;
         grid-area: button-long;
       }
     }
 
     &__pagination {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         margin-top: 40px / 320px * 100%;
         margin-right: 79px / 320px * 100%;
         grid-area: pagination;
@@ -206,7 +224,8 @@
     }
 
     &__dropdown-default-plural {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         margin-top: 1px / 320px * 100%;
         margin-right: 54px / 320px * 100%;
         grid-area: dropdown-default-plural;
@@ -214,7 +233,8 @@
     }
 
     &__dropdown-expanded-plural {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         margin-top: 21px / 320px * 100%;
         margin-right: 54px / 320px * 100%;
         grid-area: dropdown-expanded-plural;
@@ -222,21 +242,24 @@
     }
 
     &__dropdown-expanded-apply {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         margin-top: 1px / 320px * 100%;
         grid-area: dropdown-expanded-apply;
       }
     }
 
     &__dropdown-expanded-clear-apply {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         margin-top: 1px / 320px * 100%;
         grid-area: dropdown-expanded-clear-apply;
       }
     }
 
     &__expandable-checkbox-list {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         display: grid;
         padding-top: 20px / 320px * 100%;
         padding-right: 54px / 320px * 100%;
@@ -247,7 +270,8 @@
     }
 
     &__rich-checkbox-buttons {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         margin-top: 26px / 320px * 100%;
         width: 266px / 320px * 100%;
         grid-area: rich-checkbox-buttons;
@@ -255,7 +279,8 @@
     }
 
     &__bullet-list {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         padding-top: 26px / 320px * 100%;
         padding-right: 30px / 320px * 100%;
         width: 292px / 320px * 100%;
@@ -264,7 +289,8 @@
     }
 
     &__logo-comfort {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         padding-top: 20px / 320px * 100%;
         padding-right: 40px / 320px * 100%;
         grid-area: logo-comfort;
@@ -272,7 +298,8 @@
     }
 
     &__comment {
-      @media print, screen and (min-width: media.$lg) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
         margin-top: 30px / 711px * 100%;
         grid-area: comment;
       }
@@ -280,15 +307,15 @@
   }
   // emulate hover
   .button_appearance_filled:nth-of-type(2) {
-    background: gradients.primary(0.5);
+    background: theme.get-css-var(gradients, primary, hover);
   }
 
   .button_appearance_bordered:nth-of-type(2) {
     background: linear-gradient(180deg, white, white) padding-box,
-      gradients.primary(0.5) border-box;
+      theme.get-css-var(gradients, primary, hover) border-box;
   }
 
   .button_appearance_like-a-icon-link:nth-of-type(2) {
-    color: rgb(var(--main-common-color) / 0.5);
+    color: rgb(theme.get-css-var(palette, text, caption));
   }
 }

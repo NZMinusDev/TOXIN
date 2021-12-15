@@ -1,4 +1,4 @@
-@use '@themes/main/media.scss';
+@use '@themes' as theme;
 
 .search-room-layout {
   display: grid;
@@ -12,7 +12,7 @@
     'pagination';
   grid-column-gap: 60px / (1440px - 140px * 2) * 100%;
 
-  @media print, screen and (min-width: media.$md) {
+  @media print, screen and (min-width: theme.get-scss-var(breakpoints, md)) {
     $filter-width: 266px / (1440px - 140px * 2) * 100%;
 
     grid:
@@ -81,11 +81,11 @@
     justify-items: center;
     grid-template-columns: 1fr;
 
-    @media print, screen and (min-width: media.$xs) {
+    @media print, screen and (min-width: theme.get-scss-var(breakpoints, xs)) {
       grid-template-columns: 1fr 1fr;
     }
 
-    @media print, screen and (min-width: media.$lg) {
+    @media print, screen and (min-width: theme.get-scss-var(breakpoints, lg)) {
       grid-template-columns: 1fr 1fr 1fr;
     }
   }

@@ -1,3 +1,5 @@
+@use '@themes' as theme;
+
 .comments {
   display: grid;
   grid:
@@ -13,7 +15,7 @@
     grid-area: counter;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 0.5);
+      color: rgb(theme.get-css-var(palette, text, caption));
     }
   }
 
@@ -38,8 +40,7 @@
     grid-area: icon;
 
     @media print, screen and (color) {
-      box-shadow: 0 #{10px / 14px * 1em} #{20px / 14px * 1em} 0
-        rgb(var(--main-common-color) / 0.1);
+      box-shadow: theme.get-css-var(shadows, 3);
     }
   }
 

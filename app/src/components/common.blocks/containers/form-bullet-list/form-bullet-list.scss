@@ -1,5 +1,5 @@
 @use '@shared/utils/styles/mixins.scss';
-@use '@themes/main/gradients.scss';
+@use '@themes' as theme;
 
 .form-bullet-list {
   display: grid;
@@ -23,7 +23,7 @@
         border-bottom: 1px solid black;
 
         @media print, screen and (color) {
-          border-bottom: 1px solid rgb(var(--main-common-color) / 0.1);
+          border-bottom: 1px solid rgb(theme.get-css-var(palette, divider));
         }
       }
 
@@ -39,7 +39,9 @@
         grid-area: icon;
 
         @media print, screen and (color) {
-          @include mixins.gradient-font(gradients.primary(1));
+          @include mixins.gradient-font(
+            theme.get-css-var(gradients, primary, main)
+          );
         }
       }
 
@@ -83,7 +85,7 @@
       content: '';
 
       @media print, screen and (color) {
-        background: rgb(var(--main-common-color) / 0.25);
+        background: rgb(theme.get-css-var(palette, common, main) / 0.25);
       }
     }
 
@@ -103,7 +105,7 @@
       &:nth-child(2) {
         &::before {
           @media print, screen and (color) {
-            background: gradients.secondary(1);
+            background: theme.get-css-var(gradients, secondary, main);
           }
         }
       }
@@ -111,7 +113,7 @@
       &:nth-child(3) {
         &::before {
           @media print, screen and (color) {
-            background: gradients.primary(1);
+            background: theme.get-css-var(gradients, primary, main);
           }
         }
       }

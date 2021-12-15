@@ -12,31 +12,31 @@
   "large mobile media query snippet for css and scss files": {
     "prefix": "@xs",
     "scope": "css,scss,sass",
-    "body": ["@media print, screen and (min-width: media.$xs) {", "\t$0", "}"],
+    "body": ["@media print, screen and (min-width: theme.get-scss-var(breakpoints, xs)) {", "\t$0", "}"],
     "description": "large mobile media query snippet for css and scss files"
   },
   "tablet media query snippet for css and scss files": {
     "prefix": "@sm",
     "scope": "css,scss,sass",
-    "body": ["@media print, screen and (min-width: media.$sm) {", "\t$0", "}"],
+    "body": ["@media print, screen and (min-width: theme.get-scss-var(breakpoints, sm)) {", "\t$0", "}"],
     "description": "tablet media query snippet for css and scss files"
   },
   "small-desktop media query snippet for css and scss files": {
     "prefix": "@md",
     "scope": "css,scss,sass",
-    "body": ["@media print, screen and (min-width: media.$md) {", "\t$0", "}"],
+    "body": ["@media print, screen and (min-width: theme.get-scss-var(breakpoints, md)) {", "\t$0", "}"],
     "description": "small-desktop media query snippet for css and scss files"
   },
   "medium-desktop media query snippet for css and scss files": {
     "prefix": "@lg",
     "scope": "css,scss,sass",
-    "body": ["@media print, screen and (min-width: media.$lg) {", "\t$0", "}"],
+    "body": ["@media print, screen and (min-width: theme.get-scss-var(breakpoints, lg)) {", "\t$0", "}"],
     "description": "medium-desktop media query snippet for css and scss files"
   },
   "large-desktop media query snippet for css and scss files": {
     "prefix": "@xl",
     "scope": "css,scss,sass",
-    "body": ["@media print, screen and (min-width: media.$xl) {", "\t$0", "}"],
+    "body": ["@media print, screen and (min-width: theme.get-scss-var(breakpoints, xl)) {", "\t$0", "}"],
     "description": "large-desktop media query snippet for css and scss files"
   },
   "color media query snippet for css and scss files": {

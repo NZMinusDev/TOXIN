@@ -1,4 +1,4 @@
-@use '@themes/main/media.scss';
+@use '@themes' as theme;
 
 .nav-bar {
   display: grid;
@@ -9,13 +9,12 @@
   background-color: white;
   grid: 'logo burger';
 
-  @media print, screen and (min-width: media.$md) {
+  @media print, screen and (min-width: theme.get-scss-var(breakpoints, md)) {
     grid: 'logo . body' / 1fr #{20px / 14px * 1em} auto;
   }
 
   @media print, screen and (color) {
-    box-shadow: 0 #{10px / 14px * 1em} #{20px / 14px * 1em} 0
-      rgb(var(--main-common-color) / 0.05);
+    box-shadow: theme.get-css-var(shadows, 1);
   }
 
   &__logo {
@@ -35,7 +34,7 @@
     cursor: pointer;
     grid-area: burger;
 
-    @media print, screen and (min-width: media.$md) {
+    @media print, screen and (min-width: theme.get-scss-var(breakpoints, md)) {
       display: none;
     }
 
@@ -60,7 +59,8 @@
     &::before,
     &::after {
       content: '';
-      transition: transform 0.2s ease;
+      transition: transform theme.get-css-var(transitions, duration, shorter)
+        ease;
     }
 
     &::before,
@@ -72,7 +72,7 @@
       will-change: transform;
 
       @media print, screen and (color) {
-        background: rgb(var(--main-common-color) / 0.9);
+        background: rgb(theme.get-css-var(palette, common, main) / 0.9);
       }
     }
   }
@@ -92,7 +92,7 @@
     will-change: transform;
     grid: 'navigation' 1fr 'login';
 
-    @media print, screen and (min-width: media.$md) {
+    @media print, screen and (min-width: theme.get-scss-var(breakpoints, md)) {
       position: initial;
       padding: initial;
       height: initial;
@@ -101,7 +101,8 @@
     }
 
     &_transition_active {
-      transition: transform 0.2s ease;
+      transition: transform theme.get-css-var(transitions, duration, shorter)
+        ease;
     }
   }
 
@@ -109,7 +110,7 @@
     align-self: center;
     grid-area: navigation;
 
-    @media print, screen and (min-width: media.$md) {
+    @media print, screen and (min-width: theme.get-scss-var(breakpoints, md)) {
       &
         > .nav-bar__navigation-list
         > .nav-bar__navigation-item_expandable
@@ -125,7 +126,7 @@
     padding: 0;
     list-style: none;
 
-    @media print, screen and (min-width: media.$md) {
+    @media print, screen and (min-width: theme.get-scss-var(breakpoints, md)) {
       display: inline-flex;
       flex-flow: row wrap;
       align-items: center;
@@ -136,7 +137,7 @@
     text-align: center;
     font-weight: normal;
 
-    @media print, screen and (min-width: media.$md) {
+    @media print, screen and (min-width: theme.get-scss-var(breakpoints, md)) {
       margin-right: 21px / 14px * 1em;
       text-align: left;
 
@@ -146,7 +147,7 @@
     }
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 0.5);
+      color: rgb(theme.get-css-var(palette, text, caption));
     }
 
     *:hover,
@@ -156,12 +157,13 @@
     *:focus-within::after,
     *:focus-within::before {
       @media print, screen and (color) {
-        color: rgb(var(--main-common-color) / 0.75);
+        color: rgb(theme.get-css-var(palette, text, secondary));
       }
     }
 
     &_expandable {
-      @media print, screen and (min-width: media.$md) {
+      @media print,
+        screen and (min-width: theme.get-scss-var(breakpoints, md)) {
         position: relative;
 
         .nav-bar__navigation-item {
@@ -183,7 +185,9 @@
           align-items: flex-start;
           overflow: initial;
           opacity: 0;
-          transition: opacity 0.2s linear, visibility 0.2s linear;
+          transition: opacity theme.get-css-var(transitions, duration, shorter)
+              linear,
+            visibility theme.get-css-var(transitions, duration, shorter) linear;
 
           & > .nav-bar__navigation-item {
             margin-right: 0;
@@ -210,9 +214,12 @@
           visibility: hidden;
           overflow: hidden;
           max-height: 0;
-          transition: max-height 0.2s linear, visibility 0.2s linear;
+          transition: max-height
+              theme.get-css-var(transitions, duration, shorter) linear,
+            visibility theme.get-css-var(transitions, duration, shorter) linear;
 
-          @media print, screen and (min-width: media.$md) {
+          @media print,
+            screen and (min-width: theme.get-scss-var(breakpoints, md)) {
             background-color: rgb(255 255 255 / 0.75);
           }
         }
@@ -231,7 +238,7 @@
       .nav-bar__navigation-item-dropdown-checkbox:checked
         + .nav-bar__navigation-item-dropdown-label {
         @media print, screen and (color) {
-          color: rgb(var(--main-common-color) / 0.75);
+          color: rgb(theme.get-css-var(palette, text, secondary));
         }
       }
     }
@@ -241,7 +248,7 @@
       font-weight: bold;
 
       @media print, screen and (color) {
-        color: rgb(var(--main-common-color) / 0.75);
+        color: rgb(theme.get-css-var(palette, text, secondary));
       }
     }
   }
@@ -268,18 +275,19 @@
     grid-area: login;
 
     &_status_confirmed {
-      justify-items: center;
+      grid-auto-flow: column;
 
       &::before {
         content: '';
 
-        @media print, screen and (min-width: media.$md) {
+        @media print,
+          screen and (min-width: theme.get-scss-var(breakpoints, md)) {
           margin-right: 20px / 14px * 1em;
           border-left: 1px solid black;
         }
 
         @media print, screen and (color) {
-          border-left-color: rgb(var(--main-common-color) / 0.1);
+          border-left-color: rgb(theme.get-css-var(palette, divider));
         }
       }
     }
@@ -296,7 +304,7 @@
     cursor: pointer;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 0.5);
+      color: rgb(theme.get-css-var(palette, text, caption));
     }
   }
 }

@@ -1,14 +1,14 @@
-@use '@themes/main/media.scss';
+@use '@themes' as theme;
 
 .card-base {
   padding: #{39px / 14px * 1em} #{29px / 14px * 1em} #{30px / 14px * 1em} #{29px /
     14px * 1em};
   max-width: 380px / 14px * 1em;
   border: 1px solid rgb(0 0 0 / 0.12);
-  border-radius: var(--border-radius-size);
+  border-radius: theme.get-css-var(border, radius);
   background-color: white;
 
-  @media print, screen and (min-width: media.$xs) {
+  @media print, screen and (min-width: theme.get-scss-var(breakpoints, xs)) {
     width: 380px / 14px * 1em;
   }
 

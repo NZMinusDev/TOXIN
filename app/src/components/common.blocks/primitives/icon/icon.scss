@@ -1,7 +1,7 @@
 @use '@shared/utils/styles/mixins.scss';
 @use '@shared/utils/styles/functions.scss';
 @use '@shared/utils/styles/vendor-fonts-mixins.scss';
-@use '@themes/main/gradients.scss';
+@use '@themes' as theme;
 
 .icon {
   display: inline-flex;
@@ -51,7 +51,9 @@
 
   &_color_primary-gradient {
     @media print, screen and (color) {
-      @include mixins.gradient-font(gradients.primary(1));
+      @include mixins.gradient-font(
+        theme.get-css-var(gradients, primary, main)
+      );
     }
   }
 }

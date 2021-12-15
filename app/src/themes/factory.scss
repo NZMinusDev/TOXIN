@@ -1,0 +1,266 @@
+@use 'sass:color';
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:string';
+
+@use '@shared/utils/styles/functions.scss';
+
+$prefix: '--theme-service';
+
+/// Getter for css theme vars
+/// @param { string } $parts...
+/// @see create-css-vars-map
+@function get-css-var($parts...) {
+  $name: $prefix;
+
+  @each $part in $parts {
+    $name: $name + '-' + $part;
+  }
+
+  @return var(string.unquote($name));
+}
+
+/// Helper for creating palette's values
+/// @param { color } $contrast-text
+/// @param { color } $main
+/// @param { color } $light [color.scale($main, 5%)]
+/// @param { color } $dark [color.scale($main, -5%)]
+@function create-contrast-colors(
+  $contrast-text,
+  $main,
+  $light: color.scale($main, $lightness: 5%),
+  $dark: color.scale($main, $lightness: -5%)
+) {
+  $colors: (
+    main: $main,
+    light: $light,
+    dark: $dark,
+    contrast-text: $contrast-text,
+  );
+
+  @return $colors;
+}
+/// Helper for creating theme's gradients
+/// @param { list } $list - color position, color position, ...
+/// @param { number } $direction [180deg]
+/// @param { arglist } $opacity [(main: 1, hover: 0.5, focus: 0.25)]
+@function create-gradient(
+  $list,
+  $direction: 180deg,
+  $opacity: (main: 1, hover: 0.5, focus: 0.25)
+) {
+  $new-main-list: ();
+  $new-hover-list: ();
+  $new-focus-list: ();
+
+  @each $color, $position in $list {
+    $new-main-list: list.append(
+      $new-main-list,
+      (string.insert($color, /map.get($opacity, main), -2) $position),
+      $separator: comma
+    );
+    $new-hover-list: list.append(
+      $new-hover-list,
+      (string.insert($color, /map.get($opacity, hover), -2) $position),
+      $separator: comma
+    );
+    $new-focus-list: list.append(
+      $new-focus-list,
+      (string.insert($color, /map.get($opacity, focus), -2) $position),
+      $separator: comma
+    );
+  }
+
+  /* stylelint-disable-next-line order/order */
+  $gradient: (
+    main: linear-gradient($direction, $new-main-list),
+    hover: linear-gradient($direction, $new-hover-list),
+    focus: linear-gradient($direction, $new-focus-list),
+  );
+
+  @return $gradient;
+}
+
+/// Translates structure of theme to css vars connection form
+/// @param { map } $theme
+/// @see create-css-vars-map
+@mixin css-vars($theme) {
+  $css-vars-map: create-css-vars-map($theme);
+
+  @each $css-var-name, $value in $css-vars-map {
+    #{$css-var-name}: $value;
+  }
+}
+
+/// Converts theme in flatted form with deep merging with default values, also rewrites color values in list format(if color don't use get-css-var)
+/// @param { map } $theme
+@function create-css-vars-map($theme) {
+  $base: (
+    palette: (
+      common: (
+        main: rgb(33 33 33),
+        light: rgb(97 97 97),
+        dark: rgb(0 0 0),
+        contrast-text: rgb(255 255 255),
+      ),
+      primary: (
+        main: rgb(25 118 210),
+        light: rgb(66 165 245),
+        dark: rgb(21 101 192),
+        contrast-text: rgb(255 255 255),
+      ),
+      secondary: (
+        main: rgb(156 39 176),
+        light: rgb(186 104 200),
+        dark: rgb(123 31 162),
+        contrast-text: rgb(255 255 255),
+      ),
+      error: (
+        main: rgb(211 47 47),
+        light: rgb(239 83 80),
+        dark: rgb(198 40 40),
+        contrast-text: rgb(255 255 255),
+      ),
+      warning: (
+        main: rgb(237 108 2),
+        light: rgb(255 152 0),
+        dark: rgb(230 81 0),
+        contrast-text: rgb(255 255 255),
+      ),
+      info: (
+        main: rgb(2 136 209),
+        light: rgb(3 169 244),
+        dark: rgb(1 87 155),
+        contrast-text: rgb(255 255 255),
+      ),
+      success: (
+        main: rgb(46 125 50),
+        light: rgb(76 175 80),
+        dark: rgb(27 94 80),
+        contrast-text: rgb(255 255 255),
+      ),
+      text: (
+        primary: rgb(0 0 0 / 0.87),
+        secondary: rgb(0 0 0 / 0.6),
+        label: rgb(0 0 0 / 0.75),
+        caption: rgb(0 0 0 / 0.5),
+        placeholder: rgb(0 0 0 / 0.25),
+        disabled: rgb(0 0 0 / 0.38),
+      ),
+      background: (
+        main: rgb(255 255 255),
+      ),
+      divider: rgb(0 0 0 / 0.12),
+      action-opacity: (
+        active: 0.54,
+        hover: 0.04,
+        selected: 0.08,
+        disabled: 0.26,
+        focus: 0.12,
+      ),
+    ),
+    typography: (
+      h1: 700 24px / 30px string.unquote('Arial, sans-serif'),
+      h2: 700 19px / 24px string.unquote('Arial, sans-serif'),
+      h3: 700 12px / 15px string.unquote('Arial, sans-serif'),
+      body: 400 14px / 24px string.unquote('Arial, sans-serif'),
+    ),
+    gradients: (
+      primary:
+        create-gradient(
+          (
+            rgb(get-css-var(palette, primary, main)) 0%,
+            rgb(get-css-var(palette, primary, dark)) 100%
+          )
+        ),
+      secondary:
+        create-gradient(
+          (
+            rgb(get-css-var(palette, secondary, main)) 0%,
+            rgb(get-css-var(palette, secondary, light)) 100%
+          )
+        ),
+    ),
+    border: (
+      main: 1px solid rgb(get-css-var(palette, common, main)),
+      hover: 1px solid rgb(get-css-var(palette, common, main) / 0.5),
+      focus: 1px solid rgb(get-css-var(palette, common, main) / 0.75),
+      radius: 4px,
+    ),
+    shadows: (
+      0: 'none',
+      1: 'none',
+      2: 'none',
+      3: 'none',
+      4: 'none',
+      5: 'none',
+      6: 'none',
+      7: 'none',
+      8: 'none',
+      9: 'none',
+    ),
+    transitions: (
+      easing: (
+        ease-in-out: cubic-bezier(0.4, 0, 0.2, 1),
+        ease-out: cubic-bezier(0, 0, 0.2, 1),
+        ease-in: cubic-bezier(0.4, 0, 1, 1),
+        sharp: cubic-bezier(0.4, 0, 0.6, 1),
+      ),
+      duration: (
+        shortest: 150ms,
+        shorter: 200ms,
+        short: 250ms,
+        standard: 300ms,
+        complex: 375ms,
+        entering-screen: 225ms,
+        leaving-screen: 195ms,
+      ),
+    ),
+  );
+
+  $merged-theme: map.deep-merge($base, $theme);
+
+  $flatted-theme: _create-flatted-theme($merged-theme);
+
+  @return $flatted-theme;
+}
+
+@function _create-flatted-theme($map, $_new-map: (), $_path: '') {
+  @each $key, $value in $map {
+    @if type-of($value) == 'map' {
+      $_new-map: _create-flatted-theme($value, $_new-map, $_path + '-' + $key);
+    } @else {
+      $name: $prefix + $_path + '-' + $key;
+
+      @if type-of($value) == 'color' {
+        $_new-map: map.set(
+          $_new-map,
+          $name,
+          functions.get-rgba-values-from-hex($value)
+        );
+      } @else {
+        $_new-map: map.set($_new-map, $name, $value);
+      }
+    }
+  }
+
+  @return $_new-map;
+}
+
+/// Creates scss theme map with deep merging with default values
+/// @param { map } $theme
+@function create-scss-vars-map($theme) {
+  $base: (
+    breakpoints: (
+      xs: 600px,
+      sm: 768px,
+      md: 992px,
+      lg: 1200px,
+      xl: 1440px,
+    ),
+  );
+
+  $merged-theme: map.deep-merge($base, $theme);
+
+  @return $merged-theme;
+}

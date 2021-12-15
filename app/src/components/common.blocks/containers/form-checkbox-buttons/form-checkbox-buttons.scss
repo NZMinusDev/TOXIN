@@ -1,4 +1,4 @@
-@use '@themes/main/gradients.scss';
+@use '@themes' as theme;
 
 .form-checkbox-buttons {
   &_type_detailed {
@@ -12,13 +12,13 @@
       font-weight: 700;
 
       @media print, screen and (color) {
-        color: rgb(var(--main-common-color) / 0.75);
+        color: rgb(theme.get-css-var(palette, text, secondary));
       }
     }
 
     .form-checkbox-buttons__description {
       @media print, screen and (color) {
-        color: rgb(var(--main-common-color) / 0.5);
+        color: rgb(theme.get-css-var(palette, text, caption));
       }
     }
   }
@@ -56,19 +56,19 @@
     width: 20px / 14px * 1em;
     height: 20px / 14px * 1em;
     border: 1px solid black;
-    border-radius: var(--border-radius-size);
+    border-radius: theme.get-css-var(border, radius);
     font: inherit;
     cursor: pointer;
     grid-area: button-item;
     appearance: none;
 
     @media print, screen and (color) {
-      border: var(--border);
+      border: theme.get-css-var(border, main);
     }
 
     &:checked {
       @media print, screen and (color) {
-        border-color: rgb(var(--main-primary-color) / 1);
+        border-color: rgb(theme.get-css-var(palette, primary, main));
       }
 
       &::before {
@@ -88,7 +88,7 @@
       transform: rotate(45deg);
 
       @media print, screen and (color) {
-        border-image: gradients.primary(1) 2;
+        border-image: theme.get-css-var(gradients, primary, main) 2;
       }
     }
   }
@@ -98,7 +98,7 @@
     grid-area: label-item;
 
     @media print, screen and (color) {
-      color: rgb(var(--main-common-color) / 0.5);
+      color: rgb(theme.get-css-var(palette, text, caption));
     }
 
     &_width_small {

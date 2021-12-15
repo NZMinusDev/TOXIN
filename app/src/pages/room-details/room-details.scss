@@ -1,4 +1,4 @@
-@use '@themes/main/media.scss';
+@use '@themes' as theme;
 
 .room-details-layout {
   display: grid;
@@ -16,7 +16,7 @@
       'small-img-1' #{$cell-height * 2}
       'small-img-2' #{$cell-height * 2};
 
-    @media print, screen and (min-width: media.$md) {
+    @media print, screen and (min-width: theme.get-scss-var(breakpoints, md)) {
       $big-img-width: 981px / 1440px * 100%;
 
       grid:
@@ -45,7 +45,7 @@
       'reservation';
     grid-gap: 70px / 14px * 1em;
 
-    @media print, screen and (min-width: media.$xl) {
+    @media print, screen and (min-width: theme.get-scss-var(breakpoints, xl)) {
       grid: 'info reservation';
     }
   }
@@ -61,7 +61,7 @@
       'alert';
     grid-row-gap: 1em;
 
-    @media print, screen and (min-width: media.$sm) {
+    @media print, screen and (min-width: theme.get-scss-var(breakpoints, sm)) {
       grid:
         'data . impression'
         '. . .' #{35px / 14px * 1em}
@@ -76,7 +76,7 @@
     grid-area: data;
     justify-self: center;
 
-    @media print, screen and (min-width: media.$sm) {
+    @media print, screen and (min-width: theme.get-scss-var(breakpoints, sm)) {
       justify-self: left;
     }
   }
@@ -85,7 +85,7 @@
     grid-area: impression;
     justify-self: center;
 
-    @media print, screen and (min-width: media.$xl) {
+    @media print, screen and (min-width: theme.get-scss-var(breakpoints, xl)) {
       justify-self: left;
     }
   }

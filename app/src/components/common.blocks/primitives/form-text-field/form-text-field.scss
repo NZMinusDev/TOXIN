@@ -1,3 +1,5 @@
+@use '@themes' as theme;
+
 .form-text-field {
   width: 100%;
 
@@ -12,13 +14,13 @@
     min-height: 2em;
     height: 44px / 14px * 1em;
     border: 1px solid rgb(0 0 0 / 0.5);
-    border-radius: var(--border-radius-size);
+    border-radius: theme.get-css-var(border, radius);
     color: rgb(0 0 0 / 0.5);
     text-indent: 15px / 14px * 1em;
 
     @media print, screen and (color) {
-      border: var(--border);
-      color: rgb(var(--main-common-color) / 0.25);
+      border: theme.get-css-var(border, main);
+      color: rgb(theme.get-css-var(palette, text, placeholder));
     }
 
     &:hover,
@@ -27,8 +29,8 @@
       color: rgb(0 0 0 / 1);
 
       @media print, screen and (color) {
-        border: var(--border-hover);
-        color: rgb(var(--main-common-color) / 0.75);
+        border: theme.get-css-var(border, hover);
+        color: rgb(theme.get-css-var(palette, text, secondary));
       }
     }
   }
