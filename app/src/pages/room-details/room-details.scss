@@ -64,9 +64,9 @@
     @media print, screen and (min-width: theme.get-scss-var(breakpoints, sm)) {
       grid:
         'data . impression'
-        '. . .' #{35px / 14px * 1em}
+        '. . .' #{34px / 14px * 1em}
         'comments comments comments'
-        '. . .' #{33px / 14px * 1em}
+        '. . .' #{32px / 14px * 1em}
         'rules . alert' / #{260px / 14px * 1em} #{101px / 14px * 1em} auto;
       grid-row-gap: initial;
     }

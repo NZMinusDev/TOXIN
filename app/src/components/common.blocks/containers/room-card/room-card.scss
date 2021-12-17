@@ -35,7 +35,7 @@
     grid-column-gap: 1em;
 
     &:not(:last-child) {
-      padding-bottom: 12px / 14px * 1em;
+      padding-bottom: 11px / 14px * 1em;
       border-bottom: 1px solid black;
 
       @media print, screen and (color) {
