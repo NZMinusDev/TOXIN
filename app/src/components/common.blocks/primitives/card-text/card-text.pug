@@ -1,9 +1,0 @@
-//- 
-  content: string - text content
-  tag?: string - html tag
-  size?: 'small'(.85em)
-  Tip: mixin also uses 'and attributes'(&attributes)
-mixin card-text(content, { tag = 'span', size = undefined } = {})
-  -
-    const sizeClass = size && `card-text_size_${size}`;
-  #{tag}.card-text(class=[sizeClass])&attributes(attributes)= content

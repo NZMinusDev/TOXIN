@@ -1,7 +1,0 @@
-@use '../../factory.scss';
-
-$border: (
-  main: 1px solid rgb(factory.get-css-var(palette, common, main) / 0.25),
-  hover: 1px solid rgb(factory.get-css-var(palette, common, main) / 0.5),
-  radius: 4px,
-);
