@@ -78,6 +78,8 @@ class FormDropdownItemQuantityList extends BEMComponent<
     this._generatedDOM =
       this._initLibFormDropdownItemQuantityList()._initGeneratedDOM();
 
+    this._repairGeneratedDOM();
+
     this._bindListInputListeners()._bindCounterBtnListeners()._bindListeners();
 
     this._initDisplay();
@@ -241,6 +243,18 @@ class FormDropdownItemQuantityList extends BEMComponent<
       decrementButtons,
       incrementButtons,
     };
+  }
+
+  protected _repairGeneratedDOM() {
+    const { decrementButtons, incrementButtons } = this._generatedDOM;
+
+    decrementButtons.concat(incrementButtons).forEach((button) => {
+      const theButton = button;
+
+      theButton.type = 'button';
+    });
+
+    return this;
   }
 
   protected static _initState() {
