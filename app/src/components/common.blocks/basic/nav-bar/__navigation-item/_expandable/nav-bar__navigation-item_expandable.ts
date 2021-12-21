@@ -9,6 +9,7 @@ type NavBarExpandableNavigationItemModifierDOM = {
   itemExpandCheckboxLabel: HTMLLabelElement;
   childList: HTMLUListElement;
   nestedLists: HTMLUListElement[];
+  nestedItemExpandCheckboxes: HTMLInputElement[];
 };
 
 type NavBarExpandableNavigationItemModifierState = {
@@ -47,11 +48,22 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
       ...this.component.element.querySelectorAll(listSelector),
     ] as NavBarExpandableNavigationItemModifierDOM['nestedLists'];
 
+    const nestedItemExpandCheckboxes = nestedLists
+      .map((nestedList) =>
+        nestedList.querySelector(
+          '.js-nav-bar__navigation-item-dropdown-checkbox'
+        )
+      )
+      .filter(
+        (nestedItemExpandCheckbox) => nestedItemExpandCheckbox !== null
+      ) as NavBarExpandableNavigationItemModifierDOM['nestedItemExpandCheckboxes'];
+
     return {
       itemExpandCheckbox,
       itemExpandCheckboxLabel,
       childList,
       nestedLists,
+      nestedItemExpandCheckboxes,
     };
   }
 
@@ -73,8 +85,10 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
 
   protected _itemExpandCheckboxEventListenerObject = {
     handleItemExpandCheckboxChange: () => {
+      this._uncheckNestedItemExpandCheckboxes();
+
       if (this._state.isSmallDesktopMediaMatched) {
-        this._toggleChildListMaxHeight();
+        this._removeMaxHeightFromNestedLists()._toggleChildListMaxHeight();
       }
     },
   };
@@ -155,6 +169,8 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
     );
 
     this._DOM.childList.style.maxHeight = `${fullScrollHeight}px`;
+
+    return this;
   }
 
   protected _removeMaxHeightFromChildList() {
@@ -175,6 +191,34 @@ class NavBarExpandableNavigationItemModifier extends BEMModifier<NavBarNavigatio
 
   protected _uncheckItemExpandCheckbox() {
     this._DOM.itemExpandCheckbox.checked = false;
+
+    return this;
+  }
+
+  protected _uncheckNestedItemExpandCheckboxes() {
+    const { nestedItemExpandCheckboxes } = this._DOM;
+
+    nestedItemExpandCheckboxes.forEach((nestedCheckbox) => {
+      const theNestedCheckbox = nestedCheckbox;
+
+      theNestedCheckbox.checked = false;
+    });
+
+    return this;
+  }
+
+  protected _removeMaxHeightFromNestedLists() {
+    const { childList, nestedLists } = this._DOM;
+
+    nestedLists.forEach((nestedList) => {
+      const theNestedList = nestedList;
+
+      if (theNestedList !== childList) {
+        theNestedList.style.maxHeight = '';
+      }
+    });
+
+    return this;
   }
 }
 

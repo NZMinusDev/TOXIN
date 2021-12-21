@@ -10,7 +10,7 @@
   grid: 'logo burger';
 
   @media print, screen and (min-width: theme.get-scss-var(breakpoints, md)) {
-    grid: 'logo . body' / 1fr #{20px / 14px * 1em} auto;
+    grid: 'logo . body' / auto minmax(#{20px / 14px * 1em}, 1fr) auto;
   }
 
   @media print, screen and (color) {
@@ -117,6 +117,7 @@
         > .nav-bar__navigation-item-dropdown-checkbox
         ~ .nav-bar__navigation-list {
         position: absolute;
+        background-color: rgb(255 255 255 / 0.75);
       }
     }
   }
@@ -150,12 +151,8 @@
       color: rgb(theme.get-css-var(palette, text, caption));
     }
 
-    *:hover,
-    *:hover::after,
-    *:hover::before,
-    *:focus-within,
-    *:focus-within::after,
-    *:focus-within::before {
+    &:hover,
+    &:focus-within {
       @media print, screen and (color) {
         color: rgb(theme.get-css-var(palette, text, secondary));
       }
@@ -217,16 +214,16 @@
           transition: max-height
               theme.get-css-var(transitions, duration, shorter) linear,
             visibility theme.get-css-var(transitions, duration, shorter) linear;
-
-          @media print,
-            screen and (min-width: theme.get-scss-var(breakpoints, md)) {
-            background-color: rgb(255 255 255 / 0.75);
-          }
         }
 
         &:checked {
           & + .nav-bar__navigation-item-dropdown-label > .nav-bar__expand-icon {
             transform: rotate(180deg);
+
+            @media print,
+              screen and (min-width: theme.get-scss-var(breakpoints, md)) {
+              transform: rotate(0deg);
+            }
           }
 
           & ~ .nav-bar__navigation-list {
