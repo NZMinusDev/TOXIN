@@ -4,6 +4,7 @@ import BEMComponent, {
 
 import type { PaginationAsyncAddressingMethodModifierCustomEvents } from './_addressing-method/pagination_addressing-method_async';
 import paginationElements, { PaginationElement } from './pagination-elements';
+import './pagination.scss';
 
 type PaginationDOM = {
   list: HTMLUListElement;

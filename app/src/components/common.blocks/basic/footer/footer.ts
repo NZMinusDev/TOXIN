@@ -1,8 +1,12 @@
 import BEMComponent, {
   HTMLElementWithComponent,
 } from '@shared/utils/scripts/components/BEM/BEMComponent';
+import '@common.blocks/primitives/logo/logo';
+import '@common.blocks/primitives/form-text-field/form-text-field';
+import '@common.blocks/primitives/icon/icon';
 
 import footerElements, { FooterElement } from './footer-elements';
+import './footer.scss';
 
 type FooterDOM = {
   listLabels: HTMLLabelElement[];

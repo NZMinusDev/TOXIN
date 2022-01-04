@@ -2,10 +2,13 @@ import BEMComponent, {
   HTMLElementWithComponent,
 } from '@shared/utils/scripts/components/BEM/BEMComponent';
 import { addURLValues } from '@shared/utils/scripts/URL';
+import '@common.blocks/primitives/heading/heading';
+import '@common.blocks/primitives/svg-gradient/svg-gradient';
 
 import formRadioButtonsElements, {
   FormRadioButtonsElement,
 } from './form-radio-buttons-elements';
+import './form-radio-buttons.scss';
 
 type FormRadioButtonsDOM = {
   fieldset: HTMLFieldSetElement;

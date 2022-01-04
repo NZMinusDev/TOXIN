@@ -3,6 +3,7 @@ import BEMComponent, {
 } from '@shared/utils/scripts/components/BEM/BEMComponent';
 
 import pictureElements, { PictureElement } from './picture-elements';
+import './picture.scss';
 
 type PictureDOM = {
   sources: HTMLSourceElement[];

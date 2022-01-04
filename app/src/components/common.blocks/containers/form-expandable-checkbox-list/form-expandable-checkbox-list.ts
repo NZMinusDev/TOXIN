@@ -1,6 +1,8 @@
 import BEMComponent, {
   HTMLElementWithComponent,
 } from '@shared/utils/scripts/components/BEM/BEMComponent';
+import '@common.blocks/primitives/icon/icon';
+import '@common.blocks/containers/form-checkbox-buttons/form-checkbox-buttons';
 
 import type {
   FormExpandableCheckboxListExpanderInputCustomEvents,
@@ -10,6 +12,7 @@ import './__expander-input/form-expandable-checkbox-list__expander-input';
 import formExpandableCheckboxListElements, {
   FormExpandableCheckboxListElement,
 } from './form-expandable-checkbox-list-elements';
+import './form-expandable-checkbox-list.scss';
 
 type FormExpandableCheckboxListDOM = {
   headingLabel: HTMLLabelElement;

@@ -1,10 +1,12 @@
 import BEMComponent, {
   HTMLElementWithComponent,
 } from '@shared/utils/scripts/components/BEM/BEMComponent';
+import '@common.blocks/primitives/heading/heading';
 
 import formRateButtonElements, {
   FormRateButtonElement,
 } from './form-rate-button-elements';
+import './form-rate-button.scss';
 
 type FormRateButtonDOM = {
   fieldset: HTMLFieldSetElement;

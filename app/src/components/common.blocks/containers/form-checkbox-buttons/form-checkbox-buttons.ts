@@ -2,10 +2,12 @@ import BEMComponent, {
   HTMLElementWithComponent,
 } from '@shared/utils/scripts/components/BEM/BEMComponent';
 import { addURLValues } from '@shared/utils/scripts/URL';
+import '@common.blocks/primitives/heading/heading';
 
 import formCheckboxButtonsElements, {
   FormCheckboxButtonsElement,
 } from './form-checkbox-buttons-elements';
+import './form-checkbox-buttons.scss';
 
 type FormCheckboxButtonsDOM = {
   fieldset: HTMLFieldSetElement;

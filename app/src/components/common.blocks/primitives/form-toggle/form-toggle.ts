@@ -1,8 +1,10 @@
 import BEMComponent, {
   HTMLElementWithComponent,
 } from '@shared/utils/scripts/components/BEM/BEMComponent';
+import '@common.blocks/primitives/svg-gradient/svg-gradient';
 
 import formToggleElements, { FormToggleElement } from './form-toggle-elements';
+import './form-toggle.scss';
 
 type FormToggleDOM = {
   button: HTMLInputElement;

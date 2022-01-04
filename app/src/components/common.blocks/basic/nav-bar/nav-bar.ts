@@ -1,8 +1,12 @@
 import BEMComponent, {
   HTMLElementWithComponent,
 } from '@shared/utils/scripts/components/BEM/BEMComponent';
+import '@common.blocks/primitives/logo/logo';
+import '@common.blocks/primitives/button/button';
 
+import './__navigation-item/nav-bar__navigation-item';
 import navBarElements, { NavBarElement } from './nav-bar-elements';
+import './nav-bar.scss';
 
 type NavBarDOM = {
   burger: HTMLButtonElement;

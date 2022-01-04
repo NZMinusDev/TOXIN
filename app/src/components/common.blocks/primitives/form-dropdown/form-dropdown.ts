@@ -1,6 +1,8 @@
 import BEMComponent, {
   HTMLElementWithComponent,
 } from '@shared/utils/scripts/components/BEM/BEMComponent';
+import '@common.blocks/primitives/heading/heading';
+import '@common.blocks/primitives/icon/icon';
 
 import type {
   FormDropdownItemQuantityListCustomEvents,
@@ -15,6 +17,7 @@ import './__datepicker/form-dropdown__datepicker';
 import formDropdownElements, {
   FormDropdownElement,
 } from './form-dropdown-elements';
+import './form-dropdown.scss';
 
 type ExpandableItemElementWithComponent =
   | FormDropdownItemQuantityListElementWithComponent

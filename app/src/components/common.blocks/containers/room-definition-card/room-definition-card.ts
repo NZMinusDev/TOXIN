@@ -10,14 +10,17 @@ import type {
   FormDropdownWithItemQuantityListElementWithComponent,
   FormDropdownWithDatepickerElementWithComponent,
 } from '@common.blocks/primitives/form-dropdown/form-dropdown';
-import '@library.blocks/primitives/form-dropdown/__item-quantity-list/form-dropdown__item-quantity-list';
-import '@common.blocks/primitives/form-dropdown/__datepicker/form-dropdown__datepicker';
-import '@common.blocks/primitives/form-dropdown/__item-quantity-list/form-dropdown__item-quantity-list';
 import '@common.blocks/primitives/form-dropdown/form-dropdown';
+import '@common.blocks/primitives/card-base/card-base';
+import '@common.blocks/primitives/heading/heading';
+import '@common.blocks/primitives/card-text/card-text';
+import '@common.blocks/primitives/tooltip/tooltip';
+import '@common.blocks/primitives/button/button';
 
 import roomDefinitionCardElements, {
   RoomDefinitionCardElement,
 } from './room-definition-card-elements';
+import './room-definition-card.scss';
 
 type RoomDefinitionCardDOM = {
   dayPayment: HTMLDivElement;

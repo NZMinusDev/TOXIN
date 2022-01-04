@@ -10,6 +10,7 @@ import '@library.blocks/primitives/datepicker-card/datepicker-card';
 import datepickerCardElements, {
   DatepickerCardElement,
 } from './datepicker-card-elements';
+import './datepicker-card.scss';
 
 type LibElement = HTMLDivElement;
 type DatepickerCardDOM = {

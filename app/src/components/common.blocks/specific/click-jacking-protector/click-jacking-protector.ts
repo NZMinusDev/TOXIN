@@ -5,6 +5,7 @@ import BEMComponent, {
 import clickJackingProtectorElements, {
   ClickJackingProtectorElement,
 } from './click-jacking-protector-elements';
+import './click-jacking-protector.scss';
 
 type ClickJackingProtectorCustomEvents = {};
 

@@ -2,6 +2,7 @@ import BEMComponent, {
   HTMLElementWithComponent,
 } from '@shared/utils/scripts/components/BEM/BEMComponent';
 import { addURLValues } from '@shared/utils/scripts/URL';
+import '@common.blocks/primitives/heading/heading';
 import noUiSlider, {
   target,
 } from '@library.blocks/primitives/form-range-slider/form-range-slider';
@@ -9,6 +10,7 @@ import noUiSlider, {
 import formRangeSliderElements, {
   FormRangeSliderElement,
 } from './form-range-slider-elements';
+import './form-range-slider.scss';
 
 type FormRangeSliderDOM = {
   slider: target;

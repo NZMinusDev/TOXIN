@@ -5,6 +5,7 @@ import BEMComponent, {
 import formLikeButtonElements, {
   FormLikeButtonElement,
 } from './form-like-button-elements';
+import './form-like-button.scss';
 
 type FormLikeButtonDOM = { button: HTMLInputElement; counter: HTMLSpanElement };
 

@@ -3,6 +3,7 @@ import BEMComponent, {
 } from '@shared/utils/scripts/components/BEM/BEMComponent';
 
 import toTopArrowElements, { ToTopArrowElement } from './to-top-arrow-elements';
+import './to-top-arrow.scss';
 
 type ToTopArrowCustomEvents = {};
 
